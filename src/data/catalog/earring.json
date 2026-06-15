@@ -1,0 +1,355 @@
+[
+  {
+    "id": 1032001,
+    "name": "한쪽 은 귀고리",
+    "slot": "earring",
+    "effects": {},
+    "reqLevel": 15,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1032001/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1032003,
+    "name": "자수정 귀고리",
+    "slot": "earring",
+    "effects": {},
+    "reqLevel": 15,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1032003/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1032000,
+    "name": "추 귀고리",
+    "slot": "earring",
+    "effects": {},
+    "reqLevel": 20,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1032000/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1032009,
+    "name": "옐로우 스퀘어",
+    "slot": "earring",
+    "effects": {},
+    "reqLevel": 20,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1032009/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1032040,
+    "name": "메이플 이어링",
+    "slot": "earring",
+    "effects": {},
+    "reqLevel": 20,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1032040/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1032004,
+    "name": "금 링 귀고리",
+    "slot": "earring",
+    "effects": {
+      "mdef": 5
+    },
+    "reqLevel": 25,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1032004/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1032005,
+    "name": "레드 크로스링",
+    "slot": "earring",
+    "effects": {
+      "mdef": 5
+    },
+    "reqLevel": 25,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1032005/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1032025,
+    "name": "나뭇잎 귀고리",
+    "slot": "earring",
+    "effects": {
+      "mdef": 2,
+      "mp": 50
+    },
+    "reqLevel": 25,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1032025/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1032032,
+    "name": "낙엽 귀고리",
+    "slot": "earring",
+    "effects": {
+      "mad": 1,
+      "mdef": 2,
+      "hp": 25,
+      "mp": 25
+    },
+    "reqLevel": 25,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1032032/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1032006,
+    "name": "번개 귀고리",
+    "slot": "earring",
+    "effects": {
+      "mdef": 10
+    },
+    "reqLevel": 30,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1032006/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1032007,
+    "name": "에메랄드 귀고리",
+    "slot": "earring",
+    "effects": {
+      "mdef": 10
+    },
+    "reqLevel": 30,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1032007/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1032010,
+    "name": "별 귀고리",
+    "slot": "earring",
+    "effects": {
+      "mdef": 10
+    },
+    "reqLevel": 30,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1032010/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1032028,
+    "name": "레드 에메랄드 이어링",
+    "slot": "earring",
+    "effects": {
+      "INT": 2,
+      "mdef": 5
+    },
+    "reqLevel": 30,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1032028/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1032002,
+    "name": "사파이어 귀고리",
+    "slot": "earring",
+    "effects": {
+      "mdef": 15
+    },
+    "reqLevel": 35,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1032002/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1032008,
+    "name": "캣츠 아이",
+    "slot": "earring",
+    "effects": {
+      "mdef": 15
+    },
+    "reqLevel": 35,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1032008/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1032011,
+    "name": "블루 문",
+    "slot": "earring",
+    "effects": {
+      "mdef": 20
+    },
+    "reqLevel": 40,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1032011/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1032041,
+    "name": "메이플 이어링",
+    "slot": "earring",
+    "effects": {
+      "mdef": 20,
+      "hp": 15,
+      "mp": 15
+    },
+    "reqLevel": 40,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1032041/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1032018,
+    "name": "펜지 이어링",
+    "slot": "earring",
+    "effects": {
+      "mdef": 25
+    },
+    "reqLevel": 45,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1032018/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1032012,
+    "name": "해골 귀고리",
+    "slot": "earring",
+    "effects": {
+      "mdef": 30
+    },
+    "reqLevel": 50,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1032012/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1032013,
+    "name": "빨간하트 귀고리",
+    "slot": "earring",
+    "effects": {
+      "mdef": 30
+    },
+    "reqLevel": 50,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1032013/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1032019,
+    "name": "크리스탈 플라워링",
+    "slot": "earring",
+    "effects": {
+      "mdef": 35
+    },
+    "reqLevel": 55,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1032019/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1032021,
+    "name": "홀리 크로스링",
+    "slot": "earring",
+    "effects": {
+      "mdef": 35
+    },
+    "reqLevel": 55,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1032021/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1032014,
+    "name": "분홍꽃 귀고리",
+    "slot": "earring",
+    "effects": {
+      "mdef": 40
+    },
+    "reqLevel": 60,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1032014/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1032020,
+    "name": "골드드롭 이어링",
+    "slot": "earring",
+    "effects": {
+      "mdef": 45
+    },
+    "reqLevel": 65,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1032020/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1032015,
+    "name": "메탈실버 이어링",
+    "slot": "earring",
+    "effects": {
+      "mdef": 50
+    },
+    "reqLevel": 70,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1032015/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1032042,
+    "name": "메이플 이어링",
+    "slot": "earring",
+    "effects": {
+      "mdef": 50,
+      "hp": 25,
+      "mp": 25
+    },
+    "reqLevel": 70,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1032042/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1032022,
+    "name": "하프 이어링",
+    "slot": "earring",
+    "effects": {
+      "mdef": 55
+    },
+    "reqLevel": 75,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1032022/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1032016,
+    "name": "메탈하트 이어링",
+    "slot": "earring",
+    "effects": {
+      "mdef": 60
+    },
+    "reqLevel": 80,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1032016/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1032023,
+    "name": "딸기 귀고리",
+    "slot": "earring",
+    "effects": {
+      "mdef": 65
+    },
+    "reqLevel": 85,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1032023/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1032017,
+    "name": "장미꽃 귀고리",
+    "slot": "earring",
+    "effects": {
+      "mdef": 70
+    },
+    "reqLevel": 90,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1032017/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1032030,
+    "name": "소드 이어링",
+    "slot": "earring",
+    "effects": {
+      "mdef": 80,
+      "hp": 30
+    },
+    "reqLevel": 100,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1032030/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1032031,
+    "name": "타임리스 이어링",
+    "slot": "earring",
+    "effects": {
+      "mdef": 80,
+      "add": 1
+    },
+    "reqLevel": 100,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1032031/icon",
+    "tuc": 5
+  }
+]

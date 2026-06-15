@@ -1,0 +1,2032 @@
+[
+  {
+    "key": "item::드래곤의 돌",
+    "name": "드래곤의 돌",
+    "itemIds": [
+      1122000
+    ],
+    "options": [
+      {
+        "rate": 100,
+        "effects": {
+          "STR": 15,
+          "DEX": 15,
+          "INT": 15,
+          "LUK": 15,
+          "pdef": 140,
+          "mdef": 140,
+          "eva": 15
+        },
+        "itemId": 2041200
+      }
+    ]
+  },
+  {
+    "key": "item::슈피겔만의 구슬",
+    "name": "슈피겔만의 구슬",
+    "itemIds": [
+      1122007
+    ],
+    "options": [
+      {
+        "rate": 60,
+        "effects": {
+          "hp": 30,
+          "mp": 30
+        },
+        "itemId": 2041211
+      }
+    ]
+  },
+  {
+    "key": "item::지혜의 돌",
+    "name": "지혜의 돌",
+    "itemIds": [
+      1122010
+    ],
+    "options": [
+      {
+        "rate": 60,
+        "effects": {
+          "hp": 70,
+          "mp": 70
+        },
+        "itemId": 2041212
+      }
+    ]
+  },
+  {
+    "key": "slot:bottom::하의 민첩 주문서",
+    "name": "하의 민첩 주문서",
+    "options": [
+      {
+        "rate": 100,
+        "effects": {
+          "DEX": 1
+        },
+        "itemId": 2040614
+      },
+      {
+        "rate": 60,
+        "effects": {
+          "DEX": 2,
+          "speed": 1
+        },
+        "itemId": 2040613
+      },
+      {
+        "rate": 10,
+        "effects": {
+          "DEX": 3,
+          "speed": 3
+        },
+        "itemId": 2040612
+      }
+    ],
+    "slot": "bottom"
+  },
+  {
+    "key": "slot:bottom::하의 방어력 주문서",
+    "name": "하의 방어력 주문서",
+    "options": [
+      {
+        "rate": 100,
+        "effects": {
+          "pdef": 1
+        },
+        "itemId": 2040600
+      },
+      {
+        "rate": 60,
+        "effects": {
+          "pdef": 2,
+          "mdef": 1
+        },
+        "itemId": 2040601
+      },
+      {
+        "rate": 10,
+        "effects": {
+          "hp": 10,
+          "pdef": 5,
+          "mdef": 3
+        },
+        "itemId": 2040602
+      }
+    ],
+    "slot": "bottom"
+  },
+  {
+    "key": "slot:bottom::하의 점프 주문서",
+    "name": "하의 점프 주문서",
+    "options": [
+      {
+        "rate": 100,
+        "effects": {
+          "jump": 1
+        },
+        "itemId": 2040617
+      },
+      {
+        "rate": 60,
+        "effects": {
+          "eva": 1,
+          "jump": 2
+        },
+        "itemId": 2040618
+      },
+      {
+        "rate": 10,
+        "effects": {
+          "eva": 2,
+          "jump": 4
+        },
+        "itemId": 2040619
+      }
+    ],
+    "slot": "bottom"
+  },
+  {
+    "key": "slot:bottom::하의 체력 주문서",
+    "name": "하의 체력 주문서",
+    "options": [
+      {
+        "rate": 100,
+        "effects": {
+          "hp": 5
+        },
+        "itemId": 2040620
+      },
+      {
+        "rate": 60,
+        "effects": {
+          "hp": 15
+        },
+        "itemId": 2040621
+      },
+      {
+        "rate": 10,
+        "effects": {
+          "hp": 30
+        },
+        "itemId": 2040622
+      }
+    ],
+    "slot": "bottom"
+  },
+  {
+    "key": "slot:cape::망토 민첩 주문서",
+    "name": "망토 민첩 주문서",
+    "options": [
+      {
+        "rate": 100,
+        "effects": {
+          "DEX": 1
+        },
+        "itemId": 2041018
+      },
+      {
+        "rate": 60,
+        "effects": {
+          "DEX": 2
+        },
+        "itemId": 2041019
+      },
+      {
+        "rate": 10,
+        "effects": {
+          "DEX": 3
+        },
+        "itemId": 2041020
+      }
+    ],
+    "slot": "cape"
+  },
+  {
+    "key": "slot:cape::망토 지력 주문서",
+    "name": "망토 지력 주문서",
+    "options": [
+      {
+        "rate": 100,
+        "effects": {
+          "INT": 1
+        },
+        "itemId": 2041015
+      },
+      {
+        "rate": 60,
+        "effects": {
+          "INT": 2
+        },
+        "itemId": 2041016
+      },
+      {
+        "rate": 10,
+        "effects": {
+          "INT": 3
+        },
+        "itemId": 2041017
+      }
+    ],
+    "slot": "cape"
+  },
+  {
+    "key": "slot:cape::망토 체력 주문서",
+    "name": "망토 체력 주문서",
+    "options": [
+      {
+        "rate": 100,
+        "effects": {
+          "hp": 5
+        },
+        "itemId": 2041006
+      },
+      {
+        "rate": 60,
+        "effects": {
+          "hp": 10
+        },
+        "itemId": 2041007
+      },
+      {
+        "rate": 10,
+        "effects": {
+          "hp": 20
+        },
+        "itemId": 2041008
+      }
+    ],
+    "slot": "cape"
+  },
+  {
+    "key": "slot:cape::망토 행운 주문서",
+    "name": "망토 행운 주문서",
+    "options": [
+      {
+        "rate": 100,
+        "effects": {
+          "LUK": 1
+        },
+        "itemId": 2041021
+      },
+      {
+        "rate": 60,
+        "effects": {
+          "LUK": 2
+        },
+        "itemId": 2041022
+      },
+      {
+        "rate": 10,
+        "effects": {
+          "LUK": 3
+        },
+        "itemId": 2041023
+      }
+    ],
+    "slot": "cape"
+  },
+  {
+    "key": "slot:cape::망토 힘 주문서",
+    "name": "망토 힘 주문서",
+    "options": [
+      {
+        "rate": 100,
+        "effects": {
+          "STR": 1
+        },
+        "itemId": 2041012
+      },
+      {
+        "rate": 60,
+        "effects": {
+          "STR": 2
+        },
+        "itemId": 2041013
+      },
+      {
+        "rate": 10,
+        "effects": {
+          "STR": 3
+        },
+        "itemId": 2041014
+      }
+    ],
+    "slot": "cape"
+  },
+  {
+    "key": "slot:earring::귀 장식 민첩 주문서",
+    "name": "귀 장식 민첩 주문서",
+    "options": [
+      {
+        "rate": 100,
+        "effects": {
+          "DEX": 1
+        },
+        "itemId": 2040316
+      },
+      {
+        "rate": 60,
+        "effects": {
+          "DEX": 2
+        },
+        "itemId": 2040317
+      },
+      {
+        "rate": 10,
+        "effects": {
+          "DEX": 3
+        },
+        "itemId": 2040318
+      }
+    ],
+    "slot": "earring"
+  },
+  {
+    "key": "slot:earring::귀 장식 방어력 주문서",
+    "name": "귀 장식 방어력 주문서",
+    "options": [
+      {
+        "rate": 100,
+        "effects": {
+          "pdef": 1
+        },
+        "itemId": 2040312
+      },
+      {
+        "rate": 60,
+        "effects": {
+          "pdef": 1,
+          "mdef": 1
+        },
+        "itemId": 2040311
+      },
+      {
+        "rate": 10,
+        "effects": {
+          "pdef": 3,
+          "mdef": 3,
+          "add": 1
+        },
+        "itemId": 2040310
+      }
+    ],
+    "slot": "earring"
+  },
+  {
+    "key": "slot:earring::귀 장식 지력 주문서",
+    "name": "귀 장식 지력 주문서",
+    "options": [
+      {
+        "rate": 100,
+        "effects": {
+          "mad": 1
+        },
+        "itemId": 2040300
+      },
+      {
+        "rate": 60,
+        "effects": {
+          "INT": 1,
+          "mad": 2
+        },
+        "itemId": 2040301
+      },
+      {
+        "rate": 10,
+        "effects": {
+          "INT": 3,
+          "mad": 5,
+          "mdef": 1
+        },
+        "itemId": 2040302
+      }
+    ],
+    "slot": "earring"
+  },
+  {
+    "key": "slot:earring::귀 장식 체력 주문서",
+    "name": "귀 장식 체력 주문서",
+    "options": [
+      {
+        "rate": 100,
+        "effects": {
+          "hp": 5
+        },
+        "itemId": 2040324
+      },
+      {
+        "rate": 60,
+        "effects": {
+          "hp": 15
+        },
+        "itemId": 2040326
+      },
+      {
+        "rate": 10,
+        "effects": {
+          "hp": 30
+        },
+        "itemId": 2040328
+      }
+    ],
+    "slot": "earring"
+  },
+  {
+    "key": "slot:earring::귀 장식 행운 주문서",
+    "name": "귀 장식 행운 주문서",
+    "options": [
+      {
+        "rate": 100,
+        "effects": {
+          "LUK": 1
+        },
+        "itemId": 2040319
+      },
+      {
+        "rate": 60,
+        "effects": {
+          "LUK": 2
+        },
+        "itemId": 2040321
+      },
+      {
+        "rate": 10,
+        "effects": {
+          "LUK": 3
+        },
+        "itemId": 2040323
+      }
+    ],
+    "slot": "earring"
+  },
+  {
+    "key": "slot:eyeAccessory::눈 장식 명중률 주문서",
+    "name": "눈 장식 명중률 주문서",
+    "slot": "eyeAccessory",
+    "options": [
+      {
+        "rate": 100,
+        "effects": {
+          "add": 1
+        },
+        "itemId": 2040202
+      },
+      {
+        "rate": 60,
+        "effects": {
+          "add": 2
+        },
+        "itemId": 2040201
+      },
+      {
+        "rate": 10,
+        "effects": {
+          "add": 3
+        },
+        "itemId": 2040200
+      }
+    ]
+  },
+  {
+    "key": "slot:eyeAccessory::눈 장식 체력 주문서",
+    "name": "눈 장식 체력 주문서",
+    "slot": "eyeAccessory",
+    "options": [
+      {
+        "rate": 100,
+        "effects": {
+          "hp": 10
+        }
+      },
+      {
+        "rate": 60,
+        "effects": {
+          "hp": 20
+        }
+      },
+      {
+        "rate": 10,
+        "effects": {
+          "hp": 30
+        }
+      }
+    ]
+  },
+  {
+    "key": "slot:eyeAccessory::눈 장식 회피 주문서",
+    "name": "눈 장식 회피 주문서",
+    "slot": "eyeAccessory",
+    "options": [
+      {
+        "rate": 100,
+        "effects": {
+          "eva": 1
+        }
+      },
+      {
+        "rate": 60,
+        "effects": {
+          "eva": 2
+        }
+      },
+      {
+        "rate": 10,
+        "effects": {
+          "eva": 3
+        }
+      }
+    ]
+  },
+  {
+    "key": "slot:gloves::장갑 공격력 주문서",
+    "name": "장갑 공격력 주문서",
+    "options": [
+      {
+        "rate": 100,
+        "effects": {
+          "pad": 1
+        },
+        "itemId": 2040803
+      },
+      {
+        "rate": 60,
+        "effects": {
+          "pad": 2
+        },
+        "itemId": 2040804
+      },
+      {
+        "rate": 10,
+        "effects": {
+          "pad": 3
+        },
+        "itemId": 2040805
+      }
+    ],
+    "slot": "gloves"
+  },
+  {
+    "key": "slot:gloves::장갑 민첩 주문서",
+    "name": "장갑 민첩 주문서",
+    "options": [
+      {
+        "rate": 100,
+        "effects": {
+          "add": 1
+        },
+        "itemId": 2040800
+      },
+      {
+        "rate": 60,
+        "effects": {
+          "DEX": 1,
+          "add": 2
+        },
+        "itemId": 2040801
+      },
+      {
+        "rate": 10,
+        "effects": {
+          "DEX": 3,
+          "add": 5,
+          "eva": 1
+        },
+        "itemId": 2040802
+      }
+    ],
+    "slot": "gloves"
+  },
+  {
+    "key": "slot:hat::투구 민첩 주문서",
+    "name": "투구 민첩 주문서",
+    "options": [
+      {
+        "rate": 100,
+        "effects": {
+          "DEX": 1
+        },
+        "itemId": 2040027
+      },
+      {
+        "rate": 60,
+        "effects": {
+          "DEX": 2
+        },
+        "itemId": 2040029
+      },
+      {
+        "rate": 10,
+        "effects": {
+          "DEX": 3
+        },
+        "itemId": 2040031
+      }
+    ],
+    "slot": "hat"
+  },
+  {
+    "key": "slot:hat::투구 방어력 주문서",
+    "name": "투구 방어력 주문서",
+    "options": [
+      {
+        "rate": 100,
+        "effects": {
+          "pdef": 1
+        },
+        "itemId": 2040000
+      },
+      {
+        "rate": 60,
+        "effects": {
+          "pdef": 2,
+          "mdef": 1
+        },
+        "itemId": 2040001
+      },
+      {
+        "rate": 10,
+        "effects": {
+          "pdef": 5,
+          "mdef": 3,
+          "add": 1
+        },
+        "itemId": 2040002
+      }
+    ],
+    "slot": "hat"
+  },
+  {
+    "key": "slot:hat::투구 지력 주문서",
+    "name": "투구 지력 주문서",
+    "options": [
+      {
+        "rate": 100,
+        "effects": {
+          "INT": 1
+        },
+        "itemId": 2040024
+      },
+      {
+        "rate": 60,
+        "effects": {
+          "INT": 2
+        },
+        "itemId": 2040025
+      },
+      {
+        "rate": 10,
+        "effects": {
+          "INT": 3
+        },
+        "itemId": 2040026
+      }
+    ],
+    "slot": "hat"
+  },
+  {
+    "key": "slot:hat::투구 체력 주문서",
+    "name": "투구 체력 주문서",
+    "options": [
+      {
+        "rate": 100,
+        "effects": {
+          "hp": 5
+        },
+        "itemId": 2040003
+      },
+      {
+        "rate": 60,
+        "effects": {
+          "hp": 10
+        },
+        "itemId": 2040004
+      },
+      {
+        "rate": 10,
+        "effects": {
+          "hp": 30
+        },
+        "itemId": 2040005
+      }
+    ],
+    "slot": "hat"
+  },
+  {
+    "key": "slot:overall::전신 갑옷 민첩 주문서",
+    "name": "전신 갑옷 민첩 주문서",
+    "options": [
+      {
+        "rate": 100,
+        "effects": {
+          "DEX": 1
+        },
+        "itemId": 2040500
+      },
+      {
+        "rate": 60,
+        "effects": {
+          "DEX": 2,
+          "add": 1
+        },
+        "itemId": 2040501
+      },
+      {
+        "rate": 10,
+        "effects": {
+          "DEX": 5,
+          "add": 3,
+          "speed": 1
+        },
+        "itemId": 2040502
+      }
+    ],
+    "slot": "overall"
+  },
+  {
+    "key": "slot:overall::전신 갑옷 방어력 주문서",
+    "name": "전신 갑옷 방어력 주문서",
+    "options": [
+      {
+        "rate": 100,
+        "effects": {
+          "pdef": 1
+        },
+        "itemId": 2040503
+      },
+      {
+        "rate": 60,
+        "effects": {
+          "pdef": 2,
+          "mdef": 1
+        },
+        "itemId": 2040504
+      },
+      {
+        "rate": 10,
+        "effects": {
+          "hp": 10,
+          "pdef": 5,
+          "mdef": 3
+        },
+        "itemId": 2040505
+      }
+    ],
+    "slot": "overall"
+  },
+  {
+    "key": "slot:overall::전신 갑옷 지력 주문서",
+    "name": "전신 갑옷 지력 주문서",
+    "options": [
+      {
+        "rate": 100,
+        "effects": {
+          "INT": 1
+        },
+        "itemId": 2040512
+      },
+      {
+        "rate": 60,
+        "effects": {
+          "INT": 2,
+          "mdef": 1
+        },
+        "itemId": 2040513
+      },
+      {
+        "rate": 10,
+        "effects": {
+          "INT": 5,
+          "mp": 10,
+          "mdef": 3
+        },
+        "itemId": 2040514
+      }
+    ],
+    "slot": "overall"
+  },
+  {
+    "key": "slot:overall::전신 갑옷 행운 주문서",
+    "name": "전신 갑옷 행운 주문서",
+    "options": [
+      {
+        "rate": 100,
+        "effects": {
+          "LUK": 1
+        },
+        "itemId": 2040515
+      },
+      {
+        "rate": 60,
+        "effects": {
+          "LUK": 2,
+          "eva": 1
+        },
+        "itemId": 2040516
+      },
+      {
+        "rate": 10,
+        "effects": {
+          "LUK": 5,
+          "add": 1,
+          "eva": 3
+        },
+        "itemId": 2040517
+      }
+    ],
+    "slot": "overall"
+  },
+  {
+    "key": "slot:overall::전신 갑옷 힘 주문서",
+    "name": "전신 갑옷 힘 주문서",
+    "options": [
+      {
+        "rate": 100,
+        "effects": {
+          "STR": 1
+        },
+        "itemId": 2040530
+      },
+      {
+        "rate": 60,
+        "effects": {
+          "STR": 2,
+          "pdef": 1
+        },
+        "itemId": 2040532
+      },
+      {
+        "rate": 10,
+        "effects": {
+          "STR": 5,
+          "hp": 5,
+          "pdef": 3
+        },
+        "itemId": 2040534
+      }
+    ],
+    "slot": "overall"
+  },
+  {
+    "key": "slot:petAcc::펫장비 이동속도 주문서",
+    "name": "펫장비 이동속도 주문서",
+    "options": [
+      {
+        "rate": 100,
+        "effects": {
+          "speed": 1
+        },
+        "itemId": 2048000
+      },
+      {
+        "rate": 60,
+        "effects": {
+          "speed": 2
+        },
+        "itemId": 2048001
+      },
+      {
+        "rate": 10,
+        "effects": {
+          "speed": 3
+        },
+        "itemId": 2048002
+      }
+    ],
+    "slot": "petAcc"
+  },
+  {
+    "key": "slot:petAcc::펫장비 점프력 주문서",
+    "name": "펫장비 점프력 주문서",
+    "options": [
+      {
+        "rate": 100,
+        "effects": {
+          "jump": 1
+        },
+        "itemId": 2048003
+      },
+      {
+        "rate": 60,
+        "effects": {
+          "jump": 2
+        },
+        "itemId": 2048004
+      },
+      {
+        "rate": 10,
+        "effects": {
+          "jump": 3
+        },
+        "itemId": 2048005
+      }
+    ],
+    "slot": "petAcc"
+  },
+  {
+    "key": "slot:shield::방패 방어력 주문서",
+    "name": "방패 방어력 주문서",
+    "options": [
+      {
+        "rate": 100,
+        "effects": {
+          "pdef": 1
+        },
+        "itemId": 2040900
+      },
+      {
+        "rate": 60,
+        "effects": {
+          "pdef": 2,
+          "mdef": 1
+        },
+        "itemId": 2040901
+      },
+      {
+        "rate": 10,
+        "effects": {
+          "hp": 10,
+          "pdef": 5,
+          "mdef": 3
+        },
+        "itemId": 2040902
+      }
+    ],
+    "slot": "shield"
+  },
+  {
+    "key": "slot:shield::방패 체력 주문서",
+    "name": "방패 체력 주문서",
+    "options": [
+      {
+        "rate": 100,
+        "effects": {
+          "hp": 5
+        },
+        "itemId": 2040926
+      },
+      {
+        "rate": 60,
+        "effects": {
+          "hp": 15
+        },
+        "itemId": 2040927
+      },
+      {
+        "rate": 10,
+        "effects": {
+          "hp": 30
+        },
+        "itemId": 2040928
+      }
+    ],
+    "slot": "shield"
+  },
+  {
+    "key": "slot:shield::방패 행운 주문서",
+    "name": "방패 행운 주문서",
+    "options": [
+      {
+        "rate": 100,
+        "effects": {
+          "LUK": 1
+        },
+        "itemId": 2040923
+      },
+      {
+        "rate": 60,
+        "effects": {
+          "LUK": 2
+        },
+        "itemId": 2040924
+      },
+      {
+        "rate": 10,
+        "effects": {
+          "LUK": 3
+        },
+        "itemId": 2040925
+      }
+    ],
+    "slot": "shield"
+  },
+  {
+    "key": "slot:shield::방패 힘 주문서",
+    "name": "방패 힘 주문서",
+    "options": [
+      {
+        "rate": 100,
+        "effects": {
+          "STR": 1
+        },
+        "itemId": 2040929
+      },
+      {
+        "rate": 60,
+        "effects": {
+          "STR": 2
+        },
+        "itemId": 2040931
+      },
+      {
+        "rate": 10,
+        "effects": {
+          "STR": 3
+        },
+        "itemId": 2040933
+      }
+    ],
+    "slot": "shield"
+  },
+  {
+    "key": "slot:shoes::신발 민첩 주문서",
+    "name": "신발 민첩 주문서",
+    "options": [
+      {
+        "rate": 100,
+        "effects": {
+          "eva": 1
+        },
+        "itemId": 2040700
+      },
+      {
+        "rate": 60,
+        "effects": {
+          "add": 1,
+          "eva": 2
+        },
+        "itemId": 2040701
+      },
+      {
+        "rate": 10,
+        "effects": {
+          "add": 3,
+          "eva": 5,
+          "speed": 1
+        },
+        "itemId": 2040702
+      }
+    ],
+    "slot": "shoes"
+  },
+  {
+    "key": "slot:shoes::신발 이동속도 주문서",
+    "name": "신발 이동속도 주문서",
+    "options": [
+      {
+        "rate": 100,
+        "effects": {
+          "speed": 1
+        },
+        "itemId": 2040706
+      },
+      {
+        "rate": 60,
+        "effects": {
+          "speed": 2
+        },
+        "itemId": 2040707
+      },
+      {
+        "rate": 10,
+        "effects": {
+          "speed": 3
+        },
+        "itemId": 2040708
+      }
+    ],
+    "slot": "shoes"
+  },
+  {
+    "key": "slot:shoes::신발 점프력 주문서",
+    "name": "신발 점프력 주문서",
+    "options": [
+      {
+        "rate": 100,
+        "effects": {
+          "jump": 1
+        },
+        "itemId": 2040703
+      },
+      {
+        "rate": 60,
+        "effects": {
+          "DEX": 1,
+          "jump": 2
+        },
+        "itemId": 2040704
+      },
+      {
+        "rate": 10,
+        "effects": {
+          "DEX": 3,
+          "speed": 1,
+          "jump": 5
+        },
+        "itemId": 2040705
+      }
+    ],
+    "slot": "shoes"
+  },
+  {
+    "key": "slot:top::상의 방어력 주문서",
+    "name": "상의 방어력 주문서",
+    "options": [
+      {
+        "rate": 100,
+        "effects": {
+          "pdef": 1
+        },
+        "itemId": 2040400
+      },
+      {
+        "rate": 60,
+        "effects": {
+          "pdef": 2,
+          "mdef": 1
+        },
+        "itemId": 2040401
+      },
+      {
+        "rate": 10,
+        "effects": {
+          "hp": 10,
+          "pdef": 5,
+          "mdef": 3
+        },
+        "itemId": 2040402
+      }
+    ],
+    "slot": "top"
+  },
+  {
+    "key": "slot:top::상의 체력 주문서",
+    "name": "상의 체력 주문서",
+    "options": [
+      {
+        "rate": 100,
+        "effects": {
+          "hp": 5
+        },
+        "itemId": 2040420
+      },
+      {
+        "rate": 60,
+        "effects": {
+          "hp": 15
+        },
+        "itemId": 2040421
+      },
+      {
+        "rate": 10,
+        "effects": {
+          "hp": 30
+        },
+        "itemId": 2040422
+      }
+    ],
+    "slot": "top"
+  },
+  {
+    "key": "slot:top::상의 행운 주문서",
+    "name": "상의 행운 주문서",
+    "options": [
+      {
+        "rate": 100,
+        "effects": {
+          "LUK": 1
+        },
+        "itemId": 2040414
+      },
+      {
+        "rate": 60,
+        "effects": {
+          "LUK": 2,
+          "eva": 1
+        },
+        "itemId": 2040413
+      },
+      {
+        "rate": 10,
+        "effects": {
+          "LUK": 3,
+          "eva": 3
+        },
+        "itemId": 2040412
+      }
+    ],
+    "slot": "top"
+  },
+  {
+    "key": "slot:top::상의 힘 주문서",
+    "name": "상의 힘 주문서",
+    "options": [
+      {
+        "rate": 100,
+        "effects": {
+          "STR": 1
+        },
+        "itemId": 2040417
+      },
+      {
+        "rate": 60,
+        "effects": {
+          "STR": 2
+        },
+        "itemId": 2040418
+      },
+      {
+        "rate": 10,
+        "effects": {
+          "STR": 3
+        },
+        "itemId": 2040419
+      }
+    ],
+    "slot": "top"
+  },
+  {
+    "key": "weapon:bow::활 공격력 주문서",
+    "name": "활 공격력 주문서",
+    "options": [
+      {
+        "rate": 100,
+        "effects": {
+          "pad": 1
+        },
+        "itemId": 2044500
+      },
+      {
+        "rate": 60,
+        "effects": {
+          "pad": 2,
+          "add": 1
+        },
+        "itemId": 2044501
+      },
+      {
+        "rate": 10,
+        "effects": {
+          "DEX": 1,
+          "pad": 5,
+          "add": 3
+        },
+        "itemId": 2044502
+      }
+    ],
+    "weaponType": "bow"
+  },
+  {
+    "key": "weapon:claw::아대 공격력 주문서",
+    "name": "아대 공격력 주문서",
+    "options": [
+      {
+        "rate": 100,
+        "effects": {
+          "pad": 1
+        },
+        "itemId": 2044700
+      },
+      {
+        "rate": 60,
+        "effects": {
+          "pad": 2,
+          "add": 1
+        },
+        "itemId": 2044701
+      },
+      {
+        "rate": 10,
+        "effects": {
+          "LUK": 1,
+          "pad": 5,
+          "add": 3
+        },
+        "itemId": 2044702
+      }
+    ],
+    "weaponType": "claw"
+  },
+  {
+    "key": "weapon:crossbow::석궁 공격력 주문서",
+    "name": "석궁 공격력 주문서",
+    "options": [
+      {
+        "rate": 100,
+        "effects": {
+          "pad": 1
+        },
+        "itemId": 2044600
+      },
+      {
+        "rate": 60,
+        "effects": {
+          "pad": 2,
+          "add": 1
+        },
+        "itemId": 2044601
+      },
+      {
+        "rate": 10,
+        "effects": {
+          "DEX": 1,
+          "pad": 5,
+          "add": 3
+        },
+        "itemId": 2044602
+      }
+    ],
+    "weaponType": "crossbow"
+  },
+  {
+    "key": "weapon:dagger::단검 공격력 주문서",
+    "name": "단검 공격력 주문서",
+    "options": [
+      {
+        "rate": 100,
+        "effects": {
+          "pad": 1
+        },
+        "itemId": 2043300
+      },
+      {
+        "rate": 60,
+        "effects": {
+          "LUK": 1,
+          "pad": 2
+        },
+        "itemId": 2043301
+      },
+      {
+        "rate": 10,
+        "effects": {
+          "LUK": 3,
+          "pad": 5,
+          "pdef": 1
+        },
+        "itemId": 2043302
+      }
+    ],
+    "weaponType": "dagger"
+  },
+  {
+    "key": "weapon:gun::건 공격력 주문서",
+    "name": "건 공격력 주문서",
+    "options": [
+      {
+        "rate": 100,
+        "effects": {
+          "pad": 1
+        },
+        "itemId": 2044900
+      },
+      {
+        "rate": 60,
+        "effects": {
+          "pad": 2,
+          "add": 1
+        },
+        "itemId": 2044901
+      },
+      {
+        "rate": 10,
+        "effects": {
+          "DEX": 1,
+          "pad": 5,
+          "add": 3
+        },
+        "itemId": 2044902
+      }
+    ],
+    "weaponType": "gun"
+  },
+  {
+    "key": "weapon:knuckle::너클 공격력 주문서",
+    "name": "너클 공격력 주문서",
+    "options": [
+      {
+        "rate": 100,
+        "effects": {
+          "pad": 1
+        },
+        "itemId": 2044800
+      },
+      {
+        "rate": 60,
+        "effects": {
+          "STR": 1,
+          "pad": 2
+        },
+        "itemId": 2044801
+      },
+      {
+        "rate": 10,
+        "effects": {
+          "STR": 3,
+          "pad": 5,
+          "pdef": 1
+        },
+        "itemId": 2044802
+      }
+    ],
+    "weaponType": "knuckle"
+  },
+  {
+    "key": "weapon:knuckle::너클 명중치 주문서",
+    "name": "너클 명중치 주문서",
+    "options": [
+      {
+        "rate": 100,
+        "effects": {
+          "add": 1
+        },
+        "itemId": 2044805
+      },
+      {
+        "rate": 60,
+        "effects": {
+          "DEX": 2,
+          "pad": 1,
+          "add": 3
+        },
+        "itemId": 2044807
+      },
+      {
+        "rate": 10,
+        "effects": {
+          "DEX": 3,
+          "pad": 3,
+          "add": 5
+        },
+        "itemId": 2044809
+      }
+    ],
+    "weaponType": "knuckle"
+  },
+  {
+    "key": "weapon:oneHandedAxe::한손도끼 공격력 주문서",
+    "name": "한손도끼 공격력 주문서",
+    "options": [
+      {
+        "rate": 100,
+        "effects": {
+          "pad": 1
+        },
+        "itemId": 2043100
+      },
+      {
+        "rate": 60,
+        "effects": {
+          "STR": 1,
+          "pad": 2
+        },
+        "itemId": 2043101
+      },
+      {
+        "rate": 10,
+        "effects": {
+          "STR": 3,
+          "pad": 5,
+          "pdef": 1
+        },
+        "itemId": 2043102
+      }
+    ],
+    "weaponType": "oneHandedAxe"
+  },
+  {
+    "key": "weapon:oneHandedAxe::한손도끼 명중치 주문서",
+    "name": "한손도끼 명중치 주문서",
+    "options": [
+      {
+        "rate": 100,
+        "effects": {
+          "add": 1
+        },
+        "itemId": 2043110
+      },
+      {
+        "rate": 60,
+        "effects": {
+          "DEX": 2,
+          "pad": 1,
+          "add": 3
+        },
+        "itemId": 2043112
+      },
+      {
+        "rate": 10,
+        "effects": {
+          "DEX": 3,
+          "pad": 3,
+          "add": 5
+        },
+        "itemId": 2043114
+      }
+    ],
+    "weaponType": "oneHandedAxe"
+  },
+  {
+    "key": "weapon:oneHandedMace::한손둔기 공격력 주문서",
+    "name": "한손둔기 공격력 주문서",
+    "options": [
+      {
+        "rate": 100,
+        "effects": {
+          "pad": 1
+        },
+        "itemId": 2043200
+      },
+      {
+        "rate": 60,
+        "effects": {
+          "STR": 1,
+          "pad": 2
+        },
+        "itemId": 2043201
+      },
+      {
+        "rate": 10,
+        "effects": {
+          "STR": 3,
+          "pad": 5,
+          "pdef": 1
+        },
+        "itemId": 2043202
+      }
+    ],
+    "weaponType": "oneHandedMace"
+  },
+  {
+    "key": "weapon:oneHandedMace::한손둔기 명중치 주문서",
+    "name": "한손둔기 명중치 주문서",
+    "options": [
+      {
+        "rate": 100,
+        "effects": {
+          "add": 1
+        },
+        "itemId": 2043210
+      },
+      {
+        "rate": 60,
+        "effects": {
+          "DEX": 2,
+          "pad": 1,
+          "add": 3
+        },
+        "itemId": 2043212
+      },
+      {
+        "rate": 10,
+        "effects": {
+          "DEX": 3,
+          "pad": 3,
+          "add": 5
+        },
+        "itemId": 2043214
+      }
+    ],
+    "weaponType": "oneHandedMace"
+  },
+  {
+    "key": "weapon:oneHandedSword::한손검 공격력 주문서",
+    "name": "한손검 공격력 주문서",
+    "options": [
+      {
+        "rate": 100,
+        "effects": {
+          "pad": 1
+        },
+        "itemId": 2043000
+      },
+      {
+        "rate": 60,
+        "effects": {
+          "STR": 1,
+          "pad": 2
+        },
+        "itemId": 2043001
+      },
+      {
+        "rate": 10,
+        "effects": {
+          "STR": 3,
+          "pad": 5,
+          "pdef": 1
+        },
+        "itemId": 2043002
+      }
+    ],
+    "weaponType": "oneHandedSword"
+  },
+  {
+    "key": "weapon:oneHandedSword::한손검 명중치 주문서",
+    "name": "한손검 명중치 주문서",
+    "options": [
+      {
+        "rate": 100,
+        "effects": {
+          "add": 1
+        },
+        "itemId": 2043015
+      },
+      {
+        "rate": 60,
+        "effects": {
+          "DEX": 2,
+          "pad": 1,
+          "add": 3
+        },
+        "itemId": 2043017
+      },
+      {
+        "rate": 10,
+        "effects": {
+          "DEX": 3,
+          "pad": 3,
+          "add": 5
+        },
+        "itemId": 2043019
+      }
+    ],
+    "weaponType": "oneHandedSword"
+  },
+  {
+    "key": "weapon:polearm::폴암 공격력 주문서",
+    "name": "폴암 공격력 주문서",
+    "options": [
+      {
+        "rate": 100,
+        "effects": {
+          "pad": 1
+        },
+        "itemId": 2044400
+      },
+      {
+        "rate": 60,
+        "effects": {
+          "STR": 1,
+          "pad": 2
+        },
+        "itemId": 2044401
+      },
+      {
+        "rate": 10,
+        "effects": {
+          "STR": 3,
+          "pad": 5,
+          "pdef": 1
+        },
+        "itemId": 2044402
+      }
+    ],
+    "weaponType": "polearm"
+  },
+  {
+    "key": "weapon:polearm::폴암 명중치 주문서",
+    "name": "폴암 명중치 주문서",
+    "options": [
+      {
+        "rate": 100,
+        "effects": {
+          "add": 1
+        },
+        "itemId": 2044410
+      },
+      {
+        "rate": 60,
+        "effects": {
+          "DEX": 2,
+          "pad": 1,
+          "add": 3
+        },
+        "itemId": 2044412
+      },
+      {
+        "rate": 10,
+        "effects": {
+          "DEX": 3,
+          "pad": 3,
+          "add": 5
+        },
+        "itemId": 2044414
+      }
+    ],
+    "weaponType": "polearm"
+  },
+  {
+    "key": "weapon:spear::창 공격력 주문서",
+    "name": "창 공격력 주문서",
+    "options": [
+      {
+        "rate": 100,
+        "effects": {
+          "pad": 1
+        },
+        "itemId": 2044300
+      },
+      {
+        "rate": 60,
+        "effects": {
+          "STR": 1,
+          "pad": 2
+        },
+        "itemId": 2044301
+      },
+      {
+        "rate": 10,
+        "effects": {
+          "STR": 3,
+          "pad": 5,
+          "pdef": 1
+        },
+        "itemId": 2044302
+      }
+    ],
+    "weaponType": "spear"
+  },
+  {
+    "key": "weapon:spear::창 명중치 주문서",
+    "name": "창 명중치 주문서",
+    "options": [
+      {
+        "rate": 100,
+        "effects": {
+          "add": 1
+        },
+        "itemId": 2044310
+      },
+      {
+        "rate": 60,
+        "effects": {
+          "DEX": 2,
+          "pad": 1,
+          "add": 3
+        },
+        "itemId": 2044312
+      },
+      {
+        "rate": 10,
+        "effects": {
+          "DEX": 3,
+          "pad": 3,
+          "add": 5
+        },
+        "itemId": 2044314
+      }
+    ],
+    "weaponType": "spear"
+  },
+  {
+    "key": "weapon:staff::스태프 마력 주문서",
+    "name": "스태프 마력 주문서",
+    "options": [
+      {
+        "rate": 100,
+        "effects": {
+          "mad": 1
+        },
+        "itemId": 2043800
+      },
+      {
+        "rate": 60,
+        "effects": {
+          "INT": 1,
+          "mad": 2
+        },
+        "itemId": 2043801
+      },
+      {
+        "rate": 10,
+        "effects": {
+          "INT": 3,
+          "mad": 5,
+          "mdef": 1
+        },
+        "itemId": 2043802
+      }
+    ],
+    "weaponType": "staff"
+  },
+  {
+    "key": "weapon:twoHandedAxe::두손도끼 공격력 주문서",
+    "name": "두손도끼 공격력 주문서",
+    "options": [
+      {
+        "rate": 100,
+        "effects": {
+          "pad": 1
+        },
+        "itemId": 2044100
+      },
+      {
+        "rate": 60,
+        "effects": {
+          "STR": 1,
+          "pad": 2
+        },
+        "itemId": 2044101
+      },
+      {
+        "rate": 10,
+        "effects": {
+          "STR": 3,
+          "pad": 5,
+          "pdef": 1
+        },
+        "itemId": 2044102
+      }
+    ],
+    "weaponType": "twoHandedAxe"
+  },
+  {
+    "key": "weapon:twoHandedAxe::두손도끼 명중치 주문서",
+    "name": "두손도끼 명중치 주문서",
+    "options": [
+      {
+        "rate": 100,
+        "effects": {
+          "add": 1
+        },
+        "itemId": 2044110
+      },
+      {
+        "rate": 60,
+        "effects": {
+          "DEX": 2,
+          "pad": 1,
+          "add": 3
+        },
+        "itemId": 2044112
+      },
+      {
+        "rate": 10,
+        "effects": {
+          "DEX": 3,
+          "pad": 3,
+          "add": 5
+        },
+        "itemId": 2044114
+      }
+    ],
+    "weaponType": "twoHandedAxe"
+  },
+  {
+    "key": "weapon:twoHandedMace::두손둔기 공격력 주문서",
+    "name": "두손둔기 공격력 주문서",
+    "options": [
+      {
+        "rate": 100,
+        "effects": {
+          "pad": 1
+        },
+        "itemId": 2044200
+      },
+      {
+        "rate": 60,
+        "effects": {
+          "STR": 1,
+          "pad": 2
+        },
+        "itemId": 2044201
+      },
+      {
+        "rate": 10,
+        "effects": {
+          "STR": 3,
+          "pad": 5,
+          "pdef": 1
+        },
+        "itemId": 2044202
+      }
+    ],
+    "weaponType": "twoHandedMace"
+  },
+  {
+    "key": "weapon:twoHandedMace::두손둔기 명중치 주문서",
+    "name": "두손둔기 명중치 주문서",
+    "options": [
+      {
+        "rate": 100,
+        "effects": {
+          "add": 1
+        },
+        "itemId": 2044210
+      },
+      {
+        "rate": 60,
+        "effects": {
+          "DEX": 2,
+          "pad": 1,
+          "add": 3
+        },
+        "itemId": 2044212
+      },
+      {
+        "rate": 10,
+        "effects": {
+          "DEX": 3,
+          "pad": 3,
+          "add": 5
+        },
+        "itemId": 2044214
+      }
+    ],
+    "weaponType": "twoHandedMace"
+  },
+  {
+    "key": "weapon:twoHandedSword::두손검 공격력 주문서",
+    "name": "두손검 공격력 주문서",
+    "options": [
+      {
+        "rate": 100,
+        "effects": {
+          "pad": 1
+        },
+        "itemId": 2044000
+      },
+      {
+        "rate": 60,
+        "effects": {
+          "STR": 1,
+          "pad": 2
+        },
+        "itemId": 2044001
+      },
+      {
+        "rate": 10,
+        "effects": {
+          "STR": 3,
+          "pad": 5,
+          "pdef": 1
+        },
+        "itemId": 2044002
+      }
+    ],
+    "weaponType": "twoHandedSword"
+  },
+  {
+    "key": "weapon:twoHandedSword::두손검 명중치 주문서",
+    "name": "두손검 명중치 주문서",
+    "options": [
+      {
+        "rate": 100,
+        "effects": {
+          "add": 1
+        },
+        "itemId": 2044010
+      },
+      {
+        "rate": 60,
+        "effects": {
+          "DEX": 2,
+          "pad": 1,
+          "add": 3
+        },
+        "itemId": 2044012
+      },
+      {
+        "rate": 10,
+        "effects": {
+          "DEX": 3,
+          "pad": 3,
+          "add": 5
+        },
+        "itemId": 2044014
+      }
+    ],
+    "weaponType": "twoHandedSword"
+  },
+  {
+    "key": "weapon:wand::완드 마력 주문서",
+    "name": "완드 마력 주문서",
+    "options": [
+      {
+        "rate": 100,
+        "effects": {
+          "mad": 1
+        },
+        "itemId": 2043700
+      },
+      {
+        "rate": 60,
+        "effects": {
+          "INT": 1,
+          "mad": 2
+        },
+        "itemId": 2043701
+      },
+      {
+        "rate": 10,
+        "effects": {
+          "INT": 3,
+          "mad": 5,
+          "mdef": 1
+        },
+        "itemId": 2043702
+      }
+    ],
+    "weaponType": "wand"
+  }
+]

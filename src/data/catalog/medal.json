@@ -1,0 +1,196 @@
+[
+  {
+    "id": 1142119,
+    "name": "오시리아 탐험가",
+    "slot": "medal",
+    "effects": {
+      "STR": 1,
+      "DEX": 1,
+      "INT": 1,
+      "LUK": 1,
+      "hp": 50,
+      "mp": 50
+    },
+    "reqLevel": 70,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1142119/icon",
+    "tuc": 0
+  },
+  {
+    "id": 1142120,
+    "name": "메이플 탐험가",
+    "slot": "medal",
+    "effects": {
+      "STR": 1,
+      "DEX": 1,
+      "INT": 1,
+      "LUK": 1,
+      "hp": 60,
+      "mp": 60
+    },
+    "reqLevel": 70,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1142120/icon",
+    "tuc": 0
+  },
+  {
+    "id": 1142002,
+    "name": "퀘스트 매니아",
+    "slot": "medal",
+    "effects": {
+      "STR": 1,
+      "DEX": 1,
+      "INT": 1,
+      "LUK": 1,
+      "jump": 5
+    },
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1142002/icon",
+    "tuc": 0
+  },
+  {
+    "id": 1142166,
+    "name": "2026 루돌프의 훈장",
+    "slot": "medal",
+    "effects": {
+      "STR": 4,
+      "DEX": 4,
+      "INT": 4,
+      "LUK": 4,
+      "hp": 25,
+      "mp": 25
+    },
+    "reqLevel": 13,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1142166/icon",
+    "tuc": 0
+  },
+  {
+    "id": 1142030,
+    "name": "리스항구 기부왕",
+    "slot": "medal",
+    "effects": {
+      "STR": 10,
+      "DEX": 10,
+      "INT": 10,
+      "LUK": 10,
+      "hp": 100
+    },
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1142030/icon",
+    "tuc": 0
+  },
+  {
+    "id": 1142016,
+    "name": "페리온 기부왕",
+    "slot": "medal",
+    "effects": {
+      "STR": 10,
+      "hp": 20
+    },
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1142016/icon",
+    "tuc": 0
+  },
+  {
+    "id": 1142014,
+    "name": "헤네시스 기부왕",
+    "slot": "medal",
+    "effects": {
+      "DEX": 10,
+      "hp": 20,
+      "speed": 10
+    },
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1142014/icon",
+    "tuc": 0
+  },
+  {
+    "id": 1142015,
+    "name": "엘리니아 기부왕",
+    "slot": "medal",
+    "effects": {
+      "INT": 10,
+      "hp": 20
+    },
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1142015/icon",
+    "tuc": 0
+  },
+  {
+    "id": 1142017,
+    "name": "커닝시티 기부왕",
+    "slot": "medal",
+    "effects": {
+      "LUK": 10,
+      "hp": 20,
+      "speed": 10
+    },
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1142017/icon",
+    "tuc": 0
+  },
+  {
+    "id": 1142018,
+    "name": "슬리피우드 기부왕",
+    "slot": "medal",
+    "effects": {
+      "STR": 10,
+      "DEX": 10,
+      "INT": 10,
+      "LUK": 10,
+      "hp": 50,
+      "speed": 10,
+      "jump": 10
+    },
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1142018/icon",
+    "tuc": 0
+  },
+  {
+    "id": 1142009,
+    "name": "투신",
+    "slot": "medal",
+    "effects": {
+      "pad": 3,
+      "add": 5,
+      "hp": 50
+    },
+    "reqLevel": 200,
+    "reqJob": 1,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1142009/icon",
+    "tuc": 0
+  },
+  {
+    "id": 1142011,
+    "name": "스나이퍼 로드",
+    "slot": "medal",
+    "effects": {
+      "pad": 3,
+      "add": 5,
+      "hp": 50
+    },
+    "reqLevel": 200,
+    "reqJob": 4,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1142011/icon",
+    "tuc": 0
+  },
+  {
+    "id": 1142010,
+    "name": "현자",
+    "slot": "medal",
+    "effects": {
+      "mad": 8,
+      "eva": 5,
+      "hp": 50
+    },
+    "reqLevel": 200,
+    "reqJob": 2,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1142010/icon",
+    "tuc": 0
+  },
+  {
+    "id": 1142012,
+    "name": "레전더리 시프",
+    "slot": "medal",
+    "effects": {
+      "pad": 3,
+      "eva": 5,
+      "hp": 50
+    },
+    "reqLevel": 200,
+    "reqJob": 8,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1142012/icon",
+    "tuc": 0
+  }
+]

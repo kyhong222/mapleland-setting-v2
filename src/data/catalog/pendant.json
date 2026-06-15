@@ -1,0 +1,106 @@
+[
+  {
+    "id": 1122007,
+    "name": "슈피겔만의 목걸이",
+    "slot": "pendant",
+    "effects": {
+      "STR": 1,
+      "DEX": 1,
+      "INT": 1,
+      "LUK": 1,
+      "pdef": 27,
+      "mdef": 27
+    },
+    "reqLevel": 30,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1122007/icon",
+    "tuc": 3
+  },
+  {
+    "id": 1122014,
+    "name": "부보안관 은뱃지",
+    "slot": "pendant",
+    "effects": {
+      "STR": 5,
+      "DEX": 5,
+      "INT": 5,
+      "LUK": 5,
+      "pdef": 35,
+      "mdef": 35,
+      "hp": 100,
+      "mp": 100
+    },
+    "reqLevel": 50,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1122014/icon",
+    "tuc": 3
+  },
+  {
+    "id": 1122010,
+    "name": "호루스의 눈",
+    "slot": "pendant",
+    "effects": {
+      "STR": 3,
+      "DEX": 3,
+      "INT": 3,
+      "LUK": 3,
+      "pdef": 60,
+      "mdef": 60,
+      "eva": 14
+    },
+    "reqLevel": 70,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1122010/icon",
+    "tuc": 3
+  },
+  {
+    "id": 1122059,
+    "name": "나리케인의 징표",
+    "slot": "pendant",
+    "effects": {
+      "pad": 4,
+      "STR": 5,
+      "DEX": 5,
+      "INT": 5,
+      "LUK": 5,
+      "mad": 8,
+      "eva": 15,
+      "hp": 150,
+      "mp": 150,
+      "speed": 5,
+      "jump": 5
+    },
+    "reqLevel": 110,
+    "iconUrl": "https://maplestory.io/api/GMS/212/item/1122059/icon",
+    "tuc": 0
+  },
+  {
+    "id": 1122000,
+    "name": "혼테일의 목걸이",
+    "slot": "pendant",
+    "effects": {
+      "STR": 7,
+      "DEX": 7,
+      "INT": 7,
+      "LUK": 7,
+      "pdef": 108,
+      "mdef": 108,
+      "eva": 24
+    },
+    "reqLevel": 120,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1122000/icon",
+    "tuc": 3
+  },
+  {
+    "id": 4001094,
+    "name": "혼테일의 목걸이(알)",
+    "slot": "pendant",
+    "effects": {
+      "STR": 22,
+      "DEX": 22,
+      "INT": 22,
+      "LUK": 22,
+      "pdef": 248,
+      "mdef": 248,
+      "eva": 39
+    },
+    "iconUrl": "https://maplestory.io/api/kms/284/item/1122000/icon"
+  }
+]

@@ -1,0 +1,600 @@
+[
+  {
+    "id": 1102166,
+    "name": "메이플 망토",
+    "slot": "cape",
+    "effects": {
+      "pdef": 5,
+      "mdef": 8
+    },
+    "reqLevel": 20,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1102166/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1102053,
+    "name": "허름한 망토",
+    "slot": "cape",
+    "effects": {
+      "eva": 10
+    },
+    "reqLevel": 25,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1102053/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1102061,
+    "name": "산소통",
+    "slot": "cape",
+    "effects": {
+      "pdef": 5,
+      "mdef": 5
+    },
+    "reqLevel": 30,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1102061/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1102109,
+    "name": "온화의 망토",
+    "slot": "cape",
+    "effects": {
+      "pdef": 5,
+      "mdef": 7,
+      "eva": 10
+    },
+    "reqLevel": 35,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1102109/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1102135,
+    "name": "제뉴미스트의 망토",
+    "slot": "cape",
+    "effects": {
+      "speed": 5,
+      "jump": 2
+    },
+    "reqLevel": 35,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1102135/icon",
+    "tuc": 0
+  },
+  {
+    "id": 1102136,
+    "name": "알카드노의 망토",
+    "slot": "cape",
+    "effects": {
+      "speed": 5,
+      "jump": 2
+    },
+    "reqLevel": 35,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1102136/icon",
+    "tuc": 0
+  },
+  {
+    "id": 1102167,
+    "name": "메이플 망토",
+    "slot": "cape",
+    "effects": {
+      "pdef": 8,
+      "mdef": 12,
+      "speed": 5,
+      "jump": 2
+    },
+    "reqLevel": 40,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1102167/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1102054,
+    "name": "이카루스의 망토(회피)",
+    "slot": "cape",
+    "effects": {
+      "eva": 15
+    },
+    "reqLevel": 42,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1102054/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1102055,
+    "name": "이카루스의 망토(이속)",
+    "slot": "cape",
+    "effects": {
+      "speed": 10
+    },
+    "reqLevel": 42,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1102055/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1102056,
+    "name": "이카루스의 망토(점프)",
+    "slot": "cape",
+    "effects": {
+      "jump": 5
+    },
+    "reqLevel": 42,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1102056/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1102000,
+    "name": "초록색 모험가의 망토",
+    "slot": "cape",
+    "effects": {
+      "pdef": 10,
+      "mdef": 15
+    },
+    "reqLevel": 50,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1102000/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1102001,
+    "name": "파란색 모험가의 망토",
+    "slot": "cape",
+    "effects": {
+      "pdef": 10,
+      "mdef": 15
+    },
+    "reqLevel": 50,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1102001/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1102002,
+    "name": "빨간색 모험가의 망토",
+    "slot": "cape",
+    "effects": {
+      "pdef": 10,
+      "mdef": 15
+    },
+    "reqLevel": 50,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1102002/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1102003,
+    "name": "흰색 모험가의 망토",
+    "slot": "cape",
+    "effects": {
+      "pdef": 10,
+      "mdef": 15
+    },
+    "reqLevel": 50,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1102003/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1102004,
+    "name": "검은색 모험가의 망토",
+    "slot": "cape",
+    "effects": {
+      "pdef": 10,
+      "mdef": 15
+    },
+    "reqLevel": 50,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1102004/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1102040,
+    "name": "노랑색 모험가의 망토",
+    "slot": "cape",
+    "effects": {
+      "pdef": 15,
+      "mdef": 10
+    },
+    "reqLevel": 50,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1102040/icon",
+    "tuc": 8
+  },
+  {
+    "id": 1102041,
+    "name": "분홍색 모험가의 망토",
+    "slot": "cape",
+    "effects": {
+      "pad": 2,
+      "pdef": 7,
+      "mdef": 7
+    },
+    "reqLevel": 50,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1102041/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1102042,
+    "name": "보라색 모험가의 망토",
+    "slot": "cape",
+    "effects": {
+      "mad": 7,
+      "pdef": 7,
+      "mdef": 7
+    },
+    "reqLevel": 50,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1102042/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1102043,
+    "name": "갈색 모험가의 망토",
+    "slot": "cape",
+    "effects": {
+      "pdef": 15,
+      "mdef": 10
+    },
+    "reqLevel": 50,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1102043/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1102011,
+    "name": "파란색 수호의 망토",
+    "slot": "cape",
+    "effects": {
+      "pdef": 13,
+      "mdef": 18
+    },
+    "reqLevel": 55,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1102011/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1102012,
+    "name": "빨간색 수호의 망토",
+    "slot": "cape",
+    "effects": {
+      "pdef": 13,
+      "mdef": 18
+    },
+    "reqLevel": 55,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1102012/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1102013,
+    "name": "흰색 수호의 망토",
+    "slot": "cape",
+    "effects": {
+      "pdef": 13,
+      "mdef": 18
+    },
+    "reqLevel": 55,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1102013/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1102014,
+    "name": "검은색 수호의 망토",
+    "slot": "cape",
+    "effects": {
+      "pdef": 13,
+      "mdef": 18
+    },
+    "reqLevel": 55,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1102014/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1102015,
+    "name": "파란색 마법의 망토",
+    "slot": "cape",
+    "effects": {
+      "pdef": 16,
+      "mdef": 21
+    },
+    "reqLevel": 60,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1102015/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1102016,
+    "name": "빨간색 마법의 망토",
+    "slot": "cape",
+    "effects": {
+      "pdef": 16,
+      "mdef": 21
+    },
+    "reqLevel": 60,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1102016/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1102017,
+    "name": "흰색 마법의 망토",
+    "slot": "cape",
+    "effects": {
+      "pdef": 16,
+      "mdef": 21
+    },
+    "reqLevel": 60,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1102017/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1102018,
+    "name": "검은색 마법의 망토",
+    "slot": "cape",
+    "effects": {
+      "pdef": 18,
+      "mdef": 23
+    },
+    "reqLevel": 60,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1102018/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1102021,
+    "name": "파란색 가이아의 망토",
+    "slot": "cape",
+    "effects": {
+      "pdef": 19,
+      "mdef": 24
+    },
+    "reqLevel": 65,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1102021/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1102022,
+    "name": "빨간색 가이아의 망토",
+    "slot": "cape",
+    "effects": {
+      "pdef": 19,
+      "mdef": 24
+    },
+    "reqLevel": 65,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1102022/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1102023,
+    "name": "흰색 가이아의 망토",
+    "slot": "cape",
+    "effects": {
+      "pdef": 19,
+      "mdef": 24
+    },
+    "reqLevel": 65,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1102023/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1102024,
+    "name": "검은색 가이아의 망토",
+    "slot": "cape",
+    "effects": {
+      "pdef": 21,
+      "mdef": 26
+    },
+    "reqLevel": 65,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1102024/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1102064,
+    "name": "도깨비 망토",
+    "slot": "cape",
+    "effects": {
+      "STR": 5,
+      "pdef": 19,
+      "mdef": 19
+    },
+    "reqLevel": 65,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1102064/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1102168,
+    "name": "메이플 망토",
+    "slot": "cape",
+    "effects": {
+      "pdef": 23,
+      "mdef": 28,
+      "speed": 10,
+      "jump": 5
+    },
+    "reqLevel": 70,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1102168/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1102026,
+    "name": "초록색 세라프의 망토",
+    "slot": "cape",
+    "effects": {
+      "pdef": 25,
+      "mdef": 30
+    },
+    "reqLevel": 75,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1102026/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1102027,
+    "name": "파란색 세라프의 망토",
+    "slot": "cape",
+    "effects": {
+      "pdef": 25,
+      "mdef": 30
+    },
+    "reqLevel": 75,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1102027/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1102028,
+    "name": "빨간색 세라프의 망토",
+    "slot": "cape",
+    "effects": {
+      "pdef": 25,
+      "mdef": 30
+    },
+    "reqLevel": 75,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1102028/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1102029,
+    "name": "흰색 세라프의 망토",
+    "slot": "cape",
+    "effects": {
+      "pdef": 25,
+      "mdef": 30
+    },
+    "reqLevel": 75,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1102029/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1102030,
+    "name": "검은색 세라프의 망토",
+    "slot": "cape",
+    "effects": {
+      "pdef": 27,
+      "mdef": 32
+    },
+    "reqLevel": 75,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1102030/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1102139,
+    "name": "제뉴미스트의 망토",
+    "slot": "cape",
+    "effects": {
+      "pdef": 28,
+      "mdef": 33,
+      "speed": 7,
+      "jump": 3,
+      "mp": 15
+    },
+    "reqLevel": 80,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1102139/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1102140,
+    "name": "알카드노의 망토",
+    "slot": "cape",
+    "effects": {
+      "pdef": 28,
+      "mdef": 33,
+      "speed": 7,
+      "jump": 3,
+      "hp": 15
+    },
+    "reqLevel": 80,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1102140/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1102031,
+    "name": "초록색 자일즈의 망토",
+    "slot": "cape",
+    "effects": {
+      "pdef": 31,
+      "mdef": 36
+    },
+    "reqLevel": 85,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1102031/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1102032,
+    "name": "자주색 자일즈의 망토",
+    "slot": "cape",
+    "effects": {
+      "pdef": 31,
+      "mdef": 36
+    },
+    "reqLevel": 85,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1102032/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1102033,
+    "name": "빨간색 자일즈의 망토",
+    "slot": "cape",
+    "effects": {
+      "pdef": 31,
+      "mdef": 36
+    },
+    "reqLevel": 85,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1102033/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1102034,
+    "name": "파란색 자일즈의 망토",
+    "slot": "cape",
+    "effects": {
+      "pdef": 31,
+      "mdef": 36
+    },
+    "reqLevel": 85,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1102034/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1102035,
+    "name": "검은색 자일즈의 망토",
+    "slot": "cape",
+    "effects": {
+      "pdef": 33,
+      "mdef": 38
+    },
+    "reqLevel": 85,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1102035/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1102046,
+    "name": "파란색 실리스의 망토",
+    "slot": "cape",
+    "effects": {
+      "pdef": 37,
+      "mdef": 42
+    },
+    "reqLevel": 95,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1102046/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1102047,
+    "name": "하늘색 실리스의 망토",
+    "slot": "cape",
+    "effects": {
+      "pdef": 37,
+      "mdef": 42
+    },
+    "reqLevel": 95,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1102047/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1102048,
+    "name": "빨간색 실리스의 망토",
+    "slot": "cape",
+    "effects": {
+      "pdef": 39,
+      "mdef": 44
+    },
+    "reqLevel": 95,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1102048/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1102057,
+    "name": "루디브리엄 망토",
+    "slot": "cape",
+    "effects": {
+      "pdef": 43,
+      "mdef": 48
+    },
+    "reqLevel": 100,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1102057/icon",
+    "tuc": 5
+  }
+]

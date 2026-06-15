@@ -1,0 +1,2794 @@
+[
+  {
+    "id": 1040002,
+    "name": "하얀 반팔 면티",
+    "slot": "top",
+    "effects": {
+      "pdef": 3
+    },
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1040002/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1040006,
+    "name": "하얀 면 나시",
+    "slot": "top",
+    "effects": {
+      "pdef": 3
+    },
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1040006/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1040010,
+    "name": "회색 반팔 면티",
+    "slot": "top",
+    "effects": {
+      "pdef": 3
+    },
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1040010/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1040036,
+    "name": "파란줄 면 나시",
+    "slot": "top",
+    "effects": {
+      "pdef": 1
+    },
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1040036/icon",
+    "tuc": 0
+  },
+  {
+    "id": 1041002,
+    "name": "하얀 탱크탑",
+    "slot": "top",
+    "effects": {
+      "pdef": 3
+    },
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1041002/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1041006,
+    "name": "노란 반팔 면티",
+    "slot": "top",
+    "effects": {
+      "pdef": 3
+    },
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1041006/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1041010,
+    "name": "초록 반팔 면티",
+    "slot": "top",
+    "effects": {
+      "pdef": 3
+    },
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1041010/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1041011,
+    "name": "빨간 줄나시",
+    "slot": "top",
+    "effects": {
+      "pdef": 3
+    },
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1041011/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1041046,
+    "name": "분홍색 면 나시",
+    "slot": "top",
+    "effects": {
+      "pdef": 1
+    },
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1041046/icon",
+    "tuc": 0
+  },
+  {
+    "id": 1040004,
+    "name": "파란색 수련복",
+    "slot": "top",
+    "effects": {
+      "pdef": 7,
+      "mdef": 5
+    },
+    "reqLevel": 8,
+    "reqJob": 2,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1040004/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1040017,
+    "name": "회갈색 수련복",
+    "slot": "top",
+    "effects": {
+      "pdef": 7,
+      "mdef": 5
+    },
+    "reqLevel": 8,
+    "reqJob": 2,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1040017/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1041015,
+    "name": "블랙 아르미네",
+    "slot": "top",
+    "effects": {
+      "pdef": 7,
+      "mdef": 5
+    },
+    "reqLevel": 8,
+    "reqJob": 2,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1041015/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1041016,
+    "name": "그린 아르미네",
+    "slot": "top",
+    "effects": {
+      "pdef": 7,
+      "mdef": 5
+    },
+    "reqLevel": 8,
+    "reqJob": 2,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1041016/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1040008,
+    "name": "브라운 아발란체",
+    "slot": "top",
+    "effects": {
+      "pdef": 10
+    },
+    "reqLevel": 10,
+    "reqJob": 4,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1040008/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1040015,
+    "name": "브라운 로리카 아머",
+    "slot": "top",
+    "effects": {
+      "pdef": 15
+    },
+    "reqLevel": 10,
+    "reqJob": 1,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1040015/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1040031,
+    "name": "청몽",
+    "slot": "top",
+    "effects": {
+      "pdef": 10
+    },
+    "reqLevel": 10,
+    "reqJob": 8,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1040031/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1040032,
+    "name": "홍몽",
+    "slot": "top",
+    "effects": {
+      "pdef": 10
+    },
+    "reqLevel": 10,
+    "reqJob": 8,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1040032/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1040033,
+    "name": "흑몽",
+    "slot": "top",
+    "effects": {
+      "pdef": 10
+    },
+    "reqLevel": 10,
+    "reqJob": 8,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1040033/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1040038,
+    "name": "블루 로리카 아머",
+    "slot": "top",
+    "effects": {
+      "pdef": 15
+    },
+    "reqLevel": 10,
+    "reqJob": 1,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1040038/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1040071,
+    "name": "그린 아발란체",
+    "slot": "top",
+    "effects": {
+      "pdef": 10
+    },
+    "reqLevel": 10,
+    "reqJob": 4,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1040071/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1041007,
+    "name": "그린 아벨린",
+    "slot": "top",
+    "effects": {
+      "pdef": 10
+    },
+    "reqLevel": 10,
+    "reqJob": 4,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1041007/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1041014,
+    "name": "오렌지 스퀘이머",
+    "slot": "top",
+    "effects": {
+      "pdef": 15
+    },
+    "reqLevel": 10,
+    "reqJob": 1,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1041014/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1041036,
+    "name": "홍몽",
+    "slot": "top",
+    "effects": {
+      "pdef": 10
+    },
+    "reqLevel": 10,
+    "reqJob": 8,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1041036/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1041037,
+    "name": "청몽",
+    "slot": "top",
+    "effects": {
+      "pdef": 10
+    },
+    "reqLevel": 10,
+    "reqJob": 8,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1041037/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1041038,
+    "name": "흑몽",
+    "slot": "top",
+    "effects": {
+      "pdef": 10
+    },
+    "reqLevel": 10,
+    "reqJob": 8,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1041038/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1041061,
+    "name": "옐로우 아벨린",
+    "slot": "top",
+    "effects": {
+      "pdef": 10
+    },
+    "reqLevel": 10,
+    "reqJob": 4,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1041061/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1041064,
+    "name": "블루베리 스퀘이머",
+    "slot": "top",
+    "effects": {
+      "pdef": 15
+    },
+    "reqLevel": 10,
+    "reqJob": 1,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1041064/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1040013,
+    "name": "파란색 원라인 티셔츠",
+    "slot": "top",
+    "effects": {
+      "pdef": 11
+    },
+    "reqLevel": 11,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1040013/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1040014,
+    "name": "주황색 스포츠 티셔츠",
+    "slot": "top",
+    "effects": {
+      "pdef": 11
+    },
+    "reqLevel": 11,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1040014/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1041004,
+    "name": "분홍 별무늬 티셔츠",
+    "slot": "top",
+    "effects": {
+      "pdef": 11
+    },
+    "reqLevel": 11,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1041004/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1041012,
+    "name": "빨간 줄무늬 티셔츠",
+    "slot": "top",
+    "effects": {
+      "pdef": 11
+    },
+    "reqLevel": 11,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1041012/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1041017,
+    "name": "퍼플 아리안느",
+    "slot": "top",
+    "effects": {
+      "INT": 1,
+      "pdef": 12,
+      "mdef": 8
+    },
+    "reqLevel": 13,
+    "reqJob": 2,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1041017/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1041018,
+    "name": "그린 아리안느",
+    "slot": "top",
+    "effects": {
+      "pdef": 12,
+      "mdef": 8,
+      "mp": 10
+    },
+    "reqLevel": 13,
+    "reqJob": 2,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1041018/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1041025,
+    "name": "핑크 아리안느",
+    "slot": "top",
+    "effects": {
+      "pdef": 12,
+      "mdef": 10,
+      "hp": 10
+    },
+    "reqLevel": 13,
+    "reqJob": 2,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1041025/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1041026,
+    "name": "옐로우 아리안느",
+    "slot": "top",
+    "effects": {
+      "pdef": 12,
+      "mdef": 10,
+      "speed": 3
+    },
+    "reqLevel": 13,
+    "reqJob": 2,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1041026/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1040007,
+    "name": "초록색 래더 후드웨어",
+    "slot": "top",
+    "effects": {
+      "DEX": 1,
+      "pdef": 14
+    },
+    "reqLevel": 15,
+    "reqJob": 4,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1040007/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1040009,
+    "name": "스틸 코퍼럴",
+    "slot": "top",
+    "effects": {
+      "pdef": 20,
+      "hp": 10
+    },
+    "reqLevel": 15,
+    "reqJob": 1,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1040009/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1040011,
+    "name": "은색 래더 후드웨어",
+    "slot": "top",
+    "effects": {
+      "STR": 1,
+      "pdef": 14
+    },
+    "reqLevel": 15,
+    "reqJob": 4,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1040011/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1040034,
+    "name": "흑야",
+    "slot": "top",
+    "effects": {
+      "LUK": 1,
+      "pdef": 14
+    },
+    "reqLevel": 15,
+    "reqJob": 8,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1040034/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1040035,
+    "name": "청야",
+    "slot": "top",
+    "effects": {
+      "DEX": 1,
+      "pdef": 14
+    },
+    "reqLevel": 15,
+    "reqJob": 8,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1040035/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1040037,
+    "name": "브론즈 코퍼럴",
+    "slot": "top",
+    "effects": {
+      "pdef": 20,
+      "mp": 10
+    },
+    "reqLevel": 15,
+    "reqJob": 1,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1040037/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1041008,
+    "name": "그린 아벨 래더아머",
+    "slot": "top",
+    "effects": {
+      "DEX": 1,
+      "pdef": 14
+    },
+    "reqLevel": 15,
+    "reqJob": 4,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1041008/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1041044,
+    "name": "적야",
+    "slot": "top",
+    "effects": {
+      "LUK": 1,
+      "pdef": 14
+    },
+    "reqLevel": 15,
+    "reqJob": 8,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1041044/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1041045,
+    "name": "황야",
+    "slot": "top",
+    "effects": {
+      "DEX": 1,
+      "pdef": 14
+    },
+    "reqLevel": 15,
+    "reqJob": 8,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1041045/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1041062,
+    "name": "옐로우 아벨 래더아머",
+    "slot": "top",
+    "effects": {
+      "DEX": 1,
+      "pdef": 14
+    },
+    "reqLevel": 15,
+    "reqJob": 4,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1041062/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1041063,
+    "name": "그레이 아벨 래더아머",
+    "slot": "top",
+    "effects": {
+      "DEX": 1,
+      "pdef": 14
+    },
+    "reqLevel": 15,
+    "reqJob": 4,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1041063/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1040018,
+    "name": "검은색 가람",
+    "slot": "top",
+    "effects": {
+      "INT": 1,
+      "pdef": 15,
+      "mdef": 10
+    },
+    "reqLevel": 18,
+    "reqJob": 2,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1040018/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1040019,
+    "name": "주황색 가람",
+    "slot": "top",
+    "effects": {
+      "pdef": 15,
+      "mdef": 10,
+      "hp": 10
+    },
+    "reqLevel": 18,
+    "reqJob": 2,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1040019/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1040020,
+    "name": "푸른색 가람",
+    "slot": "top",
+    "effects": {
+      "pdef": 15,
+      "mdef": 10,
+      "mp": 10
+    },
+    "reqLevel": 18,
+    "reqJob": 2,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1040020/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1041029,
+    "name": "검은색 가람",
+    "slot": "top",
+    "effects": {
+      "INT": 1,
+      "pdef": 15,
+      "mdef": 10
+    },
+    "reqLevel": 18,
+    "reqJob": 2,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1041029/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1041030,
+    "name": "붉은색 가람",
+    "slot": "top",
+    "effects": {
+      "pdef": 15,
+      "mdef": 10,
+      "hp": 10
+    },
+    "reqLevel": 18,
+    "reqJob": 2,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1041030/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1041031,
+    "name": "보라색 가람",
+    "slot": "top",
+    "effects": {
+      "pdef": 15,
+      "mdef": 10,
+      "mp": 10
+    },
+    "reqLevel": 18,
+    "reqJob": 2,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1041031/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1040003,
+    "name": "갈색 하드래더",
+    "slot": "top",
+    "effects": {
+      "DEX": 1,
+      "pdef": 18
+    },
+    "reqLevel": 20,
+    "reqJob": 4,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1040003/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1040012,
+    "name": "블루 서전트",
+    "slot": "top",
+    "effects": {
+      "STR": 1,
+      "pdef": 25
+    },
+    "reqLevel": 20,
+    "reqJob": 1,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1040012/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1040039,
+    "name": "레드 서전트",
+    "slot": "top",
+    "effects": {
+      "DEX": 1,
+      "pdef": 25
+    },
+    "reqLevel": 20,
+    "reqJob": 1,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1040039/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1040042,
+    "name": "파란색 파오",
+    "slot": "top",
+    "effects": {
+      "DEX": 1,
+      "pdef": 18
+    },
+    "reqLevel": 20,
+    "reqJob": 8,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1040042/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1040043,
+    "name": "빨간색 파오",
+    "slot": "top",
+    "effects": {
+      "STR": 1,
+      "pdef": 18
+    },
+    "reqLevel": 20,
+    "reqJob": 8,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1040043/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1040044,
+    "name": "검정색 파오",
+    "slot": "top",
+    "effects": {
+      "LUK": 1,
+      "pdef": 18
+    },
+    "reqLevel": 20,
+    "reqJob": 8,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1040044/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1041003,
+    "name": "빨간색 친파오",
+    "slot": "top",
+    "effects": {
+      "DEX": 1,
+      "pdef": 18
+    },
+    "reqLevel": 20,
+    "reqJob": 8,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1041003/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1041013,
+    "name": "그린 쉬버메일",
+    "slot": "top",
+    "effects": {
+      "DEX": 1,
+      "pdef": 18
+    },
+    "reqLevel": 20,
+    "reqJob": 4,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1041013/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1041019,
+    "name": "레드 라멜",
+    "slot": "top",
+    "effects": {
+      "pdef": 25,
+      "hp": 10
+    },
+    "reqLevel": 20,
+    "reqJob": 1,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1041019/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1041020,
+    "name": "그린 라멜",
+    "slot": "top",
+    "effects": {
+      "DEX": 1,
+      "pdef": 25
+    },
+    "reqLevel": 20,
+    "reqJob": 1,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1041020/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1041021,
+    "name": "브라운 라멜",
+    "slot": "top",
+    "effects": {
+      "STR": 1,
+      "pdef": 25
+    },
+    "reqLevel": 20,
+    "reqJob": 1,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1041021/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1041027,
+    "name": "레드 쉬버메일",
+    "slot": "top",
+    "effects": {
+      "pdef": 18,
+      "hp": 10
+    },
+    "reqLevel": 20,
+    "reqJob": 4,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1041027/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1041028,
+    "name": "퍼플 쉬버메일",
+    "slot": "top",
+    "effects": {
+      "pdef": 18,
+      "mp": 10
+    },
+    "reqLevel": 20,
+    "reqJob": 4,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1041028/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1041039,
+    "name": "분홍색 친파오",
+    "slot": "top",
+    "effects": {
+      "LUK": 1,
+      "pdef": 18
+    },
+    "reqLevel": 20,
+    "reqJob": 8,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1041039/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1041040,
+    "name": "파란색 친파오",
+    "slot": "top",
+    "effects": {
+      "STR": 1,
+      "pdef": 18
+    },
+    "reqLevel": 20,
+    "reqJob": 8,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1041040/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1040016,
+    "name": "오리할콘 마스터 서전트",
+    "slot": "top",
+    "effects": {
+      "pdef": 30,
+      "hp": 20
+    },
+    "reqLevel": 25,
+    "reqJob": 1,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1040016/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1040022,
+    "name": "그린 이너스 체인메일",
+    "slot": "top",
+    "effects": {
+      "DEX": 2,
+      "pdef": 22
+    },
+    "reqLevel": 25,
+    "reqJob": 4,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1040022/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1040023,
+    "name": "블랙 이너스 체인메일",
+    "slot": "top",
+    "effects": {
+      "STR": 2,
+      "pdef": 22
+    },
+    "reqLevel": 25,
+    "reqJob": 4,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1040023/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1040024,
+    "name": "블루 이너스 체인메일",
+    "slot": "top",
+    "effects": {
+      "pdef": 22,
+      "mp": 20
+    },
+    "reqLevel": 25,
+    "reqJob": 4,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1040024/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1040025,
+    "name": "레드 이너스 체인메일",
+    "slot": "top",
+    "effects": {
+      "pdef": 22,
+      "hp": 20
+    },
+    "reqLevel": 25,
+    "reqJob": 4,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1040025/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1040040,
+    "name": "실버 마스터 서전트",
+    "slot": "top",
+    "effects": {
+      "pdef": 30,
+      "mp": 20
+    },
+    "reqLevel": 25,
+    "reqJob": 1,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1040040/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1040041,
+    "name": "다크 마스터 서전트",
+    "slot": "top",
+    "effects": {
+      "STR": 2,
+      "pdef": 30
+    },
+    "reqLevel": 25,
+    "reqJob": 1,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1040041/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1040048,
+    "name": "브라운 스니크",
+    "slot": "top",
+    "effects": {
+      "LUK": 2,
+      "pdef": 22
+    },
+    "reqLevel": 25,
+    "reqJob": 8,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1040048/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1040049,
+    "name": "블루 스니크",
+    "slot": "top",
+    "effects": {
+      "DEX": 2,
+      "pdef": 22
+    },
+    "reqLevel": 25,
+    "reqJob": 8,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1040049/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1040050,
+    "name": "블랙 스니크",
+    "slot": "top",
+    "effects": {
+      "STR": 2,
+      "pdef": 22
+    },
+    "reqLevel": 25,
+    "reqJob": 8,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1040050/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1041022,
+    "name": "블루 샤크",
+    "slot": "top",
+    "effects": {
+      "STR": 2,
+      "pdef": 30
+    },
+    "reqLevel": 25,
+    "reqJob": 1,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1041022/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1041023,
+    "name": "스카이 샤크",
+    "slot": "top",
+    "effects": {
+      "pdef": 30,
+      "speed": 7
+    },
+    "reqLevel": 25,
+    "reqJob": 1,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1041023/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1041024,
+    "name": "레드 샤크",
+    "slot": "top",
+    "effects": {
+      "pdef": 30,
+      "hp": 20
+    },
+    "reqLevel": 25,
+    "reqJob": 1,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1041024/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1041032,
+    "name": "그린 이너스 체인메일",
+    "slot": "top",
+    "effects": {
+      "DEX": 2,
+      "pdef": 22
+    },
+    "reqLevel": 25,
+    "reqJob": 4,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1041032/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1041033,
+    "name": "레드 이너스 체인메일",
+    "slot": "top",
+    "effects": {
+      "pdef": 22,
+      "hp": 20
+    },
+    "reqLevel": 25,
+    "reqJob": 4,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1041033/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1041034,
+    "name": "블루 이너스 체인메일",
+    "slot": "top",
+    "effects": {
+      "pdef": 22,
+      "mp": 20
+    },
+    "reqLevel": 25,
+    "reqJob": 4,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1041034/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1041035,
+    "name": "옐로우 이너스 체인메일",
+    "slot": "top",
+    "effects": {
+      "STR": 2,
+      "pdef": 22
+    },
+    "reqLevel": 25,
+    "reqJob": 4,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1041035/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1041057,
+    "name": "다크 스니클리스",
+    "slot": "top",
+    "effects": {
+      "LUK": 2,
+      "pdef": 22
+    },
+    "reqLevel": 25,
+    "reqJob": 8,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1041057/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1041058,
+    "name": "블러드 스니클리스",
+    "slot": "top",
+    "effects": {
+      "pdef": 22,
+      "hp": 20
+    },
+    "reqLevel": 25,
+    "reqJob": 8,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1041058/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1041059,
+    "name": "스카이 스니클리스",
+    "slot": "top",
+    "effects": {
+      "DEX": 2,
+      "pdef": 22
+    },
+    "reqLevel": 25,
+    "reqJob": 8,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1041059/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1041060,
+    "name": "골드 스니클리스",
+    "slot": "top",
+    "effects": {
+      "DEX": 1,
+      "LUK": 1,
+      "pdef": 22
+    },
+    "reqLevel": 25,
+    "reqJob": 8,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1041060/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1041041,
+    "name": "퍼플 페어리 로브",
+    "slot": "top",
+    "effects": {
+      "INT": 2,
+      "pdef": 21,
+      "mdef": 15
+    },
+    "reqLevel": 28,
+    "reqJob": 2,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1041041/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1041042,
+    "name": "그린 페어리 로브",
+    "slot": "top",
+    "effects": {
+      "INT": 1,
+      "pdef": 21,
+      "mdef": 15,
+      "mp": 10
+    },
+    "reqLevel": 28,
+    "reqJob": 2,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1041042/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1041043,
+    "name": "블루 페어리 로브",
+    "slot": "top",
+    "effects": {
+      "pdef": 21,
+      "mdef": 15,
+      "mp": 20
+    },
+    "reqLevel": 28,
+    "reqJob": 2,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1041043/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1040021,
+    "name": "지장의",
+    "slot": "top",
+    "effects": {
+      "pdef": 35,
+      "hp": 20
+    },
+    "reqLevel": 30,
+    "reqJob": 1,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1040021/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1040026,
+    "name": "지천의",
+    "slot": "top",
+    "effects": {
+      "DEX": 2,
+      "pdef": 35
+    },
+    "reqLevel": 30,
+    "reqJob": 1,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1040026/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1040057,
+    "name": "다크브라운 스틸러",
+    "slot": "top",
+    "effects": {
+      "LUK": 2,
+      "pdef": 26
+    },
+    "reqLevel": 30,
+    "reqJob": 8,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1040057/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1040058,
+    "name": "다크실버 스틸러",
+    "slot": "top",
+    "effects": {
+      "DEX": 2,
+      "pdef": 26
+    },
+    "reqLevel": 30,
+    "reqJob": 8,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1040058/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1040059,
+    "name": "레드골드 스틸러",
+    "slot": "top",
+    "effects": {
+      "pdef": 26,
+      "hp": 20
+    },
+    "reqLevel": 30,
+    "reqJob": 8,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1040059/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1040060,
+    "name": "실버블랙 스틸러",
+    "slot": "top",
+    "effects": {
+      "DEX": 1,
+      "LUK": 1,
+      "pdef": 26
+    },
+    "reqLevel": 30,
+    "reqJob": 8,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1040060/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1040067,
+    "name": "그린 헌터스 아머",
+    "slot": "top",
+    "effects": {
+      "DEX": 2,
+      "pdef": 26
+    },
+    "reqLevel": 30,
+    "reqJob": 4,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1040067/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1040068,
+    "name": "다크 헌터스 아머",
+    "slot": "top",
+    "effects": {
+      "DEX": 2,
+      "pdef": 26
+    },
+    "reqLevel": 30,
+    "reqJob": 4,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1040068/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1040069,
+    "name": "레드 헌터스 아머",
+    "slot": "top",
+    "effects": {
+      "pdef": 26,
+      "hp": 20
+    },
+    "reqLevel": 30,
+    "reqJob": 4,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1040069/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1040070,
+    "name": "블루 헌터스 아머",
+    "slot": "top",
+    "effects": {
+      "pdef": 26,
+      "mp": 20
+    },
+    "reqLevel": 30,
+    "reqJob": 4,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1040070/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1041047,
+    "name": "레드 스틸레스",
+    "slot": "top",
+    "effects": {
+      "pdef": 26,
+      "hp": 20
+    },
+    "reqLevel": 30,
+    "reqJob": 8,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1041047/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1041048,
+    "name": "블랙 스틸레스",
+    "slot": "top",
+    "effects": {
+      "LUK": 2,
+      "pdef": 26
+    },
+    "reqLevel": 30,
+    "reqJob": 8,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1041048/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1041049,
+    "name": "블루 스틸레스",
+    "slot": "top",
+    "effects": {
+      "STR": 2,
+      "pdef": 26
+    },
+    "reqLevel": 30,
+    "reqJob": 8,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1041049/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1041050,
+    "name": "퍼플 스틸레스",
+    "slot": "top",
+    "effects": {
+      "DEX": 2,
+      "pdef": 26
+    },
+    "reqLevel": 30,
+    "reqJob": 8,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1041050/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1041054,
+    "name": "그린 헌터미 아머",
+    "slot": "top",
+    "effects": {
+      "DEX": 2,
+      "pdef": 26
+    },
+    "reqLevel": 30,
+    "reqJob": 4,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1041054/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1041055,
+    "name": "블랙 헌터미 아머",
+    "slot": "top",
+    "effects": {
+      "STR": 1,
+      "DEX": 1,
+      "pdef": 26
+    },
+    "reqLevel": 30,
+    "reqJob": 4,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1041055/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1041056,
+    "name": "레드 헌터미 아머",
+    "slot": "top",
+    "effects": {
+      "pdef": 26,
+      "mp": 20
+    },
+    "reqLevel": 30,
+    "reqJob": 4,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1041056/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1040028,
+    "name": "창천의",
+    "slot": "top",
+    "effects": {
+      "STR": 2,
+      "pdef": 37
+    },
+    "reqLevel": 32,
+    "reqJob": 1,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1040028/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1041051,
+    "name": "레드 아모리아 로브",
+    "slot": "top",
+    "effects": {
+      "INT": 3,
+      "pdef": 24,
+      "mdef": 18
+    },
+    "reqLevel": 33,
+    "reqJob": 2,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1041051/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1041052,
+    "name": "블루 아모리아 로브",
+    "slot": "top",
+    "effects": {
+      "LUK": 3,
+      "pdef": 24,
+      "mdef": 18
+    },
+    "reqLevel": 33,
+    "reqJob": 2,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1041052/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1041053,
+    "name": "블랙 아모리아 로브",
+    "slot": "top",
+    "effects": {
+      "INT": 3,
+      "pdef": 24,
+      "mdef": 18
+    },
+    "reqLevel": 33,
+    "reqJob": 2,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1041053/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1040029,
+    "name": "청룡의",
+    "slot": "top",
+    "effects": {
+      "DEX": 3,
+      "pdef": 40
+    },
+    "reqLevel": 35,
+    "reqJob": 1,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1040029/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1040030,
+    "name": "금룡의",
+    "slot": "top",
+    "effects": {
+      "STR": 3,
+      "pdef": 40
+    },
+    "reqLevel": 35,
+    "reqJob": 1,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1040030/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1040061,
+    "name": "그린 너클베스트",
+    "slot": "top",
+    "effects": {
+      "LUK": 3,
+      "pdef": 30
+    },
+    "reqLevel": 35,
+    "reqJob": 8,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1040061/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1040062,
+    "name": "레드 너클베스트",
+    "slot": "top",
+    "effects": {
+      "DEX": 1,
+      "LUK": 2,
+      "pdef": 30
+    },
+    "reqLevel": 35,
+    "reqJob": 8,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1040062/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1040063,
+    "name": "블랙 너클베스트",
+    "slot": "top",
+    "effects": {
+      "DEX": 3,
+      "pdef": 30
+    },
+    "reqLevel": 35,
+    "reqJob": 8,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1040063/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1040072,
+    "name": "레드 레골러",
+    "slot": "top",
+    "effects": {
+      "DEX": 3,
+      "pdef": 30
+    },
+    "reqLevel": 35,
+    "reqJob": 4,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1040072/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1040073,
+    "name": "블루 레골러",
+    "slot": "top",
+    "effects": {
+      "STR": 3,
+      "pdef": 30
+    },
+    "reqLevel": 35,
+    "reqJob": 4,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1040073/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1040074,
+    "name": "그린 레골러",
+    "slot": "top",
+    "effects": {
+      "DEX": 3,
+      "pdef": 30
+    },
+    "reqLevel": 35,
+    "reqJob": 4,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1040074/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1040075,
+    "name": "다크 레골러",
+    "slot": "top",
+    "effects": {
+      "DEX": 3,
+      "pdef": 30
+    },
+    "reqLevel": 35,
+    "reqJob": 4,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1040075/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1040076,
+    "name": "브라운 레골러",
+    "slot": "top",
+    "effects": {
+      "STR": 3,
+      "pdef": 30
+    },
+    "reqLevel": 35,
+    "reqJob": 4,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1040076/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1041065,
+    "name": "레드 레골리스",
+    "slot": "top",
+    "effects": {
+      "DEX": 3,
+      "pdef": 30
+    },
+    "reqLevel": 35,
+    "reqJob": 4,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1041065/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1041066,
+    "name": "블루 레골리스",
+    "slot": "top",
+    "effects": {
+      "STR": 3,
+      "pdef": 30
+    },
+    "reqLevel": 35,
+    "reqJob": 4,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1041066/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1041067,
+    "name": "그린 레골리스",
+    "slot": "top",
+    "effects": {
+      "DEX": 3,
+      "pdef": 30
+    },
+    "reqLevel": 35,
+    "reqJob": 4,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1041067/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1041068,
+    "name": "다크 레골리스",
+    "slot": "top",
+    "effects": {
+      "DEX": 3,
+      "pdef": 30
+    },
+    "reqLevel": 35,
+    "reqJob": 4,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1041068/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1041069,
+    "name": "브라운 레골리스",
+    "slot": "top",
+    "effects": {
+      "STR": 3,
+      "pdef": 30
+    },
+    "reqLevel": 35,
+    "reqJob": 4,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1041069/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1040000,
+    "name": "황진일갑주",
+    "slot": "top",
+    "effects": {
+      "DEX": 3,
+      "pdef": 45,
+      "mp": 10
+    },
+    "reqLevel": 40,
+    "reqJob": 1,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1040000/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1040079,
+    "name": "브라운 피에뜨",
+    "slot": "top",
+    "effects": {
+      "DEX": 3,
+      "pdef": 34,
+      "mp": 10
+    },
+    "reqLevel": 40,
+    "reqJob": 4,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1040079/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1040080,
+    "name": "다크 피에뜨",
+    "slot": "top",
+    "effects": {
+      "DEX": 3,
+      "pdef": 34,
+      "mp": 10
+    },
+    "reqLevel": 40,
+    "reqJob": 4,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1040080/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1040081,
+    "name": "화이트 피에뜨",
+    "slot": "top",
+    "effects": {
+      "STR": 3,
+      "pdef": 34,
+      "mp": 10
+    },
+    "reqLevel": 40,
+    "reqJob": 4,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1040081/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1040082,
+    "name": "카키 쉐도우",
+    "slot": "top",
+    "effects": {
+      "DEX": 3,
+      "pdef": 34,
+      "mp": 10
+    },
+    "reqLevel": 40,
+    "reqJob": 8,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1040082/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1040083,
+    "name": "마린 쉐도우",
+    "slot": "top",
+    "effects": {
+      "LUK": 3,
+      "pdef": 34,
+      "mp": 10
+    },
+    "reqLevel": 40,
+    "reqJob": 8,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1040083/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1040084,
+    "name": "다크 쉐도우",
+    "slot": "top",
+    "effects": {
+      "LUK": 3,
+      "pdef": 34,
+      "mp": 10
+    },
+    "reqLevel": 40,
+    "reqJob": 8,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1040084/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1040085,
+    "name": "자진일갑주",
+    "slot": "top",
+    "effects": {
+      "STR": 3,
+      "pdef": 45,
+      "mp": 10
+    },
+    "reqLevel": 40,
+    "reqJob": 1,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1040085/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1040086,
+    "name": "청진일갑주",
+    "slot": "top",
+    "effects": {
+      "STR": 3,
+      "pdef": 45,
+      "mp": 10
+    },
+    "reqLevel": 40,
+    "reqJob": 1,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1040086/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1041074,
+    "name": "퍼플 쉐도우",
+    "slot": "top",
+    "effects": {
+      "LUK": 3,
+      "pdef": 34,
+      "mp": 10
+    },
+    "reqLevel": 40,
+    "reqJob": 8,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1041074/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1041075,
+    "name": "레드 쉐도우",
+    "slot": "top",
+    "effects": {
+      "DEX": 3,
+      "pdef": 34,
+      "mp": 10
+    },
+    "reqLevel": 40,
+    "reqJob": 8,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1041075/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1041076,
+    "name": "다크 쉐도우",
+    "slot": "top",
+    "effects": {
+      "LUK": 3,
+      "pdef": 34,
+      "mp": 10
+    },
+    "reqLevel": 40,
+    "reqJob": 8,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1041076/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1041081,
+    "name": "화이트 피에르타",
+    "slot": "top",
+    "effects": {
+      "DEX": 3,
+      "pdef": 34,
+      "mp": 10
+    },
+    "reqLevel": 40,
+    "reqJob": 4,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1041081/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1041082,
+    "name": "브라운 피에르타",
+    "slot": "top",
+    "effects": {
+      "STR": 3,
+      "pdef": 34,
+      "mp": 10
+    },
+    "reqLevel": 40,
+    "reqJob": 4,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1041082/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1041083,
+    "name": "다크 피에르타",
+    "slot": "top",
+    "effects": {
+      "DEX": 3,
+      "pdef": 34,
+      "mp": 10
+    },
+    "reqLevel": 40,
+    "reqJob": 4,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1041083/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1041084,
+    "name": "홍진월갑주",
+    "slot": "top",
+    "effects": {
+      "DEX": 3,
+      "pdef": 45,
+      "mp": 10
+    },
+    "reqLevel": 40,
+    "reqJob": 1,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1041084/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1041085,
+    "name": "황진월갑주",
+    "slot": "top",
+    "effects": {
+      "STR": 3,
+      "pdef": 45,
+      "mp": 10
+    },
+    "reqLevel": 40,
+    "reqJob": 1,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1041085/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1041086,
+    "name": "흑진월갑주",
+    "slot": "top",
+    "effects": {
+      "STR": 3,
+      "pdef": 45,
+      "mp": 10
+    },
+    "reqLevel": 40,
+    "reqJob": 1,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1041086/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1040087,
+    "name": "블루 숄더메일",
+    "slot": "top",
+    "effects": {
+      "STR": 3,
+      "DEX": 1,
+      "pdef": 55
+    },
+    "reqLevel": 50,
+    "reqJob": 1,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1040087/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1040088,
+    "name": "오우커 숄더메일",
+    "slot": "top",
+    "effects": {
+      "STR": 1,
+      "DEX": 3,
+      "pdef": 55
+    },
+    "reqLevel": 50,
+    "reqJob": 1,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1040088/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1040089,
+    "name": "엄버 숄더메일",
+    "slot": "top",
+    "effects": {
+      "STR": 3,
+      "DEX": 1,
+      "pdef": 55
+    },
+    "reqLevel": 50,
+    "reqJob": 1,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1040089/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1040094,
+    "name": "적일",
+    "slot": "top",
+    "effects": {
+      "DEX": 1,
+      "LUK": 3,
+      "pdef": 42
+    },
+    "reqLevel": 50,
+    "reqJob": 8,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1040094/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1040095,
+    "name": "청일",
+    "slot": "top",
+    "effects": {
+      "STR": 1,
+      "LUK": 3,
+      "pdef": 42
+    },
+    "reqLevel": 50,
+    "reqJob": 8,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1040095/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1040096,
+    "name": "황일",
+    "slot": "top",
+    "effects": {
+      "DEX": 1,
+      "LUK": 3,
+      "pdef": 42
+    },
+    "reqLevel": 50,
+    "reqJob": 8,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1040096/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1040097,
+    "name": "녹일",
+    "slot": "top",
+    "effects": {
+      "STR": 1,
+      "LUK": 3,
+      "pdef": 42
+    },
+    "reqLevel": 50,
+    "reqJob": 8,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1040097/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1041077,
+    "name": "자월",
+    "slot": "top",
+    "effects": {
+      "DEX": 1,
+      "LUK": 3,
+      "pdef": 42
+    },
+    "reqLevel": 50,
+    "reqJob": 8,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1041077/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1041078,
+    "name": "청월",
+    "slot": "top",
+    "effects": {
+      "STR": 1,
+      "LUK": 3,
+      "pdef": 42
+    },
+    "reqLevel": 50,
+    "reqJob": 8,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1041078/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1041079,
+    "name": "황월",
+    "slot": "top",
+    "effects": {
+      "DEX": 1,
+      "LUK": 3,
+      "pdef": 42
+    },
+    "reqLevel": 50,
+    "reqJob": 8,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1041079/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1041080,
+    "name": "적월",
+    "slot": "top",
+    "effects": {
+      "STR": 1,
+      "LUK": 3,
+      "pdef": 42
+    },
+    "reqLevel": 50,
+    "reqJob": 8,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1041080/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1041087,
+    "name": "레드 숄더메일",
+    "slot": "top",
+    "effects": {
+      "STR": 3,
+      "DEX": 1,
+      "pdef": 55
+    },
+    "reqLevel": 50,
+    "reqJob": 1,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1041087/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1041088,
+    "name": "아이보리 숄더메일",
+    "slot": "top",
+    "effects": {
+      "STR": 1,
+      "DEX": 3,
+      "pdef": 55
+    },
+    "reqLevel": 50,
+    "reqJob": 1,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1041088/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1041089,
+    "name": "다크 숄더메일",
+    "slot": "top",
+    "effects": {
+      "STR": 3,
+      "DEX": 1,
+      "pdef": 55
+    },
+    "reqLevel": 50,
+    "reqJob": 1,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1041089/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1040090,
+    "name": "그린 오리엔타이칸",
+    "slot": "top",
+    "effects": {
+      "STR": 1,
+      "DEX": 4,
+      "pdef": 65
+    },
+    "reqLevel": 60,
+    "reqJob": 1,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1040090/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1040091,
+    "name": "레드 오리엔타이칸",
+    "slot": "top",
+    "effects": {
+      "STR": 4,
+      "DEX": 1,
+      "pdef": 65
+    },
+    "reqLevel": 60,
+    "reqJob": 1,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1040091/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1040092,
+    "name": "블루 오리엔타이칸",
+    "slot": "top",
+    "effects": {
+      "STR": 1,
+      "DEX": 4,
+      "pdef": 65
+    },
+    "reqLevel": 60,
+    "reqJob": 1,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1040092/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1040093,
+    "name": "다크 오리엔타이칸",
+    "slot": "top",
+    "effects": {
+      "STR": 4,
+      "DEX": 1,
+      "pdef": 65
+    },
+    "reqLevel": 60,
+    "reqJob": 1,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1040093/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1040098,
+    "name": "라이트 스콜피오",
+    "slot": "top",
+    "effects": {
+      "DEX": 4,
+      "LUK": 1,
+      "pdef": 50
+    },
+    "reqLevel": 60,
+    "reqJob": 8,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1040098/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1040099,
+    "name": "오커 스콜피오",
+    "slot": "top",
+    "effects": {
+      "DEX": 1,
+      "LUK": 4,
+      "pdef": 50
+    },
+    "reqLevel": 60,
+    "reqJob": 8,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1040099/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1040100,
+    "name": "다크 스콜피오",
+    "slot": "top",
+    "effects": {
+      "DEX": 1,
+      "LUK": 4,
+      "pdef": 50
+    },
+    "reqLevel": 60,
+    "reqJob": 8,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1040100/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1041094,
+    "name": "라이트 맨티스",
+    "slot": "top",
+    "effects": {
+      "DEX": 4,
+      "LUK": 1,
+      "pdef": 50
+    },
+    "reqLevel": 60,
+    "reqJob": 8,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1041094/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1041095,
+    "name": "블러디 맨티스",
+    "slot": "top",
+    "effects": {
+      "DEX": 1,
+      "LUK": 4,
+      "pdef": 50
+    },
+    "reqLevel": 60,
+    "reqJob": 8,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1041095/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1041096,
+    "name": "엄버 맨티스",
+    "slot": "top",
+    "effects": {
+      "DEX": 1,
+      "LUK": 4,
+      "pdef": 50
+    },
+    "reqLevel": 60,
+    "reqJob": 8,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1041096/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1040102,
+    "name": "브론즈 플라틴",
+    "slot": "top",
+    "effects": {
+      "STR": 2,
+      "DEX": 4,
+      "pdef": 75,
+      "mp": 10
+    },
+    "reqLevel": 70,
+    "reqJob": 1,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1040102/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1040103,
+    "name": "미스릴 플라틴",
+    "slot": "top",
+    "effects": {
+      "STR": 4,
+      "DEX": 2,
+      "pdef": 75,
+      "mp": 10
+    },
+    "reqLevel": 70,
+    "reqJob": 1,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1040103/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1040104,
+    "name": "오리할콘 플라틴",
+    "slot": "top",
+    "effects": {
+      "STR": 4,
+      "DEX": 2,
+      "pdef": 75,
+      "mp": 10
+    },
+    "reqLevel": 70,
+    "reqJob": 1,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1040104/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1040105,
+    "name": "브라운 스타드",
+    "slot": "top",
+    "effects": {
+      "DEX": 4,
+      "LUK": 2,
+      "pdef": 58,
+      "mp": 10
+    },
+    "reqLevel": 70,
+    "reqJob": 8,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1040105/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1040106,
+    "name": "블루 스타드",
+    "slot": "top",
+    "effects": {
+      "DEX": 2,
+      "LUK": 4,
+      "pdef": 58,
+      "mp": 10
+    },
+    "reqLevel": 70,
+    "reqJob": 8,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1040106/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1040107,
+    "name": "다크 스타드",
+    "slot": "top",
+    "effects": {
+      "DEX": 2,
+      "LUK": 4,
+      "pdef": 58,
+      "mp": 10
+    },
+    "reqLevel": 70,
+    "reqJob": 8,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1040107/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1041097,
+    "name": "아쿠아 플라티나",
+    "slot": "top",
+    "effects": {
+      "STR": 2,
+      "DEX": 4,
+      "pdef": 75,
+      "mp": 10
+    },
+    "reqLevel": 70,
+    "reqJob": 1,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1041097/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1041098,
+    "name": "바이올렛 플라티나",
+    "slot": "top",
+    "effects": {
+      "STR": 4,
+      "DEX": 2,
+      "pdef": 75,
+      "mp": 10
+    },
+    "reqLevel": 70,
+    "reqJob": 1,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1041098/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1041099,
+    "name": "블러드 플라티나",
+    "slot": "top",
+    "effects": {
+      "STR": 4,
+      "DEX": 2,
+      "pdef": 75,
+      "mp": 10
+    },
+    "reqLevel": 70,
+    "reqJob": 1,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1041099/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1041100,
+    "name": "퍼플 루티드",
+    "slot": "top",
+    "effects": {
+      "STR": 4,
+      "LUK": 2,
+      "pdef": 58
+    },
+    "reqLevel": 70,
+    "reqJob": 8,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1041100/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1041101,
+    "name": "블루 루티드",
+    "slot": "top",
+    "effects": {
+      "DEX": 4,
+      "LUK": 2,
+      "pdef": 58
+    },
+    "reqLevel": 70,
+    "reqJob": 8,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1041101/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1041102,
+    "name": "핑크 루티드",
+    "slot": "top",
+    "effects": {
+      "DEX": 2,
+      "LUK": 4,
+      "pdef": 58
+    },
+    "reqLevel": 70,
+    "reqJob": 8,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1041102/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1041103,
+    "name": "레드 루티드",
+    "slot": "top",
+    "effects": {
+      "DEX": 2,
+      "LUK": 4,
+      "pdef": 58
+    },
+    "reqLevel": 70,
+    "reqJob": 8,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1041103/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1040108,
+    "name": "그린 피라테",
+    "slot": "top",
+    "effects": {
+      "DEX": 5,
+      "LUK": 1,
+      "pdef": 64,
+      "mp": 15
+    },
+    "reqLevel": 80,
+    "reqJob": 8,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1040108/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1040109,
+    "name": "레드 피라테",
+    "slot": "top",
+    "effects": {
+      "DEX": 1,
+      "LUK": 5,
+      "pdef": 64,
+      "mp": 15
+    },
+    "reqLevel": 80,
+    "reqJob": 8,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1040109/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1040110,
+    "name": "다크 피라테",
+    "slot": "top",
+    "effects": {
+      "DEX": 1,
+      "LUK": 5,
+      "pdef": 64,
+      "mp": 15
+    },
+    "reqLevel": 80,
+    "reqJob": 8,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1040110/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1041105,
+    "name": "그린 피라티드",
+    "slot": "top",
+    "effects": {
+      "DEX": 5,
+      "LUK": 1,
+      "pdef": 64,
+      "mp": 15
+    },
+    "reqLevel": 80,
+    "reqJob": 8,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1041105/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1041106,
+    "name": "레드 피라티드",
+    "slot": "top",
+    "effects": {
+      "DEX": 1,
+      "LUK": 5,
+      "pdef": 64,
+      "mp": 15
+    },
+    "reqLevel": 80,
+    "reqJob": 8,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1041106/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1041107,
+    "name": "다크 피라티드",
+    "slot": "top",
+    "effects": {
+      "DEX": 1,
+      "LUK": 5,
+      "pdef": 64,
+      "mp": 15
+    },
+    "reqLevel": 80,
+    "reqJob": 8,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1041107/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1040111,
+    "name": "그린 제너럴",
+    "slot": "top",
+    "effects": {
+      "STR": 2,
+      "DEX": 5,
+      "pdef": 95,
+      "add": 1
+    },
+    "reqLevel": 90,
+    "reqJob": 1,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1040111/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1040112,
+    "name": "블루 제너럴",
+    "slot": "top",
+    "effects": {
+      "STR": 5,
+      "DEX": 2,
+      "pdef": 95,
+      "add": 1
+    },
+    "reqLevel": 90,
+    "reqJob": 1,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1040112/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1040113,
+    "name": "다크 제너럴",
+    "slot": "top",
+    "effects": {
+      "STR": 5,
+      "DEX": 2,
+      "pdef": 95,
+      "add": 1
+    },
+    "reqLevel": 90,
+    "reqJob": 1,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1040113/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1040115,
+    "name": "그린 쉐이드슈트",
+    "slot": "top",
+    "effects": {
+      "STR": 5,
+      "LUK": 2,
+      "pdef": 70,
+      "mp": 20
+    },
+    "reqLevel": 90,
+    "reqJob": 8,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1040115/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1040116,
+    "name": "브라운 쉐이드슈트",
+    "slot": "top",
+    "effects": {
+      "DEX": 5,
+      "LUK": 2,
+      "pdef": 70,
+      "mp": 20
+    },
+    "reqLevel": 90,
+    "reqJob": 8,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1040116/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1040117,
+    "name": "퍼플 쉐이드슈트",
+    "slot": "top",
+    "effects": {
+      "STR": 2,
+      "LUK": 5,
+      "pdef": 70,
+      "mp": 20
+    },
+    "reqLevel": 90,
+    "reqJob": 8,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1040117/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1040118,
+    "name": "레드 쉐이드슈트",
+    "slot": "top",
+    "effects": {
+      "DEX": 2,
+      "LUK": 5,
+      "pdef": 70,
+      "mp": 20
+    },
+    "reqLevel": 90,
+    "reqJob": 8,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1040118/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1041115,
+    "name": "그린 미스트슈트",
+    "slot": "top",
+    "effects": {
+      "STR": 5,
+      "LUK": 2,
+      "pdef": 70,
+      "mp": 20
+    },
+    "reqLevel": 90,
+    "reqJob": 8,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1041115/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1041116,
+    "name": "브라운 미스트슈트",
+    "slot": "top",
+    "effects": {
+      "DEX": 5,
+      "LUK": 2,
+      "pdef": 70,
+      "mp": 20
+    },
+    "reqLevel": 90,
+    "reqJob": 8,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1041116/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1041117,
+    "name": "퍼플 미스트슈트",
+    "slot": "top",
+    "effects": {
+      "STR": 2,
+      "LUK": 5,
+      "pdef": 70,
+      "mp": 20
+    },
+    "reqLevel": 90,
+    "reqJob": 8,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1041117/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1041118,
+    "name": "레드 미스트슈트",
+    "slot": "top",
+    "effects": {
+      "DEX": 2,
+      "LUK": 5,
+      "pdef": 70,
+      "mp": 20
+    },
+    "reqLevel": 90,
+    "reqJob": 8,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1041118/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1041119,
+    "name": "그린 발퀴레",
+    "slot": "top",
+    "effects": {
+      "STR": 2,
+      "DEX": 5,
+      "pdef": 95,
+      "mp": 20
+    },
+    "reqLevel": 90,
+    "reqJob": 1,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1041119/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1041120,
+    "name": "퍼플 발퀴레",
+    "slot": "top",
+    "effects": {
+      "STR": 5,
+      "DEX": 2,
+      "pdef": 95,
+      "mp": 20
+    },
+    "reqLevel": 90,
+    "reqJob": 1,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1041120/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1041121,
+    "name": "다크 발퀴레",
+    "slot": "top",
+    "effects": {
+      "STR": 5,
+      "DEX": 2,
+      "pdef": 95,
+      "mp": 20
+    },
+    "reqLevel": 90,
+    "reqJob": 1,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1041121/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1040120,
+    "name": "그린 네오스",
+    "slot": "top",
+    "effects": {
+      "STR": 2,
+      "DEX": 6,
+      "pdef": 105,
+      "add": 2
+    },
+    "reqLevel": 100,
+    "reqJob": 1,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1040120/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1040121,
+    "name": "블루 네오스",
+    "slot": "top",
+    "effects": {
+      "STR": 6,
+      "DEX": 2,
+      "pdef": 105,
+      "add": 2
+    },
+    "reqLevel": 100,
+    "reqJob": 1,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1040121/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1040122,
+    "name": "블랙 네오스",
+    "slot": "top",
+    "effects": {
+      "STR": 6,
+      "DEX": 2,
+      "pdef": 105,
+      "add": 2
+    },
+    "reqLevel": 100,
+    "reqJob": 1,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1040122/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1041122,
+    "name": "그린 엘소르",
+    "slot": "top",
+    "effects": {
+      "STR": 3,
+      "DEX": 6,
+      "pdef": 105,
+      "mp": 25
+    },
+    "reqLevel": 100,
+    "reqJob": 1,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1041122/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1041123,
+    "name": "퍼플 엘소르",
+    "slot": "top",
+    "effects": {
+      "STR": 6,
+      "DEX": 3,
+      "pdef": 105,
+      "mp": 25
+    },
+    "reqLevel": 100,
+    "reqJob": 1,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1041123/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1041124,
+    "name": "다크 엘소르",
+    "slot": "top",
+    "effects": {
+      "STR": 6,
+      "DEX": 3,
+      "pdef": 105,
+      "mp": 25
+    },
+    "reqLevel": 100,
+    "reqJob": 1,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1041124/icon",
+    "tuc": 7
+  }
+]

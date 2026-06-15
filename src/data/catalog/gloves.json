@@ -1,0 +1,1955 @@
+[
+  {
+    "id": 1082002,
+    "name": "노가다 목장갑",
+    "slot": "gloves",
+    "effects": {
+      "pdef": 2
+    },
+    "reqLevel": 10,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1082002/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1082003,
+    "name": "주노",
+    "slot": "gloves",
+    "effects": {
+      "pdef": 3
+    },
+    "reqLevel": 10,
+    "reqJob": 1,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1082003/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1082145,
+    "name": "노란색 노가다 목장갑",
+    "slot": "gloves",
+    "effects": {
+      "INT": 1,
+      "pdef": 2
+    },
+    "reqLevel": 10,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1082145/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1082146,
+    "name": "빨간색 노가다 목장갑",
+    "slot": "gloves",
+    "effects": {
+      "STR": 1,
+      "pdef": 2
+    },
+    "reqLevel": 10,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1082146/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1082147,
+    "name": "파랑색 노가다 목장갑",
+    "slot": "gloves",
+    "effects": {
+      "DEX": 1,
+      "pdef": 2
+    },
+    "reqLevel": 10,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1082147/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1082148,
+    "name": "보라색 노가다 목장갑",
+    "slot": "gloves",
+    "effects": {
+      "LUK": 1,
+      "pdef": 2
+    },
+    "reqLevel": 10,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1082148/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1082149,
+    "name": "갈색 노가다 목장갑",
+    "slot": "gloves",
+    "effects": {},
+    "reqLevel": 10,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1082149/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1082150,
+    "name": "회색 노가다 목장갑",
+    "slot": "gloves",
+    "effects": {
+      "pdef": 3,
+      "mdef": 1
+    },
+    "reqLevel": 10,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1082150/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1082000,
+    "name": "강철 반장갑",
+    "slot": "gloves",
+    "effects": {
+      "pdef": 5
+    },
+    "reqLevel": 15,
+    "reqJob": 1,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1082000/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1082012,
+    "name": "아르",
+    "slot": "gloves",
+    "effects": {
+      "pdef": 4
+    },
+    "reqLevel": 15,
+    "reqJob": 4,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1082012/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1082019,
+    "name": "레모나",
+    "slot": "gloves",
+    "effects": {
+      "pdef": 4
+    },
+    "reqLevel": 15,
+    "reqJob": 2,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1082019/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1082029,
+    "name": "브라운 듀오",
+    "slot": "gloves",
+    "effects": {
+      "pdef": 4
+    },
+    "reqLevel": 15,
+    "reqJob": 8,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1082029/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1082030,
+    "name": "블루 듀오",
+    "slot": "gloves",
+    "effects": {
+      "pdef": 4
+    },
+    "reqLevel": 15,
+    "reqJob": 8,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1082030/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1082031,
+    "name": "블랙 듀오",
+    "slot": "gloves",
+    "effects": {
+      "pdef": 4
+    },
+    "reqLevel": 15,
+    "reqJob": 8,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1082031/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1082004,
+    "name": "베논",
+    "slot": "gloves",
+    "effects": {
+      "pdef": 7
+    },
+    "reqLevel": 20,
+    "reqJob": 1,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1082004/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1082013,
+    "name": "블루 디로스",
+    "slot": "gloves",
+    "effects": {
+      "pdef": 6
+    },
+    "reqLevel": 20,
+    "reqJob": 4,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1082013/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1082014,
+    "name": "레드 디로스",
+    "slot": "gloves",
+    "effects": {
+      "DEX": 1,
+      "pdef": 7
+    },
+    "reqLevel": 20,
+    "reqJob": 4,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1082014/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1082015,
+    "name": "그린 디로스",
+    "slot": "gloves",
+    "effects": {
+      "DEX": 2,
+      "pdef": 8
+    },
+    "reqLevel": 20,
+    "reqJob": 4,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1082015/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1082020,
+    "name": "블루 모리칸",
+    "slot": "gloves",
+    "effects": {
+      "pdef": 6
+    },
+    "reqLevel": 20,
+    "reqJob": 2,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1082020/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1082021,
+    "name": "그린 모리칸",
+    "slot": "gloves",
+    "effects": {
+      "INT": 1,
+      "pdef": 7
+    },
+    "reqLevel": 20,
+    "reqJob": 2,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1082021/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1082022,
+    "name": "퍼플 모리칸",
+    "slot": "gloves",
+    "effects": {
+      "INT": 2,
+      "pdef": 8
+    },
+    "reqLevel": 20,
+    "reqJob": 2,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1082022/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1082032,
+    "name": "브론즈 스틸라인",
+    "slot": "gloves",
+    "effects": {
+      "pdef": 6
+    },
+    "reqLevel": 20,
+    "reqJob": 8,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1082032/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1082033,
+    "name": "미스릴 스틸라인",
+    "slot": "gloves",
+    "effects": {
+      "DEX": 1,
+      "pdef": 7
+    },
+    "reqLevel": 20,
+    "reqJob": 8,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1082033/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1082034,
+    "name": "다크 스틸라인",
+    "slot": "gloves",
+    "effects": {
+      "DEX": 2,
+      "pdef": 8
+    },
+    "reqLevel": 20,
+    "reqJob": 8,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1082034/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1082001,
+    "name": "흰 무늬 반장갑",
+    "slot": "gloves",
+    "effects": {
+      "pdef": 9
+    },
+    "reqLevel": 25,
+    "reqJob": 1,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1082001/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1082016,
+    "name": "블루 사바타",
+    "slot": "gloves",
+    "effects": {
+      "pdef": 8
+    },
+    "reqLevel": 25,
+    "reqJob": 4,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1082016/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1082017,
+    "name": "레드 사바타",
+    "slot": "gloves",
+    "effects": {
+      "DEX": 1,
+      "pdef": 9
+    },
+    "reqLevel": 25,
+    "reqJob": 4,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1082017/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1082018,
+    "name": "다크 사바타",
+    "slot": "gloves",
+    "effects": {
+      "DEX": 2,
+      "pdef": 10
+    },
+    "reqLevel": 25,
+    "reqJob": 4,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1082018/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1082026,
+    "name": "오션 메사나",
+    "slot": "gloves",
+    "effects": {
+      "pdef": 8
+    },
+    "reqLevel": 25,
+    "reqJob": 2,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1082026/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1082027,
+    "name": "블러드 메사나",
+    "slot": "gloves",
+    "effects": {
+      "INT": 1,
+      "pdef": 9
+    },
+    "reqLevel": 25,
+    "reqJob": 2,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1082027/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1082028,
+    "name": "다크 메사나",
+    "slot": "gloves",
+    "effects": {
+      "INT": 2,
+      "pdef": 10
+    },
+    "reqLevel": 25,
+    "reqJob": 2,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1082028/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1082037,
+    "name": "브론즈 우드쉽",
+    "slot": "gloves",
+    "effects": {
+      "pdef": 8
+    },
+    "reqLevel": 25,
+    "reqJob": 8,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1082037/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1082038,
+    "name": "미스릴 우드쉽",
+    "slot": "gloves",
+    "effects": {
+      "LUK": 1,
+      "pdef": 9
+    },
+    "reqLevel": 25,
+    "reqJob": 8,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1082038/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1082039,
+    "name": "다크 우드쉽",
+    "slot": "gloves",
+    "effects": {
+      "LUK": 2,
+      "pdef": 10
+    },
+    "reqLevel": 25,
+    "reqJob": 8,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1082039/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1082005,
+    "name": "스틸 미셀",
+    "slot": "gloves",
+    "effects": {
+      "STR": 1,
+      "pdef": 12
+    },
+    "reqLevel": 30,
+    "reqJob": 1,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1082005/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1082006,
+    "name": "오리할콘 미셀",
+    "slot": "gloves",
+    "effects": {
+      "STR": 2,
+      "pdef": 13
+    },
+    "reqLevel": 30,
+    "reqJob": 1,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1082006/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1082007,
+    "name": "브론즈 미셀",
+    "slot": "gloves",
+    "effects": {
+      "pdef": 11
+    },
+    "reqLevel": 30,
+    "reqJob": 1,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1082007/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1082042,
+    "name": "스틸 실비아",
+    "slot": "gloves",
+    "effects": {
+      "pdef": 10
+    },
+    "reqLevel": 30,
+    "reqJob": 8,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1082042/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1082043,
+    "name": "실버 실비아",
+    "slot": "gloves",
+    "effects": {
+      "LUK": 1,
+      "pdef": 11
+    },
+    "reqLevel": 30,
+    "reqJob": 8,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1082043/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1082044,
+    "name": "골드 실비아",
+    "slot": "gloves",
+    "effects": {
+      "LUK": 2,
+      "pdef": 12
+    },
+    "reqLevel": 30,
+    "reqJob": 8,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1082044/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1082048,
+    "name": "브라운 마커",
+    "slot": "gloves",
+    "effects": {
+      "pdef": 10
+    },
+    "reqLevel": 30,
+    "reqJob": 4,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1082048/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1082049,
+    "name": "그린 마커",
+    "slot": "gloves",
+    "effects": {
+      "DEX": 1,
+      "pdef": 11
+    },
+    "reqLevel": 30,
+    "reqJob": 4,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1082049/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1082050,
+    "name": "블랙 마커",
+    "slot": "gloves",
+    "effects": {
+      "DEX": 2,
+      "pdef": 12
+    },
+    "reqLevel": 30,
+    "reqJob": 4,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1082050/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1082051,
+    "name": "레드 루티아",
+    "slot": "gloves",
+    "effects": {
+      "pdef": 10
+    },
+    "reqLevel": 30,
+    "reqJob": 2,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1082051/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1082052,
+    "name": "블루 루티아",
+    "slot": "gloves",
+    "effects": {
+      "INT": 1,
+      "pdef": 11
+    },
+    "reqLevel": 30,
+    "reqJob": 2,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1082052/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1082053,
+    "name": "블랙 루티아",
+    "slot": "gloves",
+    "effects": {
+      "INT": 2,
+      "pdef": 12
+    },
+    "reqLevel": 30,
+    "reqJob": 2,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1082053/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1082035,
+    "name": "옐로우 브리건",
+    "slot": "gloves",
+    "effects": {
+      "STR": 1,
+      "pdef": 14
+    },
+    "reqLevel": 35,
+    "reqJob": 1,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1082035/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1082036,
+    "name": "다크 브리건",
+    "slot": "gloves",
+    "effects": {
+      "STR": 2,
+      "pdef": 15
+    },
+    "reqLevel": 35,
+    "reqJob": 1,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1082036/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1082045,
+    "name": "골드 아르비욘",
+    "slot": "gloves",
+    "effects": {
+      "LUK": 2,
+      "pdef": 14
+    },
+    "reqLevel": 35,
+    "reqJob": 8,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1082045/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1082046,
+    "name": "스틸 아르비욘",
+    "slot": "gloves",
+    "effects": {
+      "pdef": 12
+    },
+    "reqLevel": 35,
+    "reqJob": 8,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1082046/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1082047,
+    "name": "오리할콘 아르비욘",
+    "slot": "gloves",
+    "effects": {
+      "LUK": 1,
+      "pdef": 13
+    },
+    "reqLevel": 35,
+    "reqJob": 8,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1082047/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1082054,
+    "name": "레드 노엘",
+    "slot": "gloves",
+    "effects": {
+      "pdef": 12
+    },
+    "reqLevel": 35,
+    "reqJob": 2,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1082054/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1082055,
+    "name": "블루 노엘",
+    "slot": "gloves",
+    "effects": {
+      "INT": 1,
+      "pdef": 13
+    },
+    "reqLevel": 35,
+    "reqJob": 2,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1082055/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1082056,
+    "name": "다크 노엘",
+    "slot": "gloves",
+    "effects": {
+      "INT": 2,
+      "pdef": 14
+    },
+    "reqLevel": 35,
+    "reqJob": 2,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1082056/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1082068,
+    "name": "브론즈 스케일러",
+    "slot": "gloves",
+    "effects": {
+      "pdef": 12
+    },
+    "reqLevel": 35,
+    "reqJob": 4,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1082068/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1082069,
+    "name": "미스릴 스케일러",
+    "slot": "gloves",
+    "effects": {
+      "DEX": 1,
+      "pdef": 13
+    },
+    "reqLevel": 35,
+    "reqJob": 4,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1082069/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1082070,
+    "name": "골드 스케일러",
+    "slot": "gloves",
+    "effects": {
+      "DEX": 2,
+      "pdef": 14
+    },
+    "reqLevel": 35,
+    "reqJob": 4,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1082070/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1082023,
+    "name": "아이언 너클",
+    "slot": "gloves",
+    "effects": {
+      "STR": 1,
+      "pdef": 15
+    },
+    "reqLevel": 40,
+    "reqJob": 1,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1082023/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1082024,
+    "name": "아다만티움 너클",
+    "slot": "gloves",
+    "effects": {
+      "STR": 2,
+      "pdef": 16
+    },
+    "reqLevel": 40,
+    "reqJob": 1,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1082024/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1082025,
+    "name": "다크 너클",
+    "slot": "gloves",
+    "effects": {
+      "STR": 3,
+      "pdef": 17
+    },
+    "reqLevel": 40,
+    "reqJob": 1,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1082025/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1082062,
+    "name": "레드 아르텐",
+    "slot": "gloves",
+    "effects": {
+      "INT": 1,
+      "pdef": 14
+    },
+    "reqLevel": 40,
+    "reqJob": 2,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1082062/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1082063,
+    "name": "블루 아르텐",
+    "slot": "gloves",
+    "effects": {
+      "INT": 2,
+      "pdef": 15
+    },
+    "reqLevel": 40,
+    "reqJob": 2,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1082063/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1082064,
+    "name": "다크 아르텐",
+    "slot": "gloves",
+    "effects": {
+      "INT": 3,
+      "pdef": 16
+    },
+    "reqLevel": 40,
+    "reqJob": 2,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1082064/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1082071,
+    "name": "아쿠아 브레이스",
+    "slot": "gloves",
+    "effects": {
+      "DEX": 1,
+      "pdef": 14
+    },
+    "reqLevel": 40,
+    "reqJob": 4,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1082071/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1082072,
+    "name": "골드 브레이스",
+    "slot": "gloves",
+    "effects": {
+      "DEX": 2,
+      "pdef": 15
+    },
+    "reqLevel": 40,
+    "reqJob": 4,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1082072/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1082073,
+    "name": "다크 브레이스",
+    "slot": "gloves",
+    "effects": {
+      "DEX": 3,
+      "pdef": 16
+    },
+    "reqLevel": 40,
+    "reqJob": 4,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1082073/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1082074,
+    "name": "다크 클리브",
+    "slot": "gloves",
+    "effects": {
+      "LUK": 3,
+      "pdef": 16
+    },
+    "reqLevel": 40,
+    "reqJob": 8,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1082074/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1082075,
+    "name": "레드 클리브",
+    "slot": "gloves",
+    "effects": {
+      "LUK": 1,
+      "pdef": 14
+    },
+    "reqLevel": 40,
+    "reqJob": 8,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1082075/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1082076,
+    "name": "골드 클리브",
+    "slot": "gloves",
+    "effects": {
+      "LUK": 2,
+      "pdef": 15
+    },
+    "reqLevel": 40,
+    "reqJob": 8,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1082076/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1082009,
+    "name": "스틸 브리스트",
+    "slot": "gloves",
+    "effects": {
+      "STR": 1,
+      "pdef": 19
+    },
+    "reqLevel": 50,
+    "reqJob": 1,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1082009/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1082010,
+    "name": "미스릴 브리스트",
+    "slot": "gloves",
+    "effects": {
+      "STR": 2,
+      "DEX": 1,
+      "pdef": 20
+    },
+    "reqLevel": 50,
+    "reqJob": 1,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1082010/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1082011,
+    "name": "골드 브리스트",
+    "slot": "gloves",
+    "effects": {
+      "STR": 3,
+      "pdef": 21,
+      "add": 1
+    },
+    "reqLevel": 50,
+    "reqJob": 1,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1082011/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1082080,
+    "name": "다크 페넌스",
+    "slot": "gloves",
+    "effects": {
+      "INT": 3,
+      "pdef": 20,
+      "mdef": 3,
+      "mp": 30
+    },
+    "reqLevel": 50,
+    "reqJob": 2,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1082080/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1082081,
+    "name": "레드 페넌스",
+    "slot": "gloves",
+    "effects": {
+      "INT": 1,
+      "pdef": 18,
+      "mdef": 1
+    },
+    "reqLevel": 50,
+    "reqJob": 2,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1082081/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1082082,
+    "name": "블루 페넌스",
+    "slot": "gloves",
+    "effects": {
+      "INT": 2,
+      "pdef": 19,
+      "mdef": 2,
+      "mp": 15
+    },
+    "reqLevel": 50,
+    "reqJob": 2,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1082082/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1082083,
+    "name": "다크 윌로우",
+    "slot": "gloves",
+    "effects": {
+      "DEX": 3,
+      "pdef": 20,
+      "mp": 20
+    },
+    "reqLevel": 50,
+    "reqJob": 4,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1082083/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1082084,
+    "name": "블루 윌로우",
+    "slot": "gloves",
+    "effects": {
+      "DEX": 1,
+      "pdef": 18
+    },
+    "reqLevel": 50,
+    "reqJob": 4,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1082084/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1082085,
+    "name": "레드 윌로우",
+    "slot": "gloves",
+    "effects": {
+      "DEX": 2,
+      "pdef": 19,
+      "mp": 10
+    },
+    "reqLevel": 50,
+    "reqJob": 4,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1082085/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1082059,
+    "name": "브론즈 클랜치",
+    "slot": "gloves",
+    "effects": {
+      "STR": 1,
+      "pdef": 23
+    },
+    "reqLevel": 60,
+    "reqJob": 1,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1082059/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1082060,
+    "name": "사파이어 클랜치",
+    "slot": "gloves",
+    "effects": {
+      "STR": 2,
+      "pdef": 24,
+      "add": 1
+    },
+    "reqLevel": 60,
+    "reqJob": 1,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1082060/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1082061,
+    "name": "다크 클랜치",
+    "slot": "gloves",
+    "effects": {
+      "STR": 3,
+      "pdef": 25,
+      "add": 2
+    },
+    "reqLevel": 60,
+    "reqJob": 1,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1082061/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1082086,
+    "name": "스틸 마누트",
+    "slot": "gloves",
+    "effects": {
+      "INT": 1,
+      "LUK": 1,
+      "pdef": 22,
+      "mdef": 3
+    },
+    "reqLevel": 60,
+    "reqJob": 2,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1082086/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1082087,
+    "name": "골드 마누트",
+    "slot": "gloves",
+    "effects": {
+      "INT": 2,
+      "LUK": 1,
+      "pdef": 22,
+      "mdef": 3,
+      "mp": 15
+    },
+    "reqLevel": 60,
+    "reqJob": 2,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1082087/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1082088,
+    "name": "다크 마누트",
+    "slot": "gloves",
+    "effects": {
+      "INT": 3,
+      "LUK": 1,
+      "pdef": 22,
+      "mdef": 3,
+      "mp": 30
+    },
+    "reqLevel": 60,
+    "reqJob": 2,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1082088/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1082089,
+    "name": "오커 가너",
+    "slot": "gloves",
+    "effects": {
+      "STR": 1,
+      "DEX": 1,
+      "pdef": 22
+    },
+    "reqLevel": 60,
+    "reqJob": 4,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1082089/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1082090,
+    "name": "세피아 가너",
+    "slot": "gloves",
+    "effects": {
+      "STR": 1,
+      "DEX": 2,
+      "pdef": 23,
+      "mp": 15
+    },
+    "reqLevel": 60,
+    "reqJob": 4,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1082090/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1082091,
+    "name": "다크 가너",
+    "slot": "gloves",
+    "effects": {
+      "STR": 1,
+      "DEX": 3,
+      "pdef": 24,
+      "mp": 30
+    },
+    "reqLevel": 60,
+    "reqJob": 4,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1082091/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1082092,
+    "name": "브론즈 파우",
+    "slot": "gloves",
+    "effects": {
+      "DEX": 1,
+      "LUK": 1,
+      "pdef": 22
+    },
+    "reqLevel": 60,
+    "reqJob": 8,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1082092/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1082093,
+    "name": "스틸 파우",
+    "slot": "gloves",
+    "effects": {
+      "DEX": 1,
+      "LUK": 2,
+      "pdef": 22,
+      "mp": 15
+    },
+    "reqLevel": 60,
+    "reqJob": 8,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1082093/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1082094,
+    "name": "골드 파우",
+    "slot": "gloves",
+    "effects": {
+      "DEX": 1,
+      "LUK": 3,
+      "pdef": 24,
+      "mp": 30
+    },
+    "reqLevel": 60,
+    "reqJob": 8,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1082094/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1082095,
+    "name": "브론즈 와이어스",
+    "slot": "gloves",
+    "effects": {
+      "LUK": 2,
+      "pdef": 26
+    },
+    "reqLevel": 70,
+    "reqJob": 8,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1082095/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1082096,
+    "name": "실버 와이어스",
+    "slot": "gloves",
+    "effects": {
+      "LUK": 3,
+      "pdef": 27,
+      "eva": 1
+    },
+    "reqLevel": 70,
+    "reqJob": 8,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1082096/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1082097,
+    "name": "골드 와이어스",
+    "slot": "gloves",
+    "effects": {
+      "LUK": 4,
+      "pdef": 28,
+      "eva": 1
+    },
+    "reqLevel": 70,
+    "reqJob": 8,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1082097/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1082098,
+    "name": "브라운 로린",
+    "slot": "gloves",
+    "effects": {
+      "INT": 2,
+      "pdef": 26,
+      "mdef": 5
+    },
+    "reqLevel": 70,
+    "reqJob": 2,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1082098/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1082099,
+    "name": "블루 로린",
+    "slot": "gloves",
+    "effects": {
+      "INT": 3,
+      "LUK": 1,
+      "pdef": 27,
+      "mdef": 6
+    },
+    "reqLevel": 70,
+    "reqJob": 2,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1082099/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1082100,
+    "name": "다크 로린",
+    "slot": "gloves",
+    "effects": {
+      "INT": 4,
+      "LUK": 1,
+      "pdef": 28,
+      "mdef": 7
+    },
+    "reqLevel": 70,
+    "reqJob": 2,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1082100/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1082103,
+    "name": "브론즈 허스크",
+    "slot": "gloves",
+    "effects": {
+      "STR": 2,
+      "pdef": 27
+    },
+    "reqLevel": 70,
+    "reqJob": 1,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1082103/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1082104,
+    "name": "미스릴 허스크",
+    "slot": "gloves",
+    "effects": {
+      "STR": 3,
+      "pdef": 28,
+      "add": 1
+    },
+    "reqLevel": 70,
+    "reqJob": 1,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1082104/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1082105,
+    "name": "다크 허스크",
+    "slot": "gloves",
+    "effects": {
+      "STR": 4,
+      "pdef": 29,
+      "add": 1
+    },
+    "reqLevel": 70,
+    "reqJob": 1,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1082105/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1082106,
+    "name": "블루 아이즈",
+    "slot": "gloves",
+    "effects": {
+      "DEX": 2,
+      "pdef": 26
+    },
+    "reqLevel": 70,
+    "reqJob": 4,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1082106/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1082107,
+    "name": "골드 아이즈",
+    "slot": "gloves",
+    "effects": {
+      "DEX": 3,
+      "pdef": 27,
+      "eva": 1
+    },
+    "reqLevel": 70,
+    "reqJob": 4,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1082107/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1082108,
+    "name": "다크 아이즈",
+    "slot": "gloves",
+    "effects": {
+      "DEX": 4,
+      "pdef": 28,
+      "eva": 1
+    },
+    "reqLevel": 70,
+    "reqJob": 4,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1082108/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1082222,
+    "name": "기계 장갑",
+    "slot": "gloves",
+    "effects": {
+      "pdef": 20,
+      "mdef": 20
+    },
+    "reqLevel": 70,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1082222/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1082109,
+    "name": "레드 코든",
+    "slot": "gloves",
+    "effects": {
+      "STR": 1,
+      "DEX": 2,
+      "pdef": 30,
+      "mp": 10
+    },
+    "reqLevel": 80,
+    "reqJob": 4,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1082109/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1082110,
+    "name": "블루 코든",
+    "slot": "gloves",
+    "effects": {
+      "STR": 2,
+      "DEX": 3,
+      "pdef": 31,
+      "mp": 15
+    },
+    "reqLevel": 80,
+    "reqJob": 4,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1082110/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1082111,
+    "name": "그린 코든",
+    "slot": "gloves",
+    "effects": {
+      "STR": 2,
+      "DEX": 3,
+      "pdef": 32,
+      "mp": 15
+    },
+    "reqLevel": 80,
+    "reqJob": 4,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1082111/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1082112,
+    "name": "다크 코든",
+    "slot": "gloves",
+    "effects": {
+      "STR": 2,
+      "DEX": 4,
+      "pdef": 32,
+      "mp": 30
+    },
+    "reqLevel": 80,
+    "reqJob": 4,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1082112/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1082114,
+    "name": "사파이어 엠페러",
+    "slot": "gloves",
+    "effects": {
+      "STR": 2,
+      "DEX": 1,
+      "pdef": 31,
+      "mp": 10
+    },
+    "reqLevel": 80,
+    "reqJob": 1,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1082114/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1082115,
+    "name": "에메랄드 엠페러",
+    "slot": "gloves",
+    "effects": {
+      "STR": 3,
+      "DEX": 2,
+      "pdef": 32,
+      "mp": 15
+    },
+    "reqLevel": 80,
+    "reqJob": 1,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1082115/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1082116,
+    "name": "블러드 엠페러",
+    "slot": "gloves",
+    "effects": {
+      "STR": 2,
+      "DEX": 4,
+      "pdef": 33,
+      "mp": 20
+    },
+    "reqLevel": 80,
+    "reqJob": 1,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1082116/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1082117,
+    "name": "다크 엠페러",
+    "slot": "gloves",
+    "effects": {
+      "STR": 4,
+      "DEX": 2,
+      "pdef": 33,
+      "mp": 20
+    },
+    "reqLevel": 80,
+    "reqJob": 1,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1082117/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1082118,
+    "name": "그린 로버",
+    "slot": "gloves",
+    "effects": {
+      "DEX": 1,
+      "LUK": 2,
+      "pdef": 30,
+      "mp": 10
+    },
+    "reqLevel": 80,
+    "reqJob": 8,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1082118/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1082119,
+    "name": "퍼플 로버",
+    "slot": "gloves",
+    "effects": {
+      "DEX": 2,
+      "LUK": 3,
+      "pdef": 31,
+      "mp": 15
+    },
+    "reqLevel": 80,
+    "reqJob": 8,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1082119/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1082120,
+    "name": "블러드 로버",
+    "slot": "gloves",
+    "effects": {
+      "DEX": 2,
+      "LUK": 4,
+      "pdef": 32,
+      "mp": 30
+    },
+    "reqLevel": 80,
+    "reqJob": 8,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1082120/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1082121,
+    "name": "그린 와이즈",
+    "slot": "gloves",
+    "effects": {
+      "INT": 2,
+      "LUK": 1,
+      "pdef": 30,
+      "mdef": 7,
+      "mp": 10
+    },
+    "reqLevel": 80,
+    "reqJob": 2,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1082121/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1082122,
+    "name": "블루 와이즈",
+    "slot": "gloves",
+    "effects": {
+      "INT": 3,
+      "LUK": 2,
+      "pdef": 31,
+      "mdef": 8,
+      "mp": 15
+    },
+    "reqLevel": 80,
+    "reqJob": 2,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1082122/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1082123,
+    "name": "다크 와이즈",
+    "slot": "gloves",
+    "effects": {
+      "INT": 4,
+      "LUK": 2,
+      "pdef": 32,
+      "mdef": 9,
+      "mp": 30
+    },
+    "reqLevel": 80,
+    "reqJob": 2,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1082123/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1082125,
+    "name": "레드 아데브",
+    "slot": "gloves",
+    "effects": {
+      "STR": 1,
+      "DEX": 3,
+      "pdef": 34
+    },
+    "reqLevel": 90,
+    "reqJob": 4,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1082125/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1082126,
+    "name": "그린 아데브",
+    "slot": "gloves",
+    "effects": {
+      "STR": 2,
+      "DEX": 4,
+      "pdef": 35
+    },
+    "reqLevel": 90,
+    "reqJob": 4,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1082126/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1082127,
+    "name": "다크 아데브",
+    "slot": "gloves",
+    "effects": {
+      "STR": 2,
+      "DEX": 5,
+      "pdef": 36
+    },
+    "reqLevel": 90,
+    "reqJob": 4,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1082127/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1082128,
+    "name": "그린 페로치",
+    "slot": "gloves",
+    "effects": {
+      "STR": 3,
+      "DEX": 1,
+      "pdef": 35
+    },
+    "reqLevel": 90,
+    "reqJob": 1,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1082128/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1082129,
+    "name": "퍼플 페로치",
+    "slot": "gloves",
+    "effects": {
+      "STR": 4,
+      "DEX": 2,
+      "pdef": 36
+    },
+    "reqLevel": 90,
+    "reqJob": 1,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1082129/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1082130,
+    "name": "다크 페로치",
+    "slot": "gloves",
+    "effects": {
+      "STR": 5,
+      "DEX": 2,
+      "pdef": 37
+    },
+    "reqLevel": 90,
+    "reqJob": 1,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1082130/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1082131,
+    "name": "블루 파쵸네",
+    "slot": "gloves",
+    "effects": {
+      "INT": 3,
+      "LUK": 1,
+      "pdef": 34,
+      "mdef": 9
+    },
+    "reqLevel": 90,
+    "reqJob": 2,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1082131/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1082132,
+    "name": "그린 파쵸네",
+    "slot": "gloves",
+    "effects": {
+      "INT": 4,
+      "LUK": 2,
+      "pdef": 35,
+      "mdef": 10
+    },
+    "reqLevel": 90,
+    "reqJob": 2,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1082132/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1082133,
+    "name": "레드 파쵸네",
+    "slot": "gloves",
+    "effects": {
+      "INT": 4,
+      "LUK": 2,
+      "pdef": 35,
+      "mdef": 10
+    },
+    "reqLevel": 90,
+    "reqJob": 2,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1082133/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1082134,
+    "name": "다크 파쵸네",
+    "slot": "gloves",
+    "effects": {
+      "INT": 5,
+      "LUK": 2,
+      "pdef": 36,
+      "mdef": 11
+    },
+    "reqLevel": 90,
+    "reqJob": 2,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1082134/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1082142,
+    "name": "그린 미스트라",
+    "slot": "gloves",
+    "effects": {
+      "STR": 3,
+      "LUK": 3,
+      "pdef": 33
+    },
+    "reqLevel": 90,
+    "reqJob": 8,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1082142/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1082143,
+    "name": "퍼플 미스트라",
+    "slot": "gloves",
+    "effects": {
+      "DEX": 3,
+      "LUK": 3,
+      "pdef": 30
+    },
+    "reqLevel": 90,
+    "reqJob": 8,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1082143/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1082144,
+    "name": "다크 미스트라",
+    "slot": "gloves",
+    "effects": {
+      "STR": 4,
+      "LUK": 3,
+      "pdef": 30,
+      "mp": 25
+    },
+    "reqLevel": 90,
+    "reqJob": 8,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1082144/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1082135,
+    "name": "블루 아날린",
+    "slot": "gloves",
+    "effects": {
+      "DEX": 4,
+      "LUK": 3,
+      "pdef": 37
+    },
+    "reqLevel": 100,
+    "reqJob": 8,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1082135/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1082136,
+    "name": "그린 아날린",
+    "slot": "gloves",
+    "effects": {
+      "DEX": 3,
+      "LUK": 4,
+      "pdef": 38
+    },
+    "reqLevel": 100,
+    "reqJob": 8,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1082136/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1082137,
+    "name": "레드 아날린",
+    "slot": "gloves",
+    "effects": {
+      "DEX": 3,
+      "LUK": 4,
+      "pdef": 39,
+      "mp": 30
+    },
+    "reqLevel": 100,
+    "reqJob": 8,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1082137/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1082138,
+    "name": "다크 아날린",
+    "slot": "gloves",
+    "effects": {
+      "DEX": 3,
+      "LUK": 5,
+      "pdef": 40,
+      "mp": 30
+    },
+    "reqLevel": 100,
+    "reqJob": 8,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1082138/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1082139,
+    "name": "그린 코르뱅",
+    "slot": "gloves",
+    "effects": {
+      "STR": 5,
+      "DEX": 2,
+      "pdef": 39,
+      "mp": 10
+    },
+    "reqLevel": 100,
+    "reqJob": 1,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1082139/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1082140,
+    "name": "블루 코르뱅",
+    "slot": "gloves",
+    "effects": {
+      "STR": 5,
+      "DEX": 3,
+      "pdef": 40,
+      "mp": 15
+    },
+    "reqLevel": 100,
+    "reqJob": 1,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1082140/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1082141,
+    "name": "다크 코르뱅",
+    "slot": "gloves",
+    "effects": {
+      "STR": 5,
+      "DEX": 3,
+      "pdef": 41,
+      "mp": 20
+    },
+    "reqLevel": 100,
+    "reqJob": 1,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1082141/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1082151,
+    "name": "그린 시아르",
+    "slot": "gloves",
+    "effects": {
+      "INT": 3,
+      "LUK": 3,
+      "pdef": 37,
+      "mdef": 11
+    },
+    "reqLevel": 100,
+    "reqJob": 2,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1082151/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1082152,
+    "name": "블루 시아르",
+    "slot": "gloves",
+    "effects": {
+      "INT": 4,
+      "LUK": 3,
+      "pdef": 38,
+      "mdef": 12
+    },
+    "reqLevel": 100,
+    "reqJob": 2,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1082152/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1082153,
+    "name": "레드 시아르",
+    "slot": "gloves",
+    "effects": {
+      "INT": 3,
+      "LUK": 4,
+      "pdef": 39,
+      "mdef": 12
+    },
+    "reqLevel": 100,
+    "reqJob": 2,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1082153/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1082154,
+    "name": "퍼플 시아르",
+    "slot": "gloves",
+    "effects": {
+      "INT": 4,
+      "LUK": 4,
+      "pdef": 40,
+      "mdef": 13
+    },
+    "reqLevel": 100,
+    "reqJob": 2,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1082154/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1082158,
+    "name": "레드 아르시나",
+    "slot": "gloves",
+    "effects": {
+      "STR": 2,
+      "DEX": 4,
+      "pdef": 38,
+      "mp": 10
+    },
+    "reqLevel": 100,
+    "reqJob": 4,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1082158/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1082159,
+    "name": "블루 아르시나",
+    "slot": "gloves",
+    "effects": {
+      "STR": 2,
+      "DEX": 5,
+      "pdef": 39,
+      "mp": 20
+    },
+    "reqLevel": 100,
+    "reqJob": 4,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1082159/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1082160,
+    "name": "그린 아르시나",
+    "slot": "gloves",
+    "effects": {
+      "STR": 2,
+      "DEX": 6,
+      "pdef": 40,
+      "mp": 30
+    },
+    "reqLevel": 100,
+    "reqJob": 4,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1082160/icon",
+    "tuc": 5
+  }
+]

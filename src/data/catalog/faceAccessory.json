@@ -1,0 +1,114 @@
+[
+  {
+    "id": 1012015,
+    "name": "루돌프의 빨간코",
+    "slot": "faceAccessory",
+    "effects": {},
+    "iconUrl": "https://maplestory.io/api/gms/62/item/1012015/icon"
+  },
+  {
+    "id": 1012102,
+    "name": "메이플 리프",
+    "slot": "faceAccessory",
+    "effects": {
+      "INT": 5
+    },
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1012102/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1012070,
+    "name": "딸기맛 아이스바",
+    "slot": "faceAccessory",
+    "effects": {
+      "pad": 5,
+      "mad": 5
+    },
+    "reqLevel": 10,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1012070/icon"
+  },
+  {
+    "id": 1012071,
+    "name": "초코맛 아이스바",
+    "slot": "faceAccessory",
+    "effects": {
+      "STR": 3,
+      "DEX": 3,
+      "INT": 3,
+      "LUK": 3
+    },
+    "reqLevel": 10,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1012071/icon"
+  },
+  {
+    "id": 1012072,
+    "name": "메론맛 아이스바",
+    "slot": "faceAccessory",
+    "effects": {
+      "speed": 10
+    },
+    "reqLevel": 10,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1012072/icon"
+  },
+  {
+    "id": 1012073,
+    "name": "수박맛 아이스바",
+    "slot": "faceAccessory",
+    "effects": {
+      "jump": 10
+    },
+    "reqLevel": 10,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1012073/icon"
+  },
+  {
+    "id": 1012076,
+    "name": "웃는 얼굴가면",
+    "slot": "faceAccessory",
+    "effects": {
+      "speed": 7
+    },
+    "reqLevel": 10,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1012076/icon"
+  },
+  {
+    "id": 1012077,
+    "name": "우는 얼굴가면",
+    "slot": "faceAccessory",
+    "effects": {
+      "jump": 5
+    },
+    "reqLevel": 10,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1012077/icon"
+  },
+  {
+    "id": 1012078,
+    "name": "화내는 얼굴가면",
+    "slot": "faceAccessory",
+    "effects": {
+      "hp": 20,
+      "mp": 20
+    },
+    "reqLevel": 10,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1012078/icon"
+  },
+  {
+    "id": 1012079,
+    "name": "우울한 얼굴가면",
+    "slot": "faceAccessory",
+    "effects": {
+      "add": 10
+    },
+    "reqLevel": 10,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1012079/icon"
+  },
+  {
+    "id": 1012084,
+    "name": "화이트 마우스 분장",
+    "slot": "faceAccessory",
+    "effects": {
+      "speed": 7
+    },
+    "reqLevel": 10,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1012084/icon"
+  }
+]
