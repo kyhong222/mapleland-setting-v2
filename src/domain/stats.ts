@@ -7,6 +7,7 @@
  */
 
 import type { EffectId, EffectMap } from './effects'
+import type { ClassId } from './jobs'
 
 /** 4대 기본 능력치 */
 export type StatId = 'STR' | 'DEX' | 'INT' | 'LUK'
@@ -14,6 +15,30 @@ export type StatId = 'STR' | 'DEX' | 'INT' | 'LUK'
 export const STAT_IDS: readonly StatId[] = ['STR', 'DEX', 'INT', 'LUK']
 
 export type BaseStats = Record<StatId, number>
+
+/** 능력치 기본값 (모험가) */
+export const STAT_BASE = 4
+
+/** 한 능력치에 AP로 투자 가능한 최대값 */
+export const MAX_STAT = 999
+
+export const MAX_LEVEL = 200
+
+/** 최소 레벨 (입력 편의상 전 직업 1로 통일) */
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+export function minLevelForClass(_classId: ClassId): number {
+  return 1
+}
+
+/** 레벨에 따른 분배 가능 AP (모험가) */
+export function totalAP(level: number): number {
+  return 4 + level * 5 + (level >= 70 ? 5 : 0) + (level >= 120 ? 5 : 0)
+}
+
+/** 순수 스탯합 = 기본값(4×4) + 분배 AP = 20 + 레벨×5 + (≥70:+5) + (≥120:+5) */
+export function totalPureStats(level: number): number {
+  return STAT_BASE * STAT_IDS.length + totalAP(level)
+}
 
 /** 각 기본 스탯에 대응하는 개별 % 효과 id */
 const STAT_PERCENT_OF: Record<StatId, EffectId> = {

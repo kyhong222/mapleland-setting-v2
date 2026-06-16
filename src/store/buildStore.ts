@@ -2,21 +2,25 @@
  * 현재 작업 중인 빌드 (Zustand + localStorage 영속화).
  *
  * 직업 게이트 + 레벨 + 기본스탯(AP) + 장착(인벤토리 아이템 id 참조).
- * 장착은 인벤토리에서 빠지지 않고 슬롯이 id로 참조한다. 같은 아이템은 한 슬롯에만(중복 제거).
+ *
+ * 모험가 AP 정책:
+ *  - 레벨: 최소 1(입력 편의), 최대 200
+ *  - AP = 4 + 레벨*5 + (≥70:+5) + (≥120:+5)
+ *  - 스탯 기본값 4, 주스탯만 편집금지(나머지 자유 편집), 주스탯은 남은 AP 자동 배정
  */
 
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
+import { JOBS } from '../domain/jobs'
 import type { JobId } from '../domain/jobs'
 import type { BaseStats, StatId } from '../domain/stats'
+import { STAT_BASE, MAX_LEVEL, STAT_IDS, totalAP, minLevelForClass } from '../domain/stats'
 import type { EquipInstance } from './equipInstance'
 
-/** 저장 슬롯에 보관/복원되는 빌드 스냅샷 */
 export interface BuildSnapshot {
   jobId: JobId
   level: number
   baseStats: BaseStats
-  /** 슬롯 → 인벤토리 아이템 id */
   equipped: Partial<Record<EquipInstance, string>>
 }
 
@@ -29,38 +33,66 @@ export interface BuildState {
   selectJob: (id: JobId) => void
   reset: () => void
   setLevel: (n: number) => void
-  setBaseStat: (stat: StatId, value: number) => void
-  /** 슬롯에 인벤토리 아이템 장착 (같은 id는 다른 슬롯에서 제거) */
+  /** 능력치 값 설정 (주스탯은 편집금지 — 남은 AP로 자동 재계산) */
+  setStat: (stat: StatId, value: number) => void
   equip: (inst: EquipInstance, invId: string) => void
   unequip: (inst: EquipInstance) => void
-  /** 특정 인벤토리 id가 장착돼 있으면 모두 해제 (인벤 삭제 시) */
   unequipByInvId: (invId: string) => void
   snapshot: () => BuildSnapshot | null
   loadSnapshot: (snap: BuildSnapshot) => void
 }
 
-const DEFAULT_BASE_STATS: BaseStats = { STR: 4, DEX: 4, INT: 4, LUK: 4 }
+const baseFour = (): BaseStats => ({ STR: STAT_BASE, DEX: STAT_BASE, INT: STAT_BASE, LUK: STAT_BASE })
+
+/** current 값 기준으로 AP 한도 내 재배분 — 비주스탯=입력값, 주스탯=남은 AP */
+function recomputeStats(jobId: JobId, level: number, current: BaseStats): BaseStats {
+  const job = JOBS[jobId]
+  const ap = totalAP(level)
+  const next = baseFour()
+  let used = 0
+  for (const stat of STAT_IDS) {
+    if (stat === job.primaryStat) continue
+    const desired = Math.max(STAT_BASE, Math.floor(current[stat] ?? STAT_BASE)) - STAT_BASE
+    const alloc = Math.min(desired, Math.max(0, ap - used))
+    next[stat] = STAT_BASE + alloc
+    used += alloc
+  }
+  next[job.primaryStat] = STAT_BASE + Math.max(0, ap - used)
+  return next
+}
 
 export const useBuildStore = create<BuildState>()(
   persist(
     (set, get) => ({
       jobId: null,
       level: 1,
-      baseStats: { ...DEFAULT_BASE_STATS },
+      baseStats: baseFour(),
       equipped: {},
 
-      selectJob: (id) => set((s) => (s.jobId === null ? { jobId: id } : s)),
-      reset: () =>
-        set({ jobId: null, level: 1, baseStats: { ...DEFAULT_BASE_STATS }, equipped: {} }),
-      setLevel: (n) => set({ level: Math.max(1, Math.min(200, Math.floor(n) || 1)) }),
-      setBaseStat: (stat, value) =>
-        set((s) => ({
-          baseStats: { ...s.baseStats, [stat]: Math.max(0, Math.floor(value) || 0) },
-        })),
+      selectJob: (id) =>
+        set((s) => {
+          if (s.jobId !== null) return s
+          const level = minLevelForClass(JOBS[id].classId)
+          return { jobId: id, level, baseStats: recomputeStats(id, level, baseFour()) }
+        }),
+      reset: () => set({ jobId: null, level: 1, baseStats: baseFour(), equipped: {} }),
+      setLevel: (n) =>
+        set((s) => {
+          const min = s.jobId ? minLevelForClass(JOBS[s.jobId].classId) : 1
+          const level = Math.max(min, Math.min(MAX_LEVEL, Math.floor(n) || min))
+          const baseStats = s.jobId ? recomputeStats(s.jobId, level, s.baseStats) : s.baseStats
+          return { level, baseStats }
+        }),
+      setStat: (stat, value) =>
+        set((s) => {
+          if (!s.jobId) return s
+          if (stat === JOBS[s.jobId].primaryStat) return s
+          const draft = { ...s.baseStats, [stat]: Math.max(STAT_BASE, Math.floor(value) || STAT_BASE) }
+          return { baseStats: recomputeStats(s.jobId, s.level, draft) }
+        }),
       equip: (inst, invId) =>
         set((s) => {
           const equipped: Partial<Record<EquipInstance, string>> = {}
-          // 같은 아이템 인스턴스를 다른 슬롯에서 제거(1아이템=1슬롯)
           for (const [k, v] of Object.entries(s.equipped) as [EquipInstance, string][]) {
             if (v !== invId) equipped[k] = v
           }
