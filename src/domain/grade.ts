@@ -32,19 +32,21 @@ export interface GradeInfo {
   id: ItemGrade
   /** 한글 표기 */
   label: string
-  /** 표시 색상(hex) */
+  /** 등급 색상(hex) — 아이콘 윤곽선/뱃지용(선명) */
   color: string
+  /** 텍스트(이름) 색상 — 라이트 배경 가독성용. 'inherit'=기본색 */
+  textColor: string
 }
 
 export const GRADES: Record<ItemGrade, GradeInfo> = {
-  gray: { id: 'gray', label: '회색', color: '#9e9e9e' },
-  white: { id: 'white', label: '흰색', color: '#e0e0e0' },
-  orange: { id: 'orange', label: '주황', color: '#ff9800' },
-  blue: { id: 'blue', label: '파랑', color: '#2196f3' },
-  purple: { id: 'purple', label: '보라', color: '#9c27b0' },
-  yellow: { id: 'yellow', label: '노랑', color: '#ffd600' },
-  green: { id: 'green', label: '초록', color: '#4caf50' },
-  red: { id: 'red', label: '빨강', color: '#f44336' },
+  gray: { id: 'gray', label: '회색', color: '#9e9e9e', textColor: '#757575' },
+  white: { id: 'white', label: '흰색', color: '#e0e0e0', textColor: 'inherit' },
+  orange: { id: 'orange', label: '주황', color: '#ff9800', textColor: '#ed6c02' },
+  blue: { id: 'blue', label: '파랑', color: '#2196f3', textColor: '#1565c0' },
+  purple: { id: 'purple', label: '보라', color: '#9c27b0', textColor: '#7b1fa2' },
+  yellow: { id: 'yellow', label: '노랑', color: '#ffd600', textColor: '#f9a825' },
+  green: { id: 'green', label: '초록', color: '#4caf50', textColor: '#2e7d32' },
+  red: { id: 'red', label: '빨강', color: '#f44336', textColor: '#d32f2f' },
 }
 
 /** 등급 점수에 반영되는 스탯별 가중치 (목록에 없는 스탯은 0) */

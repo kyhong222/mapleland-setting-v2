@@ -1,0 +1,45 @@
+[
+  {
+    "id": 2061000,
+    "name": "석궁 전용 화살",
+    "slot": "bolt",
+    "effects": {},
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/2061000/icon"
+  },
+  {
+    "id": 2061001,
+    "name": "석궁 전용 청동화살",
+    "slot": "bolt",
+    "effects": {
+      "pad": 1
+    },
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/2061001/icon"
+  },
+  {
+    "id": 2061002,
+    "name": "석궁 전용 강철화살",
+    "slot": "bolt",
+    "effects": {
+      "pad": 2
+    },
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/2061002/icon"
+  },
+  {
+    "id": 2061003,
+    "name": "석궁 전용 파란 화살",
+    "slot": "bolt",
+    "effects": {
+      "pad": 4
+    },
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/2061003/icon"
+  },
+  {
+    "id": 2061004,
+    "name": "석궁 전용 다이아몬드 화살",
+    "slot": "bolt",
+    "effects": {
+      "pad": 4
+    },
+    "iconUrl": "https://maplestory.io/api/gms/62/item/2061004/icon"
+  }
+]

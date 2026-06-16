@@ -1,0 +1,45 @@
+[
+  {
+    "id": 2060000,
+    "name": "활전용 화살",
+    "slot": "arrow",
+    "effects": {},
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/2060000/icon"
+  },
+  {
+    "id": 2060001,
+    "name": "활 전용 청동화살",
+    "slot": "arrow",
+    "effects": {
+      "pad": 1
+    },
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/2060001/icon"
+  },
+  {
+    "id": 2060002,
+    "name": "활 전용 강철화살",
+    "slot": "arrow",
+    "effects": {
+      "pad": 2
+    },
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/2060002/icon"
+  },
+  {
+    "id": 2060003,
+    "name": "활 전용 빨간 화살",
+    "slot": "arrow",
+    "effects": {
+      "pad": 4
+    },
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/2060003/icon"
+  },
+  {
+    "id": 2060004,
+    "name": "활 전용 다이아몬드 화살",
+    "slot": "arrow",
+    "effects": {
+      "pad": 4
+    },
+    "iconUrl": "https://maplestory.io/api/gms/62/item/2060004/icon"
+  }
+]

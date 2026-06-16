@@ -172,6 +172,26 @@ function main() {
     }
   }
 
+  // 3) 투사체 (강화 불가, 종류별 슬롯). projectiles/claw는 아대 무기라 제외.
+  const PROJ_FILE_MAP = {
+    arrowAmmo: 'arrow',
+    crossbowBoltAmmo: 'bolt',
+    thrownAmmo: 'throwingStar',
+  }
+  const projDir = path.join(V1_ITEMS, 'projectiles')
+  if (fs.existsSync(projDir)) {
+    for (const [file, slot] of Object.entries(PROJ_FILE_MAP)) {
+      const pre = path.join(projDir, `${file}.json`)
+      if (!fs.existsSync(pre)) {
+        skippedFiles.push(`projectiles/${file}.json (없음)`)
+        continue
+      }
+      const res = convertFile(pre, path.join(V1_POST, 'projectiles', `${file}.json`), slot)
+      add(slot, res.items)
+      summary.push(`projectiles/${file} → ${slot}: ${res.items.length} (post ${res.withPost}, no-korean ${res.noKorean})`)
+    }
+  }
+
   // 출력
   let total = 0
   for (const [slot, items] of Object.entries(bySlot)) {

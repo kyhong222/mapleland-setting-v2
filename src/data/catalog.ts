@@ -27,6 +27,10 @@ import medal from './catalog/medal.json'
 import belt from './catalog/belt.json'
 import petAcc from './catalog/petAcc.json'
 import weapon from './catalog/weapon.json'
+import arrow from './catalog/arrow.json'
+import bolt from './catalog/bolt.json'
+import throwingStar from './catalog/throwingStar.json'
+import bullet from './catalog/bullet.json'
 
 const CATALOG_FILES = [
   hat,
@@ -45,6 +49,10 @@ const CATALOG_FILES = [
   belt,
   petAcc,
   weapon,
+  arrow,
+  bolt,
+  throwingStar,
+  bullet,
 ] as unknown as ItemData[][]
 
 /** 전체 카탈로그(평탄화) */

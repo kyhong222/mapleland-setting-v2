@@ -1,0 +1,72 @@
+[
+  {
+    "id": 2330000,
+    "name": "불릿",
+    "slot": "bullet",
+    "effects": {
+      "pad": 10
+    },
+    "iconUrl": "https://maplestory.io/api/gms/62/item/2330000/icon",
+    "reqLevel": 10
+  },
+  {
+    "id": 2330001,
+    "name": "스플릿 불릿",
+    "slot": "bullet",
+    "effects": {
+      "pad": 12
+    },
+    "iconUrl": "https://maplestory.io/api/gms/62/item/2330001/icon",
+    "reqLevel": 30
+  },
+  {
+    "id": 2330002,
+    "name": "마이티 불릿",
+    "slot": "bullet",
+    "effects": {
+      "pad": 14
+    },
+    "iconUrl": "https://maplestory.io/api/gms/62/item/2330002/icon",
+    "reqLevel": 50
+  },
+  {
+    "id": 2330003,
+    "name": "바이탈 불릿",
+    "slot": "bullet",
+    "effects": {
+      "pad": 16
+    },
+    "iconUrl": "https://maplestory.io/api/gms/62/item/2330003/icon",
+    "reqLevel": 70
+  },
+  {
+    "id": 2330004,
+    "name": "샤이니 불릿",
+    "slot": "bullet",
+    "effects": {
+      "pad": 18
+    },
+    "iconUrl": "https://maplestory.io/api/gms/62/item/2330004/icon",
+    "reqLevel": 90
+  },
+  {
+    "id": 2330005,
+    "name": "이터널 불릿",
+    "slot": "bullet",
+    "effects": {
+      "pad": 20
+    },
+    "iconUrl": "https://maplestory.io/api/gms/62/item/2330005/icon",
+    "reqLevel": 110
+  },
+  {
+    "id": 2330006,
+    "name": "초보 해적의 불릿",
+    "slot": "bullet",
+    "effects": {
+      "pad": 10
+    },
+    "iconUrl": "https://maplestory.io/api/gms/62/item/2330006/icon",
+    "reqLevel": 10
+  }
+]

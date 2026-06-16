@@ -31,9 +31,11 @@ export default function TopBar() {
         <Button variant="outlined" size="small" onClick={() => setSlotsOpen(true)}>
           저장 슬롯
         </Button>
-        <Button variant="text" size="small" color="error" onClick={handleReset}>
-          초기화
-        </Button>
+        {jobId && (
+          <Button variant="text" size="small" color="error" onClick={handleReset}>
+            초기화
+          </Button>
+        )}
       </Toolbar>
       <SlotManager open={slotsOpen} onClose={() => setSlotsOpen(false)} />
     </AppBar>

@@ -46,21 +46,30 @@ export interface GemDef {
   values: Record<GemGrade, number>
   /** 무기 전용 여부 (다이아몬드/사파이어) */
   weaponOnly: boolean
+  /** 하급(Basic) 게임 아이템 id. 중급=+1, 상급=+2 (GMS 82 maker, 아이콘용) */
+  iconBaseId: number
 }
 
 export const GEMS: Record<GemType, GemDef> = {
-  diamond: { type: 'diamond', label: '다이아몬드', effectId: 'pad', values: { low: 1, mid: 2, high: 3 }, weaponOnly: true },
-  sapphire: { type: 'sapphire', label: '사파이어', effectId: 'mad', values: { low: 1, mid: 2, high: 3 }, weaponOnly: true },
-  topaz: { type: 'topaz', label: '토파즈', effectId: 'hp', values: { low: 10, mid: 20, high: 30 }, weaponOnly: false },
-  emerald: { type: 'emerald', label: '에메랄드', effectId: 'mp', values: { low: 10, mid: 20, high: 30 }, weaponOnly: false },
-  amethyst: { type: 'amethyst', label: '자수정', effectId: 'speed', values: { low: 1, mid: 3, high: 5 }, weaponOnly: false },
-  aquamarine: { type: 'aquamarine', label: '아쿠아마린', effectId: 'jump', values: { low: 1, mid: 2, high: 3 }, weaponOnly: false },
-  garnet: { type: 'garnet', label: '가넷', effectId: 'add', values: { low: 1, mid: 3, high: 5 }, weaponOnly: false },
-  opal: { type: 'opal', label: '오팔', effectId: 'eva', values: { low: 1, mid: 3, high: 5 }, weaponOnly: false },
-  strCrystal: { type: 'strCrystal', label: '힘의 크리스탈', effectId: 'STR', values: { low: 1, mid: 3, high: 5 }, weaponOnly: false },
-  dexCrystal: { type: 'dexCrystal', label: '민첩의 크리스탈', effectId: 'DEX', values: { low: 1, mid: 3, high: 5 }, weaponOnly: false },
-  intCrystal: { type: 'intCrystal', label: '지혜의 크리스탈', effectId: 'INT', values: { low: 1, mid: 3, high: 5 }, weaponOnly: false },
-  lukCrystal: { type: 'lukCrystal', label: '행운의 크리스탈', effectId: 'LUK', values: { low: 1, mid: 3, high: 5 }, weaponOnly: false },
+  diamond: { type: 'diamond', label: '다이아몬드', effectId: 'pad', values: { low: 1, mid: 2, high: 3 }, weaponOnly: true, iconBaseId: 4250000 },
+  sapphire: { type: 'sapphire', label: '사파이어', effectId: 'mad', values: { low: 1, mid: 2, high: 3 }, weaponOnly: true, iconBaseId: 4250100 },
+  topaz: { type: 'topaz', label: '토파즈', effectId: 'hp', values: { low: 10, mid: 20, high: 30 }, weaponOnly: false, iconBaseId: 4250600 },
+  emerald: { type: 'emerald', label: '에메랄드', effectId: 'mp', values: { low: 10, mid: 20, high: 30 }, weaponOnly: false, iconBaseId: 4250700 },
+  amethyst: { type: 'amethyst', label: '자수정', effectId: 'speed', values: { low: 1, mid: 3, high: 5 }, weaponOnly: false, iconBaseId: 4250400 },
+  aquamarine: { type: 'aquamarine', label: '아쿠아마린', effectId: 'jump', values: { low: 1, mid: 2, high: 3 }, weaponOnly: false, iconBaseId: 4250500 },
+  garnet: { type: 'garnet', label: '가넷', effectId: 'add', values: { low: 1, mid: 3, high: 5 }, weaponOnly: false, iconBaseId: 4250200 },
+  opal: { type: 'opal', label: '오팔', effectId: 'eva', values: { low: 1, mid: 3, high: 5 }, weaponOnly: false, iconBaseId: 4250300 },
+  strCrystal: { type: 'strCrystal', label: '힘의 크리스탈', effectId: 'STR', values: { low: 1, mid: 3, high: 5 }, weaponOnly: false, iconBaseId: 4250800 },
+  dexCrystal: { type: 'dexCrystal', label: '민첩의 크리스탈', effectId: 'DEX', values: { low: 1, mid: 3, high: 5 }, weaponOnly: false, iconBaseId: 4251100 },
+  intCrystal: { type: 'intCrystal', label: '지혜의 크리스탈', effectId: 'INT', values: { low: 1, mid: 3, high: 5 }, weaponOnly: false, iconBaseId: 4250900 },
+  lukCrystal: { type: 'lukCrystal', label: '행운의 크리스탈', effectId: 'LUK', values: { low: 1, mid: 3, high: 5 }, weaponOnly: false, iconBaseId: 4251000 },
+}
+
+const GRADE_OFFSET: Record<GemGrade, number> = { low: 0, mid: 1, high: 2 }
+
+/** 보석 아이콘 URL (GMS 82 maker 아이템) */
+export function gemIconUrl(type: GemType, grade: GemGrade): string {
+  return `https://maplestory.io/api/gms/82/item/${GEMS[type].iconBaseId + GRADE_OFFSET[grade]}/icon`
 }
 
 export const ALL_GEMS: GemDef[] = Object.values(GEMS)
@@ -85,6 +94,12 @@ export const GEM_SLOT_CAPACITY: Record<SlotId, number> = {
   belt: 0,
   petAcc: 0,
   medal: 0,
+  // 투사체(강화 불가)
+  arrow: 0,
+  bolt: 0,
+  throwingStar: 0,
+  bullet: 0,
+  capsule: 0,
 }
 
 /** 장착할 보석 1개 선택 */

@@ -22,6 +22,7 @@ export default function SlotManager({ open, onClose }: Props) {
   const snapshot = useBuildStore((s) => s.snapshot)
   const loadSnapshot = useBuildStore((s) => s.loadSnapshot)
 
+  const canSave = !!snapshot()
   const handleSave = (i: number) => {
     const snap = snapshot()
     if (snap) save(i, snap)
@@ -63,7 +64,7 @@ export default function SlotManager({ open, onClose }: Props) {
                     <Button size="small" variant="contained" onClick={() => handleLoad(i)}>
                       불러오기
                     </Button>
-                    <Button size="small" onClick={() => handleSave(i)}>
+                    <Button size="small" disabled={!canSave} onClick={() => handleSave(i)}>
                       덮어쓰기
                     </Button>
                     <Button size="small" color="error" onClick={() => clear(i)}>
@@ -78,7 +79,7 @@ export default function SlotManager({ open, onClose }: Props) {
                       비어있음
                     </Typography>
                   </Box>
-                  <Button size="small" variant="outlined" onClick={() => handleSave(i)}>
+                  <Button size="small" variant="outlined" disabled={!canSave} onClick={() => handleSave(i)}>
                     현재 빌드 저장
                   </Button>
                 </>

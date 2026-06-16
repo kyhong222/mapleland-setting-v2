@@ -1,0 +1,132 @@
+[
+  {
+    "id": 2070000,
+    "name": "수비 표창",
+    "slot": "throwingStar",
+    "effects": {
+      "pad": 15
+    },
+    "reqLevel": 10,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/2070000/icon"
+  },
+  {
+    "id": 2070001,
+    "name": "월비 표창",
+    "slot": "throwingStar",
+    "effects": {
+      "pad": 17
+    },
+    "reqLevel": 10,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/2070001/icon"
+  },
+  {
+    "id": 2070002,
+    "name": "목비 표창",
+    "slot": "throwingStar",
+    "effects": {
+      "pad": 19
+    },
+    "reqLevel": 10,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/2070002/icon"
+  },
+  {
+    "id": 2070003,
+    "name": "금비 표창",
+    "slot": "throwingStar",
+    "effects": {
+      "pad": 21
+    },
+    "reqLevel": 10,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/2070003/icon"
+  },
+  {
+    "id": 2070004,
+    "name": "토비 표창",
+    "slot": "throwingStar",
+    "effects": {
+      "pad": 23
+    },
+    "reqLevel": 10,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/2070004/icon"
+  },
+  {
+    "id": 2070005,
+    "name": "뇌전 수리검",
+    "slot": "throwingStar",
+    "effects": {
+      "pad": 25
+    },
+    "reqLevel": 10,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/2070005/icon"
+  },
+  {
+    "id": 2070006,
+    "name": "일비 표창",
+    "slot": "throwingStar",
+    "effects": {
+      "pad": 27
+    },
+    "reqLevel": 10,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/2070006/icon"
+  },
+  {
+    "id": 2070007,
+    "name": "화비 표창",
+    "slot": "throwingStar",
+    "effects": {
+      "pad": 27
+    },
+    "reqLevel": 70,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/2070007/icon"
+  },
+  {
+    "id": 2070008,
+    "name": "눈덩이",
+    "slot": "throwingStar",
+    "effects": {
+      "pad": 17
+    },
+    "reqLevel": 10,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/2070008/icon"
+  },
+  {
+    "id": 2070009,
+    "name": "나무팽이",
+    "slot": "throwingStar",
+    "effects": {
+      "pad": 19
+    },
+    "reqLevel": 10,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/2070009/icon"
+  },
+  {
+    "id": 2070010,
+    "name": "고드름",
+    "slot": "throwingStar",
+    "effects": {
+      "pad": 21
+    },
+    "reqLevel": 10,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/2070010/icon"
+  },
+  {
+    "id": 2070011,
+    "name": "메이플 표창",
+    "slot": "throwingStar",
+    "effects": {
+      "pad": 21
+    },
+    "reqLevel": 10,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/2070011/icon"
+  },
+  {
+    "id": 2070018,
+    "name": "절제된 분노",
+    "slot": "throwingStar",
+    "effects": {
+      "pad": 29
+    },
+    "iconUrl": "https://maplestory.io/api/gms/62/item/2070018/icon",
+    "reqLevel": 70
+  }
+]

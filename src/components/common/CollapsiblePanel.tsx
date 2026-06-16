@@ -9,10 +9,12 @@ import type { PanelId } from '../../store/uiStore'
 interface Props {
   id: PanelId
   title: string
+  /** 헤더 우측, 토글 버튼 왼쪽에 표시할 액션 (클릭이 토글로 전파되지 않음) */
+  headerAction?: ReactNode
   children?: ReactNode
 }
 
-export default function CollapsiblePanel({ id, title, children }: Props) {
+export default function CollapsiblePanel({ id, title, headerAction, children }: Props) {
   const folded = useUiStore((s) => !!s.folded[id])
   const toggle = useUiStore((s) => s.toggle)
 
@@ -33,9 +35,16 @@ export default function CollapsiblePanel({ id, title, children }: Props) {
         }}
       >
         <Typography variant="subtitle2">{title}</Typography>
-        <Typography variant="body2" color="text.secondary">
-          {folded ? '▸' : '▾'}
-        </Typography>
+        <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+          {headerAction && (
+            <Box onClick={(e) => e.stopPropagation()} sx={{ display: 'flex' }}>
+              {headerAction}
+            </Box>
+          )}
+          <Typography variant="body2" color="text.secondary">
+            {folded ? '▸' : '▾'}
+          </Typography>
+        </Box>
       </Box>
       <Collapse in={!folded}>
         <Box sx={{ p: 1.5 }}>{children}</Box>
