@@ -69,6 +69,10 @@ export function normalizeItem(
   if (typeof reqLevel === 'number' && reqLevel > 0) {
     item.reqLevel = reqLevel
   }
+  if (typeof meta.reqSTR === 'number' && meta.reqSTR > 0) item.reqStr = meta.reqSTR
+  if (typeof meta.reqDEX === 'number' && meta.reqDEX > 0) item.reqDex = meta.reqDEX
+  if (typeof meta.reqINT === 'number' && meta.reqINT > 0) item.reqInt = meta.reqINT
+  if (typeof meta.reqLUK === 'number' && meta.reqLUK > 0) item.reqLuk = meta.reqLUK
 
   if (typeof meta.tuc === 'number') {
     item.tuc = meta.tuc

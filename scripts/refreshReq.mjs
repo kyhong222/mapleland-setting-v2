@@ -35,6 +35,10 @@ async function fetchReq(id) {
       found: true,
       reqJob: typeof m.reqJob === 'number' ? m.reqJob : 0,
       reqLevel: m.reqLevelEquip ?? m.reqLevel ?? 0,
+      reqStr: num(m.reqSTR),
+      reqDex: num(m.reqDEX),
+      reqInt: num(m.reqINT),
+      reqLuk: num(m.reqLUK),
       tuc: typeof m.tuc === 'number' ? m.tuc : null,
       // v1이 시스템적으로 누락한 필드 보충용 (incMHP/incMMP/incSpeed/incJump)
       fill: { hp: num(m.incMHP), mp: num(m.incMMP), speed: num(m.incSpeed), jump: num(m.incJump) },
@@ -100,6 +104,11 @@ async function main() {
     } else {
       if (oldLvl !== 0) lvlChanged++
       delete item.reqLevel
+    }
+    // 요구 스탯 (0이면 필드 제거)
+    for (const [k, v] of [['reqStr', r.reqStr], ['reqDex', r.reqDex], ['reqInt', r.reqInt], ['reqLuk', r.reqLuk]]) {
+      if (v > 0) item[k] = v
+      else delete item[k]
     }
     // tuc (업그레이드 가능 횟수). 숫자면 0 포함 기록
     if (r.tuc != null) {

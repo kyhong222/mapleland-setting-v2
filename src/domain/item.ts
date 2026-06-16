@@ -19,6 +19,11 @@ export interface ItemData {
   effects: EffectMap
   /** 착용 요구 레벨 */
   reqLevel?: number
+  /** 착용 요구 스탯 (없으면 0) */
+  reqStr?: number
+  reqDex?: number
+  reqInt?: number
+  reqLuk?: number
   /** 업그레이드 가능 횟수(tuc) — 주문서를 바를 수 있는 횟수. postItem으로 덮어쓸 수 있음 */
   tuc?: number
   /**

@@ -11,7 +11,9 @@
     "reqLevel": 15,
     "reqJob": 1,
     "iconUrl": "https://maplestory.io/api/GMS/200/item/1051000/icon",
-    "tuc": 10
+    "tuc": 10,
+    "reqStr": 40,
+    "reqDex": 20
   },
   {
     "id": 1050005,
@@ -25,7 +27,8 @@
     "reqLevel": 20,
     "reqJob": 1,
     "iconUrl": "https://maplestory.io/api/GMS/200/item/1050005/icon",
-    "tuc": 10
+    "tuc": 10,
+    "reqStr": 65
   },
   {
     "id": 1050006,
@@ -38,7 +41,8 @@
     "reqLevel": 20,
     "reqJob": 1,
     "iconUrl": "https://maplestory.io/api/GMS/200/item/1050006/icon",
-    "tuc": 10
+    "tuc": 10,
+    "reqStr": 65
   },
   {
     "id": 1050007,
@@ -52,7 +56,8 @@
     "reqLevel": 20,
     "reqJob": 1,
     "iconUrl": "https://maplestory.io/api/GMS/200/item/1050007/icon",
-    "tuc": 10
+    "tuc": 10,
+    "reqStr": 65
   },
   {
     "id": 1050100,
@@ -86,7 +91,9 @@
     "reqLevel": 23,
     "reqJob": 2,
     "iconUrl": "https://maplestory.io/api/GMS/200/item/1050001/icon",
-    "tuc": 10
+    "tuc": 10,
+    "reqInt": 70,
+    "reqLuk": 25
   },
   {
     "id": 1050023,
@@ -100,7 +107,9 @@
     "reqLevel": 23,
     "reqJob": 2,
     "iconUrl": "https://maplestory.io/api/GMS/200/item/1050023/icon",
-    "tuc": 10
+    "tuc": 10,
+    "reqInt": 70,
+    "reqLuk": 25
   },
   {
     "id": 1050024,
@@ -114,7 +123,9 @@
     "reqLevel": 23,
     "reqJob": 2,
     "iconUrl": "https://maplestory.io/api/GMS/200/item/1050024/icon",
-    "tuc": 10
+    "tuc": 10,
+    "reqInt": 70,
+    "reqLuk": 25
   },
   {
     "id": 1050025,
@@ -128,7 +139,9 @@
     "reqLevel": 23,
     "reqJob": 2,
     "iconUrl": "https://maplestory.io/api/GMS/200/item/1050025/icon",
-    "tuc": 10
+    "tuc": 10,
+    "reqInt": 70,
+    "reqLuk": 25
   },
   {
     "id": 1051003,
@@ -142,7 +155,9 @@
     "reqLevel": 23,
     "reqJob": 2,
     "iconUrl": "https://maplestory.io/api/GMS/200/item/1051003/icon",
-    "tuc": 10
+    "tuc": 10,
+    "reqInt": 70,
+    "reqLuk": 25
   },
   {
     "id": 1051004,
@@ -156,7 +171,9 @@
     "reqLevel": 23,
     "reqJob": 2,
     "iconUrl": "https://maplestory.io/api/GMS/200/item/1051004/icon",
-    "tuc": 10
+    "tuc": 10,
+    "reqInt": 70,
+    "reqLuk": 25
   },
   {
     "id": 1051005,
@@ -170,7 +187,9 @@
     "reqLevel": 23,
     "reqJob": 2,
     "iconUrl": "https://maplestory.io/api/GMS/200/item/1051005/icon",
-    "tuc": 10
+    "tuc": 10,
+    "reqInt": 70,
+    "reqLuk": 25
   },
   {
     "id": 1050003,
@@ -184,7 +203,9 @@
     "reqLevel": 28,
     "reqJob": 2,
     "iconUrl": "https://maplestory.io/api/GMS/200/item/1050003/icon",
-    "tuc": 10
+    "tuc": 10,
+    "reqInt": 85,
+    "reqLuk": 30
   },
   {
     "id": 1050026,
@@ -198,7 +219,9 @@
     "reqLevel": 28,
     "reqJob": 2,
     "iconUrl": "https://maplestory.io/api/GMS/200/item/1050026/icon",
-    "tuc": 10
+    "tuc": 10,
+    "reqInt": 85,
+    "reqLuk": 30
   },
   {
     "id": 1050027,
@@ -212,7 +235,9 @@
     "reqLevel": 28,
     "reqJob": 2,
     "iconUrl": "https://maplestory.io/api/GMS/200/item/1050027/icon",
-    "tuc": 10
+    "tuc": 10,
+    "reqInt": 85,
+    "reqLuk": 30
   },
   {
     "id": 1050028,
@@ -226,7 +251,9 @@
     "reqLevel": 28,
     "reqJob": 2,
     "iconUrl": "https://maplestory.io/api/GMS/200/item/1050028/icon",
-    "tuc": 10
+    "tuc": 10,
+    "reqInt": 85,
+    "reqLuk": 30
   },
   {
     "id": 1050011,
@@ -239,7 +266,8 @@
     "reqLevel": 30,
     "reqJob": 1,
     "iconUrl": "https://maplestory.io/api/GMS/200/item/1050011/icon",
-    "tuc": 10
+    "tuc": 10,
+    "reqStr": 100
   },
   {
     "id": 1050018,
@@ -264,7 +292,8 @@
     "reqLevel": 30,
     "reqJob": 1,
     "iconUrl": "https://maplestory.io/api/GMS/200/item/1051010/icon",
-    "tuc": 10
+    "tuc": 10,
+    "reqStr": 100
   },
   {
     "id": 1051011,
@@ -277,7 +306,8 @@
     "reqLevel": 30,
     "reqJob": 1,
     "iconUrl": "https://maplestory.io/api/GMS/200/item/1051011/icon",
-    "tuc": 10
+    "tuc": 10,
+    "reqStr": 100
   },
   {
     "id": 1051012,
@@ -290,7 +320,8 @@
     "reqLevel": 30,
     "reqJob": 1,
     "iconUrl": "https://maplestory.io/api/GMS/200/item/1051012/icon",
-    "tuc": 10
+    "tuc": 10,
+    "reqStr": 100
   },
   {
     "id": 1051013,
@@ -303,7 +334,8 @@
     "reqLevel": 30,
     "reqJob": 1,
     "iconUrl": "https://maplestory.io/api/GMS/200/item/1051013/icon",
-    "tuc": 10
+    "tuc": 10,
+    "reqStr": 100
   },
   {
     "id": 1051017,
@@ -330,7 +362,9 @@
     "reqLevel": 33,
     "reqJob": 2,
     "iconUrl": "https://maplestory.io/api/GMS/200/item/1050002/icon",
-    "tuc": 10
+    "tuc": 10,
+    "reqInt": 100,
+    "reqLuk": 35
   },
   {
     "id": 1050029,
@@ -345,7 +379,9 @@
     "reqLevel": 33,
     "reqJob": 2,
     "iconUrl": "https://maplestory.io/api/GMS/200/item/1050029/icon",
-    "tuc": 10
+    "tuc": 10,
+    "reqInt": 100,
+    "reqLuk": 35
   },
   {
     "id": 1050030,
@@ -360,7 +396,9 @@
     "reqLevel": 33,
     "reqJob": 2,
     "iconUrl": "https://maplestory.io/api/GMS/200/item/1050030/icon",
-    "tuc": 10
+    "tuc": 10,
+    "reqInt": 100,
+    "reqLuk": 35
   },
   {
     "id": 1050031,
@@ -375,7 +413,9 @@
     "reqLevel": 33,
     "reqJob": 2,
     "iconUrl": "https://maplestory.io/api/GMS/200/item/1050031/icon",
-    "tuc": 10
+    "tuc": 10,
+    "reqInt": 100,
+    "reqLuk": 35
   },
   {
     "id": 1050000,
@@ -390,7 +430,8 @@
     "reqLevel": 35,
     "reqJob": 1,
     "iconUrl": "https://maplestory.io/api/GMS/200/item/1050000/icon",
-    "tuc": 10
+    "tuc": 10,
+    "reqStr": 110
   },
   {
     "id": 1050021,
@@ -405,7 +446,8 @@
     "reqLevel": 35,
     "reqJob": 1,
     "iconUrl": "https://maplestory.io/api/GMS/200/item/1050021/icon",
-    "tuc": 10
+    "tuc": 10,
+    "reqStr": 110
   },
   {
     "id": 1050022,
@@ -420,7 +462,8 @@
     "reqLevel": 35,
     "reqJob": 1,
     "iconUrl": "https://maplestory.io/api/GMS/200/item/1050022/icon",
-    "tuc": 10
+    "tuc": 10,
+    "reqStr": 110
   },
   {
     "id": 1051001,
@@ -435,7 +478,8 @@
     "reqLevel": 35,
     "reqJob": 1,
     "iconUrl": "https://maplestory.io/api/GMS/200/item/1051001/icon",
-    "tuc": 10
+    "tuc": 10,
+    "reqStr": 110
   },
   {
     "id": 1051006,
@@ -449,7 +493,9 @@
     "reqLevel": 35,
     "reqJob": 8,
     "iconUrl": "https://maplestory.io/api/GMS/200/item/1051006/icon",
-    "tuc": 10
+    "tuc": 10,
+    "reqDex": 70,
+    "reqLuk": 95
   },
   {
     "id": 1051007,
@@ -463,7 +509,9 @@
     "reqLevel": 35,
     "reqJob": 8,
     "iconUrl": "https://maplestory.io/api/GMS/200/item/1051007/icon",
-    "tuc": 10
+    "tuc": 10,
+    "reqDex": 70,
+    "reqLuk": 95
   },
   {
     "id": 1051008,
@@ -477,7 +525,9 @@
     "reqLevel": 35,
     "reqJob": 8,
     "iconUrl": "https://maplestory.io/api/GMS/200/item/1051008/icon",
-    "tuc": 10
+    "tuc": 10,
+    "reqDex": 70,
+    "reqLuk": 95
   },
   {
     "id": 1051009,
@@ -491,7 +541,9 @@
     "reqLevel": 35,
     "reqJob": 8,
     "iconUrl": "https://maplestory.io/api/GMS/200/item/1051009/icon",
-    "tuc": 10
+    "tuc": 10,
+    "reqDex": 70,
+    "reqLuk": 95
   },
   {
     "id": 1051014,
@@ -506,7 +558,8 @@
     "reqLevel": 35,
     "reqJob": 1,
     "iconUrl": "https://maplestory.io/api/GMS/200/item/1051014/icon",
-    "tuc": 10
+    "tuc": 10,
+    "reqStr": 110
   },
   {
     "id": 1051015,
@@ -521,7 +574,8 @@
     "reqLevel": 35,
     "reqJob": 1,
     "iconUrl": "https://maplestory.io/api/GMS/200/item/1051015/icon",
-    "tuc": 10
+    "tuc": 10,
+    "reqStr": 110
   },
   {
     "id": 1051016,
@@ -536,7 +590,8 @@
     "reqLevel": 35,
     "reqJob": 1,
     "iconUrl": "https://maplestory.io/api/GMS/200/item/1051016/icon",
-    "tuc": 10
+    "tuc": 10,
+    "reqStr": 110
   },
   {
     "id": 1050035,
@@ -551,7 +606,9 @@
     "reqLevel": 38,
     "reqJob": 2,
     "iconUrl": "https://maplestory.io/api/GMS/200/item/1050035/icon",
-    "tuc": 10
+    "tuc": 10,
+    "reqInt": 115,
+    "reqLuk": 40
   },
   {
     "id": 1050036,
@@ -566,7 +623,9 @@
     "reqLevel": 38,
     "reqJob": 2,
     "iconUrl": "https://maplestory.io/api/GMS/200/item/1050036/icon",
-    "tuc": 10
+    "tuc": 10,
+    "reqInt": 115,
+    "reqLuk": 40
   },
   {
     "id": 1050037,
@@ -581,7 +640,9 @@
     "reqLevel": 38,
     "reqJob": 2,
     "iconUrl": "https://maplestory.io/api/GMS/200/item/1050037/icon",
-    "tuc": 10
+    "tuc": 10,
+    "reqInt": 115,
+    "reqLuk": 40
   },
   {
     "id": 1050038,
@@ -596,7 +657,9 @@
     "reqLevel": 38,
     "reqJob": 2,
     "iconUrl": "https://maplestory.io/api/GMS/200/item/1050038/icon",
-    "tuc": 10
+    "tuc": 10,
+    "reqInt": 115,
+    "reqLuk": 40
   },
   {
     "id": 1050039,
@@ -611,7 +674,9 @@
     "reqLevel": 38,
     "reqJob": 2,
     "iconUrl": "https://maplestory.io/api/GMS/200/item/1050039/icon",
-    "tuc": 10
+    "tuc": 10,
+    "reqInt": 115,
+    "reqLuk": 40
   },
   {
     "id": 1051023,
@@ -626,7 +691,9 @@
     "reqLevel": 38,
     "reqJob": 2,
     "iconUrl": "https://maplestory.io/api/GMS/200/item/1051023/icon",
-    "tuc": 10
+    "tuc": 10,
+    "reqInt": 115,
+    "reqLuk": 40
   },
   {
     "id": 1051024,
@@ -641,7 +708,9 @@
     "reqLevel": 38,
     "reqJob": 2,
     "iconUrl": "https://maplestory.io/api/GMS/200/item/1051024/icon",
-    "tuc": 10
+    "tuc": 10,
+    "reqInt": 115,
+    "reqLuk": 40
   },
   {
     "id": 1051025,
@@ -656,7 +725,9 @@
     "reqLevel": 38,
     "reqJob": 2,
     "iconUrl": "https://maplestory.io/api/GMS/200/item/1051025/icon",
-    "tuc": 10
+    "tuc": 10,
+    "reqInt": 115,
+    "reqLuk": 40
   },
   {
     "id": 1051026,
@@ -671,7 +742,9 @@
     "reqLevel": 38,
     "reqJob": 2,
     "iconUrl": "https://maplestory.io/api/GMS/200/item/1051026/icon",
-    "tuc": 10
+    "tuc": 10,
+    "reqInt": 115,
+    "reqLuk": 40
   },
   {
     "id": 1051027,
@@ -686,7 +759,9 @@
     "reqLevel": 38,
     "reqJob": 2,
     "iconUrl": "https://maplestory.io/api/GMS/200/item/1051027/icon",
-    "tuc": 10
+    "tuc": 10,
+    "reqInt": 115,
+    "reqLuk": 40
   },
   {
     "id": 1050045,
@@ -702,7 +777,9 @@
     "reqLevel": 48,
     "reqJob": 2,
     "iconUrl": "https://maplestory.io/api/GMS/200/item/1050045/icon",
-    "tuc": 10
+    "tuc": 10,
+    "reqInt": 145,
+    "reqLuk": 50
   },
   {
     "id": 1050046,
@@ -718,7 +795,9 @@
     "reqLevel": 48,
     "reqJob": 2,
     "iconUrl": "https://maplestory.io/api/GMS/200/item/1050046/icon",
-    "tuc": 10
+    "tuc": 10,
+    "reqInt": 145,
+    "reqLuk": 50
   },
   {
     "id": 1050047,
@@ -734,7 +813,9 @@
     "reqLevel": 48,
     "reqJob": 2,
     "iconUrl": "https://maplestory.io/api/GMS/200/item/1050047/icon",
-    "tuc": 10
+    "tuc": 10,
+    "reqInt": 145,
+    "reqLuk": 50
   },
   {
     "id": 1050048,
@@ -750,7 +831,9 @@
     "reqLevel": 48,
     "reqJob": 2,
     "iconUrl": "https://maplestory.io/api/GMS/200/item/1050048/icon",
-    "tuc": 10
+    "tuc": 10,
+    "reqInt": 145,
+    "reqLuk": 50
   },
   {
     "id": 1050049,
@@ -766,7 +849,9 @@
     "reqLevel": 48,
     "reqJob": 2,
     "iconUrl": "https://maplestory.io/api/GMS/200/item/1050049/icon",
-    "tuc": 10
+    "tuc": 10,
+    "reqInt": 145,
+    "reqLuk": 50
   },
   {
     "id": 1051030,
@@ -782,7 +867,9 @@
     "reqLevel": 48,
     "reqJob": 2,
     "iconUrl": "https://maplestory.io/api/GMS/200/item/1051030/icon",
-    "tuc": 10
+    "tuc": 10,
+    "reqInt": 145,
+    "reqLuk": 50
   },
   {
     "id": 1051031,
@@ -798,7 +885,9 @@
     "reqLevel": 48,
     "reqJob": 2,
     "iconUrl": "https://maplestory.io/api/GMS/200/item/1051031/icon",
-    "tuc": 10
+    "tuc": 10,
+    "reqInt": 145,
+    "reqLuk": 50
   },
   {
     "id": 1051032,
@@ -814,7 +903,9 @@
     "reqLevel": 48,
     "reqJob": 2,
     "iconUrl": "https://maplestory.io/api/GMS/200/item/1051032/icon",
-    "tuc": 10
+    "tuc": 10,
+    "reqInt": 145,
+    "reqLuk": 50
   },
   {
     "id": 1051033,
@@ -830,7 +921,9 @@
     "reqLevel": 48,
     "reqJob": 2,
     "iconUrl": "https://maplestory.io/api/GMS/200/item/1051033/icon",
-    "tuc": 10
+    "tuc": 10,
+    "reqInt": 145,
+    "reqLuk": 50
   },
   {
     "id": 1051034,
@@ -846,7 +939,9 @@
     "reqLevel": 48,
     "reqJob": 2,
     "iconUrl": "https://maplestory.io/api/GMS/200/item/1051034/icon",
-    "tuc": 10
+    "tuc": 10,
+    "reqInt": 145,
+    "reqLuk": 50
   },
   {
     "id": 1050051,
@@ -860,7 +955,8 @@
     "reqLevel": 50,
     "reqJob": 4,
     "iconUrl": "https://maplestory.io/api/GMS/200/item/1050051/icon",
-    "tuc": 10
+    "tuc": 10,
+    "reqDex": 180
   },
   {
     "id": 1050052,
@@ -874,7 +970,8 @@
     "reqLevel": 50,
     "reqJob": 4,
     "iconUrl": "https://maplestory.io/api/GMS/200/item/1050052/icon",
-    "tuc": 10
+    "tuc": 10,
+    "reqDex": 180
   },
   {
     "id": 1051037,
@@ -888,7 +985,8 @@
     "reqLevel": 50,
     "reqJob": 4,
     "iconUrl": "https://maplestory.io/api/GMS/200/item/1051037/icon",
-    "tuc": 10
+    "tuc": 10,
+    "reqDex": 160
   },
   {
     "id": 1051038,
@@ -902,7 +1000,8 @@
     "reqLevel": 50,
     "reqJob": 4,
     "iconUrl": "https://maplestory.io/api/GMS/200/item/1051038/icon",
-    "tuc": 10
+    "tuc": 10,
+    "reqDex": 160
   },
   {
     "id": 1051039,
@@ -916,7 +1015,8 @@
     "reqLevel": 50,
     "reqJob": 4,
     "iconUrl": "https://maplestory.io/api/GMS/200/item/1051039/icon",
-    "tuc": 10
+    "tuc": 10,
+    "reqDex": 160
   },
   {
     "id": 1050053,
@@ -932,7 +1032,9 @@
     "reqLevel": 58,
     "reqJob": 2,
     "iconUrl": "https://maplestory.io/api/GMS/200/item/1050053/icon",
-    "tuc": 10
+    "tuc": 10,
+    "reqInt": 175,
+    "reqLuk": 60
   },
   {
     "id": 1050054,
@@ -948,7 +1050,9 @@
     "reqLevel": 58,
     "reqJob": 2,
     "iconUrl": "https://maplestory.io/api/GMS/200/item/1050054/icon",
-    "tuc": 10
+    "tuc": 10,
+    "reqInt": 175,
+    "reqLuk": 60
   },
   {
     "id": 1050055,
@@ -964,7 +1068,9 @@
     "reqLevel": 58,
     "reqJob": 2,
     "iconUrl": "https://maplestory.io/api/GMS/200/item/1050055/icon",
-    "tuc": 10
+    "tuc": 10,
+    "reqInt": 175,
+    "reqLuk": 60
   },
   {
     "id": 1050056,
@@ -980,7 +1086,9 @@
     "reqLevel": 58,
     "reqJob": 2,
     "iconUrl": "https://maplestory.io/api/GMS/200/item/1050056/icon",
-    "tuc": 10
+    "tuc": 10,
+    "reqInt": 175,
+    "reqLuk": 60
   },
   {
     "id": 1051044,
@@ -996,7 +1104,9 @@
     "reqLevel": 58,
     "reqJob": 2,
     "iconUrl": "https://maplestory.io/api/GMS/200/item/1051044/icon",
-    "tuc": 10
+    "tuc": 10,
+    "reqInt": 175,
+    "reqLuk": 60
   },
   {
     "id": 1051045,
@@ -1012,7 +1122,9 @@
     "reqLevel": 58,
     "reqJob": 2,
     "iconUrl": "https://maplestory.io/api/GMS/200/item/1051045/icon",
-    "tuc": 10
+    "tuc": 10,
+    "reqInt": 175,
+    "reqLuk": 60
   },
   {
     "id": 1051046,
@@ -1028,7 +1140,9 @@
     "reqLevel": 58,
     "reqJob": 2,
     "iconUrl": "https://maplestory.io/api/GMS/200/item/1051046/icon",
-    "tuc": 10
+    "tuc": 10,
+    "reqInt": 175,
+    "reqLuk": 60
   },
   {
     "id": 1051047,
@@ -1044,7 +1158,9 @@
     "reqLevel": 58,
     "reqJob": 2,
     "iconUrl": "https://maplestory.io/api/GMS/200/item/1051047/icon",
-    "tuc": 10
+    "tuc": 10,
+    "reqInt": 175,
+    "reqLuk": 60
   },
   {
     "id": 1050058,
@@ -1059,7 +1175,8 @@
     "reqLevel": 60,
     "reqJob": 4,
     "iconUrl": "https://maplestory.io/api/GMS/200/item/1050058/icon",
-    "tuc": 10
+    "tuc": 10,
+    "reqDex": 190
   },
   {
     "id": 1050059,
@@ -1074,7 +1191,8 @@
     "reqLevel": 60,
     "reqJob": 4,
     "iconUrl": "https://maplestory.io/api/GMS/200/item/1050059/icon",
-    "tuc": 10
+    "tuc": 10,
+    "reqDex": 190
   },
   {
     "id": 1050060,
@@ -1089,7 +1207,8 @@
     "reqLevel": 60,
     "reqJob": 4,
     "iconUrl": "https://maplestory.io/api/GMS/200/item/1050060/icon",
-    "tuc": 10
+    "tuc": 10,
+    "reqDex": 190
   },
   {
     "id": 1051041,
@@ -1104,7 +1223,8 @@
     "reqLevel": 60,
     "reqJob": 4,
     "iconUrl": "https://maplestory.io/api/GMS/200/item/1051041/icon",
-    "tuc": 10
+    "tuc": 10,
+    "reqDex": 190
   },
   {
     "id": 1051042,
@@ -1119,7 +1239,8 @@
     "reqLevel": 60,
     "reqJob": 4,
     "iconUrl": "https://maplestory.io/api/GMS/200/item/1051042/icon",
-    "tuc": 10
+    "tuc": 10,
+    "reqDex": 190
   },
   {
     "id": 1051043,
@@ -1134,7 +1255,8 @@
     "reqLevel": 60,
     "reqJob": 4,
     "iconUrl": "https://maplestory.io/api/GMS/200/item/1051043/icon",
-    "tuc": 10
+    "tuc": 10,
+    "reqDex": 190
   },
   {
     "id": 1050067,
@@ -1150,7 +1272,9 @@
     "reqLevel": 68,
     "reqJob": 2,
     "iconUrl": "https://maplestory.io/api/GMS/200/item/1050067/icon",
-    "tuc": 10
+    "tuc": 10,
+    "reqInt": 205,
+    "reqLuk": 70
   },
   {
     "id": 1050068,
@@ -1166,7 +1290,9 @@
     "reqLevel": 68,
     "reqJob": 2,
     "iconUrl": "https://maplestory.io/api/GMS/200/item/1050068/icon",
-    "tuc": 10
+    "tuc": 10,
+    "reqInt": 205,
+    "reqLuk": 70
   },
   {
     "id": 1050069,
@@ -1182,7 +1308,9 @@
     "reqLevel": 68,
     "reqJob": 2,
     "iconUrl": "https://maplestory.io/api/GMS/200/item/1050069/icon",
-    "tuc": 10
+    "tuc": 10,
+    "reqInt": 205,
+    "reqLuk": 70
   },
   {
     "id": 1050070,
@@ -1198,7 +1326,9 @@
     "reqLevel": 68,
     "reqJob": 2,
     "iconUrl": "https://maplestory.io/api/GMS/200/item/1050070/icon",
-    "tuc": 10
+    "tuc": 10,
+    "reqInt": 205,
+    "reqLuk": 70
   },
   {
     "id": 1051052,
@@ -1214,7 +1344,9 @@
     "reqLevel": 68,
     "reqJob": 2,
     "iconUrl": "https://maplestory.io/api/GMS/200/item/1051052/icon",
-    "tuc": 10
+    "tuc": 10,
+    "reqInt": 205,
+    "reqLuk": 70
   },
   {
     "id": 1051053,
@@ -1230,7 +1362,9 @@
     "reqLevel": 68,
     "reqJob": 2,
     "iconUrl": "https://maplestory.io/api/GMS/200/item/1051053/icon",
-    "tuc": 10
+    "tuc": 10,
+    "reqInt": 205,
+    "reqLuk": 70
   },
   {
     "id": 1051054,
@@ -1246,7 +1380,9 @@
     "reqLevel": 68,
     "reqJob": 2,
     "iconUrl": "https://maplestory.io/api/GMS/200/item/1051054/icon",
-    "tuc": 10
+    "tuc": 10,
+    "reqInt": 205,
+    "reqLuk": 70
   },
   {
     "id": 1051055,
@@ -1262,7 +1398,9 @@
     "reqLevel": 68,
     "reqJob": 2,
     "iconUrl": "https://maplestory.io/api/GMS/200/item/1051055/icon",
-    "tuc": 10
+    "tuc": 10,
+    "reqInt": 205,
+    "reqLuk": 70
   },
   {
     "id": 1050061,
@@ -1277,7 +1415,8 @@
     "reqLevel": 70,
     "reqJob": 4,
     "iconUrl": "https://maplestory.io/api/GMS/200/item/1050061/icon",
-    "tuc": 10
+    "tuc": 10,
+    "reqDex": 220
   },
   {
     "id": 1050062,
@@ -1292,7 +1431,8 @@
     "reqLevel": 70,
     "reqJob": 4,
     "iconUrl": "https://maplestory.io/api/GMS/200/item/1050062/icon",
-    "tuc": 10
+    "tuc": 10,
+    "reqDex": 220
   },
   {
     "id": 1050063,
@@ -1307,7 +1447,8 @@
     "reqLevel": 70,
     "reqJob": 4,
     "iconUrl": "https://maplestory.io/api/GMS/200/item/1050063/icon",
-    "tuc": 10
+    "tuc": 10,
+    "reqDex": 220
   },
   {
     "id": 1050064,
@@ -1322,7 +1463,8 @@
     "reqLevel": 70,
     "reqJob": 4,
     "iconUrl": "https://maplestory.io/api/GMS/200/item/1050064/icon",
-    "tuc": 10
+    "tuc": 10,
+    "reqDex": 220
   },
   {
     "id": 1051062,
@@ -1337,7 +1479,8 @@
     "reqLevel": 70,
     "reqJob": 4,
     "iconUrl": "https://maplestory.io/api/GMS/200/item/1051062/icon",
-    "tuc": 10
+    "tuc": 10,
+    "reqDex": 220
   },
   {
     "id": 1051063,
@@ -1352,7 +1495,8 @@
     "reqLevel": 70,
     "reqJob": 4,
     "iconUrl": "https://maplestory.io/api/GMS/200/item/1051063/icon",
-    "tuc": 10
+    "tuc": 10,
+    "reqDex": 220
   },
   {
     "id": 1051064,
@@ -1367,7 +1511,8 @@
     "reqLevel": 70,
     "reqJob": 4,
     "iconUrl": "https://maplestory.io/api/GMS/200/item/1051064/icon",
-    "tuc": 10
+    "tuc": 10,
+    "reqDex": 220
   },
   {
     "id": 1051065,
@@ -1382,7 +1527,8 @@
     "reqLevel": 70,
     "reqJob": 4,
     "iconUrl": "https://maplestory.io/api/GMS/200/item/1051065/icon",
-    "tuc": 10
+    "tuc": 10,
+    "reqDex": 220
   },
   {
     "id": 1050072,
@@ -1398,7 +1544,9 @@
     "reqLevel": 78,
     "reqJob": 2,
     "iconUrl": "https://maplestory.io/api/GMS/200/item/1050072/icon",
-    "tuc": 10
+    "tuc": 10,
+    "reqInt": 235,
+    "reqLuk": 80
   },
   {
     "id": 1050073,
@@ -1414,7 +1562,9 @@
     "reqLevel": 78,
     "reqJob": 2,
     "iconUrl": "https://maplestory.io/api/GMS/200/item/1050073/icon",
-    "tuc": 10
+    "tuc": 10,
+    "reqInt": 235,
+    "reqLuk": 80
   },
   {
     "id": 1050074,
@@ -1430,7 +1580,9 @@
     "reqLevel": 78,
     "reqJob": 2,
     "iconUrl": "https://maplestory.io/api/GMS/200/item/1050074/icon",
-    "tuc": 10
+    "tuc": 10,
+    "reqInt": 235,
+    "reqLuk": 80
   },
   {
     "id": 1051056,
@@ -1446,7 +1598,9 @@
     "reqLevel": 78,
     "reqJob": 2,
     "iconUrl": "https://maplestory.io/api/GMS/200/item/1051056/icon",
-    "tuc": 10
+    "tuc": 10,
+    "reqInt": 235,
+    "reqLuk": 80
   },
   {
     "id": 1051057,
@@ -1462,7 +1616,9 @@
     "reqLevel": 78,
     "reqJob": 2,
     "iconUrl": "https://maplestory.io/api/GMS/200/item/1051057/icon",
-    "tuc": 10
+    "tuc": 10,
+    "reqInt": 235,
+    "reqLuk": 80
   },
   {
     "id": 1051058,
@@ -1478,7 +1634,9 @@
     "reqLevel": 78,
     "reqJob": 2,
     "iconUrl": "https://maplestory.io/api/GMS/200/item/1051058/icon",
-    "tuc": 10
+    "tuc": 10,
+    "reqInt": 235,
+    "reqLuk": 80
   },
   {
     "id": 1050075,
@@ -1493,7 +1651,8 @@
     "reqLevel": 80,
     "reqJob": 4,
     "iconUrl": "https://maplestory.io/api/GMS/200/item/1050075/icon",
-    "tuc": 10
+    "tuc": 10,
+    "reqDex": 250
   },
   {
     "id": 1050076,
@@ -1508,7 +1667,8 @@
     "reqLevel": 80,
     "reqJob": 4,
     "iconUrl": "https://maplestory.io/api/GMS/200/item/1050076/icon",
-    "tuc": 10
+    "tuc": 10,
+    "reqDex": 250
   },
   {
     "id": 1050077,
@@ -1523,7 +1683,8 @@
     "reqLevel": 80,
     "reqJob": 4,
     "iconUrl": "https://maplestory.io/api/GMS/200/item/1050077/icon",
-    "tuc": 10
+    "tuc": 10,
+    "reqDex": 250
   },
   {
     "id": 1050078,
@@ -1538,7 +1699,8 @@
     "reqLevel": 80,
     "reqJob": 4,
     "iconUrl": "https://maplestory.io/api/GMS/200/item/1050078/icon",
-    "tuc": 10
+    "tuc": 10,
+    "reqDex": 250
   },
   {
     "id": 1050080,
@@ -1553,7 +1715,8 @@
     "reqLevel": 80,
     "reqJob": 1,
     "iconUrl": "https://maplestory.io/api/GMS/200/item/1050080/icon",
-    "tuc": 10
+    "tuc": 10,
+    "reqStr": 270
   },
   {
     "id": 1050081,
@@ -1568,7 +1731,8 @@
     "reqLevel": 80,
     "reqJob": 1,
     "iconUrl": "https://maplestory.io/api/GMS/200/item/1050081/icon",
-    "tuc": 10
+    "tuc": 10,
+    "reqStr": 270
   },
   {
     "id": 1050082,
@@ -1583,7 +1747,8 @@
     "reqLevel": 80,
     "reqJob": 1,
     "iconUrl": "https://maplestory.io/api/GMS/200/item/1050082/icon",
-    "tuc": 10
+    "tuc": 10,
+    "reqStr": 270
   },
   {
     "id": 1050083,
@@ -1598,7 +1763,8 @@
     "reqLevel": 80,
     "reqJob": 1,
     "iconUrl": "https://maplestory.io/api/GMS/200/item/1050083/icon",
-    "tuc": 10
+    "tuc": 10,
+    "reqStr": 270
   },
   {
     "id": 1051066,
@@ -1613,7 +1779,8 @@
     "reqLevel": 80,
     "reqJob": 4,
     "iconUrl": "https://maplestory.io/api/GMS/200/item/1051066/icon",
-    "tuc": 10
+    "tuc": 10,
+    "reqDex": 250
   },
   {
     "id": 1051067,
@@ -1628,7 +1795,8 @@
     "reqLevel": 80,
     "reqJob": 4,
     "iconUrl": "https://maplestory.io/api/GMS/200/item/1051067/icon",
-    "tuc": 10
+    "tuc": 10,
+    "reqDex": 250
   },
   {
     "id": 1051068,
@@ -1643,7 +1811,8 @@
     "reqLevel": 80,
     "reqJob": 4,
     "iconUrl": "https://maplestory.io/api/GMS/200/item/1051068/icon",
-    "tuc": 10
+    "tuc": 10,
+    "reqDex": 250
   },
   {
     "id": 1051069,
@@ -1658,7 +1827,8 @@
     "reqLevel": 80,
     "reqJob": 4,
     "iconUrl": "https://maplestory.io/api/GMS/200/item/1051069/icon",
-    "tuc": 10
+    "tuc": 10,
+    "reqDex": 250
   },
   {
     "id": 1051077,
@@ -1673,7 +1843,8 @@
     "reqLevel": 80,
     "reqJob": 1,
     "iconUrl": "https://maplestory.io/api/GMS/200/item/1051077/icon",
-    "tuc": 10
+    "tuc": 10,
+    "reqStr": 270
   },
   {
     "id": 1051078,
@@ -1688,7 +1859,8 @@
     "reqLevel": 80,
     "reqJob": 1,
     "iconUrl": "https://maplestory.io/api/GMS/200/item/1051078/icon",
-    "tuc": 10
+    "tuc": 10,
+    "reqStr": 270
   },
   {
     "id": 1051079,
@@ -1703,7 +1875,8 @@
     "reqLevel": 80,
     "reqJob": 1,
     "iconUrl": "https://maplestory.io/api/GMS/200/item/1051079/icon",
-    "tuc": 10
+    "tuc": 10,
+    "reqStr": 270
   },
   {
     "id": 1051080,
@@ -1718,7 +1891,8 @@
     "reqLevel": 80,
     "reqJob": 1,
     "iconUrl": "https://maplestory.io/api/GMS/200/item/1051080/icon",
-    "tuc": 10
+    "tuc": 10,
+    "reqStr": 270
   },
   {
     "id": 1050092,
@@ -1734,7 +1908,9 @@
     "reqLevel": 88,
     "reqJob": 2,
     "iconUrl": "https://maplestory.io/api/GMS/200/item/1050092/icon",
-    "tuc": 10
+    "tuc": 10,
+    "reqInt": 265,
+    "reqLuk": 90
   },
   {
     "id": 1050093,
@@ -1750,7 +1926,9 @@
     "reqLevel": 88,
     "reqJob": 2,
     "iconUrl": "https://maplestory.io/api/GMS/200/item/1050093/icon",
-    "tuc": 10
+    "tuc": 10,
+    "reqInt": 265,
+    "reqLuk": 90
   },
   {
     "id": 1050094,
@@ -1766,7 +1944,9 @@
     "reqLevel": 88,
     "reqJob": 2,
     "iconUrl": "https://maplestory.io/api/GMS/200/item/1050094/icon",
-    "tuc": 10
+    "tuc": 10,
+    "reqInt": 265,
+    "reqLuk": 90
   },
   {
     "id": 1050095,
@@ -1782,7 +1962,9 @@
     "reqLevel": 88,
     "reqJob": 2,
     "iconUrl": "https://maplestory.io/api/GMS/200/item/1050095/icon",
-    "tuc": 10
+    "tuc": 10,
+    "reqInt": 265,
+    "reqLuk": 90
   },
   {
     "id": 1051094,
@@ -1798,7 +1980,9 @@
     "reqLevel": 88,
     "reqJob": 2,
     "iconUrl": "https://maplestory.io/api/GMS/200/item/1051094/icon",
-    "tuc": 10
+    "tuc": 10,
+    "reqInt": 265,
+    "reqLuk": 90
   },
   {
     "id": 1051095,
@@ -1814,7 +1998,9 @@
     "reqLevel": 88,
     "reqJob": 2,
     "iconUrl": "https://maplestory.io/api/GMS/200/item/1051095/icon",
-    "tuc": 10
+    "tuc": 10,
+    "reqInt": 265,
+    "reqLuk": 90
   },
   {
     "id": 1051096,
@@ -1830,7 +2016,9 @@
     "reqLevel": 88,
     "reqJob": 2,
     "iconUrl": "https://maplestory.io/api/GMS/200/item/1051096/icon",
-    "tuc": 10
+    "tuc": 10,
+    "reqInt": 265,
+    "reqLuk": 90
   },
   {
     "id": 1051097,
@@ -1846,7 +2034,9 @@
     "reqLevel": 88,
     "reqJob": 2,
     "iconUrl": "https://maplestory.io/api/GMS/200/item/1051097/icon",
-    "tuc": 10
+    "tuc": 10,
+    "reqInt": 265,
+    "reqLuk": 90
   },
   {
     "id": 1050088,
@@ -1861,7 +2051,8 @@
     "reqLevel": 90,
     "reqJob": 4,
     "iconUrl": "https://maplestory.io/api/GMS/200/item/1050088/icon",
-    "tuc": 10
+    "tuc": 10,
+    "reqDex": 280
   },
   {
     "id": 1050089,
@@ -1876,7 +2067,8 @@
     "reqLevel": 90,
     "reqJob": 4,
     "iconUrl": "https://maplestory.io/api/GMS/200/item/1050089/icon",
-    "tuc": 10
+    "tuc": 10,
+    "reqDex": 280
   },
   {
     "id": 1050090,
@@ -1891,7 +2083,8 @@
     "reqLevel": 90,
     "reqJob": 4,
     "iconUrl": "https://maplestory.io/api/GMS/200/item/1050090/icon",
-    "tuc": 10
+    "tuc": 10,
+    "reqDex": 280
   },
   {
     "id": 1050091,
@@ -1906,7 +2099,8 @@
     "reqLevel": 90,
     "reqJob": 4,
     "iconUrl": "https://maplestory.io/api/GMS/200/item/1050091/icon",
-    "tuc": 10
+    "tuc": 10,
+    "reqDex": 280
   },
   {
     "id": 1051082,
@@ -1921,7 +2115,8 @@
     "reqLevel": 90,
     "reqJob": 4,
     "iconUrl": "https://maplestory.io/api/GMS/200/item/1051082/icon",
-    "tuc": 10
+    "tuc": 10,
+    "reqDex": 280
   },
   {
     "id": 1051083,
@@ -1936,7 +2131,8 @@
     "reqLevel": 90,
     "reqJob": 4,
     "iconUrl": "https://maplestory.io/api/GMS/200/item/1051083/icon",
-    "tuc": 10
+    "tuc": 10,
+    "reqDex": 280
   },
   {
     "id": 1051084,
@@ -1951,7 +2147,8 @@
     "reqLevel": 90,
     "reqJob": 4,
     "iconUrl": "https://maplestory.io/api/GMS/200/item/1051084/icon",
-    "tuc": 10
+    "tuc": 10,
+    "reqDex": 280
   },
   {
     "id": 1051085,
@@ -1966,7 +2163,8 @@
     "reqLevel": 90,
     "reqJob": 4,
     "iconUrl": "https://maplestory.io/api/GMS/200/item/1051085/icon",
-    "tuc": 10
+    "tuc": 10,
+    "reqDex": 280
   },
   {
     "id": 1050102,
@@ -1982,7 +2180,9 @@
     "reqLevel": 98,
     "reqJob": 2,
     "iconUrl": "https://maplestory.io/api/GMS/200/item/1050102/icon",
-    "tuc": 10
+    "tuc": 10,
+    "reqInt": 295,
+    "reqLuk": 100
   },
   {
     "id": 1050103,
@@ -1998,7 +2198,9 @@
     "reqLevel": 98,
     "reqJob": 2,
     "iconUrl": "https://maplestory.io/api/GMS/200/item/1050103/icon",
-    "tuc": 10
+    "tuc": 10,
+    "reqInt": 295,
+    "reqLuk": 100
   },
   {
     "id": 1050104,
@@ -2014,7 +2216,9 @@
     "reqLevel": 98,
     "reqJob": 2,
     "iconUrl": "https://maplestory.io/api/GMS/200/item/1050104/icon",
-    "tuc": 10
+    "tuc": 10,
+    "reqInt": 295,
+    "reqLuk": 100
   },
   {
     "id": 1050105,
@@ -2030,7 +2234,9 @@
     "reqLevel": 98,
     "reqJob": 2,
     "iconUrl": "https://maplestory.io/api/GMS/200/item/1050105/icon",
-    "tuc": 10
+    "tuc": 10,
+    "reqInt": 295,
+    "reqLuk": 100
   },
   {
     "id": 1051101,
@@ -2046,7 +2252,9 @@
     "reqLevel": 98,
     "reqJob": 2,
     "iconUrl": "https://maplestory.io/api/GMS/200/item/1051101/icon",
-    "tuc": 10
+    "tuc": 10,
+    "reqInt": 295,
+    "reqLuk": 100
   },
   {
     "id": 1051102,
@@ -2062,7 +2270,9 @@
     "reqLevel": 98,
     "reqJob": 2,
     "iconUrl": "https://maplestory.io/api/GMS/200/item/1051102/icon",
-    "tuc": 10
+    "tuc": 10,
+    "reqInt": 295,
+    "reqLuk": 100
   },
   {
     "id": 1051103,
@@ -2078,7 +2288,9 @@
     "reqLevel": 98,
     "reqJob": 2,
     "iconUrl": "https://maplestory.io/api/GMS/200/item/1051103/icon",
-    "tuc": 10
+    "tuc": 10,
+    "reqInt": 295,
+    "reqLuk": 100
   },
   {
     "id": 1051104,
@@ -2094,7 +2306,9 @@
     "reqLevel": 98,
     "reqJob": 2,
     "iconUrl": "https://maplestory.io/api/GMS/200/item/1051104/icon",
-    "tuc": 10
+    "tuc": 10,
+    "reqInt": 295,
+    "reqLuk": 100
   },
   {
     "id": 1050096,
@@ -2151,7 +2365,8 @@
     "reqLevel": 100,
     "reqJob": 4,
     "iconUrl": "https://maplestory.io/api/GMS/200/item/1050106/icon",
-    "tuc": 10
+    "tuc": 10,
+    "reqDex": 310
   },
   {
     "id": 1050107,
@@ -2166,7 +2381,8 @@
     "reqLevel": 100,
     "reqJob": 4,
     "iconUrl": "https://maplestory.io/api/GMS/200/item/1050107/icon",
-    "tuc": 10
+    "tuc": 10,
+    "reqDex": 310
   },
   {
     "id": 1050108,
@@ -2181,7 +2397,8 @@
     "reqLevel": 100,
     "reqJob": 4,
     "iconUrl": "https://maplestory.io/api/GMS/200/item/1050108/icon",
-    "tuc": 10
+    "tuc": 10,
+    "reqDex": 310
   },
   {
     "id": 1051090,
@@ -2238,7 +2455,8 @@
     "reqLevel": 100,
     "reqJob": 4,
     "iconUrl": "https://maplestory.io/api/GMS/200/item/1051105/icon",
-    "tuc": 10
+    "tuc": 10,
+    "reqDex": 310
   },
   {
     "id": 1051106,
@@ -2253,7 +2471,8 @@
     "reqLevel": 100,
     "reqJob": 4,
     "iconUrl": "https://maplestory.io/api/GMS/200/item/1051106/icon",
-    "tuc": 10
+    "tuc": 10,
+    "reqDex": 310
   },
   {
     "id": 1051107,
@@ -2268,6 +2487,7 @@
     "reqLevel": 100,
     "reqJob": 4,
     "iconUrl": "https://maplestory.io/api/GMS/200/item/1051107/icon",
-    "tuc": 10
+    "tuc": 10,
+    "reqDex": 310
   }
 ]

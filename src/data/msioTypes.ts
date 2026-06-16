@@ -13,6 +13,10 @@ export interface MsioMetaInfo {
   reqLevel?: number
   reqLevelEquip?: number
   reqJob?: number
+  reqSTR?: number
+  reqDEX?: number
+  reqINT?: number
+  reqLUK?: number
   incSTR?: number
   incDEX?: number
   incINT?: number
