@@ -5,7 +5,7 @@
     "slot": "overall",
     "effects": {
       "pdef": 28,
-      "add": 1,
+      "acc": 1,
       "hp": 5
     },
     "reqLevel": 15,
@@ -1710,7 +1710,7 @@
       "STR": 4,
       "DEX": 4,
       "pdef": 132,
-      "add": 1
+      "acc": 1
     },
     "reqLevel": 80,
     "reqJob": 1,
@@ -1726,7 +1726,7 @@
       "STR": 5,
       "DEX": 3,
       "pdef": 132,
-      "add": 1
+      "acc": 1
     },
     "reqLevel": 80,
     "reqJob": 1,
@@ -1742,7 +1742,7 @@
       "STR": 5,
       "DEX": 3,
       "pdef": 132,
-      "add": 1
+      "acc": 1
     },
     "reqLevel": 80,
     "reqJob": 1,
@@ -1758,7 +1758,7 @@
       "STR": 6,
       "DEX": 2,
       "pdef": 132,
-      "add": 1
+      "acc": 1
     },
     "reqLevel": 80,
     "reqJob": 1,
@@ -1838,7 +1838,7 @@
       "STR": 4,
       "DEX": 4,
       "pdef": 132,
-      "add": 1
+      "acc": 1
     },
     "reqLevel": 80,
     "reqJob": 1,
@@ -1854,7 +1854,7 @@
       "STR": 5,
       "DEX": 3,
       "pdef": 132,
-      "add": 1
+      "acc": 1
     },
     "reqLevel": 80,
     "reqJob": 1,
@@ -1870,7 +1870,7 @@
       "STR": 5,
       "DEX": 3,
       "pdef": 132,
-      "add": 1
+      "acc": 1
     },
     "reqLevel": 80,
     "reqJob": 1,
@@ -1886,7 +1886,7 @@
       "STR": 6,
       "DEX": 2,
       "pdef": 132,
-      "add": 1
+      "acc": 1
     },
     "reqLevel": 80,
     "reqJob": 1,

@@ -994,7 +994,7 @@
     "effects": {
       "STR": 3,
       "pdef": 21,
-      "add": 1
+      "acc": 1
     },
     "reqLevel": 50,
     "reqJob": 1,
@@ -1117,7 +1117,7 @@
     "effects": {
       "STR": 2,
       "pdef": 24,
-      "add": 1
+      "acc": 1
     },
     "reqLevel": 60,
     "reqJob": 1,
@@ -1132,7 +1132,7 @@
     "effects": {
       "STR": 3,
       "pdef": 25,
-      "add": 2
+      "acc": 2
     },
     "reqLevel": 60,
     "reqJob": 1,
@@ -1408,7 +1408,7 @@
     "effects": {
       "STR": 3,
       "pdef": 28,
-      "add": 1
+      "acc": 1
     },
     "reqLevel": 70,
     "reqJob": 1,
@@ -1423,7 +1423,7 @@
     "effects": {
       "STR": 4,
       "pdef": 29,
-      "add": 1
+      "acc": 1
     },
     "reqLevel": 70,
     "reqJob": 1,

@@ -366,7 +366,7 @@
         "effects": {
           "pdef": 3,
           "mdef": 3,
-          "add": 1
+          "acc": 1
         },
         "itemId": 2040310
       }
@@ -468,21 +468,21 @@
       {
         "rate": 100,
         "effects": {
-          "add": 1
+          "acc": 1
         },
         "itemId": 2040202
       },
       {
         "rate": 60,
         "effects": {
-          "add": 2
+          "acc": 2
         },
         "itemId": 2040201
       },
       {
         "rate": 10,
         "effects": {
-          "add": 3
+          "acc": 3
         },
         "itemId": 2040200
       }
@@ -573,7 +573,7 @@
       {
         "rate": 100,
         "effects": {
-          "add": 1
+          "acc": 1
         },
         "itemId": 2040800
       },
@@ -581,7 +581,7 @@
         "rate": 60,
         "effects": {
           "DEX": 1,
-          "add": 2
+          "acc": 2
         },
         "itemId": 2040801
       },
@@ -589,7 +589,7 @@
         "rate": 10,
         "effects": {
           "DEX": 3,
-          "add": 5,
+          "acc": 5,
           "eva": 1
         },
         "itemId": 2040802
@@ -649,7 +649,7 @@
         "effects": {
           "pdef": 5,
           "mdef": 3,
-          "add": 1
+          "acc": 1
         },
         "itemId": 2040002
       }
@@ -727,7 +727,7 @@
         "rate": 60,
         "effects": {
           "DEX": 2,
-          "add": 1
+          "acc": 1
         },
         "itemId": 2040501
       },
@@ -735,7 +735,7 @@
         "rate": 10,
         "effects": {
           "DEX": 5,
-          "add": 3,
+          "acc": 3,
           "speed": 1
         },
         "itemId": 2040502
@@ -828,7 +828,7 @@
         "rate": 10,
         "effects": {
           "LUK": 5,
-          "add": 1,
+          "acc": 1,
           "eva": 3
         },
         "itemId": 2040517
@@ -1052,7 +1052,7 @@
       {
         "rate": 60,
         "effects": {
-          "add": 1,
+          "acc": 1,
           "eva": 2
         },
         "itemId": 2040701
@@ -1060,7 +1060,7 @@
       {
         "rate": 10,
         "effects": {
-          "add": 3,
+          "acc": 3,
           "eva": 5,
           "speed": 1
         },
@@ -1260,7 +1260,7 @@
         "rate": 60,
         "effects": {
           "pad": 2,
-          "add": 1
+          "acc": 1
         },
         "itemId": 2044501
       },
@@ -1269,7 +1269,7 @@
         "effects": {
           "DEX": 1,
           "pad": 5,
-          "add": 3
+          "acc": 3
         },
         "itemId": 2044502
       }
@@ -1291,7 +1291,7 @@
         "rate": 60,
         "effects": {
           "pad": 2,
-          "add": 1
+          "acc": 1
         },
         "itemId": 2044701
       },
@@ -1300,7 +1300,7 @@
         "effects": {
           "LUK": 1,
           "pad": 5,
-          "add": 3
+          "acc": 3
         },
         "itemId": 2044702
       }
@@ -1322,7 +1322,7 @@
         "rate": 60,
         "effects": {
           "pad": 2,
-          "add": 1
+          "acc": 1
         },
         "itemId": 2044601
       },
@@ -1331,7 +1331,7 @@
         "effects": {
           "DEX": 1,
           "pad": 5,
-          "add": 3
+          "acc": 3
         },
         "itemId": 2044602
       }
@@ -1384,7 +1384,7 @@
         "rate": 60,
         "effects": {
           "pad": 2,
-          "add": 1
+          "acc": 1
         },
         "itemId": 2044901
       },
@@ -1393,7 +1393,7 @@
         "effects": {
           "DEX": 1,
           "pad": 5,
-          "add": 3
+          "acc": 3
         },
         "itemId": 2044902
       }
@@ -1438,7 +1438,7 @@
       {
         "rate": 100,
         "effects": {
-          "add": 1
+          "acc": 1
         },
         "itemId": 2044805
       },
@@ -1447,7 +1447,7 @@
         "effects": {
           "DEX": 2,
           "pad": 1,
-          "add": 3
+          "acc": 3
         },
         "itemId": 2044807
       },
@@ -1456,7 +1456,7 @@
         "effects": {
           "DEX": 3,
           "pad": 3,
-          "add": 5
+          "acc": 5
         },
         "itemId": 2044809
       }
@@ -1501,7 +1501,7 @@
       {
         "rate": 100,
         "effects": {
-          "add": 1
+          "acc": 1
         },
         "itemId": 2043110
       },
@@ -1510,7 +1510,7 @@
         "effects": {
           "DEX": 2,
           "pad": 1,
-          "add": 3
+          "acc": 3
         },
         "itemId": 2043112
       },
@@ -1519,7 +1519,7 @@
         "effects": {
           "DEX": 3,
           "pad": 3,
-          "add": 5
+          "acc": 5
         },
         "itemId": 2043114
       }
@@ -1564,7 +1564,7 @@
       {
         "rate": 100,
         "effects": {
-          "add": 1
+          "acc": 1
         },
         "itemId": 2043210
       },
@@ -1573,7 +1573,7 @@
         "effects": {
           "DEX": 2,
           "pad": 1,
-          "add": 3
+          "acc": 3
         },
         "itemId": 2043212
       },
@@ -1582,7 +1582,7 @@
         "effects": {
           "DEX": 3,
           "pad": 3,
-          "add": 5
+          "acc": 5
         },
         "itemId": 2043214
       }
@@ -1627,7 +1627,7 @@
       {
         "rate": 100,
         "effects": {
-          "add": 1
+          "acc": 1
         },
         "itemId": 2043015
       },
@@ -1636,7 +1636,7 @@
         "effects": {
           "DEX": 2,
           "pad": 1,
-          "add": 3
+          "acc": 3
         },
         "itemId": 2043017
       },
@@ -1645,7 +1645,7 @@
         "effects": {
           "DEX": 3,
           "pad": 3,
-          "add": 5
+          "acc": 5
         },
         "itemId": 2043019
       }
@@ -1690,7 +1690,7 @@
       {
         "rate": 100,
         "effects": {
-          "add": 1
+          "acc": 1
         },
         "itemId": 2044410
       },
@@ -1699,7 +1699,7 @@
         "effects": {
           "DEX": 2,
           "pad": 1,
-          "add": 3
+          "acc": 3
         },
         "itemId": 2044412
       },
@@ -1708,7 +1708,7 @@
         "effects": {
           "DEX": 3,
           "pad": 3,
-          "add": 5
+          "acc": 5
         },
         "itemId": 2044414
       }
@@ -1753,7 +1753,7 @@
       {
         "rate": 100,
         "effects": {
-          "add": 1
+          "acc": 1
         },
         "itemId": 2044310
       },
@@ -1762,7 +1762,7 @@
         "effects": {
           "DEX": 2,
           "pad": 1,
-          "add": 3
+          "acc": 3
         },
         "itemId": 2044312
       },
@@ -1771,7 +1771,7 @@
         "effects": {
           "DEX": 3,
           "pad": 3,
-          "add": 5
+          "acc": 5
         },
         "itemId": 2044314
       }
@@ -1847,7 +1847,7 @@
       {
         "rate": 100,
         "effects": {
-          "add": 1
+          "acc": 1
         },
         "itemId": 2044110
       },
@@ -1856,7 +1856,7 @@
         "effects": {
           "DEX": 2,
           "pad": 1,
-          "add": 3
+          "acc": 3
         },
         "itemId": 2044112
       },
@@ -1865,7 +1865,7 @@
         "effects": {
           "DEX": 3,
           "pad": 3,
-          "add": 5
+          "acc": 5
         },
         "itemId": 2044114
       }
@@ -1910,7 +1910,7 @@
       {
         "rate": 100,
         "effects": {
-          "add": 1
+          "acc": 1
         },
         "itemId": 2044210
       },
@@ -1919,7 +1919,7 @@
         "effects": {
           "DEX": 2,
           "pad": 1,
-          "add": 3
+          "acc": 3
         },
         "itemId": 2044212
       },
@@ -1928,7 +1928,7 @@
         "effects": {
           "DEX": 3,
           "pad": 3,
-          "add": 5
+          "acc": 5
         },
         "itemId": 2044214
       }
@@ -1973,7 +1973,7 @@
       {
         "rate": 100,
         "effects": {
-          "add": 1
+          "acc": 1
         },
         "itemId": 2044010
       },
@@ -1982,7 +1982,7 @@
         "effects": {
           "DEX": 2,
           "pad": 1,
-          "add": 3
+          "acc": 3
         },
         "itemId": 2044012
       },
@@ -1991,7 +1991,7 @@
         "effects": {
           "DEX": 3,
           "pad": 3,
-          "add": 5
+          "acc": 5
         },
         "itemId": 2044014
       }

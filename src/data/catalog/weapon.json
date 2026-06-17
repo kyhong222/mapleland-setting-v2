@@ -214,7 +214,7 @@
     "slot": "weapon",
     "effects": {
       "pad": 80,
-      "add": 1,
+      "acc": 1,
       "attackSpeed": 6
     },
     "reqLevel": 70,
@@ -265,7 +265,7 @@
     "slot": "weapon",
     "effects": {
       "pad": 85,
-      "add": 1,
+      "acc": 1,
       "attackSpeed": 6
     },
     "reqLevel": 80,
@@ -1448,7 +1448,7 @@
     "slot": "weapon",
     "effects": {
       "pad": 88,
-      "add": 1,
+      "acc": 1,
       "attackSpeed": 6
     },
     "reqLevel": 80,
@@ -1861,7 +1861,7 @@
       "DEX": 3,
       "INT": 3,
       "LUK": 3,
-      "add": 5,
+      "acc": 5,
       "attackSpeed": 5
     },
     "reqLevel": 30,
@@ -1908,7 +1908,7 @@
     "slot": "weapon",
     "effects": {
       "pad": 50,
-      "add": 5,
+      "acc": 5,
       "eva": 5,
       "attackSpeed": 4
     },
@@ -1969,7 +1969,7 @@
     "slot": "weapon",
     "effects": {
       "pad": 58,
-      "add": 10,
+      "acc": 10,
       "eva": 15,
       "attackSpeed": 4
     },
@@ -2050,7 +2050,7 @@
     "effects": {
       "pad": 75,
       "LUK": 1,
-      "add": 15,
+      "acc": 15,
       "eva": 20,
       "attackSpeed": 3
     },
@@ -2067,7 +2067,7 @@
     "effects": {
       "pad": 77,
       "STR": 2,
-      "add": 15,
+      "acc": 15,
       "eva": 20,
       "attackSpeed": 4
     },
@@ -2403,7 +2403,7 @@
       "DEX": 3,
       "INT": 3,
       "LUK": 3,
-      "add": 5,
+      "acc": 5,
       "attackSpeed": 5
     },
     "reqLevel": 30,
@@ -2506,7 +2506,7 @@
     "effects": {
       "pad": 81,
       "STR": 1,
-      "add": 25,
+      "acc": 25,
       "attackSpeed": 6
     },
     "reqLevel": 64,
@@ -2623,7 +2623,7 @@
     "slot": "weapon",
     "effects": {
       "pad": 15,
-      "add": 10,
+      "acc": 10,
       "attackSpeed": 5
     },
     "weaponType": "oneHandedMace",
@@ -2706,7 +2706,7 @@
     "slot": "weapon",
     "effects": {
       "pad": 42,
-      "add": 10,
+      "acc": 10,
       "attackSpeed": 3
     },
     "reqLevel": 25,
@@ -2766,7 +2766,7 @@
       "DEX": 3,
       "INT": 3,
       "LUK": 3,
-      "add": 5,
+      "acc": 5,
       "attackSpeed": 5
     },
     "reqLevel": 30,
@@ -2884,7 +2884,7 @@
     "effects": {
       "pad": 81,
       "STR": 1,
-      "add": 25,
+      "acc": 25,
       "attackSpeed": 6
     },
     "reqLevel": 64,
@@ -3017,7 +3017,7 @@
     "slot": "weapon",
     "effects": {
       "pad": 110,
-      "add": 5,
+      "acc": 5,
       "attackSpeed": 6
     },
     "reqLevel": 120,
@@ -3172,7 +3172,7 @@
       "DEX": 3,
       "INT": 3,
       "LUK": 3,
-      "add": 5,
+      "acc": 5,
       "attackSpeed": 5
     },
     "reqLevel": 30,
@@ -3215,7 +3215,7 @@
     "slot": "weapon",
     "effects": {
       "pad": 48,
-      "add": 10,
+      "acc": 10,
       "attackSpeed": 5
     },
     "reqLevel": 35,
@@ -3287,7 +3287,7 @@
     "slot": "weapon",
     "effects": {
       "pad": 60,
-      "add": 20,
+      "acc": 20,
       "attackSpeed": 5
     },
     "reqLevel": 43,
@@ -3363,7 +3363,7 @@
     "effects": {
       "pad": 81,
       "STR": 1,
-      "add": 25,
+      "acc": 25,
       "attackSpeed": 5
     },
     "reqLevel": 64,
@@ -3567,7 +3567,7 @@
       "DEX": 3,
       "INT": 3,
       "LUK": 3,
-      "add": 5,
+      "acc": 5,
       "attackSpeed": 5
     },
     "reqLevel": 30,
@@ -3626,7 +3626,7 @@
     "effects": {
       "pad": 68,
       "STR": 2,
-      "add": 20,
+      "acc": 20,
       "attackSpeed": 6
     },
     "reqLevel": 43,
@@ -3698,7 +3698,7 @@
     "effects": {
       "pad": 85,
       "STR": 3,
-      "add": 25,
+      "acc": 25,
       "attackSpeed": 6
     },
     "reqLevel": 64,
@@ -3819,7 +3819,7 @@
     "slot": "weapon",
     "effects": {
       "pad": 42,
-      "add": 5,
+      "acc": 5,
       "attackSpeed": 6,
       "speed": 5
     },
@@ -3847,7 +3847,7 @@
     "slot": "weapon",
     "effects": {
       "pad": 40,
-      "add": 4,
+      "acc": 4,
       "attackSpeed": 6,
       "speed": 4
     },
@@ -3863,7 +3863,7 @@
     "effects": {
       "pad": 47,
       "STR": 1,
-      "add": 15,
+      "acc": 15,
       "attackSpeed": 5
     },
     "reqLevel": 25,
@@ -3896,7 +3896,7 @@
       "DEX": 3,
       "INT": 3,
       "LUK": 3,
-      "add": 5,
+      "acc": 5,
       "attackSpeed": 5
     },
     "reqLevel": 30,
@@ -3942,7 +3942,7 @@
     "effects": {
       "pad": 65,
       "STR": 1,
-      "add": 20,
+      "acc": 20,
       "attackSpeed": 5
     },
     "reqLevel": 43,
@@ -3957,7 +3957,7 @@
     "slot": "weapon",
     "effects": {
       "pad": 67,
-      "add": 15,
+      "acc": 15,
       "attackSpeed": 5
     },
     "reqLevel": 45,
@@ -4002,7 +4002,7 @@
     "effects": {
       "pad": 85,
       "STR": 2,
-      "add": 25,
+      "acc": 25,
       "attackSpeed": 6
     },
     "reqLevel": 64,
@@ -4017,7 +4017,7 @@
     "slot": "weapon",
     "effects": {
       "pad": 87,
-      "add": 3,
+      "acc": 3,
       "attackSpeed": 8
     },
     "reqLevel": 70,
@@ -4618,7 +4618,7 @@
       "DEX": 3,
       "INT": 3,
       "LUK": 3,
-      "add": 5,
+      "acc": 5,
       "attackSpeed": 5
     },
     "reqLevel": 30,
@@ -4664,7 +4664,7 @@
     "effects": {
       "pad": 68,
       "STR": 3,
-      "add": 20,
+      "acc": 20,
       "attackSpeed": 6
     },
     "reqLevel": 43,
@@ -4710,7 +4710,7 @@
     "effects": {
       "pad": 85,
       "STR": 4,
-      "add": 35,
+      "acc": 35,
       "attackSpeed": 6
     },
     "reqLevel": 64,
@@ -4864,7 +4864,7 @@
       "DEX": 3,
       "INT": 3,
       "LUK": 3,
-      "add": 5,
+      "acc": 5,
       "attackSpeed": 5
     },
     "reqLevel": 30,
@@ -4910,7 +4910,7 @@
     "effects": {
       "pad": 68,
       "STR": 5,
-      "add": 20,
+      "acc": 20,
       "attackSpeed": 7
     },
     "reqLevel": 43,
@@ -4956,7 +4956,7 @@
     "effects": {
       "pad": 85,
       "STR": 6,
-      "add": 25,
+      "acc": 25,
       "attackSpeed": 7
     },
     "reqLevel": 64,
@@ -5032,7 +5032,7 @@
     "effects": {
       "pad": 102,
       "STR": 5,
-      "add": 1,
+      "acc": 1,
       "attackSpeed": 6
     },
     "reqLevel": 105,
@@ -5165,7 +5165,7 @@
       "DEX": 3,
       "INT": 3,
       "LUK": 3,
-      "add": 5,
+      "acc": 5,
       "attackSpeed": 5
     },
     "reqLevel": 30,
@@ -5210,7 +5210,7 @@
     "slot": "weapon",
     "effects": {
       "pad": 65,
-      "add": 8,
+      "acc": 8,
       "attackSpeed": 6
     },
     "reqLevel": 45,
@@ -5255,7 +5255,7 @@
     "effects": {
       "pad": 83,
       "STR": 4,
-      "add": 25,
+      "acc": 25,
       "attackSpeed": 6
     },
     "reqLevel": 64,
@@ -5347,7 +5347,7 @@
     "effects": {
       "pad": 90,
       "STR": 3,
-      "add": 20,
+      "acc": 20,
       "attackSpeed": 6
     },
     "reqLevel": 80,

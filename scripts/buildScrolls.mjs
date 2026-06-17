@@ -26,7 +26,7 @@ const BASE = 'https://maplestory.io/api'
 const STAT_MAP = {
   incSTR: 'STR', incDEX: 'DEX', incINT: 'INT', incLUK: 'LUK',
   incMHP: 'hp', incMMP: 'mp', incPAD: 'pad', incMAD: 'mad',
-  incPDD: 'pdef', incMDD: 'mdef', incACC: 'add', incEVA: 'eva',
+  incPDD: 'pdef', incMDD: 'mdef', incACC: 'acc', incEVA: 'eva',
   incSpeed: 'speed', incJump: 'jump',
 }
 
@@ -81,9 +81,9 @@ const OVERRIDES = [
   {
     key: 'slot:eyeAccessory::눈 장식 명중률 주문서', name: '눈 장식 명중률 주문서', slot: 'eyeAccessory',
     options: [
-      { rate: 100, effects: { add: 1 }, itemId: 2040202 },
-      { rate: 60, effects: { add: 2 }, itemId: 2040201 },
-      { rate: 10, effects: { add: 3 }, itemId: 2040200 },
+      { rate: 100, effects: { acc: 1 }, itemId: 2040202 },
+      { rate: 60, effects: { acc: 2 }, itemId: 2040201 },
+      { rate: 10, effects: { acc: 3 }, itemId: 2040200 },
     ],
   },
   {

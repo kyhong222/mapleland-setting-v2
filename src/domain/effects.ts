@@ -39,7 +39,7 @@ export type EffectId =
   | 'addMdd'
   | 'padP'
   | 'madP'
-  | 'add'
+  | 'acc'
   | 'mastery'
   | 'attackSpeed'
   | 'criticalP'
@@ -54,6 +54,7 @@ export type EffectId =
   | 'pdef'
   | 'mdef'
   | 'eva'
+  | 'shieldBonusPdef'
   | 'addEvadeP'
   | 'damageReduce'
   | 'cDamageReduce_common'
@@ -109,7 +110,7 @@ export const EFFECTS: Record<EffectId, EffectDef> = {
   addMdd: { id: 'addMdd', label: '추가마력', category: 'offense', unit: 'flat', appliesToItem: false },
   padP: { id: 'padP', label: '공격력%', category: 'offense', unit: 'percent', appliesToItem: false },
   madP: { id: 'madP', label: '마력%', category: 'offense', unit: 'percent', appliesToItem: false },
-  add: { id: 'add', label: '명중률', category: 'offense', unit: 'flat', appliesToItem: true },
+  acc: { id: 'acc', label: '명중률', category: 'offense', unit: 'flat', appliesToItem: true },
   mastery: { id: 'mastery', label: '숙련도', category: 'offense', unit: 'percent', appliesToItem: false },
   attackSpeed: { id: 'attackSpeed', label: '공격속도', category: 'offense', unit: 'step', appliesToItem: true },
   criticalP: { id: 'criticalP', label: '크리티컬%', category: 'offense', unit: 'percent', appliesToItem: false },
@@ -125,6 +126,7 @@ export const EFFECTS: Record<EffectId, EffectDef> = {
   pdef: { id: 'pdef', label: '물리방어력', category: 'defense', unit: 'flat', appliesToItem: true },
   mdef: { id: 'mdef', label: '마법방어력', category: 'defense', unit: 'flat', appliesToItem: true },
   eva: { id: 'eva', label: '회피율', category: 'defense', unit: 'flat', appliesToItem: true },
+  shieldBonusPdef: { id: 'shieldBonusPdef', label: '방패 방어력 보너스%', category: 'defense', unit: 'percent', appliesToItem: false },
   addEvadeP: { id: 'addEvadeP', label: '추가회피확률%', category: 'defense', unit: 'percent', appliesToItem: false },
   damageReduce: { id: 'damageReduce', label: '피해량감소', category: 'defense', unit: 'percent', appliesToItem: false },
   cDamageReduce_common: { id: 'cDamageReduce_common', label: '접촉피해량감소(일반)', category: 'defense', unit: 'percent', appliesToItem: false },

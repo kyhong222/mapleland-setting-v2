@@ -15,7 +15,7 @@ const BASE = 'https://maplestory.io/api'
 
 const STAT_MAP = {
   incPAD: 'pad', incMAD: 'mad', incSTR: 'STR', incDEX: 'DEX', incINT: 'INT', incLUK: 'LUK',
-  incPDD: 'pdef', incMDD: 'mdef', incACC: 'add', incEVA: 'eva',
+  incPDD: 'pdef', incMDD: 'mdef', incACC: 'acc', incEVA: 'eva',
   incMHP: 'hp', incMMP: 'mp', incSpeed: 'speed', incJump: 'jump',
 }
 

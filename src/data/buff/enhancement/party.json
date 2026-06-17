@@ -1,0 +1,732 @@
+[
+  {
+    "id": "1101006",
+    "type": "skill",
+    "name": "분노",
+    "scope": "party",
+    "mode": "active",
+    "masterLevel": 20,
+    "effectsByLevel": [
+      {
+        "pad": 3,
+        "pdef": -3
+      },
+      {
+        "pad": 3,
+        "pdef": -3
+      },
+      {
+        "pad": 4,
+        "pdef": -4
+      },
+      {
+        "pad": 4,
+        "pdef": -4
+      },
+      {
+        "pad": 5,
+        "pdef": -5
+      },
+      {
+        "pad": 5,
+        "pdef": -5
+      },
+      {
+        "pad": 6,
+        "pdef": -6
+      },
+      {
+        "pad": 6,
+        "pdef": -6
+      },
+      {
+        "pad": 7,
+        "pdef": -7
+      },
+      {
+        "pad": 7,
+        "pdef": -7
+      },
+      {
+        "pad": 8,
+        "pdef": -8
+      },
+      {
+        "pad": 8,
+        "pdef": -8
+      },
+      {
+        "pad": 9,
+        "pdef": -9
+      },
+      {
+        "pad": 9,
+        "pdef": -9
+      },
+      {
+        "pad": 10,
+        "pdef": -10
+      },
+      {
+        "pad": 10,
+        "pdef": -10
+      },
+      {
+        "pad": 11,
+        "pdef": -11
+      },
+      {
+        "pad": 11,
+        "pdef": -11
+      },
+      {
+        "pad": 12,
+        "pdef": -12
+      },
+      {
+        "pad": 12,
+        "pdef": -12
+      }
+    ]
+  },
+  {
+    "id": "1301006",
+    "type": "skill",
+    "name": "아이언 월",
+    "scope": "party",
+    "mode": "active",
+    "masterLevel": 20,
+    "effectsByLevel": [
+      {
+        "pdef": 1,
+        "mdef": 1
+      },
+      {
+        "pdef": 2,
+        "mdef": 2
+      },
+      {
+        "pdef": 3,
+        "mdef": 3
+      },
+      {
+        "pdef": 4,
+        "mdef": 4
+      },
+      {
+        "pdef": 5,
+        "mdef": 5
+      },
+      {
+        "pdef": 6,
+        "mdef": 6
+      },
+      {
+        "pdef": 7,
+        "mdef": 7
+      },
+      {
+        "pdef": 8,
+        "mdef": 8
+      },
+      {
+        "pdef": 9,
+        "mdef": 9
+      },
+      {
+        "pdef": 10,
+        "mdef": 10
+      },
+      {
+        "pdef": 11,
+        "mdef": 11
+      },
+      {
+        "pdef": 12,
+        "mdef": 12
+      },
+      {
+        "pdef": 13,
+        "mdef": 13
+      },
+      {
+        "pdef": 14,
+        "mdef": 14
+      },
+      {
+        "pdef": 15,
+        "mdef": 15
+      },
+      {
+        "pdef": 16,
+        "mdef": 16
+      },
+      {
+        "pdef": 17,
+        "mdef": 17
+      },
+      {
+        "pdef": 18,
+        "mdef": 18
+      },
+      {
+        "pdef": 19,
+        "mdef": 19
+      },
+      {
+        "pdef": 20,
+        "mdef": 20
+      }
+    ]
+  },
+  {
+    "id": "1301007",
+    "type": "skill",
+    "name": "하이퍼 바디",
+    "scope": "party",
+    "mode": "active",
+    "masterLevel": 30,
+    "effectsByLevel": [
+      {
+        "hpP": 2,
+        "mpP": 2
+      },
+      {
+        "hpP": 4,
+        "mpP": 4
+      },
+      {
+        "hpP": 6,
+        "mpP": 6
+      },
+      {
+        "hpP": 8,
+        "mpP": 8
+      },
+      {
+        "hpP": 10,
+        "mpP": 10
+      },
+      {
+        "hpP": 12,
+        "mpP": 12
+      },
+      {
+        "hpP": 14,
+        "mpP": 14
+      },
+      {
+        "hpP": 16,
+        "mpP": 16
+      },
+      {
+        "hpP": 18,
+        "mpP": 18
+      },
+      {
+        "hpP": 20,
+        "mpP": 20
+      },
+      {
+        "hpP": 22,
+        "mpP": 22
+      },
+      {
+        "hpP": 24,
+        "mpP": 24
+      },
+      {
+        "hpP": 26,
+        "mpP": 26
+      },
+      {
+        "hpP": 28,
+        "mpP": 28
+      },
+      {
+        "hpP": 30,
+        "mpP": 30
+      },
+      {
+        "hpP": 32,
+        "mpP": 32
+      },
+      {
+        "hpP": 34,
+        "mpP": 34
+      },
+      {
+        "hpP": 36,
+        "mpP": 36
+      },
+      {
+        "hpP": 38,
+        "mpP": 38
+      },
+      {
+        "hpP": 40,
+        "mpP": 40
+      },
+      {
+        "hpP": 42,
+        "mpP": 42
+      },
+      {
+        "hpP": 44,
+        "mpP": 44
+      },
+      {
+        "hpP": 46,
+        "mpP": 46
+      },
+      {
+        "hpP": 48,
+        "mpP": 48
+      },
+      {
+        "hpP": 50,
+        "mpP": 50
+      },
+      {
+        "hpP": 52,
+        "mpP": 52
+      },
+      {
+        "hpP": 54,
+        "mpP": 54
+      },
+      {
+        "hpP": 56,
+        "mpP": 56
+      },
+      {
+        "hpP": 58,
+        "mpP": 58
+      },
+      {
+        "hpP": 60,
+        "mpP": 60
+      }
+    ]
+  },
+  {
+    "id": "2101001",
+    "type": "skill",
+    "name": "메디테이션",
+    "scope": "party",
+    "mode": "active",
+    "masterLevel": 20,
+    "effectsByLevel": [
+      {
+        "mad": 1
+      },
+      {
+        "mad": 2
+      },
+      {
+        "mad": 3
+      },
+      {
+        "mad": 4
+      },
+      {
+        "mad": 5
+      },
+      {
+        "mad": 6
+      },
+      {
+        "mad": 7
+      },
+      {
+        "mad": 8
+      },
+      {
+        "mad": 9
+      },
+      {
+        "mad": 10
+      },
+      {
+        "mad": 11
+      },
+      {
+        "mad": 12
+      },
+      {
+        "mad": 13
+      },
+      {
+        "mad": 14
+      },
+      {
+        "mad": 15
+      },
+      {
+        "mad": 16
+      },
+      {
+        "mad": 17
+      },
+      {
+        "mad": 18
+      },
+      {
+        "mad": 19
+      },
+      {
+        "mad": 20
+      }
+    ]
+  },
+  {
+    "id": "2301004",
+    "type": "skill",
+    "name": "블레스",
+    "scope": "party",
+    "mode": "active",
+    "masterLevel": 20,
+    "effectsByLevel": [
+      {
+        "acc": 1,
+        "eva": 1,
+        "pdef": 1,
+        "mdef": 1
+      },
+      {
+        "acc": 2,
+        "eva": 2,
+        "pdef": 2,
+        "mdef": 2
+      },
+      {
+        "acc": 3,
+        "eva": 3,
+        "pdef": 3,
+        "mdef": 3
+      },
+      {
+        "acc": 4,
+        "eva": 4,
+        "pdef": 4,
+        "mdef": 4
+      },
+      {
+        "acc": 5,
+        "eva": 5,
+        "pdef": 5,
+        "mdef": 5
+      },
+      {
+        "acc": 6,
+        "eva": 6,
+        "pdef": 6,
+        "mdef": 6
+      },
+      {
+        "acc": 7,
+        "eva": 7,
+        "pdef": 7,
+        "mdef": 7
+      },
+      {
+        "acc": 8,
+        "eva": 8,
+        "pdef": 8,
+        "mdef": 8
+      },
+      {
+        "acc": 9,
+        "eva": 9,
+        "pdef": 9,
+        "mdef": 9
+      },
+      {
+        "acc": 10,
+        "eva": 10,
+        "pdef": 10,
+        "mdef": 10
+      },
+      {
+        "acc": 11,
+        "eva": 11,
+        "pdef": 11,
+        "mdef": 11
+      },
+      {
+        "acc": 12,
+        "eva": 12,
+        "pdef": 12,
+        "mdef": 12
+      },
+      {
+        "acc": 13,
+        "eva": 13,
+        "pdef": 13,
+        "mdef": 13
+      },
+      {
+        "acc": 14,
+        "eva": 14,
+        "pdef": 14,
+        "mdef": 14
+      },
+      {
+        "acc": 15,
+        "eva": 15,
+        "pdef": 15,
+        "mdef": 15
+      },
+      {
+        "acc": 16,
+        "eva": 16,
+        "pdef": 16,
+        "mdef": 16
+      },
+      {
+        "acc": 17,
+        "eva": 17,
+        "pdef": 17,
+        "mdef": 17
+      },
+      {
+        "acc": 18,
+        "eva": 18,
+        "pdef": 18,
+        "mdef": 18
+      },
+      {
+        "acc": 19,
+        "eva": 19,
+        "pdef": 19,
+        "mdef": 19
+      },
+      {
+        "acc": 20,
+        "eva": 20,
+        "pdef": 20,
+        "mdef": 20
+      }
+    ]
+  },
+  {
+    "id": "3121002",
+    "type": "skill",
+    "name": "샤프 아이즈",
+    "scope": "party",
+    "mode": "active",
+    "masterLevel": 30,
+    "effectsByLevel": [
+      {
+        "criticalP": 1,
+        "criticalDamage": 11
+      },
+      {
+        "criticalP": 1,
+        "criticalDamage": 12
+      },
+      {
+        "criticalP": 2,
+        "criticalDamage": 13
+      },
+      {
+        "criticalP": 2,
+        "criticalDamage": 14
+      },
+      {
+        "criticalP": 3,
+        "criticalDamage": 15
+      },
+      {
+        "criticalP": 3,
+        "criticalDamage": 16
+      },
+      {
+        "criticalP": 4,
+        "criticalDamage": 17
+      },
+      {
+        "criticalP": 4,
+        "criticalDamage": 18
+      },
+      {
+        "criticalP": 5,
+        "criticalDamage": 19
+      },
+      {
+        "criticalP": 5,
+        "criticalDamage": 20
+      },
+      {
+        "criticalP": 6,
+        "criticalDamage": 21
+      },
+      {
+        "criticalP": 6,
+        "criticalDamage": 22
+      },
+      {
+        "criticalP": 7,
+        "criticalDamage": 23
+      },
+      {
+        "criticalP": 7,
+        "criticalDamage": 24
+      },
+      {
+        "criticalP": 8,
+        "criticalDamage": 25
+      },
+      {
+        "criticalP": 8,
+        "criticalDamage": 26
+      },
+      {
+        "criticalP": 9,
+        "criticalDamage": 27
+      },
+      {
+        "criticalP": 9,
+        "criticalDamage": 28
+      },
+      {
+        "criticalP": 10,
+        "criticalDamage": 29
+      },
+      {
+        "criticalP": 10,
+        "criticalDamage": 30
+      },
+      {
+        "criticalP": 11,
+        "criticalDamage": 31
+      },
+      {
+        "criticalP": 11,
+        "criticalDamage": 32
+      },
+      {
+        "criticalP": 12,
+        "criticalDamage": 33
+      },
+      {
+        "criticalP": 12,
+        "criticalDamage": 34
+      },
+      {
+        "criticalP": 13,
+        "criticalDamage": 35
+      },
+      {
+        "criticalP": 13,
+        "criticalDamage": 36
+      },
+      {
+        "criticalP": 14,
+        "criticalDamage": 37
+      },
+      {
+        "criticalP": 14,
+        "criticalDamage": 38
+      },
+      {
+        "criticalP": 15,
+        "criticalDamage": 39
+      },
+      {
+        "criticalP": 15,
+        "criticalDamage": 40
+      }
+    ]
+  },
+  {
+    "id": "4101004",
+    "type": "skill",
+    "name": "헤이스트",
+    "scope": "party",
+    "mode": "active",
+    "masterLevel": 20,
+    "effectsByLevel": [
+      {
+        "speed": 2,
+        "jump": 1
+      },
+      {
+        "speed": 4,
+        "jump": 2
+      },
+      {
+        "speed": 6,
+        "jump": 3
+      },
+      {
+        "speed": 8,
+        "jump": 4
+      },
+      {
+        "speed": 10,
+        "jump": 5
+      },
+      {
+        "speed": 12,
+        "jump": 6
+      },
+      {
+        "speed": 14,
+        "jump": 7
+      },
+      {
+        "speed": 16,
+        "jump": 8
+      },
+      {
+        "speed": 18,
+        "jump": 9
+      },
+      {
+        "speed": 20,
+        "jump": 10
+      },
+      {
+        "speed": 22,
+        "jump": 11
+      },
+      {
+        "speed": 24,
+        "jump": 12
+      },
+      {
+        "speed": 26,
+        "jump": 13
+      },
+      {
+        "speed": 28,
+        "jump": 14
+      },
+      {
+        "speed": 30,
+        "jump": 15
+      },
+      {
+        "speed": 32,
+        "jump": 16
+      },
+      {
+        "speed": 34,
+        "jump": 17
+      },
+      {
+        "speed": 36,
+        "jump": 18
+      },
+      {
+        "speed": 38,
+        "jump": 19
+      },
+      {
+        "speed": 40,
+        "jump": 20
+      }
+    ]
+  }
+]

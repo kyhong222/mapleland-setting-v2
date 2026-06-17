@@ -1,0 +1,116 @@
+[
+  {
+    "id": "1121000",
+    "type": "skill",
+    "name": "메이플 용사",
+    "scope": "party",
+    "mode": "active",
+    "masterLevel": 30,
+    "effectsByLevel": [
+      {
+        "allStatP": 1
+      },
+      {
+        "allStatP": 1
+      },
+      {
+        "allStatP": 2
+      },
+      {
+        "allStatP": 2
+      },
+      {
+        "allStatP": 3
+      },
+      {
+        "allStatP": 3
+      },
+      {
+        "allStatP": 4
+      },
+      {
+        "allStatP": 4
+      },
+      {
+        "allStatP": 5
+      },
+      {
+        "allStatP": 5
+      },
+      {
+        "allStatP": 6
+      },
+      {
+        "allStatP": 6
+      },
+      {
+        "allStatP": 7
+      },
+      {
+        "allStatP": 7
+      },
+      {
+        "allStatP": 8
+      },
+      {
+        "allStatP": 8
+      },
+      {
+        "allStatP": 9
+      },
+      {
+        "allStatP": 9
+      },
+      {
+        "allStatP": 10
+      },
+      {
+        "allStatP": 10
+      },
+      {
+        "allStatP": 11
+      },
+      {
+        "allStatP": 11
+      },
+      {
+        "allStatP": 12
+      },
+      {
+        "allStatP": 12
+      },
+      {
+        "allStatP": 13
+      },
+      {
+        "allStatP": 13
+      },
+      {
+        "allStatP": 14
+      },
+      {
+        "allStatP": 14
+      },
+      {
+        "allStatP": 15
+      },
+      {
+        "allStatP": 15
+      }
+    ]
+  },
+  {
+    "id": "echoOfHero",
+    "type": "skill",
+    "name": "영웅의 메아리",
+    "scope": "party",
+    "mode": "active",
+    "masterLevel": 1,
+    "effectsByLevel": [
+      {
+        "padP": 4,
+        "madP": 4
+      }
+    ]
+  }
+]

@@ -39,7 +39,7 @@
     "slot": "hat",
     "effects": {
       "pdef": 5,
-      "add": 1
+      "acc": 1
     },
     "reqLevel": 5,
     "iconUrl": "https://maplestory.io/api/GMS/200/item/1002014/icon",
@@ -286,7 +286,7 @@
     "slot": "hat",
     "effects": {
       "pdef": 8,
-      "add": 1
+      "acc": 1
     },
     "reqLevel": 10,
     "iconUrl": "https://maplestory.io/api/GMS/200/item/1002080/icon",
@@ -405,7 +405,7 @@
     "slot": "hat",
     "effects": {
       "pdef": 8,
-      "add": 5
+      "acc": 5
     },
     "reqLevel": 10,
     "iconUrl": "https://maplestory.io/api/GMS/200/item/1002392/icon",
@@ -1812,7 +1812,7 @@
     "slot": "hat",
     "effects": {
       "pdef": 25,
-      "add": 10
+      "acc": 10
     },
     "reqLevel": 30,
     "iconUrl": "https://maplestory.io/api/GMS/200/item/1002455/icon",
@@ -2745,7 +2745,7 @@
       "LUK": 15,
       "pdef": 150,
       "mdef": 150,
-      "add": 20,
+      "acc": 20,
       "eva": 20
     },
     "reqLevel": 50,

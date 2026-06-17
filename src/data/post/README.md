@@ -15,7 +15,7 @@
   "id": 1002357,
   "name": "자쿠의 투구",
   "slot": "hat",
-  "effects": { "STR": 20, "DEX": 20, "INT": 20, "LUK": 20, "pdef": 150, "mdef": 150, "add": 20, "eva": 20 },
+  "effects": { "STR": 20, "DEX": 20, "INT": 20, "LUK": 20, "pdef": 150, "mdef": 150, "acc": 20, "eva": 20 },
   "reqLevel": 50,
   "iconUrl": "https://maplestory.io/api/gms/62/item/1002357/icon"
 }

@@ -57,7 +57,7 @@ export const GEMS: Record<GemType, GemDef> = {
   emerald: { type: 'emerald', label: '에메랄드', effectId: 'mp', values: { low: 10, mid: 20, high: 30 }, weaponOnly: false, iconBaseId: 4250700 },
   amethyst: { type: 'amethyst', label: '자수정', effectId: 'speed', values: { low: 1, mid: 3, high: 5 }, weaponOnly: false, iconBaseId: 4250400 },
   aquamarine: { type: 'aquamarine', label: '아쿠아마린', effectId: 'jump', values: { low: 1, mid: 2, high: 3 }, weaponOnly: false, iconBaseId: 4250500 },
-  garnet: { type: 'garnet', label: '가넷', effectId: 'add', values: { low: 1, mid: 3, high: 5 }, weaponOnly: false, iconBaseId: 4250200 },
+  garnet: { type: 'garnet', label: '가넷', effectId: 'acc', values: { low: 1, mid: 3, high: 5 }, weaponOnly: false, iconBaseId: 4250200 },
   opal: { type: 'opal', label: '오팔', effectId: 'eva', values: { low: 1, mid: 3, high: 5 }, weaponOnly: false, iconBaseId: 4250300 },
   strCrystal: { type: 'strCrystal', label: '힘의 크리스탈', effectId: 'STR', values: { low: 1, mid: 3, high: 5 }, weaponOnly: false, iconBaseId: 4250800 },
   dexCrystal: { type: 'dexCrystal', label: '민첩의 크리스탈', effectId: 'DEX', values: { low: 1, mid: 3, high: 5 }, weaponOnly: false, iconBaseId: 4251100 },

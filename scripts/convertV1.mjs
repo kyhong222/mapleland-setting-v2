@@ -72,7 +72,7 @@ const STAT_MAP = {
   mad: 'mad',
   pdef: 'pdef',
   mdef: 'mdef',
-  acc: 'add',
+  acc: 'acc',
   eva: 'eva',
   attackSpeed: 'attackSpeed',
   hp: 'hp',

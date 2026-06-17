@@ -8,7 +8,7 @@ import { EFFECTS } from '../../domain/effects'
 import type { EffectId } from '../../domain/effects'
 
 /** 세부스탯에 표시할 효과 (직업/레벨 기반 공식은 추후) */
-const DETAIL_EFFECTS: EffectId[] = ['add', 'eva', 'pdef', 'mdef', 'hp', 'mp', 'speed', 'jump']
+const DETAIL_EFFECTS: EffectId[] = ['acc', 'eva', 'pdef', 'mdef', 'hp', 'mp', 'speed', 'jump']
 
 export default function DetailStatPanel() {
   const baseStats = useBuildStore((s) => s.baseStats)

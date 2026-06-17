@@ -143,7 +143,7 @@
     "slot": "medal",
     "effects": {
       "pad": 3,
-      "add": 5,
+      "acc": 5,
       "hp": 50
     },
     "reqLevel": 200,
@@ -157,7 +157,7 @@
     "slot": "medal",
     "effects": {
       "pad": 3,
-      "add": 5,
+      "acc": 5,
       "hp": 50
     },
     "reqLevel": 200,

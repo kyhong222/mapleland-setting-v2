@@ -59,7 +59,7 @@ export const GRADE_WEIGHTS: Partial<Record<EffectId, number>> = {
   LUK: 1,
   pdef: 1,
   mdef: 1,
-  add: 1,
+  acc: 1,
   eva: 1,
   hp: 0.1, // 체력/10
   mp: 0.1, // 마나/10

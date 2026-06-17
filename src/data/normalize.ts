@@ -21,7 +21,7 @@ const EFFECT_BY_META_FIELD: Record<string, EffectId> = {
   incMAD: 'mad',
   incPDD: 'pdef',
   incMDD: 'mdef',
-  incACC: 'add',
+  incACC: 'acc',
   incEVA: 'eva',
   incSpeed: 'speed',
   incJump: 'jump',

@@ -96,7 +96,7 @@
     "name": "우울한 얼굴가면",
     "slot": "faceAccessory",
     "effects": {
-      "add": 10
+      "acc": 10
     },
     "reqLevel": 10,
     "iconUrl": "https://maplestory.io/api/GMS/200/item/1012079/icon"

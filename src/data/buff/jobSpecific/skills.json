@@ -1,0 +1,4793 @@
+[
+  {
+    "id": "1001003",
+    "type": "skill",
+    "name": "아이언 바디",
+    "scope": "personal",
+    "mode": "passive",
+    "masterLevel": 20,
+    "effectsByLevel": [
+      {
+        "pdef": 2
+      },
+      {
+        "pdef": 4
+      },
+      {
+        "pdef": 6
+      },
+      {
+        "pdef": 8
+      },
+      {
+        "pdef": 10
+      },
+      {
+        "pdef": 12
+      },
+      {
+        "pdef": 14
+      },
+      {
+        "pdef": 16
+      },
+      {
+        "pdef": 18
+      },
+      {
+        "pdef": 20
+      },
+      {
+        "pdef": 22
+      },
+      {
+        "pdef": 24
+      },
+      {
+        "pdef": 26
+      },
+      {
+        "pdef": 28
+      },
+      {
+        "pdef": 30
+      },
+      {
+        "pdef": 32
+      },
+      {
+        "pdef": 34
+      },
+      {
+        "pdef": 36
+      },
+      {
+        "pdef": 38
+      },
+      {
+        "pdef": 40
+      }
+    ],
+    "jobs": [
+      "hero",
+      "paladin",
+      "darkKnight"
+    ]
+  },
+  {
+    "id": "1100000",
+    "type": "skill",
+    "name": "소드 마스터리",
+    "scope": "personal",
+    "mode": "passive",
+    "masterLevel": 20,
+    "effectsByLevel": [
+      {
+        "mastery": 5,
+        "acc": 1
+      },
+      {
+        "mastery": 5,
+        "acc": 2
+      },
+      {
+        "mastery": 10,
+        "acc": 3
+      },
+      {
+        "mastery": 10,
+        "acc": 4
+      },
+      {
+        "mastery": 15,
+        "acc": 5
+      },
+      {
+        "mastery": 15,
+        "acc": 6
+      },
+      {
+        "mastery": 20,
+        "acc": 7
+      },
+      {
+        "mastery": 20,
+        "acc": 8
+      },
+      {
+        "mastery": 25,
+        "acc": 9
+      },
+      {
+        "mastery": 25,
+        "acc": 10
+      },
+      {
+        "mastery": 30,
+        "acc": 11
+      },
+      {
+        "mastery": 30,
+        "acc": 12
+      },
+      {
+        "mastery": 35,
+        "acc": 13
+      },
+      {
+        "mastery": 35,
+        "acc": 14
+      },
+      {
+        "mastery": 40,
+        "acc": 15
+      },
+      {
+        "mastery": 40,
+        "acc": 16
+      },
+      {
+        "mastery": 45,
+        "acc": 17
+      },
+      {
+        "mastery": 45,
+        "acc": 18
+      },
+      {
+        "mastery": 50,
+        "acc": 19
+      },
+      {
+        "mastery": 50,
+        "acc": 20
+      }
+    ],
+    "jobs": [
+      "hero"
+    ]
+  },
+  {
+    "id": "1100001",
+    "type": "skill",
+    "name": "엑스 마스터리",
+    "scope": "personal",
+    "mode": "passive",
+    "masterLevel": 20,
+    "effectsByLevel": [
+      {
+        "mastery": 5,
+        "acc": 1
+      },
+      {
+        "mastery": 5,
+        "acc": 2
+      },
+      {
+        "mastery": 10,
+        "acc": 3
+      },
+      {
+        "mastery": 10,
+        "acc": 4
+      },
+      {
+        "mastery": 15,
+        "acc": 5
+      },
+      {
+        "mastery": 15,
+        "acc": 6
+      },
+      {
+        "mastery": 20,
+        "acc": 7
+      },
+      {
+        "mastery": 20,
+        "acc": 8
+      },
+      {
+        "mastery": 25,
+        "acc": 9
+      },
+      {
+        "mastery": 25,
+        "acc": 10
+      },
+      {
+        "mastery": 30,
+        "acc": 11
+      },
+      {
+        "mastery": 30,
+        "acc": 12
+      },
+      {
+        "mastery": 35,
+        "acc": 13
+      },
+      {
+        "mastery": 35,
+        "acc": 14
+      },
+      {
+        "mastery": 40,
+        "acc": 15
+      },
+      {
+        "mastery": 40,
+        "acc": 16
+      },
+      {
+        "mastery": 45,
+        "acc": 17
+      },
+      {
+        "mastery": 45,
+        "acc": 18
+      },
+      {
+        "mastery": 50,
+        "acc": 19
+      },
+      {
+        "mastery": 50,
+        "acc": 20
+      }
+    ],
+    "jobs": [
+      "hero"
+    ]
+  },
+  {
+    "id": "1110001",
+    "type": "skill",
+    "name": "쉴드 마스터리",
+    "scope": "personal",
+    "mode": "passive",
+    "masterLevel": 20,
+    "effectsByLevel": [
+      {
+        "shieldBonusPdef": 5
+      },
+      {
+        "shieldBonusPdef": 10
+      },
+      {
+        "shieldBonusPdef": 15
+      },
+      {
+        "shieldBonusPdef": 20
+      },
+      {
+        "shieldBonusPdef": 25
+      },
+      {
+        "shieldBonusPdef": 30
+      },
+      {
+        "shieldBonusPdef": 35
+      },
+      {
+        "shieldBonusPdef": 40
+      },
+      {
+        "shieldBonusPdef": 45
+      },
+      {
+        "shieldBonusPdef": 50
+      },
+      {
+        "shieldBonusPdef": 55
+      },
+      {
+        "shieldBonusPdef": 60
+      },
+      {
+        "shieldBonusPdef": 65
+      },
+      {
+        "shieldBonusPdef": 70
+      },
+      {
+        "shieldBonusPdef": 75
+      },
+      {
+        "shieldBonusPdef": 80
+      },
+      {
+        "shieldBonusPdef": 85
+      },
+      {
+        "shieldBonusPdef": 90
+      },
+      {
+        "shieldBonusPdef": 95
+      },
+      {
+        "shieldBonusPdef": 100
+      }
+    ],
+    "jobs": [
+      "hero"
+    ]
+  },
+  {
+    "id": "1120004",
+    "type": "skill",
+    "name": "아킬레스",
+    "scope": "personal",
+    "mode": "passive",
+    "masterLevel": 30,
+    "effectsByLevel": [
+      {
+        "damageReduce": 0.5
+      },
+      {
+        "damageReduce": 1
+      },
+      {
+        "damageReduce": 1.5
+      },
+      {
+        "damageReduce": 2
+      },
+      {
+        "damageReduce": 2.5
+      },
+      {
+        "damageReduce": 3
+      },
+      {
+        "damageReduce": 3.5
+      },
+      {
+        "damageReduce": 4
+      },
+      {
+        "damageReduce": 4.5
+      },
+      {
+        "damageReduce": 5
+      },
+      {
+        "damageReduce": 5.5
+      },
+      {
+        "damageReduce": 6
+      },
+      {
+        "damageReduce": 6.5
+      },
+      {
+        "damageReduce": 7
+      },
+      {
+        "damageReduce": 7.5
+      },
+      {
+        "damageReduce": 8
+      },
+      {
+        "damageReduce": 8.5
+      },
+      {
+        "damageReduce": 9
+      },
+      {
+        "damageReduce": 9.5
+      },
+      {
+        "damageReduce": 10
+      },
+      {
+        "damageReduce": 10.5
+      },
+      {
+        "damageReduce": 11
+      },
+      {
+        "damageReduce": 11.5
+      },
+      {
+        "damageReduce": 12
+      },
+      {
+        "damageReduce": 12.5
+      },
+      {
+        "damageReduce": 13
+      },
+      {
+        "damageReduce": 13.5
+      },
+      {
+        "damageReduce": 14
+      },
+      {
+        "damageReduce": 14.5
+      },
+      {
+        "damageReduce": 15
+      }
+    ],
+    "jobs": [
+      "hero"
+    ]
+  },
+  {
+    "id": "1120005",
+    "type": "skill",
+    "name": "블로킹",
+    "scope": "personal",
+    "mode": "active",
+    "masterLevel": 30,
+    "effectsByLevel": [
+      {
+        "blockRate": 0.5
+      },
+      {
+        "blockRate": 1
+      },
+      {
+        "blockRate": 1.5
+      },
+      {
+        "blockRate": 2
+      },
+      {
+        "blockRate": 2.5
+      },
+      {
+        "blockRate": 3
+      },
+      {
+        "blockRate": 3.5
+      },
+      {
+        "blockRate": 4
+      },
+      {
+        "blockRate": 4.5
+      },
+      {
+        "blockRate": 5
+      },
+      {
+        "blockRate": 5.5
+      },
+      {
+        "blockRate": 6
+      },
+      {
+        "blockRate": 6.5
+      },
+      {
+        "blockRate": 7
+      },
+      {
+        "blockRate": 7.5
+      },
+      {
+        "blockRate": 8
+      },
+      {
+        "blockRate": 8.5
+      },
+      {
+        "blockRate": 9
+      },
+      {
+        "blockRate": 9.5
+      },
+      {
+        "blockRate": 10
+      },
+      {
+        "blockRate": 10.5
+      },
+      {
+        "blockRate": 11
+      },
+      {
+        "blockRate": 11.5
+      },
+      {
+        "blockRate": 12
+      },
+      {
+        "blockRate": 12.5
+      },
+      {
+        "blockRate": 13
+      },
+      {
+        "blockRate": 13.5
+      },
+      {
+        "blockRate": 14
+      },
+      {
+        "blockRate": 14.5
+      },
+      {
+        "blockRate": 15
+      }
+    ],
+    "jobs": [
+      "hero"
+    ]
+  },
+  {
+    "id": "1121002",
+    "type": "skill",
+    "name": "스탠스",
+    "scope": "personal",
+    "mode": "active",
+    "masterLevel": 30,
+    "effectsByLevel": [
+      {
+        "stanceP": 42
+      },
+      {
+        "stanceP": 44
+      },
+      {
+        "stanceP": 46
+      },
+      {
+        "stanceP": 48
+      },
+      {
+        "stanceP": 50
+      },
+      {
+        "stanceP": 52
+      },
+      {
+        "stanceP": 54
+      },
+      {
+        "stanceP": 56
+      },
+      {
+        "stanceP": 58
+      },
+      {
+        "stanceP": 60
+      },
+      {
+        "stanceP": 62
+      },
+      {
+        "stanceP": 64
+      },
+      {
+        "stanceP": 66
+      },
+      {
+        "stanceP": 68
+      },
+      {
+        "stanceP": 70
+      },
+      {
+        "stanceP": 72
+      },
+      {
+        "stanceP": 74
+      },
+      {
+        "stanceP": 76
+      },
+      {
+        "stanceP": 78
+      },
+      {
+        "stanceP": 80
+      },
+      {
+        "stanceP": 81
+      },
+      {
+        "stanceP": 82
+      },
+      {
+        "stanceP": 83
+      },
+      {
+        "stanceP": 84
+      },
+      {
+        "stanceP": 85
+      },
+      {
+        "stanceP": 86
+      },
+      {
+        "stanceP": 87
+      },
+      {
+        "stanceP": 88
+      },
+      {
+        "stanceP": 89
+      },
+      {
+        "stanceP": 90
+      }
+    ],
+    "jobs": [
+      "hero"
+    ]
+  },
+  {
+    "id": "1121010",
+    "type": "skill",
+    "name": "인레이지",
+    "scope": "personal",
+    "mode": "active",
+    "masterLevel": 30,
+    "effectsByLevel": [
+      {
+        "pad": 11
+      },
+      {
+        "pad": 12
+      },
+      {
+        "pad": 12
+      },
+      {
+        "pad": 13
+      },
+      {
+        "pad": 13
+      },
+      {
+        "pad": 14
+      },
+      {
+        "pad": 14
+      },
+      {
+        "pad": 15
+      },
+      {
+        "pad": 15
+      },
+      {
+        "pad": 16
+      },
+      {
+        "pad": 16
+      },
+      {
+        "pad": 17
+      },
+      {
+        "pad": 17
+      },
+      {
+        "pad": 18
+      },
+      {
+        "pad": 18
+      },
+      {
+        "pad": 19
+      },
+      {
+        "pad": 19
+      },
+      {
+        "pad": 20
+      },
+      {
+        "pad": 20
+      },
+      {
+        "pad": 21
+      },
+      {
+        "pad": 21
+      },
+      {
+        "pad": 22
+      },
+      {
+        "pad": 22
+      },
+      {
+        "pad": 23
+      },
+      {
+        "pad": 23
+      },
+      {
+        "pad": 24
+      },
+      {
+        "pad": 24
+      },
+      {
+        "pad": 25
+      },
+      {
+        "pad": 25
+      },
+      {
+        "pad": 26
+      }
+    ],
+    "jobs": [
+      "hero"
+    ]
+  },
+  {
+    "id": "1200000",
+    "type": "skill",
+    "name": "소드 마스터리",
+    "scope": "personal",
+    "mode": "passive",
+    "masterLevel": 20,
+    "effectsByLevel": [
+      {
+        "mastery": 5,
+        "acc": 1
+      },
+      {
+        "mastery": 5,
+        "acc": 2
+      },
+      {
+        "mastery": 10,
+        "acc": 3
+      },
+      {
+        "mastery": 10,
+        "acc": 4
+      },
+      {
+        "mastery": 15,
+        "acc": 5
+      },
+      {
+        "mastery": 15,
+        "acc": 6
+      },
+      {
+        "mastery": 20,
+        "acc": 7
+      },
+      {
+        "mastery": 20,
+        "acc": 8
+      },
+      {
+        "mastery": 25,
+        "acc": 9
+      },
+      {
+        "mastery": 25,
+        "acc": 10
+      },
+      {
+        "mastery": 30,
+        "acc": 11
+      },
+      {
+        "mastery": 30,
+        "acc": 12
+      },
+      {
+        "mastery": 35,
+        "acc": 13
+      },
+      {
+        "mastery": 35,
+        "acc": 14
+      },
+      {
+        "mastery": 40,
+        "acc": 15
+      },
+      {
+        "mastery": 40,
+        "acc": 16
+      },
+      {
+        "mastery": 45,
+        "acc": 17
+      },
+      {
+        "mastery": 45,
+        "acc": 18
+      },
+      {
+        "mastery": 50,
+        "acc": 19
+      },
+      {
+        "mastery": 50,
+        "acc": 20
+      }
+    ],
+    "jobs": [
+      "paladin"
+    ]
+  },
+  {
+    "id": "1200001",
+    "type": "skill",
+    "name": "메이스 마스터리",
+    "scope": "personal",
+    "mode": "passive",
+    "masterLevel": 20,
+    "effectsByLevel": [
+      {
+        "mastery": 5,
+        "acc": 1
+      },
+      {
+        "mastery": 5,
+        "acc": 2
+      },
+      {
+        "mastery": 10,
+        "acc": 3
+      },
+      {
+        "mastery": 10,
+        "acc": 4
+      },
+      {
+        "mastery": 15,
+        "acc": 5
+      },
+      {
+        "mastery": 15,
+        "acc": 6
+      },
+      {
+        "mastery": 20,
+        "acc": 7
+      },
+      {
+        "mastery": 20,
+        "acc": 8
+      },
+      {
+        "mastery": 25,
+        "acc": 9
+      },
+      {
+        "mastery": 25,
+        "acc": 10
+      },
+      {
+        "mastery": 30,
+        "acc": 11
+      },
+      {
+        "mastery": 30,
+        "acc": 12
+      },
+      {
+        "mastery": 35,
+        "acc": 13
+      },
+      {
+        "mastery": 35,
+        "acc": 14
+      },
+      {
+        "mastery": 40,
+        "acc": 15
+      },
+      {
+        "mastery": 40,
+        "acc": 16
+      },
+      {
+        "mastery": 45,
+        "acc": 17
+      },
+      {
+        "mastery": 45,
+        "acc": 18
+      },
+      {
+        "mastery": 50,
+        "acc": 19
+      },
+      {
+        "mastery": 50,
+        "acc": 20
+      }
+    ],
+    "jobs": [
+      "paladin"
+    ]
+  },
+  {
+    "id": "1210001",
+    "type": "skill",
+    "name": "쉴드 마스터리",
+    "scope": "personal",
+    "mode": "passive",
+    "masterLevel": 20,
+    "effectsByLevel": [
+      {
+        "shieldBonusPdef": 5
+      },
+      {
+        "shieldBonusPdef": 10
+      },
+      {
+        "shieldBonusPdef": 15
+      },
+      {
+        "shieldBonusPdef": 20
+      },
+      {
+        "shieldBonusPdef": 25
+      },
+      {
+        "shieldBonusPdef": 30
+      },
+      {
+        "shieldBonusPdef": 35
+      },
+      {
+        "shieldBonusPdef": 40
+      },
+      {
+        "shieldBonusPdef": 45
+      },
+      {
+        "shieldBonusPdef": 50
+      },
+      {
+        "shieldBonusPdef": 55
+      },
+      {
+        "shieldBonusPdef": 60
+      },
+      {
+        "shieldBonusPdef": 65
+      },
+      {
+        "shieldBonusPdef": 70
+      },
+      {
+        "shieldBonusPdef": 75
+      },
+      {
+        "shieldBonusPdef": 80
+      },
+      {
+        "shieldBonusPdef": 85
+      },
+      {
+        "shieldBonusPdef": 90
+      },
+      {
+        "shieldBonusPdef": 95
+      },
+      {
+        "shieldBonusPdef": 100
+      }
+    ],
+    "jobs": [
+      "paladin"
+    ]
+  },
+  {
+    "id": "1220005",
+    "type": "skill",
+    "name": "아킬레스",
+    "scope": "personal",
+    "mode": "passive",
+    "masterLevel": 30,
+    "effectsByLevel": [
+      {
+        "damageReduce": 0.5
+      },
+      {
+        "damageReduce": 1
+      },
+      {
+        "damageReduce": 1.5
+      },
+      {
+        "damageReduce": 2
+      },
+      {
+        "damageReduce": 2.5
+      },
+      {
+        "damageReduce": 3
+      },
+      {
+        "damageReduce": 3.5
+      },
+      {
+        "damageReduce": 4
+      },
+      {
+        "damageReduce": 4.5
+      },
+      {
+        "damageReduce": 5
+      },
+      {
+        "damageReduce": 5.5
+      },
+      {
+        "damageReduce": 6
+      },
+      {
+        "damageReduce": 6.5
+      },
+      {
+        "damageReduce": 7
+      },
+      {
+        "damageReduce": 7.5
+      },
+      {
+        "damageReduce": 8
+      },
+      {
+        "damageReduce": 8.5
+      },
+      {
+        "damageReduce": 9
+      },
+      {
+        "damageReduce": 9.5
+      },
+      {
+        "damageReduce": 10
+      },
+      {
+        "damageReduce": 10.5
+      },
+      {
+        "damageReduce": 11
+      },
+      {
+        "damageReduce": 11.5
+      },
+      {
+        "damageReduce": 12
+      },
+      {
+        "damageReduce": 12.5
+      },
+      {
+        "damageReduce": 13
+      },
+      {
+        "damageReduce": 13.5
+      },
+      {
+        "damageReduce": 14
+      },
+      {
+        "damageReduce": 14.5
+      },
+      {
+        "damageReduce": 15
+      }
+    ],
+    "jobs": [
+      "paladin"
+    ]
+  },
+  {
+    "id": "1220006",
+    "type": "skill",
+    "name": "블로킹",
+    "scope": "personal",
+    "mode": "active",
+    "masterLevel": 30,
+    "effectsByLevel": [
+      {
+        "blockRate": 0.5
+      },
+      {
+        "blockRate": 1
+      },
+      {
+        "blockRate": 1.5
+      },
+      {
+        "blockRate": 2
+      },
+      {
+        "blockRate": 2.5
+      },
+      {
+        "blockRate": 3
+      },
+      {
+        "blockRate": 3.5
+      },
+      {
+        "blockRate": 4
+      },
+      {
+        "blockRate": 4.5
+      },
+      {
+        "blockRate": 5
+      },
+      {
+        "blockRate": 5.5
+      },
+      {
+        "blockRate": 6
+      },
+      {
+        "blockRate": 6.5
+      },
+      {
+        "blockRate": 7
+      },
+      {
+        "blockRate": 7.5
+      },
+      {
+        "blockRate": 8
+      },
+      {
+        "blockRate": 8.5
+      },
+      {
+        "blockRate": 9
+      },
+      {
+        "blockRate": 9.5
+      },
+      {
+        "blockRate": 10
+      },
+      {
+        "blockRate": 10.5
+      },
+      {
+        "blockRate": 11
+      },
+      {
+        "blockRate": 11.5
+      },
+      {
+        "blockRate": 12
+      },
+      {
+        "blockRate": 12.5
+      },
+      {
+        "blockRate": 13
+      },
+      {
+        "blockRate": 13.5
+      },
+      {
+        "blockRate": 14
+      },
+      {
+        "blockRate": 14.5
+      },
+      {
+        "blockRate": 15
+      }
+    ],
+    "jobs": [
+      "paladin"
+    ]
+  },
+  {
+    "id": "1221002",
+    "type": "skill",
+    "name": "스탠스",
+    "scope": "personal",
+    "mode": "active",
+    "masterLevel": 30,
+    "effectsByLevel": [
+      {
+        "stanceP": 42
+      },
+      {
+        "stanceP": 44
+      },
+      {
+        "stanceP": 46
+      },
+      {
+        "stanceP": 48
+      },
+      {
+        "stanceP": 50
+      },
+      {
+        "stanceP": 52
+      },
+      {
+        "stanceP": 54
+      },
+      {
+        "stanceP": 56
+      },
+      {
+        "stanceP": 58
+      },
+      {
+        "stanceP": 60
+      },
+      {
+        "stanceP": 62
+      },
+      {
+        "stanceP": 64
+      },
+      {
+        "stanceP": 66
+      },
+      {
+        "stanceP": 68
+      },
+      {
+        "stanceP": 70
+      },
+      {
+        "stanceP": 72
+      },
+      {
+        "stanceP": 74
+      },
+      {
+        "stanceP": 76
+      },
+      {
+        "stanceP": 78
+      },
+      {
+        "stanceP": 80
+      },
+      {
+        "stanceP": 81
+      },
+      {
+        "stanceP": 82
+      },
+      {
+        "stanceP": 83
+      },
+      {
+        "stanceP": 84
+      },
+      {
+        "stanceP": 85
+      },
+      {
+        "stanceP": 86
+      },
+      {
+        "stanceP": 87
+      },
+      {
+        "stanceP": 88
+      },
+      {
+        "stanceP": 89
+      },
+      {
+        "stanceP": 90
+      }
+    ],
+    "jobs": [
+      "paladin"
+    ]
+  },
+  {
+    "id": "1300000",
+    "type": "skill",
+    "name": "스피어 마스터리",
+    "scope": "personal",
+    "mode": "passive",
+    "masterLevel": 20,
+    "effectsByLevel": [
+      {
+        "mastery": 5,
+        "acc": 1
+      },
+      {
+        "mastery": 5,
+        "acc": 2
+      },
+      {
+        "mastery": 10,
+        "acc": 3
+      },
+      {
+        "mastery": 10,
+        "acc": 4
+      },
+      {
+        "mastery": 15,
+        "acc": 5
+      },
+      {
+        "mastery": 15,
+        "acc": 6
+      },
+      {
+        "mastery": 20,
+        "acc": 7
+      },
+      {
+        "mastery": 20,
+        "acc": 8
+      },
+      {
+        "mastery": 25,
+        "acc": 9
+      },
+      {
+        "mastery": 25,
+        "acc": 10
+      },
+      {
+        "mastery": 30,
+        "acc": 11
+      },
+      {
+        "mastery": 30,
+        "acc": 12
+      },
+      {
+        "mastery": 35,
+        "acc": 13
+      },
+      {
+        "mastery": 35,
+        "acc": 14
+      },
+      {
+        "mastery": 40,
+        "acc": 15
+      },
+      {
+        "mastery": 40,
+        "acc": 16
+      },
+      {
+        "mastery": 45,
+        "acc": 17
+      },
+      {
+        "mastery": 45,
+        "acc": 18
+      },
+      {
+        "mastery": 50,
+        "acc": 19
+      },
+      {
+        "mastery": 50,
+        "acc": 20
+      }
+    ],
+    "jobs": [
+      "darkKnight"
+    ]
+  },
+  {
+    "id": "1300001",
+    "type": "skill",
+    "name": "폴암 마스터리",
+    "scope": "personal",
+    "mode": "passive",
+    "masterLevel": 20,
+    "effectsByLevel": [
+      {
+        "mastery": 5,
+        "acc": 1
+      },
+      {
+        "mastery": 5,
+        "acc": 2
+      },
+      {
+        "mastery": 10,
+        "acc": 3
+      },
+      {
+        "mastery": 10,
+        "acc": 4
+      },
+      {
+        "mastery": 15,
+        "acc": 5
+      },
+      {
+        "mastery": 15,
+        "acc": 6
+      },
+      {
+        "mastery": 20,
+        "acc": 7
+      },
+      {
+        "mastery": 20,
+        "acc": 8
+      },
+      {
+        "mastery": 25,
+        "acc": 9
+      },
+      {
+        "mastery": 25,
+        "acc": 10
+      },
+      {
+        "mastery": 30,
+        "acc": 11
+      },
+      {
+        "mastery": 30,
+        "acc": 12
+      },
+      {
+        "mastery": 35,
+        "acc": 13
+      },
+      {
+        "mastery": 35,
+        "acc": 14
+      },
+      {
+        "mastery": 40,
+        "acc": 15
+      },
+      {
+        "mastery": 40,
+        "acc": 16
+      },
+      {
+        "mastery": 45,
+        "acc": 17
+      },
+      {
+        "mastery": 45,
+        "acc": 18
+      },
+      {
+        "mastery": 50,
+        "acc": 19
+      },
+      {
+        "mastery": 50,
+        "acc": 20
+      }
+    ],
+    "jobs": [
+      "darkKnight"
+    ]
+  },
+  {
+    "id": "1310000",
+    "type": "skill",
+    "name": "엘리먼트 레지스턴스",
+    "scope": "personal",
+    "mode": "passive",
+    "masterLevel": 20,
+    "effectsByLevel": [
+      {
+        "allRes": 12
+      },
+      {
+        "allRes": 14
+      },
+      {
+        "allRes": 16
+      },
+      {
+        "allRes": 18
+      },
+      {
+        "allRes": 20
+      },
+      {
+        "allRes": 22
+      },
+      {
+        "allRes": 24
+      },
+      {
+        "allRes": 26
+      },
+      {
+        "allRes": 28
+      },
+      {
+        "allRes": 30
+      },
+      {
+        "allRes": 31
+      },
+      {
+        "allRes": 32
+      },
+      {
+        "allRes": 33
+      },
+      {
+        "allRes": 34
+      },
+      {
+        "allRes": 35
+      },
+      {
+        "allRes": 36
+      },
+      {
+        "allRes": 37
+      },
+      {
+        "allRes": 38
+      },
+      {
+        "allRes": 39
+      },
+      {
+        "allRes": 40
+      }
+    ],
+    "jobs": [
+      "darkKnight"
+    ]
+  },
+  {
+    "id": "1311008",
+    "type": "skill",
+    "name": "드래곤 블러드",
+    "scope": "personal",
+    "mode": "active",
+    "masterLevel": 20,
+    "effectsByLevel": [
+      {
+        "pad": 1
+      },
+      {
+        "pad": 2
+      },
+      {
+        "pad": 3
+      },
+      {
+        "pad": 4
+      },
+      {
+        "pad": 4
+      },
+      {
+        "pad": 5
+      },
+      {
+        "pad": 5
+      },
+      {
+        "pad": 6
+      },
+      {
+        "pad": 6
+      },
+      {
+        "pad": 7
+      },
+      {
+        "pad": 7
+      },
+      {
+        "pad": 8
+      },
+      {
+        "pad": 8
+      },
+      {
+        "pad": 9
+      },
+      {
+        "pad": 9
+      },
+      {
+        "pad": 10
+      },
+      {
+        "pad": 10
+      },
+      {
+        "pad": 11
+      },
+      {
+        "pad": 11
+      },
+      {
+        "pad": 12
+      }
+    ],
+    "jobs": [
+      "darkKnight"
+    ]
+  },
+  {
+    "id": "1320005",
+    "type": "skill",
+    "name": "아킬레스",
+    "scope": "personal",
+    "mode": "passive",
+    "masterLevel": 30,
+    "effectsByLevel": [
+      {
+        "damageReduce": 0.5
+      },
+      {
+        "damageReduce": 1
+      },
+      {
+        "damageReduce": 1.5
+      },
+      {
+        "damageReduce": 2
+      },
+      {
+        "damageReduce": 2.5
+      },
+      {
+        "damageReduce": 3
+      },
+      {
+        "damageReduce": 3.5
+      },
+      {
+        "damageReduce": 4
+      },
+      {
+        "damageReduce": 4.5
+      },
+      {
+        "damageReduce": 5
+      },
+      {
+        "damageReduce": 5.5
+      },
+      {
+        "damageReduce": 6
+      },
+      {
+        "damageReduce": 6.5
+      },
+      {
+        "damageReduce": 7
+      },
+      {
+        "damageReduce": 7.5
+      },
+      {
+        "damageReduce": 8
+      },
+      {
+        "damageReduce": 8.5
+      },
+      {
+        "damageReduce": 9
+      },
+      {
+        "damageReduce": 9.5
+      },
+      {
+        "damageReduce": 10
+      },
+      {
+        "damageReduce": 10.5
+      },
+      {
+        "damageReduce": 11
+      },
+      {
+        "damageReduce": 11.5
+      },
+      {
+        "damageReduce": 12
+      },
+      {
+        "damageReduce": 12.5
+      },
+      {
+        "damageReduce": 13
+      },
+      {
+        "damageReduce": 13.5
+      },
+      {
+        "damageReduce": 14
+      },
+      {
+        "damageReduce": 14.5
+      },
+      {
+        "damageReduce": 15
+      }
+    ],
+    "jobs": [
+      "darkKnight"
+    ]
+  },
+  {
+    "id": "1320009",
+    "type": "skill",
+    "name": "비홀더스 버프",
+    "scope": "personal",
+    "mode": "active",
+    "masterLevel": 25,
+    "effectsByLevel": [
+      {
+        "pdef": 20
+      },
+      {
+        "pdef": 20
+      },
+      {
+        "pdef": 20
+      },
+      {
+        "pdef": 20
+      },
+      {
+        "pdef": 20
+      },
+      {
+        "pdef": 40,
+        "mdef": 25
+      },
+      {
+        "pdef": 40,
+        "mdef": 25
+      },
+      {
+        "pdef": 40,
+        "mdef": 25
+      },
+      {
+        "pdef": 40,
+        "mdef": 25
+      },
+      {
+        "pdef": 40,
+        "mdef": 25
+      },
+      {
+        "acc": 10,
+        "pdef": 60,
+        "mdef": 50
+      },
+      {
+        "acc": 10,
+        "pdef": 60,
+        "mdef": 50
+      },
+      {
+        "acc": 10,
+        "pdef": 60,
+        "mdef": 50
+      },
+      {
+        "acc": 10,
+        "pdef": 60,
+        "mdef": 50
+      },
+      {
+        "acc": 10,
+        "pdef": 60,
+        "mdef": 50
+      },
+      {
+        "acc": 20,
+        "eva": 30,
+        "pdef": 80,
+        "mdef": 75
+      },
+      {
+        "acc": 20,
+        "eva": 30,
+        "pdef": 80,
+        "mdef": 75
+      },
+      {
+        "acc": 20,
+        "eva": 30,
+        "pdef": 80,
+        "mdef": 75
+      },
+      {
+        "acc": 20,
+        "eva": 30,
+        "pdef": 80,
+        "mdef": 75
+      },
+      {
+        "acc": 20,
+        "eva": 30,
+        "pdef": 80,
+        "mdef": 75
+      },
+      {
+        "acc": 25,
+        "eva": 50,
+        "pad": 3,
+        "pdef": 100,
+        "mdef": 100
+      },
+      {
+        "acc": 25,
+        "eva": 50,
+        "pad": 6,
+        "pdef": 100,
+        "mdef": 100
+      },
+      {
+        "acc": 25,
+        "eva": 50,
+        "pad": 9,
+        "pdef": 100,
+        "mdef": 100
+      },
+      {
+        "acc": 25,
+        "eva": 50,
+        "pad": 12,
+        "pdef": 100,
+        "mdef": 100
+      },
+      {
+        "acc": 25,
+        "eva": 50,
+        "pad": 15,
+        "pdef": 100,
+        "mdef": 100
+      }
+    ],
+    "jobs": [
+      "darkKnight"
+    ]
+  },
+  {
+    "id": "1321002",
+    "type": "skill",
+    "name": "스탠스",
+    "scope": "personal",
+    "mode": "active",
+    "masterLevel": 30,
+    "effectsByLevel": [
+      {
+        "stanceP": 42
+      },
+      {
+        "stanceP": 44
+      },
+      {
+        "stanceP": 46
+      },
+      {
+        "stanceP": 48
+      },
+      {
+        "stanceP": 50
+      },
+      {
+        "stanceP": 52
+      },
+      {
+        "stanceP": 54
+      },
+      {
+        "stanceP": 56
+      },
+      {
+        "stanceP": 58
+      },
+      {
+        "stanceP": 60
+      },
+      {
+        "stanceP": 62
+      },
+      {
+        "stanceP": 64
+      },
+      {
+        "stanceP": 66
+      },
+      {
+        "stanceP": 68
+      },
+      {
+        "stanceP": 70
+      },
+      {
+        "stanceP": 72
+      },
+      {
+        "stanceP": 74
+      },
+      {
+        "stanceP": 76
+      },
+      {
+        "stanceP": 78
+      },
+      {
+        "stanceP": 80
+      },
+      {
+        "stanceP": 81
+      },
+      {
+        "stanceP": 82
+      },
+      {
+        "stanceP": 83
+      },
+      {
+        "stanceP": 84
+      },
+      {
+        "stanceP": 85
+      },
+      {
+        "stanceP": 86
+      },
+      {
+        "stanceP": 87
+      },
+      {
+        "stanceP": 88
+      },
+      {
+        "stanceP": 89
+      },
+      {
+        "stanceP": 90
+      }
+    ],
+    "jobs": [
+      "darkKnight"
+    ]
+  },
+  {
+    "id": "1321007",
+    "type": "skill",
+    "name": "비홀더",
+    "scope": "personal",
+    "mode": "passive",
+    "masterLevel": 10,
+    "effectsByLevel": [
+      {
+        "mastery": 5
+      },
+      {
+        "mastery": 5
+      },
+      {
+        "mastery": 5
+      },
+      {
+        "mastery": 10
+      },
+      {
+        "mastery": 10
+      },
+      {
+        "mastery": 10
+      },
+      {
+        "mastery": 15
+      },
+      {
+        "mastery": 15
+      },
+      {
+        "mastery": 15
+      },
+      {
+        "mastery": 20
+      }
+    ],
+    "jobs": [
+      "darkKnight"
+    ]
+  },
+  {
+    "id": "2001003",
+    "type": "skill",
+    "name": "매직 아머",
+    "scope": "personal",
+    "mode": "active",
+    "masterLevel": 20,
+    "effectsByLevel": [
+      {
+        "pdef": 2
+      },
+      {
+        "pdef": 4
+      },
+      {
+        "pdef": 6
+      },
+      {
+        "pdef": 8
+      },
+      {
+        "pdef": 10
+      },
+      {
+        "pdef": 12
+      },
+      {
+        "pdef": 14
+      },
+      {
+        "pdef": 16
+      },
+      {
+        "pdef": 18
+      },
+      {
+        "pdef": 20
+      },
+      {
+        "pdef": 22
+      },
+      {
+        "pdef": 24
+      },
+      {
+        "pdef": 26
+      },
+      {
+        "pdef": 28
+      },
+      {
+        "pdef": 30
+      },
+      {
+        "pdef": 32
+      },
+      {
+        "pdef": 34
+      },
+      {
+        "pdef": 36
+      },
+      {
+        "pdef": 38
+      },
+      {
+        "pdef": 40
+      }
+    ],
+    "jobs": [
+      "archMageFP",
+      "archMageIL",
+      "bishop"
+    ]
+  },
+  {
+    "id": "2110000",
+    "type": "skill",
+    "name": "파셜 레지스턴스",
+    "scope": "personal",
+    "mode": "passive",
+    "masterLevel": 20,
+    "effectsByLevel": [
+      {
+        "fireRes": 23,
+        "poisonRes": 23
+      },
+      {
+        "fireRes": 26,
+        "poisonRes": 26
+      },
+      {
+        "fireRes": 29,
+        "poisonRes": 29
+      },
+      {
+        "fireRes": 32,
+        "poisonRes": 32
+      },
+      {
+        "fireRes": 35,
+        "poisonRes": 35
+      },
+      {
+        "fireRes": 38,
+        "poisonRes": 38
+      },
+      {
+        "fireRes": 41,
+        "poisonRes": 41
+      },
+      {
+        "fireRes": 44,
+        "poisonRes": 44
+      },
+      {
+        "fireRes": 47,
+        "poisonRes": 47
+      },
+      {
+        "fireRes": 50,
+        "poisonRes": 50
+      },
+      {
+        "fireRes": 52,
+        "poisonRes": 52
+      },
+      {
+        "fireRes": 54,
+        "poisonRes": 54
+      },
+      {
+        "fireRes": 56,
+        "poisonRes": 56
+      },
+      {
+        "fireRes": 58,
+        "poisonRes": 58
+      },
+      {
+        "fireRes": 60,
+        "poisonRes": 60
+      },
+      {
+        "fireRes": 62,
+        "poisonRes": 62
+      },
+      {
+        "fireRes": 64,
+        "poisonRes": 64
+      },
+      {
+        "fireRes": 66,
+        "poisonRes": 66
+      },
+      {
+        "fireRes": 68,
+        "poisonRes": 68
+      },
+      {
+        "fireRes": 70,
+        "poisonRes": 70
+      }
+    ],
+    "jobs": [
+      "archMageFP"
+    ]
+  },
+  {
+    "id": "2110001",
+    "type": "skill",
+    "name": "엘리먼트 엠플리피케이션",
+    "scope": "personal",
+    "mode": "passive",
+    "masterLevel": 30,
+    "effectsByLevel": [
+      {
+        "amplifiedMagicDamageP": 7
+      },
+      {
+        "amplifiedMagicDamageP": 9
+      },
+      {
+        "amplifiedMagicDamageP": 11
+      },
+      {
+        "amplifiedMagicDamageP": 13
+      },
+      {
+        "amplifiedMagicDamageP": 14
+      },
+      {
+        "amplifiedMagicDamageP": 15
+      },
+      {
+        "amplifiedMagicDamageP": 16
+      },
+      {
+        "amplifiedMagicDamageP": 17
+      },
+      {
+        "amplifiedMagicDamageP": 18
+      },
+      {
+        "amplifiedMagicDamageP": 19
+      },
+      {
+        "amplifiedMagicDamageP": 21
+      },
+      {
+        "amplifiedMagicDamageP": 21
+      },
+      {
+        "amplifiedMagicDamageP": 23
+      },
+      {
+        "amplifiedMagicDamageP": 23
+      },
+      {
+        "amplifiedMagicDamageP": 25
+      },
+      {
+        "amplifiedMagicDamageP": 25
+      },
+      {
+        "amplifiedMagicDamageP": 27
+      },
+      {
+        "amplifiedMagicDamageP": 27
+      },
+      {
+        "amplifiedMagicDamageP": 29
+      },
+      {
+        "amplifiedMagicDamageP": 29
+      },
+      {
+        "amplifiedMagicDamageP": 31
+      },
+      {
+        "amplifiedMagicDamageP": 31
+      },
+      {
+        "amplifiedMagicDamageP": 33
+      },
+      {
+        "amplifiedMagicDamageP": 33
+      },
+      {
+        "amplifiedMagicDamageP": 35
+      },
+      {
+        "amplifiedMagicDamageP": 35
+      },
+      {
+        "amplifiedMagicDamageP": 37
+      },
+      {
+        "amplifiedMagicDamageP": 37
+      },
+      {
+        "amplifiedMagicDamageP": 37
+      },
+      {
+        "amplifiedMagicDamageP": 40
+      }
+    ],
+    "jobs": [
+      "archMageFP"
+    ]
+  },
+  {
+    "id": "2210000",
+    "type": "skill",
+    "name": "파셜 레지스턴스",
+    "scope": "personal",
+    "mode": "passive",
+    "masterLevel": 20,
+    "effectsByLevel": [
+      {
+        "coldRes": 23,
+        "lightningRes": 23
+      },
+      {
+        "coldRes": 26,
+        "lightningRes": 26
+      },
+      {
+        "coldRes": 29,
+        "lightningRes": 29
+      },
+      {
+        "coldRes": 32,
+        "lightningRes": 32
+      },
+      {
+        "coldRes": 35,
+        "lightningRes": 35
+      },
+      {
+        "coldRes": 38,
+        "lightningRes": 38
+      },
+      {
+        "coldRes": 41,
+        "lightningRes": 41
+      },
+      {
+        "coldRes": 44,
+        "lightningRes": 44
+      },
+      {
+        "coldRes": 47,
+        "lightningRes": 47
+      },
+      {
+        "coldRes": 50,
+        "lightningRes": 50
+      },
+      {
+        "coldRes": 52,
+        "lightningRes": 52
+      },
+      {
+        "coldRes": 54,
+        "lightningRes": 54
+      },
+      {
+        "coldRes": 56,
+        "lightningRes": 56
+      },
+      {
+        "coldRes": 58,
+        "lightningRes": 58
+      },
+      {
+        "coldRes": 60,
+        "lightningRes": 60
+      },
+      {
+        "coldRes": 62,
+        "lightningRes": 62
+      },
+      {
+        "coldRes": 64,
+        "lightningRes": 64
+      },
+      {
+        "coldRes": 66,
+        "lightningRes": 66
+      },
+      {
+        "coldRes": 68,
+        "lightningRes": 68
+      },
+      {
+        "coldRes": 70,
+        "lightningRes": 70
+      }
+    ],
+    "jobs": [
+      "archMageIL"
+    ]
+  },
+  {
+    "id": "2210001",
+    "type": "skill",
+    "name": "엘리먼트 엠플리피케이션",
+    "scope": "personal",
+    "mode": "passive",
+    "masterLevel": 30,
+    "effectsByLevel": [
+      {
+        "amplifiedMagicDamageP": 7
+      },
+      {
+        "amplifiedMagicDamageP": 9
+      },
+      {
+        "amplifiedMagicDamageP": 11
+      },
+      {
+        "amplifiedMagicDamageP": 13
+      },
+      {
+        "amplifiedMagicDamageP": 14
+      },
+      {
+        "amplifiedMagicDamageP": 15
+      },
+      {
+        "amplifiedMagicDamageP": 16
+      },
+      {
+        "amplifiedMagicDamageP": 17
+      },
+      {
+        "amplifiedMagicDamageP": 18
+      },
+      {
+        "amplifiedMagicDamageP": 19
+      },
+      {
+        "amplifiedMagicDamageP": 21
+      },
+      {
+        "amplifiedMagicDamageP": 21
+      },
+      {
+        "amplifiedMagicDamageP": 23
+      },
+      {
+        "amplifiedMagicDamageP": 23
+      },
+      {
+        "amplifiedMagicDamageP": 25
+      },
+      {
+        "amplifiedMagicDamageP": 25
+      },
+      {
+        "amplifiedMagicDamageP": 27
+      },
+      {
+        "amplifiedMagicDamageP": 27
+      },
+      {
+        "amplifiedMagicDamageP": 29
+      },
+      {
+        "amplifiedMagicDamageP": 29
+      },
+      {
+        "amplifiedMagicDamageP": 31
+      },
+      {
+        "amplifiedMagicDamageP": 31
+      },
+      {
+        "amplifiedMagicDamageP": 33
+      },
+      {
+        "amplifiedMagicDamageP": 33
+      },
+      {
+        "amplifiedMagicDamageP": 35
+      },
+      {
+        "amplifiedMagicDamageP": 35
+      },
+      {
+        "amplifiedMagicDamageP": 37
+      },
+      {
+        "amplifiedMagicDamageP": 37
+      },
+      {
+        "amplifiedMagicDamageP": 37
+      },
+      {
+        "amplifiedMagicDamageP": 40
+      }
+    ],
+    "jobs": [
+      "archMageIL"
+    ]
+  },
+  {
+    "id": "2310000",
+    "type": "skill",
+    "name": "엘리먼트 레지스턴스",
+    "scope": "personal",
+    "mode": "passive",
+    "masterLevel": 20,
+    "effectsByLevel": [
+      {
+        "allRes": 12
+      },
+      {
+        "allRes": 14
+      },
+      {
+        "allRes": 16
+      },
+      {
+        "allRes": 18
+      },
+      {
+        "allRes": 20
+      },
+      {
+        "allRes": 22
+      },
+      {
+        "allRes": 24
+      },
+      {
+        "allRes": 26
+      },
+      {
+        "allRes": 28
+      },
+      {
+        "allRes": 30
+      },
+      {
+        "allRes": 32
+      },
+      {
+        "allRes": 34
+      },
+      {
+        "allRes": 36
+      },
+      {
+        "allRes": 38
+      },
+      {
+        "allRes": 40
+      },
+      {
+        "allRes": 42
+      },
+      {
+        "allRes": 44
+      },
+      {
+        "allRes": 46
+      },
+      {
+        "allRes": 48
+      },
+      {
+        "allRes": 50
+      }
+    ],
+    "jobs": [
+      "bishop"
+    ]
+  },
+  {
+    "id": "3000000",
+    "type": "skill",
+    "name": "아마존의 축복",
+    "scope": "personal",
+    "mode": "passive",
+    "masterLevel": 16,
+    "effectsByLevel": [
+      {
+        "acc": 1
+      },
+      {
+        "acc": 2
+      },
+      {
+        "acc": 3
+      },
+      {
+        "acc": 4
+      },
+      {
+        "acc": 5
+      },
+      {
+        "acc": 6
+      },
+      {
+        "acc": 7
+      },
+      {
+        "acc": 8
+      },
+      {
+        "acc": 9
+      },
+      {
+        "acc": 10
+      },
+      {
+        "acc": 11
+      },
+      {
+        "acc": 12
+      },
+      {
+        "acc": 13
+      },
+      {
+        "acc": 14
+      },
+      {
+        "acc": 15
+      },
+      {
+        "acc": 16
+      }
+    ],
+    "jobs": [
+      "bowmaster",
+      "marksman"
+    ]
+  },
+  {
+    "id": "3000001",
+    "type": "skill",
+    "name": "크리티컬 샷",
+    "scope": "personal",
+    "mode": "passive",
+    "masterLevel": 20,
+    "effectsByLevel": [
+      {
+        "criticalP": 12,
+        "criticalDamage": 5
+      },
+      {
+        "criticalP": 14,
+        "criticalDamage": 10
+      },
+      {
+        "criticalP": 16,
+        "criticalDamage": 15
+      },
+      {
+        "criticalP": 18,
+        "criticalDamage": 20
+      },
+      {
+        "criticalP": 20,
+        "criticalDamage": 25
+      },
+      {
+        "criticalP": 22,
+        "criticalDamage": 30
+      },
+      {
+        "criticalP": 24,
+        "criticalDamage": 35
+      },
+      {
+        "criticalP": 26,
+        "criticalDamage": 40
+      },
+      {
+        "criticalP": 28,
+        "criticalDamage": 45
+      },
+      {
+        "criticalP": 30,
+        "criticalDamage": 50
+      },
+      {
+        "criticalP": 31,
+        "criticalDamage": 55
+      },
+      {
+        "criticalP": 32,
+        "criticalDamage": 60
+      },
+      {
+        "criticalP": 33,
+        "criticalDamage": 65
+      },
+      {
+        "criticalP": 34,
+        "criticalDamage": 70
+      },
+      {
+        "criticalP": 35,
+        "criticalDamage": 75
+      },
+      {
+        "criticalP": 36,
+        "criticalDamage": 80
+      },
+      {
+        "criticalP": 37,
+        "criticalDamage": 85
+      },
+      {
+        "criticalP": 38,
+        "criticalDamage": 90
+      },
+      {
+        "criticalP": 39,
+        "criticalDamage": 95
+      },
+      {
+        "criticalP": 40,
+        "criticalDamage": 100
+      }
+    ],
+    "jobs": [
+      "bowmaster",
+      "marksman"
+    ]
+  },
+  {
+    "id": "3001003",
+    "type": "skill",
+    "name": "포커스",
+    "scope": "personal",
+    "mode": "active",
+    "masterLevel": 20,
+    "effectsByLevel": [
+      {
+        "acc": 1,
+        "eva": 1
+      },
+      {
+        "acc": 2,
+        "eva": 2
+      },
+      {
+        "acc": 3,
+        "eva": 3
+      },
+      {
+        "acc": 4,
+        "eva": 4
+      },
+      {
+        "acc": 5,
+        "eva": 5
+      },
+      {
+        "acc": 6,
+        "eva": 6
+      },
+      {
+        "acc": 7,
+        "eva": 7
+      },
+      {
+        "acc": 8,
+        "eva": 8
+      },
+      {
+        "acc": 9,
+        "eva": 9
+      },
+      {
+        "acc": 10,
+        "eva": 10
+      },
+      {
+        "acc": 11,
+        "eva": 11
+      },
+      {
+        "acc": 12,
+        "eva": 12
+      },
+      {
+        "acc": 13,
+        "eva": 13
+      },
+      {
+        "acc": 14,
+        "eva": 14
+      },
+      {
+        "acc": 15,
+        "eva": 15
+      },
+      {
+        "acc": 16,
+        "eva": 16
+      },
+      {
+        "acc": 17,
+        "eva": 17
+      },
+      {
+        "acc": 18,
+        "eva": 18
+      },
+      {
+        "acc": 19,
+        "eva": 19
+      },
+      {
+        "acc": 20,
+        "eva": 20
+      }
+    ],
+    "jobs": [
+      "bowmaster",
+      "marksman"
+    ]
+  },
+  {
+    "id": "3100000",
+    "type": "skill",
+    "name": "보우 마스터리",
+    "scope": "personal",
+    "mode": "passive",
+    "masterLevel": 20,
+    "effectsByLevel": [
+      {
+        "mastery": 5,
+        "acc": 1
+      },
+      {
+        "mastery": 5,
+        "acc": 2
+      },
+      {
+        "mastery": 10,
+        "acc": 3
+      },
+      {
+        "mastery": 10,
+        "acc": 4
+      },
+      {
+        "mastery": 15,
+        "acc": 5
+      },
+      {
+        "mastery": 15,
+        "acc": 6
+      },
+      {
+        "mastery": 20,
+        "acc": 7
+      },
+      {
+        "mastery": 20,
+        "acc": 8
+      },
+      {
+        "mastery": 25,
+        "acc": 9
+      },
+      {
+        "mastery": 25,
+        "acc": 10
+      },
+      {
+        "mastery": 30,
+        "acc": 11
+      },
+      {
+        "mastery": 30,
+        "acc": 12
+      },
+      {
+        "mastery": 35,
+        "acc": 13
+      },
+      {
+        "mastery": 35,
+        "acc": 14
+      },
+      {
+        "mastery": 40,
+        "acc": 15
+      },
+      {
+        "mastery": 40,
+        "acc": 16
+      },
+      {
+        "mastery": 45,
+        "acc": 17
+      },
+      {
+        "mastery": 45,
+        "acc": 18
+      },
+      {
+        "mastery": 50,
+        "acc": 19
+      },
+      {
+        "mastery": 50,
+        "acc": 20
+      }
+    ],
+    "jobs": [
+      "bowmaster"
+    ]
+  },
+  {
+    "id": "3110000",
+    "type": "skill",
+    "name": "쓰러스트",
+    "scope": "personal",
+    "mode": "passive",
+    "masterLevel": 20,
+    "effectsByLevel": [
+      {
+        "speed": 2
+      },
+      {
+        "speed": 4
+      },
+      {
+        "speed": 6
+      },
+      {
+        "speed": 8
+      },
+      {
+        "speed": 10
+      },
+      {
+        "speed": 12
+      },
+      {
+        "speed": 14
+      },
+      {
+        "speed": 16
+      },
+      {
+        "speed": 18
+      },
+      {
+        "speed": 20
+      },
+      {
+        "speed": 21
+      },
+      {
+        "speed": 22
+      },
+      {
+        "speed": 23
+      },
+      {
+        "speed": 24
+      },
+      {
+        "speed": 25
+      },
+      {
+        "speed": 26
+      },
+      {
+        "speed": 27
+      },
+      {
+        "speed": 28
+      },
+      {
+        "speed": 29
+      },
+      {
+        "speed": 30
+      }
+    ],
+    "jobs": [
+      "bowmaster"
+    ]
+  },
+  {
+    "id": "3120005",
+    "type": "skill",
+    "name": "보우 엑스퍼트",
+    "scope": "personal",
+    "mode": "passive",
+    "masterLevel": 30,
+    "effectsByLevel": [
+      {
+        "mastery": 5
+      },
+      {
+        "mastery": 5
+      },
+      {
+        "mastery": 5,
+        "pad": 1
+      },
+      {
+        "mastery": 5,
+        "pad": 1
+      },
+      {
+        "mastery": 5,
+        "pad": 1
+      },
+      {
+        "mastery": 10,
+        "pad": 2
+      },
+      {
+        "mastery": 10,
+        "pad": 2
+      },
+      {
+        "mastery": 10,
+        "pad": 2
+      },
+      {
+        "mastery": 10,
+        "pad": 3
+      },
+      {
+        "mastery": 10,
+        "pad": 3
+      },
+      {
+        "mastery": 15,
+        "pad": 3
+      },
+      {
+        "mastery": 15,
+        "pad": 4
+      },
+      {
+        "mastery": 15,
+        "pad": 4
+      },
+      {
+        "mastery": 15,
+        "pad": 4
+      },
+      {
+        "mastery": 15,
+        "pad": 5
+      },
+      {
+        "mastery": 20,
+        "pad": 5
+      },
+      {
+        "mastery": 20,
+        "pad": 5
+      },
+      {
+        "mastery": 20,
+        "pad": 6
+      },
+      {
+        "mastery": 20,
+        "pad": 6
+      },
+      {
+        "mastery": 20,
+        "pad": 6
+      },
+      {
+        "mastery": 25,
+        "pad": 7
+      },
+      {
+        "mastery": 25,
+        "pad": 7
+      },
+      {
+        "mastery": 25,
+        "pad": 7
+      },
+      {
+        "mastery": 25,
+        "pad": 8
+      },
+      {
+        "mastery": 25,
+        "pad": 8
+      },
+      {
+        "mastery": 30,
+        "pad": 8
+      },
+      {
+        "mastery": 30,
+        "pad": 9
+      },
+      {
+        "mastery": 30,
+        "pad": 9
+      },
+      {
+        "mastery": 30,
+        "pad": 9
+      },
+      {
+        "mastery": 30,
+        "pad": 10
+      }
+    ],
+    "jobs": [
+      "bowmaster"
+    ]
+  },
+  {
+    "id": "3121008",
+    "type": "skill",
+    "name": "집중",
+    "scope": "personal",
+    "mode": "active",
+    "masterLevel": 30,
+    "effectsByLevel": [
+      {
+        "pad": 11
+      },
+      {
+        "pad": 12
+      },
+      {
+        "pad": 12
+      },
+      {
+        "pad": 13
+      },
+      {
+        "pad": 13
+      },
+      {
+        "pad": 14
+      },
+      {
+        "pad": 14
+      },
+      {
+        "pad": 15
+      },
+      {
+        "pad": 15
+      },
+      {
+        "pad": 16
+      },
+      {
+        "pad": 16
+      },
+      {
+        "pad": 17
+      },
+      {
+        "pad": 17
+      },
+      {
+        "pad": 18
+      },
+      {
+        "pad": 18
+      },
+      {
+        "pad": 19
+      },
+      {
+        "pad": 19
+      },
+      {
+        "pad": 20
+      },
+      {
+        "pad": 20
+      },
+      {
+        "pad": 21
+      },
+      {
+        "pad": 21
+      },
+      {
+        "pad": 22
+      },
+      {
+        "pad": 22
+      },
+      {
+        "pad": 23
+      },
+      {
+        "pad": 23
+      },
+      {
+        "pad": 24
+      },
+      {
+        "pad": 24
+      },
+      {
+        "pad": 25
+      },
+      {
+        "pad": 25
+      },
+      {
+        "pad": 26
+      }
+    ],
+    "jobs": [
+      "bowmaster"
+    ]
+  },
+  {
+    "id": "3200000",
+    "type": "skill",
+    "name": "크로스보우 마스터리",
+    "scope": "personal",
+    "mode": "passive",
+    "masterLevel": 20,
+    "effectsByLevel": [
+      {
+        "mastery": 5,
+        "acc": 1
+      },
+      {
+        "mastery": 5,
+        "acc": 2
+      },
+      {
+        "mastery": 10,
+        "acc": 3
+      },
+      {
+        "mastery": 10,
+        "acc": 4
+      },
+      {
+        "mastery": 15,
+        "acc": 5
+      },
+      {
+        "mastery": 15,
+        "acc": 6
+      },
+      {
+        "mastery": 20,
+        "acc": 7
+      },
+      {
+        "mastery": 20,
+        "acc": 8
+      },
+      {
+        "mastery": 25,
+        "acc": 9
+      },
+      {
+        "mastery": 25,
+        "acc": 10
+      },
+      {
+        "mastery": 30,
+        "acc": 11
+      },
+      {
+        "mastery": 30,
+        "acc": 12
+      },
+      {
+        "mastery": 35,
+        "acc": 13
+      },
+      {
+        "mastery": 35,
+        "acc": 14
+      },
+      {
+        "mastery": 40,
+        "acc": 15
+      },
+      {
+        "mastery": 40,
+        "acc": 16
+      },
+      {
+        "mastery": 45,
+        "acc": 17
+      },
+      {
+        "mastery": 45,
+        "acc": 18
+      },
+      {
+        "mastery": 50,
+        "acc": 19
+      },
+      {
+        "mastery": 50,
+        "acc": 20
+      }
+    ],
+    "jobs": [
+      "marksman"
+    ]
+  },
+  {
+    "id": "3210000",
+    "type": "skill",
+    "name": "쓰러스트",
+    "scope": "personal",
+    "mode": "passive",
+    "masterLevel": 20,
+    "effectsByLevel": [
+      {
+        "speed": 2
+      },
+      {
+        "speed": 4
+      },
+      {
+        "speed": 6
+      },
+      {
+        "speed": 8
+      },
+      {
+        "speed": 10
+      },
+      {
+        "speed": 12
+      },
+      {
+        "speed": 14
+      },
+      {
+        "speed": 16
+      },
+      {
+        "speed": 18
+      },
+      {
+        "speed": 20
+      },
+      {
+        "speed": 21
+      },
+      {
+        "speed": 22
+      },
+      {
+        "speed": 23
+      },
+      {
+        "speed": 24
+      },
+      {
+        "speed": 25
+      },
+      {
+        "speed": 26
+      },
+      {
+        "speed": 27
+      },
+      {
+        "speed": 28
+      },
+      {
+        "speed": 29
+      },
+      {
+        "speed": 30
+      }
+    ],
+    "jobs": [
+      "marksman"
+    ]
+  },
+  {
+    "id": "3220004",
+    "type": "skill",
+    "name": "크로스보우 엑스퍼트",
+    "scope": "personal",
+    "mode": "passive",
+    "masterLevel": 30,
+    "effectsByLevel": [
+      {
+        "mastery": 5
+      },
+      {
+        "mastery": 5
+      },
+      {
+        "mastery": 5,
+        "pad": 1
+      },
+      {
+        "mastery": 5,
+        "pad": 1
+      },
+      {
+        "mastery": 5,
+        "pad": 1
+      },
+      {
+        "mastery": 10,
+        "pad": 2
+      },
+      {
+        "mastery": 10,
+        "pad": 2
+      },
+      {
+        "mastery": 10,
+        "pad": 2
+      },
+      {
+        "mastery": 10,
+        "pad": 3
+      },
+      {
+        "mastery": 10,
+        "pad": 3
+      },
+      {
+        "mastery": 15,
+        "pad": 3
+      },
+      {
+        "mastery": 15,
+        "pad": 4
+      },
+      {
+        "mastery": 15,
+        "pad": 4
+      },
+      {
+        "mastery": 15,
+        "pad": 4
+      },
+      {
+        "mastery": 15,
+        "pad": 5
+      },
+      {
+        "mastery": 20,
+        "pad": 5
+      },
+      {
+        "mastery": 20,
+        "pad": 5
+      },
+      {
+        "mastery": 20,
+        "pad": 6
+      },
+      {
+        "mastery": 20,
+        "pad": 6
+      },
+      {
+        "mastery": 20,
+        "pad": 6
+      },
+      {
+        "mastery": 25,
+        "pad": 7
+      },
+      {
+        "mastery": 25,
+        "pad": 7
+      },
+      {
+        "mastery": 25,
+        "pad": 7
+      },
+      {
+        "mastery": 25,
+        "pad": 8
+      },
+      {
+        "mastery": 25,
+        "pad": 8
+      },
+      {
+        "mastery": 30,
+        "pad": 8
+      },
+      {
+        "mastery": 30,
+        "pad": 9
+      },
+      {
+        "mastery": 30,
+        "pad": 9
+      },
+      {
+        "mastery": 30,
+        "pad": 9
+      },
+      {
+        "mastery": 30,
+        "pad": 10
+      }
+    ],
+    "jobs": [
+      "marksman"
+    ]
+  },
+  {
+    "id": "4000000",
+    "type": "skill",
+    "name": "님블 바디",
+    "scope": "personal",
+    "mode": "passive",
+    "masterLevel": 20,
+    "effectsByLevel": [
+      {
+        "acc": 1,
+        "eva": 1
+      },
+      {
+        "acc": 2,
+        "eva": 2
+      },
+      {
+        "acc": 3,
+        "eva": 3
+      },
+      {
+        "acc": 4,
+        "eva": 4
+      },
+      {
+        "acc": 5,
+        "eva": 5
+      },
+      {
+        "acc": 6,
+        "eva": 6
+      },
+      {
+        "acc": 7,
+        "eva": 7
+      },
+      {
+        "acc": 8,
+        "eva": 8
+      },
+      {
+        "acc": 9,
+        "eva": 9
+      },
+      {
+        "acc": 10,
+        "eva": 10
+      },
+      {
+        "acc": 11,
+        "eva": 11
+      },
+      {
+        "acc": 12,
+        "eva": 12
+      },
+      {
+        "acc": 13,
+        "eva": 13
+      },
+      {
+        "acc": 14,
+        "eva": 14
+      },
+      {
+        "acc": 15,
+        "eva": 15
+      },
+      {
+        "acc": 16,
+        "eva": 16
+      },
+      {
+        "acc": 17,
+        "eva": 17
+      },
+      {
+        "acc": 18,
+        "eva": 18
+      },
+      {
+        "acc": 19,
+        "eva": 19
+      },
+      {
+        "acc": 20,
+        "eva": 20
+      }
+    ],
+    "jobs": [
+      "nightLord",
+      "shadower"
+    ]
+  },
+  {
+    "id": "4100000",
+    "type": "skill",
+    "name": "자벨린 마스터리",
+    "scope": "personal",
+    "mode": "passive",
+    "masterLevel": 20,
+    "effectsByLevel": [
+      {
+        "mastery": 5,
+        "acc": 1
+      },
+      {
+        "mastery": 5,
+        "acc": 2
+      },
+      {
+        "mastery": 10,
+        "acc": 3
+      },
+      {
+        "mastery": 10,
+        "acc": 4
+      },
+      {
+        "mastery": 15,
+        "acc": 5
+      },
+      {
+        "mastery": 15,
+        "acc": 6
+      },
+      {
+        "mastery": 20,
+        "acc": 7
+      },
+      {
+        "mastery": 20,
+        "acc": 8
+      },
+      {
+        "mastery": 25,
+        "acc": 9
+      },
+      {
+        "mastery": 25,
+        "acc": 10
+      },
+      {
+        "mastery": 30,
+        "acc": 11
+      },
+      {
+        "mastery": 30,
+        "acc": 12
+      },
+      {
+        "mastery": 35,
+        "acc": 13
+      },
+      {
+        "mastery": 35,
+        "acc": 14
+      },
+      {
+        "mastery": 40,
+        "acc": 15
+      },
+      {
+        "mastery": 40,
+        "acc": 16
+      },
+      {
+        "mastery": 45,
+        "acc": 17
+      },
+      {
+        "mastery": 45,
+        "acc": 18
+      },
+      {
+        "mastery": 50,
+        "acc": 19
+      },
+      {
+        "mastery": 50,
+        "acc": 20
+      }
+    ],
+    "jobs": [
+      "nightLord"
+    ]
+  },
+  {
+    "id": "4100001",
+    "type": "skill",
+    "name": "크리티컬 스로우",
+    "scope": "personal",
+    "mode": "passive",
+    "masterLevel": 30,
+    "effectsByLevel": [
+      {
+        "criticalP": 21,
+        "criticalDamage": 13
+      },
+      {
+        "criticalP": 22,
+        "criticalDamage": 16
+      },
+      {
+        "criticalP": 23,
+        "criticalDamage": 19
+      },
+      {
+        "criticalP": 24,
+        "criticalDamage": 22
+      },
+      {
+        "criticalP": 25,
+        "criticalDamage": 25
+      },
+      {
+        "criticalP": 26,
+        "criticalDamage": 28
+      },
+      {
+        "criticalP": 27,
+        "criticalDamage": 31
+      },
+      {
+        "criticalP": 28,
+        "criticalDamage": 34
+      },
+      {
+        "criticalP": 29,
+        "criticalDamage": 37
+      },
+      {
+        "criticalP": 30,
+        "criticalDamage": 40
+      },
+      {
+        "criticalP": 31,
+        "criticalDamage": 43
+      },
+      {
+        "criticalP": 32,
+        "criticalDamage": 46
+      },
+      {
+        "criticalP": 33,
+        "criticalDamage": 49
+      },
+      {
+        "criticalP": 34,
+        "criticalDamage": 52
+      },
+      {
+        "criticalP": 35,
+        "criticalDamage": 55
+      },
+      {
+        "criticalP": 36,
+        "criticalDamage": 58
+      },
+      {
+        "criticalP": 37,
+        "criticalDamage": 61
+      },
+      {
+        "criticalP": 38,
+        "criticalDamage": 64
+      },
+      {
+        "criticalP": 39,
+        "criticalDamage": 67
+      },
+      {
+        "criticalP": 40,
+        "criticalDamage": 70
+      },
+      {
+        "criticalP": 41,
+        "criticalDamage": 73
+      },
+      {
+        "criticalP": 42,
+        "criticalDamage": 76
+      },
+      {
+        "criticalP": 43,
+        "criticalDamage": 79
+      },
+      {
+        "criticalP": 44,
+        "criticalDamage": 82
+      },
+      {
+        "criticalP": 45,
+        "criticalDamage": 85
+      },
+      {
+        "criticalP": 46,
+        "criticalDamage": 88
+      },
+      {
+        "criticalP": 47,
+        "criticalDamage": 91
+      },
+      {
+        "criticalP": 48,
+        "criticalDamage": 94
+      },
+      {
+        "criticalP": 49,
+        "criticalDamage": 97
+      },
+      {
+        "criticalP": 50,
+        "criticalDamage": 100
+      }
+    ],
+    "jobs": [
+      "nightLord"
+    ]
+  },
+  {
+    "id": "4120002",
+    "type": "skill",
+    "name": "페이크",
+    "scope": "personal",
+    "mode": "active",
+    "masterLevel": 30,
+    "effectsByLevel": [
+      {
+        "addEvadeP": 1
+      },
+      {
+        "addEvadeP": 2
+      },
+      {
+        "addEvadeP": 3
+      },
+      {
+        "addEvadeP": 4
+      },
+      {
+        "addEvadeP": 5
+      },
+      {
+        "addEvadeP": 6
+      },
+      {
+        "addEvadeP": 7
+      },
+      {
+        "addEvadeP": 8
+      },
+      {
+        "addEvadeP": 9
+      },
+      {
+        "addEvadeP": 10
+      },
+      {
+        "addEvadeP": 11
+      },
+      {
+        "addEvadeP": 12
+      },
+      {
+        "addEvadeP": 13
+      },
+      {
+        "addEvadeP": 14
+      },
+      {
+        "addEvadeP": 15
+      },
+      {
+        "addEvadeP": 16
+      },
+      {
+        "addEvadeP": 17
+      },
+      {
+        "addEvadeP": 18
+      },
+      {
+        "addEvadeP": 19
+      },
+      {
+        "addEvadeP": 20
+      },
+      {
+        "addEvadeP": 21
+      },
+      {
+        "addEvadeP": 22
+      },
+      {
+        "addEvadeP": 23
+      },
+      {
+        "addEvadeP": 24
+      },
+      {
+        "addEvadeP": 25
+      },
+      {
+        "addEvadeP": 26
+      },
+      {
+        "addEvadeP": 27
+      },
+      {
+        "addEvadeP": 28
+      },
+      {
+        "addEvadeP": 29
+      },
+      {
+        "addEvadeP": 30
+      }
+    ],
+    "jobs": [
+      "nightLord"
+    ]
+  },
+  {
+    "id": "4200000",
+    "type": "skill",
+    "name": "대거 마스터리",
+    "scope": "personal",
+    "mode": "passive",
+    "masterLevel": 20,
+    "effectsByLevel": [
+      {
+        "mastery": 5,
+        "acc": 1
+      },
+      {
+        "mastery": 5,
+        "acc": 2
+      },
+      {
+        "mastery": 10,
+        "acc": 3
+      },
+      {
+        "mastery": 10,
+        "acc": 4
+      },
+      {
+        "mastery": 15,
+        "acc": 5
+      },
+      {
+        "mastery": 15,
+        "acc": 6
+      },
+      {
+        "mastery": 20,
+        "acc": 7
+      },
+      {
+        "mastery": 20,
+        "acc": 8
+      },
+      {
+        "mastery": 25,
+        "acc": 9
+      },
+      {
+        "mastery": 25,
+        "acc": 10
+      },
+      {
+        "mastery": 30,
+        "acc": 11
+      },
+      {
+        "mastery": 30,
+        "acc": 12
+      },
+      {
+        "mastery": 35,
+        "acc": 13
+      },
+      {
+        "mastery": 35,
+        "acc": 14
+      },
+      {
+        "mastery": 40,
+        "acc": 15
+      },
+      {
+        "mastery": 40,
+        "acc": 16
+      },
+      {
+        "mastery": 45,
+        "acc": 17
+      },
+      {
+        "mastery": 45,
+        "acc": 18
+      },
+      {
+        "mastery": 50,
+        "acc": 19
+      },
+      {
+        "mastery": 50,
+        "acc": 20
+      }
+    ],
+    "jobs": [
+      "shadower"
+    ]
+  },
+  {
+    "id": "4210000",
+    "type": "skill",
+    "name": "쉴드 마스터리",
+    "scope": "personal",
+    "mode": "passive",
+    "masterLevel": 20,
+    "effectsByLevel": [
+      {
+        "shieldBonusPdef": 5
+      },
+      {
+        "shieldBonusPdef": 10
+      },
+      {
+        "shieldBonusPdef": 15
+      },
+      {
+        "shieldBonusPdef": 20
+      },
+      {
+        "shieldBonusPdef": 25
+      },
+      {
+        "shieldBonusPdef": 30
+      },
+      {
+        "shieldBonusPdef": 35
+      },
+      {
+        "shieldBonusPdef": 40
+      },
+      {
+        "shieldBonusPdef": 45
+      },
+      {
+        "shieldBonusPdef": 50
+      },
+      {
+        "shieldBonusPdef": 55
+      },
+      {
+        "shieldBonusPdef": 60
+      },
+      {
+        "shieldBonusPdef": 65
+      },
+      {
+        "shieldBonusPdef": 70
+      },
+      {
+        "shieldBonusPdef": 75
+      },
+      {
+        "shieldBonusPdef": 80
+      },
+      {
+        "shieldBonusPdef": 85
+      },
+      {
+        "shieldBonusPdef": 90
+      },
+      {
+        "shieldBonusPdef": 95
+      },
+      {
+        "shieldBonusPdef": 100
+      }
+    ],
+    "jobs": [
+      "shadower"
+    ]
+  },
+  {
+    "id": "4211005",
+    "type": "skill",
+    "name": "메소 가드",
+    "scope": "personal",
+    "mode": "active",
+    "masterLevel": 20,
+    "effectsByLevel": [
+      {
+        "damageReduce": 50
+      },
+      {
+        "damageReduce": 50
+      },
+      {
+        "damageReduce": 50
+      },
+      {
+        "damageReduce": 50
+      },
+      {
+        "damageReduce": 50
+      },
+      {
+        "damageReduce": 50
+      },
+      {
+        "damageReduce": 50
+      },
+      {
+        "damageReduce": 50
+      },
+      {
+        "damageReduce": 50
+      },
+      {
+        "damageReduce": 50
+      },
+      {
+        "damageReduce": 50
+      },
+      {
+        "damageReduce": 50
+      },
+      {
+        "damageReduce": 50
+      },
+      {
+        "damageReduce": 50
+      },
+      {
+        "damageReduce": 50
+      },
+      {
+        "damageReduce": 50
+      },
+      {
+        "damageReduce": 50
+      },
+      {
+        "damageReduce": 50
+      },
+      {
+        "damageReduce": 50
+      },
+      {
+        "damageReduce": 50
+      }
+    ],
+    "jobs": [
+      "shadower"
+    ]
+  },
+  {
+    "id": "4220002",
+    "type": "skill",
+    "name": "페이크",
+    "scope": "personal",
+    "mode": "active",
+    "masterLevel": 30,
+    "effectsByLevel": [
+      {
+        "addEvadeP": 11
+      },
+      {
+        "addEvadeP": 12
+      },
+      {
+        "addEvadeP": 13
+      },
+      {
+        "addEvadeP": 14
+      },
+      {
+        "addEvadeP": 15
+      },
+      {
+        "addEvadeP": 16
+      },
+      {
+        "addEvadeP": 17
+      },
+      {
+        "addEvadeP": 18
+      },
+      {
+        "addEvadeP": 19
+      },
+      {
+        "addEvadeP": 20
+      },
+      {
+        "addEvadeP": 21
+      },
+      {
+        "addEvadeP": 22
+      },
+      {
+        "addEvadeP": 23
+      },
+      {
+        "addEvadeP": 24
+      },
+      {
+        "addEvadeP": 25
+      },
+      {
+        "addEvadeP": 26
+      },
+      {
+        "addEvadeP": 27
+      },
+      {
+        "addEvadeP": 28
+      },
+      {
+        "addEvadeP": 29
+      },
+      {
+        "addEvadeP": 30
+      },
+      {
+        "addEvadeP": 31
+      },
+      {
+        "addEvadeP": 32
+      },
+      {
+        "addEvadeP": 33
+      },
+      {
+        "addEvadeP": 34
+      },
+      {
+        "addEvadeP": 35
+      },
+      {
+        "addEvadeP": 36
+      },
+      {
+        "addEvadeP": 37
+      },
+      {
+        "addEvadeP": 38
+      },
+      {
+        "addEvadeP": 39
+      },
+      {
+        "addEvadeP": 40
+      }
+    ],
+    "jobs": [
+      "shadower"
+    ]
+  },
+  {
+    "id": "5000000",
+    "type": "skill",
+    "name": "퀵모션",
+    "scope": "personal",
+    "mode": "passive",
+    "masterLevel": 20,
+    "effectsByLevel": [
+      {
+        "acc": 1,
+        "eva": 1
+      },
+      {
+        "acc": 2,
+        "eva": 2
+      },
+      {
+        "acc": 3,
+        "eva": 3
+      },
+      {
+        "acc": 4,
+        "eva": 4
+      },
+      {
+        "acc": 5,
+        "eva": 5
+      },
+      {
+        "acc": 6,
+        "eva": 6
+      },
+      {
+        "acc": 7,
+        "eva": 7
+      },
+      {
+        "acc": 8,
+        "eva": 8
+      },
+      {
+        "acc": 9,
+        "eva": 9
+      },
+      {
+        "acc": 10,
+        "eva": 10
+      },
+      {
+        "acc": 11,
+        "eva": 11
+      },
+      {
+        "acc": 12,
+        "eva": 12
+      },
+      {
+        "acc": 13,
+        "eva": 13
+      },
+      {
+        "acc": 14,
+        "eva": 14
+      },
+      {
+        "acc": 15,
+        "eva": 15
+      },
+      {
+        "acc": 16,
+        "eva": 16
+      },
+      {
+        "acc": 17,
+        "eva": 17
+      },
+      {
+        "acc": 18,
+        "eva": 18
+      },
+      {
+        "acc": 19,
+        "eva": 19
+      },
+      {
+        "acc": 20,
+        "eva": 20
+      }
+    ],
+    "jobs": [
+      "viper",
+      "captain"
+    ]
+  },
+  {
+    "id": "5100001",
+    "type": "skill",
+    "name": "너클 마스터리",
+    "scope": "personal",
+    "mode": "passive",
+    "masterLevel": 20,
+    "effectsByLevel": [
+      {
+        "mastery": 5,
+        "acc": 1
+      },
+      {
+        "mastery": 5,
+        "acc": 2
+      },
+      {
+        "mastery": 10,
+        "acc": 3
+      },
+      {
+        "mastery": 10,
+        "acc": 4
+      },
+      {
+        "mastery": 15,
+        "acc": 5
+      },
+      {
+        "mastery": 15,
+        "acc": 6
+      },
+      {
+        "mastery": 20,
+        "acc": 7
+      },
+      {
+        "mastery": 20,
+        "acc": 8
+      },
+      {
+        "mastery": 25,
+        "acc": 9
+      },
+      {
+        "mastery": 25,
+        "acc": 10
+      },
+      {
+        "mastery": 30,
+        "acc": 11
+      },
+      {
+        "mastery": 30,
+        "acc": 12
+      },
+      {
+        "mastery": 35,
+        "acc": 13
+      },
+      {
+        "mastery": 35,
+        "acc": 14
+      },
+      {
+        "mastery": 40,
+        "acc": 15
+      },
+      {
+        "mastery": 40,
+        "acc": 16
+      },
+      {
+        "mastery": 45,
+        "acc": 17
+      },
+      {
+        "mastery": 45,
+        "acc": 18
+      },
+      {
+        "mastery": 50,
+        "acc": 19
+      },
+      {
+        "mastery": 50,
+        "acc": 20
+      }
+    ],
+    "jobs": [
+      "viper"
+    ]
+  },
+  {
+    "id": "5111005",
+    "type": "skill",
+    "name": "트랜스폼",
+    "scope": "personal",
+    "mode": "active",
+    "masterLevel": 20,
+    "effectsByLevel": [
+      {
+        "STR": 1,
+        "pdef": 2,
+        "mdef": 2
+      },
+      {
+        "STR": 2,
+        "pdef": 4,
+        "mdef": 4
+      },
+      {
+        "STR": 3,
+        "pdef": 6,
+        "mdef": 6
+      },
+      {
+        "STR": 4,
+        "pdef": 8,
+        "mdef": 8
+      },
+      {
+        "STR": 5,
+        "pdef": 10,
+        "mdef": 10
+      },
+      {
+        "STR": 6,
+        "pdef": 12,
+        "mdef": 12
+      },
+      {
+        "STR": 7,
+        "pdef": 14,
+        "mdef": 14
+      },
+      {
+        "STR": 8,
+        "pdef": 16,
+        "mdef": 16
+      },
+      {
+        "STR": 9,
+        "pdef": 18,
+        "mdef": 18
+      },
+      {
+        "STR": 10,
+        "pdef": 20,
+        "mdef": 20
+      },
+      {
+        "STR": 11,
+        "pdef": 22,
+        "mdef": 22
+      },
+      {
+        "STR": 12,
+        "pdef": 24,
+        "mdef": 24
+      },
+      {
+        "STR": 13,
+        "pdef": 26,
+        "mdef": 26
+      },
+      {
+        "STR": 14,
+        "pdef": 28,
+        "mdef": 28
+      },
+      {
+        "STR": 15,
+        "pdef": 30,
+        "mdef": 30
+      },
+      {
+        "STR": 16,
+        "pdef": 32,
+        "mdef": 32
+      },
+      {
+        "STR": 17,
+        "pdef": 34,
+        "mdef": 34
+      },
+      {
+        "STR": 18,
+        "pdef": 36,
+        "mdef": 36
+      },
+      {
+        "STR": 19,
+        "pdef": 38,
+        "mdef": 38
+      },
+      {
+        "STR": 20,
+        "pdef": 40,
+        "mdef": 40
+      }
+    ],
+    "jobs": [
+      "viper"
+    ]
+  },
+  {
+    "id": "5121003",
+    "type": "skill",
+    "name": "슈퍼 트랜스폼",
+    "scope": "personal",
+    "mode": "active",
+    "masterLevel": 20,
+    "effectsByLevel": [
+      {
+        "STR": 21,
+        "pdef": 41,
+        "mdef": 41
+      },
+      {
+        "STR": 21,
+        "pdef": 42,
+        "mdef": 42
+      },
+      {
+        "STR": 22,
+        "pdef": 43,
+        "mdef": 43
+      },
+      {
+        "STR": 22,
+        "pdef": 44,
+        "mdef": 44
+      },
+      {
+        "STR": 23,
+        "pdef": 45,
+        "mdef": 45
+      },
+      {
+        "STR": 23,
+        "pdef": 46,
+        "mdef": 46
+      },
+      {
+        "STR": 24,
+        "pdef": 47,
+        "mdef": 47
+      },
+      {
+        "STR": 24,
+        "pdef": 48,
+        "mdef": 48
+      },
+      {
+        "STR": 25,
+        "pdef": 49,
+        "mdef": 49
+      },
+      {
+        "STR": 25,
+        "pdef": 50,
+        "mdef": 50
+      },
+      {
+        "STR": 26,
+        "pdef": 51,
+        "mdef": 51
+      },
+      {
+        "STR": 26,
+        "pdef": 52,
+        "mdef": 52
+      },
+      {
+        "STR": 27,
+        "pdef": 53,
+        "mdef": 53
+      },
+      {
+        "STR": 27,
+        "pdef": 54,
+        "mdef": 54
+      },
+      {
+        "STR": 28,
+        "pdef": 55,
+        "mdef": 55
+      },
+      {
+        "STR": 28,
+        "pdef": 56,
+        "mdef": 56
+      },
+      {
+        "STR": 29,
+        "pdef": 57,
+        "mdef": 57
+      },
+      {
+        "STR": 29,
+        "pdef": 58,
+        "mdef": 58
+      },
+      {
+        "STR": 30,
+        "pdef": 59,
+        "mdef": 59
+      },
+      {
+        "STR": 30,
+        "pdef": 60,
+        "mdef": 60
+      }
+    ],
+    "jobs": [
+      "viper"
+    ]
+  },
+  {
+    "id": "5200000",
+    "type": "skill",
+    "name": "건 마스터리",
+    "scope": "personal",
+    "mode": "passive",
+    "masterLevel": 20,
+    "effectsByLevel": [
+      {
+        "mastery": 5,
+        "acc": 1
+      },
+      {
+        "mastery": 5,
+        "acc": 2
+      },
+      {
+        "mastery": 10,
+        "acc": 3
+      },
+      {
+        "mastery": 10,
+        "acc": 4
+      },
+      {
+        "mastery": 15,
+        "acc": 5
+      },
+      {
+        "mastery": 15,
+        "acc": 6
+      },
+      {
+        "mastery": 20,
+        "acc": 7
+      },
+      {
+        "mastery": 20,
+        "acc": 8
+      },
+      {
+        "mastery": 25,
+        "acc": 9
+      },
+      {
+        "mastery": 25,
+        "acc": 10
+      },
+      {
+        "mastery": 30,
+        "acc": 11
+      },
+      {
+        "mastery": 30,
+        "acc": 12
+      },
+      {
+        "mastery": 35,
+        "acc": 13
+      },
+      {
+        "mastery": 35,
+        "acc": 14
+      },
+      {
+        "mastery": 40,
+        "acc": 15
+      },
+      {
+        "mastery": 40,
+        "acc": 16
+      },
+      {
+        "mastery": 45,
+        "acc": 17
+      },
+      {
+        "mastery": 45,
+        "acc": 18
+      },
+      {
+        "mastery": 50,
+        "acc": 19
+      },
+      {
+        "mastery": 50,
+        "acc": 20
+      }
+    ],
+    "jobs": [
+      "captain"
+    ]
+  }
+]

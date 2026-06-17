@@ -2068,7 +2068,7 @@
       "STR": 1,
       "DEX": 3,
       "pdef": 42,
-      "add": 1
+      "acc": 1
     },
     "reqLevel": 70,
     "reqJob": 1,
@@ -2084,7 +2084,7 @@
       "STR": 2,
       "DEX": 2,
       "pdef": 42,
-      "add": 1
+      "acc": 1
     },
     "reqLevel": 70,
     "reqJob": 1,
@@ -2100,7 +2100,7 @@
       "STR": 3,
       "DEX": 1,
       "pdef": 42,
-      "add": 1
+      "acc": 1
     },
     "reqLevel": 70,
     "reqJob": 1,
@@ -2588,7 +2588,7 @@
       "STR": 2,
       "DEX": 3,
       "pdef": 54,
-      "add": 1
+      "acc": 1
     },
     "reqLevel": 90,
     "reqJob": 1,
@@ -2604,7 +2604,7 @@
       "STR": 3,
       "DEX": 2,
       "pdef": 54,
-      "add": 1
+      "acc": 1
     },
     "reqLevel": 90,
     "reqJob": 1,
@@ -2620,7 +2620,7 @@
       "STR": 4,
       "DEX": 1,
       "pdef": 54,
-      "add": 1
+      "acc": 1
     },
     "reqLevel": 90,
     "reqJob": 1,
@@ -2823,7 +2823,7 @@
       "STR": 2,
       "DEX": 4,
       "pdef": 60,
-      "add": 1
+      "acc": 1
     },
     "reqLevel": 100,
     "reqJob": 1,
@@ -2839,7 +2839,7 @@
       "STR": 4,
       "DEX": 2,
       "pdef": 60,
-      "add": 1
+      "acc": 1
     },
     "reqLevel": 100,
     "reqJob": 1,
@@ -2855,7 +2855,7 @@
       "STR": 5,
       "DEX": 1,
       "pdef": 60,
-      "add": 1
+      "acc": 1
     },
     "reqLevel": 100,
     "reqJob": 1,
