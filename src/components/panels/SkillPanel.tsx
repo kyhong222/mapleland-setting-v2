@@ -50,7 +50,7 @@ function BuffIcon({ buff, active = true, onClick, size = 46 }: { buff: Buff; act
         cursor: onClick ? 'pointer' : 'default',
       }}
     >
-      {icon && <Box component="img" src={icon} alt="" sx={{ width: img, height: img, imageRendering: 'pixelated', opacity: active ? 1 : 0.4 }} />}
+      {icon && <Box component="img" src={icon} alt="" sx={{ width: img, height: img, imageRendering: 'pixelated', filter: active ? 'none' : 'grayscale(1)' }} />}
     </Box>
   )
 }
