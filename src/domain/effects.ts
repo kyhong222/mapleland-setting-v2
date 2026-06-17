@@ -57,6 +57,7 @@ export type EffectId =
   | 'shieldBonusPdef'
   | 'addEvadeP'
   | 'damageReduce'
+  | 'damageReflectP'
   | 'cDamageReduce_common'
   | 'cDamageReduce_boss'
   | 'blockRate'
@@ -129,6 +130,7 @@ export const EFFECTS: Record<EffectId, EffectDef> = {
   shieldBonusPdef: { id: 'shieldBonusPdef', label: '방패 방어력 보너스%', category: 'defense', unit: 'percent', appliesToItem: false },
   addEvadeP: { id: 'addEvadeP', label: '추가회피확률%', category: 'defense', unit: 'percent', appliesToItem: false },
   damageReduce: { id: 'damageReduce', label: '피해량감소', category: 'defense', unit: 'percent', appliesToItem: false },
+  damageReflectP: { id: 'damageReflectP', label: '피해 반사%', category: 'defense', unit: 'percent', appliesToItem: false },
   cDamageReduce_common: { id: 'cDamageReduce_common', label: '접촉피해량감소(일반)', category: 'defense', unit: 'percent', appliesToItem: false },
   cDamageReduce_boss: { id: 'cDamageReduce_boss', label: '접촉피해량감소(보스)', category: 'defense', unit: 'percent', appliesToItem: false },
   blockRate: { id: 'blockRate', label: '블록확률', category: 'defense', unit: 'percent', appliesToItem: false },

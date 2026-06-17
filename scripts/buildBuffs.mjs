@@ -105,6 +105,9 @@ const SKILL_MAP = {
   1320009: pActive('비홀더스 버프', p => ({ acc: n(p, 'acc'), eva: n(p, 'eva'), pad: n(p, 'pad'), pdef: n(p, 'pdd'), mdef: n(p, 'mdd') })),
   // 비홀더: 무기 숙련도 제공(필드×5 → 최대 20%)
   1321007: pPassive('비홀더', p => ({ mastery: n(p, 'mastery') * 5 })),
+  // 파워 가드: 피해 반사%(파이터/페이지 → 히어로/팔라딘)
+  1101007: pActive('파워 가드', p => ({ damageReflectP: n(p, 'x') })),
+  1201007: pActive('파워 가드', p => ({ damageReflectP: n(p, 'x') })),
 
   // 마법사
   2001003: pActive('매직 아머', p => ({ pdef: n(p, 'pdd') })),

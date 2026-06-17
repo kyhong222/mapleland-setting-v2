@@ -150,6 +150,15 @@ const COMMON_SLOTS: { key: string; defIcon: number; phys: { label: string; stat:
   { key: 'jump', defIcon: 2022376, phys: { label: '점프', stat: 'jump' }, mag: { label: '점프', stat: 'jump' } },
 ]
 
+/** 공통버프 8슬롯이 다루는 능력치 */
+const COMMON_SLOT_STATS: EffectId[] = ['pad', 'mad', 'addPad', 'addMad', 'pdef', 'mdef', 'acc', 'eva', 'speed', 'jump']
+
+/** 8슬롯 능력치에 하나도 해당하지 않는 버프(슬롯으로 못 다룸) */
+function hasNoSlotStat(buff: Buff): boolean {
+  const eff = buffEffectsAtLevel(buff, defaultBuffLevel(buff))
+  return !COMMON_SLOT_STATS.some((s) => (eff[s] ?? 0) !== 0)
+}
+
 /** 해당 능력치에 기여하는 후보 버프(파티 + 도핑 + 개인특화 액티브) */
 function candidatesForStat(stat: EffectId, jobId: JobId): { buff: Buff; value: number }[] {
   const pool: Buff[] = [...PARTY_BUFFS, ...DOPING_ITEMS, ...PERSONAL_BUFFS.filter((b) => canUseBuff(b, jobId))]
@@ -249,6 +258,9 @@ export default function SkillPanel() {
   const masteries = jobPassives.filter((b) => b.type === 'skill' && b.weaponTypes)
   const activeMasteries = weaponType ? masteries.filter((b) => b.type === 'skill' && b.weaponTypes?.includes(weaponType)) : []
   const otherPassives = jobPassives.filter((b) => !(b.type === 'skill' && b.weaponTypes))
+  // 8슬롯으로 못 다루는 버프 — 공통(파티 전용칸) / 특화(개인 액티브)
+  const specialParty = PARTY_BUFFS.filter((b) => b.name === '샤프 아이즈' || b.name === '하이퍼 바디')
+  const orphanActives = jobId ? PERSONAL_BUFFS.filter((b) => canUseBuff(b, jobId) && hasNoSlotStat(b)) : []
 
   return (
     <CollapsiblePanel id="skill" title="스킬 및 도핑">
@@ -263,10 +275,16 @@ export default function SkillPanel() {
       {!jobId ? (
         <Typography variant="caption" color="text.disabled">직업 선택 후 표시</Typography>
       ) : (
-        COMMON_SLOTS.map((s) => {
-          const { label, stat } = isMagician ? s.mag : s.phys
-          return <CommonSlot key={s.key} slotKey={s.key} label={label} stat={stat} defIcon={s.defIcon} options={candidatesForStat(stat, jobId)} onOpen={open('common')} />
-        })
+        <>
+          {COMMON_SLOTS.map((s) => {
+            const { label, stat } = isMagician ? s.mag : s.phys
+            return <CommonSlot key={s.key} slotKey={s.key} label={label} stat={stat} defIcon={s.defIcon} options={candidatesForStat(stat, jobId)} onOpen={open('common')} />
+          })}
+          {specialParty.length > 0 && <Divider sx={{ my: 0.75 }} />}
+          {specialParty.map((b) => (
+            <BuffRow key={b.id} buff={b} onOpen={open('toggle')} />
+          ))}
+        </>
       )}
 
       <Divider sx={{ my: 1 }} />
@@ -285,8 +303,9 @@ export default function SkillPanel() {
         </>
       )}
       {otherPassives.map((b) => <BuffRow key={b.id} buff={b} onOpen={open('toggle')} />)}
-      {masteries.length === 0 && otherPassives.length === 0 && (
-        <Typography variant="caption" color="text.disabled">사용 가능한 특화 패시브 없음</Typography>
+      {orphanActives.map((b) => <BuffRow key={b.id} buff={b} onOpen={open('toggle')} />)}
+      {masteries.length === 0 && otherPassives.length === 0 && orphanActives.length === 0 && (
+        <Typography variant="caption" color="text.disabled">사용 가능한 특화 버프 없음</Typography>
       )}
 
       {dlg && <BuffDialog buff={dlg.buff} kind={dlg.kind} onClose={() => setDlg(null)} />}

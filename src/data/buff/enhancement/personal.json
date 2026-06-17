@@ -76,6 +76,110 @@
     ]
   },
   {
+    "id": "1101007",
+    "type": "skill",
+    "name": "파워 가드",
+    "scope": "personal",
+    "mode": "active",
+    "masterLevel": 30,
+    "effectsByLevel": [
+      {
+        "damageReflectP": 11
+      },
+      {
+        "damageReflectP": 12
+      },
+      {
+        "damageReflectP": 13
+      },
+      {
+        "damageReflectP": 14
+      },
+      {
+        "damageReflectP": 15
+      },
+      {
+        "damageReflectP": 16
+      },
+      {
+        "damageReflectP": 17
+      },
+      {
+        "damageReflectP": 18
+      },
+      {
+        "damageReflectP": 19
+      },
+      {
+        "damageReflectP": 20
+      },
+      {
+        "damageReflectP": 21
+      },
+      {
+        "damageReflectP": 22
+      },
+      {
+        "damageReflectP": 23
+      },
+      {
+        "damageReflectP": 24
+      },
+      {
+        "damageReflectP": 25
+      },
+      {
+        "damageReflectP": 26
+      },
+      {
+        "damageReflectP": 27
+      },
+      {
+        "damageReflectP": 28
+      },
+      {
+        "damageReflectP": 29
+      },
+      {
+        "damageReflectP": 30
+      },
+      {
+        "damageReflectP": 31
+      },
+      {
+        "damageReflectP": 32
+      },
+      {
+        "damageReflectP": 33
+      },
+      {
+        "damageReflectP": 34
+      },
+      {
+        "damageReflectP": 35
+      },
+      {
+        "damageReflectP": 36
+      },
+      {
+        "damageReflectP": 37
+      },
+      {
+        "damageReflectP": 38
+      },
+      {
+        "damageReflectP": 39
+      },
+      {
+        "damageReflectP": 40
+      }
+    ],
+    "icon": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAA7EAAAOxAGVKw4bAAADdklEQVR4nL1XgZGrIBBdZ64BUgJXAimBlKAlaAlagpagJcQSjhKOEo4SjhLydxdINDFRb/5kM4lEFt7btwvoB8ztAu+xLDWmBC5f3z9vQT8dPy+JRCLA4FrJtxBoz9/QFEcm8XEPbq19GKCUerh377fFJ/nVOfpGEh+wZMLcTfR/fMDrB5dlAmjHz+ba/v5pX/Zv8Vnqf0rAx+vl9wfbDg6H04MP9YEQJOMiIbKvXoHHyYpmSZ4XBBIDjx8hFFwuv/hPTDpF6PXuOqStFfEJX7qBDfbyYTK6CHi0pylIdio6nvTctzNw8P7OM/bFy6kK5PpySnwzgeAshAStcyixartu4PvOh2ivRODWbIYbERpLJJdhVwjcBgX2xnqo65KDtsigqDpuU47JBiOjxvJhhtT28McUOJxY4vC0zAhH65Lz7+wQaBKwSPlei3kDgVvhWG47H+4ZM85kNUbgXxWL0ccw5zlPpeKfVOFLBexYYZRU3QhkDfR9PpmYQB1fEz6lpxk8iCnSiiDrKXCOtzmlNOZ+xNUQIi4qx1EF1T30dfAvkeMweiYtQvL2E/Czq0AVLEflnWPAAOxnOff3gyFuCv7u9hYCt8ThkisdyipRCRNBLU8WtoWkQChWag8GQvT41dJMotlYA+FUq6E+4xZajCgt/qc8Q1zXUdFisvP62cIV4Rd3UIHyd8bhXDmSqRdPzNUaCDILjpx2NSoJwqCcF53nJSiiWoEBZl5KVkDSET86eGVPCaSoaAnm2sOIS64a5plMu93kRgRXmDoca+fVtJkASVUCJrlvYKgMVraM84v5XAlcBDK3Lyk18ilY9hpy2S7K/1KBmUUVjFMQTsFJzqngpIy7oeAa6FuqGyI9rk79lEBSwUcVck1VbZkEyUwkeIPyQQImAbRqggLZ4RNyjL5Uz6NfVYCf3zgVFYwVyokkSmWxrvIgtaStRvCVmJTaswpZdkBwHLsCvkrgRqLH0CoYMKd0FJfK8B7TmZzBtRhBoB8V7oEibwm8XwXfRGBKwiOJBklwjtHqfAzLEhTLfzw1oAlcbwPfTCCRaJFEgySq+Ix3bsNTblGFY5nA2x3guwjck2DgxlyByfaC7yYwJUHWtMUVOPXtNSKQ0bvanlezBNTC+U/A3WjT43yWFGAS9M72FzPOwh5L4PQzTUEWXxjfYdfX83/MDdKc+BMz8AAAAABJRU5ErkJggg==",
+    "jobs": [
+      "hero"
+    ]
+  },
+  {
     "id": "1120005",
     "type": "skill",
     "name": "블로킹",
@@ -385,6 +489,110 @@
     "icon": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAA7EAAAOxAGVKw4bAAAERElEQVR4nL1X27GrMAx0Zk4DTglOCaQEUgKUEEoIJSQlQAlQAi4hlBCXcFxCrtZGIAy5r4+jmQzED+1qJQv4Umt7q5+xA99IAu/n87VZqfV04+JNVZfhOjwHdWmtGq658qNX1aNS3nvVNM28l/7u2vl8ejMJJhDAs8zMi5xzK2CTa1WWpeqaTulMB3AYk2huERhrmntHG3wgb8zikw1YTOLrE7ifgLM8Xi/nywL+sCuH+D/ccmVrG9ZAjfs1EnIqBiKJAKvpBlWVl3daAzM4A4/Wh3ttdASvrdozjA/3mA7vfFAs7lczkT01VgQC+EjghV4G/STrJDFAYOeqD9cbyV9ky/qxjypgz41UyASRPRIzAQk+9rF6cI+fe8T/tu6VVkZl94wKzG2iGetxPSCKEETGfksiEECxyMgffRVnY5A0v0SIVETn6xJ3vQtzc+1SGoKfPt7DnnRymMRGAdAtywjMcrOhqJKA1P1+W63RFKGHctMiQ6QbFKLIZnmJR/h2XfwHAo7y09p6BrbtutAwjjGjF+lk3gM5y8AmrG3uzdYPjYHghXpJ1zULAQbnDXDCUqOiU3C/02EMaqX1KxJZlgX5zeSL/Q9UpJeyXAhIwyZzNZRTH53SNfN6ziPGjsfjhsD39/eyhgCLaxEnJj8wV/tN8QYCHL3W23MK0+TA9PEK8Pd7/cgYqfIwDhJoRiMOQ6tCIAFYkNCTOlDheD5uFdhsyFVwmtP53wMPqtGxer5eMwmcmp76hK1Glef57ItNJnCXAEv/v+atU0VTqHZqViGo1iXQCQFM6WRSRv9PRicEJDKqBWutKqAC0tGKh5wkgHOOOuhRpXgItTHfPYEXk/SQ9pONiVNenxFwRv+hRDEF4egEFdS+y1qcAnmssADtzPRmBkfeD4dDcIor8p3a+XQK81gv66GtbWhK9jGucPgwBALXrAnncui6MAglHJVyUayl5+MHMBiA+F7OSwO4m4Cv1+gP0XdDo060NxAobmg8kYSh/KWtGLZX/Z/GZUoAzsDc0hHw2AoF3KTH8zXMMlVVrAuW/XegAJRKwFh+gDNwNymMire9WwiklhadvN+TeW9d6CUkf4vnAgXCJBjc5EIBBI2BkSaywszFlDr9G+NHt6FO7B4kd3qEk7P+lc6Gt5/pzVZW/98av8wgoPyWrQLh9GLOjkkK8JbitY8vIU7NuWcS7EQaz0tjaWWqeB+PvcQxXimw13DwUsogaTHu2RLxm+4Pq3QymZCmcacI08Ww84Uay/Ad3umkGp/AsQZK++nRHINayMjXuw0BTDIJdoSNIAEnOn1YJCbBT+e4J5LYB98QkK0S0qMp/anRpM+BEIjRG3DpXxIBgQM+k6bPpXmCpQcJLV6E0zRxA5K1E96yxZMXHfY5DPP/lr4d6KsItwdWIJD41G6lYxzVvWPJUTFZvsInAPFjY3BWgI3q6/Djn+e/AGOAswLc0uDtAAAAAElFTkSuQmCC",
     "jobs": [
       "hero"
+    ]
+  },
+  {
+    "id": "1201007",
+    "type": "skill",
+    "name": "파워 가드",
+    "scope": "personal",
+    "mode": "active",
+    "masterLevel": 30,
+    "effectsByLevel": [
+      {
+        "damageReflectP": 11
+      },
+      {
+        "damageReflectP": 12
+      },
+      {
+        "damageReflectP": 13
+      },
+      {
+        "damageReflectP": 14
+      },
+      {
+        "damageReflectP": 15
+      },
+      {
+        "damageReflectP": 16
+      },
+      {
+        "damageReflectP": 17
+      },
+      {
+        "damageReflectP": 18
+      },
+      {
+        "damageReflectP": 19
+      },
+      {
+        "damageReflectP": 20
+      },
+      {
+        "damageReflectP": 21
+      },
+      {
+        "damageReflectP": 22
+      },
+      {
+        "damageReflectP": 23
+      },
+      {
+        "damageReflectP": 24
+      },
+      {
+        "damageReflectP": 25
+      },
+      {
+        "damageReflectP": 26
+      },
+      {
+        "damageReflectP": 27
+      },
+      {
+        "damageReflectP": 28
+      },
+      {
+        "damageReflectP": 29
+      },
+      {
+        "damageReflectP": 30
+      },
+      {
+        "damageReflectP": 31
+      },
+      {
+        "damageReflectP": 32
+      },
+      {
+        "damageReflectP": 33
+      },
+      {
+        "damageReflectP": 34
+      },
+      {
+        "damageReflectP": 35
+      },
+      {
+        "damageReflectP": 36
+      },
+      {
+        "damageReflectP": 37
+      },
+      {
+        "damageReflectP": 38
+      },
+      {
+        "damageReflectP": 39
+      },
+      {
+        "damageReflectP": 40
+      }
+    ],
+    "icon": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAA7EAAAOxAGVKw4bAAADdklEQVR4nL1XgZGrIBBdZ64BUgJXAimBlKAlaAlagpagJcQSjhKOEo4SjhLydxdINDFRb/5kM4lEFt7btwvoB8ztAu+xLDWmBC5f3z9vQT8dPy+JRCLA4FrJtxBoz9/QFEcm8XEPbq19GKCUerh377fFJ/nVOfpGEh+wZMLcTfR/fMDrB5dlAmjHz+ba/v5pX/Zv8Vnqf0rAx+vl9wfbDg6H04MP9YEQJOMiIbKvXoHHyYpmSZ4XBBIDjx8hFFwuv/hPTDpF6PXuOqStFfEJX7qBDfbyYTK6CHi0pylIdio6nvTctzNw8P7OM/bFy6kK5PpySnwzgeAshAStcyixartu4PvOh2ivRODWbIYbERpLJJdhVwjcBgX2xnqo65KDtsigqDpuU47JBiOjxvJhhtT28McUOJxY4vC0zAhH65Lz7+wQaBKwSPlei3kDgVvhWG47H+4ZM85kNUbgXxWL0ccw5zlPpeKfVOFLBexYYZRU3QhkDfR9PpmYQB1fEz6lpxk8iCnSiiDrKXCOtzmlNOZ+xNUQIi4qx1EF1T30dfAvkeMweiYtQvL2E/Czq0AVLEflnWPAAOxnOff3gyFuCv7u9hYCt8ThkisdyipRCRNBLU8WtoWkQChWag8GQvT41dJMotlYA+FUq6E+4xZajCgt/qc8Q1zXUdFisvP62cIV4Rd3UIHyd8bhXDmSqRdPzNUaCDILjpx2NSoJwqCcF53nJSiiWoEBZl5KVkDSET86eGVPCaSoaAnm2sOIS64a5plMu93kRgRXmDoca+fVtJkASVUCJrlvYKgMVraM84v5XAlcBDK3Lyk18ilY9hpy2S7K/1KBmUUVjFMQTsFJzqngpIy7oeAa6FuqGyI9rk79lEBSwUcVck1VbZkEyUwkeIPyQQImAbRqggLZ4RNyjL5Uz6NfVYCf3zgVFYwVyokkSmWxrvIgtaStRvCVmJTaswpZdkBwHLsCvkrgRqLH0CoYMKd0FJfK8B7TmZzBtRhBoB8V7oEibwm8XwXfRGBKwiOJBklwjtHqfAzLEhTLfzw1oAlcbwPfTCCRaJFEgySq+Ix3bsNTblGFY5nA2x3guwjck2DgxlyByfaC7yYwJUHWtMUVOPXtNSKQ0bvanlezBNTC+U/A3WjT43yWFGAS9M72FzPOwh5L4PQzTUEWXxjfYdfX83/MDdKc+BMz8AAAAABJRU5ErkJggg==",
+    "jobs": [
+      "paladin"
     ]
   },
   {
