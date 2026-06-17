@@ -16,6 +16,7 @@
 
 import type { EffectMap } from './effects'
 import type { JobId } from './jobs'
+import type { WeaponType } from './weapons'
 
 export type BuffType = 'item' | 'skill'
 
@@ -29,6 +30,8 @@ interface BuffBase {
   id: string
   /** 한글 표기 */
   name: string
+  /** 아이콘 (스킬=base64 data URI, 아이템=미지정 시 id로 URL 유도) */
+  icon?: string
 }
 
 /** 아이템 타입: 전 직업 공용, 고정 효과 */
@@ -48,6 +51,8 @@ export interface SkillBuff extends BuffBase {
   effectsByLevel: EffectMap[]
   /** 개인스킬: 사용 가능한 직업 목록. 파티스킬은 생략(전 직업) */
   jobs?: JobId[]
+  /** 무기 숙련도/엑스퍼트: 적용되는 무기 타입. 장착 주무기가 일치할 때만 자동 적용 */
+  weaponTypes?: WeaponType[]
 }
 
 export type Buff = ItemBuff | SkillBuff

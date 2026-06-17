@@ -31,7 +31,25 @@ export interface AttackPowerResult {
 }
 
 /**
- * TODO: 구버전 공식 확정 후 구현.
+ * 총 공격력 = (장비+패시브+버프 공격력 + 추가공격력) × (1 + 공격력%/100)
+ * (장비·패시브·버프 공격력은 모두 effects.pad로 합산되어 있다)
+ */
+export function totalAttack(effects: EffectMap): number {
+  const flat = (effects.pad ?? 0) + (effects.addPad ?? 0)
+  return Math.floor(flat * (1 + (effects.padP ?? 0) / 100))
+}
+
+/**
+ * 총 마력 = (장비+버프 마력 + 추가마력 + 총 지력) × (1 + 마력%/100)
+ * @param totalInt 최종 지력(스탯 공식 적용 후)
+ */
+export function totalMagic(effects: EffectMap, totalInt: number): number {
+  const flat = (effects.mad ?? 0) + (effects.addMad ?? 0) + totalInt
+  return Math.floor(flat * (1 + (effects.madP ?? 0) / 100))
+}
+
+/**
+ * TODO: 구버전 MIN/MAX 데미지 공식 확정 후 구현.
  * 현재는 stub으로 0을 반환한다.
  */
 export function calcAttackPower(_input: AttackPowerInput): AttackPowerResult {

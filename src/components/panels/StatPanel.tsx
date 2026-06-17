@@ -8,6 +8,7 @@ import CollapsiblePanel from '../common/CollapsiblePanel'
 import { useBuildStore } from '../../store/buildStore'
 import { useInventoryStore } from '../../store/inventoryStore'
 import { aggregateBuild, equippedBuilts } from '../../store/aggregate'
+import { useBuffEffects } from '../../store/useBuffEffects'
 import { JOBS } from '../../domain/jobs'
 import { STAT_IDS, MAX_STAT, totalPureStats } from '../../domain/stats'
 import type { StatId } from '../../domain/stats'
@@ -48,8 +49,9 @@ export default function StatPanel() {
   const setStat = useBuildStore((s) => s.setStat)
   const equipped = useBuildStore((s) => s.equipped)
   const invItems = useInventoryStore((s) => s.items)
+  const buffEffects = useBuffEffects()
 
-  const { finalStats } = aggregateBuild(baseStats, equippedBuilts(equipped, invItems))
+  const { finalStats } = aggregateBuild(baseStats, equippedBuilts(equipped, invItems), buffEffects)
 
   if (!jobId) {
     return <CollapsiblePanel id="stat" title="스탯" />

@@ -16,6 +16,7 @@ import { canUseBuff } from '../../domain/buff'
 
 import enhancementItems from './enhancement/items.json'
 import enhancementParty from './enhancement/party.json'
+import enhancementPersonal from './enhancement/personal.json'
 import commonSkills from './common/skills.json'
 import jobSkills from './jobSpecific/skills.json'
 
@@ -25,11 +26,13 @@ export const DOPING_ITEMS = enhancementItems as unknown as Buff[]
 export const COMMON_BUFFS = commonSkills as unknown as Buff[]
 /** 파티 버프 (샤프아이즈/하이퍼바디/블레스/헤이스트/메디테이션 등) */
 export const PARTY_BUFFS = enhancementParty as unknown as Buff[]
-/** 직업 특화 패시브/버프 */
+/** 개인특화 액티브 버프 (아이언바디/포커스/인레이지 등) */
+export const PERSONAL_BUFFS = enhancementPersonal as unknown as Buff[]
+/** 직업 특화 패시브 */
 export const JOB_BUFFS = jobSkills as unknown as Buff[]
 
 /** 전체 버프 목록 */
-export const ALL_BUFFS: Buff[] = [...COMMON_BUFFS, ...PARTY_BUFFS, ...DOPING_ITEMS, ...JOB_BUFFS]
+export const ALL_BUFFS: Buff[] = [...COMMON_BUFFS, ...PARTY_BUFFS, ...PERSONAL_BUFFS, ...DOPING_ITEMS, ...JOB_BUFFS]
 
 /** id → Buff 인덱스 */
 const BUFF_BY_ID: ReadonlyMap<string, Buff> = new Map(ALL_BUFFS.map((b) => [b.id, b]))

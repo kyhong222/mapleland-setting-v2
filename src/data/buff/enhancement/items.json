@@ -18,12 +18,13 @@
   { "id": "2002003", "type": "item", "name": "현자의 물약", "effects": { "mad": 10 } },
 
   { "id": "2002016", "type": "item", "name": "도적의 비약", "effects": { "acc": 9, "eva": 15 } },
-  { "id": "2002017", "type": "item", "name": "전사의 비약", "effects": { "addPdd": 2 } },
-  { "id": "2002018", "type": "item", "name": "마법사의 비약", "effects": { "addMdd": 5 } },
+  { "id": "2002017", "type": "item", "name": "전사의 비약", "effects": { "addPad": 2 } },
+  { "id": "2002018", "type": "item", "name": "마법사의 비약", "effects": { "addMad": 5 } },
   { "id": "2002019", "type": "item", "name": "궁수의 비약", "effects": { "eva": 20 } },
 
-  { "id": "2022245", "type": "item", "name": "하트스토퍼", "effects": { "addPdd": 10, "eva": 60, "speed": 60 } },
-  { "id": "2022121", "type": "item", "name": "겔트 초콜릿", "effects": { "addPdd": 20, "pdef": 120, "eva": 30, "acc": 30, "speed": 10, "jump": 10 } },
+  { "id": "2022245", "type": "item", "name": "하트스토퍼", "effects": { "addPad": 10, "eva": 60, "speed": 60 } },
+  { "id": "2022121", "type": "item", "name": "겔트 초콜릿", "effects": { "addPad": 20, "pdef": 120, "eva": 30, "acc": 30, "speed": 10, "jump": 10 } },
   { "id": "2022123", "type": "item", "name": "바나나 그레이엄 파이", "effects": { "mad": 30, "mdef": 120, "eva": 30, "acc": 30, "speed": 10, "jump": 10 } },
-  { "id": "2022273", "type": "item", "name": "스위스 치즈", "effects": { "mad": 40 } }
+  { "id": "2022273", "type": "item", "name": "스위스 치즈", "effects": { "mad": 40 } },
+  { "id": "2022042", "type": "item", "name": "쿠키", "effects": { "pad": 20, "mad": 30 } }
 ]

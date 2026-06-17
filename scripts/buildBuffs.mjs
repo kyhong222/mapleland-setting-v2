@@ -56,6 +56,7 @@ const MANUAL_COMMON = [
     mode: 'active',
     masterLevel: 1,
     effectsByLevel: [{ padP: 4, madP: 4 }],
+    icon: "https://static.wikia.nocookie.net/maplestory/images/3/35/Skill_Hero%27s_Echo.png/revision/latest?cb=20100111124253",
   },
 ]
 
@@ -91,7 +92,7 @@ const SKILL_MAP = {
 
   // ── 개인 패시브/버프(personal·jobSpecific) ────────
   // 전사
-  1001003: pPassive('아이언 바디', p => ({ pdef: n(p, 'pdd') })),
+  1001003: pActive('아이언 바디', p => ({ pdef: n(p, 'pdd') })),
   // 인레이지: 개인버프(향후 파티 전환 예정)
   1121010: pActive('인레이지', p => ({ pad: n(p, 'pad') })),
   1120004: pPassive('아킬레스', achilles), 1220005: pPassive('아킬레스', achilles), 1320005: pPassive('아킬레스', achilles),
@@ -142,20 +143,23 @@ const SKILL_MAP = {
   1210001: pPassive('쉴드 마스터리', shieldM),
   4210000: pPassive('쉴드 마스터리', shieldM),
 
-  // ── 무기 마스터리(2차, 패시브) ─ 숙련도 = 필드×5, 명중률 = x ──
-  1100000: mastery2('소드 마스터리'), 1100001: mastery2('엑스 마스터리'),
-  1200000: mastery2('소드 마스터리'), 1200001: mastery2('메이스 마스터리'),
-  1300000: mastery2('스피어 마스터리'), 1300001: mastery2('폴암 마스터리'),
-  3100000: mastery2('보우 마스터리'),
-  3200000: mastery2('크로스보우 마스터리'),
-  4100000: mastery2('자벨린 마스터리'),
-  4200000: mastery2('대거 마스터리'),
-  5100001: mastery2('너클 마스터리'),
-  5200000: mastery2('건 마스터리'),
+  // ── 무기 마스터리(2차, 패시브) ─ 숙련도 = 필드×5, 명중률 = x · 장착 주무기로 자동 게이팅 ──
+  1100000: mastery2('소드 마스터리', ['oneHandedSword', 'twoHandedSword']),
+  1100001: mastery2('엑스 마스터리', ['oneHandedAxe', 'twoHandedAxe']),
+  1200000: mastery2('소드 마스터리', ['oneHandedSword', 'twoHandedSword']),
+  1200001: mastery2('메이스 마스터리', ['oneHandedMace', 'twoHandedMace']),
+  1300000: mastery2('스피어 마스터리', ['spear']),
+  1300001: mastery2('폴암 마스터리', ['polearm']),
+  3100000: mastery2('보우 마스터리', ['bow']),
+  3200000: mastery2('크로스보우 마스터리', ['crossbow']),
+  4100000: mastery2('자벨린 마스터리', ['claw']),
+  4200000: mastery2('대거 마스터리', ['dagger']),
+  5100001: mastery2('너클 마스터리', ['knuckle']),
+  5200000: mastery2('건 마스터리', ['gun']),
 
   // ── 엑스퍼트(4차, 패시브) ─ 마스터리 위 추가 기여분 = 필드×5−50, 물리공격력 = x ──
-  3120005: expert('보우 엑스퍼트'),
-  3220004: expert('크로스보우 엑스퍼트'),
+  3120005: expert('보우 엑스퍼트', ['bow']),
+  3220004: expert('크로스보우 엑스퍼트', ['crossbow']),
 }
 
 function mw() {
@@ -172,9 +176,9 @@ function transform(p) { return { STR: n(p, 'str'), pdef: n(p, 'pdd'), mdef: n(p,
 function pPassive(name, derive) { return { name, scope: 'personal', dir: 'jobSpecific', mode: 'passive', derive } }
 function pActive(name, derive) { return { name, scope: 'personal', dir: 'jobSpecific', mode: 'active', derive } }
 // 2차 무기 마스터리: 숙련도% = mastery×5, 명중 = x (자벨린/건의 y=표창·불릿수는 제외)
-function mastery2(name) { return pPassive(name, p => ({ mastery: n(p, 'mastery') * 5, acc: n(p, 'x') })) }
+function mastery2(name, weaponTypes) { return { ...pPassive(name, p => ({ mastery: n(p, 'mastery') * 5, acc: n(p, 'x') })), weaponTypes } }
 // 4차 엑스퍼트: 마스터리(50%) 위 추가 기여분 = mastery×5−50, 물리공격력 = x
-function expert(name) { return pPassive(name, p => ({ mastery: n(p, 'mastery') * 5 - 50, pad: n(p, 'x') })) }
+function expert(name, weaponTypes) { return { ...pPassive(name, p => ({ mastery: n(p, 'mastery') * 5 - 50, pad: n(p, 'x') })), weaponTypes } }
 
 // 0만 있는 EffectMap 항목 제거(레벨에 따라 일부 키만 의미있는 경우 보존 위해 전체 0 키만 정리)
 function cleanEffects(eff) {
@@ -213,14 +217,17 @@ function buildSkill(skill, def, code) {
     masterLevel: skill.masterLevel,
     effectsByLevel,
   }
+  if (skill.icon) out.icon = `data:image/png;base64,${skill.icon}`
   if (def.scope === 'personal') out.jobs = jobsForBook(code)
+  if (def.weaponTypes) out.weaponTypes = def.weaponTypes
   return out
 }
 
 const main = async () => {
   const common = []
   const party = []
-  const jobSpecific = []
+  const personal = [] // 개인특화 액티브
+  const jobSpecific = [] // 개인특화 패시브
   const seenPartyName = new Set()
 
   for (const code of ALL_BOOKS) {
@@ -235,7 +242,8 @@ const main = async () => {
         if (def.dir === 'common') common.push(built)
         else party.push(built)
       } else {
-        jobSpecific.push(buildSkill(skill, def, code))
+        const built = buildSkill(skill, def, code)
+        ;(def.mode === 'active' ? personal : jobSpecific).push(built)
       }
     }
   }
@@ -250,6 +258,7 @@ const main = async () => {
   console.log('generated:')
   write('common', 'skills.json', common)
   write('enhancement', 'party.json', party)
+  write('enhancement', 'personal.json', personal)
   write('jobSpecific', 'skills.json', jobSpecific)
 }
 

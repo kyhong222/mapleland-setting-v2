@@ -15,6 +15,8 @@ import { JOBS } from '../domain/jobs'
 import type { JobId } from '../domain/jobs'
 import type { BaseStats, StatId } from '../domain/stats'
 import { STAT_BASE, MAX_LEVEL, STAT_IDS, totalAP, minLevelForClass } from '../domain/stats'
+import { defaultBuffLevel } from '../domain/buff'
+import { getBuff } from '../data/buff'
 import type { EquipInstance } from './equipInstance'
 
 export interface BuildSnapshot {
@@ -22,6 +24,14 @@ export interface BuildSnapshot {
   level: number
   baseStats: BaseStats
   equipped: Partial<Record<EquipInstance, string>>
+  /** 활성 버프(토글): 영메·메용 + 직업특화 패시브. buffId → 레벨 */
+  activeBuffs: Record<string, number>
+  /** 공통버프 8슬롯: 슬롯키 → 선택 buffId (파티/액티브/도핑 중 택1) */
+  commonSlots: Record<string, string>
+  /** 공통버프 선택 버프의 레벨: buffId → 레벨(없으면 마스터/아이템1) */
+  commonLevels: Record<string, number>
+  /** 무기 마스터리/엑스퍼트 레벨: buffId → 레벨(없으면 마스터). 장착 주무기 일치 시 자동 적용 */
+  masteryLevels: Record<string, number>
 }
 
 export interface BuildState {
@@ -29,6 +39,10 @@ export interface BuildState {
   level: number
   baseStats: BaseStats
   equipped: Partial<Record<EquipInstance, string>>
+  activeBuffs: Record<string, number>
+  commonSlots: Record<string, string>
+  commonLevels: Record<string, number>
+  masteryLevels: Record<string, number>
 
   selectJob: (id: JobId) => void
   reset: () => void
@@ -38,6 +52,16 @@ export interface BuildState {
   equip: (inst: EquipInstance, invId: string) => void
   unequip: (inst: EquipInstance) => void
   unequipByInvId: (invId: string) => void
+  /** 버프 on/off 토글 (켤 때 스킬은 마스터레벨, 아이템은 1) */
+  toggleBuff: (id: string) => void
+  /** 활성 버프의 레벨 조정 (비활성이면 무시) */
+  setBuffLevel: (id: string, level: number) => void
+  /** 공통버프 슬롯 선택 (buffId=null → 없음) */
+  setCommonSlot: (slot: string, buffId: string | null) => void
+  /** 공통버프 선택 버프 레벨 조정 */
+  setCommonLevel: (id: string, level: number) => void
+  /** 무기 마스터리/엑스퍼트 레벨 조정 */
+  setMasteryLevel: (id: string, level: number) => void
   snapshot: () => BuildSnapshot | null
   loadSnapshot: (snap: BuildSnapshot) => void
 }
@@ -68,6 +92,10 @@ export const useBuildStore = create<BuildState>()(
       level: 1,
       baseStats: baseFour(),
       equipped: {},
+      activeBuffs: {},
+      commonSlots: {},
+      commonLevels: {},
+      masteryLevels: {},
 
       selectJob: (id) =>
         set((s) => {
@@ -75,7 +103,7 @@ export const useBuildStore = create<BuildState>()(
           const level = minLevelForClass(JOBS[id].classId)
           return { jobId: id, level, baseStats: recomputeStats(id, level, baseFour()) }
         }),
-      reset: () => set({ jobId: null, level: 1, baseStats: baseFour(), equipped: {} }),
+      reset: () => set({ jobId: null, level: 1, baseStats: baseFour(), equipped: {}, activeBuffs: {}, commonSlots: {}, commonLevels: {}, masteryLevels: {} }),
       setLevel: (n) =>
         set((s) => {
           const min = s.jobId ? minLevelForClass(JOBS[s.jobId].classId) : 1
@@ -113,9 +141,49 @@ export const useBuildStore = create<BuildState>()(
           }
           return { equipped }
         }),
+      toggleBuff: (id) =>
+        set((s) => {
+          const next = { ...s.activeBuffs }
+          if (id in next) {
+            delete next[id]
+          } else {
+            const b = getBuff(id)
+            next[id] = b ? defaultBuffLevel(b) : 1
+          }
+          return { activeBuffs: next }
+        }),
+      setBuffLevel: (id, level) =>
+        set((s) => {
+          if (!(id in s.activeBuffs)) return s
+          const b = getBuff(id)
+          const max = b && b.type === 'skill' ? b.masterLevel : 1
+          const lv = Math.max(1, Math.min(max, Math.floor(level) || 1))
+          return { activeBuffs: { ...s.activeBuffs, [id]: lv } }
+        }),
+      setCommonSlot: (slot, buffId) =>
+        set((s) => {
+          const next = { ...s.commonSlots }
+          if (buffId) next[slot] = buffId
+          else delete next[slot]
+          return { commonSlots: next }
+        }),
+      setCommonLevel: (id, level) =>
+        set((s) => {
+          const b = getBuff(id)
+          const max = b && b.type === 'skill' ? b.masterLevel : 1
+          const lv = Math.max(1, Math.min(max, Math.floor(level) || 1))
+          return { commonLevels: { ...s.commonLevels, [id]: lv } }
+        }),
+      setMasteryLevel: (id, level) =>
+        set((s) => {
+          const b = getBuff(id)
+          const max = b && b.type === 'skill' ? b.masterLevel : 1
+          const lv = Math.max(1, Math.min(max, Math.floor(level) || 1))
+          return { masteryLevels: { ...s.masteryLevels, [id]: lv } }
+        }),
       snapshot: () => {
-        const { jobId, level, baseStats, equipped } = get()
-        return jobId === null ? null : { jobId, level, baseStats, equipped }
+        const { jobId, level, baseStats, equipped, activeBuffs, commonSlots, commonLevels, masteryLevels } = get()
+        return jobId === null ? null : { jobId, level, baseStats, equipped, activeBuffs, commonSlots, commonLevels, masteryLevels }
       },
       loadSnapshot: (snap) =>
         set({
@@ -123,6 +191,10 @@ export const useBuildStore = create<BuildState>()(
           level: snap.level,
           baseStats: { ...snap.baseStats },
           equipped: { ...snap.equipped },
+          activeBuffs: { ...(snap.activeBuffs ?? {}) },
+          commonSlots: { ...(snap.commonSlots ?? {}) },
+          commonLevels: { ...(snap.commonLevels ?? {}) },
+          masteryLevels: { ...(snap.masteryLevels ?? {}) },
         }),
     }),
     { name: 'mlsv2:build' },

@@ -1,80 +1,5 @@
 [
   {
-    "id": "1001003",
-    "type": "skill",
-    "name": "아이언 바디",
-    "scope": "personal",
-    "mode": "passive",
-    "masterLevel": 20,
-    "effectsByLevel": [
-      {
-        "pdef": 2
-      },
-      {
-        "pdef": 4
-      },
-      {
-        "pdef": 6
-      },
-      {
-        "pdef": 8
-      },
-      {
-        "pdef": 10
-      },
-      {
-        "pdef": 12
-      },
-      {
-        "pdef": 14
-      },
-      {
-        "pdef": 16
-      },
-      {
-        "pdef": 18
-      },
-      {
-        "pdef": 20
-      },
-      {
-        "pdef": 22
-      },
-      {
-        "pdef": 24
-      },
-      {
-        "pdef": 26
-      },
-      {
-        "pdef": 28
-      },
-      {
-        "pdef": 30
-      },
-      {
-        "pdef": 32
-      },
-      {
-        "pdef": 34
-      },
-      {
-        "pdef": 36
-      },
-      {
-        "pdef": 38
-      },
-      {
-        "pdef": 40
-      }
-    ],
-    "jobs": [
-      "hero",
-      "paladin",
-      "darkKnight"
-    ]
-  },
-  {
     "id": "1100000",
     "type": "skill",
     "name": "소드 마스터리",
@@ -163,8 +88,13 @@
         "acc": 20
       }
     ],
+    "icon": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAA7EAAAOxAGVKw4bAAACRUlEQVR4nL2XAZWjMBCGh/fWQFcCKyGRkJXASaASOAkgASQQCUUCkQASigSOCR0aSNKjkN2/75VSYL6fyQwkH7DWCL+jiH6YBsZb2y07Fximz+VH6N/8ayQTZEDDBYv1jlIKOOfQti0wxg6DMI5Led3C3z9cm/jwwu8t8M/ZRFE1b8OzVOg4LmFMMrGqAYLfuhsMw6C3/Ot9EwQfR7ukoiha7S8GCF62NfQTnIT7NBx7TJhwjNn3/XIsSRLrfG0ACw4vSsoEGiWtk/D/PSZewX1aDYG8znCWz4WXihSu/Ap7dAS+MoB3h8IgvXpcLNbHzsDjOPYbwH7HLljaZrBP9KXeBW+a+VwhxALHdsYCpNZuerXOgKk8z2GPfHAEY8FJKS043khdPp8tTgN7xv0ofCvLwP/GOyTcMnC0z4/CnRkgiMtUaLjTwPYZbg5JaLhlgOBlni5vQdNMaLgzAyj9LkDQtL3fnxkYhrl3Q8EtA3ghBjDvOr7MkxLKSDxtQ8EtA6YJFBqR8hkQQf2UGSFYELjTAJmgTkjTTG+rqliZUKqZslCfgnsNkAkajq7rIN2YQJ2FvzRAHYFwNRUdVj9jQg/JmXniLgMueFFVGhx6nux9EG3hZnfw7ytkWaJb9PPExNUy8Aq+7Y4sy0BOx87KmpT64CizO4qigBCyhqB6BN7CSduHVbAuwALbG9gcjnfhdZlZBiJcq82rI7YERkPm1Mkf8P2WLKTCVRH+jCgD2gQul0g0afwJERy/zBqIHgvG39CyPvsH6Fw5NacNsbQAAAAASUVORK5CYII=",
     "jobs": [
       "hero"
+    ],
+    "weaponTypes": [
+      "oneHandedSword",
+      "twoHandedSword"
     ]
   },
   {
@@ -256,8 +186,13 @@
         "acc": 20
       }
     ],
+    "icon": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAA7EAAAOxAGVKw4bAAACnklEQVR4nL1Xi3WDMAw072UBOgIdAUZIR0hHgBHCCDACGQFGgBFgBBihjECR6bnCHyAt7fW9NDjgO8knYV/EGpP4H3j4wgVMddurC1+M85//J+xv0esEERAgya9hIC+6rhNRFIm2bUUYhqcLyMpWpO+RFHFxkn+0InpZROSP5jTysriL+20O6kvEygMgr/tajOMo/0evbhH3+GqM7Yl9T3IpAlACQF60pRhmcoCusRyYHMQ0zkH3PAspgAxHk92Km2i6yriJxiGCE0/Td9F4nid+gtUSVMlCHmaL8eJrLJIoWT1A5CCmrGHsp15RAnh0Qzcsg1fzNyIH8TAM4reQAqjeqQowsRjNGzk5Jx6ZX+CNZzJxsQ1mWXboYZDT/dyQR5Yj9Ee3ANe669FzEYS+70XXNLueUJm2CbCVEqLjUZZlqb6naarI+eQ20DLJXlPXpoCtZkNlxsXJnlEUBnn+eFiDcPUO6xLowIR6I0qSxCCP41iR6IIJtJS8Z+wK2DKTjTwIAmVi3Zi2F9uhDHBgDV3kHBDi++7X+lMCXOQUHTxB4JWxRX5YADfQluGIjMh1Ukq9a1+xKwBRE8o5Qp0cHkEWUJ48CxyopmY4IADkbV2IYI4gTx9yXCe3AVkgX2ztqg4tQTVHfSNBWSxeDu6SYEhOjuhprBm6bQGI/mPemg1zyklE4OhyKlPMD3rUICfhZfH9myGAG46T5/myV9iK3pZqNB3XcysB3HA6ud4N9Wf47kgntj1nCMCekCYax84gd70nIFjfku0RWzNAeIacE+k4uikxBFRzidGuuGu2X6tnnRWUADIQmglw9qGEwM8EEODRWW05HYUqpXA0L5mzkFcdnYroq4cMSBF0ZgPQKP4CIKcP7gHv68D4H1Al8wlYVgbwmHo3ygAAAABJRU5ErkJggg==",
     "jobs": [
       "hero"
+    ],
+    "weaponTypes": [
+      "oneHandedAxe",
+      "twoHandedAxe"
     ]
   },
   {
@@ -329,6 +264,7 @@
         "shieldBonusPdef": 100
       }
     ],
+    "icon": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAA7EAAAOxAGVKw4bAAAD9ElEQVR4nL1Xa5WzMBDNnrMGUgkgASSAhCKhSCgSigQqASSAhCKhkdBI2G/uJAMBStv9fuzsYUl55N658yD5Vkv7UX9jXzIICfz0t/uvZtHK8tnSaG1RtL1mjHs+T+MfISEEGDxLoo+Ax3Hkc5qmfL7dbnxOksQBWaviw2Hz3v3xUJHW6tLeVFWkTOJ7DV6U1VPQ8+k4jQX4co7USF6tiejIzXV79PM7h3ye60hEPYlFDgh4CLYGhR2PWiUk8fHUqKEo+HcIHFpnusVvqBPaOgkZPAQTu997VRKY9hjXztDhvNKjJofuG9mBZQPA8D7CUa0JCPgaDIbfnEQGiEr17QXZ5wFmkP7ehhSUw7eL63lc7CuwAQus7xulwYoSCX95njJ03zYTBQBeh+tmztpsr+0SYM8NAC/OXcABlGPsZCnLmEsNCuRFqdr+Lk4vZH9n369v69ljZjXXNtc5RKIjMjNgkc/yNqRY3dU8NteVnJ8RUE/Bx6GiKkjIU8NKGY2wxZxYYpxwy/RY3O8Gs08AJTb6N7UPwYITQoHbBvwMHdQLLZ6iC0TK6mx6dh0Oa8zUsHYJoL6lxIBdcbwjlWQZvXz2tCjDNQvE+SEc07xU0tJLyo13tlsFYsj0RPo6eWNGl82Ws21WGU8UuSOdp4eF3GIIi3TLlwQ470YBnRuKIfl05OGsdfL6A2P5NLESsWs6pyxSUaLVMP5nErKH1jUUJmA1y864+DPWj1cvLTzan383Cd2n0/tkXQ9vGxfbukrnEPh7OLfNhZMwLeoVvvt2dBtmL5JwGApV0ETofmg0SPAiP1DDeajz5cZlJ7LP4GhKMzjkT+iAcpizqvMN1oJAfe04SeI45S+cNa5s0GpZR2jPpeYWF5M/ngUINZfjlC+uAjV/sqs457mB0TZvyjA0bjaocR0t2mzbtlQhhR+ffZ4YDy4foff2kgD6TVl3qjnT+oBL0bqaV3MSurFdHv56kiXU8YbfEZAw4LOMFY/zBpqPrEJK+YCQ5EGTQa5A+rIeaLUTLaoAyVfVZpL/VwpIMtbXQZ1oGcWfBIvmNIMLVlF1kzLivSHSe8n3ksA6GWHXjibLsA48clieGbJewEX6MPk+JhCSQChAIsuojoeRFq+0qj25LK6u4wI49BzWdfYl+EsCaxIXWlIhHMPoGhRiGwJHiYvPJPsbzz8iEJIIwwFD90NFYGGC8+D3CrBPwT8iEJKQ1TIvyxO3LA8Xr5Ac9in4hgDa6d7GREjAQAR9HSEBeAgsz+4Zt+wVgS/s1WR3tH7gmYVEaOm02ZqFrfapM1RRtCvC8EsUYBLYs/3GBNgv7+g8qk9MwPEvDMGX3zD+hU3b83/59Gh18LwSWAAAAABJRU5ErkJggg==",
     "jobs": [
       "hero"
     ]
@@ -432,315 +368,7 @@
         "damageReduce": 15
       }
     ],
-    "jobs": [
-      "hero"
-    ]
-  },
-  {
-    "id": "1120005",
-    "type": "skill",
-    "name": "블로킹",
-    "scope": "personal",
-    "mode": "active",
-    "masterLevel": 30,
-    "effectsByLevel": [
-      {
-        "blockRate": 0.5
-      },
-      {
-        "blockRate": 1
-      },
-      {
-        "blockRate": 1.5
-      },
-      {
-        "blockRate": 2
-      },
-      {
-        "blockRate": 2.5
-      },
-      {
-        "blockRate": 3
-      },
-      {
-        "blockRate": 3.5
-      },
-      {
-        "blockRate": 4
-      },
-      {
-        "blockRate": 4.5
-      },
-      {
-        "blockRate": 5
-      },
-      {
-        "blockRate": 5.5
-      },
-      {
-        "blockRate": 6
-      },
-      {
-        "blockRate": 6.5
-      },
-      {
-        "blockRate": 7
-      },
-      {
-        "blockRate": 7.5
-      },
-      {
-        "blockRate": 8
-      },
-      {
-        "blockRate": 8.5
-      },
-      {
-        "blockRate": 9
-      },
-      {
-        "blockRate": 9.5
-      },
-      {
-        "blockRate": 10
-      },
-      {
-        "blockRate": 10.5
-      },
-      {
-        "blockRate": 11
-      },
-      {
-        "blockRate": 11.5
-      },
-      {
-        "blockRate": 12
-      },
-      {
-        "blockRate": 12.5
-      },
-      {
-        "blockRate": 13
-      },
-      {
-        "blockRate": 13.5
-      },
-      {
-        "blockRate": 14
-      },
-      {
-        "blockRate": 14.5
-      },
-      {
-        "blockRate": 15
-      }
-    ],
-    "jobs": [
-      "hero"
-    ]
-  },
-  {
-    "id": "1121002",
-    "type": "skill",
-    "name": "스탠스",
-    "scope": "personal",
-    "mode": "active",
-    "masterLevel": 30,
-    "effectsByLevel": [
-      {
-        "stanceP": 42
-      },
-      {
-        "stanceP": 44
-      },
-      {
-        "stanceP": 46
-      },
-      {
-        "stanceP": 48
-      },
-      {
-        "stanceP": 50
-      },
-      {
-        "stanceP": 52
-      },
-      {
-        "stanceP": 54
-      },
-      {
-        "stanceP": 56
-      },
-      {
-        "stanceP": 58
-      },
-      {
-        "stanceP": 60
-      },
-      {
-        "stanceP": 62
-      },
-      {
-        "stanceP": 64
-      },
-      {
-        "stanceP": 66
-      },
-      {
-        "stanceP": 68
-      },
-      {
-        "stanceP": 70
-      },
-      {
-        "stanceP": 72
-      },
-      {
-        "stanceP": 74
-      },
-      {
-        "stanceP": 76
-      },
-      {
-        "stanceP": 78
-      },
-      {
-        "stanceP": 80
-      },
-      {
-        "stanceP": 81
-      },
-      {
-        "stanceP": 82
-      },
-      {
-        "stanceP": 83
-      },
-      {
-        "stanceP": 84
-      },
-      {
-        "stanceP": 85
-      },
-      {
-        "stanceP": 86
-      },
-      {
-        "stanceP": 87
-      },
-      {
-        "stanceP": 88
-      },
-      {
-        "stanceP": 89
-      },
-      {
-        "stanceP": 90
-      }
-    ],
-    "jobs": [
-      "hero"
-    ]
-  },
-  {
-    "id": "1121010",
-    "type": "skill",
-    "name": "인레이지",
-    "scope": "personal",
-    "mode": "active",
-    "masterLevel": 30,
-    "effectsByLevel": [
-      {
-        "pad": 11
-      },
-      {
-        "pad": 12
-      },
-      {
-        "pad": 12
-      },
-      {
-        "pad": 13
-      },
-      {
-        "pad": 13
-      },
-      {
-        "pad": 14
-      },
-      {
-        "pad": 14
-      },
-      {
-        "pad": 15
-      },
-      {
-        "pad": 15
-      },
-      {
-        "pad": 16
-      },
-      {
-        "pad": 16
-      },
-      {
-        "pad": 17
-      },
-      {
-        "pad": 17
-      },
-      {
-        "pad": 18
-      },
-      {
-        "pad": 18
-      },
-      {
-        "pad": 19
-      },
-      {
-        "pad": 19
-      },
-      {
-        "pad": 20
-      },
-      {
-        "pad": 20
-      },
-      {
-        "pad": 21
-      },
-      {
-        "pad": 21
-      },
-      {
-        "pad": 22
-      },
-      {
-        "pad": 22
-      },
-      {
-        "pad": 23
-      },
-      {
-        "pad": 23
-      },
-      {
-        "pad": 24
-      },
-      {
-        "pad": 24
-      },
-      {
-        "pad": 25
-      },
-      {
-        "pad": 25
-      },
-      {
-        "pad": 26
-      }
-    ],
+    "icon": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAA7EAAAOxAGVKw4bAAACsElEQVR4nL1X0bWCMAwt57AAjqAjwAg4go6gI+gIvBF0BBkBRoARZAQZgccthJeWtNSfdz8US5N7m6SpjZWJQf0PInrgAoameQfa9ypNU3V81qq65Kpt23EsCWbPssNAIkiAJk/T/aYxyIgc4CIwHoLHq1LX81GLiG3y8/XuNLxdThP5T22M43d1m0T8PEsv+etRqMspHx8mEUYNBJHfa/E9xqsiH+cprwhwQAQhdk0EoeQIJEB2Led5uTql/vy7fDkF0Gr5avCN3wDe9X1n2EyFuF695MsrYAn1XFxrEadpYt+vnLnIJV+iAG4A+AyL4qZ88PkSBSzby1HhSpkCfHkP2S2WgH67wsfKJUPugEARCt0toxcuYEJohWdZthprmsZIU6gvIwWAr8KJfBjMI6PtOpUdDouIkN1iCUh0J1xeChXuItdE+71q3m9LhHu3QNizrM0IcGxV+DfY8iUK2OpsW1hWH+DLEMDzx4HQI7QuoAak+a7d8nr8nZqxNIGAlVDeoyjSTvX3e/2/gfKvya168CFWX4C2H5wDRGS//wbiWQDYyqXqd43bKflKAMBzTmH3kVIf4JDCLx3LYg1QLskRL0BfmPk83prtMa8Ajs+40t1cfKGwiflCuBhRAIWIogByEkFOtmATczsuRhQg7fdz3WoRaCd2LeC3XQ8Lyeejst3OSCeRoxW3ndCK7clAfczUuWrUK0+XfuACbCG2G/v/ve2WsXy0hx8qTGcj4gVIKwMhF+EDJ9eEYxSWZ0dTWtUAgc4wEiKfjyaIvMAdwyK3/YsCePipAIk4YSJ4o7GbDsj3SaLFSH4Buwgj3NVwO0KuAAo1nWM9I+e7QjufG9DAxPIaIJ8cbdfjVoTHiCKgReDOBpSl/H+OQPM4npbNOth/IHJ88BRE84XxP7CE8BdcIgvACJ/WGAAAAABJRU5ErkJggg==",
     "jobs": [
       "hero"
     ]
@@ -834,8 +462,13 @@
         "acc": 20
       }
     ],
+    "icon": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAA7EAAAOxAGVKw4bAAACRUlEQVR4nL2XAZWjMBCGh/fWQFcCKyGRkJXASaASOAkgASQQCUUCkQASigSOCR0aSNKjkN2/75VSYL6fyQwkH7DWCL+jiH6YBsZb2y07Fximz+VH6N/8ayQTZEDDBYv1jlIKOOfQti0wxg6DMI5Led3C3z9cm/jwwu8t8M/ZRFE1b8OzVOg4LmFMMrGqAYLfuhsMw6C3/Ot9EwQfR7ukoiha7S8GCF62NfQTnIT7NBx7TJhwjNn3/XIsSRLrfG0ACw4vSsoEGiWtk/D/PSZewX1aDYG8znCWz4WXihSu/Ap7dAS+MoB3h8IgvXpcLNbHzsDjOPYbwH7HLljaZrBP9KXeBW+a+VwhxALHdsYCpNZuerXOgKk8z2GPfHAEY8FJKS043khdPp8tTgN7xv0ofCvLwP/GOyTcMnC0z4/CnRkgiMtUaLjTwPYZbg5JaLhlgOBlni5vQdNMaLgzAyj9LkDQtL3fnxkYhrl3Q8EtA3ghBjDvOr7MkxLKSDxtQ8EtA6YJFBqR8hkQQf2UGSFYELjTAJmgTkjTTG+rqliZUKqZslCfgnsNkAkajq7rIN2YQJ2FvzRAHYFwNRUdVj9jQg/JmXniLgMueFFVGhx6nux9EG3hZnfw7ytkWaJb9PPExNUy8Aq+7Y4sy0BOx87KmpT64CizO4qigBCyhqB6BN7CSduHVbAuwALbG9gcjnfhdZlZBiJcq82rI7YERkPm1Mkf8P2WLKTCVRH+jCgD2gQul0g0afwJERy/zBqIHgvG39CyPvsH6Fw5NacNsbQAAAAASUVORK5CYII=",
     "jobs": [
       "paladin"
+    ],
+    "weaponTypes": [
+      "oneHandedSword",
+      "twoHandedSword"
     ]
   },
   {
@@ -927,8 +560,13 @@
         "acc": 20
       }
     ],
+    "icon": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAA7EAAAOxAGVKw4bAAACwklEQVR4nL2XC5WDMBRE03NqoJXASgAJrAQqASRQCSCBSgAJIAEkFAlFAsuETvbxK4X9zJ4uJATmJnk8kqMaqlX/owNPJECbl3dTOKmm+zstPgHXoVdtlvTpfLSEIIA2d21LF6qqUo7jqLIslW3bkwfwOrTU5pWitFTXi6Mhjovmj1I55x4ivhXm5tB39fU8zwegss0rpUmoQq8DfkIMYoAPzO+5appGH52PbwOap2mq4jhWlmWpKIo2QVyCWENQBoDmSZmqumlMA5RpwJ7DHKrruh/SjRBSGgABhQd4iaeKKps0Qj0NiqLQPac5j3s1mIIs6M3tqA8q3/VV4ATmOs0AIMsYvR8DoHcQelpXz165/eF+v2tTGsGYEBiR0+m0exo0AN5lvAWmJ82wUZZl2tDzPFMHCLYHAMp7II5zlXiQ1PV61XUAIQR7jhwA870BOQsg5x3iG0AI/KDxG7EHYgLAWJirZ/ajCUDCMFyFoOZgBgBrtPJhckTWIOT9Y4/ZKViSvHk8La7r6riQEAjcx+OhYwjn4xHZDEAxJYe+bwIUkhAw9Lvrl8vF3Dc3LZsBaI7cUBXFIoT/rKeWYmMTwNgceSC+3QbTAQCY37r6ccaU8bFpBGAMLZkjNggBc86/zJg0x09/U+o3AdhrKE2SWXMpDP84YxKG5kheRV2tA9C8zBNldTfF15uuXzKnocyYEMoA4z1p8r2CemsKMvQKQJGvzuf5DCenQaZtGON8CXgRgL1/dEuzuhtyQFgrn90xRBAEOhhfpeQJgAw4aR7Hff5fy+8S4p32AwAZcGNzvrfvfOEI8U77yZqwbdtuQVpNzLeu9XavB37DfIsmAFkXNFgVV8X+dd4uACSH8Tf/L3ov9wQEOGCv1u+ObBM83G7JpPFbirMKuyKcHjgCGgJ7Noqp8i9Ec/yTMXB4bhj/Q2Z7/gUqPoRmIPoo/AAAAABJRU5ErkJggg==",
     "jobs": [
       "paladin"
+    ],
+    "weaponTypes": [
+      "oneHandedMace",
+      "twoHandedMace"
     ]
   },
   {
@@ -1000,6 +638,7 @@
         "shieldBonusPdef": 100
       }
     ],
+    "icon": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAA7EAAAOxAGVKw4bAAAD9ElEQVR4nL1Xa5WzMBDNnrMGUgkgASSAhCKhSCgSigQqASSAhCKhkdBI2G/uJAMBStv9fuzsYUl55N658yD5Vkv7UX9jXzIICfz0t/uvZtHK8tnSaG1RtL1mjHs+T+MfISEEGDxLoo+Ax3Hkc5qmfL7dbnxOksQBWaviw2Hz3v3xUJHW6tLeVFWkTOJ7DV6U1VPQ8+k4jQX4co7USF6tiejIzXV79PM7h3ye60hEPYlFDgh4CLYGhR2PWiUk8fHUqKEo+HcIHFpnusVvqBPaOgkZPAQTu997VRKY9hjXztDhvNKjJofuG9mBZQPA8D7CUa0JCPgaDIbfnEQGiEr17QXZ5wFmkP7ehhSUw7eL63lc7CuwAQus7xulwYoSCX95njJ03zYTBQBeh+tmztpsr+0SYM8NAC/OXcABlGPsZCnLmEsNCuRFqdr+Lk4vZH9n369v69ljZjXXNtc5RKIjMjNgkc/yNqRY3dU8NteVnJ8RUE/Bx6GiKkjIU8NKGY2wxZxYYpxwy/RY3O8Gs08AJTb6N7UPwYITQoHbBvwMHdQLLZ6iC0TK6mx6dh0Oa8zUsHYJoL6lxIBdcbwjlWQZvXz2tCjDNQvE+SEc07xU0tJLyo13tlsFYsj0RPo6eWNGl82Ws21WGU8UuSOdp4eF3GIIi3TLlwQ470YBnRuKIfl05OGsdfL6A2P5NLESsWs6pyxSUaLVMP5nErKH1jUUJmA1y864+DPWj1cvLTzan383Cd2n0/tkXQ9vGxfbukrnEPh7OLfNhZMwLeoVvvt2dBtmL5JwGApV0ETofmg0SPAiP1DDeajz5cZlJ7LP4GhKMzjkT+iAcpizqvMN1oJAfe04SeI45S+cNa5s0GpZR2jPpeYWF5M/ngUINZfjlC+uAjV/sqs457mB0TZvyjA0bjaocR0t2mzbtlQhhR+ffZ4YDy4foff2kgD6TVl3qjnT+oBL0bqaV3MSurFdHv56kiXU8YbfEZAw4LOMFY/zBpqPrEJK+YCQ5EGTQa5A+rIeaLUTLaoAyVfVZpL/VwpIMtbXQZ1oGcWfBIvmNIMLVlF1kzLivSHSe8n3ksA6GWHXjibLsA48clieGbJewEX6MPk+JhCSQChAIsuojoeRFq+0qj25LK6u4wI49BzWdfYl+EsCaxIXWlIhHMPoGhRiGwJHiYvPJPsbzz8iEJIIwwFD90NFYGGC8+D3CrBPwT8iEJKQ1TIvyxO3LA8Xr5Ac9in4hgDa6d7GREjAQAR9HSEBeAgsz+4Zt+wVgS/s1WR3tH7gmYVEaOm02ZqFrfapM1RRtCvC8EsUYBLYs/3GBNgv7+g8qk9MwPEvDMGX3zD+hU3b83/59Gh18LwSWAAAAABJRU5ErkJggg==",
     "jobs": [
       "paladin"
     ]
@@ -1103,212 +742,7 @@
         "damageReduce": 15
       }
     ],
-    "jobs": [
-      "paladin"
-    ]
-  },
-  {
-    "id": "1220006",
-    "type": "skill",
-    "name": "블로킹",
-    "scope": "personal",
-    "mode": "active",
-    "masterLevel": 30,
-    "effectsByLevel": [
-      {
-        "blockRate": 0.5
-      },
-      {
-        "blockRate": 1
-      },
-      {
-        "blockRate": 1.5
-      },
-      {
-        "blockRate": 2
-      },
-      {
-        "blockRate": 2.5
-      },
-      {
-        "blockRate": 3
-      },
-      {
-        "blockRate": 3.5
-      },
-      {
-        "blockRate": 4
-      },
-      {
-        "blockRate": 4.5
-      },
-      {
-        "blockRate": 5
-      },
-      {
-        "blockRate": 5.5
-      },
-      {
-        "blockRate": 6
-      },
-      {
-        "blockRate": 6.5
-      },
-      {
-        "blockRate": 7
-      },
-      {
-        "blockRate": 7.5
-      },
-      {
-        "blockRate": 8
-      },
-      {
-        "blockRate": 8.5
-      },
-      {
-        "blockRate": 9
-      },
-      {
-        "blockRate": 9.5
-      },
-      {
-        "blockRate": 10
-      },
-      {
-        "blockRate": 10.5
-      },
-      {
-        "blockRate": 11
-      },
-      {
-        "blockRate": 11.5
-      },
-      {
-        "blockRate": 12
-      },
-      {
-        "blockRate": 12.5
-      },
-      {
-        "blockRate": 13
-      },
-      {
-        "blockRate": 13.5
-      },
-      {
-        "blockRate": 14
-      },
-      {
-        "blockRate": 14.5
-      },
-      {
-        "blockRate": 15
-      }
-    ],
-    "jobs": [
-      "paladin"
-    ]
-  },
-  {
-    "id": "1221002",
-    "type": "skill",
-    "name": "스탠스",
-    "scope": "personal",
-    "mode": "active",
-    "masterLevel": 30,
-    "effectsByLevel": [
-      {
-        "stanceP": 42
-      },
-      {
-        "stanceP": 44
-      },
-      {
-        "stanceP": 46
-      },
-      {
-        "stanceP": 48
-      },
-      {
-        "stanceP": 50
-      },
-      {
-        "stanceP": 52
-      },
-      {
-        "stanceP": 54
-      },
-      {
-        "stanceP": 56
-      },
-      {
-        "stanceP": 58
-      },
-      {
-        "stanceP": 60
-      },
-      {
-        "stanceP": 62
-      },
-      {
-        "stanceP": 64
-      },
-      {
-        "stanceP": 66
-      },
-      {
-        "stanceP": 68
-      },
-      {
-        "stanceP": 70
-      },
-      {
-        "stanceP": 72
-      },
-      {
-        "stanceP": 74
-      },
-      {
-        "stanceP": 76
-      },
-      {
-        "stanceP": 78
-      },
-      {
-        "stanceP": 80
-      },
-      {
-        "stanceP": 81
-      },
-      {
-        "stanceP": 82
-      },
-      {
-        "stanceP": 83
-      },
-      {
-        "stanceP": 84
-      },
-      {
-        "stanceP": 85
-      },
-      {
-        "stanceP": 86
-      },
-      {
-        "stanceP": 87
-      },
-      {
-        "stanceP": 88
-      },
-      {
-        "stanceP": 89
-      },
-      {
-        "stanceP": 90
-      }
-    ],
+    "icon": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAA7EAAAOxAGVKw4bAAACsElEQVR4nL1X0bWCMAwt57AAjqAjwAg4go6gI+gIvBF0BBkBRoARZAQZgccthJeWtNSfdz8US5N7m6SpjZWJQf0PInrgAoameQfa9ypNU3V81qq65Kpt23EsCWbPssNAIkiAJk/T/aYxyIgc4CIwHoLHq1LX81GLiG3y8/XuNLxdThP5T22M43d1m0T8PEsv+etRqMspHx8mEUYNBJHfa/E9xqsiH+cprwhwQAQhdk0EoeQIJEB2Led5uTql/vy7fDkF0Gr5avCN3wDe9X1n2EyFuF695MsrYAn1XFxrEadpYt+vnLnIJV+iAG4A+AyL4qZ88PkSBSzby1HhSpkCfHkP2S2WgH67wsfKJUPugEARCt0toxcuYEJohWdZthprmsZIU6gvIwWAr8KJfBjMI6PtOpUdDouIkN1iCUh0J1xeChXuItdE+71q3m9LhHu3QNizrM0IcGxV+DfY8iUK2OpsW1hWH+DLEMDzx4HQI7QuoAak+a7d8nr8nZqxNIGAlVDeoyjSTvX3e/2/gfKvya168CFWX4C2H5wDRGS//wbiWQDYyqXqd43bKflKAMBzTmH3kVIf4JDCLx3LYg1QLskRL0BfmPk83prtMa8Ajs+40t1cfKGwiflCuBhRAIWIogByEkFOtmATczsuRhQg7fdz3WoRaCd2LeC3XQ8Lyeejst3OSCeRoxW3ndCK7clAfczUuWrUK0+XfuACbCG2G/v/ve2WsXy0hx8qTGcj4gVIKwMhF+EDJ9eEYxSWZ0dTWtUAgc4wEiKfjyaIvMAdwyK3/YsCePipAIk4YSJ4o7GbDsj3SaLFSH4Buwgj3NVwO0KuAAo1nWM9I+e7QjufG9DAxPIaIJ8cbdfjVoTHiCKgReDOBpSl/H+OQPM4npbNOth/IHJ88BRE84XxP7CE8BdcIgvACJ/WGAAAAABJRU5ErkJggg==",
     "jobs": [
       "paladin"
     ]
@@ -1402,8 +836,12 @@
         "acc": 20
       }
     ],
+    "icon": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAA7EAAAOxAGVKw4bAAAB6UlEQVR4nL2XjZGCMBBGlxka0BK0BFIClIAlQAlSQigBSsASoARSAinhKIFjI5tLDlFA4HNG5S/v5W9cXbDTwQEpy1J/NwW6sm70wQna/nXaFIxtYhhjWoQEFNz3LupACKFuqusaPM/7CoptUQjMOYckSdR3dxL+UwM7PyXSvFoFv0e+hmK6roM0TRUcex8EgTUFGl42JbRtqz7Z9TsJDI0kwqWU1jUtQPCsLkC2rb4Bj2k6lkhQ7//D8zxX5yppCODiwJvDLIRKPEaN4fk1EpipnlOsKXjET7jHnwsv8iOIWbwIiD3HoDDNOcGx95MC2Dt6UIrB1revzYGbi84cdrMdHJVKij8B3O+4C/SWaWGUJUPf1BxOlxDO56sFpjaK7G9ru/AiuE+Xhnp/j6K+IxLCYVt/WjcvBdbMO8KbpgFRVWokb44z69mRwNz5fgdPh62G+TR1lsDSLfYOPrctF1ZmC/hqga3gqwS2hC8W2Bq+SGAP+GyBveCzBPaEfxTYG/5W4Aj4pMBR8JGAWUwcAbcEqCbEHAW3BChYTBwFfymgiomI97/n8e5wSwDrNASqaYhz2CtFdh8JOAG7Dv+OPKsgQSmzftsq6UNAclPrzaERUBK8sKshqly3DsHxzVwDTn/hkL/nBMf8AimtzSlwtCPrAAAAAElFTkSuQmCC",
     "jobs": [
       "darkKnight"
+    ],
+    "weaponTypes": [
+      "spear"
     ]
   },
   {
@@ -1495,8 +933,12 @@
         "acc": 20
       }
     ],
+    "icon": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAA7EAAAOxAGVKw4bAAACaklEQVR4nL2XjZGqMBSFLzPbAJaAJUAJWIJbApSgJUAJUAKWACVACVDCowQeJ3oy4cfIOsrZmUUg5Du59yaBH5lqkH3k8IdpYCjrVp+40o9/7kep6BMKgmCgCRpQ8ND31EnTNGgkdV2L7/svO0Z7U/NneB99QmVZyul0UiZ+nsL/1RIc7ibSvLIauESh7hzCMxCeM+8lSSLX61Vc15WkqOX6GwyTGiC8bEvp+14dg+M2E9AwDJKmqQbiOUayqioFZ1Sr7h4VbYDwrC6k63vdKc7ZyRYTanTjSCE8R1O4viZlAMWBxufsLFVzWzTCdZsJXMM9x3HUEYNBBE14HMf6+SLzxXf7aQSgW3yH+8m9iKIwkjiI5R2FYaigCDfhEGoCBscinBpgA4y0a7pHL9N7NjEKjFSe5+J5noIhJWaRQogOIqYMYL5jFujp1C/6t+Yfo6L5oig0vOs6dYRYF5BZD/OVcNH4leZTENUOKCp+3g/B5jqxauCdvLd1Iq53lsPhqM6ZjizLFiZgAOFfNbAl3xRHf4miMX2dnB+L2VofHD1TQk0MbJnnc3jbttKMYUf9/DrOop2Zb8A5+sdyvJ6Cd+DpWHjzJZhQiHnnWlE9JtqfDdjgjCDbYKpRzPnTpfjTcBNKMMSVkNpsYCvchJl6Vl+bDGyB2yA2vTSwFf6urAa+Dbca2AP+1MBe8FUDe8InBgDaG64N8JUM2hOuDVDYUveELwyoLTVKxl0t3gWuDeCVjC8QEudfBRbZZWHAOQVH9XVkruHYscxN45NKbw2+ivDTYQqUCXwuUdwuvyHC8c+sAQffarKP9D79H6pPBgU9siwHAAAAAElFTkSuQmCC",
     "jobs": [
       "darkKnight"
+    ],
+    "weaponTypes": [
+      "polearm"
     ]
   },
   {
@@ -1568,79 +1010,7 @@
         "allRes": 40
       }
     ],
-    "jobs": [
-      "darkKnight"
-    ]
-  },
-  {
-    "id": "1311008",
-    "type": "skill",
-    "name": "드래곤 블러드",
-    "scope": "personal",
-    "mode": "active",
-    "masterLevel": 20,
-    "effectsByLevel": [
-      {
-        "pad": 1
-      },
-      {
-        "pad": 2
-      },
-      {
-        "pad": 3
-      },
-      {
-        "pad": 4
-      },
-      {
-        "pad": 4
-      },
-      {
-        "pad": 5
-      },
-      {
-        "pad": 5
-      },
-      {
-        "pad": 6
-      },
-      {
-        "pad": 6
-      },
-      {
-        "pad": 7
-      },
-      {
-        "pad": 7
-      },
-      {
-        "pad": 8
-      },
-      {
-        "pad": 8
-      },
-      {
-        "pad": 9
-      },
-      {
-        "pad": 9
-      },
-      {
-        "pad": 10
-      },
-      {
-        "pad": 10
-      },
-      {
-        "pad": 11
-      },
-      {
-        "pad": 11
-      },
-      {
-        "pad": 12
-      }
-    ],
+    "icon": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAA7EAAAOxAGVKw4bAAACf0lEQVR4nL2XgZGCMBBFw4wNcCWEEkIJWIKWoCUcJWAJWgKWEEuAEqCESwlefjBxCYRDbuDPnELA/Mdmd7nsWF9Pto0ie0ABnrJqNnHfp8nTQlgAY54JvglAUVYsP6YGYuebH8/5qubltWAZf0P0cmBtc6iua5amKauqypzv2AJ9nw6DscvtPut3MJfXynwvAsAk6pGPjBeTENT8cavd+EcA1nyfPwbXZJEHIXzzS302S4Cx2QDU/Pnst4u6bVmaJKMQIfNH212fBTBlDgnOWdU0A4iQuRBCA9TzAZbIN48D9zkAlEdoorGkmxLuj7PCncevP6qME4CYKVeb/vqpugu9vGZBQ+QAVXd/PjAvRel8emVIa9NCOPNzt+5RFBkIfGO9fZn119dxv8sHfZ6e9Zx67vbWsliTyEMH8SMb9rVP3kuAdaIQY8Lk1gyyRv51Kvu0Tdmw9q5zQVM035KpVr0j4EJyuwYhxrI/NO4vCeZK0sQ8tUL98dhEwwEovUohCKwlwj5lavsAFcIfi3c5OlnzF4FbAtTmFITVWJipqRU1t2uOsFPzHgAVLo/lhGr/KEf9w5h35ee3ZCTcmFwZ+gD/kW8eSmr3LqC1iVpVJiv+BkFuhJIzBAPhn5LLnbRiU5M6S1GjJhgqZvzEuxomfWENdVWgk8PUpmLm6cVJsOSYDDrjagBISoXy0CD8IEzCbGHuAECARATEHNFG4zedZQAUQkfB5gSNQpcHBZMy7zUdeyylbjxx8XHUDECoRn1RCF9LzB1AqE6nIMbGl8i9Cz7ZmPwnOdEDfIAIezW7O/JvWENoQnpXhMPIJqGBwHZpC1lzfNCXUfTaMG4h937/BTFQvRBLMiDAAAAAAElFTkSuQmCC",
     "jobs": [
       "darkKnight"
     ]
@@ -1744,247 +1114,7 @@
         "damageReduce": 15
       }
     ],
-    "jobs": [
-      "darkKnight"
-    ]
-  },
-  {
-    "id": "1320009",
-    "type": "skill",
-    "name": "비홀더스 버프",
-    "scope": "personal",
-    "mode": "active",
-    "masterLevel": 25,
-    "effectsByLevel": [
-      {
-        "pdef": 20
-      },
-      {
-        "pdef": 20
-      },
-      {
-        "pdef": 20
-      },
-      {
-        "pdef": 20
-      },
-      {
-        "pdef": 20
-      },
-      {
-        "pdef": 40,
-        "mdef": 25
-      },
-      {
-        "pdef": 40,
-        "mdef": 25
-      },
-      {
-        "pdef": 40,
-        "mdef": 25
-      },
-      {
-        "pdef": 40,
-        "mdef": 25
-      },
-      {
-        "pdef": 40,
-        "mdef": 25
-      },
-      {
-        "acc": 10,
-        "pdef": 60,
-        "mdef": 50
-      },
-      {
-        "acc": 10,
-        "pdef": 60,
-        "mdef": 50
-      },
-      {
-        "acc": 10,
-        "pdef": 60,
-        "mdef": 50
-      },
-      {
-        "acc": 10,
-        "pdef": 60,
-        "mdef": 50
-      },
-      {
-        "acc": 10,
-        "pdef": 60,
-        "mdef": 50
-      },
-      {
-        "acc": 20,
-        "eva": 30,
-        "pdef": 80,
-        "mdef": 75
-      },
-      {
-        "acc": 20,
-        "eva": 30,
-        "pdef": 80,
-        "mdef": 75
-      },
-      {
-        "acc": 20,
-        "eva": 30,
-        "pdef": 80,
-        "mdef": 75
-      },
-      {
-        "acc": 20,
-        "eva": 30,
-        "pdef": 80,
-        "mdef": 75
-      },
-      {
-        "acc": 20,
-        "eva": 30,
-        "pdef": 80,
-        "mdef": 75
-      },
-      {
-        "acc": 25,
-        "eva": 50,
-        "pad": 3,
-        "pdef": 100,
-        "mdef": 100
-      },
-      {
-        "acc": 25,
-        "eva": 50,
-        "pad": 6,
-        "pdef": 100,
-        "mdef": 100
-      },
-      {
-        "acc": 25,
-        "eva": 50,
-        "pad": 9,
-        "pdef": 100,
-        "mdef": 100
-      },
-      {
-        "acc": 25,
-        "eva": 50,
-        "pad": 12,
-        "pdef": 100,
-        "mdef": 100
-      },
-      {
-        "acc": 25,
-        "eva": 50,
-        "pad": 15,
-        "pdef": 100,
-        "mdef": 100
-      }
-    ],
-    "jobs": [
-      "darkKnight"
-    ]
-  },
-  {
-    "id": "1321002",
-    "type": "skill",
-    "name": "스탠스",
-    "scope": "personal",
-    "mode": "active",
-    "masterLevel": 30,
-    "effectsByLevel": [
-      {
-        "stanceP": 42
-      },
-      {
-        "stanceP": 44
-      },
-      {
-        "stanceP": 46
-      },
-      {
-        "stanceP": 48
-      },
-      {
-        "stanceP": 50
-      },
-      {
-        "stanceP": 52
-      },
-      {
-        "stanceP": 54
-      },
-      {
-        "stanceP": 56
-      },
-      {
-        "stanceP": 58
-      },
-      {
-        "stanceP": 60
-      },
-      {
-        "stanceP": 62
-      },
-      {
-        "stanceP": 64
-      },
-      {
-        "stanceP": 66
-      },
-      {
-        "stanceP": 68
-      },
-      {
-        "stanceP": 70
-      },
-      {
-        "stanceP": 72
-      },
-      {
-        "stanceP": 74
-      },
-      {
-        "stanceP": 76
-      },
-      {
-        "stanceP": 78
-      },
-      {
-        "stanceP": 80
-      },
-      {
-        "stanceP": 81
-      },
-      {
-        "stanceP": 82
-      },
-      {
-        "stanceP": 83
-      },
-      {
-        "stanceP": 84
-      },
-      {
-        "stanceP": 85
-      },
-      {
-        "stanceP": 86
-      },
-      {
-        "stanceP": 87
-      },
-      {
-        "stanceP": 88
-      },
-      {
-        "stanceP": 89
-      },
-      {
-        "stanceP": 90
-      }
-    ],
+    "icon": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAA7EAAAOxAGVKw4bAAACsElEQVR4nL1X0bWCMAwt57AAjqAjwAg4go6gI+gIvBF0BBkBRoARZAQZgccthJeWtNSfdz8US5N7m6SpjZWJQf0PInrgAoameQfa9ypNU3V81qq65Kpt23EsCWbPssNAIkiAJk/T/aYxyIgc4CIwHoLHq1LX81GLiG3y8/XuNLxdThP5T22M43d1m0T8PEsv+etRqMspHx8mEUYNBJHfa/E9xqsiH+cprwhwQAQhdk0EoeQIJEB2Led5uTql/vy7fDkF0Gr5avCN3wDe9X1n2EyFuF695MsrYAn1XFxrEadpYt+vnLnIJV+iAG4A+AyL4qZ88PkSBSzby1HhSpkCfHkP2S2WgH67wsfKJUPugEARCt0toxcuYEJohWdZthprmsZIU6gvIwWAr8KJfBjMI6PtOpUdDouIkN1iCUh0J1xeChXuItdE+71q3m9LhHu3QNizrM0IcGxV+DfY8iUK2OpsW1hWH+DLEMDzx4HQI7QuoAak+a7d8nr8nZqxNIGAlVDeoyjSTvX3e/2/gfKvya168CFWX4C2H5wDRGS//wbiWQDYyqXqd43bKflKAMBzTmH3kVIf4JDCLx3LYg1QLskRL0BfmPk83prtMa8Ajs+40t1cfKGwiflCuBhRAIWIogByEkFOtmATczsuRhQg7fdz3WoRaCd2LeC3XQ8Lyeejst3OSCeRoxW3ndCK7clAfczUuWrUK0+XfuACbCG2G/v/ve2WsXy0hx8qTGcj4gVIKwMhF+EDJ9eEYxSWZ0dTWtUAgc4wEiKfjyaIvMAdwyK3/YsCePipAIk4YSJ4o7GbDsj3SaLFSH4Buwgj3NVwO0KuAAo1nWM9I+e7QjufG9DAxPIaIJ8cbdfjVoTHiCKgReDOBpSl/H+OQPM4npbNOth/IHJ88BRE84XxP7CE8BdcIgvACJ/WGAAAAABJRU5ErkJggg==",
     "jobs": [
       "darkKnight"
     ]
@@ -2028,83 +1158,9 @@
         "mastery": 20
       }
     ],
+    "icon": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAA7EAAAOxAGVKw4bAAADA0lEQVR4nL1X65WyMBAdz9kGYglYApaAJUAJWAKWICVACVKClKAlaAmbEvbLTTJhYHnud47zgzxIcu88Mkm+qC8/9BnZcUUS+Hk8Xh9BPx4PP0yCCVjwOI42L6a1/fqWIqWW51S3G52zzJL4WguuPQYD2Lb56N7PdSTyNCXyJL5oSTTW1w5DDfpNcTjsbfPF7rOk1lkCskjAgTtNlQVVlsfeA1vw17fkFSyiVrCYJcCaH44Hr6FbEOBpmlPT1AFcUWcR22fJ6kUSkwS0Jg++d+AzCylRApxJKO+mOQ7LMTAA0gIEEsCo2wtbZJIAk3bmdEvLQJQk5L/ggsE6mwkElVgtg+Bi4dv/E/pyXYs9CrurZQbTBHRXQdVkL3KZ0gUm2hyIwTDmgzGh3eWn7QRYeQt2OnSdY84O/S7qMP5xf5GKFOmwcTcSGBNeGCW01/rd67dWhxX8GCYBmdoJ00HImpoF7rcHnbJjAJPgkhzGQXgs8ogKJhtnMG+BEXMDfEoYeIusc4EnURRXer/fv7QfSpIk5sC52gPOJ+U/EuDd5SsAHwNr27bXl6eF6Y8C9NxOnEnFDvbZPCm7nHraDwFZosiBZucT3a53StKYlmQ2DwxDgMHzvLBt5QHLy/nXdJCuqCMxZYVRAn47U1u3dC6zoD2DAxigqMdxbMu2bcJ8WMK6K2TLzbugH/oy8AAeiU3NN6m6LoMLtsiqXSCjHuDD6xu3QVSSWHM6ThBw3mcLyoUBppSP8MjVp4KyY7BxG3IWTIvEFBWVtQsykMiyjFLj8+JaWWsAvCwvPc2RrNDnzoG/XkjMLMXXIupboTH+ljlBgsdxYsELk4iKIiX665UM8wBdXHObE+q27P2fCjgcz3lS2HmkFvHngxAXSpjxWhWkjRcaQUKeCSADrW2/Acd4B/6ft2JJosKiPt+ACDSVAmBItQGcCezwVpt7HUkSNiKGic90Qmu+FS2B102DVxGqO7aAJYE327j07zRpnvwa8Xw+JR+aywIMjo90wc4/GD8h4Xn+D9ZqmzB1l9wiAAAAAElFTkSuQmCC",
     "jobs": [
       "darkKnight"
-    ]
-  },
-  {
-    "id": "2001003",
-    "type": "skill",
-    "name": "매직 아머",
-    "scope": "personal",
-    "mode": "active",
-    "masterLevel": 20,
-    "effectsByLevel": [
-      {
-        "pdef": 2
-      },
-      {
-        "pdef": 4
-      },
-      {
-        "pdef": 6
-      },
-      {
-        "pdef": 8
-      },
-      {
-        "pdef": 10
-      },
-      {
-        "pdef": 12
-      },
-      {
-        "pdef": 14
-      },
-      {
-        "pdef": 16
-      },
-      {
-        "pdef": 18
-      },
-      {
-        "pdef": 20
-      },
-      {
-        "pdef": 22
-      },
-      {
-        "pdef": 24
-      },
-      {
-        "pdef": 26
-      },
-      {
-        "pdef": 28
-      },
-      {
-        "pdef": 30
-      },
-      {
-        "pdef": 32
-      },
-      {
-        "pdef": 34
-      },
-      {
-        "pdef": 36
-      },
-      {
-        "pdef": 38
-      },
-      {
-        "pdef": 40
-      }
-    ],
-    "jobs": [
-      "archMageFP",
-      "archMageIL",
-      "bishop"
     ]
   },
   {
@@ -2196,6 +1252,7 @@
         "poisonRes": 70
       }
     ],
+    "icon": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAA7EAAAOxAGVKw4bAAACi0lEQVR4nL2XbZWjMBSGL+fUACsBJBAJIKFIaCUUCVRCkcBICBJAAkhYJHRzkyZcQsJS5sD7Y4CQ8j7kfjC5wFxvOEeBPqEAb972p7hnLH5rCA0gzdMkOgWgrFsociYhLrZ5fi8ONa9fJaTRBDHLgaPNUV3XAWMM2raV1xfYocftuhh7Vj+bfofmfV1DLI67APAhY1M4xstVCGo+VJUZ/wpAm2dFs7jHy8ILYZtnTSNDgGObAaj5+z1vF90wAItjJ4TPvBnU/U0Aa+aoJIqg7fsFhM88SRIB0G0H2CNfzG0ZACwP34NcSbcmnB+m5TQQLuekEQEIYTS1acdv7NTS81fqNcQcoFLzLWgBwR+p8WG0DPHiVZczCGN+V3EPgkBC4BHjbUvGX9zH+SYfxHWc59BzEYZGhYGXCqJvsRfkUwieYgKFcAkfrs1Q2si+T4XPij+GEgJXQoANQzWtgF6SJ/ghXNnvG7dDMoPoFITOCwkwiisNUVkQGEtc9jVT3Qeo8C3DZCpHI2JuAFBYm76VoAnlWmZqanwSqxf05O2JnH0A57hyYhz+U47ih2Gkys9uyXGcO39iynDxIBwKHQW8Qba5L6nNt4DWZvpKxKuONpJTmBu+5PTBoPCfkucPacXt3xrYHwZXjuYqKR/pDXJ2n/WFIyQBuqGBsr3CgG8u1v6WCPP4vuiMhwGEGGvx5pE4JOENMpEwZ5hPADLrQELAhryjjcZuOrsAKMQgwsE/OUFXQeVBCZwXs6ajzzkXjScsv141CZDFdn27v98UwtYecwPgq9M1CNf4HplvwTcbk98kJ/YAGyDAvZreHdkTjhA2IbErwtNAJ6GEwO3SGdLm+Id+jILPhvEMme/7P1mItiups3nAAAAAAElFTkSuQmCC",
     "jobs": [
       "archMageFP"
     ]
@@ -2299,6 +1356,7 @@
         "amplifiedMagicDamageP": 40
       }
     ],
+    "icon": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAA7EAAAOxAGVKw4bAAACcElEQVR4nM1XjbGjIBBeZ14DXAlYgpagJSQl3CvhWUJSQl4JWkIsQUqQEo4SPFZdAiiKXubNfTMJCLj78e3y4we4GOBnkFDFJjA8u/4t1hmoYJ/SvWWeDkSCCIzOi4y/hYAQAvI8X7R3XTf6uNUdVNd8JPHhO79+Vv9M4Ov3ZSyf9R/TVl5/vfovGcBMwsmBfecMwMhr119OfbSNdJ5RHUQxi+0n4XH/TFfU1OjLzuYfwe7HcBwioBifjU7OMJmwTqUxbMlOJPz23ArHLgHFMmBKGFP2M9bXIL5lVFskAT1DNZWEtWdTB1f2PRzLgRmSF8Hn1JK317LLeeZlu1yWmwSUNspka2ZDZVuVi7HF7TmWlFiI0D4QRYAx9pIY69m0xNrPHIbB3a2FlJCnKVSPyTgTjbMk/XDcvxuoHze4NyJMgGunfsqsOUdknEPX9yOJ4uHO0A5HCEEFzoLUWpM7ngDXmY8SaGNHqNDY+6QuXLiCpmmPE8AQkLXmmsOlDs8Gc8BmYI/nEUpuLkM0hnFPkmQ0iiXG2wfGH/txPOXDFukoAj53NE7OEOTI7w+9f5iAbWEt+0PtJiSRDDYUYPD17EfZt5zSPmAD35sQvhntElga09ldplHjjiCswMGt4OzWceoweieiV4EPzA07H87unVGrIApr4/dz8D8NAR6ZeKRKRt8J+1PxBeD6oop2ThFYkniZt/d+5xywxnAlo5wvCOBFwf42IBIEPGLtTcdsy3j0Kum8FwL68Akk+K1GX0f+AB9r53yWubfj+rF+WzYE9W2oms6OhBQYSdwiTzAfrRSHxpNz/LNDkMwfjD8Bc8D8BTkKDZnfTso8AAAAAElFTkSuQmCC",
     "jobs": [
       "archMageFP"
     ]
@@ -2392,6 +1450,7 @@
         "lightningRes": 70
       }
     ],
+    "icon": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAA7EAAAOxAGVKw4bAAACf0lEQVR4nL2XjZWjIBSFn+ekAVIClqAlaAlJCUkJYwlMCVqClkBK0BK0hFhClgcBkYBr3NV75iSKjveb9+dwgrlecIwifWADvHjbH+Kep/FLQ2gAaZ4l9BAAVrdQXFMJcXLNr/diV/O6ZJDRCWJWA3ubo7qugzRNoW1beX6CDfq5XT7Wfqtm1e+hecl78R1vA8CHjI/Cs84WIWzzqunM+lcA2jwvHh/XOCuCEK55V11lCnBtNYBt/nrNx0U3DJDGsRciZP4Y1PVVAEvmqIRSaPv+AyJkniSJAOjWA2zRR86J/z4DgO0RepCv6JaE95OMTQvEfBhl1AIgMJredPM3dir0vMyChlgDttT9NjSRPwnjxge/DQCe9LyG2IIw5neV9yiKJAR+Y75dyfyL63i/qQc8z2MoxaRtsOoIgUutzNvnE9LzeUrB8KhmED7hw7UZShu5122pvzaGun1CIyJFBQQTQMMIUwR0SLg4DkH4qj+07qZEPf8MvH9CN44SghALYBQJCkFgLjHsS6Z6DtjC8JNkakcUmlJQ5rokTQqwN5cgtHxhtk21bHOdcwy7bT4DcOWriXH4Szviw6lqP3ckY8H5ZNrwf8o1DxW1eRfYvcnZO4wrmLA2QsUZgkHhPyW/jTWK+76EOBbmZWKM6eUmwn+dzYU9JAGGrgJev82JaJPkZ2a+p+ZFiG1Cb4eZTwC6L0YIvrVs2YPGHTrbALSISoeuCTsKqg4YcF7Mho4+5lwMHsK+jpoEyHP3VXz33mxDuNpibgBCfboE4VvfIvMu+GZj8i/FiTPABYhwr6Z3R+4NewiHkNgV4WGki1BC4HbpCGlz/LC7IHpvGI+Qeb//Aa2AsP6gioR9AAAAAElFTkSuQmCC",
     "jobs": [
       "archMageIL"
     ]
@@ -2495,6 +1554,7 @@
         "amplifiedMagicDamageP": 40
       }
     ],
+    "icon": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAA7EAAAOxAGVKw4bAAACcElEQVR4nM1XjbGjIBBeZ14DXAlYgpagJSQl3CvhWUJSQl4JWkIsQUqQEo4SPFZdAiiKXubNfTMJCLj78e3y4we4GOBnkFDFJjA8u/4t1hmoYJ/SvWWeDkSCCIzOi4y/hYAQAvI8X7R3XTf6uNUdVNd8JPHhO79+Vv9M4Ov3ZSyf9R/TVl5/vfovGcBMwsmBfecMwMhr119OfbSNdJ5RHUQxi+0n4XH/TFfU1OjLzuYfwe7HcBwioBifjU7OMJmwTqUxbMlOJPz23ArHLgHFMmBKGFP2M9bXIL5lVFskAT1DNZWEtWdTB1f2PRzLgRmSF8Hn1JK317LLeeZlu1yWmwSUNspka2ZDZVuVi7HF7TmWlFiI0D4QRYAx9pIY69m0xNrPHIbB3a2FlJCnKVSPyTgTjbMk/XDcvxuoHze4NyJMgGunfsqsOUdknEPX9yOJ4uHO0A5HCEEFzoLUWpM7ngDXmY8SaGNHqNDY+6QuXLiCpmmPE8AQkLXmmsOlDs8Gc8BmYI/nEUpuLkM0hnFPkmQ0iiXG2wfGH/txPOXDFukoAj53NE7OEOTI7w+9f5iAbWEt+0PtJiSRDDYUYPD17EfZt5zSPmAD35sQvhntElga09ldplHjjiCswMGt4OzWceoweieiV4EPzA07H87unVGrIApr4/dz8D8NAR6ZeKRKRt8J+1PxBeD6oop2ThFYkniZt/d+5xywxnAlo5wvCOBFwf42IBIEPGLtTcdsy3j0Kum8FwL68Akk+K1GX0f+AB9r53yWubfj+rF+WzYE9W2oms6OhBQYSdwiTzAfrRSHxpNz/LNDkMwfjD8Bc8D8BTkKDZnfTso8AAAAAElFTkSuQmCC",
     "jobs": [
       "archMageIL"
     ]
@@ -2568,6 +1628,7 @@
         "allRes": 50
       }
     ],
+    "icon": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAA7EAAAOxAGVKw4bAAACf0lEQVR4nL2XgZGCMBBFw4wNcCWEEkIJWIKWoCUcJWAJWgKWEEuAEqCESwlefjBxCYRDbuDPnELA/Mdmd7nsWF9Pto0ie0ABnrJqNnHfp8nTQlgAY54JvglAUVYsP6YGYuebH8/5qubltWAZf0P0cmBtc6iua5amKauqypzv2AJ9nw6DscvtPut3MJfXynwvAsAk6pGPjBeTENT8cavd+EcA1nyfPwbXZJEHIXzzS302S4Cx2QDU/Pnst4u6bVmaJKMQIfNH212fBTBlDgnOWdU0A4iQuRBCA9TzAZbIN48D9zkAlEdoorGkmxLuj7PCncevP6qME4CYKVeb/vqpugu9vGZBQ+QAVXd/PjAvRel8emVIa9NCOPNzt+5RFBkIfGO9fZn119dxv8sHfZ6e9Zx67vbWsliTyEMH8SMb9rVP3kuAdaIQY8Lk1gyyRv51Kvu0Tdmw9q5zQVM035KpVr0j4EJyuwYhxrI/NO4vCeZK0sQ8tUL98dhEwwEovUohCKwlwj5lavsAFcIfi3c5OlnzF4FbAtTmFITVWJipqRU1t2uOsFPzHgAVLo/lhGr/KEf9w5h35ee3ZCTcmFwZ+gD/kW8eSmr3LqC1iVpVJiv+BkFuhJIzBAPhn5LLnbRiU5M6S1GjJhgqZvzEuxomfWENdVWgk8PUpmLm6cVJsOSYDDrjagBISoXy0CD8IEzCbGHuAECARATEHNFG4zedZQAUQkfB5gSNQpcHBZMy7zUdeyylbjxx8XHUDECoRn1RCF9LzB1AqE6nIMbGl8i9Cz7ZmPwnOdEDfIAIezW7O/JvWENoQnpXhMPIJqGBwHZpC1lzfNCXUfTaMG4h937/BTFQvRBLMiDAAAAAAElFTkSuQmCC",
     "jobs": [
       "bishop"
     ]
@@ -2629,6 +1690,7 @@
         "acc": 16
       }
     ],
+    "icon": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAhCAYAAAC4JqlRAAAACXBIWXMAAA7EAAAOxAGVKw4bAAACgUlEQVR4nLWXgZGCMBBF48w1oCVoCVAClqAlQAlYAlcClsCVACVACVKClODlR5Zb4gYTT/+MYjDkv2ySJflSn9FNf1Y+FW2A2zvc2+tFxZvdUlsTHAe41e3lZdO1GlQcx9q81aXBXOONLretLq1ndffxbooQARjzJNq+ZN51nTGvL7UahmG6j3K8u0NEUTTdL6pWnY6xgfiyzY/Zd5B5nibGvGwr1TNzEu6byGiI73OjqjJX+UHDjBCzOfCq+aE8qKb7cdbD/wQBD0CQvFcBzNADST/Z3Twqotn9NElVFmeL7QYtQwkCvYLQw77r5w8k8zr/BuBjCdEVYEaDcsoVveBEZENwFUUR2lw4QFVVTohn4+0NMIXUEwKfpXGmNqWoiQCoSEvMNm6aRiWJG9B+hkuCdA4B9QoNwhiibAYIEkWLjKsoUi5RHbS7HrplAAkCKZcgzueztzGJ6vAoPZ2EHIIrTbZ3MA9jCQRp+9T3fqtAmmQwB8Sx6R4gpISeK1ney5AnHeo5zDkEGdd1/fD8fr8XQf61I7Ihrtersy5BAYRDBL8L7HHnEJvNZhGCQABxeAVAEsIOU5hzCAo5mdoQNKmDXsdLs96G4PUAI82LIABJ6D1veIJIU3XUeYIgcgGiLEtzLxigY9uuTq9jJCeSmWDbrV4xZy8I6CPnAoLA9ZmCAaL13xYbaZnvdk15/O2bId8aAVpiUtaz58tbAKRxlSAk8yzLwgBmb8Yn4SUIXnZpBoD9evDZQMmze8nUvMj09TQCrHBWo9MRPzRIkqLgglg0780WfkURMBA4sz0T7WTsY9hB/W00kGRs0Zhzc3zxIViNB0YvjY2I4uP/8NzoReVfz8aEiX3s+C0AAAAASUVORK5CYII=",
     "jobs": [
       "bowmaster",
       "marksman"
@@ -2723,100 +1785,7 @@
         "criticalDamage": 100
       }
     ],
-    "jobs": [
-      "bowmaster",
-      "marksman"
-    ]
-  },
-  {
-    "id": "3001003",
-    "type": "skill",
-    "name": "포커스",
-    "scope": "personal",
-    "mode": "active",
-    "masterLevel": 20,
-    "effectsByLevel": [
-      {
-        "acc": 1,
-        "eva": 1
-      },
-      {
-        "acc": 2,
-        "eva": 2
-      },
-      {
-        "acc": 3,
-        "eva": 3
-      },
-      {
-        "acc": 4,
-        "eva": 4
-      },
-      {
-        "acc": 5,
-        "eva": 5
-      },
-      {
-        "acc": 6,
-        "eva": 6
-      },
-      {
-        "acc": 7,
-        "eva": 7
-      },
-      {
-        "acc": 8,
-        "eva": 8
-      },
-      {
-        "acc": 9,
-        "eva": 9
-      },
-      {
-        "acc": 10,
-        "eva": 10
-      },
-      {
-        "acc": 11,
-        "eva": 11
-      },
-      {
-        "acc": 12,
-        "eva": 12
-      },
-      {
-        "acc": 13,
-        "eva": 13
-      },
-      {
-        "acc": 14,
-        "eva": 14
-      },
-      {
-        "acc": 15,
-        "eva": 15
-      },
-      {
-        "acc": 16,
-        "eva": 16
-      },
-      {
-        "acc": 17,
-        "eva": 17
-      },
-      {
-        "acc": 18,
-        "eva": 18
-      },
-      {
-        "acc": 19,
-        "eva": 19
-      },
-      {
-        "acc": 20,
-        "eva": 20
-      }
-    ],
+    "icon": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAA7EAAAOxAGVKw4bAAADYElEQVR4nL1Xi3HqMBCUZ9KAKMEuwS4BSgglkBKSEkIJUAKUYErAJVgloBL8tCedfJZlA/Nmspkk/si3ex+dpA81xaD+BgVfSAFDe+9Xv9LKuh/91DrGAUtjd001sAgWQOTbulw13HUdGa/renVM0zTqfr8v2vu93NXPviERHyn5/uu4aPz7sI3Gj+fb4nuGtIV3+OZy+lbfn86BIGJSAzly/lAiJ4LJLy46exeF1IbkgAhGWoRZpCJAIkVI8ty3PDYHEoC8Inc5b6XHElIEk+vaWersjHwNMQI8kImWws4A2UXVE/Kc8FxKZgIwXdiTVEjqsQSLIHJEX/AspSQrICViA6kQfhcJ+dph93XLjpMpWRWAuS3zmQqRZCCXhEDfPxT1HcdXVRt61tZb9QyLs4DJUiO7UBuPYVDWWhWantKlJn7jnt37Xv38HN3Y83sCUHgxCsjtYVpY8HoYxuUCZCTCoTROQFlSFKxBtyzV6RetXceIPBUwA4qqHskfj8f0vfW/+GfoYuz+Wxe58/WqDp8H+m6z2WQ76EzALApqLDhDnomo8KXl98aPD4+01j4i7qZ3Iqog4vUIJLh1NyfgEO9LR9CFFHhGoU37KJjOqNKlZmkNnQmQbVVON0bnvKzLcZUjj7WYalrFKLDINUwEzMiJ0Vc+iq8oCnW5tFEAQqxLFWshxUidhCcngNdxnv/cQNBGufJRTDYhgocG9afzDYefrqYAixE3nLW+TR7nLFEW/H4pfaFDc7ILDTFGYGm5hDDMdb2SS4oCVhTr2XzAw/hYo34nlS5qcTHCjijdkPBGgmwEF5aEsAgVRdhJMeLV7+lEZiCibdtpBHLgnoD5S/knHWMs1yo8ksupaZMZo17oAywCnax3Pd6ISJhgqyx1fM7CZKQg2k8UO6uFlxpRjERVqTbkzxv1teFaQww5NT9Bjr5BY61vTmnMXu6EskVLQBCnhVbEQG7DQoX27UX5tDS7iuzczJsCpAgJKUguVkaQkzh30VSeHLPhZrr3BbAICRbkp6v3NCXfid2VPxuM/X0iAPv1tYPJmiBfIxvaGfliM2q/209E8sFEAgIKnNX4dJQOeAcsQt4DfJRjz4/XDqciXBYcARKBM9v/ghsMwIXG+WYwOf7IFBThwPgXiMfzfxV5BwXYyv/cAAAAAElFTkSuQmCC",
     "jobs": [
       "bowmaster",
       "marksman"
@@ -2911,8 +1880,12 @@
         "acc": 20
       }
     ],
+    "icon": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAA7EAAAOxAGVKw4bAAACYElEQVR4nL2XgXWDIBCGj/eyQDpCHEFGoCtkhHYEO0IcwY5gR4gj6AjJCHEE6pGcORAQ0jSX9yKI3P95BwIbsE3Da0xQgQPoY3+aK1sYp9/2X9TfZaEJggCMuCp3pjIMA0gpoe97KMvyqeLoG/1O/g3EJiR+1NND4gpRf3d/Fq4+lLnSix3aHr72UltjgMTbSwvjeDZX+XaHICfc1uC4MBpFtTsPpj4DkPjh1MB5HGcHWJeFpLAtBPB+CAbFubCvvwHAAYeNZV/Cz/i9eAjvU+i2412k6zrLKcFQtLBNa22NKWxrm/u4slMgr2GB9vYGqoL6rbZgivevuaz1EZRSBgSNv+3scxKndp/NANTJOLlxgLLb3LIQcgY5dwM0t/v0ti6Ub7wYAJzvOAuQFq43vOY6IBEfCIfw9bUAXKsO1ao4v8dBTFqmMoeIzRQvgJv3NeMgBDElHppKrUIsAHjYcoxGPUGcjofo4PMCcEruMOVjw5/FayGvEFDH+25CDeRoDWINdC0NQYAUC4nzKCBAzJIBUOyRFOGHKpaGKICbhlxxslgaslOQKp6ahiyA3DdPsSgAreV8KX2meBSAr+UhsBgI9cfwf9Zd3jSkzpdbHbvtYbmpSFlssmcB30igmRUyIBrajOSYBcDDLoRYCLoCPhj3+Z0qzSe5SJ2GPqcUfrezD8aNCi1M/FsQBHC/dOQwZeS7ewMOg1Ew3uoH1oLcaeeLCu2YVjelbVPB/rO2HPxlzvuighrcEEDgWY1OR+4DnPZZVv8MeCrCoqAIGAg8Lr3CSBz/eAoEntXgNTYfz38Bjxbj5hyiYmwAAAAASUVORK5CYII=",
     "jobs": [
       "bowmaster"
+    ],
+    "weaponTypes": [
+      "bow"
     ]
   },
   {
@@ -2984,6 +1957,7 @@
         "speed": 30
       }
     ],
+    "icon": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAA7EAAAOxAGVKw4bAAACyUlEQVR4nL1XjZVzQBR9zkkD+UpISqCE+UqQEqKEKIESpARKiBIoIUpYJWTnDk+eYYizdu+eHLyx7n2/zIHGeNHfwOMTKeD1qJ67Mx2p1X/Hke1/cH6xCBZgyJV/2pW8rmsKgoCqqiLf9wd7klcUXwIj4mCTX6J4F/LbNezIvyoK/nUi0ntBeZbQLdRiehGjGtib/PF8UNu25hicOxHggAjGgVaAh20FyLMqp0aTM3DN6ZBYFMCezK7dkoktDJW5P8xCKutiup6FExFOAUz+eo07s24acwzO59GasfceF1FH7idd4V3VlaIgmuWZFeAiNw89nQxZ9XyS53nDPcauq569w/83dSeWVHewwz8rYIl8VYRuNRkJaqf/y51QNrU7AnshSZLVe35VgCvvfyJgLt+7CeBOcNqPRyp0rnFklGVJWXJbF4AigXpZXC5ibkXb7iLHs1cF2CJQ6XMAOdZ+Qu4UIEWACGAhfM1kYT+qC4sAxJ9g0yTk3mdATKK9gz0U7wyIUUoN11GcbkuBJJ9Muz7kOJfr0u5rsliTIhVKDyf8XCIWu8BV7fI9wNMQR3ju95WOiMi0ICIsYlGAfANyodmwRzADpPA8ESRxqq9v0/abFWDnHSS/jdkULA0a7gLbew53YoV4yfuJALv1bEFz3wCw4eNEEsMuO6HUr2k5D/Ls/YHqnIQyFdJzGR0mt+08jEBsBGydhLb3phh7UTI6IAcJ2kxWPBMzNk3CtQ8SeyIix/DQnohD+Fcm4uocYO8ZGDQsBGtKVSM7QcidTFQYH09CfCrVVvgkEPK5/ke+P+1/uSdgAR72alu3ZvCYo5Dnj0G4iUQfhZN+3lX/YLsXxbDHSIsauyKcehwBIwJ7NtVrcM0COXoZ2IDgfkRBvpQivQviWmiadkLOEWB4/YbRQFa73JykaTxZj6OLOZZinVEW9/dz3ufDiP0Gu90O2jz+gmoAAAAASUVORK5CYII=",
     "jobs": [
       "bowmaster"
     ]
@@ -3115,111 +2089,12 @@
         "pad": 10
       }
     ],
+    "icon": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAA7EAAAOxAGVKw4bAAACE0lEQVR4nL2X65WCMBCF4RwqWUvAEtwSpIS1BC1hKQFLwBKkBChBWrAElhu97GR4JHFd7g/hmGHmy2TySiJbXbSOYr5IgK6ub6tE3243HSEIYIKn6ccqAEV5jQ7Zp4FIdPDscPq3wMevfd/7bdR1fewnhFUDCA4jKD9f3hoYQvC6rq22RBvCCIKhhKATKRekDCx9lkU6DWAIr0V0qaoRLZ1IyXYNozsz9f0IAEp3O/Pc90/50fG4H/6HCKlhACLHummaoTNTGbMAYBTHG/PedTeTDQbL88fHfKIdMGiDZG8pBK+e7XNKpv6UILqHlARtRBA5dHP15ASYCqgdsH0KRNfPUrFaADBkwSxRS6cSBBCUj48RwCuSIIRAXaBofSBGACFZoFj1hOBU9tGfMyCDW/A9BGdMMIBvFnTwUbvHMLycgbngEp6L15JmAZay4Oo5hYXKNQzBGfANPtg7hmERQGcB8l0jfIchKAMhPffVLIDc/3UW3qlJALmXawi+Q67pifSjCIOmIT8u08eppb3fo1PbWoF9QYJngXVojB77eZtlQ7vegHxBvAHoMI5jy7GWC4TC6QpLctCJSMMg/XMfL4HIjWlpLUimHOpjtCu1cyDMgrHJPYqwLL6ti0nonNcgEE9Mv0fy7xFAjLsab0c0YCHKM/wroh/p63ypcCsyfMyAgcCdbQ0xOH7kEMTPC+MaGq7nP3lf1dUoQsBwAAAAAElFTkSuQmCC",
     "jobs": [
       "bowmaster"
-    ]
-  },
-  {
-    "id": "3121008",
-    "type": "skill",
-    "name": "집중",
-    "scope": "personal",
-    "mode": "active",
-    "masterLevel": 30,
-    "effectsByLevel": [
-      {
-        "pad": 11
-      },
-      {
-        "pad": 12
-      },
-      {
-        "pad": 12
-      },
-      {
-        "pad": 13
-      },
-      {
-        "pad": 13
-      },
-      {
-        "pad": 14
-      },
-      {
-        "pad": 14
-      },
-      {
-        "pad": 15
-      },
-      {
-        "pad": 15
-      },
-      {
-        "pad": 16
-      },
-      {
-        "pad": 16
-      },
-      {
-        "pad": 17
-      },
-      {
-        "pad": 17
-      },
-      {
-        "pad": 18
-      },
-      {
-        "pad": 18
-      },
-      {
-        "pad": 19
-      },
-      {
-        "pad": 19
-      },
-      {
-        "pad": 20
-      },
-      {
-        "pad": 20
-      },
-      {
-        "pad": 21
-      },
-      {
-        "pad": 21
-      },
-      {
-        "pad": 22
-      },
-      {
-        "pad": 22
-      },
-      {
-        "pad": 23
-      },
-      {
-        "pad": 23
-      },
-      {
-        "pad": 24
-      },
-      {
-        "pad": 24
-      },
-      {
-        "pad": 25
-      },
-      {
-        "pad": 25
-      },
-      {
-        "pad": 26
-      }
     ],
-    "jobs": [
-      "bowmaster"
+    "weaponTypes": [
+      "bow"
     ]
   },
   {
@@ -3311,8 +2186,12 @@
         "acc": 20
       }
     ],
+    "icon": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAA7EAAAOxAGVKw4bAAACT0lEQVR4nL2XgZGCMBBF44wNnCWcJZASsAQoQUvIlQAleCVACVICKUFKkBI8fnCZJTEQOPXfzBkw+N9mNwnZirHu4jPaUIMD3C/1dbj4Em339/UW94Pc3wmCAIx5HH2bC621kFKKuq5FFEUvB8iKWvyk0kBsvea3WshdD5H/Vi8zL85KqKQL6gExqgEyv1wvom1b8yn3r4VIT7mBIA0AZH6uC9F05iRcUzoIQh1jrwEH5f18ARgAFBxMknMiKl06nXCfICC0faI+dj/fKI5SUJ568yjrC+8YH8VJnkYPGJDL2QswMn30K6vKGUUHgEfX6Ka/GbtR4UflYQwFKZUM38Mwz0vzmcT+dA0AmO+YBagD0d9w1erBmAOR7LSgz1SqRgC2sixzDTpzMn6WSzJE5Gg3TSOKohBpmg7fz9YAyc771A9AqHaYUxrQhrnuChr3AOWTA/BseKE581u3cDWUwk6IHGnNMhUOYM9hX+XOmZOqrphRiKZw52bBUvFh5+Y0A6gmdKXFlFYB8MihPM/NdOPmiJQgoti/oS0GeDbsSikDwc1DtQjAl/O15osAbHOzLrBVb+2OGQTwLvNggDXmfJZM9ZsFeFfkwQAw3+36TQXRhJjbS/NiAPoBCOZ8U1ka+Vx/B4AXHDfnuaR+r5ADQCsYDTuPHArZ47mwIU3tKU9TwJdRO/JQhewDXgAbYk218zei4BrA+zre222INVONnqU297ABNjir0enI7tA/9L/jmf18XmqcitDc0AgYCJzZPiEyxz+egs3jwPgJDcfzPylI9ZoiRLxmAAAAAElFTkSuQmCC",
     "jobs": [
       "marksman"
+    ],
+    "weaponTypes": [
+      "crossbow"
     ]
   },
   {
@@ -3384,6 +2263,7 @@
         "speed": 30
       }
     ],
+    "icon": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAA7EAAAOxAGVKw4bAAACyUlEQVR4nL1XjZVzQBR9zkkD+UpISqCE+UqQEqKEKIESpARKiBIoIUpYJWTnDk+eYYizdu+eHLyx7n2/zIHGeNHfwOMTKeD1qJ67Mx2p1X/Hke1/cH6xCBZgyJV/2pW8rmsKgoCqqiLf9wd7klcUXwIj4mCTX6J4F/LbNezIvyoK/nUi0ntBeZbQLdRiehGjGtib/PF8UNu25hicOxHggAjGgVaAh20FyLMqp0aTM3DN6ZBYFMCezK7dkoktDJW5P8xCKutiup6FExFOAUz+eo07s24acwzO59GasfceF1FH7idd4V3VlaIgmuWZFeAiNw89nQxZ9XyS53nDPcauq569w/83dSeWVHewwz8rYIl8VYRuNRkJaqf/y51QNrU7AnshSZLVe35VgCvvfyJgLt+7CeBOcNqPRyp0rnFklGVJWXJbF4AigXpZXC5ibkXb7iLHs1cF2CJQ6XMAOdZ+Qu4UIEWACGAhfM1kYT+qC4sAxJ9g0yTk3mdATKK9gz0U7wyIUUoN11GcbkuBJJ9Muz7kOJfr0u5rsliTIhVKDyf8XCIWu8BV7fI9wNMQR3ju95WOiMi0ICIsYlGAfANyodmwRzADpPA8ESRxqq9v0/abFWDnHSS/jdkULA0a7gLbew53YoV4yfuJALv1bEFz3wCw4eNEEsMuO6HUr2k5D/Ls/YHqnIQyFdJzGR0mt+08jEBsBGydhLb3phh7UTI6IAcJ2kxWPBMzNk3CtQ8SeyIix/DQnohD+Fcm4uocYO8ZGDQsBGtKVSM7QcidTFQYH09CfCrVVvgkEPK5/ke+P+1/uSdgAR72alu3ZvCYo5Dnj0G4iUQfhZN+3lX/YLsXxbDHSIsauyKcehwBIwJ7NtVrcM0COXoZ2IDgfkRBvpQivQviWmiadkLOEWB4/YbRQFa73JykaTxZj6OLOZZinVEW9/dz3ufDiP0Gu90O2jz+gmoAAAAASUVORK5CYII=",
     "jobs": [
       "marksman"
     ]
@@ -3515,8 +2395,12 @@
         "pad": 10
       }
     ],
+    "icon": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAA7EAAAOxAGVKw4bAAAB80lEQVR4nL2X0ZGCMBRFHzM0sC2wJWAJUoKWICVACVBCLAFKgBKghKUVlpvd64QsSGCN90NxhnhOkhdIQplnlPck4IUpMHbd11vop9PnSAkKaHgcR97hfd9L13WTxElLhDb8muZewNntor8nsBZQVSPpNRlnNeADboIRwOM4ln5o9e/wWaMjKe/1KpjXZv4IoOHSja4ByASP46jnnUMPwUrFywKEF1m2Gxyfoxm4aZQkSarhbduutlucgmEY9Pe9rp0FCsm0BOTrCQg4eh8EP0uevXcSIJjDuRX0GtBhiCSKosdSAxxCeVmutp0JwNCewyVrO2aBQZ6/Ue2Ar/X+jwCBe1YB6yYrCinzXEPNOsJoPEso/wjhVdPINUlEKSVpmmoJ1NHldpbmrGYr4GUCNpzDzpFAonZ4rI61HBKw4ax2wimD4cfqeKmAC5zF7PJA2yXgCt8TZwEfcGcBX3AnAZ9wJwGf8E0B3/BNgVfAPza2mU83JHy8+uj5ooBdcMUExbPdhPM+1+D17CzA8A2W/z7T+Wzfu1W7XbZFF/cDfKkQ7roxMUNZ7q6cBGwJ5Micc4r0zqoW9w1JpQp9NjB3RkcKzmxv/wcYtkCAsxpPR/YN5hb6aOz/uNctTkW4DDgCWgLHpXeEcHyYUxDgrCbvyeN4/g3PUprSROcGTwAAAABJRU5ErkJggg==",
     "jobs": [
       "marksman"
+    ],
+    "weaponTypes": [
+      "crossbow"
     ]
   },
   {
@@ -3608,6 +2492,7 @@
         "eva": 20
       }
     ],
+    "icon": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAA7EAAAOxAGVKw4bAAACoklEQVR4nK2X4ZWrIBCFx3NeA29LMCVICVqClhBLSEowJWRL0BK0BC0hlLCW4DrokAFBdE/uj0RMmPsB4yD/wNQEJ9X3PQghznaL6IIDTG3/OhXlP4zKHCHGuXVUmbhMBEEAyjxN4sNBhmFYzH9eIL4uCiJJkkN9q7qHeyEUBAJM2BnmMWBQ1OO72w1wu6ar+dIPv8XXMhOhvvXzBrd8Bl0hlhmQd8ug8oKQeftqYRxHfR/b4hKGKMqHgiApAFGYHfr6rkF4MDJ/9jVIZk7C+5QToZkwAKbpnfyDlPNILhqEIMg8f+bQDY03IP5+BsJ+DCGJY+hfy9OAIARBasrFPKnMhLumVyhFadxDaC4X0AaAIHAmEIQgIK5gSVZQI5SDNDutXvw/tlyz4gTgEPYI9KhG8ErlyfPpvE+AQQBNzWaBL0VVVc7/+8xReN+GCAL4ZK/3X3UOQJq54NLZfeEwANUKSkhfkTqrIIBa/zkPMClRURQZ9YEL27Q7uvKgLEu9Z3Ry2AewnwCSnZS+YoNmHALbLjkBbHM+C1SoXBC6VK/GeZ5vYgefAm6+mKSHICg4N++yTMfK2xaaptGPYl3XbwDXiFFkTtd7EJiY2mw1T2dTErYJgmszA2Surovt+u5CWOZ8BqiNEDwfFAAvu7QR0f09+RKVywaxpWfArv000pB0nqgl2BahPXMDwBc8pLf5IlzjfB21nQPpkRzYBA8prsxd0oIgucyDAGSwJ18hIgjedunQXnD0/c4FEdKft+NP6eMAds3HyufbBz4OYL8n8HcD+ze5PvIIMO+w0cRfzW3xg8RR0SmLi45uj2aYT0UFXkY0AwqitSjx5DPOpF244G0Uw9KJRipZnPlIpjzxgy9BlAlhTENW4igK+ISKwoijj+e/T7G77LHBrEkAAAAASUVORK5CYII=",
     "jobs": [
       "nightLord",
       "shadower"
@@ -3702,8 +2587,12 @@
         "acc": 20
       }
     ],
+    "icon": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAA7EAAAOxAGVKw4bAAACeklEQVR4nL2XjXWCMBSFwzldAEfQEWAEOoKMgCPoCDiCHQFGkBFghDKCjEC9wYuPGDCxrbfH8mPI/fLeSyQfaqpevUcBTyRAf66/x4tQdde/8F/cP+NNTwgCaPMkWuuLpmlUHMeqrmsVRdGfA+RFrQ5prCE+Zs0vtYpXA8Txq3LqeJ8ls9+xj+K0V/vtdVA3iEkN0Pz8fVZd1+ljvHkOQWM8a8p8Nt0dNQQ1AtD8VBeqvZpTuGY6bBAwp3Hf32s4CAKn6GkAFBw62Z62qmrKh0a4b4OgOYwRse4GvlqtnFM3SUG5G8yjfCi8LMnULt5ZHzTNq2owS9PUq25GADwEodO2aYebyfQ7m8ryHrG2bZWvNADmO2YB6kANNx5kC31RFBPjw+HgNfoRwFSe584dvDLqpwBzeYfk6H9rPgvAwkI1S2NXoa13EdrEHJsLDO9nWTZWP45IHduycJ3WAQqN8SAWkcvl8mAolSTJJEJoAwgT+hnIbATCMNQm6NTMNUbOxYZiXaD9er22gtggHgBkFOTSKsWwsz3rQ4LinCCMlg3CGgEJAS1V/FJxEgJHpNSM2iyAhIAYRq4PzLUsTnyHhcz2/kAQmxZnAcNlA2HVUzTHaiiFNktRWARYAkHHMi00N0NszgZTTgAShDmfC6kENqHl1H4JYElzP0QyenLd+FOApWhIEECYq6oXgPlDRGPXlxA5s14CkII5Pz6SdeQFwNFzBDT2ef+jMGOqtnEHoLmsYhaUr7mpCQDe1/HebjOXpjSGfM3lnoAAAfZq3B3JBnxHtC0iXHKLk//W7Vg22BXhNGAENAT2bK5iDl8RzfFPpiC4bRjfoXF7/gM6mc7Sd/RBzwAAAABJRU5ErkJggg==",
     "jobs": [
       "nightLord"
+    ],
+    "weaponTypes": [
+      "claw"
     ]
   },
   {
@@ -3835,109 +2724,7 @@
         "criticalDamage": 100
       }
     ],
-    "jobs": [
-      "nightLord"
-    ]
-  },
-  {
-    "id": "4120002",
-    "type": "skill",
-    "name": "페이크",
-    "scope": "personal",
-    "mode": "active",
-    "masterLevel": 30,
-    "effectsByLevel": [
-      {
-        "addEvadeP": 1
-      },
-      {
-        "addEvadeP": 2
-      },
-      {
-        "addEvadeP": 3
-      },
-      {
-        "addEvadeP": 4
-      },
-      {
-        "addEvadeP": 5
-      },
-      {
-        "addEvadeP": 6
-      },
-      {
-        "addEvadeP": 7
-      },
-      {
-        "addEvadeP": 8
-      },
-      {
-        "addEvadeP": 9
-      },
-      {
-        "addEvadeP": 10
-      },
-      {
-        "addEvadeP": 11
-      },
-      {
-        "addEvadeP": 12
-      },
-      {
-        "addEvadeP": 13
-      },
-      {
-        "addEvadeP": 14
-      },
-      {
-        "addEvadeP": 15
-      },
-      {
-        "addEvadeP": 16
-      },
-      {
-        "addEvadeP": 17
-      },
-      {
-        "addEvadeP": 18
-      },
-      {
-        "addEvadeP": 19
-      },
-      {
-        "addEvadeP": 20
-      },
-      {
-        "addEvadeP": 21
-      },
-      {
-        "addEvadeP": 22
-      },
-      {
-        "addEvadeP": 23
-      },
-      {
-        "addEvadeP": 24
-      },
-      {
-        "addEvadeP": 25
-      },
-      {
-        "addEvadeP": 26
-      },
-      {
-        "addEvadeP": 27
-      },
-      {
-        "addEvadeP": 28
-      },
-      {
-        "addEvadeP": 29
-      },
-      {
-        "addEvadeP": 30
-      }
-    ],
+    "icon": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAA7EAAAOxAGVKw4bAAADYElEQVR4nL1Xi3HqMBCUZ9KAKMEuwS4BSgglkBKSEkIJUAKUYErAJVgloBL8tCedfJZlA/Nmspkk/si3ex+dpA81xaD+BgVfSAFDe+9Xv9LKuh/91DrGAUtjd001sAgWQOTbulw13HUdGa/renVM0zTqfr8v2vu93NXPviERHyn5/uu4aPz7sI3Gj+fb4nuGtIV3+OZy+lbfn86BIGJSAzly/lAiJ4LJLy46exeF1IbkgAhGWoRZpCJAIkVI8ty3PDYHEoC8Inc5b6XHElIEk+vaWersjHwNMQI8kImWws4A2UXVE/Kc8FxKZgIwXdiTVEjqsQSLIHJEX/AspSQrICViA6kQfhcJ+dph93XLjpMpWRWAuS3zmQqRZCCXhEDfPxT1HcdXVRt61tZb9QyLs4DJUiO7UBuPYVDWWhWantKlJn7jnt37Xv38HN3Y83sCUHgxCsjtYVpY8HoYxuUCZCTCoTROQFlSFKxBtyzV6RetXceIPBUwA4qqHskfj8f0vfW/+GfoYuz+Wxe58/WqDp8H+m6z2WQ76EzALApqLDhDnomo8KXl98aPD4+01j4i7qZ3Iqog4vUIJLh1NyfgEO9LR9CFFHhGoU37KJjOqNKlZmkNnQmQbVVON0bnvKzLcZUjj7WYalrFKLDINUwEzMiJ0Vc+iq8oCnW5tFEAQqxLFWshxUidhCcngNdxnv/cQNBGufJRTDYhgocG9afzDYefrqYAixE3nLW+TR7nLFEW/H4pfaFDc7ILDTFGYGm5hDDMdb2SS4oCVhTr2XzAw/hYo34nlS5qcTHCjijdkPBGgmwEF5aEsAgVRdhJMeLV7+lEZiCibdtpBHLgnoD5S/knHWMs1yo8ksupaZMZo17oAywCnax3Pd6ISJhgqyx1fM7CZKQg2k8UO6uFlxpRjERVqTbkzxv1teFaQww5NT9Bjr5BY61vTmnMXu6EskVLQBCnhVbEQG7DQoX27UX5tDS7iuzczJsCpAgJKUguVkaQkzh30VSeHLPhZrr3BbAICRbkp6v3NCXfid2VPxuM/X0iAPv1tYPJmiBfIxvaGfliM2q/209E8sFEAgIKnNX4dJQOeAcsQt4DfJRjz4/XDqciXBYcARKBM9v/ghsMwIXG+WYwOf7IFBThwPgXiMfzfxV5BwXYyv/cAAAAAElFTkSuQmCC",
     "jobs": [
       "nightLord"
     ]
@@ -4031,8 +2818,12 @@
         "acc": 20
       }
     ],
+    "icon": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAA7EAAAOxAGVKw4bAAACGklEQVR4nL2Xi3GDMBBEjxk3YErAJaASSAm4BCiBlAAlkBJMCVAClGBKMCUQVnBEfMxHAW9mYqQQ7bvTSZYuNFRNn5HBDypAnebPvnGlqvm5nuL+JW41QzCANHdsSzaKoiAhBOV5TrZtHw4QPnL6vgsJcXlr/spJmC1E9JMdZv6IAwrcJqgOYlADbJ4+U6qqSn6K27EQdz+SEKwegM3j/EFlY85Cm6fjyEwMAFBwMHFjl7IimbyE/rMgBlOQ+K25HbaF5zke+cLXHjzwnEF7Dr4HQHQQIi2Lsu10hn/ba4yxxuPPAmC9YxWgDqjtmGhr6mHOxnVdy2I2TfPt+5e5zjAMSUdsDmMoSRJyHGfxf2YBdOZdNYcxBHNEv1S8E4C1+VYLiwcdm1uWtRl8ALB1nnmO1cJl8yzLyPM8CbEW/QRgj17NVm2af8WmY/4vgLJZMQyha64FgEExuNwZ07iHQN9ecy0AtQjFl09B4EoQtS72bNe7ANRNBsZQFCVUZIVs43mvNgOwOVIOoQaSrI0067ZuQOz90toE8M4cEatLkUH2aBVATbtqjrSzuDB1tAgwjjyKIvkJc0Srplr3nLC5Bsrum5IL7ajDySIApxbrHAXGaT/yZLSaAXXjOdp8E4AKwc9HanMNnHEingDgvI5z+5lS7wQMYOCuxrej8QtnKEoK3IrwaHAGJATubJ8Qm+OXOgVGd2H8hPrr+S9PlW8JaRQpHgAAAABJRU5ErkJggg==",
     "jobs": [
       "shadower"
+    ],
+    "weaponTypes": [
+      "dagger"
     ]
   },
   {
@@ -4104,182 +2895,7 @@
         "shieldBonusPdef": 100
       }
     ],
-    "jobs": [
-      "shadower"
-    ]
-  },
-  {
-    "id": "4211005",
-    "type": "skill",
-    "name": "메소 가드",
-    "scope": "personal",
-    "mode": "active",
-    "masterLevel": 20,
-    "effectsByLevel": [
-      {
-        "damageReduce": 50
-      },
-      {
-        "damageReduce": 50
-      },
-      {
-        "damageReduce": 50
-      },
-      {
-        "damageReduce": 50
-      },
-      {
-        "damageReduce": 50
-      },
-      {
-        "damageReduce": 50
-      },
-      {
-        "damageReduce": 50
-      },
-      {
-        "damageReduce": 50
-      },
-      {
-        "damageReduce": 50
-      },
-      {
-        "damageReduce": 50
-      },
-      {
-        "damageReduce": 50
-      },
-      {
-        "damageReduce": 50
-      },
-      {
-        "damageReduce": 50
-      },
-      {
-        "damageReduce": 50
-      },
-      {
-        "damageReduce": 50
-      },
-      {
-        "damageReduce": 50
-      },
-      {
-        "damageReduce": 50
-      },
-      {
-        "damageReduce": 50
-      },
-      {
-        "damageReduce": 50
-      },
-      {
-        "damageReduce": 50
-      }
-    ],
-    "jobs": [
-      "shadower"
-    ]
-  },
-  {
-    "id": "4220002",
-    "type": "skill",
-    "name": "페이크",
-    "scope": "personal",
-    "mode": "active",
-    "masterLevel": 30,
-    "effectsByLevel": [
-      {
-        "addEvadeP": 11
-      },
-      {
-        "addEvadeP": 12
-      },
-      {
-        "addEvadeP": 13
-      },
-      {
-        "addEvadeP": 14
-      },
-      {
-        "addEvadeP": 15
-      },
-      {
-        "addEvadeP": 16
-      },
-      {
-        "addEvadeP": 17
-      },
-      {
-        "addEvadeP": 18
-      },
-      {
-        "addEvadeP": 19
-      },
-      {
-        "addEvadeP": 20
-      },
-      {
-        "addEvadeP": 21
-      },
-      {
-        "addEvadeP": 22
-      },
-      {
-        "addEvadeP": 23
-      },
-      {
-        "addEvadeP": 24
-      },
-      {
-        "addEvadeP": 25
-      },
-      {
-        "addEvadeP": 26
-      },
-      {
-        "addEvadeP": 27
-      },
-      {
-        "addEvadeP": 28
-      },
-      {
-        "addEvadeP": 29
-      },
-      {
-        "addEvadeP": 30
-      },
-      {
-        "addEvadeP": 31
-      },
-      {
-        "addEvadeP": 32
-      },
-      {
-        "addEvadeP": 33
-      },
-      {
-        "addEvadeP": 34
-      },
-      {
-        "addEvadeP": 35
-      },
-      {
-        "addEvadeP": 36
-      },
-      {
-        "addEvadeP": 37
-      },
-      {
-        "addEvadeP": 38
-      },
-      {
-        "addEvadeP": 39
-      },
-      {
-        "addEvadeP": 40
-      }
-    ],
+    "icon": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAA7EAAAOxAGVKw4bAAAEC0lEQVR4nL1Xi5GjOhCcrboEtCHIIeAQ5BDkEHAIdggQAoRgQjAhWCGYEJ5C8JseMZiPMXt1Vze17GoRUvf0fAS/aGpP+jf2pYMxgeft/vgruxuKq3ORZw/73VNJKAEBd5n9KwRCCLTf7xf37/e7YBTXO12OeyHxaw5+PF0+bn7O/epcWTeTZ+7/3Ya5/ffhtYfPiHoSkxz4BK6bvvNMwNi7d+Sarpn8D3Vgrhd7noSbwM/nNE9jjMM1J8e35L7aeB6ENwkAfA68330P82b4RVRUSe7b4zqmQAk/Tu4fdsdhvEpAwefALjPDMz631NTdZB0A67Ze7Fd2y3urBMbgh/23bBq6SEWOwBkyysFYHkfx8MVgKvuWLQjMwTObAHMGu7C3VZFIOH8WNJ8bapp2WH88vOStbhWVTSnjbqbURwUGZ9gRYxIBYy3xD6HSCgY12m5EhSSJJhZMcmcmznj+LYGx94h5VTkKbcfAtieSrrKJdHVpjWECEKCsj9R1He9hWZVXws3DgV5xrQreI3xWAMtafigvruItrDA1KxD7ecM1ncglIoaqc0Y2e+1xOp5oywYC2j7Ve49s500Dx9D5Qp7Jspw7S8nKVOIZPIbleU5lWZJ1hvq6eys3bN6sPuaAJnsIdQKHCkUi09QltUxaZD8XfCEp66Qch0ObEP46l1EXLdV1vSC2IIBFZvQ/Mh8qG8NKOCdSd6FlQikJkP9leSHvc16bcUU0Q2f0ztCWvSUABmXzSj41eIsrxiS9KhC5RwBY80GtaaOs92Qm+3wkoHb2CRzJKqrw2EopWvG47QlpkmfZK/s0872zUiW/pcDYIiUZ4ZhjiVENTRsk5iABzwWcQwPQ3HfyfNPYgVgiEBfqrBKY1G1MJLA4xhYjkRq5gJijcqAM1mAcvZE1TkhIF0sXxe0QQEJkKErx8XjgZSHFzxshEbuWSxKlR5LNIIEQYJ2Ag0QDNQBkKD87JsF5RHy5nA6Hg+yfGlG2JLBUAf2ePanhSaqMvnmJuazlC6Mg3mINOqSP2pi4iXFphqZe9X5BAOxUhdvtxj3nJN73TV88xmZ5X14aLcRdO2QCN3J2ANzlBe12u8H7jwTmKkjNd5pNsfdc33Smz4JEGwRdwMXrHxzLCwJjFa5XPgf45SLJG9LLSJ+YkN17K3HWnomyw3uDs4nhlverCsxJgEBhUocLff9/HbNGSk2Oa76J9wckHRTYAl8lMCcBkzMAXpmguFwZpk/EnpFNrRoZD9sC/0hgTAKmRHDyKZ7w6DMcfy+n0wCs67dsQgAvCvNvA91kTuSd/QQYGHMCX/hW06+j+QNrIO9Mz4Nxo3lnSGg0Ouo/zUhJ4JvtT6ztAv3EFBy/xiH46j8Y/4UNn+f/A/pYZ+e4qIKOAAAAAElFTkSuQmCC",
     "jobs": [
       "shadower"
     ]
@@ -4373,6 +2989,7 @@
         "eva": 20
       }
     ],
+    "icon": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAA7EAAAOxAGVKw4bAAAC5ElEQVR4nL2XjZGyMBCG1xkbyFeCloAlQAlQAleClBBLkBJCCVCClCAtUIJfdmHjEgLnccy9M95hEvI++Vs3R5jqBX+jAz9IgNfj+dzdSdlP75VdzucXQzAAmUen067mXddBkiRQ1zWcRN/Gfs+ShCCOvnlR3HYxz/OUzI2OHERZVqD1FdI4dhCTPbC3eW2u0N4a0NEbAj0QgnWEneVGbiLoywZOaig38RtCalcAaQ4VDDtQvetNPofYfQZQWdYOhgjSjGVlG2y7CQBH6gs3GIpHhyP15U//JgA074tiXq61g5gAeiebT0Jrj+iPAdg8a+fTaWy5hFgC8PUxAJnfBvOnFzHbrrdn+gLG1udX7cp5L/wawJk3c3NUZM+aqR8DBBSgLERovTcDbNFsKb4D6MZN4YtGXxaT87wq2w7b57lehJBex/GdSbz2zbOqBZNGi564B6SoPYQhXJgel4gAsEDf9QSCzKvBHNf9fD4TBP236+2L1t/Wk7nYDxKCzdnLAaDKppxAhISdsxmKjfx6J7Fs0hy9WMehI/pphBKWIZ4LyUqo3F8S37yrOuofZ9PNABYkAQijCmq4ZspxQMpcI1DxEBNC5rNIiBnLIgS8Q292Ww4uaMpaM0ev1VCsVHhP9G0Bq7LvqegdCaW58o4xZ2AEkI0m+EJsUyjoe9fhFvEpclDjJxbp2eQUmMcdkksC6T0aM1gFeZTCV1ZMjqUPhHtjsh9EPb7DRnejoeoqqkcPSlqs5+VfMgB0fQtXY8892tvRx2ieFLPAtGUmHEStobEQyk4FeqGnmwECxzmy/mieXb7C5t8tSaBeQuCo264hCG46AqjPDLYQ+C3I3AOQr+LU8J7wZ0GpYefKQCOfuV7KJaq2T+zby1P5FCzfB6b5X2qhsEMRfsdnGTlDOSMua0gIcLA/jz+6moV+K04r7/qRs2oaOvowXs3oAS+M5sMsJqR2IZ8Iic3xj4yEh/HC+Bdy1/P/n2jezJ0xESMAAAAASUVORK5CYII=",
     "jobs": [
       "viper",
       "captain"
@@ -4467,234 +3084,12 @@
         "acc": 20
       }
     ],
+    "icon": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAA7EAAAOxAGVKw4bAAACzElEQVR4nL2XjZGyMBCGw8w1gCWEEnIlYAlYAleClMBXgpYgJWgJUAIpwZTgtxuycRN+RD3vndEEBtgn+xf4EqFu4m+U0IQD3Pr+yg4N/NKPWM+yzY0gCMAal3IwqLWGizLR9/2vG5dSivO5Fdvtt4X4mjV+7UW2YRCmGpxi3JPWjjg15n7qcBB5rjxEkANkvL22cLGxI0Fk381oNTU8jKIklfTnVXNkF9U+kDSiHZIHIOPn/uyJUXhM4UD3+evhmmyzEW3b2uNL14kiz+28K0qhjg6iqgIP4H04qvrAAYw1Up5L0ejxSvF8DCHTFMJ09RC5UqK5XCyEgmu6kkEw5aeTW7AJPYA6bocb1EHZcZ/vxS7biTm9AnHZ7TxEAEDJhis12gQ3/UY1pJAvmAMyOu8AUlsFPjm0GInH/xWZn5+hiCAH8PFRDoSqIXM/JRMdTwIsxf0dSQgD+XEyCVGf6H4kDWGYKUOuChJxXIpLokq4P8E1KTQKFRHkD/SFAqpg5IEhAQfjt9tzm6J2jQbvo/lsk4L8aqAUF5PwWVE/SJIkgFgjD4Bu0roWmAL4oEeKvcQhcHwaAHVsLqIsBggvE83hl+3W50jgfgizqap5AA7hxd9JcN5Voj8V3t2xeGtG42R4TpM5gBCxygJWoSuxJAwDjz/uDQihXBUgyOJmNCdrHF5Ism3oesoV7omHGxRA4Fzrbh2AN/69vjwfQeA8dbF9qQzXlNkjiKdCEBvnXW9O6K0lCNLLjag/FMOEv4SW9+rhVTIFoaR6D2AkMM6rBzc13hljCIri+wCsZ2DCEgSOSxCk9wEa1xvcikoXBgRYgsDvghFAvS9F9W/8JrtKzDDXEgQBJPitRl9HCBHLblLtvfFgK7YrzsNXN9zQpu639ziISAl5wEKQW6a1B7ftByD8wz4SvT1Td5sTPR8+yaxN/OMhSNwH41/Iu+I/AOz9WFZZ7K4AAAAASUVORK5CYII=",
     "jobs": [
       "viper"
-    ]
-  },
-  {
-    "id": "5111005",
-    "type": "skill",
-    "name": "트랜스폼",
-    "scope": "personal",
-    "mode": "active",
-    "masterLevel": 20,
-    "effectsByLevel": [
-      {
-        "STR": 1,
-        "pdef": 2,
-        "mdef": 2
-      },
-      {
-        "STR": 2,
-        "pdef": 4,
-        "mdef": 4
-      },
-      {
-        "STR": 3,
-        "pdef": 6,
-        "mdef": 6
-      },
-      {
-        "STR": 4,
-        "pdef": 8,
-        "mdef": 8
-      },
-      {
-        "STR": 5,
-        "pdef": 10,
-        "mdef": 10
-      },
-      {
-        "STR": 6,
-        "pdef": 12,
-        "mdef": 12
-      },
-      {
-        "STR": 7,
-        "pdef": 14,
-        "mdef": 14
-      },
-      {
-        "STR": 8,
-        "pdef": 16,
-        "mdef": 16
-      },
-      {
-        "STR": 9,
-        "pdef": 18,
-        "mdef": 18
-      },
-      {
-        "STR": 10,
-        "pdef": 20,
-        "mdef": 20
-      },
-      {
-        "STR": 11,
-        "pdef": 22,
-        "mdef": 22
-      },
-      {
-        "STR": 12,
-        "pdef": 24,
-        "mdef": 24
-      },
-      {
-        "STR": 13,
-        "pdef": 26,
-        "mdef": 26
-      },
-      {
-        "STR": 14,
-        "pdef": 28,
-        "mdef": 28
-      },
-      {
-        "STR": 15,
-        "pdef": 30,
-        "mdef": 30
-      },
-      {
-        "STR": 16,
-        "pdef": 32,
-        "mdef": 32
-      },
-      {
-        "STR": 17,
-        "pdef": 34,
-        "mdef": 34
-      },
-      {
-        "STR": 18,
-        "pdef": 36,
-        "mdef": 36
-      },
-      {
-        "STR": 19,
-        "pdef": 38,
-        "mdef": 38
-      },
-      {
-        "STR": 20,
-        "pdef": 40,
-        "mdef": 40
-      }
     ],
-    "jobs": [
-      "viper"
-    ]
-  },
-  {
-    "id": "5121003",
-    "type": "skill",
-    "name": "슈퍼 트랜스폼",
-    "scope": "personal",
-    "mode": "active",
-    "masterLevel": 20,
-    "effectsByLevel": [
-      {
-        "STR": 21,
-        "pdef": 41,
-        "mdef": 41
-      },
-      {
-        "STR": 21,
-        "pdef": 42,
-        "mdef": 42
-      },
-      {
-        "STR": 22,
-        "pdef": 43,
-        "mdef": 43
-      },
-      {
-        "STR": 22,
-        "pdef": 44,
-        "mdef": 44
-      },
-      {
-        "STR": 23,
-        "pdef": 45,
-        "mdef": 45
-      },
-      {
-        "STR": 23,
-        "pdef": 46,
-        "mdef": 46
-      },
-      {
-        "STR": 24,
-        "pdef": 47,
-        "mdef": 47
-      },
-      {
-        "STR": 24,
-        "pdef": 48,
-        "mdef": 48
-      },
-      {
-        "STR": 25,
-        "pdef": 49,
-        "mdef": 49
-      },
-      {
-        "STR": 25,
-        "pdef": 50,
-        "mdef": 50
-      },
-      {
-        "STR": 26,
-        "pdef": 51,
-        "mdef": 51
-      },
-      {
-        "STR": 26,
-        "pdef": 52,
-        "mdef": 52
-      },
-      {
-        "STR": 27,
-        "pdef": 53,
-        "mdef": 53
-      },
-      {
-        "STR": 27,
-        "pdef": 54,
-        "mdef": 54
-      },
-      {
-        "STR": 28,
-        "pdef": 55,
-        "mdef": 55
-      },
-      {
-        "STR": 28,
-        "pdef": 56,
-        "mdef": 56
-      },
-      {
-        "STR": 29,
-        "pdef": 57,
-        "mdef": 57
-      },
-      {
-        "STR": 29,
-        "pdef": 58,
-        "mdef": 58
-      },
-      {
-        "STR": 30,
-        "pdef": 59,
-        "mdef": 59
-      },
-      {
-        "STR": 30,
-        "pdef": 60,
-        "mdef": 60
-      }
-    ],
-    "jobs": [
-      "viper"
+    "weaponTypes": [
+      "knuckle"
     ]
   },
   {
@@ -4786,8 +3181,12 @@
         "acc": 20
       }
     ],
+    "icon": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAA7EAAAOxAGVKw4bAAACxklEQVR4nL2Xa5mzMBCFZ58HA1QCldBKoBJAAp+EWigSQAJIAAkgASQ0EvbLCRk63KG72/kTICHvmcllEoeEua77TR8wpdQXP/cCAK+a5q0Or+ezKff+r9t/swhHwj3XPQw/nU7U6H/LsjRCns8npWlq6qIomv0nKwoKbzcjwhnD4zjdBY6igM4aCLjug3zfpyRJjCCIqNvWCAmCgFr9DPM8r2t7ufQiBnPgXbj2xESAvWYRWhXleW6+KV3X1nUvgs2hg7YGrzWAO6/Za+0tIgEReIaIiy7fErAHHscxFVVlvqGefVW2RATQ9rCAd+GoC3gyKjXpd5eA34RjQmIIShuFTQG/DccQ7I7AX8DTNKf7/bU/LAr4K/jYZgV8Cj4RADDsU/BeACcTti0420/hgwgAio7wI6DY28dwlPD8dr0O4ELRIXgvAMkIYX88HgbKSwUdKdspQKgrNRzm2gjA8xzZT8CPWB8BJA8kEXiOjSKvNbxVut9WZ6/X2rVZzMABa9NXAoMEiD8iYjAJGxsJpFBpPCxZlhk4RLDHaIuMhzeFiI0AmNibk3DLON+HYUiJFkHWe9/CIUImG46AXM67luE83DOp1RsdlgAqNRzC2HuG8xwCvGqqVRG7syFH4Z+NgtTjdoom8ELDIa5YETErYDyJVqNglyyJU46BV8Ug/eKdRWwKWLKtKLhaECBRppdmOw03vo9FDAQgPLwScMDMqVuKe6PAx7E07Jamn/gd+BJReA1nnVqMwNZaNhuRLaWxd3CirW0fl2HdLgFzhg1pUZjNHSh7UdMT2PZ5QA4DwoozvFrYZj2GLtjj/qAtGwiAMtwNpAhOSNIK7IREE7jJoOJ9btyl90YArke4q/HtSDYwlwthfOUaZECifuuW8GblnogDqc0nX471xIjIrGdL5okLhbT6YAZkOJ77IcAH3NXoAyav5/8Bve6zguOIIJUAAAAASUVORK5CYII=",
     "jobs": [
       "captain"
+    ],
+    "weaponTypes": [
+      "gun"
     ]
   }
 ]

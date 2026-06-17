@@ -4,6 +4,7 @@ import CollapsiblePanel from '../common/CollapsiblePanel'
 import { useBuildStore } from '../../store/buildStore'
 import { useInventoryStore } from '../../store/inventoryStore'
 import { aggregateBuild, equippedBuilts } from '../../store/aggregate'
+import { useBuffEffects } from '../../store/useBuffEffects'
 import { EFFECTS } from '../../domain/effects'
 import type { EffectId } from '../../domain/effects'
 
@@ -14,7 +15,7 @@ export default function DetailStatPanel() {
   const baseStats = useBuildStore((s) => s.baseStats)
   const equipped = useBuildStore((s) => s.equipped)
   const invItems = useInventoryStore((s) => s.items)
-  const { effects } = aggregateBuild(baseStats, equippedBuilts(equipped, invItems))
+  const { effects } = aggregateBuild(baseStats, equippedBuilts(equipped, invItems), useBuffEffects())
 
   return (
     <CollapsiblePanel id="detail" title="세부스탯">

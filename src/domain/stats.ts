@@ -56,8 +56,9 @@ export function effectValue(effects: EffectMap, id: EffectId): number {
 /**
  * 합산된 효과를 기준으로 최종 기본 능력치(STR/DEX/INT/LUK)를 계산한다.
  *
- * 잠정 규칙:
- *   final = floor((base + flat) * (1 + (개별스탯% + 모든스탯%) / 100))
+ * 규칙: % 보너스(모든스탯% + 개별스탯%)는 순수 스탯에만 적용하고,
+ * 장비/플랫 버프 스탯은 % 적용 후 가산한다.
+ *   final = floor(순수스탯 * (1 + (개별스탯% + 모든스탯%) / 100)) + 플랫스탯
  *
  * @param base    캐릭터 순수 기본 스탯(레벨/AP 분배 등)
  * @param effects sumEffects로 병합된 전체 효과(장비 + 버프 등)
@@ -68,8 +69,7 @@ export function computeBaseStats(base: BaseStats, effects: EffectMap): BaseStats
   for (const stat of STAT_IDS) {
     const flat = effectValue(effects, stat)
     const perStatP = effectValue(effects, STAT_PERCENT_OF[stat])
-    const total = (base[stat] + flat) * (1 + (perStatP + allStatP) / 100)
-    result[stat] = Math.floor(total)
+    result[stat] = Math.floor(base[stat] * (1 + (perStatP + allStatP) / 100)) + flat
   }
   return result
 }

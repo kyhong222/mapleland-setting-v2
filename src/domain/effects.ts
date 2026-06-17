@@ -35,8 +35,8 @@ export type EffectId =
   // offense
   | 'pad'
   | 'mad'
-  | 'addPdd'
-  | 'addMdd'
+  | 'addPad'
+  | 'addMad'
   | 'padP'
   | 'madP'
   | 'acc'
@@ -106,8 +106,8 @@ export const EFFECTS: Record<EffectId, EffectDef> = {
   // ── offense ──
   pad: { id: 'pad', label: '공격력', category: 'offense', unit: 'flat', appliesToItem: true },
   mad: { id: 'mad', label: '마력', category: 'offense', unit: 'flat', appliesToItem: true },
-  addPdd: { id: 'addPdd', label: '추가공격력', category: 'offense', unit: 'flat', appliesToItem: false },
-  addMdd: { id: 'addMdd', label: '추가마력', category: 'offense', unit: 'flat', appliesToItem: false },
+  addPad: { id: 'addPad', label: '추가공격력', category: 'offense', unit: 'flat', appliesToItem: false },
+  addMad: { id: 'addMad', label: '추가마력', category: 'offense', unit: 'flat', appliesToItem: false },
   padP: { id: 'padP', label: '공격력%', category: 'offense', unit: 'percent', appliesToItem: false },
   madP: { id: 'madP', label: '마력%', category: 'offense', unit: 'percent', appliesToItem: false },
   acc: { id: 'acc', label: '명중률', category: 'offense', unit: 'flat', appliesToItem: true },
