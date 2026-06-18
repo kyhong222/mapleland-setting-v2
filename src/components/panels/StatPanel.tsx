@@ -3,7 +3,6 @@ import Box from '@mui/material/Box'
 import TextField from '@mui/material/TextField'
 import Typography from '@mui/material/Typography'
 import Divider from '@mui/material/Divider'
-import Chip from '@mui/material/Chip'
 import CollapsiblePanel from '../common/CollapsiblePanel'
 import { useBuildStore } from '../../store/buildStore'
 import { useInventoryStore } from '../../store/inventoryStore'
@@ -94,16 +93,15 @@ export default function StatPanel() {
           const bonus = finalStats[stat] - baseStats[stat]
           return (
             <Box key={stat} sx={{ display: 'contents' }}>
-              <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
-                <Typography variant="body2">{STAT_LABEL[stat]}</Typography>
-                {role && (
-                  <Chip
-                    label={role}
-                    size="small"
-                    sx={{ height: 16, fontSize: 10, bgcolor: role === '주' ? 'primary.main' : 'action.selected', color: role === '주' ? '#fff' : 'text.secondary' }}
-                  />
-                )}
-              </Box>
+              <Typography
+                variant="body2"
+                sx={{
+                  fontWeight: role ? 700 : 400,
+                  color: role === '주' ? 'primary.main' : role === '부' ? 'secondary.main' : 'text.primary',
+                }}
+              >
+                {STAT_LABEL[stat]}
+              </Typography>
               <ApInput value={v} disabled={isPrimary} error={over} onCommit={(n) => setStat(stat, n)} />
               <TextField
                 size="small"

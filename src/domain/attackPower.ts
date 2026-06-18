@@ -1,33 +1,43 @@
 /**
- * 공격력 공식 [보류]
+ * 공격력(데미지) 계산식.
  *
- * 구버전(메이플랜드) 물리/마법 MIN·MAX 공격력 공식은 사용자가 직접 제공 예정이며,
- * 별도 세션에서 확정한다. 여기서는 입력 타입과 시그니처 stub만 잡아둔다.
+ * 출처: ayumilovemaple "MapleStory Formula Compilation" + 메이플랜드 검수.
  *
- * 확정 시 함께 다룰 항목:
- *  - 무기상수(constMin/constMax)와 주/부 스탯, 합산 효과(pad/mad/mastery 등)의 결합 방식
- *  - stats.ts의 percent 효과 적용 순서
+ * 물리:
+ *   MAX = (주스탯 × 무기배수 + 부스탯) × 총공격력 / 100
+ *   MIN = (주스탯 × 무기배수 × 0.9 × 숙련도 + 부스탯) × 총공격력 / 100
+ *   - 베기(swing)는 constMax, 찌르기(stab)는 constMin을 무기배수로 사용
+ *   - 표기 데미지 = [찌르기 MIN, 베기 MAX]
+ *   - 숙련도 = (10 + Σmastery%) / 100  (기본 10% + 마스터리/엑스퍼트 등)
+ *
+ * 마법:
+ *   MAX = ((마력²/1000 + 마력)/30 + INT/200) × 스킬마법공격력
+ *   MIN = ((마력²/1000 + 마력 × 숙련도 × 0.9)/30 + INT/200) × 스킬마법공격력
+ *
+ * 럭키세븐 / 트리플 스로우(도적 표창):
+ *   MAX = LUK × 5.0 × 총공격력 / 100
+ *   MIN = LUK × 2.5 × 총공격력 / 100
+ *
+ * 주/부스탯은 최종 능력치(장비·버프 반영) 기준이다.
  */
 
 import type { EffectMap } from './effects'
-import type { JobDef } from './jobs'
-import type { BaseStats } from './stats'
+import { WEAPON_CONSTANTS } from './weapons'
 import type { WeaponType } from './weapons'
 
-/** 공격력 계산 입력 */
-export interface AttackPowerInput {
-  job: JobDef
-  /** 장착 무기 종류(없으면 맨손 등 — 공식 확정 시 처리) */
-  weaponType?: WeaponType
-  /** 캐릭터 순수 기본 스탯 */
-  baseStats: BaseStats
-  /** sumEffects로 병합된 전체 효과(장비 + 버프 등) */
-  effects: EffectMap
-}
-
-export interface AttackPowerResult {
+export interface DamageRange {
   min: number
   max: number
+}
+
+/** 베기/찌르기 + 표기(최종 노출용) */
+export interface PhysicalResult {
+  /** 표기 데미지 = [찌르기 MIN, 베기 MAX] */
+  display: DamageRange
+  /** 베기(휘두르기, constMax) 자체의 MIN~MAX */
+  swing: DamageRange
+  /** 찌르기(constMin) 자체의 MIN~MAX */
+  stab: DamageRange
 }
 
 /**
@@ -48,10 +58,51 @@ export function totalMagic(effects: EffectMap, totalInt: number): number {
   return Math.floor(flat * (1 + (effects.madP ?? 0) / 100))
 }
 
+/** 숙련도(0~1) = (기본 10% + Σmastery%) / 100 (최대 100%) */
+export function masteryRatio(effects: EffectMap): number {
+  return Math.min(1, (10 + (effects.mastery ?? 0)) / 100)
+}
+
+/** 무기배수 mult 기준 한 모션의 MIN~MAX */
+function physRange(primary: number, secondary: number, mult: number, watk: number, mastery: number): DamageRange {
+  const max = Math.floor((primary * mult + secondary) * watk / 100)
+  const min = Math.floor((primary * mult * 0.9 * mastery + secondary) * watk / 100)
+  return { min, max }
+}
+
 /**
- * TODO: 구버전 MIN/MAX 데미지 공식 확정 후 구현.
- * 현재는 stub으로 0을 반환한다.
+ * 물리 데미지 — 베기/찌르기 + 표기.
+ * @param primary   최종 주스탯
+ * @param secondary 최종 부스탯 합
+ * @param weaponType 장착 무기 종류
+ * @param watk      총공격력
+ * @param mastery   숙련도(0~1)
  */
-export function calcAttackPower(_input: AttackPowerInput): AttackPowerResult {
-  return { min: 0, max: 0 }
+export function calcPhysical(primary: number, secondary: number, weaponType: WeaponType, watk: number, mastery: number): PhysicalResult {
+  const wc = WEAPON_CONSTANTS[weaponType]
+  const swing = physRange(primary, secondary, wc.constMax, watk, mastery)
+  const stab = physRange(primary, secondary, wc.constMin, watk, mastery)
+  return { display: { min: stab.min, max: swing.max }, swing, stab }
+}
+
+/** 럭키세븐 / 트리플 스로우 (도적 표창 전용 별도식) */
+export function calcLuckySeven(luk: number, watk: number): DamageRange {
+  return {
+    max: Math.floor((luk * 5.0) * watk / 100),
+    min: Math.floor((luk * 2.5) * watk / 100),
+  }
+}
+
+/**
+ * 마법 데미지.
+ * @param magic    총마력
+ * @param int      최종 지력
+ * @param spellAtk 스킬 마법공격력(계수) — 스킬 데이터 확정 전까지 호출부에서 주입
+ * @param mastery  숙련도(0~1)
+ */
+export function calcMagic(magic: number, int: number, spellAtk: number, mastery: number): DamageRange {
+  const sq = (magic * magic) / 1000
+  const max = ((sq + magic) / 30 + int / 200) * spellAtk
+  const min = ((sq + magic * mastery * 0.9) / 30 + int / 200) * spellAtk
+  return { min: Math.floor(min), max: Math.floor(max) }
 }
