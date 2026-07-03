@@ -184,7 +184,7 @@
     "type": "skill",
     "name": "블로킹",
     "scope": "personal",
-    "mode": "active",
+    "mode": "passive",
     "masterLevel": 30,
     "effectsByLevel": [
       {
@@ -600,7 +600,7 @@
     "type": "skill",
     "name": "블로킹",
     "scope": "personal",
-    "mode": "active",
+    "mode": "passive",
     "masterLevel": 30,
     "effectsByLevel": [
       {

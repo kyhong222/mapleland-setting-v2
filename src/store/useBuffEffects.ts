@@ -7,11 +7,10 @@ import { activeBuffEffects, equippedWeaponType } from './aggregate'
 export function useBuffEffects(): EffectMap {
   const jobId = useBuildStore((s) => s.jobId)
   const activeBuffs = useBuildStore((s) => s.activeBuffs)
-  const commonSlots = useBuildStore((s) => s.commonSlots)
-  const commonLevels = useBuildStore((s) => s.commonLevels)
+  const appliedBuffs = useBuildStore((s) => s.appliedBuffs)
   const masteryLevels = useBuildStore((s) => s.masteryLevels)
   const equipped = useBuildStore((s) => s.equipped)
   const invItems = useInventoryStore((s) => s.items)
   const weaponType = equippedWeaponType(equipped, invItems)
-  return activeBuffEffects({ activeBuffs, commonSlots, commonLevels, masteryLevels, jobId, weaponType })
+  return activeBuffEffects({ activeBuffs, appliedBuffs, masteryLevels, jobId, weaponType })
 }

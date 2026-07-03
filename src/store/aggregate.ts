@@ -3,13 +3,13 @@
  * 장착은 인벤토리 아이템 id 참조이므로, 인벤토리에서 BuiltItem을 해석해 합산한다.
  */
 
-import { sumEffects } from '../domain/effects'
+import { sumEffects, maxEffects } from '../domain/effects'
 import type { EffectMap } from '../domain/effects'
 import { computeBaseStats } from '../domain/stats'
 import type { BaseStats } from '../domain/stats'
 import { resolveBuiltItem } from '../domain/builtItem'
 import type { BuiltItem } from '../domain/builtItem'
-import { buffEffectsAtLevel, defaultBuffLevel, canUseBuff } from '../domain/buff'
+import { buffEffectsAtLevel, canUseBuff } from '../domain/buff'
 import { getBuff, JOB_BUFFS } from '../data/buff'
 import type { JobId } from '../domain/jobs'
 import type { WeaponType } from '../domain/weapons'
@@ -52,8 +52,7 @@ export function equippedWeaponType(
 
 export interface BuffContext {
   activeBuffs: Record<string, number>
-  commonSlots: Record<string, string>
-  commonLevels: Record<string, number>
+  appliedBuffs: Record<string, number>
   masteryLevels: Record<string, number>
   jobId: JobId | null
   weaponType?: WeaponType
@@ -61,32 +60,34 @@ export interface BuffContext {
 
 /**
  * 활성 버프 → 합산 EffectMap.
- *  - activeBuffs(토글): 영메·메용 + 직업특화 패시브
- *  - commonSlots(8슬롯): 슬롯키→buffId, 기본 레벨. buffId 중복 제거
+ *  - activeBuffs(토글): 영메·메용 + 직업특화 패시브 → 단순 합산
+ *  - appliedBuffs(적용 목록: 도핑/개인/파티) → 능력치별 최댓값 후 합산
+ *    (같은 종류 버프는 중첩되지 않고 높은 쪽만 적용)
  *  - 무기 마스터리/엑스퍼트: 장착 주무기 타입이 일치할 때만 자동 적용(레벨=masteryLevels[id] ?? 마스터)
  */
 export function activeBuffEffects(ctx: BuffContext): EffectMap {
-  const { activeBuffs, commonSlots, commonLevels, masteryLevels, jobId, weaponType } = ctx
-  const maps: EffectMap[] = []
+  const { activeBuffs, appliedBuffs, masteryLevels, jobId, weaponType } = ctx
+  const sumMaps: EffectMap[] = []
   // 토글 버프 (무기 게이팅 버프는 여기서 제외 — 아래서 따로 처리)
   for (const [id, level] of Object.entries(activeBuffs)) {
     const b = getBuff(id)
-    if (b && !(b.type === 'skill' && b.weaponTypes)) maps.push(buffEffectsAtLevel(b, level))
-  }
-  // 공통버프 8슬롯 (slot 레벨 반영, buffId 중복 제거)
-  for (const id of new Set(Object.values(commonSlots))) {
-    const b = getBuff(id)
-    if (b) maps.push(buffEffectsAtLevel(b, commonLevels[id] ?? defaultBuffLevel(b)))
+    if (b && !(b.type === 'skill' && b.weaponTypes)) sumMaps.push(buffEffectsAtLevel(b, level))
   }
   // 무기 마스터리/엑스퍼트 — 장착 주무기 일치 시 자동 적용
   if (jobId && weaponType) {
     for (const b of JOB_BUFFS) {
       if (b.type === 'skill' && b.weaponTypes?.includes(weaponType) && canUseBuff(b, jobId)) {
-        maps.push(buffEffectsAtLevel(b, masteryLevels[b.id] ?? b.masterLevel))
+        sumMaps.push(buffEffectsAtLevel(b, masteryLevels[b.id] ?? b.masterLevel))
       }
     }
   }
-  return sumEffects(...maps)
+  // 적용 버프(도핑/개인/파티) — 능력치별 최댓값 적용
+  const appliedMaps: EffectMap[] = []
+  for (const [id, level] of Object.entries(appliedBuffs)) {
+    const b = getBuff(id)
+    if (b) appliedMaps.push(buffEffectsAtLevel(b, level))
+  }
+  return sumEffects(...sumMaps, maxEffects(...appliedMaps))
 }
 
 export interface Aggregated {

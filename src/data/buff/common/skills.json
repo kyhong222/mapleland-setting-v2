@@ -114,5 +114,28 @@
       }
     ],
     "icon": "https://static.wikia.nocookie.net/maplestory/images/3/35/Skill_Hero%27s_Echo.png/revision/latest?cb=20100111124253"
+  },
+  {
+    "id": "blessingOfFairy",
+    "type": "skill",
+    "name": "정령의 축복",
+    "scope": "party",
+    "mode": "active",
+    "masterLevel": 12,
+    "effectsByLevel": [
+      { "pad_botf": 1, "mad_botf": 2, "acc_botf": 1, "eva_botf": 1, "hpP_botf": 1, "mpP_botf": 1 },
+      { "pad_botf": 2, "mad_botf": 4, "acc_botf": 2, "eva_botf": 2, "hpP_botf": 2, "mpP_botf": 2 },
+      { "pad_botf": 3, "mad_botf": 6, "acc_botf": 3, "eva_botf": 3, "hpP_botf": 3, "mpP_botf": 3 },
+      { "pad_botf": 4, "mad_botf": 8, "acc_botf": 4, "eva_botf": 4, "hpP_botf": 4, "mpP_botf": 4 },
+      { "pad_botf": 5, "mad_botf": 10, "acc_botf": 5, "eva_botf": 5, "hpP_botf": 5, "mpP_botf": 5 },
+      { "pad_botf": 6, "mad_botf": 12, "acc_botf": 6, "eva_botf": 6, "hpP_botf": 6, "mpP_botf": 6 },
+      { "pad_botf": 7, "mad_botf": 14, "acc_botf": 7, "eva_botf": 7, "hpP_botf": 7, "mpP_botf": 7 },
+      { "pad_botf": 8, "mad_botf": 16, "acc_botf": 8, "eva_botf": 8, "hpP_botf": 8, "mpP_botf": 8 },
+      { "pad_botf": 9, "mad_botf": 18, "acc_botf": 9, "eva_botf": 9, "hpP_botf": 9, "mpP_botf": 9 },
+      { "pad_botf": 10, "mad_botf": 20, "acc_botf": 10, "eva_botf": 10, "hpP_botf": 10, "mpP_botf": 10 },
+      { "pad_botf": 11, "mad_botf": 22, "acc_botf": 11, "eva_botf": 11, "hpP_botf": 10, "mpP_botf": 10 },
+      { "pad_botf": 12, "mad_botf": 24, "acc_botf": 12, "eva_botf": 12, "hpP_botf": 10, "mpP_botf": 10 }
+    ],
+    "icon": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAJNQTFRFAAAAAAAAADPdAETdAFXdAFX/AGbdAGb/AHfdAHf/AIjdAIj/AJndAKrMAKr/ALvMALv/AMy7AMz/ESK7IiK7MxG7RBG7RCLMVQC7VRG7VWaIVaruVbvuVczuVd3uZgC7iJmqiMz/iN3/iO7/maq7qrvMqt3/qu7/qv//u8zMu93uzMzMzMzd3d3d3e7/7u7u////yXHOmAAAAAF0Uk5TAEDm2GYAAAF+SURBVDjLfZOJcsIwDERjIFzlhgRIIMFAajcmVP//dZXkg6RTugyDtHpeezw4iqJIvFXEEo+3EnaeZZeMvlVWfVdcV866C5qjyaJpFSorJMSj4hWc4MUJ9GGgveKSdfVlAVphjAm2q6vMJ5BVlqUnuG441wNNWQKAIwzX2LwSzAFIBwdw9+TOAs2R58ewBffPY+MAk/J8nzYeSPdkfKbGAgnPe5CEhAQ7lEoMA2CBHHbuDDvILaB2L6Cf57B1wBbyvG+JNiAlEqQtSPknoBTwnwB9B8ALwB0kzqmskZB+jwD0TriDsMdFQspT71dCHKsWoOL4V8JgNBq1AOwGXWA4mUxaAHbDLjD+QDFR45yacReYLlAAoqY5UDMlWzOgsZqtViu+hZpvArsZzQOgYb4JR6CQzRx0AK4AV1jiHAecQcQSyLbADeAGStDxBTOUoYBsC5wBzpoihAPwZwmabX5aBe5WAKztHdSkNTu60PZxYl0QcfdaW6NY+Of93/P/ATZHdYLur37LAAAAAElFTkSuQmCC"
   }
 ]

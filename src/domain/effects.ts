@@ -71,6 +71,13 @@ export type EffectId =
   // mobility
   | 'speed'
   | 'jump'
+  // 정령의 축복(Blessing of the Fairy) 전용 — 다른 버프와 중첩되지 않는 독립 보너스
+  | 'pad_botf'
+  | 'mad_botf'
+  | 'acc_botf'
+  | 'eva_botf'
+  | 'hpP_botf'
+  | 'mpP_botf'
 
 export interface EffectDef {
   id: EffectId
@@ -145,6 +152,14 @@ export const EFFECTS: Record<EffectId, EffectDef> = {
   // ── mobility ──
   speed: { id: 'speed', label: '이동속도', category: 'mobility', unit: 'flat', appliesToItem: true },
   jump: { id: 'jump', label: '점프력', category: 'mobility', unit: 'flat', appliesToItem: true },
+
+  // ── 정령의 축복(Blessing of the Fairy) 전용 — 독립 보너스(미중첩) ──
+  pad_botf: { id: 'pad_botf', label: '공격력', category: 'offense', unit: 'flat', appliesToItem: false },
+  mad_botf: { id: 'mad_botf', label: '마력', category: 'offense', unit: 'flat', appliesToItem: false },
+  acc_botf: { id: 'acc_botf', label: '명중률', category: 'offense', unit: 'flat', appliesToItem: false },
+  eva_botf: { id: 'eva_botf', label: '회피율', category: 'defense', unit: 'flat', appliesToItem: false },
+  hpP_botf: { id: 'hpP_botf', label: 'HP%', category: 'resource', unit: 'percent', appliesToItem: false },
+  mpP_botf: { id: 'mpP_botf', label: 'MP%', category: 'resource', unit: 'percent', appliesToItem: false },
 }
 
 /** 마스터 효과 전체 목록 */
@@ -175,6 +190,25 @@ export function sumEffects(...maps: EffectMap[]): EffectMap {
       const v = map[key]
       if (v === undefined) continue
       result[key] = (result[key] ?? 0) + v
+    }
+  }
+  return result
+}
+
+/**
+ * 여러 EffectMap을 능력치(id)별 최댓값으로 병합한다.
+ * 같은 종류의 버프는 중첩되지 않고 높은 쪽만 적용되는 규칙에 사용한다.
+ * (예: 아이언바디 방어+40, 블레스 방어+20 → 방어+40)
+ * 해당 id를 가진 맵들 사이에서만 비교한다(값이 없는 맵은 0으로 취급하지 않음).
+ */
+export function maxEffects(...maps: EffectMap[]): EffectMap {
+  const result: EffectMap = {}
+  for (const map of maps) {
+    for (const key of Object.keys(map) as EffectId[]) {
+      const v = map[key]
+      if (v === undefined) continue
+      const cur = result[key]
+      result[key] = cur === undefined ? v : Math.max(cur, v)
     }
   }
   return result

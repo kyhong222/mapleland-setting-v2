@@ -41,20 +41,20 @@ export interface PhysicalResult {
 }
 
 /**
- * 총 공격력 = (장비+패시브+버프 공격력 + 추가공격력) × (1 + 공격력%/100)
- * (장비·패시브·버프 공격력은 모두 effects.pad로 합산되어 있다)
+ * 총 공격력 = (장비+패시브+버프 공격력 + 추가공격력 + 정령의 축복) × (1 + 공격력%/100)
+ * (장비·패시브·버프 공격력은 모두 effects.pad로 합산, 정령의 축복은 pad_botf로 별도 합산)
  */
 export function totalAttack(effects: EffectMap): number {
-  const flat = (effects.pad ?? 0) + (effects.addPad ?? 0)
+  const flat = (effects.pad ?? 0) + (effects.addPad ?? 0) + (effects.pad_botf ?? 0)
   return Math.floor(flat * (1 + (effects.padP ?? 0) / 100))
 }
 
 /**
- * 총 마력 = (장비+버프 마력 + 추가마력 + 총 지력) × (1 + 마력%/100)
+ * 총 마력 = (장비+버프 마력 + 추가마력 + 총 지력 + 정령의 축복) × (1 + 마력%/100)
  * @param totalInt 최종 지력(스탯 공식 적용 후)
  */
 export function totalMagic(effects: EffectMap, totalInt: number): number {
-  const flat = (effects.mad ?? 0) + (effects.addMad ?? 0) + totalInt
+  const flat = (effects.mad ?? 0) + (effects.addMad ?? 0) + totalInt + (effects.mad_botf ?? 0)
   return Math.floor(flat * (1 + (effects.madP ?? 0) / 100))
 }
 
