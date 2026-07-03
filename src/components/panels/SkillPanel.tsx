@@ -54,6 +54,7 @@ function BuffIcon({
   onContextMenu,
   size = 46,
   tooltip,
+  highlightActive = false,
 }: {
   buff: Buff
   active?: boolean
@@ -61,9 +62,12 @@ function BuffIcon({
   onContextMenu?: (e: React.MouseEvent) => void
   size?: number
   tooltip?: React.ReactNode
+  /** 적용(active) 시 밝은 황금빛 테두리로 강조할지 여부 */
+  highlightActive?: boolean
 }) {
   const icon = buffIconUrl(buff)
   const img = Math.round(size * 0.82)
+  const highlighted = highlightActive && active
   const box = (
     <Box
       onClick={onClick}
@@ -72,11 +76,15 @@ function BuffIcon({
         width: size,
         height: size,
         flexShrink: 0,
+        boxSizing: 'border-box',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
         bgcolor: 'action.hover',
         borderRadius: 0.5,
+        // 활성 시 안쪽 황금빛 링(inset). 투명 테두리로 링을 가장자리보다 안쪽에 배치
+        border: '2.5px solid transparent',
+        boxShadow: highlighted ? 'inset 0 0 0 5px #ffc53d' : 'none',
         cursor: onClick || onContextMenu ? 'pointer' : 'default',
       }}
     >
@@ -158,7 +166,7 @@ function BuffRow({ buff, onOpen }: { buff: Buff; onOpen: (b: Buff) => void }) {
   const eff = buffEffectsAtLevel(buff, shownLevel)
   return (
     <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5, py: 0.25 }}>
-      <BuffIcon buff={buff} active={active} onClick={() => onOpen(buff)} />
+      <BuffIcon buff={buff} active={active} highlightActive onClick={() => onOpen(buff)} />
       <Box sx={{ flex: 1, minWidth: 0 }}>
         <Typography variant="body2" noWrap>{buff.name}</Typography>
         <Typography variant="caption" color={active ? 'success.main' : 'text.disabled'} noWrap sx={{ display: 'block' }}>
@@ -177,7 +185,7 @@ function MasteryRow({ buff, onOpen }: { buff: Buff; onOpen: (b: Buff) => void })
   const eff = buffEffectsAtLevel(buff, shownLevel)
   return (
     <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5, py: 0.25 }}>
-      <BuffIcon buff={buff} onClick={() => onOpen(buff)} />
+      <BuffIcon buff={buff} highlightActive onClick={() => onOpen(buff)} />
       <Box sx={{ flex: 1, minWidth: 0 }}>
         <Typography variant="body2" noWrap>{buff.name}</Typography>
         <Typography variant="caption" color="success.main" noWrap sx={{ display: 'block' }}>
