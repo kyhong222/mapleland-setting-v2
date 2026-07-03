@@ -1,0 +1,4486 @@
+[
+  {
+    "id": 100100,
+    "name": "Snail",
+    "koreanName": "달팽이",
+    "level": 1,
+    "isBoss": false,
+    "foundAt": [
+      "빅토리아 아일랜드"
+    ]
+  },
+  {
+    "id": 100101,
+    "name": "Blue Snail",
+    "koreanName": "파란 달팽이",
+    "level": 2,
+    "isBoss": false,
+    "foundAt": [
+      "빅토리아 아일랜드"
+    ]
+  },
+  {
+    "id": 120100,
+    "name": "Shroom",
+    "koreanName": "스포아",
+    "level": 2,
+    "isBoss": false,
+    "foundAt": [
+      "빅토리아 아일랜드"
+    ]
+  },
+  {
+    "id": 130100,
+    "name": "Stump",
+    "koreanName": "스텀프",
+    "level": 4,
+    "isBoss": false,
+    "foundAt": [
+      "빅토리아 아일랜드"
+    ]
+  },
+  {
+    "id": 210100,
+    "name": "Slime",
+    "koreanName": "슬라임",
+    "level": 6,
+    "isBoss": false,
+    "foundAt": [
+      "빅토리아 아일랜드"
+    ]
+  },
+  {
+    "id": 1210100,
+    "name": "Pig",
+    "koreanName": "돼지",
+    "level": 7,
+    "isBoss": false,
+    "foundAt": [
+      "빅토리아 아일랜드"
+    ]
+  },
+  {
+    "id": 130101,
+    "name": "Red Snail",
+    "koreanName": "빨간 달팽이",
+    "level": 8,
+    "isBoss": false,
+    "foundAt": [
+      "빅토리아 아일랜드"
+    ]
+  },
+  {
+    "id": 1210102,
+    "name": "Orange Mushroom",
+    "koreanName": "주황버섯",
+    "level": 8,
+    "isBoss": false,
+    "foundAt": [
+      "빅토리아 아일랜드"
+    ]
+  },
+  {
+    "id": 9420001,
+    "name": "Frog",
+    "koreanName": "개구리",
+    "level": 8,
+    "isBoss": false,
+    "foundAt": [
+      "해외여행: 태국"
+    ]
+  },
+  {
+    "id": 1110101,
+    "name": "Dark Stump",
+    "koreanName": "다크 스텀프",
+    "level": 10,
+    "isBoss": false,
+    "foundAt": [
+      "빅토리아 아일랜드"
+    ]
+  },
+  {
+    "id": 1210101,
+    "name": "Ribbon Pig",
+    "koreanName": "리본 돼지",
+    "level": 10,
+    "isBoss": false,
+    "foundAt": [
+      "빅토리아 아일랜드"
+    ]
+  },
+  {
+    "id": 9400573,
+    "name": "Baby typhon",
+    "koreanName": "아기 티폰",
+    "level": 10,
+    "isBoss": false,
+    "foundAt": [
+      "뉴 리프 시티"
+    ]
+  },
+  {
+    "id": 1120100,
+    "name": "Octopus",
+    "koreanName": "옥토퍼스",
+    "level": 12,
+    "isBoss": false,
+    "foundAt": [
+      "빅토리아 아일랜드"
+    ]
+  },
+  {
+    "id": 1110100,
+    "name": "Green Mushroom",
+    "koreanName": "초록버섯",
+    "level": 15,
+    "isBoss": false,
+    "foundAt": [
+      "빅토리아 아일랜드"
+    ]
+  },
+  {
+    "id": 1210103,
+    "name": "Bubbling",
+    "koreanName": "버블링",
+    "level": 15,
+    "isBoss": false,
+    "foundAt": [
+      "빅토리아 아일랜드"
+    ]
+  },
+  {
+    "id": 9420005,
+    "name": "White Rooster",
+    "koreanName": "흰 닭",
+    "level": 15,
+    "isBoss": false,
+    "foundAt": [
+      "해외여행: 태국"
+    ]
+  },
+  {
+    "id": 1130100,
+    "name": "Axe Stump",
+    "koreanName": "엑스텀프",
+    "level": 17,
+    "isBoss": false,
+    "foundAt": [
+      "빅토리아 아일랜드"
+    ]
+  },
+  {
+    "id": 1140100,
+    "name": "Ghost Stump",
+    "koreanName": "고스텀프",
+    "level": 19,
+    "isBoss": false,
+    "foundAt": [
+      "빅토리아 아일랜드"
+    ]
+  },
+  {
+    "id": 9400538,
+    "name": "Street Slime",
+    "koreanName": "길거리 슬라임",
+    "level": 19,
+    "isBoss": false,
+    "foundAt": [
+      "뉴 리프 시티"
+    ]
+  },
+  {
+    "id": 2100100,
+    "name": "Desert Rabbit (F)",
+    "koreanName": "흰 모래토끼",
+    "level": 20,
+    "isBoss": false,
+    "foundAt": [
+      "아리안트"
+    ]
+  },
+  {
+    "id": 2220000,
+    "name": "Mano ",
+    "koreanName": "마노",
+    "level": 20,
+    "isBoss": true,
+    "foundAt": [
+      "빅토리아 아일랜드"
+    ]
+  },
+  {
+    "id": 2220100,
+    "name": "Blue Mushroom",
+    "koreanName": "파란버섯",
+    "level": 20,
+    "isBoss": false,
+    "foundAt": [
+      "빅토리아 아일랜드"
+    ]
+  },
+  {
+    "id": 2300100,
+    "name": "Stirge",
+    "koreanName": "스티지",
+    "level": 20,
+    "isBoss": false,
+    "foundAt": [
+      "빅토리아 아일랜드"
+    ]
+  },
+  {
+    "id": 9600001,
+    "name": "Rooster",
+    "koreanName": "닭",
+    "level": 20,
+    "isBoss": false,
+    "foundAt": [
+      "해외여행: 중국"
+    ]
+  },
+  {
+    "id": 2100101,
+    "name": "Desert Rabbit (M)",
+    "koreanName": "갈색 모래토끼",
+    "level": 21,
+    "isBoss": false,
+    "foundAt": [
+      "아리안트"
+    ]
+  },
+  {
+    "id": 2130103,
+    "name": "Jr. Necki",
+    "koreanName": "주니어 네키",
+    "level": 21,
+    "isBoss": false,
+    "foundAt": [
+      "빅토리아 아일랜드"
+    ]
+  },
+  {
+    "id": 9400539,
+    "name": "Urban Fungus",
+    "koreanName": "도심가 버섯",
+    "level": 21,
+    "isBoss": false,
+    "foundAt": [
+      "뉴 리프 시티"
+    ]
+  },
+  {
+    "id": 9400556,
+    "name": "Glutton Ghoul",
+    "koreanName": "대식가 구울",
+    "level": 21,
+    "isBoss": false,
+    "foundAt": [
+      "뉴 리프 시티"
+    ]
+  },
+  {
+    "id": 2100102,
+    "name": "Jr. Cactus",
+    "koreanName": "주니어 카투스",
+    "level": 22,
+    "isBoss": false,
+    "foundAt": [
+      "아리안트"
+    ]
+  },
+  {
+    "id": 2110200,
+    "name": "Horny Mushroom",
+    "koreanName": "뿔버섯",
+    "level": 22,
+    "isBoss": false,
+    "foundAt": [
+      "빅토리아 아일랜드"
+    ]
+  },
+  {
+    "id": 2130100,
+    "name": "Dark Axe Stump",
+    "koreanName": "다크 엑스텀프",
+    "level": 22,
+    "isBoss": false,
+    "foundAt": [
+      "빅토리아 아일랜드"
+    ]
+  },
+  {
+    "id": 2230108,
+    "name": "Pinboom",
+    "koreanName": "핀붐",
+    "level": 22,
+    "isBoss": false,
+    "foundAt": [
+      "아쿠아리움"
+    ]
+  },
+  {
+    "id": 9600002,
+    "name": "Duck",
+    "koreanName": "오리",
+    "level": 22,
+    "isBoss": false,
+    "foundAt": [
+      "해외여행: 중국"
+    ]
+  },
+  {
+    "id": 2100105,
+    "name": "Bellamoa",
+    "koreanName": "벨라모아",
+    "level": 23,
+    "isBoss": false,
+    "foundAt": [
+      "아리안트"
+    ]
+  },
+  {
+    "id": 2230103,
+    "name": "Trixter",
+    "koreanName": "트릭스터",
+    "level": 23,
+    "isBoss": false,
+    "foundAt": [
+      "루디브리엄"
+    ]
+  },
+  {
+    "id": 2230105,
+    "name": "Seacle",
+    "koreanName": "씨클",
+    "level": 23,
+    "isBoss": false,
+    "foundAt": [
+      "아쿠아리움"
+    ]
+  },
+  {
+    "id": 2230110,
+    "name": "Wooden Mask",
+    "koreanName": "우드 마스크",
+    "level": 23,
+    "isBoss": false,
+    "foundAt": [
+      "빅토리아 아일랜드"
+    ]
+  },
+  {
+    "id": 5200000,
+    "name": "Jr. Sentinel",
+    "koreanName": "주니어 스톤볼",
+    "level": 23,
+    "isBoss": false,
+    "foundAt": [
+      "오르비스"
+    ]
+  },
+  {
+    "id": 9300003,
+    "name": "King Slime (PC)",
+    "koreanName": "킹슬라임",
+    "level": 23,
+    "isBoss": false,
+    "foundAt": [
+      "빅토리아 아일랜드"
+    ]
+  },
+  {
+    "id": 9300027,
+    "name": "Devil Slime",
+    "koreanName": "악마 슬라임",
+    "level": 23,
+    "isBoss": false,
+    "foundAt": [
+      "샤레니안"
+    ]
+  },
+  {
+    "id": 9410000,
+    "name": "Stray Dog",
+    "koreanName": "들개",
+    "level": 23,
+    "isBoss": false,
+    "foundAt": [
+      "해외여행: 대만"
+    ]
+  },
+  {
+    "id": 2100106,
+    "name": "Ear Plug Plead",
+    "koreanName": "귀마개 프릴드",
+    "level": 24,
+    "isBoss": false,
+    "foundAt": [
+      "아리안트"
+    ]
+  },
+  {
+    "id": 2110300,
+    "name": "Sand Rat",
+    "koreanName": "모래 두더지",
+    "level": 24,
+    "isBoss": false,
+    "foundAt": [
+      "아리안트"
+    ]
+  },
+  {
+    "id": 2230101,
+    "name": "Zombie Mushroom",
+    "koreanName": "좀비버섯",
+    "level": 24,
+    "isBoss": false,
+    "foundAt": [
+      "빅토리아 아일랜드"
+    ]
+  },
+  {
+    "id": 2230107,
+    "name": "Krappy",
+    "koreanName": "크라피",
+    "level": 24,
+    "isBoss": false,
+    "foundAt": [
+      "아쿠아리움"
+    ]
+  },
+  {
+    "id": 2230111,
+    "name": "Rocky Mask",
+    "koreanName": "스톤 마스크",
+    "level": 24,
+    "isBoss": false,
+    "foundAt": [
+      "빅토리아 아일랜드"
+    ]
+  },
+  {
+    "id": 2100103,
+    "name": "Cactus",
+    "koreanName": "카투스",
+    "level": 25,
+    "isBoss": false,
+    "foundAt": [
+      "아리안트"
+    ]
+  },
+  {
+    "id": 2230102,
+    "name": "Wild Boar",
+    "koreanName": "와일드보어",
+    "level": 25,
+    "isBoss": false,
+    "foundAt": [
+      "빅토리아 아일랜드"
+    ]
+  },
+  {
+    "id": 2230106,
+    "name": "Cico",
+    "koreanName": "씨코",
+    "level": 25,
+    "isBoss": false,
+    "foundAt": [
+      "아쿠아리움"
+    ]
+  },
+  {
+    "id": 9400000,
+    "name": "Crow",
+    "koreanName": "까마귀",
+    "level": 25,
+    "isBoss": false,
+    "foundAt": [
+      "해외여행: 일본"
+    ]
+  },
+  {
+    "id": 9400400,
+    "name": "",
+    "koreanName": "하급 닌자",
+    "level": 25,
+    "isBoss": false,
+    "foundAt": [
+      "해외여행: 일본"
+    ]
+  },
+  {
+    "id": 9400540,
+    "name": "Killa Bee",
+    "koreanName": "킬라 비",
+    "level": 25,
+    "isBoss": false,
+    "foundAt": [
+      "뉴 리프 시티"
+    ]
+  },
+  {
+    "id": 9410001,
+    "name": "Stylish Stray Dog",
+    "koreanName": "멋쟁이 들개",
+    "level": 25,
+    "isBoss": false,
+    "foundAt": [
+      "해외여행: 대만"
+    ]
+  },
+  {
+    "id": 9420004,
+    "name": "Yellow Lizard",
+    "koreanName": "노란 도마뱀",
+    "level": 25,
+    "isBoss": false,
+    "foundAt": [
+      "해외여행: 태국"
+    ]
+  },
+  {
+    "id": 9600003,
+    "name": "Sheep",
+    "koreanName": "양",
+    "level": 25,
+    "isBoss": false,
+    "foundAt": [
+      "해외여행: 중국"
+    ]
+  },
+  {
+    "id": 2100107,
+    "name": "Scarf Plead",
+    "koreanName": "목도리 프릴드",
+    "level": 27,
+    "isBoss": false,
+    "foundAt": [
+      "아리안트"
+    ]
+  },
+  {
+    "id": 2230100,
+    "name": "Evil Eye",
+    "koreanName": "이블아이",
+    "level": 27,
+    "isBoss": false,
+    "foundAt": [
+      "빅토리아 아일랜드"
+    ]
+  },
+  {
+    "id": 9400547,
+    "name": "Boomer",
+    "koreanName": "부머",
+    "level": 27,
+    "isBoss": false,
+    "foundAt": [
+      "뉴 리프 시티"
+    ]
+  },
+  {
+    "id": 2100104,
+    "name": "Royal Cactus",
+    "koreanName": "로얄 카투스",
+    "level": 28,
+    "isBoss": false,
+    "foundAt": [
+      "아리안트"
+    ]
+  },
+  {
+    "id": 2230104,
+    "name": "Green Trixter",
+    "koreanName": "그린 트릭스터",
+    "level": 28,
+    "isBoss": false,
+    "foundAt": [
+      "루디브리엄"
+    ]
+  },
+  {
+    "id": 2230109,
+    "name": "Bubble Fish",
+    "koreanName": "버블피쉬",
+    "level": 28,
+    "isBoss": false,
+    "foundAt": [
+      "아쿠아리움"
+    ]
+  },
+  {
+    "id": 9420000,
+    "name": "Toad",
+    "koreanName": "두꺼비",
+    "level": 28,
+    "isBoss": false,
+    "foundAt": [
+      "해외여행: 태국"
+    ]
+  },
+  {
+    "id": 2100108,
+    "name": "Meercat",
+    "koreanName": "미요캐츠",
+    "level": 29,
+    "isBoss": false,
+    "foundAt": [
+      "아리안트"
+    ]
+  },
+  {
+    "id": 2110301,
+    "name": "Scorpion",
+    "koreanName": "스콜피언",
+    "level": 29,
+    "isBoss": false,
+    "foundAt": [
+      "아리안트"
+    ]
+  },
+  {
+    "id": 2230200,
+    "name": "Flower Fish",
+    "koreanName": "플라워 피쉬",
+    "level": 29,
+    "isBoss": false,
+    "foundAt": [
+      "아쿠아리움"
+    ]
+  },
+  {
+    "id": 3000000,
+    "name": "Sentinel",
+    "koreanName": "스톤볼",
+    "level": 30,
+    "isBoss": false,
+    "foundAt": [
+      "오르비스"
+    ]
+  },
+  {
+    "id": 3000001,
+    "name": "Fairy 1",
+    "koreanName": "페어리",
+    "level": 30,
+    "isBoss": false,
+    "foundAt": [
+      "빅토리아 아일랜드"
+    ]
+  },
+  {
+    "id": 3000005,
+    "name": "Brown Teddy",
+    "koreanName": "브라운테니",
+    "level": 30,
+    "isBoss": false,
+    "foundAt": [
+      "루디브리엄"
+    ]
+  },
+  {
+    "id": 3000006,
+    "name": "Krip",
+    "koreanName": "크립",
+    "level": 30,
+    "isBoss": false,
+    "foundAt": [
+      "아쿠아리움"
+    ]
+  },
+  {
+    "id": 3100102,
+    "name": "Kiyo",
+    "koreanName": "키요",
+    "level": 30,
+    "isBoss": false,
+    "foundAt": [
+      "아리안트"
+    ]
+  },
+  {
+    "id": 3230400,
+    "name": "Drumming Bunny",
+    "koreanName": "북치는 토끼",
+    "level": 30,
+    "isBoss": false,
+    "foundAt": [
+      "루디브리엄"
+    ]
+  },
+  {
+    "id": 5200001,
+    "name": "Ice Sentinel",
+    "koreanName": "아이스 스톤볼",
+    "level": 30,
+    "isBoss": false,
+    "foundAt": [
+      "오르비스"
+    ]
+  },
+  {
+    "id": 5200002,
+    "name": "Fire Sentinel",
+    "koreanName": "파이어 스톤볼",
+    "level": 30,
+    "isBoss": false,
+    "foundAt": [
+      "오르비스"
+    ]
+  },
+  {
+    "id": 9400001,
+    "name": "Fire Raccoon",
+    "koreanName": "불너구리",
+    "level": 30,
+    "isBoss": false,
+    "foundAt": [
+      "해외여행: 일본"
+    ]
+  },
+  {
+    "id": 9400002,
+    "name": "Cloud Fox",
+    "koreanName": "구름여우",
+    "level": 30,
+    "isBoss": false,
+    "foundAt": [
+      "해외여행: 일본"
+    ]
+  },
+  {
+    "id": 9400404,
+    "name": "",
+    "koreanName": "아시가루",
+    "level": 30,
+    "isBoss": false,
+    "foundAt": [
+      "해외여행: 일본"
+    ]
+  },
+  {
+    "id": 9400548,
+    "name": "Mighty Maple Eater",
+    "koreanName": "마이티 메이플 이터",
+    "level": 30,
+    "isBoss": false,
+    "foundAt": [
+      "뉴 리프 시티"
+    ]
+  },
+  {
+    "id": 9400558,
+    "name": "Psycho Jack",
+    "koreanName": "싸이코 잭",
+    "level": 30,
+    "isBoss": false,
+    "foundAt": [
+      "뉴 리프 시티"
+    ]
+  },
+  {
+    "id": 9600004,
+    "name": "Goat",
+    "koreanName": "염소",
+    "level": 30,
+    "isBoss": false,
+    "foundAt": [
+      "해외여행: 중국"
+    ]
+  },
+  {
+    "id": 3230307,
+    "name": "Chirppy",
+    "koreanName": "처프",
+    "level": 31,
+    "isBoss": false,
+    "foundAt": [
+      "루디브리엄"
+    ]
+  },
+  {
+    "id": 3100101,
+    "name": "Sand Dwarf ",
+    "koreanName": "모래난쟁이",
+    "level": 32,
+    "isBoss": false,
+    "foundAt": [
+      "아리안트"
+    ]
+  },
+  {
+    "id": 3110100,
+    "name": "Ligator",
+    "koreanName": "리게이터",
+    "level": 32,
+    "isBoss": false,
+    "foundAt": [
+      "빅토리아 아일랜드"
+    ]
+  },
+  {
+    "id": 3110101,
+    "name": "Pink Teddy",
+    "koreanName": "핑크테니",
+    "level": 32,
+    "isBoss": false,
+    "foundAt": [
+      "루디브리엄"
+    ]
+  },
+  {
+    "id": 3110102,
+    "name": "Ratz",
+    "koreanName": "라츠",
+    "level": 32,
+    "isBoss": false,
+    "foundAt": [
+      "루디브리엄"
+    ]
+  },
+  {
+    "id": 3110300,
+    "name": "Cube Slime",
+    "koreanName": "큐브슬라임",
+    "level": 32,
+    "isBoss": false,
+    "foundAt": [
+      "마가티아"
+    ]
+  },
+  {
+    "id": 3110301,
+    "name": "Dark Sand Dwarf ",
+    "koreanName": "붉은 모래난쟁이",
+    "level": 32,
+    "isBoss": false,
+    "foundAt": [
+      "아리안트"
+    ]
+  },
+  {
+    "id": 3210100,
+    "name": "Fire Boar",
+    "koreanName": "파이어보어",
+    "level": 32,
+    "isBoss": false,
+    "foundAt": [
+      "빅토리아 아일랜드"
+    ]
+  },
+  {
+    "id": 3230104,
+    "name": "Mask Fish",
+    "koreanName": "마스크피쉬",
+    "level": 32,
+    "isBoss": false,
+    "foundAt": [
+      "아쿠아리움"
+    ]
+  },
+  {
+    "id": 5300000,
+    "name": "Leatty",
+    "koreanName": "리티",
+    "level": 32,
+    "isBoss": false,
+    "foundAt": [
+      "엘나스"
+    ]
+  },
+  {
+    "id": 9300005,
+    "name": "Ratz from Another Dimension",
+    "koreanName": "차원의 라츠",
+    "level": 32,
+    "isBoss": false,
+    "foundAt": [
+      "루디브리엄 파퀘"
+    ]
+  },
+  {
+    "id": 3210200,
+    "name": "Jr. Cellion",
+    "koreanName": "주니어 샐리온",
+    "level": 33,
+    "isBoss": false,
+    "foundAt": [
+      "오르비스"
+    ]
+  },
+  {
+    "id": 3210201,
+    "name": "Jr. Lioner",
+    "koreanName": "주니어 라이오너",
+    "level": 33,
+    "isBoss": false,
+    "foundAt": [
+      "오르비스"
+    ]
+  },
+  {
+    "id": 3210202,
+    "name": "Jr. Grupin",
+    "koreanName": "주니어 그류핀",
+    "level": 33,
+    "isBoss": false,
+    "foundAt": [
+      "오르비스"
+    ]
+  },
+  {
+    "id": 5300001,
+    "name": "Dark Leatty",
+    "koreanName": "다크 리티",
+    "level": 33,
+    "isBoss": false,
+    "foundAt": [
+      "엘나스"
+    ]
+  },
+  {
+    "id": 9600006,
+    "name": "Cow",
+    "koreanName": "소",
+    "level": 33,
+    "isBoss": false,
+    "foundAt": [
+      "해외여행: 중국"
+    ]
+  },
+  {
+    "id": 3210204,
+    "name": "Roloduck",
+    "koreanName": "더키 패밀리",
+    "level": 34,
+    "isBoss": false,
+    "foundAt": [
+      "루디브리엄"
+    ]
+  },
+  {
+    "id": 3210205,
+    "name": "Black Ratz",
+    "koreanName": "블랙 라츠",
+    "level": 34,
+    "isBoss": false,
+    "foundAt": [
+      "루디브리엄",
+      "루디브리엄 파퀘"
+    ]
+  },
+  {
+    "id": 3210207,
+    "name": "Tick",
+    "koreanName": "티키",
+    "level": 34,
+    "isBoss": false,
+    "foundAt": [
+      "루디브리엄"
+    ]
+  },
+  {
+    "id": 3110302,
+    "name": "Rumo",
+    "koreanName": "루모",
+    "level": 35,
+    "isBoss": false,
+    "foundAt": [
+      "마가티아"
+    ]
+  },
+  {
+    "id": 3220000,
+    "name": "Stumpy",
+    "koreanName": "스텀피",
+    "level": 35,
+    "isBoss": true,
+    "foundAt": [
+      "빅토리아 아일랜드"
+    ]
+  },
+  {
+    "id": 3230100,
+    "name": "Curse Eye",
+    "koreanName": "커즈아이",
+    "level": 35,
+    "isBoss": false,
+    "foundAt": [
+      "빅토리아 아일랜드"
+    ]
+  },
+  {
+    "id": 3230101,
+    "name": "Jr. Wraith",
+    "koreanName": "주니어 레이스",
+    "level": 35,
+    "isBoss": false,
+    "foundAt": [
+      "빅토리아 아일랜드"
+    ]
+  },
+  {
+    "id": 3230200,
+    "name": "Star Pixie",
+    "koreanName": "스타픽시",
+    "level": 35,
+    "isBoss": false,
+    "foundAt": [
+      "오르비스"
+    ]
+  },
+  {
+    "id": 3230300,
+    "name": "Jr. Boogie 1",
+    "koreanName": "주니어 부기",
+    "level": 35,
+    "isBoss": false,
+    "foundAt": [
+      "빅토리아 아일랜드"
+    ]
+  },
+  {
+    "id": 3230302,
+    "name": "Bloctopus",
+    "koreanName": "블록퍼스",
+    "level": 35,
+    "isBoss": false,
+    "foundAt": [
+      "루디브리엄",
+      "루디브리엄 파퀘"
+    ]
+  },
+  {
+    "id": 5400000,
+    "name": "Jr. Pepe",
+    "koreanName": "주니어 페페",
+    "level": 35,
+    "isBoss": false,
+    "foundAt": [
+      "엘나스"
+    ]
+  },
+  {
+    "id": 6130104,
+    "name": "Boogie",
+    "koreanName": "부기",
+    "level": 35,
+    "isBoss": false,
+    "foundAt": [
+      "폐광"
+    ]
+  },
+  {
+    "id": 9600005,
+    "name": "Black Goat",
+    "koreanName": "흑염소",
+    "level": 35,
+    "isBoss": false,
+    "foundAt": [
+      "해외여행: 중국"
+    ]
+  },
+  {
+    "id": 3210203,
+    "name": "Panda Teddy",
+    "koreanName": "팬더테니",
+    "level": 36,
+    "isBoss": false,
+    "foundAt": [
+      "루디브리엄"
+    ]
+  },
+  {
+    "id": 3210206,
+    "name": "Helly",
+    "koreanName": "치크세이버",
+    "level": 36,
+    "isBoss": false,
+    "foundAt": [
+      "루디브리엄"
+    ]
+  },
+  {
+    "id": 3210208,
+    "name": "Retz",
+    "koreanName": "레츠",
+    "level": 36,
+    "isBoss": false,
+    "foundAt": [
+      "루디브리엄"
+    ]
+  },
+  {
+    "id": 3210450,
+    "name": "Scuba Pepe",
+    "koreanName": "스쿠버 페페",
+    "level": 36,
+    "isBoss": false,
+    "foundAt": [
+      "아쿠아리움"
+    ]
+  },
+  {
+    "id": 9400542,
+    "name": "Fire Tusk",
+    "koreanName": "파이어 터스크",
+    "level": 36,
+    "isBoss": false,
+    "foundAt": [
+      "뉴 리프 시티"
+    ]
+  },
+  {
+    "id": 9410009,
+    "name": "Yeti Doll",
+    "koreanName": "예티 인형",
+    "level": 36,
+    "isBoss": false,
+    "foundAt": [
+      "해외여행: 대만"
+    ]
+  },
+  {
+    "id": 9410011,
+    "name": "Jr. Pepe Doll",
+    "koreanName": "주니어페페 인형",
+    "level": 36,
+    "isBoss": false,
+    "foundAt": [
+      "해외여행: 대만"
+    ]
+  },
+  {
+    "id": 3210800,
+    "name": "Lupin",
+    "koreanName": "루팡",
+    "level": 37,
+    "isBoss": false,
+    "foundAt": [
+      "빅토리아 아일랜드"
+    ]
+  },
+  {
+    "id": 3230102,
+    "name": "Lorang",
+    "koreanName": "로랑",
+    "level": 37,
+    "isBoss": false,
+    "foundAt": [
+      "빅토리아 아일랜드"
+    ]
+  },
+  {
+    "id": 3230303,
+    "name": "Propelly",
+    "koreanName": "핑크세이버",
+    "level": 37,
+    "isBoss": false,
+    "foundAt": [
+      "루디브리엄"
+    ]
+  },
+  {
+    "id": 3230306,
+    "name": "Chronos",
+    "koreanName": "크로노스",
+    "level": 37,
+    "isBoss": false,
+    "foundAt": [
+      "루디브리엄"
+    ]
+  },
+  {
+    "id": 9600008,
+    "name": "Black Sheep",
+    "koreanName": "검은 양",
+    "level": 37,
+    "isBoss": false,
+    "foundAt": [
+      "해외여행: 중국"
+    ]
+  },
+  {
+    "id": 3110303,
+    "name": "Triple Rumo",
+    "koreanName": "트리플 루모",
+    "level": 38,
+    "isBoss": false,
+    "foundAt": [
+      "마가티아"
+    ]
+  },
+  {
+    "id": 3220001,
+    "name": "Deo",
+    "koreanName": "데우",
+    "level": 38,
+    "isBoss": true,
+    "foundAt": [
+      "빅토리아 아일랜드"
+    ]
+  },
+  {
+    "id": 3230103,
+    "name": "King Bloctopus",
+    "koreanName": "킹 블록퍼스",
+    "level": 38,
+    "isBoss": false,
+    "foundAt": [
+      "루디브리엄"
+    ]
+  },
+  {
+    "id": 3230304,
+    "name": "Planey",
+    "koreanName": "스카이세이버",
+    "level": 38,
+    "isBoss": false,
+    "foundAt": [
+      "루디브리엄"
+    ]
+  },
+  {
+    "id": 3230405,
+    "name": "Jr. Seal",
+    "koreanName": "주니어 씰",
+    "level": 38,
+    "isBoss": false,
+    "foundAt": [
+      "아쿠아리움"
+    ]
+  },
+  {
+    "id": 9410005,
+    "name": "Red Bubble Tea",
+    "koreanName": "레드 버블티",
+    "level": 38,
+    "isBoss": false,
+    "foundAt": [
+      "해외여행: 대만"
+    ]
+  },
+  {
+    "id": 9410006,
+    "name": "Yellow Bubble Tea",
+    "koreanName": "옐로우 버블티",
+    "level": 38,
+    "isBoss": false,
+    "foundAt": [
+      "해외여행: 대만"
+    ]
+  },
+  {
+    "id": 9410007,
+    "name": "Green Bubble Tea",
+    "koreanName": "그린 버블티",
+    "level": 38,
+    "isBoss": false,
+    "foundAt": [
+      "해외여행: 대만"
+    ]
+  },
+  {
+    "id": 9600007,
+    "name": "Plow Ox",
+    "koreanName": "쟁기소",
+    "level": 38,
+    "isBoss": false,
+    "foundAt": [
+      "해외여행: 중국"
+    ]
+  },
+  {
+    "id": 3230305,
+    "name": "Toy Trojan",
+    "koreanName": "장난감 목마",
+    "level": 39,
+    "isBoss": false,
+    "foundAt": [
+      "루디브리엄"
+    ]
+  },
+  {
+    "id": 3230308,
+    "name": "Tweeter",
+    "koreanName": "트위터",
+    "level": 39,
+    "isBoss": false,
+    "foundAt": [
+      "루디브리엄"
+    ]
+  },
+  {
+    "id": 4230100,
+    "name": "Cold Eye",
+    "koreanName": "콜드아이",
+    "level": 40,
+    "isBoss": false,
+    "foundAt": [
+      "빅토리아 아일랜드"
+    ]
+  },
+  {
+    "id": 4230101,
+    "name": "Zombie Lupin",
+    "koreanName": "좀비루팡",
+    "level": 40,
+    "isBoss": false,
+    "foundAt": [
+      "빅토리아 아일랜드"
+    ]
+  },
+  {
+    "id": 4230113,
+    "name": "Tick-Tock",
+    "koreanName": "틱톡",
+    "level": 40,
+    "isBoss": false,
+    "foundAt": [
+      "루디브리엄"
+    ]
+  },
+  {
+    "id": 4230116,
+    "name": "Barnard Gray",
+    "koreanName": "바나드 그레이",
+    "level": 40,
+    "isBoss": false,
+    "foundAt": [
+      "지구방위본부"
+    ]
+  },
+  {
+    "id": 4230200,
+    "name": "Poopa",
+    "koreanName": "푸퍼",
+    "level": 40,
+    "isBoss": false,
+    "foundAt": [
+      "아쿠아리움"
+    ]
+  },
+  {
+    "id": 4230201,
+    "name": "Poison Poopa",
+    "koreanName": "포이즌 푸퍼",
+    "level": 40,
+    "isBoss": false,
+    "foundAt": [
+      "아쿠아리움"
+    ]
+  },
+  {
+    "id": 4230500,
+    "name": "Chipmunk",
+    "koreanName": "별다람쥐",
+    "level": 40,
+    "isBoss": false,
+    "foundAt": [
+      "무릉도원"
+    ]
+  },
+  {
+    "id": 4230600,
+    "name": "Desert Giant ",
+    "koreanName": "모래거인",
+    "level": 40,
+    "isBoss": false,
+    "foundAt": [
+      "아리안트"
+    ]
+  },
+  {
+    "id": 9400011,
+    "name": "Paper Lantern Ghost",
+    "koreanName": "제등귀신",
+    "level": 40,
+    "isBoss": false,
+    "foundAt": [
+      "해외여행: 일본"
+    ]
+  },
+  {
+    "id": 9400563,
+    "name": "Nightmare",
+    "koreanName": "나이트메어",
+    "level": 40,
+    "isBoss": false,
+    "foundAt": [
+      "뉴 리프 시티"
+    ]
+  },
+  {
+    "id": 9410003,
+    "name": "Clown Monkey",
+    "koreanName": "광대 원숭이",
+    "level": 40,
+    "isBoss": false,
+    "foundAt": [
+      "해외여행: 대만"
+    ]
+  },
+  {
+    "id": 9420003,
+    "name": "Red Lizard",
+    "koreanName": "빨간 도마뱀",
+    "level": 40,
+    "isBoss": false,
+    "foundAt": [
+      "해외여행: 태국"
+    ]
+  },
+  {
+    "id": 4230107,
+    "name": "Flyeye",
+    "koreanName": "플라이아이",
+    "level": 41,
+    "isBoss": false,
+    "foundAt": [
+      "엘나스"
+    ]
+  },
+  {
+    "id": 4230111,
+    "name": "Robo",
+    "koreanName": "로보토이",
+    "level": 41,
+    "isBoss": false,
+    "foundAt": [
+      "루디브리엄"
+    ]
+  },
+  {
+    "id": 4230114,
+    "name": "Platoon Chronos",
+    "koreanName": "플래툰 크로노스",
+    "level": 41,
+    "isBoss": false,
+    "foundAt": [
+      "루디브리엄"
+    ]
+  },
+  {
+    "id": 4230119,
+    "name": "Mateon",
+    "koreanName": "마티안",
+    "level": 41,
+    "isBoss": false,
+    "foundAt": [
+      "지구방위본부"
+    ]
+  },
+  {
+    "id": 4230501,
+    "name": "Red Porky",
+    "koreanName": "호저",
+    "level": 41,
+    "isBoss": false,
+    "foundAt": [
+      "무릉도원"
+    ]
+  },
+  {
+    "id": 9400543,
+    "name": "Electrophant",
+    "koreanName": "일렉트로펀트",
+    "level": 41,
+    "isBoss": false,
+    "foundAt": [
+      "뉴 리프 시티"
+    ]
+  },
+  {
+    "id": 4090000,
+    "name": "Iron Hook",
+    "koreanName": "아이언 호그",
+    "level": 42,
+    "isBoss": false,
+    "foundAt": [
+      "빅토리아 아일랜드"
+    ]
+  },
+  {
+    "id": 4110300,
+    "name": "Iron Mutae",
+    "koreanName": "아이언 뮤테",
+    "level": 42,
+    "isBoss": false,
+    "foundAt": [
+      "마가티아"
+    ]
+  },
+  {
+    "id": 4230105,
+    "name": "Nependeath",
+    "koreanName": "네펜데스",
+    "level": 42,
+    "isBoss": false,
+    "foundAt": [
+      "오르비스"
+    ]
+  },
+  {
+    "id": 4230109,
+    "name": "Block Golem",
+    "koreanName": "블록골렘",
+    "level": 42,
+    "isBoss": false,
+    "foundAt": [
+      "루디브리엄",
+      "루디브리엄 파퀘"
+    ]
+  },
+  {
+    "id": 4230117,
+    "name": "Zeta Gray",
+    "koreanName": "제타 그레이",
+    "level": 42,
+    "isBoss": false,
+    "foundAt": [
+      "지구방위본부"
+    ]
+  },
+  {
+    "id": 4230124,
+    "name": "Freezer",
+    "koreanName": "프리져",
+    "level": 42,
+    "isBoss": false,
+    "foundAt": [
+      "아쿠아리움"
+    ]
+  },
+  {
+    "id": 4250000,
+    "name": "Moss Snail",
+    "koreanName": "이끼 달팽이",
+    "level": 42,
+    "isBoss": false,
+    "foundAt": [
+      "엘린숲"
+    ]
+  },
+  {
+    "id": 9410002,
+    "name": "Angry Stray Dog",
+    "koreanName": "험악한 들개",
+    "level": 42,
+    "isBoss": false,
+    "foundAt": [
+      "해외여행: 대만"
+    ]
+  },
+  {
+    "id": 4230108,
+    "name": "Jr. Cerebes",
+    "koreanName": "주니어 불독",
+    "level": 43,
+    "isBoss": false,
+    "foundAt": [
+      "엘나스"
+    ]
+  },
+  {
+    "id": 4230123,
+    "name": "Sparker",
+    "koreanName": "스파커",
+    "level": 43,
+    "isBoss": false,
+    "foundAt": [
+      "아쿠아리움"
+    ]
+  },
+  {
+    "id": 4230502,
+    "name": "Black Porky",
+    "koreanName": "흑저",
+    "level": 43,
+    "isBoss": false,
+    "foundAt": [
+      "무릉도원"
+    ]
+  },
+  {
+    "id": 9300008,
+    "name": "Shadow Eye from Another Dimension",
+    "koreanName": "차원의 쉐도우아이",
+    "level": 43,
+    "isBoss": false,
+    "foundAt": [
+      "루디브리엄 파퀘"
+    ]
+  },
+  {
+    "id": 9300014,
+    "name": "Dark Eye from Another Dimension",
+    "koreanName": "차원의 다크아이",
+    "level": 43,
+    "isBoss": false,
+    "foundAt": [
+      "루디브리엄 파퀘"
+    ]
+  },
+  {
+    "id": 4230112,
+    "name": "Master Robo",
+    "koreanName": "마스터 로보",
+    "level": 44,
+    "isBoss": false,
+    "foundAt": [
+      "루디브리엄"
+    ]
+  },
+  {
+    "id": 4230120,
+    "name": "Plateon",
+    "koreanName": "플라티안",
+    "level": 44,
+    "isBoss": false,
+    "foundAt": [
+      "지구방위본부"
+    ]
+  },
+  {
+    "id": 4230125,
+    "name": "Skeledog",
+    "koreanName": "스켈독",
+    "level": 44,
+    "isBoss": false,
+    "foundAt": [
+      "빅토리아 아일랜드"
+    ]
+  },
+  {
+    "id": 9400546,
+    "name": "I.AM.ROBOT",
+    "koreanName": "I.AM.ROBOT",
+    "level": 44,
+    "isBoss": false,
+    "foundAt": [
+      "뉴 리프 시티"
+    ]
+  },
+  {
+    "id": 4110301,
+    "name": "Reinforced Iron Mutae",
+    "koreanName": "강화된 아이언 뮤테",
+    "level": 45,
+    "isBoss": false,
+    "foundAt": [
+      "마가티아"
+    ]
+  },
+  {
+    "id": 4130100,
+    "name": "Copper Drake",
+    "koreanName": "카파 드레이크",
+    "level": 45,
+    "isBoss": false,
+    "foundAt": [
+      "빅토리아 아일랜드"
+    ]
+  },
+  {
+    "id": 4220000,
+    "name": "Seruf",
+    "koreanName": "세르프",
+    "level": 45,
+    "isBoss": true,
+    "foundAt": [
+      "아쿠아리움"
+    ]
+  },
+  {
+    "id": 4230106,
+    "name": "Lunar Pixie",
+    "koreanName": "루나픽시",
+    "level": 45,
+    "isBoss": false,
+    "foundAt": [
+      "오르비스"
+    ]
+  },
+  {
+    "id": 4230110,
+    "name": "King Block Golem",
+    "koreanName": "킹 블록골렘",
+    "level": 45,
+    "isBoss": false,
+    "foundAt": [
+      "루디브리엄"
+    ]
+  },
+  {
+    "id": 4230118,
+    "name": "Ultra Gray",
+    "koreanName": "울트라 그레이",
+    "level": 45,
+    "isBoss": false,
+    "foundAt": [
+      "지구방위본부"
+    ]
+  },
+  {
+    "id": 4230300,
+    "name": "Moon Bunny",
+    "koreanName": "월묘",
+    "level": 45,
+    "isBoss": false,
+    "foundAt": [
+      "아랫마을"
+    ]
+  },
+  {
+    "id": 4230400,
+    "name": "Iron Boar",
+    "koreanName": "아이언보어",
+    "level": 45,
+    "isBoss": false,
+    "foundAt": [
+      "빅토리아 아일랜드"
+    ]
+  },
+  {
+    "id": 4230503,
+    "name": "Blue Flower Serpent",
+    "koreanName": "청화사",
+    "level": 45,
+    "isBoss": false,
+    "foundAt": [
+      "무릉도원"
+    ]
+  },
+  {
+    "id": 4230504,
+    "name": "Red Flower Serpent",
+    "koreanName": "홍화사",
+    "level": 45,
+    "isBoss": false,
+    "foundAt": [
+      "무릉도원"
+    ]
+  },
+  {
+    "id": 9400004,
+    "name": "Big Cloud Fox",
+    "koreanName": "큰 구름여우",
+    "level": 45,
+    "isBoss": false,
+    "foundAt": [
+      "해외여행: 일본"
+    ]
+  },
+  {
+    "id": 9400583,
+    "name": "Leprechaun",
+    "koreanName": "레프러콘",
+    "level": 45,
+    "isBoss": false,
+    "foundAt": [
+      "뉴 리프 시티"
+    ]
+  },
+  {
+    "id": 4130101,
+    "name": "Tortie",
+    "koreanName": "엄티",
+    "level": 46,
+    "isBoss": false,
+    "foundAt": [
+      "빅토리아 아일랜드"
+    ]
+  },
+  {
+    "id": 4230115,
+    "name": "Master Chronos",
+    "koreanName": "마스터 크로노스",
+    "level": 46,
+    "isBoss": false,
+    "foundAt": [
+      "루디브리엄"
+    ]
+  },
+  {
+    "id": 4230121,
+    "name": "Mecateon",
+    "koreanName": "메카티안",
+    "level": 46,
+    "isBoss": false,
+    "foundAt": [
+      "지구방위본부"
+    ]
+  },
+  {
+    "id": 4250001,
+    "name": "Lord Tree",
+    "koreanName": "트리로드",
+    "level": 46,
+    "isBoss": false,
+    "foundAt": [
+      "엘린숲"
+    ]
+  },
+  {
+    "id": 4110302,
+    "name": "Mithril  mutae",
+    "koreanName": "미스릴 뮤테",
+    "level": 47,
+    "isBoss": false,
+    "foundAt": [
+      "마가티아"
+    ]
+  },
+  {
+    "id": 4130102,
+    "name": "Dark Nependeath",
+    "koreanName": "다크 네펜데스",
+    "level": 47,
+    "isBoss": false,
+    "foundAt": [
+      "오르비스"
+    ]
+  },
+  {
+    "id": 4130103,
+    "name": "Rombot",
+    "koreanName": "롬바드",
+    "level": 47,
+    "isBoss": true,
+    "foundAt": [
+      "루디브리엄",
+      "루디브리엄 파퀘"
+    ]
+  },
+  {
+    "id": 4230126,
+    "name": "Mummydog",
+    "koreanName": "머미독",
+    "level": 47,
+    "isBoss": false,
+    "foundAt": [
+      "빅토리아 아일랜드"
+    ]
+  },
+  {
+    "id": 4230505,
+    "name": "Jar",
+    "koreanName": "단지",
+    "level": 47,
+    "isBoss": false,
+    "foundAt": [
+      "백초마을"
+    ]
+  },
+  {
+    "id": 9410004,
+    "name": "Biker Monkey",
+    "koreanName": "폭주족 원숭이",
+    "level": 47,
+    "isBoss": false,
+    "foundAt": [
+      "해외여행: 대만"
+    ]
+  },
+  {
+    "id": 4230102,
+    "name": "Wraith",
+    "koreanName": "레이스",
+    "level": 48,
+    "isBoss": false,
+    "foundAt": [
+      "빅토리아 아일랜드"
+    ]
+  },
+  {
+    "id": 4230104,
+    "name": "Clang",
+    "koreanName": "클랑",
+    "level": 48,
+    "isBoss": false,
+    "foundAt": [
+      "빅토리아 아일랜드"
+    ]
+  },
+  {
+    "id": 4230506,
+    "name": "Ginseng Jar",
+    "koreanName": "삼단지",
+    "level": 48,
+    "isBoss": false,
+    "foundAt": [
+      "백초마을"
+    ]
+  },
+  {
+    "id": 4240000,
+    "name": "Chief Gray",
+    "koreanName": "원로 그레이",
+    "level": 49,
+    "isBoss": false,
+    "foundAt": [
+      "지구방위본부"
+    ]
+  },
+  {
+    "id": 5100000,
+    "name": "Jr. Yeti",
+    "koreanName": "주니어 예티",
+    "level": 50,
+    "isBoss": false,
+    "foundAt": [
+      "엘나스"
+    ]
+  },
+  {
+    "id": 5100003,
+    "name": "Hodori",
+    "koreanName": "호돌이",
+    "level": 50,
+    "isBoss": false,
+    "foundAt": [
+      "아랫마을"
+    ]
+  },
+  {
+    "id": 5110300,
+    "name": "Reinforced Mithril Mutae ",
+    "koreanName": "강화된 미스릴 뮤테",
+    "level": 50,
+    "isBoss": false,
+    "foundAt": [
+      "마가티아"
+    ]
+  },
+  {
+    "id": 5120503,
+    "name": "Straw Target Dummy",
+    "koreanName": "훈련용 짚인형",
+    "level": 50,
+    "isBoss": false,
+    "foundAt": [
+      "무릉도원"
+    ]
+  },
+  {
+    "id": 5130100,
+    "name": "Drake",
+    "koreanName": "드레이크",
+    "level": 50,
+    "isBoss": false,
+    "foundAt": [
+      "빅토리아 아일랜드"
+    ]
+  },
+  {
+    "id": 5220002,
+    "name": "Faust",
+    "koreanName": "파우스트",
+    "level": 50,
+    "isBoss": true,
+    "foundAt": [
+      "빅토리아 아일랜드"
+    ]
+  },
+  {
+    "id": 9400401,
+    "name": "",
+    "koreanName": "중급 닌자",
+    "level": 50,
+    "isBoss": false,
+    "foundAt": [
+      "해외여행: 일본"
+    ]
+  },
+  {
+    "id": 9400544,
+    "name": "Gryphon",
+    "koreanName": "그리폰",
+    "level": 50,
+    "isBoss": false,
+    "foundAt": [
+      "뉴 리프 시티"
+    ]
+  },
+  {
+    "id": 9400559,
+    "name": "Sophilia Doll Ground",
+    "koreanName": "걸어다니는 소필라 인형",
+    "level": 50,
+    "isBoss": false,
+    "foundAt": [
+      "뉴 리프 시티"
+    ]
+  },
+  {
+    "id": 9400560,
+    "name": "Sophilia Doll",
+    "koreanName": "소필라 인형",
+    "level": 50,
+    "isBoss": false,
+    "foundAt": [
+      "뉴 리프 시티"
+    ]
+  },
+  {
+    "id": 9400585,
+    "name": "Crimson Tree",
+    "koreanName": "크림슨 트리 2",
+    "level": 50,
+    "isBoss": false,
+    "foundAt": [
+      "뉴 리프 시티"
+    ]
+  },
+  {
+    "id": 9400586,
+    "name": "Crimson Tree",
+    "koreanName": "크림슨 트리",
+    "level": 50,
+    "isBoss": false,
+    "foundAt": [
+      "뉴 리프 시티"
+    ]
+  },
+  {
+    "id": 9400587,
+    "name": "Phantom Tree",
+    "koreanName": "팬텀 트리 2",
+    "level": 50,
+    "isBoss": false,
+    "foundAt": [
+      "뉴 리프 시티"
+    ]
+  },
+  {
+    "id": 9400588,
+    "name": "Phantom Tree",
+    "koreanName": "팬텀 트리",
+    "level": 50,
+    "isBoss": false,
+    "foundAt": [
+      "뉴 리프 시티"
+    ]
+  },
+  {
+    "id": 9410008,
+    "name": "Yeti UFO Catcher",
+    "koreanName": "예티 인형자판기",
+    "level": 50,
+    "isBoss": false,
+    "foundAt": [
+      "해외여행: 대만"
+    ]
+  },
+  {
+    "id": 9410010,
+    "name": "Jr. Pepe UFO Catcher",
+    "koreanName": "주니어페페 인형자판기",
+    "level": 50,
+    "isBoss": false,
+    "foundAt": [
+      "해외여행: 대만"
+    ]
+  },
+  {
+    "id": 9600009,
+    "name": "Giant Centipede",
+    "koreanName": "대왕지네",
+    "level": 50,
+    "isBoss": true,
+    "foundAt": [
+      "해외여행: 중국"
+    ]
+  },
+  {
+    "id": 5100002,
+    "name": "Firebomb",
+    "koreanName": "파이어봄",
+    "level": 51,
+    "isBoss": false,
+    "foundAt": [
+      "엘나스"
+    ]
+  },
+  {
+    "id": 5120504,
+    "name": "Wooden Target Dummy",
+    "koreanName": "훈련용 나무인형",
+    "level": 51,
+    "isBoss": false,
+    "foundAt": [
+      "무릉도원"
+    ]
+  },
+  {
+    "id": 5250001,
+    "name": "Stone Bug",
+    "koreanName": "스톤버그",
+    "level": 51,
+    "isBoss": false,
+    "foundAt": [
+      "엘린숲"
+    ]
+  },
+  {
+    "id": 5120000,
+    "name": "Luster Pixie",
+    "koreanName": "러스터픽시",
+    "level": 52,
+    "isBoss": false,
+    "foundAt": [
+      "오르비스"
+    ]
+  },
+  {
+    "id": 5130103,
+    "name": "Croco",
+    "koreanName": "크로코",
+    "level": 52,
+    "isBoss": false,
+    "foundAt": [
+      "빅토리아 아일랜드"
+    ]
+  },
+  {
+    "id": 5100005,
+    "name": "Hogul",
+    "koreanName": "호걸",
+    "level": 53,
+    "isBoss": false,
+    "foundAt": [
+      "아랫마을"
+    ]
+  },
+  {
+    "id": 5120001,
+    "name": "Cellion",
+    "koreanName": "샐리온",
+    "level": 53,
+    "isBoss": false,
+    "foundAt": [
+      "오르비스"
+    ]
+  },
+  {
+    "id": 5120002,
+    "name": "Lioner",
+    "koreanName": "라이오너",
+    "level": 53,
+    "isBoss": false,
+    "foundAt": [
+      "오르비스"
+    ]
+  },
+  {
+    "id": 5120003,
+    "name": "Grupin",
+    "koreanName": "그류핀",
+    "level": 53,
+    "isBoss": false,
+    "foundAt": [
+      "오르비스"
+    ]
+  },
+  {
+    "id": 5120501,
+    "name": "Bellflower Root",
+    "koreanName": "도라지",
+    "level": 53,
+    "isBoss": false,
+    "foundAt": [
+      "백초마을"
+    ]
+  },
+  {
+    "id": 5110301,
+    "name": "Roid ",
+    "koreanName": "로이드",
+    "level": 54,
+    "isBoss": false,
+    "foundAt": [
+      "마가티아"
+    ]
+  },
+  {
+    "id": 5120100,
+    "name": "MT-09",
+    "koreanName": "머신 MT-09",
+    "level": 54,
+    "isBoss": true,
+    "foundAt": [
+      "지구방위본부"
+    ]
+  },
+  {
+    "id": 5120502,
+    "name": "Sr. Bellflower Root",
+    "koreanName": "늙은 도라지",
+    "level": 54,
+    "isBoss": false,
+    "foundAt": [
+      "백초마을"
+    ]
+  },
+  {
+    "id": 8220036,
+    "name": "",
+    "koreanName": "미믹",
+    "level": 54,
+    "isBoss": false,
+    "foundAt": [
+      "폐광"
+    ]
+  },
+  {
+    "id": 5120506,
+    "name": "The Book Ghost",
+    "koreanName": "비급",
+    "level": 55,
+    "isBoss": false,
+    "foundAt": [
+      "무릉도원"
+    ]
+  },
+  {
+    "id": 5130101,
+    "name": "Stone Golem",
+    "koreanName": "스톤골렘",
+    "level": 55,
+    "isBoss": false,
+    "foundAt": [
+      "빅토리아 아일랜드"
+    ]
+  },
+  {
+    "id": 5130104,
+    "name": "Hector",
+    "koreanName": "헥터",
+    "level": 55,
+    "isBoss": false,
+    "foundAt": [
+      "엘나스"
+    ]
+  },
+  {
+    "id": 5220000,
+    "name": "King Clang",
+    "koreanName": "킹크랑",
+    "level": 55,
+    "isBoss": true,
+    "foundAt": [
+      "빅토리아 아일랜드"
+    ]
+  },
+  {
+    "id": 5250000,
+    "name": "Moss Mushroom",
+    "koreanName": "이끼버섯",
+    "level": 55,
+    "isBoss": false,
+    "foundAt": [
+      "엘린숲"
+    ]
+  },
+  {
+    "id": 5300100,
+    "name": "Malady",
+    "koreanName": "멜러디",
+    "level": 55,
+    "isBoss": false,
+    "foundAt": [
+      "빅토리아 아일랜드"
+    ]
+  },
+  {
+    "id": 2600622,
+    "name": "",
+    "koreanName": "알리샤르",
+    "level": 56,
+    "isBoss": false,
+    "foundAt": [
+      "루디브리엄 파퀘"
+    ]
+  },
+  {
+    "id": 5090000,
+    "name": "Shade",
+    "koreanName": "셰이드",
+    "level": 56,
+    "isBoss": true,
+    "foundAt": [
+      "빅토리아 아일랜드"
+    ]
+  },
+  {
+    "id": 5100004,
+    "name": "Samiho",
+    "koreanName": "삼미호",
+    "level": 56,
+    "isBoss": false,
+    "foundAt": [
+      "아랫마을"
+    ]
+  },
+  {
+    "id": 5120500,
+    "name": "Grizzly",
+    "koreanName": "달곰",
+    "level": 56,
+    "isBoss": false,
+    "foundAt": [
+      "무릉도원"
+    ]
+  },
+  {
+    "id": 5130105,
+    "name": "Dark Jr. Yeti",
+    "koreanName": "다크 주니어 예티",
+    "level": 56,
+    "isBoss": false,
+    "foundAt": [
+      "엘나스"
+    ]
+  },
+  {
+    "id": 5130107,
+    "name": "Coolie Zombie",
+    "koreanName": "쿨리 좀비",
+    "level": 57,
+    "isBoss": false,
+    "foundAt": [
+      "폐광"
+    ]
+  },
+  {
+    "id": 5130108,
+    "name": "Minor Zombie",
+    "koreanName": "마이너 좀비",
+    "level": 57,
+    "isBoss": false,
+    "foundAt": [
+      "폐광"
+    ]
+  },
+  {
+    "id": 5150001,
+    "name": "Skeleton Soldier",
+    "koreanName": "스켈레톤 사병",
+    "level": 57,
+    "isBoss": false,
+    "foundAt": [
+      "빅토리아 아일랜드"
+    ]
+  },
+  {
+    "id": 5250002,
+    "name": "Prehistoric Boar",
+    "koreanName": "원시멧돼지",
+    "level": 57,
+    "isBoss": false,
+    "foundAt": [
+      "엘린숲"
+    ]
+  },
+  {
+    "id": 5110302,
+    "name": "Neo Huroid",
+    "koreanName": "네오 휴로이드",
+    "level": 58,
+    "isBoss": false,
+    "foundAt": [
+      "마가티아"
+    ]
+  },
+  {
+    "id": 5120505,
+    "name": "Reindeer",
+    "koreanName": "천록",
+    "level": 58,
+    "isBoss": false,
+    "foundAt": [
+      "무릉도원"
+    ]
+  },
+  {
+    "id": 5130102,
+    "name": "Dark Stone Golem",
+    "koreanName": "다크 스톤골렘",
+    "level": 58,
+    "isBoss": false,
+    "foundAt": [
+      "빅토리아 아일랜드"
+    ]
+  },
+  {
+    "id": 5140000,
+    "name": "White Fang",
+    "koreanName": "화이트팽",
+    "level": 58,
+    "isBoss": false,
+    "foundAt": [
+      "엘나스"
+    ]
+  },
+  {
+    "id": 5090001,
+    "name": "Master Dummy",
+    "koreanName": "선인인형",
+    "level": 59,
+    "isBoss": true,
+    "foundAt": [
+      "무릉도원"
+    ]
+  },
+  {
+    "id": 5150000,
+    "name": "Mixed Golem",
+    "koreanName": "믹스골렘",
+    "level": 59,
+    "isBoss": false,
+    "foundAt": [
+      "빅토리아 아일랜드"
+    ]
+  },
+  {
+    "id": 5220003,
+    "name": "Timer",
+    "koreanName": "타이머",
+    "level": 59,
+    "isBoss": true,
+    "foundAt": [
+      "루디브리엄"
+    ]
+  },
+  {
+    "id": 6130100,
+    "name": "Red Drake",
+    "koreanName": "레드 드레이크",
+    "level": 60,
+    "isBoss": false,
+    "foundAt": [
+      "빅토리아 아일랜드"
+    ]
+  },
+  {
+    "id": 6130101,
+    "name": "Mushmom",
+    "koreanName": "머쉬맘",
+    "level": 60,
+    "isBoss": true,
+    "foundAt": [
+      "빅토리아 아일랜드"
+    ]
+  },
+  {
+    "id": 6130102,
+    "name": "Separated Pepe",
+    "koreanName": "페페",
+    "level": 60,
+    "isBoss": false,
+    "foundAt": [
+      "엘나스"
+    ]
+  },
+  {
+    "id": 6130201,
+    "name": "Blin",
+    "koreanName": "깨비(변신 전)",
+    "level": 60,
+    "isBoss": false,
+    "foundAt": [
+      "아랫마을"
+    ]
+  },
+  {
+    "id": 6130202,
+    "name": "Morphed Blin",
+    "koreanName": "깨비(변신 후)",
+    "level": 60,
+    "isBoss": false,
+    "foundAt": [
+      "아랫마을"
+    ]
+  },
+  {
+    "id": 6130203,
+    "name": "Panda",
+    "koreanName": "판다곰",
+    "level": 60,
+    "isBoss": false,
+    "foundAt": [
+      "무릉도원"
+    ]
+  },
+  {
+    "id": 9400003,
+    "name": "Nightghost",
+    "koreanName": "망령",
+    "level": 60,
+    "isBoss": false,
+    "foundAt": [
+      "해외여행: 일본"
+    ]
+  },
+  {
+    "id": 9400012,
+    "name": "Water Goblin",
+    "koreanName": "물도깨비",
+    "level": 60,
+    "isBoss": false,
+    "foundAt": [
+      "해외여행: 일본"
+    ]
+  },
+  {
+    "id": 9400406,
+    "name": "",
+    "koreanName": "쿠노이치",
+    "level": 60,
+    "isBoss": false,
+    "foundAt": [
+      "해외여행: 일본"
+    ]
+  },
+  {
+    "id": 9400561,
+    "name": "Voodoo",
+    "koreanName": "부두",
+    "level": 60,
+    "isBoss": false,
+    "foundAt": [
+      "뉴 리프 시티"
+    ]
+  },
+  {
+    "id": 9400562,
+    "name": "Hoodoo",
+    "koreanName": "후두",
+    "level": 60,
+    "isBoss": false,
+    "foundAt": [
+      "뉴 리프 시티"
+    ]
+  },
+  {
+    "id": 9410012,
+    "name": "UFO Catcher",
+    "koreanName": "인형자판기",
+    "level": 60,
+    "isBoss": false,
+    "foundAt": [
+      "해외여행: 대만"
+    ]
+  },
+  {
+    "id": 9410013,
+    "name": "Doll Vending Machine",
+    "koreanName": "인형뽑기 기계",
+    "level": 60,
+    "isBoss": false,
+    "foundAt": [
+      "해외여행: 대만"
+    ]
+  },
+  {
+    "id": 9420002,
+    "name": "Python",
+    "koreanName": "구렁이",
+    "level": 60,
+    "isBoss": false,
+    "foundAt": [
+      "해외여행: 태국"
+    ]
+  },
+  {
+    "id": 6130200,
+    "name": "Buffy",
+    "koreanName": "버피",
+    "level": 61,
+    "isBoss": false,
+    "foundAt": [
+      "시계탑 최하층"
+    ]
+  },
+  {
+    "id": 6090003,
+    "name": "Scholar Ghost",
+    "koreanName": "선비귀신",
+    "level": 62,
+    "isBoss": true,
+    "foundAt": [
+      "아랫마을"
+    ]
+  },
+  {
+    "id": 6130207,
+    "name": "Peach Monkey",
+    "koreanName": "원공",
+    "level": 62,
+    "isBoss": false,
+    "foundAt": [
+      "무릉도원"
+    ]
+  },
+  {
+    "id": 6230100,
+    "name": "Wild Kargo",
+    "koreanName": "와일드카고",
+    "level": 62,
+    "isBoss": false,
+    "foundAt": [
+      "빅토리아 아일랜드"
+    ]
+  },
+  {
+    "id": 9300026,
+    "name": "Jr. Gargoyle",
+    "koreanName": "주니어 가고일",
+    "level": 62,
+    "isBoss": false,
+    "foundAt": [
+      "샤레니안"
+    ]
+  },
+  {
+    "id": 6090004,
+    "name": "Rurumo",
+    "koreanName": "루루모",
+    "level": 63,
+    "isBoss": true,
+    "foundAt": [
+      "마가티아"
+    ]
+  },
+  {
+    "id": 6230101,
+    "name": "Puco",
+    "koreanName": "푸코",
+    "level": 63,
+    "isBoss": false,
+    "foundAt": [
+      "폐광"
+    ]
+  },
+  {
+    "id": 6230400,
+    "name": "Soul Teddy",
+    "koreanName": "소울테니",
+    "level": 63,
+    "isBoss": false,
+    "foundAt": [
+      "시계탑 최하층"
+    ]
+  },
+  {
+    "id": 6230401,
+    "name": "Jr. Lucida ",
+    "koreanName": "주니어 루이넬",
+    "level": 63,
+    "isBoss": false,
+    "foundAt": [
+      "오르비스"
+    ]
+  },
+  {
+    "id": 6230602,
+    "name": "Officer Skeleton",
+    "koreanName": "스켈레톤 장교",
+    "level": 63,
+    "isBoss": false,
+    "foundAt": [
+      "빅토리아 아일랜드"
+    ]
+  },
+  {
+    "id": 9300020,
+    "name": "Muscle Stone",
+    "koreanName": "머슬스톤",
+    "level": 63,
+    "isBoss": false,
+    "foundAt": [
+      "샤레니안"
+    ]
+  },
+  {
+    "id": 6090001,
+    "name": "Snow Witch",
+    "koreanName": "설산의 마녀",
+    "level": 64,
+    "isBoss": true,
+    "foundAt": [
+      "엘나스"
+    ]
+  },
+  {
+    "id": 6130204,
+    "name": "Mr. Alli",
+    "koreanName": "게비알",
+    "level": 64,
+    "isBoss": false,
+    "foundAt": [
+      "백초마을"
+    ]
+  },
+  {
+    "id": 6230200,
+    "name": "Dark Pepe",
+    "koreanName": "다크 페페",
+    "level": 64,
+    "isBoss": false,
+    "foundAt": [
+      "엘나스"
+    ]
+  },
+  {
+    "id": 6230600,
+    "name": "Ice Drake",
+    "koreanName": "아이스 드레이크",
+    "level": 64,
+    "isBoss": false,
+    "foundAt": [
+      "빅토리아 아일랜드"
+    ]
+  },
+  {
+    "id": 6090000,
+    "name": "Riche",
+    "koreanName": "리치",
+    "level": 65,
+    "isBoss": true,
+    "foundAt": [
+      "엘나스"
+    ]
+  },
+  {
+    "id": 6110300,
+    "name": "Homun",
+    "koreanName": "호문",
+    "level": 65,
+    "isBoss": false,
+    "foundAt": [
+      "마가티아"
+    ]
+  },
+  {
+    "id": 6220000,
+    "name": "Dyle",
+    "koreanName": "다일",
+    "level": 65,
+    "isBoss": true,
+    "foundAt": [
+      "빅토리아 아일랜드"
+    ]
+  },
+  {
+    "id": 6220001,
+    "name": "Zeno",
+    "koreanName": "제노",
+    "level": 65,
+    "isBoss": true,
+    "foundAt": [
+      "지구방위본부"
+    ]
+  },
+  {
+    "id": 6300000,
+    "name": "Yeti",
+    "koreanName": "예티",
+    "level": 65,
+    "isBoss": false,
+    "foundAt": [
+      "엘나스"
+    ]
+  },
+  {
+    "id": 6300005,
+    "name": "Zombie Mushmom",
+    "koreanName": "좀비 머쉬맘",
+    "level": 65,
+    "isBoss": true,
+    "foundAt": [
+      "빅토리아 아일랜드"
+    ]
+  },
+  {
+    "id": 9300019,
+    "name": "Master Muscle Stone",
+    "koreanName": "마스터 머슬스톤",
+    "level": 65,
+    "isBoss": false,
+    "foundAt": [
+      "샤레니안"
+    ]
+  },
+  {
+    "id": 6130209,
+    "name": "Sage Cat",
+    "koreanName": "묘선",
+    "level": 66,
+    "isBoss": false,
+    "foundAt": [
+      "무릉도원"
+    ]
+  },
+  {
+    "id": 6230300,
+    "name": "Lazy Buffy",
+    "koreanName": "레이지 버피",
+    "level": 66,
+    "isBoss": false,
+    "foundAt": [
+      "시계탑 최하층"
+    ]
+  },
+  {
+    "id": 6300004,
+    "name": "Pachu",
+    "koreanName": "파츠",
+    "level": 66,
+    "isBoss": true,
+    "foundAt": [
+      "폐광"
+    ]
+  },
+  {
+    "id": 9300022,
+    "name": "Black Knight",
+    "koreanName": "블랙 나이트",
+    "level": 66,
+    "isBoss": false,
+    "foundAt": [
+      "샤레니안"
+    ]
+  },
+  {
+    "id": 9300023,
+    "name": "Myst Knight",
+    "koreanName": "미스트 나이트",
+    "level": 66,
+    "isBoss": false,
+    "foundAt": [
+      "샤레니안"
+    ]
+  },
+  {
+    "id": 6230500,
+    "name": "Master Soul Teddy",
+    "koreanName": "마스터 소울테니",
+    "level": 67,
+    "isBoss": false,
+    "foundAt": [
+      "시계탑 최하층"
+    ]
+  },
+  {
+    "id": 6300003,
+    "name": "Punco",
+    "koreanName": "푼코",
+    "level": 67,
+    "isBoss": false,
+    "foundAt": [
+      "폐광"
+    ]
+  },
+  {
+    "id": 9300024,
+    "name": "Puppet Golem",
+    "koreanName": "퍼펫골렘",
+    "level": 67,
+    "isBoss": false,
+    "foundAt": [
+      "샤레니안"
+    ]
+  },
+  {
+    "id": 6090002,
+    "name": "Bamboo Warrior",
+    "koreanName": "대나무 무사",
+    "level": 68,
+    "isBoss": true,
+    "foundAt": [
+      "해외여행: 일본"
+    ]
+  },
+  {
+    "id": 6110301,
+    "name": "Site",
+    "koreanName": "사이티",
+    "level": 68,
+    "isBoss": false,
+    "foundAt": [
+      "마가티아"
+    ]
+  },
+  {
+    "id": 6130208,
+    "name": "Kru",
+    "koreanName": "크루",
+    "level": 68,
+    "isBoss": false,
+    "foundAt": [
+      "백초마을"
+    ]
+  },
+  {
+    "id": 6230601,
+    "name": "Dark Drake",
+    "koreanName": "다크 드레이크",
+    "level": 68,
+    "isBoss": false,
+    "foundAt": [
+      "빅토리아 아일랜드"
+    ]
+  },
+  {
+    "id": 6400000,
+    "name": "Dark Yeti",
+    "koreanName": "다크 예티",
+    "level": 68,
+    "isBoss": false,
+    "foundAt": [
+      "엘나스"
+    ]
+  },
+  {
+    "id": 9300025,
+    "name": "Gargoyle",
+    "koreanName": "가고일",
+    "level": 68,
+    "isBoss": false,
+    "foundAt": [
+      "샤레니안"
+    ]
+  },
+  {
+    "id": 6400003,
+    "name": "Cuzco",
+    "koreanName": "쿠스코",
+    "level": 69,
+    "isBoss": false,
+    "foundAt": [
+      "폐광"
+    ]
+  },
+  {
+    "id": 6400004,
+    "name": "Opachu",
+    "koreanName": "오파츠",
+    "level": 70,
+    "isBoss": true,
+    "foundAt": [
+      "폐광"
+    ]
+  },
+  {
+    "id": 7130100,
+    "name": "Tauromacis",
+    "koreanName": "타우로마시스",
+    "level": 70,
+    "isBoss": false,
+    "foundAt": [
+      "빅토리아 아일랜드"
+    ]
+  },
+  {
+    "id": 7130104,
+    "name": "Captain",
+    "koreanName": "캡틴",
+    "level": 70,
+    "isBoss": false,
+    "foundAt": [
+      "백초마을"
+    ]
+  },
+  {
+    "id": 7130400,
+    "name": "Yellow King Goblin",
+    "koreanName": "노란 왕도깨비",
+    "level": 70,
+    "isBoss": true,
+    "foundAt": [
+      "아랫마을"
+    ]
+  },
+  {
+    "id": 7130401,
+    "name": "Blue King Goblin",
+    "koreanName": "파란 왕도깨비",
+    "level": 70,
+    "isBoss": true,
+    "foundAt": [
+      "아랫마을"
+    ]
+  },
+  {
+    "id": 7130402,
+    "name": "Green King Goblin",
+    "koreanName": "초록 왕도깨비",
+    "level": 70,
+    "isBoss": true,
+    "foundAt": [
+      "아랫마을"
+    ]
+  },
+  {
+    "id": 7130500,
+    "name": "Rash",
+    "koreanName": "레쉬",
+    "level": 70,
+    "isBoss": false,
+    "foundAt": [
+      "리프레"
+    ]
+  },
+  {
+    "id": 7220001,
+    "name": "Old Fox",
+    "koreanName": "구미호",
+    "level": 70,
+    "isBoss": true,
+    "foundAt": [
+      "아랫마을"
+    ]
+  },
+  {
+    "id": 8140200,
+    "name": "Klock",
+    "koreanName": "클라크",
+    "level": 70,
+    "isBoss": false,
+    "foundAt": [
+      "시계탑 최하층"
+    ]
+  },
+  {
+    "id": 9400576,
+    "name": "Windraider",
+    "koreanName": "윈드레이더",
+    "level": 70,
+    "isBoss": false,
+    "foundAt": [
+      "뉴 리프 시티"
+    ]
+  },
+  {
+    "id": 7220000,
+    "name": "Tae Roon",
+    "koreanName": "태륜",
+    "level": 71,
+    "isBoss": true,
+    "foundAt": [
+      "무릉도원"
+    ]
+  },
+  {
+    "id": 8500004,
+    "name": "Low Darkstar",
+    "koreanName": "로우 다크스타",
+    "level": 71,
+    "isBoss": true,
+    "foundAt": [
+      "시계탑 최하층"
+    ]
+  },
+  {
+    "id": 7130001,
+    "name": "Cerebes",
+    "koreanName": "불독",
+    "level": 72,
+    "isBoss": false,
+    "foundAt": [
+      "폐광"
+    ]
+  },
+  {
+    "id": 7130002,
+    "name": "Beetle",
+    "koreanName": "비틀",
+    "level": 72,
+    "isBoss": false,
+    "foundAt": [
+      "리프레"
+    ]
+  },
+  {
+    "id": 7130600,
+    "name": "Hobi",
+    "koreanName": "호브",
+    "level": 72,
+    "isBoss": false,
+    "foundAt": [
+      "리프레"
+    ]
+  },
+  {
+    "id": 7110301,
+    "name": "Homunculus ",
+    "koreanName": "호문쿨루",
+    "level": 73,
+    "isBoss": false,
+    "foundAt": [
+      "마가티아"
+    ]
+  },
+  {
+    "id": 7130000,
+    "name": "Lucida",
+    "koreanName": "루이넬",
+    "level": 73,
+    "isBoss": false,
+    "foundAt": [
+      "오르비스"
+    ]
+  },
+  {
+    "id": 7130103,
+    "name": "Commander Skeleton",
+    "koreanName": "스켈레톤 지휘관",
+    "level": 73,
+    "isBoss": false,
+    "foundAt": [
+      "빅토리아 아일랜드"
+    ]
+  },
+  {
+    "id": 6300100,
+    "name": "Buffoon",
+    "koreanName": "버푼",
+    "level": 74,
+    "isBoss": false,
+    "foundAt": [
+      "시계탑 최하층"
+    ]
+  },
+  {
+    "id": 7130501,
+    "name": "Dark Rash",
+    "koreanName": "다크 레쉬",
+    "level": 74,
+    "isBoss": false,
+    "foundAt": [
+      "리프레"
+    ]
+  },
+  {
+    "id": 7090000,
+    "name": "Security Camera",
+    "koreanName": "자동경비시스템",
+    "level": 75,
+    "isBoss": true,
+    "foundAt": [
+      "마가티아"
+    ]
+  },
+  {
+    "id": 7110300,
+    "name": "D. Roy",
+    "koreanName": "D.로이",
+    "level": 75,
+    "isBoss": false,
+    "foundAt": [
+      "마가티아"
+    ]
+  },
+  {
+    "id": 7130101,
+    "name": "Taurospear",
+    "koreanName": "타우로스피어",
+    "level": 75,
+    "isBoss": false,
+    "foundAt": [
+      "빅토리아 아일랜드"
+    ]
+  },
+  {
+    "id": 7130200,
+    "name": "Werewolf",
+    "koreanName": "웨어울프",
+    "level": 75,
+    "isBoss": false,
+    "foundAt": [
+      "엘나스"
+    ]
+  },
+  {
+    "id": 8510100,
+    "name": "Bloody Boom",
+    "koreanName": "블러드붐",
+    "level": 75,
+    "isBoss": true,
+    "foundAt": [
+      "아쿠아리움"
+    ]
+  },
+  {
+    "id": 7130003,
+    "name": "Dual Beetle",
+    "koreanName": "듀얼 비틀",
+    "level": 76,
+    "isBoss": false,
+    "foundAt": [
+      "리프레"
+    ]
+  },
+  {
+    "id": 7130601,
+    "name": "Green Hobi",
+    "koreanName": "핀호브",
+    "level": 76,
+    "isBoss": false,
+    "foundAt": [
+      "리프레"
+    ]
+  },
+  {
+    "id": 8140300,
+    "name": "Dark Klock",
+    "koreanName": "다크 클라크",
+    "level": 76,
+    "isBoss": false,
+    "foundAt": [
+      "시계탑 최하층"
+    ]
+  },
+  {
+    "id": 6400100,
+    "name": "Deep Buffoon",
+    "koreanName": "딥 버푼",
+    "level": 77,
+    "isBoss": false,
+    "foundAt": [
+      "시계탑 최하층"
+    ]
+  },
+  {
+    "id": 7220002,
+    "name": "King Sage Cat",
+    "koreanName": "요괴선사",
+    "level": 77,
+    "isBoss": true,
+    "foundAt": [
+      "무릉도원"
+    ]
+  },
+  {
+    "id": 7130004,
+    "name": "Hankie",
+    "koreanName": "헹키",
+    "level": 78,
+    "isBoss": false,
+    "foundAt": [
+      "리프레"
+    ]
+  },
+  {
+    "id": 7130102,
+    "name": "Yeti and Pepe",
+    "koreanName": "예티와 페페",
+    "level": 78,
+    "isBoss": false,
+    "foundAt": [
+      "엘나스"
+    ]
+  },
+  {
+    "id": 8090000,
+    "name": "Deet and Roi",
+    "koreanName": "디트와 로이",
+    "level": 80,
+    "isBoss": true,
+    "foundAt": [
+      "마가티아"
+    ]
+  },
+  {
+    "id": 8110300,
+    "name": "Homunscullo",
+    "koreanName": "호문스큘러",
+    "level": 80,
+    "isBoss": false,
+    "foundAt": [
+      "마가티아"
+    ]
+  },
+  {
+    "id": 8130100,
+    "name": "Jr. Balrog",
+    "koreanName": "주니어 발록",
+    "level": 80,
+    "isBoss": true,
+    "foundAt": [
+      "빅토리아 아일랜드"
+    ]
+  },
+  {
+    "id": 8140000,
+    "name": "Lycanthrope",
+    "koreanName": "라이칸스로프",
+    "level": 80,
+    "isBoss": false,
+    "foundAt": [
+      "엘나스"
+    ]
+  },
+  {
+    "id": 8140001,
+    "name": "Harp",
+    "koreanName": "하프",
+    "level": 80,
+    "isBoss": false,
+    "foundAt": [
+      "리프레"
+    ]
+  },
+  {
+    "id": 8200000,
+    "name": "",
+    "koreanName": "시간의 눈",
+    "level": 80,
+    "isBoss": false,
+    "foundAt": [
+      "시간의 신전"
+    ]
+  },
+  {
+    "id": 8500003,
+    "name": "High Darkstar",
+    "koreanName": "하이 다크스타",
+    "level": 80,
+    "isBoss": true,
+    "foundAt": [
+      "시계탑 최하층"
+    ]
+  },
+  {
+    "id": 9001000,
+    "name": "Dances with Balrog's Clone",
+    "koreanName": "주먹펴고 일어서의 분신",
+    "level": 80,
+    "isBoss": true,
+    "foundAt": [
+      "빅토리아 아일랜드"
+    ]
+  },
+  {
+    "id": 9001001,
+    "name": "Grendel the Really Old's Clone",
+    "koreanName": "하인즈의 분신",
+    "level": 80,
+    "isBoss": true,
+    "foundAt": [
+      "빅토리아 아일랜드"
+    ]
+  },
+  {
+    "id": 9001002,
+    "name": "Athena Pierce's Clone",
+    "koreanName": "헬레나의 분신",
+    "level": 80,
+    "isBoss": true,
+    "foundAt": [
+      "빅토리아 아일랜드"
+    ]
+  },
+  {
+    "id": 9001003,
+    "name": "Dark Lord's Clone",
+    "koreanName": "다크로드의 분신",
+    "level": 80,
+    "isBoss": true,
+    "foundAt": [
+      "빅토리아 아일랜드"
+    ]
+  },
+  {
+    "id": 9001008,
+    "name": "Shadow Kyrin's Clone",
+    "koreanName": "카이린의 분신",
+    "level": 80,
+    "isBoss": false,
+    "foundAt": [
+      "빅토리아 아일랜드"
+    ]
+  },
+  {
+    "id": 9400402,
+    "name": "",
+    "koreanName": "상급 닌자",
+    "level": 80,
+    "isBoss": false,
+    "foundAt": [
+      "해외여행: 일본"
+    ]
+  },
+  {
+    "id": 9400545,
+    "name": "Wolf Spider",
+    "koreanName": "울프 스파이더",
+    "level": 80,
+    "isBoss": false,
+    "foundAt": [
+      "뉴 리프 시티"
+    ]
+  },
+  {
+    "id": 9400581,
+    "name": "Stormbreaker",
+    "koreanName": "스톰브레이커",
+    "level": 80,
+    "isBoss": false,
+    "foundAt": [
+      "뉴 리프 시티"
+    ]
+  },
+  {
+    "id": 9300139,
+    "name": "Franken Lloyd",
+    "koreanName": "프랑켄 로이드",
+    "level": 81,
+    "isBoss": true,
+    "foundAt": [
+      "마가티아"
+    ]
+  },
+  {
+    "id": 8140100,
+    "name": "Dark Yeti and Pepe",
+    "koreanName": "다크 예티와 페페",
+    "level": 82,
+    "isBoss": false,
+    "foundAt": [
+      "엘나스"
+    ]
+  },
+  {
+    "id": 7140000,
+    "name": "Ghost Pirate",
+    "koreanName": "파이렛",
+    "level": 83,
+    "isBoss": false,
+    "foundAt": [
+      "시계탑 최하층"
+    ]
+  },
+  {
+    "id": 8140002,
+    "name": "Blood Harp",
+    "koreanName": "블러드 하프",
+    "level": 83,
+    "isBoss": false,
+    "foundAt": [
+      "리프레"
+    ]
+  },
+  {
+    "id": 8220000,
+    "name": "Elliza",
+    "koreanName": "엘리쟈",
+    "level": 83,
+    "isBoss": true,
+    "foundAt": [
+      "오르비스"
+    ]
+  },
+  {
+    "id": 9300140,
+    "name": "Angry Franken Lloyd",
+    "koreanName": "화난 프랑켄 로이드",
+    "level": 84,
+    "isBoss": true,
+    "foundAt": [
+      "마가티아"
+    ]
+  },
+  {
+    "id": 7130010,
+    "name": "Death Teddy",
+    "koreanName": "데스테니",
+    "level": 85,
+    "isBoss": false,
+    "foundAt": [
+      "시계탑 최하층"
+    ]
+  },
+  {
+    "id": 7130020,
+    "name": "Goby",
+    "koreanName": "망둥이",
+    "level": 85,
+    "isBoss": false,
+    "foundAt": [
+      "아쿠아리움"
+    ]
+  },
+  {
+    "id": 8140110,
+    "name": "Birk",
+    "koreanName": "버크",
+    "level": 85,
+    "isBoss": false,
+    "foundAt": [
+      "리프레"
+    ]
+  },
+  {
+    "id": 8220002,
+    "name": "Kimera",
+    "koreanName": "키메라",
+    "level": 85,
+    "isBoss": true,
+    "foundAt": [
+      "마가티아"
+    ]
+  },
+  {
+    "id": 9410015,
+    "name": "Snack Bar",
+    "koreanName": "포장마차(변신 전)",
+    "level": 85,
+    "isBoss": true,
+    "foundAt": [
+      "해외여행: 대만"
+    ]
+  },
+  {
+    "id": 7160000,
+    "name": "Dual Ghost Pirate",
+    "koreanName": "듀얼 파이렛",
+    "level": 87,
+    "isBoss": false,
+    "foundAt": [
+      "시계탑 최하층"
+    ]
+  },
+  {
+    "id": 8140101,
+    "name": "Black Kentaurus",
+    "koreanName": "검은 켄타우로스",
+    "level": 88,
+    "isBoss": false,
+    "foundAt": [
+      "리프레"
+    ]
+  },
+  {
+    "id": 8140102,
+    "name": "Red Kentaurus",
+    "koreanName": "붉은 켄타우로스",
+    "level": 88,
+    "isBoss": false,
+    "foundAt": [
+      "리프레"
+    ]
+  },
+  {
+    "id": 8140103,
+    "name": "Blue Kentaurus",
+    "koreanName": "푸른 켄타우로스",
+    "level": 88,
+    "isBoss": false,
+    "foundAt": [
+      "리프레"
+    ]
+  },
+  {
+    "id": 8140111,
+    "name": "Dual Birk",
+    "koreanName": "듀얼 버크",
+    "level": 88,
+    "isBoss": false,
+    "foundAt": [
+      "리프레"
+    ]
+  },
+  {
+    "id": 7130300,
+    "name": "Master Death Teddy",
+    "koreanName": "마스터 데스테니",
+    "level": 89,
+    "isBoss": false,
+    "foundAt": [
+      "시계탑 최하층"
+    ]
+  },
+  {
+    "id": 8140500,
+    "name": "Bain",
+    "koreanName": "파이어독",
+    "level": 90,
+    "isBoss": false,
+    "foundAt": [
+      "폐광"
+    ]
+  },
+  {
+    "id": 8140555,
+    "name": "Bombing Fish House ",
+    "koreanName": "폭렬 망둥이집",
+    "level": 90,
+    "isBoss": false,
+    "foundAt": [
+      "아쿠아리움"
+    ]
+  },
+  {
+    "id": 8140700,
+    "name": "Blue Dragon Turtle",
+    "koreanName": "블루 드래곤터틀",
+    "level": 90,
+    "isBoss": false,
+    "foundAt": [
+      "리프레"
+    ]
+  },
+  {
+    "id": 8220001,
+    "name": "Snowman",
+    "koreanName": "스노우맨",
+    "level": 90,
+    "isBoss": true,
+    "foundAt": [
+      "엘나스"
+    ]
+  },
+  {
+    "id": 9400205,
+    "name": "Blue Mushmom",
+    "koreanName": "블루머쉬맘",
+    "level": 90,
+    "isBoss": true,
+    "foundAt": [
+      "해외여행: 일본"
+    ]
+  },
+  {
+    "id": 9400577,
+    "name": "Firebrand",
+    "koreanName": "파이어브랜드",
+    "level": 90,
+    "isBoss": false,
+    "foundAt": [
+      "뉴 리프 시티"
+    ]
+  },
+  {
+    "id": 9400578,
+    "name": "Firebrand",
+    "koreanName": "파이어브랜드 (변신)",
+    "level": 90,
+    "isBoss": false,
+    "foundAt": [
+      "뉴 리프 시티"
+    ]
+  },
+  {
+    "id": 8200001,
+    "name": "",
+    "koreanName": "추억의 사제",
+    "level": 91,
+    "isBoss": false,
+    "foundAt": [
+      "시간의 신전"
+    ]
+  },
+  {
+    "id": 8140600,
+    "name": "Bone Fish",
+    "koreanName": "본피쉬",
+    "level": 92,
+    "isBoss": false,
+    "foundAt": [
+      "아쿠아리움"
+    ]
+  },
+  {
+    "id": 8140701,
+    "name": "Red Dragon Turtle",
+    "koreanName": "레드 드래곤터틀",
+    "level": 93,
+    "isBoss": false,
+    "foundAt": [
+      "리프레"
+    ]
+  },
+  {
+    "id": 8141000,
+    "name": "Spirit Viking",
+    "koreanName": "바이킹",
+    "level": 93,
+    "isBoss": false,
+    "foundAt": [
+      "시계탑 최하층"
+    ]
+  },
+  {
+    "id": 8141300,
+    "name": "Squid",
+    "koreanName": "스퀴드",
+    "level": 94,
+    "isBoss": false,
+    "foundAt": [
+      "아쿠아리움"
+    ]
+  },
+  {
+    "id": 8200002,
+    "name": "",
+    "koreanName": "추억의 신관",
+    "level": 94,
+    "isBoss": false,
+    "foundAt": [
+      "시간의 신전"
+    ]
+  },
+  {
+    "id": 8140702,
+    "name": "Rexton",
+    "koreanName": "리스튼",
+    "level": 95,
+    "isBoss": false,
+    "foundAt": [
+      "리프레"
+    ]
+  },
+  {
+    "id": 8142000,
+    "name": "Phantom Watch",
+    "koreanName": "팬텀워치",
+    "level": 95,
+    "isBoss": false,
+    "foundAt": [
+      "시계탑 최하층"
+    ]
+  },
+  {
+    "id": 9400580,
+    "name": "Elderwraith",
+    "koreanName": "엘더레이스",
+    "level": 95,
+    "isBoss": false,
+    "foundAt": [
+      "뉴 리프 시티"
+    ]
+  },
+  {
+    "id": 8140703,
+    "name": "Brexton",
+    "koreanName": "브레스튼",
+    "level": 97,
+    "isBoss": false,
+    "foundAt": [
+      "리프레"
+    ]
+  },
+  {
+    "id": 8142100,
+    "name": "Risell Squid",
+    "koreanName": "리셀스퀴드",
+    "level": 97,
+    "isBoss": false,
+    "foundAt": [
+      "아쿠아리움"
+    ]
+  },
+  {
+    "id": 8150300,
+    "name": "Red Wyvern",
+    "koreanName": "레드 와이번",
+    "level": 97,
+    "isBoss": false,
+    "foundAt": [
+      "리프레"
+    ]
+  },
+  {
+    "id": 8141100,
+    "name": "Gigantic Spirit Viking",
+    "koreanName": "기간틱 바이킹",
+    "level": 98,
+    "isBoss": false,
+    "foundAt": [
+      "시계탑 최하층"
+    ]
+  },
+  {
+    "id": 8200003,
+    "name": "",
+    "koreanName": "추억의 수호병",
+    "level": 98,
+    "isBoss": false,
+    "foundAt": [
+      "시간의 신전"
+    ]
+  },
+  {
+    "id": 8143000,
+    "name": "Grim Phantom Watch",
+    "koreanName": "G.팬텀워치",
+    "level": 99,
+    "isBoss": false,
+    "foundAt": [
+      "시계탑 최하층"
+    ]
+  },
+  {
+    "id": 8150000,
+    "name": "Crimson Balrog",
+    "koreanName": "크림슨 발록",
+    "level": 100,
+    "isBoss": true,
+    "foundAt": [
+      "빅토리아 아일랜드"
+    ]
+  },
+  {
+    "id": 8150100,
+    "name": "Shark",
+    "koreanName": "샤크",
+    "level": 100,
+    "isBoss": false,
+    "foundAt": [
+      "아쿠아리움"
+    ]
+  },
+  {
+    "id": 8150200,
+    "name": "Green Cornian",
+    "koreanName": "그린코니언",
+    "level": 100,
+    "isBoss": false,
+    "foundAt": [
+      "리프레"
+    ]
+  },
+  {
+    "id": 9400013,
+    "name": "Dreamy Ghost",
+    "koreanName": "몽롱귀신",
+    "level": 100,
+    "isBoss": false,
+    "foundAt": [
+      "해외여행: 일본"
+    ]
+  },
+  {
+    "id": 9400403,
+    "name": "",
+    "koreanName": "닌자 두목",
+    "level": 100,
+    "isBoss": false,
+    "foundAt": [
+      "해외여행: 일본"
+    ]
+  },
+  {
+    "id": 9400574,
+    "name": "Typhon",
+    "koreanName": "티폰",
+    "level": 100,
+    "isBoss": false,
+    "foundAt": [
+      "뉴 리프 시티"
+    ]
+  },
+  {
+    "id": 9400579,
+    "name": "Nightshadow",
+    "koreanName": "나이트섀도우",
+    "level": 100,
+    "isBoss": false,
+    "foundAt": [
+      "뉴 리프 시티"
+    ]
+  },
+  {
+    "id": 9400594,
+    "name": "",
+    "koreanName": "마스터 가디언",
+    "level": 100,
+    "isBoss": false,
+    "foundAt": [
+      "뉴 리프 시티"
+    ]
+  },
+  {
+    "id": 8150301,
+    "name": "Blue Wyvern",
+    "koreanName": "블루 와이번",
+    "level": 101,
+    "isBoss": false,
+    "foundAt": [
+      "리프레"
+    ]
+  },
+  {
+    "id": 9400549,
+    "name": "Headless Horseman",
+    "koreanName": "머리없는 기수",
+    "level": 101,
+    "isBoss": true,
+    "foundAt": [
+      "뉴 리프 시티"
+    ]
+  },
+  {
+    "id": 8150101,
+    "name": "Cold Shark",
+    "koreanName": "콜드샤크",
+    "level": 102,
+    "isBoss": false,
+    "foundAt": [
+      "아쿠아리움"
+    ]
+  },
+  {
+    "id": 8150302,
+    "name": "Dark Wyvern",
+    "koreanName": "다크 와이번",
+    "level": 103,
+    "isBoss": false,
+    "foundAt": [
+      "리프레"
+    ]
+  },
+  {
+    "id": 8150201,
+    "name": "Dark Cornian",
+    "koreanName": "다크코니언",
+    "level": 105,
+    "isBoss": false,
+    "foundAt": [
+      "리프레"
+    ]
+  },
+  {
+    "id": 8180000,
+    "name": "Manon",
+    "koreanName": "마뇽",
+    "level": 105,
+    "isBoss": true,
+    "foundAt": [
+      "리프레"
+    ]
+  },
+  {
+    "id": 8180001,
+    "name": "Griffey",
+    "koreanName": "그리프",
+    "level": 105,
+    "isBoss": true,
+    "foundAt": [
+      "리프레"
+    ]
+  },
+  {
+    "id": 8190000,
+    "name": "Jr. Newtie",
+    "koreanName": "뉴트주니어",
+    "level": 105,
+    "isBoss": false,
+    "foundAt": [
+      "리프레"
+    ]
+  },
+  {
+    "id": 8200005,
+    "name": "",
+    "koreanName": "후회의 사제",
+    "level": 106,
+    "isBoss": false,
+    "foundAt": [
+      "시간의 신전"
+    ]
+  },
+  {
+    "id": 8160000,
+    "name": "Gatekeeper",
+    "koreanName": "게이트키퍼",
+    "level": 108,
+    "isBoss": false,
+    "foundAt": [
+      "시계탑 최하층"
+    ]
+  },
+  {
+    "id": 8170000,
+    "name": "Thanatos",
+    "koreanName": "타나토스",
+    "level": 108,
+    "isBoss": false,
+    "foundAt": [
+      "시계탑 최하층"
+    ]
+  },
+  {
+    "id": 8200006,
+    "name": "",
+    "koreanName": "후회의 신관",
+    "level": 109,
+    "isBoss": false,
+    "foundAt": [
+      "시간의 신전"
+    ]
+  },
+  {
+    "id": 8190002,
+    "name": "Nest Golem",
+    "koreanName": "네스트골렘",
+    "level": 110,
+    "isBoss": false,
+    "foundAt": [
+      "리프레"
+    ]
+  },
+  {
+    "id": 8190003,
+    "name": "Skelegon",
+    "koreanName": "스켈레곤",
+    "level": 110,
+    "isBoss": false,
+    "foundAt": [
+      "리프레"
+    ]
+  },
+  {
+    "id": 8510000,
+    "name": "Pianus",
+    "koreanName": "피아누스(우)",
+    "level": 110,
+    "isBoss": true,
+    "foundAt": [
+      "아쿠아리움"
+    ]
+  },
+  {
+    "id": 8520000,
+    "name": "Pianus",
+    "koreanName": "피아누스(좌)",
+    "level": 110,
+    "isBoss": true,
+    "foundAt": [
+      "아쿠아리움"
+    ]
+  },
+  {
+    "id": 9400575,
+    "name": "Bigfoot",
+    "koreanName": "빅풋",
+    "level": 110,
+    "isBoss": true,
+    "foundAt": [
+      "뉴 리프 시티"
+    ]
+  },
+  {
+    "id": 8190004,
+    "name": "Skelosaurus",
+    "koreanName": "스켈로스",
+    "level": 113,
+    "isBoss": false,
+    "foundAt": [
+      "리프레"
+    ]
+  },
+  {
+    "id": 8200007,
+    "name": "",
+    "koreanName": "후회의 수호병",
+    "level": 113,
+    "isBoss": false,
+    "foundAt": [
+      "시간의 신전"
+    ]
+  },
+  {
+    "id": 9300028,
+    "name": "Ergoth",
+    "koreanName": "에레고스",
+    "level": 115,
+    "isBoss": true,
+    "foundAt": [
+      "샤레니안"
+    ]
+  },
+  {
+    "id": 9400014,
+    "name": "Black Crow",
+    "koreanName": "천구",
+    "level": 115,
+    "isBoss": true,
+    "foundAt": [
+      "해외여행: 일본"
+    ]
+  },
+  {
+    "id": 8200008,
+    "name": "",
+    "koreanName": "후회의 수호대장",
+    "level": 116,
+    "isBoss": false,
+    "foundAt": [
+      "시간의 신전"
+    ]
+  },
+  {
+    "id": 8220003,
+    "name": "Leviathan",
+    "koreanName": "레비아탄",
+    "level": 120,
+    "isBoss": true,
+    "foundAt": [
+      "리프레"
+    ]
+  },
+  {
+    "id": 9400405,
+    "name": "",
+    "koreanName": "갑주무사",
+    "level": 120,
+    "isBoss": false,
+    "foundAt": [
+      "해외여행: 일본"
+    ]
+  },
+  {
+    "id": 9400582,
+    "name": "Crimson Guardian",
+    "koreanName": "크림슨 가디언",
+    "level": 120,
+    "isBoss": false,
+    "foundAt": [
+      "뉴 리프 시티"
+    ]
+  },
+  {
+    "id": 8200009,
+    "name": "",
+    "koreanName": "망각의 사제",
+    "level": 121,
+    "isBoss": false,
+    "foundAt": [
+      "시간의 신전"
+    ]
+  },
+  {
+    "id": 8220004,
+    "name": "",
+    "koreanName": "도도",
+    "level": 121,
+    "isBoss": false,
+    "foundAt": [
+      "시간의 신전"
+    ]
+  },
+  {
+    "id": 8200010,
+    "name": "",
+    "koreanName": "망각의 신관",
+    "level": 124,
+    "isBoss": false,
+    "foundAt": [
+      "시간의 신전"
+    ]
+  },
+  {
+    "id": 8500001,
+    "name": "Papulatus Clock",
+    "koreanName": "파풀라투스의 시계",
+    "level": 125,
+    "isBoss": true,
+    "foundAt": [
+      "시계탑 최하층"
+    ]
+  },
+  {
+    "id": 8500002,
+    "name": "Papulatus",
+    "koreanName": "파풀라투스",
+    "level": 125,
+    "isBoss": true,
+    "foundAt": [
+      "시계탑 최하층"
+    ]
+  },
+  {
+    "id": 8200011,
+    "name": "",
+    "koreanName": "망각의 수호병",
+    "level": 128,
+    "isBoss": false,
+    "foundAt": [
+      "시간의 신전"
+    ]
+  },
+  {
+    "id": 9400589,
+    "name": "",
+    "koreanName": "히어론",
+    "level": 130,
+    "isBoss": false,
+    "foundAt": [
+      "뉴 리프 시티"
+    ]
+  },
+  {
+    "id": 9400590,
+    "name": "",
+    "koreanName": "마르가나",
+    "level": 130,
+    "isBoss": false,
+    "foundAt": [
+      "뉴 리프 시티"
+    ]
+  },
+  {
+    "id": 9400591,
+    "name": "",
+    "koreanName": "붉은 너그",
+    "level": 130,
+    "isBoss": false,
+    "foundAt": [
+      "뉴 리프 시티"
+    ]
+  },
+  {
+    "id": 9400592,
+    "name": "",
+    "koreanName": "렐리크",
+    "level": 130,
+    "isBoss": false,
+    "foundAt": [
+      "뉴 리프 시티"
+    ]
+  },
+  {
+    "id": 9400593,
+    "name": "",
+    "koreanName": "흐살프",
+    "level": 130,
+    "isBoss": false,
+    "foundAt": [
+      "뉴 리프 시티"
+    ]
+  },
+  {
+    "id": 8200012,
+    "name": "",
+    "koreanName": "망각의 수호대장",
+    "level": 131,
+    "isBoss": false,
+    "foundAt": [
+      "시간의 신전"
+    ]
+  },
+  {
+    "id": 8220005,
+    "name": "",
+    "koreanName": "릴리노흐",
+    "level": 131,
+    "isBoss": false,
+    "foundAt": [
+      "시간의 신전"
+    ]
+  },
+  {
+    "id": 8800000,
+    "name": "Zakum1",
+    "koreanName": "자쿰(1페이즈)",
+    "level": 140,
+    "isBoss": true,
+    "foundAt": [
+      "폐광"
+    ]
+  },
+  {
+    "id": 8800001,
+    "name": "Zakum2",
+    "koreanName": "자쿰(2페이즈)",
+    "level": 140,
+    "isBoss": true,
+    "foundAt": [
+      "폐광"
+    ]
+  },
+  {
+    "id": 8800002,
+    "name": "Zakum3",
+    "koreanName": "자쿰(3페이즈)",
+    "level": 140,
+    "isBoss": true,
+    "foundAt": [
+      "폐광"
+    ]
+  },
+  {
+    "id": 8800003,
+    "name": "Zakum's Arm 1",
+    "koreanName": "자쿰팔1",
+    "level": 140,
+    "isBoss": true,
+    "foundAt": [
+      "폐광"
+    ]
+  },
+  {
+    "id": 8800004,
+    "name": "Zakum's Arm 2",
+    "koreanName": "자쿰팔2",
+    "level": 140,
+    "isBoss": true,
+    "foundAt": [
+      "폐광"
+    ]
+  },
+  {
+    "id": 8800005,
+    "name": "Zakum's Arm 3",
+    "koreanName": "자쿰팔3",
+    "level": 140,
+    "isBoss": true,
+    "foundAt": [
+      "폐광"
+    ]
+  },
+  {
+    "id": 8800006,
+    "name": "Zakum's Arm 4",
+    "koreanName": "자쿰팔4",
+    "level": 140,
+    "isBoss": true,
+    "foundAt": [
+      "폐광"
+    ]
+  },
+  {
+    "id": 8800007,
+    "name": "Zakum's Arm 5",
+    "koreanName": "자쿰팔5",
+    "level": 140,
+    "isBoss": true,
+    "foundAt": [
+      "폐광"
+    ]
+  },
+  {
+    "id": 8800008,
+    "name": "Zakum's Arm 6",
+    "koreanName": "자쿰팔6",
+    "level": 140,
+    "isBoss": true,
+    "foundAt": [
+      "폐광"
+    ]
+  },
+  {
+    "id": 8800009,
+    "name": "Zakum's Arm 7",
+    "koreanName": "자쿰팔7",
+    "level": 140,
+    "isBoss": true,
+    "foundAt": [
+      "폐광"
+    ]
+  },
+  {
+    "id": 8800010,
+    "name": "Zakum's Arm 8",
+    "koreanName": "자쿰팔8",
+    "level": 140,
+    "isBoss": true,
+    "foundAt": [
+      "폐광"
+    ]
+  },
+  {
+    "id": 8220006,
+    "name": "",
+    "koreanName": "라이카",
+    "level": 141,
+    "isBoss": false,
+    "foundAt": [
+      "시간의 신전"
+    ]
+  },
+  {
+    "id": 8810000,
+    "name": "Horntail's Left Head",
+    "koreanName": "혼테일의 왼쪽 머리(1페이즈)",
+    "level": 160,
+    "isBoss": true,
+    "foundAt": ["리프레"]
+  },
+  {
+    "id": 8810001,
+    "name": "Horntail's Right Head",
+    "koreanName": "혼테일의 오른쪽 머리(2페이즈)",
+    "level": 160,
+    "isBoss": true,
+    "foundAt": ["리프레"]
+  },
+  {
+    "id": 8810002,
+    "name": "Horntail's Head A",
+    "koreanName": "혼테일의 머리A",
+    "level": 160,
+    "isBoss": true,
+    "foundAt": ["리프레"]
+  },
+  {
+    "id": 8810003,
+    "name": "Horntail's Head B",
+    "koreanName": "혼테일의 머리B",
+    "level": 160,
+    "isBoss": true,
+    "foundAt": ["리프레"]
+  },
+  {
+    "id": 8810004,
+    "name": "Horntail's Head C",
+    "koreanName": "혼테일의 머리C",
+    "level": 160,
+    "isBoss": true,
+    "foundAt": ["리프레"]
+  },
+  {
+    "id": 8810005,
+    "name": "Horntail's Left Hand",
+    "koreanName": "혼테일의 왼손",
+    "level": 160,
+    "isBoss": true,
+    "foundAt": ["리프레"]
+  },
+  {
+    "id": 8810006,
+    "name": "Horntail's Right Hand",
+    "koreanName": "혼테일의 오른손",
+    "level": 160,
+    "isBoss": true,
+    "foundAt": ["리프레"]
+  },
+  {
+    "id": 8810007,
+    "name": "Horntail's Wings",
+    "koreanName": "혼테일의 날개",
+    "level": 160,
+    "isBoss": true,
+    "foundAt": ["리프레"]
+  },
+  {
+    "id": 8810008,
+    "name": "Horntail's Legs",
+    "koreanName": "혼테일의 다리",
+    "level": 160,
+    "isBoss": true,
+    "foundAt": ["리프레"]
+  },
+  {
+    "id": 8810009,
+    "name": "Horntail's Tails",
+    "koreanName": "혼테일의 꼬리",
+    "level": 160,
+    "isBoss": true,
+    "foundAt": ["리프레"]
+  }
+]

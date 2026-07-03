@@ -1,0 +1,8021 @@
+{
+  "100100": {
+    "id": 100100,
+    "level": 1,
+    "PADamage": 12,
+    "MADamage": 0,
+    "PDDamage": 0,
+    "MDDamage": 0,
+    "acc": 20,
+    "eva": 0,
+    "exp": 3,
+    "maxHP": 8
+  },
+  "100101": {
+    "id": 100101,
+    "level": 2,
+    "PADamage": 17,
+    "MADamage": 0,
+    "PDDamage": 0,
+    "MDDamage": 0,
+    "acc": 20,
+    "eva": 0,
+    "exp": 4,
+    "maxHP": 15
+  },
+  "120100": {
+    "id": 120100,
+    "level": 2,
+    "PADamage": 17,
+    "MADamage": 0,
+    "PDDamage": 0,
+    "MDDamage": 0,
+    "acc": 30,
+    "eva": 0,
+    "exp": 5,
+    "maxHP": 20
+  },
+  "130100": {
+    "id": 130100,
+    "level": 4,
+    "PADamage": 30,
+    "MADamage": 0,
+    "PDDamage": 0,
+    "MDDamage": 10,
+    "acc": 30,
+    "eva": 0,
+    "exp": 8,
+    "maxHP": 40,
+    "elemAttr": "F3"
+  },
+  "130101": {
+    "id": 130101,
+    "level": 4,
+    "PADamage": 27,
+    "MADamage": 0,
+    "PDDamage": 3,
+    "MDDamage": 10,
+    "acc": 35,
+    "eva": 0,
+    "exp": 8,
+    "maxHP": 40
+  },
+  "210100": {
+    "id": 210100,
+    "level": 6,
+    "PADamage": 32,
+    "MADamage": 0,
+    "PDDamage": 5,
+    "MDDamage": 10,
+    "acc": 35,
+    "eva": 1,
+    "exp": 10,
+    "maxHP": 50,
+    "elemAttr": "L3"
+  },
+  "1110100": {
+    "id": 1110100,
+    "level": 15,
+    "PADamage": 82,
+    "MADamage": 0,
+    "PDDamage": 12,
+    "MDDamage": 40,
+    "acc": 45,
+    "eva": 5,
+    "exp": 26,
+    "maxHP": 250,
+    "elemAttr": "S1"
+  },
+  "1110101": {
+    "id": 1110101,
+    "level": 10,
+    "PADamage": 65,
+    "MADamage": 0,
+    "PDDamage": 20,
+    "MDDamage": 10,
+    "acc": 42,
+    "eva": 0,
+    "exp": 18,
+    "maxHP": 250,
+    "elemAttr": "F3"
+  },
+  "1120100": {
+    "id": 1120100,
+    "level": 12,
+    "PADamage": 82,
+    "MADamage": 0,
+    "PDDamage": 10,
+    "MDDamage": 40,
+    "acc": 40,
+    "eva": 4,
+    "exp": 24,
+    "maxHP": 200,
+    "elemAttr": "L3"
+  },
+  "1130100": {
+    "id": 1130100,
+    "level": 17,
+    "PADamage": 85,
+    "MADamage": 0,
+    "PDDamage": 30,
+    "MDDamage": 10,
+    "acc": 50,
+    "eva": 5,
+    "exp": 30,
+    "maxHP": 300
+  },
+  "1140100": {
+    "id": 1140100,
+    "level": 19,
+    "PADamage": 90,
+    "MADamage": 0,
+    "PDDamage": 40,
+    "MDDamage": 15,
+    "acc": 55,
+    "eva": 10,
+    "exp": 33,
+    "maxHP": 330
+  },
+  "1210100": {
+    "id": 1210100,
+    "level": 7,
+    "PADamage": 37,
+    "MADamage": 0,
+    "PDDamage": 5,
+    "MDDamage": 20,
+    "acc": 40,
+    "eva": 0,
+    "exp": 15,
+    "maxHP": 75
+  },
+  "1210101": {
+    "id": 1210101,
+    "level": 10,
+    "PADamage": 70,
+    "MADamage": 0,
+    "PDDamage": 10,
+    "MDDamage": 30,
+    "acc": 40,
+    "eva": 2,
+    "exp": 20,
+    "maxHP": 120
+  },
+  "1210102": {
+    "id": 1210102,
+    "level": 8,
+    "PADamage": 42,
+    "MADamage": 0,
+    "PDDamage": 0,
+    "MDDamage": 10,
+    "acc": 42,
+    "eva": 1,
+    "exp": 15,
+    "maxHP": 80
+  },
+  "1210103": {
+    "id": 1210103,
+    "level": 15,
+    "PADamage": 80,
+    "MADamage": 0,
+    "PDDamage": 40,
+    "MDDamage": 50,
+    "acc": 80,
+    "eva": 10,
+    "exp": 26,
+    "maxHP": 240
+  },
+  "2100100": {
+    "id": 2100100,
+    "level": 20,
+    "PADamage": 85,
+    "MADamage": 0,
+    "PDDamage": 20,
+    "MDDamage": 20,
+    "acc": 55,
+    "eva": 8,
+    "exp": 32,
+    "maxHP": 350
+  },
+  "2100101": {
+    "id": 2100101,
+    "level": 21,
+    "PADamage": 90,
+    "MADamage": 0,
+    "PDDamage": 25,
+    "MDDamage": 30,
+    "acc": 70,
+    "eva": 9,
+    "exp": 34,
+    "maxHP": 400
+  },
+  "2100102": {
+    "id": 2100102,
+    "level": 22,
+    "PADamage": 90,
+    "MADamage": 0,
+    "PDDamage": 30,
+    "MDDamage": 30,
+    "acc": 55,
+    "eva": 8,
+    "exp": 37,
+    "maxHP": 450,
+    "elemAttr": "F3"
+  },
+  "2100103": {
+    "id": 2100103,
+    "level": 25,
+    "PADamage": 95,
+    "MADamage": 0,
+    "PDDamage": 35,
+    "MDDamage": 40,
+    "acc": 55,
+    "eva": 9,
+    "exp": 47,
+    "maxHP": 550,
+    "elemAttr": "F3"
+  },
+  "2100104": {
+    "id": 2100104,
+    "level": 28,
+    "PADamage": 105,
+    "MADamage": 0,
+    "PDDamage": 40,
+    "MDDamage": 40,
+    "acc": 60,
+    "eva": 10,
+    "exp": 55,
+    "maxHP": 750,
+    "elemAttr": "F3"
+  },
+  "2100105": {
+    "id": 2100105,
+    "level": 23,
+    "PADamage": 90,
+    "MADamage": 0,
+    "PDDamage": 35,
+    "MDDamage": 40,
+    "acc": 55,
+    "eva": 9,
+    "exp": 42,
+    "maxHP": 500,
+    "elemAttr": "S2"
+  },
+  "2100106": {
+    "id": 2100106,
+    "level": 24,
+    "PADamage": 95,
+    "MADamage": 0,
+    "PDDamage": 35,
+    "MDDamage": 35,
+    "acc": 50,
+    "eva": 9,
+    "exp": 45,
+    "maxHP": 550,
+    "elemAttr": "F2"
+  },
+  "2100107": {
+    "id": 2100107,
+    "level": 27,
+    "PADamage": 100,
+    "MADamage": 0,
+    "PDDamage": 35,
+    "MDDamage": 40,
+    "acc": 55,
+    "eva": 10,
+    "exp": 50,
+    "maxHP": 700,
+    "elemAttr": "F2"
+  },
+  "2100108": {
+    "id": 2100108,
+    "level": 29,
+    "PADamage": 100,
+    "MADamage": 0,
+    "PDDamage": 40,
+    "MDDamage": 45,
+    "acc": 60,
+    "eva": 10,
+    "exp": 58,
+    "maxHP": 780
+  },
+  "2110200": {
+    "id": 2110200,
+    "level": 22,
+    "PADamage": 90,
+    "MADamage": 0,
+    "PDDamage": 30,
+    "MDDamage": 0,
+    "acc": 55,
+    "eva": 7,
+    "exp": 35,
+    "maxHP": 300
+  },
+  "2110300": {
+    "id": 2110300,
+    "level": 24,
+    "PADamage": 95,
+    "MADamage": 0,
+    "PDDamage": 35,
+    "MDDamage": 40,
+    "acc": 55,
+    "eva": 10,
+    "exp": 55,
+    "maxHP": 600
+  },
+  "2110301": {
+    "id": 2110301,
+    "level": 29,
+    "PADamage": 100,
+    "MADamage": 0,
+    "PDDamage": 40,
+    "MDDamage": 45,
+    "acc": 60,
+    "eva": 10,
+    "exp": 58,
+    "maxHP": 780
+  },
+  "2130100": {
+    "id": 2130100,
+    "level": 10,
+    "PADamage": 85,
+    "MADamage": 0,
+    "PDDamage": 50,
+    "MDDamage": 20,
+    "acc": 45,
+    "eva": 7,
+    "exp": 38,
+    "maxHP": 550,
+    "elemAttr": "F3"
+  },
+  "2130103": {
+    "id": 2130103,
+    "level": 21,
+    "PADamage": 100,
+    "MADamage": 0,
+    "PDDamage": 30,
+    "MDDamage": 30,
+    "acc": 120,
+    "eva": 25,
+    "exp": 38,
+    "maxHP": 285
+  },
+  "2220000": {
+    "id": 2220000,
+    "level": 20,
+    "PADamage": 90,
+    "MADamage": 0,
+    "PDDamage": 20,
+    "MDDamage": 30,
+    "acc": 60,
+    "eva": 8,
+    "exp": 120,
+    "maxHP": 2000,
+    "boss": 1
+  },
+  "2220100": {
+    "id": 2220100,
+    "level": 20,
+    "PADamage": 90,
+    "MADamage": 0,
+    "PDDamage": 10,
+    "MDDamage": 60,
+    "acc": 55,
+    "eva": 7,
+    "exp": 32,
+    "maxHP": 350
+  },
+  "2230100": {
+    "id": 2230100,
+    "level": 27,
+    "PADamage": 100,
+    "MADamage": 0,
+    "PDDamage": 35,
+    "MDDamage": 70,
+    "acc": 60,
+    "eva": 10,
+    "exp": 50,
+    "maxHP": 720
+  },
+  "2230101": {
+    "id": 2230101,
+    "level": 24,
+    "PADamage": 95,
+    "MADamage": 0,
+    "PDDamage": 20,
+    "MDDamage": 30,
+    "acc": 50,
+    "eva": 8,
+    "exp": 42,
+    "maxHP": 500,
+    "elemAttr": "H3"
+  },
+  "2230102": {
+    "id": 2230102,
+    "level": 25,
+    "PADamage": 90,
+    "MADamage": 0,
+    "PDDamage": 20,
+    "MDDamage": 30,
+    "acc": 50,
+    "eva": 8,
+    "exp": 42,
+    "maxHP": 550
+  },
+  "2230103": {
+    "id": 2230103,
+    "level": 23,
+    "PADamage": 95,
+    "MADamage": 0,
+    "PDDamage": 52,
+    "MDDamage": 65,
+    "acc": 93,
+    "eva": 10,
+    "exp": 42,
+    "maxHP": 450,
+    "elemAttr": "H2F3"
+  },
+  "2230104": {
+    "id": 2230104,
+    "level": 28,
+    "PADamage": 105,
+    "MADamage": 0,
+    "PDDamage": 75,
+    "MDDamage": 75,
+    "acc": 115,
+    "eva": 12,
+    "exp": 55,
+    "maxHP": 780,
+    "elemAttr": "S1"
+  },
+  "2230105": {
+    "id": 2230105,
+    "level": 23,
+    "PADamage": 85,
+    "MADamage": 0,
+    "PDDamage": 35,
+    "MDDamage": 45,
+    "acc": 55,
+    "eva": 9,
+    "exp": 42,
+    "maxHP": 500,
+    "elemAttr": "S3F2"
+  },
+  "2230106": {
+    "id": 2230106,
+    "level": 25,
+    "PADamage": 95,
+    "MADamage": 0,
+    "PDDamage": 30,
+    "MDDamage": 40,
+    "acc": 50,
+    "eva": 8,
+    "exp": 42,
+    "maxHP": 550,
+    "elemAttr": "S3F2"
+  },
+  "2230107": {
+    "id": 2230107,
+    "level": 24,
+    "PADamage": 95,
+    "MADamage": 0,
+    "PDDamage": 20,
+    "MDDamage": 30,
+    "acc": 50,
+    "eva": 8,
+    "exp": 45,
+    "maxHP": 500,
+    "elemAttr": "S3F2"
+  },
+  "2230108": {
+    "id": 2230108,
+    "level": 22,
+    "PADamage": 100,
+    "MADamage": 0,
+    "PDDamage": 30,
+    "MDDamage": 30,
+    "acc": 55,
+    "eva": 7,
+    "exp": 36,
+    "maxHP": 400,
+    "elemAttr": "F2",
+    "skills": {
+      "attack1": {
+        "type": 0,
+        "PADamage": 100
+      }
+    }
+  },
+  "2230109": {
+    "id": 2230109,
+    "level": 28,
+    "PADamage": 100,
+    "MADamage": 0,
+    "PDDamage": 35,
+    "MDDamage": 40,
+    "acc": 55,
+    "eva": 10,
+    "exp": 52,
+    "maxHP": 740,
+    "elemAttr": "L3S3F2"
+  },
+  "2230110": {
+    "id": 2230110,
+    "level": 23,
+    "PADamage": 85,
+    "MADamage": 0,
+    "PDDamage": 30,
+    "MDDamage": 40,
+    "acc": 55,
+    "eva": 10,
+    "exp": 42,
+    "maxHP": 500
+  },
+  "2230111": {
+    "id": 2230111,
+    "level": 24,
+    "PADamage": 95,
+    "MADamage": 0,
+    "PDDamage": 35,
+    "MDDamage": 40,
+    "acc": 55,
+    "eva": 10,
+    "exp": 45,
+    "maxHP": 600
+  },
+  "2230200": {
+    "id": 2230200,
+    "level": 29,
+    "PADamage": 110,
+    "MADamage": 0,
+    "PDDamage": 80,
+    "MDDamage": 85,
+    "acc": 75,
+    "eva": 10,
+    "exp": 58,
+    "maxHP": 790,
+    "elemAttr": "I3S2F2"
+  },
+  "2300100": {
+    "id": 2300100,
+    "level": 20,
+    "PADamage": 85,
+    "MADamage": 0,
+    "PDDamage": 20,
+    "MDDamage": 20,
+    "acc": 80,
+    "eva": 10,
+    "exp": 33,
+    "maxHP": 300
+  },
+  "3000000": {
+    "id": 3000000,
+    "level": 30,
+    "PADamage": 120,
+    "MADamage": 118,
+    "PDDamage": 275,
+    "MDDamage": 85,
+    "acc": 75,
+    "eva": 12,
+    "exp": 55,
+    "maxHP": 900,
+    "elemAttr": "H2L2I3",
+    "skills": {
+      "attack1": {
+        "type": 1,
+        "magic": 1,
+        "elemAttr": "L",
+        "conMP": 1
+      }
+    }
+  },
+  "3000001": {
+    "id": 3000001,
+    "level": 30,
+    "PADamage": 80,
+    "MADamage": 0,
+    "PDDamage": 85,
+    "MDDamage": 105,
+    "acc": 145,
+    "eva": 25,
+    "exp": 120,
+    "maxHP": 800
+  },
+  "3000005": {
+    "id": 3000005,
+    "level": 30,
+    "PADamage": 100,
+    "MADamage": 0,
+    "PDDamage": 38,
+    "MDDamage": 40,
+    "acc": 65,
+    "eva": 12,
+    "exp": 60,
+    "maxHP": 950
+  },
+  "3000006": {
+    "id": 3000006,
+    "level": 30,
+    "PADamage": 100,
+    "MADamage": 0,
+    "PDDamage": 40,
+    "MDDamage": 40,
+    "acc": 65,
+    "eva": 12,
+    "exp": 55,
+    "maxHP": 900,
+    "elemAttr": "S3F2"
+  },
+  "3100101": {
+    "id": 3100101,
+    "level": 32,
+    "PADamage": 110,
+    "MADamage": 0,
+    "PDDamage": 45,
+    "MDDamage": 40,
+    "acc": 60,
+    "eva": 12,
+    "exp": 60,
+    "maxHP": 1000,
+    "elemAttr": "F3I3"
+  },
+  "3100102": {
+    "id": 3100102,
+    "level": 30,
+    "PADamage": 100,
+    "MADamage": 0,
+    "PDDamage": 40,
+    "MDDamage": 40,
+    "acc": 70,
+    "eva": 13,
+    "exp": 60,
+    "maxHP": 870
+  },
+  "3110100": {
+    "id": 3110100,
+    "level": 32,
+    "PADamage": 110,
+    "MADamage": 0,
+    "PDDamage": 45,
+    "MDDamage": 40,
+    "acc": 70,
+    "eva": 12,
+    "exp": 60,
+    "maxHP": 1200,
+    "elemAttr": "I2F3"
+  },
+  "3110101": {
+    "id": 3110101,
+    "level": 32,
+    "PADamage": 105,
+    "MADamage": 0,
+    "PDDamage": 50,
+    "MDDamage": 70,
+    "acc": 80,
+    "eva": 14,
+    "exp": 65,
+    "maxHP": 1050
+  },
+  "3110102": {
+    "id": 3110102,
+    "level": 32,
+    "PADamage": 102,
+    "MADamage": 0,
+    "PDDamage": 65,
+    "MDDamage": 75,
+    "acc": 90,
+    "eva": 13,
+    "exp": 65,
+    "maxHP": 1000
+  },
+  "3110300": {
+    "id": 3110300,
+    "level": 32,
+    "PADamage": 90,
+    "MADamage": 0,
+    "PDDamage": 40,
+    "MDDamage": 40,
+    "acc": 70,
+    "eva": 12,
+    "exp": 62,
+    "maxHP": 1000
+  },
+  "3110301": {
+    "id": 3110301,
+    "level": 32,
+    "PADamage": 90,
+    "MADamage": 0,
+    "PDDamage": 40,
+    "MDDamage": 40,
+    "acc": 70,
+    "eva": 12,
+    "exp": 62,
+    "maxHP": 1000,
+    "elemAttr": "F2I3",
+    "skills": {
+      "attack1": {
+        "type": 0,
+        "elemAttr": "F",
+        "PADamage": 125,
+        "conMP": 2
+      }
+    }
+  },
+  "3110302": {
+    "id": 3110302,
+    "level": 35,
+    "PADamage": 130,
+    "MADamage": 0,
+    "PDDamage": 110,
+    "MDDamage": 100,
+    "acc": 105,
+    "eva": 18,
+    "exp": 75,
+    "maxHP": 1400
+  },
+  "3110303": {
+    "id": 3110303,
+    "level": 38,
+    "PADamage": 125,
+    "MADamage": 0,
+    "PDDamage": 105,
+    "MDDamage": 125,
+    "acc": 130,
+    "eva": 18,
+    "exp": 85,
+    "maxHP": 1850
+  },
+  "3210100": {
+    "id": 3210100,
+    "level": 32,
+    "PADamage": 110,
+    "MADamage": 0,
+    "PDDamage": 40,
+    "MDDamage": 40,
+    "acc": 60,
+    "eva": 10,
+    "exp": 60,
+    "maxHP": 1000,
+    "elemAttr": "F2I3"
+  },
+  "3210200": {
+    "id": 3210200,
+    "level": 33,
+    "PADamage": 105,
+    "MADamage": 0,
+    "PDDamage": 60,
+    "MDDamage": 80,
+    "acc": 95,
+    "eva": 15,
+    "exp": 65,
+    "maxHP": 1100,
+    "elemAttr": "F2I3"
+  },
+  "3210201": {
+    "id": 3210201,
+    "level": 33,
+    "PADamage": 105,
+    "MADamage": 0,
+    "PDDamage": 60,
+    "MDDamage": 80,
+    "acc": 95,
+    "eva": 15,
+    "exp": 65,
+    "maxHP": 1100,
+    "elemAttr": "L2I3"
+  },
+  "3210202": {
+    "id": 3210202,
+    "level": 33,
+    "PADamage": 105,
+    "MADamage": 0,
+    "PDDamage": 60,
+    "MDDamage": 80,
+    "acc": 95,
+    "eva": 15,
+    "exp": 65,
+    "maxHP": 1100,
+    "elemAttr": "I2F3"
+  },
+  "3210203": {
+    "id": 3210203,
+    "level": 36,
+    "PADamage": 120,
+    "MADamage": 0,
+    "PDDamage": 95,
+    "MDDamage": 95,
+    "acc": 100,
+    "eva": 16,
+    "exp": 77,
+    "maxHP": 1400
+  },
+  "3210204": {
+    "id": 3210204,
+    "level": 34,
+    "PADamage": 110,
+    "MADamage": 0,
+    "PDDamage": 70,
+    "MDDamage": 85,
+    "acc": 100,
+    "eva": 16,
+    "exp": 70,
+    "maxHP": 1200
+  },
+  "3210205": {
+    "id": 3210205,
+    "level": 34,
+    "PADamage": 115,
+    "MADamage": 0,
+    "PDDamage": 75,
+    "MDDamage": 75,
+    "acc": 105,
+    "eva": 14,
+    "exp": 70,
+    "maxHP": 1150
+  },
+  "3210206": {
+    "id": 3210206,
+    "level": 36,
+    "PADamage": 115,
+    "MADamage": 0,
+    "PDDamage": 85,
+    "MDDamage": 105,
+    "acc": 130,
+    "eva": 17,
+    "exp": 77,
+    "maxHP": 1350
+  },
+  "3210207": {
+    "id": 3210207,
+    "level": 34,
+    "PADamage": 115,
+    "MADamage": 0,
+    "PDDamage": 95,
+    "MDDamage": 90,
+    "acc": 90,
+    "eva": 14,
+    "exp": 70,
+    "maxHP": 1100
+  },
+  "3210208": {
+    "id": 3210208,
+    "level": 36,
+    "PADamage": 120,
+    "MADamage": 0,
+    "PDDamage": 90,
+    "MDDamage": 85,
+    "acc": 100,
+    "eva": 18,
+    "exp": 78,
+    "maxHP": 1400
+  },
+  "3210450": {
+    "id": 3210450,
+    "level": 36,
+    "PADamage": 120,
+    "MADamage": 0,
+    "PDDamage": 90,
+    "MDDamage": 155,
+    "acc": 100,
+    "eva": 18,
+    "exp": 80,
+    "maxHP": 1430,
+    "elemAttr": "I2F2"
+  },
+  "3210800": {
+    "id": 3210800,
+    "level": 37,
+    "PADamage": 110,
+    "MADamage": 125,
+    "PDDamage": 35,
+    "MDDamage": 40,
+    "acc": 100,
+    "eva": 20,
+    "exp": 77,
+    "maxHP": 1500,
+    "skills": {
+      "attack1": {
+        "type": 1,
+        "PADamage": 125
+      }
+    }
+  },
+  "3220000": {
+    "id": 3220000,
+    "level": 35,
+    "PADamage": 125,
+    "MADamage": 0,
+    "PDDamage": 50,
+    "MDDamage": 70,
+    "acc": 80,
+    "eva": 12,
+    "exp": 405,
+    "maxHP": 7000,
+    "boss": 1,
+    "skills": {
+      "attack1": {
+        "type": 0,
+        "PADamage": 135
+      },
+      "attack2": {
+        "type": 2,
+        "PADamage": 135
+      }
+    }
+  },
+  "3220001": {
+    "id": 3220001,
+    "level": 38,
+    "PADamage": 130,
+    "MADamage": 0,
+    "PDDamage": 100,
+    "MDDamage": 120,
+    "acc": 130,
+    "eva": 18,
+    "exp": 445,
+    "maxHP": 7700,
+    "boss": 1,
+    "skills": {
+      "attack1": {
+        "type": 0,
+        "PADamage": 145
+      }
+    }
+  },
+  "3230100": {
+    "id": 3230100,
+    "level": 35,
+    "PADamage": 120,
+    "MADamage": 0,
+    "PDDamage": 45,
+    "MDDamage": 70,
+    "acc": 60,
+    "eva": 10,
+    "exp": 70,
+    "maxHP": 1250,
+    "elemAttr": "S2"
+  },
+  "3230101": {
+    "id": 3230101,
+    "level": 35,
+    "PADamage": 110,
+    "MADamage": 0,
+    "PDDamage": 90,
+    "MDDamage": 90,
+    "acc": 100,
+    "eva": 17,
+    "exp": 70,
+    "maxHP": 1200,
+    "elemAttr": "H3F3"
+  },
+  "3230102": {
+    "id": 3230102,
+    "level": 37,
+    "PADamage": 125,
+    "MADamage": 0,
+    "PDDamage": 100,
+    "MDDamage": 200,
+    "acc": 85,
+    "eva": 18,
+    "exp": 80,
+    "maxHP": 1950,
+    "elemAttr": "L3"
+  },
+  "3230103": {
+    "id": 3230103,
+    "level": 38,
+    "PADamage": 120,
+    "MADamage": 130,
+    "PDDamage": 120,
+    "MDDamage": 140,
+    "acc": 140,
+    "eva": 18,
+    "exp": 85,
+    "maxHP": 1850,
+    "skills": {
+      "attack1": {
+        "type": 2,
+        "magic": 1,
+        "conMP": 1
+      }
+    }
+  },
+  "3230104": {
+    "id": 3230104,
+    "level": 32,
+    "PADamage": 100,
+    "MADamage": 0,
+    "PDDamage": 70,
+    "MDDamage": 80,
+    "acc": 70,
+    "eva": 14,
+    "exp": 65,
+    "maxHP": 1000,
+    "elemAttr": "F2"
+  },
+  "3230200": {
+    "id": 3230200,
+    "level": 35,
+    "PADamage": 120,
+    "MADamage": 130,
+    "PDDamage": 100,
+    "MDDamage": 100,
+    "acc": 145,
+    "eva": 21,
+    "exp": 72,
+    "maxHP": 1300,
+    "elemAttr": "H2",
+    "skills": {
+      "attack1": {
+        "type": 2,
+        "magic": 1,
+        "conMP": 1
+      }
+    }
+  },
+  "3230300": {
+    "id": 3230300,
+    "level": 35,
+    "PADamage": 90,
+    "MADamage": 0,
+    "PDDamage": 120,
+    "MDDamage": 155,
+    "acc": 150,
+    "eva": 27,
+    "exp": 150,
+    "maxHP": 1700
+  },
+  "3230302": {
+    "id": 3230302,
+    "level": 35,
+    "PADamage": 105,
+    "MADamage": 115,
+    "PDDamage": 100,
+    "MDDamage": 130,
+    "acc": 125,
+    "eva": 15,
+    "exp": 72,
+    "maxHP": 1300
+  },
+  "3230303": {
+    "id": 3230303,
+    "level": 37,
+    "PADamage": 118,
+    "MADamage": 0,
+    "PDDamage": 95,
+    "MDDamage": 115,
+    "acc": 140,
+    "eva": 18,
+    "exp": 82,
+    "maxHP": 1700
+  },
+  "3230304": {
+    "id": 3230304,
+    "level": 38,
+    "PADamage": 122,
+    "MADamage": 0,
+    "PDDamage": 105,
+    "MDDamage": 125,
+    "acc": 150,
+    "eva": 19,
+    "exp": 85,
+    "maxHP": 1830
+  },
+  "3230305": {
+    "id": 3230305,
+    "level": 39,
+    "PADamage": 124,
+    "MADamage": 0,
+    "PDDamage": 110,
+    "MDDamage": 130,
+    "acc": 135,
+    "eva": 18,
+    "exp": 92,
+    "maxHP": 1920
+  },
+  "3230306": {
+    "id": 3230306,
+    "level": 37,
+    "PADamage": 117,
+    "MADamage": 0,
+    "PDDamage": 90,
+    "MDDamage": 120,
+    "acc": 135,
+    "eva": 20,
+    "exp": 82,
+    "maxHP": 1750
+  },
+  "3230307": {
+    "id": 3230307,
+    "level": 31,
+    "PADamage": 95,
+    "MADamage": 0,
+    "PDDamage": 60,
+    "MDDamage": 50,
+    "acc": 70,
+    "eva": 10,
+    "exp": 62,
+    "maxHP": 800
+  },
+  "3230308": {
+    "id": 3230308,
+    "level": 39,
+    "PADamage": 130,
+    "MADamage": 0,
+    "PDDamage": 120,
+    "MDDamage": 130,
+    "acc": 135,
+    "eva": 17,
+    "exp": 85,
+    "maxHP": 1900
+  },
+  "3230400": {
+    "id": 3230400,
+    "level": 30,
+    "PADamage": 100,
+    "MADamage": 0,
+    "PDDamage": 38,
+    "MDDamage": 40,
+    "acc": 65,
+    "eva": 12,
+    "exp": 60,
+    "maxHP": 950
+  },
+  "3230405": {
+    "id": 3230405,
+    "level": 38,
+    "PADamage": 125,
+    "MADamage": 0,
+    "PDDamage": 90,
+    "MDDamage": 125,
+    "acc": 130,
+    "eva": 18,
+    "exp": 85,
+    "maxHP": 1850,
+    "elemAttr": "F2"
+  },
+  "4090000": {
+    "id": 4090000,
+    "level": 42,
+    "PADamage": 95,
+    "MADamage": 0,
+    "PDDamage": 400,
+    "MDDamage": 400,
+    "acc": 100,
+    "eva": 18,
+    "exp": 99,
+    "maxHP": 2200
+  },
+  "4110300": {
+    "id": 4110300,
+    "level": 42,
+    "PADamage": 135,
+    "MADamage": 0,
+    "PDDamage": 110,
+    "MDDamage": 90,
+    "acc": 95,
+    "eva": 12,
+    "exp": 102,
+    "maxHP": 2400
+  },
+  "4110301": {
+    "id": 4110301,
+    "level": 45,
+    "PADamage": 135,
+    "MADamage": 0,
+    "PDDamage": 150,
+    "MDDamage": 160,
+    "acc": 200,
+    "eva": 20,
+    "exp": 110,
+    "maxHP": 2550
+  },
+  "4110302": {
+    "id": 4110302,
+    "level": 47,
+    "PADamage": 140,
+    "MADamage": 0,
+    "PDDamage": 155,
+    "MDDamage": 160,
+    "acc": 130,
+    "eva": 18,
+    "exp": 117,
+    "maxHP": 2750
+  },
+  "4130100": {
+    "id": 4130100,
+    "level": 45,
+    "PADamage": 150,
+    "MADamage": 0,
+    "PDDamage": 100,
+    "MDDamage": 100,
+    "acc": 70,
+    "eva": 18,
+    "exp": 105,
+    "maxHP": 2700
+  },
+  "4130101": {
+    "id": 4130101,
+    "level": 46,
+    "PADamage": 125,
+    "MADamage": 160,
+    "PDDamage": 300,
+    "MDDamage": 300,
+    "acc": 130,
+    "eva": 15,
+    "exp": 110,
+    "maxHP": 2550,
+    "skills": {
+      "attack1": {
+        "type": 1,
+        "magic": 1,
+        "conMP": 2
+      }
+    }
+  },
+  "4130102": {
+    "id": 4130102,
+    "level": 47,
+    "PADamage": 145,
+    "MADamage": 165,
+    "PDDamage": 170,
+    "MDDamage": 220,
+    "acc": 165,
+    "eva": 15,
+    "exp": 115,
+    "maxHP": 2700,
+    "elemAttr": "H3",
+    "skills": {
+      "attack1": {
+        "type": 1,
+        "PADamage": 165
+      }
+    }
+  },
+  "4130103": {
+    "id": 4130103,
+    "level": 47,
+    "PADamage": 165,
+    "MADamage": 185,
+    "PDDamage": 165,
+    "MDDamage": 180,
+    "acc": 135,
+    "eva": 16,
+    "exp": 720,
+    "maxHP": 11000,
+    "boss": 1,
+    "skills": {
+      "attack1": {
+        "type": 0,
+        "PADamage": 185
+      }
+    }
+  },
+  "4220000": {
+    "id": 4220000,
+    "level": 45,
+    "PADamage": 135,
+    "MADamage": 155,
+    "PDDamage": 150,
+    "MDDamage": 200,
+    "acc": 200,
+    "eva": 20,
+    "exp": 330,
+    "maxHP": 7800,
+    "boss": 1,
+    "skills": {
+      "attack1": {
+        "type": 2,
+        "PADamage": 110
+      },
+      "attack2": {
+        "type": 0,
+        "PADamage": 110
+      }
+    }
+  },
+  "4230100": {
+    "id": 4230100,
+    "level": 40,
+    "PADamage": 130,
+    "MADamage": 0,
+    "PDDamage": 80,
+    "MDDamage": 80,
+    "acc": 65,
+    "eva": 15,
+    "exp": 85,
+    "maxHP": 2000,
+    "elemAttr": "I2F3"
+  },
+  "4230101": {
+    "id": 4230101,
+    "level": 40,
+    "PADamage": 120,
+    "MADamage": 135,
+    "PDDamage": 70,
+    "MDDamage": 70,
+    "acc": 110,
+    "eva": 25,
+    "exp": 90,
+    "maxHP": 1800,
+    "elemAttr": "H3",
+    "skills": {
+      "attack1": {
+        "type": 1,
+        "PADamage": 135
+      }
+    }
+  },
+  "4230102": {
+    "id": 4230102,
+    "level": 48,
+    "PADamage": 155,
+    "MADamage": 0,
+    "PDDamage": 180,
+    "MDDamage": 180,
+    "acc": 130,
+    "eva": 20,
+    "exp": 120,
+    "maxHP": 2800,
+    "elemAttr": "H3"
+  },
+  "4230104": {
+    "id": 4230104,
+    "level": 48,
+    "PADamage": 160,
+    "MADamage": 0,
+    "PDDamage": 120,
+    "MDDamage": 150,
+    "acc": 150,
+    "eva": 20,
+    "exp": 128,
+    "maxHP": 3000,
+    "elemAttr": "L3"
+  },
+  "4230105": {
+    "id": 4230105,
+    "level": 42,
+    "PADamage": 135,
+    "MADamage": 145,
+    "PDDamage": 120,
+    "MDDamage": 120,
+    "acc": 150,
+    "eva": 10,
+    "exp": 99,
+    "maxHP": 2100,
+    "elemAttr": "F3",
+    "skills": {
+      "attack1": {
+        "type": 1,
+        "PADamage": 145
+      }
+    }
+  },
+  "4230106": {
+    "id": 4230106,
+    "level": 45,
+    "PADamage": 140,
+    "MADamage": 155,
+    "PDDamage": 145,
+    "MDDamage": 160,
+    "acc": 165,
+    "eva": 24,
+    "exp": 105,
+    "maxHP": 2500,
+    "skills": {
+      "attack1": {
+        "type": 2,
+        "magic": 1,
+        "conMP": 1
+      }
+    }
+  },
+  "4230107": {
+    "id": 4230107,
+    "level": 41,
+    "PADamage": 130,
+    "MADamage": 0,
+    "PDDamage": 90,
+    "MDDamage": 110,
+    "acc": 160,
+    "eva": 28,
+    "exp": 95,
+    "maxHP": 1600
+  },
+  "4230108": {
+    "id": 4230108,
+    "level": 43,
+    "PADamage": 132,
+    "MADamage": 0,
+    "PDDamage": 290,
+    "MDDamage": 150,
+    "acc": 155,
+    "eva": 25,
+    "exp": 102,
+    "maxHP": 2300
+  },
+  "4230109": {
+    "id": 4230109,
+    "level": 42,
+    "PADamage": 135,
+    "MADamage": 0,
+    "PDDamage": 110,
+    "MDDamage": 90,
+    "acc": 95,
+    "eva": 12,
+    "exp": 102,
+    "maxHP": 2400,
+    "elemAttr": "L2I2F3"
+  },
+  "4230110": {
+    "id": 4230110,
+    "level": 45,
+    "PADamage": 150,
+    "MADamage": 0,
+    "PDDamage": 130,
+    "MDDamage": 110,
+    "acc": 105,
+    "eva": 14,
+    "exp": 110,
+    "maxHP": 2600
+  },
+  "4230111": {
+    "id": 4230111,
+    "level": 41,
+    "PADamage": 133,
+    "MADamage": 0,
+    "PDDamage": 190,
+    "MDDamage": 175,
+    "acc": 105,
+    "eva": 15,
+    "exp": 99,
+    "maxHP": 2000,
+    "elemAttr": "I2F2"
+  },
+  "4230112": {
+    "id": 4230112,
+    "level": 44,
+    "PADamage": 140,
+    "MADamage": 0,
+    "PDDamage": 210,
+    "MDDamage": 195,
+    "acc": 115,
+    "eva": 18,
+    "exp": 105,
+    "maxHP": 2450
+  },
+  "4230113": {
+    "id": 4230113,
+    "level": 40,
+    "PADamage": 120,
+    "MADamage": 0,
+    "PDDamage": 160,
+    "MDDamage": 170,
+    "acc": 115,
+    "eva": 20,
+    "exp": 95,
+    "maxHP": 1900
+  },
+  "4230114": {
+    "id": 4230114,
+    "level": 41,
+    "PADamage": 125,
+    "MADamage": 142,
+    "PDDamage": 130,
+    "MDDamage": 160,
+    "acc": 145,
+    "eva": 22,
+    "exp": 99,
+    "maxHP": 2050,
+    "skills": {
+      "attack1": {
+        "type": 1,
+        "magic": 1
+      }
+    }
+  },
+  "4230115": {
+    "id": 4230115,
+    "level": 46,
+    "PADamage": 130,
+    "MADamage": 160,
+    "PDDamage": 170,
+    "MDDamage": 200,
+    "acc": 155,
+    "eva": 24,
+    "exp": 115,
+    "maxHP": 2600,
+    "skills": {
+      "attack1": {
+        "type": 1,
+        "magic": 1
+      }
+    }
+  },
+  "4230116": {
+    "id": 4230116,
+    "level": 40,
+    "PADamage": 120,
+    "MADamage": 140,
+    "PDDamage": 140,
+    "MDDamage": 160,
+    "acc": 170,
+    "eva": 18,
+    "exp": 95,
+    "maxHP": 1930,
+    "skills": {
+      "attack1": {
+        "type": 0,
+        "magic": 1,
+        "conMP": 2
+      }
+    }
+  },
+  "4230117": {
+    "id": 4230117,
+    "level": 42,
+    "PADamage": 130,
+    "MADamage": 150,
+    "PDDamage": 160,
+    "MDDamage": 180,
+    "acc": 190,
+    "eva": 20,
+    "exp": 102,
+    "maxHP": 2300,
+    "skills": {
+      "attack1": {
+        "type": 2,
+        "magic": 1,
+        "conMP": 30
+      }
+    }
+  },
+  "4230118": {
+    "id": 4230118,
+    "level": 45,
+    "PADamage": 140,
+    "MADamage": 155,
+    "PDDamage": 180,
+    "MDDamage": 200,
+    "acc": 210,
+    "eva": 21,
+    "exp": 110,
+    "maxHP": 2550,
+    "elemAttr": "L2",
+    "skills": {
+      "attack1": {
+        "type": 0,
+        "magic": 1,
+        "elemAttr": "L",
+        "conMP": 2
+      }
+    }
+  },
+  "4230119": {
+    "id": 4230119,
+    "level": 41,
+    "PADamage": 130,
+    "MADamage": 135,
+    "PDDamage": 120,
+    "MDDamage": 120,
+    "acc": 160,
+    "eva": 16,
+    "exp": 99,
+    "maxHP": 2080,
+    "skills": {
+      "attack1": {
+        "type": 2,
+        "magic": 1,
+        "conMP": 2
+      }
+    }
+  },
+  "4230120": {
+    "id": 4230120,
+    "level": 44,
+    "PADamage": 140,
+    "MADamage": 0,
+    "PDDamage": 140,
+    "MDDamage": 190,
+    "acc": 170,
+    "eva": 18,
+    "exp": 105,
+    "maxHP": 2480
+  },
+  "4230121": {
+    "id": 4230121,
+    "level": 46,
+    "PADamage": 135,
+    "MADamage": 158,
+    "PDDamage": 160,
+    "MDDamage": 210,
+    "acc": 180,
+    "eva": 20,
+    "exp": 110,
+    "maxHP": 2600,
+    "skills": {
+      "attack1": {
+        "type": 0,
+        "magic": 1,
+        "conMP": 2
+      }
+    }
+  },
+  "4230123": {
+    "id": 4230123,
+    "level": 43,
+    "PADamage": 130,
+    "MADamage": 155,
+    "PDDamage": 140,
+    "MDDamage": 172,
+    "acc": 160,
+    "eva": 15,
+    "exp": 103,
+    "maxHP": 2400,
+    "elemAttr": "L2F2",
+    "skills": {
+      "attack1": {
+        "type": 1,
+        "magic": 1,
+        "elemAttr": "L",
+        "conMP": 2
+      }
+    }
+  },
+  "4230124": {
+    "id": 4230124,
+    "level": 42,
+    "PADamage": 130,
+    "MADamage": 150,
+    "PDDamage": 120,
+    "MDDamage": 160,
+    "acc": 170,
+    "eva": 20,
+    "exp": 102,
+    "maxHP": 2300,
+    "elemAttr": "I2F2",
+    "skills": {
+      "attack1": {
+        "type": 1,
+        "magic": 1,
+        "elemAttr": "I",
+        "conMP": 2
+      }
+    }
+  },
+  "4230125": {
+    "id": 4230125,
+    "level": 44,
+    "PADamage": 140,
+    "MADamage": 0,
+    "PDDamage": 170,
+    "MDDamage": 190,
+    "acc": 120,
+    "eva": 18,
+    "exp": 107,
+    "maxHP": 2450,
+    "elemAttr": "H3"
+  },
+  "4230126": {
+    "id": 4230126,
+    "level": 47,
+    "PADamage": 145,
+    "MADamage": 0,
+    "PDDamage": 175,
+    "MDDamage": 195,
+    "acc": 130,
+    "eva": 18,
+    "exp": 117,
+    "maxHP": 2750,
+    "elemAttr": "H3"
+  },
+  "4230200": {
+    "id": 4230200,
+    "level": 40,
+    "PADamage": 100,
+    "MADamage": 135,
+    "PDDamage": 130,
+    "MDDamage": 160,
+    "acc": 150,
+    "eva": 18,
+    "exp": 95,
+    "maxHP": 1900,
+    "elemAttr": "S3F2",
+    "skills": {
+      "attack1": {
+        "type": 0,
+        "conMP": 1
+      }
+    }
+  },
+  "4230201": {
+    "id": 4230201,
+    "level": 40,
+    "PADamage": 120,
+    "MADamage": 140,
+    "PDDamage": 140,
+    "MDDamage": 100,
+    "acc": 150,
+    "eva": 18,
+    "exp": 97,
+    "maxHP": 1910,
+    "elemAttr": "S2F2",
+    "skills": {
+      "attack1": {
+        "type": 0,
+        "magic": 1,
+        "conMP": 1
+      }
+    }
+  },
+  "4230300": {
+    "id": 4230300,
+    "level": 45,
+    "PADamage": 150,
+    "MADamage": 155,
+    "PDDamage": 100,
+    "MDDamage": 180,
+    "acc": 190,
+    "eva": 20,
+    "exp": 110,
+    "maxHP": 2600,
+    "elemAttr": "I2F3",
+    "skills": {
+      "attack1": {
+        "type": 1,
+        "PADamage": 150
+      }
+    }
+  },
+  "4230400": {
+    "id": 4230400,
+    "level": 45,
+    "PADamage": 150,
+    "MADamage": 0,
+    "PDDamage": 350,
+    "MDDamage": 350,
+    "acc": 195,
+    "eva": 20,
+    "exp": 115,
+    "maxHP": 2650
+  },
+  "4230500": {
+    "id": 4230500,
+    "level": 40,
+    "PADamage": 110,
+    "MADamage": 0,
+    "PDDamage": 135,
+    "MDDamage": 100,
+    "acc": 150,
+    "eva": 15,
+    "exp": 95,
+    "maxHP": 1900
+  },
+  "4230501": {
+    "id": 4230501,
+    "level": 41,
+    "PADamage": 125,
+    "MADamage": 0,
+    "PDDamage": 120,
+    "MDDamage": 150,
+    "acc": 150,
+    "eva": 15,
+    "exp": 99,
+    "maxHP": 2000
+  },
+  "4230502": {
+    "id": 4230502,
+    "level": 43,
+    "PADamage": 130,
+    "MADamage": 0,
+    "PDDamage": 130,
+    "MDDamage": 160,
+    "acc": 150,
+    "eva": 15,
+    "exp": 103,
+    "maxHP": 2400
+  },
+  "4230503": {
+    "id": 4230503,
+    "level": 45,
+    "PADamage": 135,
+    "MADamage": 0,
+    "PDDamage": 170,
+    "MDDamage": 150,
+    "acc": 200,
+    "eva": 20,
+    "exp": 110,
+    "maxHP": 2550
+  },
+  "4230504": {
+    "id": 4230504,
+    "level": 45,
+    "PADamage": 135,
+    "MADamage": 0,
+    "PDDamage": 150,
+    "MDDamage": 160,
+    "acc": 200,
+    "eva": 20,
+    "exp": 110,
+    "maxHP": 2550
+  },
+  "4230505": {
+    "id": 4230505,
+    "level": 47,
+    "PADamage": 140,
+    "MADamage": 0,
+    "PDDamage": 155,
+    "MDDamage": 160,
+    "acc": 130,
+    "eva": 18,
+    "exp": 117,
+    "maxHP": 2700
+  },
+  "4230506": {
+    "id": 4230506,
+    "level": 48,
+    "PADamage": 145,
+    "MADamage": 0,
+    "PDDamage": 165,
+    "MDDamage": 170,
+    "acc": 140,
+    "eva": 20,
+    "exp": 123,
+    "maxHP": 2800
+  },
+  "4230600": {
+    "id": 4230600,
+    "level": 40,
+    "PADamage": 120,
+    "MADamage": 0,
+    "PDDamage": 160,
+    "MDDamage": 160,
+    "acc": 150,
+    "eva": 17,
+    "exp": 95,
+    "maxHP": 1800,
+    "elemAttr": "F3I3"
+  },
+  "4240000": {
+    "id": 4240000,
+    "level": 49,
+    "PADamage": 140,
+    "MADamage": 180,
+    "PDDamage": 140,
+    "MDDamage": 250,
+    "acc": 140,
+    "eva": 25,
+    "exp": 580,
+    "maxHP": 9000,
+    "elemAttr": "I2L2F2H2",
+    "skills": {
+      "attack1": {
+        "type": 0,
+        "magic": 1,
+        "elemAttr": "L",
+        "conMP": 2
+      }
+    }
+  },
+  "4250000": {
+    "id": 4250000,
+    "level": 42,
+    "PADamage": 130,
+    "MADamage": 0,
+    "PDDamage": 110,
+    "MDDamage": 100,
+    "acc": 120,
+    "eva": 12,
+    "exp": 102,
+    "maxHP": 2400
+  },
+  "4250001": {
+    "id": 4250001,
+    "level": 46,
+    "PADamage": 130,
+    "MADamage": 0,
+    "PDDamage": 300,
+    "MDDamage": 300,
+    "acc": 130,
+    "eva": 15,
+    "exp": 112,
+    "maxHP": 2600
+  },
+  "5090000": {
+    "id": 5090000,
+    "level": 56,
+    "PADamage": 165,
+    "MADamage": 180,
+    "PDDamage": 150,
+    "MDDamage": 180,
+    "acc": 130,
+    "eva": 999,
+    "exp": 180,
+    "maxHP": 4800,
+    "boss": 1
+  },
+  "5090001": {
+    "id": 5090001,
+    "level": 59,
+    "PADamage": 170,
+    "MADamage": 190,
+    "PDDamage": 180,
+    "MDDamage": 210,
+    "acc": 100,
+    "eva": 999,
+    "exp": 220,
+    "maxHP": 5600,
+    "boss": 1
+  },
+  "5100000": {
+    "id": 5100000,
+    "level": 50,
+    "PADamage": 150,
+    "MADamage": 0,
+    "PDDamage": 170,
+    "MDDamage": 180,
+    "acc": 120,
+    "eva": 25,
+    "exp": 135,
+    "maxHP": 3700,
+    "elemAttr": "I2F3"
+  },
+  "5100002": {
+    "id": 5100002,
+    "level": 51,
+    "PADamage": 145,
+    "MADamage": 0,
+    "PDDamage": 255,
+    "MDDamage": 205,
+    "acc": 155,
+    "eva": 28,
+    "exp": 142,
+    "maxHP": 3600,
+    "elemAttr": "F2I3",
+    "skills": {
+      "attack1": {
+        "type": 0,
+        "conMP": 0
+      }
+    }
+  },
+  "5100003": {
+    "id": 5100003,
+    "level": 50,
+    "PADamage": 170,
+    "MADamage": 0,
+    "PDDamage": 150,
+    "MDDamage": 180,
+    "acc": 100,
+    "eva": 28,
+    "exp": 140,
+    "maxHP": 3800
+  },
+  "5100004": {
+    "id": 5100004,
+    "level": 56,
+    "PADamage": 165,
+    "MADamage": 180,
+    "PDDamage": 150,
+    "MDDamage": 190,
+    "acc": 135,
+    "eva": 28,
+    "exp": 185,
+    "maxHP": 4500,
+    "elemAttr": "F3H3",
+    "skills": {
+      "attack1": {
+        "type": 1,
+        "magic": 1
+      }
+    }
+  },
+  "5100005": {
+    "id": 5100005,
+    "level": 53,
+    "PADamage": 185,
+    "MADamage": 0,
+    "PDDamage": 185,
+    "MDDamage": 215,
+    "acc": 140,
+    "eva": 25,
+    "exp": 165,
+    "maxHP": 4500,
+    "elemAttr": "F2I3",
+    "skills": {
+      "attack1": {
+        "type": 1,
+        "PADamage": 170
+      }
+    }
+  },
+  "5110300": {
+    "id": 5110300,
+    "level": 50,
+    "PADamage": 140,
+    "MADamage": 0,
+    "PDDamage": 170,
+    "MDDamage": 200,
+    "acc": 80,
+    "eva": 15,
+    "exp": 135,
+    "maxHP": 3000
+  },
+  "5110301": {
+    "id": 5110301,
+    "level": 54,
+    "PADamage": 155,
+    "MADamage": 0,
+    "PDDamage": 180,
+    "MDDamage": 215,
+    "acc": 150,
+    "eva": 18,
+    "exp": 168,
+    "maxHP": 4400
+  },
+  "5110302": {
+    "id": 5110302,
+    "level": 58,
+    "PADamage": 170,
+    "MADamage": 205,
+    "PDDamage": 180,
+    "MDDamage": 210,
+    "acc": 155,
+    "eva": 20,
+    "exp": 205,
+    "maxHP": 5600,
+    "skills": {
+      "attack1": {
+        "type": 2,
+        "magic": 1,
+        "conMP": 2
+      }
+    }
+  },
+  "5120000": {
+    "id": 5120000,
+    "level": 52,
+    "PADamage": 160,
+    "MADamage": 170,
+    "PDDamage": 125,
+    "MDDamage": 265,
+    "acc": 130,
+    "eva": 22,
+    "exp": 155,
+    "maxHP": 4000,
+    "elemAttr": "I2F2L2H2",
+    "skills": {
+      "attack1": {
+        "type": 2,
+        "magic": 1,
+        "conMP": 1
+      }
+    }
+  },
+  "5120001": {
+    "id": 5120001,
+    "level": 53,
+    "PADamage": 150,
+    "MADamage": 175,
+    "PDDamage": 170,
+    "MDDamage": 210,
+    "acc": 150,
+    "eva": 25,
+    "exp": 160,
+    "maxHP": 4200,
+    "elemAttr": "F2I3",
+    "skills": {
+      "attack1": {
+        "type": 1,
+        "magic": 1,
+        "elemAttr": "F"
+      }
+    }
+  },
+  "5120002": {
+    "id": 5120002,
+    "level": 53,
+    "PADamage": 150,
+    "MADamage": 175,
+    "PDDamage": 170,
+    "MDDamage": 210,
+    "acc": 150,
+    "eva": 25,
+    "exp": 160,
+    "maxHP": 4200,
+    "elemAttr": "L2I3",
+    "skills": {
+      "attack1": {
+        "type": 1,
+        "magic": 1,
+        "elemAttr": "L"
+      }
+    }
+  },
+  "5120003": {
+    "id": 5120003,
+    "level": 53,
+    "PADamage": 150,
+    "MADamage": 175,
+    "PDDamage": 170,
+    "MDDamage": 210,
+    "acc": 150,
+    "eva": 25,
+    "exp": 160,
+    "maxHP": 4200,
+    "elemAttr": "I2F3",
+    "skills": {
+      "attack1": {
+        "type": 1,
+        "magic": 1,
+        "elemAttr": "I"
+      }
+    }
+  },
+  "5120100": {
+    "id": 5120100,
+    "level": 54,
+    "PADamage": 170,
+    "MADamage": 180,
+    "PDDamage": 280,
+    "MDDamage": 280,
+    "acc": 140,
+    "eva": 20,
+    "exp": 980,
+    "maxHP": 13500,
+    "boss": 1,
+    "skills": {
+      "attack1": {
+        "type": 2,
+        "magic": 1,
+        "conMP": 1
+      }
+    }
+  },
+  "5120500": {
+    "id": 5120500,
+    "level": 56,
+    "PADamage": 165,
+    "MADamage": 0,
+    "PDDamage": 180,
+    "MDDamage": 200,
+    "acc": 135,
+    "eva": 18,
+    "exp": 185,
+    "maxHP": 4800,
+    "skills": {
+      "attack1": {
+        "type": 1,
+        "PADamage": 165
+      }
+    }
+  },
+  "5120501": {
+    "id": 5120501,
+    "level": 53,
+    "PADamage": 150,
+    "MADamage": 0,
+    "PDDamage": 170,
+    "MDDamage": 210,
+    "acc": 150,
+    "eva": 16,
+    "exp": 160,
+    "maxHP": 4200
+  },
+  "5120502": {
+    "id": 5120502,
+    "level": 54,
+    "PADamage": 155,
+    "MADamage": 0,
+    "PDDamage": 180,
+    "MDDamage": 215,
+    "acc": 150,
+    "eva": 18,
+    "exp": 168,
+    "maxHP": 4400
+  },
+  "5120503": {
+    "id": 5120503,
+    "level": 50,
+    "PADamage": 140,
+    "MADamage": 0,
+    "PDDamage": 170,
+    "MDDamage": 200,
+    "acc": 80,
+    "eva": 15,
+    "exp": 135,
+    "maxHP": 3000
+  },
+  "5120504": {
+    "id": 5120504,
+    "level": 51,
+    "PADamage": 170,
+    "MADamage": 0,
+    "PDDamage": 200,
+    "MDDamage": 160,
+    "acc": 85,
+    "eva": 18,
+    "exp": 142,
+    "maxHP": 3200
+  },
+  "5120505": {
+    "id": 5120505,
+    "level": 58,
+    "PADamage": 170,
+    "MADamage": 205,
+    "PDDamage": 180,
+    "MDDamage": 210,
+    "acc": 155,
+    "eva": 20,
+    "exp": 205,
+    "maxHP": 5600,
+    "elemAttr": "S3",
+    "skills": {
+      "attack1": {
+        "type": 0,
+        "magic": 1,
+        "conMP": 2
+      }
+    }
+  },
+  "5120506": {
+    "id": 5120506,
+    "level": 55,
+    "PADamage": 155,
+    "MADamage": 0,
+    "PDDamage": 150,
+    "MDDamage": 220,
+    "acc": 150,
+    "eva": 20,
+    "exp": 175,
+    "maxHP": 4500
+  },
+  "5130100": {
+    "id": 5130100,
+    "level": 50,
+    "PADamage": 165,
+    "MADamage": 0,
+    "PDDamage": 110,
+    "MDDamage": 150,
+    "acc": 75,
+    "eva": 18,
+    "exp": 135,
+    "maxHP": 3200
+  },
+  "5130101": {
+    "id": 5130101,
+    "level": 55,
+    "PADamage": 180,
+    "MADamage": 0,
+    "PDDamage": 130,
+    "MDDamage": 100,
+    "acc": 80,
+    "eva": 15,
+    "exp": 170,
+    "maxHP": 4000
+  },
+  "5130102": {
+    "id": 5130102,
+    "level": 58,
+    "PADamage": 195,
+    "MADamage": 0,
+    "PDDamage": 150,
+    "MDDamage": 200,
+    "acc": 70,
+    "eva": 18,
+    "exp": 200,
+    "maxHP": 4800,
+    "elemAttr": "H3"
+  },
+  "5130103": {
+    "id": 5130103,
+    "level": 52,
+    "PADamage": 172,
+    "MADamage": 0,
+    "PDDamage": 120,
+    "MDDamage": 80,
+    "acc": 80,
+    "eva": 20,
+    "exp": 170,
+    "maxHP": 3800
+  },
+  "5130104": {
+    "id": 5130104,
+    "level": 55,
+    "PADamage": 165,
+    "MADamage": 175,
+    "PDDamage": 120,
+    "MDDamage": 120,
+    "acc": 100,
+    "eva": 20,
+    "exp": 170,
+    "maxHP": 4600,
+    "skills": {
+      "attack1": {
+        "type": 0,
+        "magic": 1,
+        "conMP": 30
+      }
+    }
+  },
+  "5130105": {
+    "id": 5130105,
+    "level": 56,
+    "PADamage": 155,
+    "MADamage": 0,
+    "PDDamage": 180,
+    "MDDamage": 190,
+    "acc": 130,
+    "eva": 27,
+    "exp": 180,
+    "maxHP": 4400,
+    "elemAttr": "H3"
+  },
+  "5130107": {
+    "id": 5130107,
+    "level": 57,
+    "PADamage": 165,
+    "MADamage": 185,
+    "PDDamage": 165,
+    "MDDamage": 180,
+    "acc": 135,
+    "eva": 25,
+    "exp": 190,
+    "maxHP": 4500,
+    "elemAttr": "S1H3",
+    "skills": {
+      "attack1": {
+        "type": 0,
+        "PADamage": 190,
+        "conMP": 2
+      },
+      "attack2": {
+        "type": 0,
+        "magic": 1,
+        "conMP": 5
+      }
+    }
+  },
+  "5130108": {
+    "id": 5130108,
+    "level": 57,
+    "PADamage": 155,
+    "MADamage": 185,
+    "PDDamage": 165,
+    "MDDamage": 180,
+    "acc": 135,
+    "eva": 25,
+    "exp": 190,
+    "maxHP": 4500,
+    "elemAttr": "S1H3",
+    "skills": {
+      "attack1": {
+        "type": 0,
+        "PADamage": 175,
+        "conMP": 2
+      },
+      "attack2": {
+        "type": 0,
+        "magic": 1,
+        "conMP": 5
+      }
+    }
+  },
+  "5140000": {
+    "id": 5140000,
+    "level": 58,
+    "PADamage": 170,
+    "MADamage": 205,
+    "PDDamage": 200,
+    "MDDamage": 220,
+    "acc": 150,
+    "eva": 25,
+    "exp": 220,
+    "maxHP": 5800,
+    "elemAttr": "I2F3",
+    "skills": {
+      "attack1": {
+        "type": 0,
+        "magic": 1,
+        "conMP": 1
+      }
+    }
+  },
+  "5150000": {
+    "id": 5150000,
+    "level": 59,
+    "PADamage": 200,
+    "MADamage": 190,
+    "PDDamage": 160,
+    "MDDamage": 220,
+    "acc": 100,
+    "eva": 20,
+    "exp": 210,
+    "maxHP": 6000
+  },
+  "5150001": {
+    "id": 5150001,
+    "level": 57,
+    "PADamage": 165,
+    "MADamage": 165,
+    "PDDamage": 160,
+    "MDDamage": 160,
+    "acc": 135,
+    "eva": 25,
+    "exp": 190,
+    "maxHP": 4600,
+    "elemAttr": "H3",
+    "skills": {
+      "attack1": {
+        "type": 1,
+        "PADamage": 180
+      }
+    }
+  },
+  "5200000": {
+    "id": 5200000,
+    "level": 23,
+    "PADamage": 70,
+    "MADamage": 0,
+    "PDDamage": 30,
+    "MDDamage": 40,
+    "acc": 55,
+    "eva": 8,
+    "exp": 40,
+    "maxHP": 600
+  },
+  "5200001": {
+    "id": 5200001,
+    "level": 30,
+    "PADamage": 105,
+    "MADamage": 118,
+    "PDDamage": 275,
+    "MDDamage": 85,
+    "acc": 75,
+    "eva": 12,
+    "exp": 55,
+    "maxHP": 900,
+    "elemAttr": "I2F3",
+    "skills": {
+      "attack1": {
+        "type": 1,
+        "magic": 1,
+        "elemAttr": "I",
+        "conMP": 1
+      }
+    }
+  },
+  "5200002": {
+    "id": 5200002,
+    "level": 30,
+    "PADamage": 105,
+    "MADamage": 118,
+    "PDDamage": 275,
+    "MDDamage": 85,
+    "acc": 75,
+    "eva": 12,
+    "exp": 55,
+    "maxHP": 900,
+    "elemAttr": "F2I3",
+    "skills": {
+      "attack1": {
+        "type": 1,
+        "magic": 1,
+        "elemAttr": "F",
+        "conMP": 1
+      }
+    }
+  },
+  "5220000": {
+    "id": 5220000,
+    "level": 55,
+    "PADamage": 165,
+    "MADamage": 175,
+    "PDDamage": 120,
+    "MDDamage": 120,
+    "acc": 100,
+    "eva": 20,
+    "exp": 1210,
+    "maxHP": 25000,
+    "boss": 1,
+    "skills": {
+      "attack1": {
+        "type": 0,
+        "PADamage": 180
+      }
+    }
+  },
+  "5220002": {
+    "id": 5220002,
+    "level": 50,
+    "PADamage": 165,
+    "MADamage": 0,
+    "PDDamage": 110,
+    "MDDamage": 150,
+    "acc": 100,
+    "eva": 20,
+    "exp": 410,
+    "maxHP": 9800,
+    "boss": 1,
+    "skills": {
+      "attack1": {
+        "type": 2,
+        "PADamage": 190
+      }
+    }
+  },
+  "5220003": {
+    "id": 5220003,
+    "level": 59,
+    "PADamage": 200,
+    "MADamage": 205,
+    "PDDamage": 180,
+    "MDDamage": 230,
+    "acc": 150,
+    "eva": 20,
+    "exp": 650,
+    "maxHP": 21000,
+    "boss": 1,
+    "skills": {
+      "attack1": {
+        "type": 1,
+        "magic": 1
+      }
+    }
+  },
+  "5250000": {
+    "id": 5250000,
+    "level": 55,
+    "PADamage": 160,
+    "MADamage": 0,
+    "PDDamage": 100,
+    "MDDamage": 120,
+    "acc": 120,
+    "eva": 20,
+    "exp": 175,
+    "maxHP": 4400
+  },
+  "5250001": {
+    "id": 5250001,
+    "level": 51,
+    "PADamage": 170,
+    "MADamage": 0,
+    "PDDamage": 255,
+    "MDDamage": 200,
+    "acc": 800,
+    "eva": 15,
+    "exp": 142,
+    "maxHP": 3600
+  },
+  "5250002": {
+    "id": 5250002,
+    "level": 57,
+    "PADamage": 155,
+    "MADamage": 0,
+    "PDDamage": 170,
+    "MDDamage": 160,
+    "acc": 130,
+    "eva": 20,
+    "exp": 200,
+    "maxHP": 4500
+  },
+  "5300000": {
+    "id": 5300000,
+    "level": 32,
+    "PADamage": 110,
+    "MADamage": 0,
+    "PDDamage": 45,
+    "MDDamage": 70,
+    "acc": 65,
+    "eva": 13,
+    "exp": 60,
+    "maxHP": 1000,
+    "elemAttr": "I2F3"
+  },
+  "5300001": {
+    "id": 5300001,
+    "level": 33,
+    "PADamage": 120,
+    "MADamage": 0,
+    "PDDamage": 60,
+    "MDDamage": 80,
+    "acc": 65,
+    "eva": 15,
+    "exp": 65,
+    "maxHP": 1100,
+    "elemAttr": "H3"
+  },
+  "5300100": {
+    "id": 5300100,
+    "level": 55,
+    "PADamage": 170,
+    "MADamage": 0,
+    "PDDamage": 100,
+    "MDDamage": 200,
+    "acc": 150,
+    "eva": 20,
+    "exp": 175,
+    "maxHP": 4000,
+    "elemAttr": "H3"
+  },
+  "5400000": {
+    "id": 5400000,
+    "level": 35,
+    "PADamage": 130,
+    "MADamage": 0,
+    "PDDamage": 110,
+    "MDDamage": 100,
+    "acc": 105,
+    "eva": 18,
+    "exp": 75,
+    "maxHP": 1400,
+    "elemAttr": "I2F3"
+  },
+  "6090000": {
+    "id": 6090000,
+    "level": 65,
+    "PADamage": 180,
+    "MADamage": 270,
+    "PDDamage": 200,
+    "MDDamage": 400,
+    "acc": 150,
+    "eva": 999,
+    "exp": 255,
+    "maxHP": 11000,
+    "boss": 1,
+    "skills": {
+      "attack1": {
+        "type": 0,
+        "magic": 1,
+        "conMP": 0
+      }
+    }
+  },
+  "6090001": {
+    "id": 6090001,
+    "level": 64,
+    "PADamage": 177,
+    "MADamage": 230,
+    "PDDamage": 190,
+    "MDDamage": 230,
+    "acc": 140,
+    "eva": 999,
+    "exp": 250,
+    "maxHP": 7700,
+    "boss": 1
+  },
+  "6090002": {
+    "id": 6090002,
+    "level": 68,
+    "PADamage": 200,
+    "MADamage": 290,
+    "PDDamage": 190,
+    "MDDamage": 270,
+    "acc": 130,
+    "eva": 999,
+    "exp": 265,
+    "maxHP": 12500,
+    "boss": 1
+  },
+  "6090003": {
+    "id": 6090003,
+    "level": 62,
+    "PADamage": 185,
+    "MADamage": 200,
+    "PDDamage": 170,
+    "MDDamage": 130,
+    "acc": 80,
+    "eva": 999,
+    "exp": 240,
+    "maxHP": 6000,
+    "boss": 1
+  },
+  "6090004": {
+    "id": 6090004,
+    "level": 63,
+    "PADamage": 190,
+    "MADamage": 220,
+    "PDDamage": 190,
+    "MDDamage": 220,
+    "acc": 150,
+    "eva": 999,
+    "exp": 245,
+    "maxHP": 7600,
+    "boss": 1
+  },
+  "6110300": {
+    "id": 6110300,
+    "level": 65,
+    "PADamage": 182,
+    "MADamage": 270,
+    "PDDamage": 170,
+    "MDDamage": 245,
+    "acc": 110,
+    "eva": 24,
+    "exp": 255,
+    "maxHP": 11000
+  },
+  "6110301": {
+    "id": 6110301,
+    "level": 68,
+    "PADamage": 210,
+    "MADamage": 290,
+    "PDDamage": 190,
+    "MDDamage": 270,
+    "acc": 130,
+    "eva": 26,
+    "exp": 265,
+    "maxHP": 13000,
+    "skills": {
+      "attack1": {
+        "type": 2
+      }
+    }
+  },
+  "6130100": {
+    "id": 6130100,
+    "level": 60,
+    "PADamage": 200,
+    "MADamage": 220,
+    "PDDamage": 190,
+    "MDDamage": 220,
+    "acc": 150,
+    "eva": 22,
+    "exp": 220,
+    "maxHP": 6000,
+    "elemAttr": "F2I3",
+    "skills": {
+      "attack1": {
+        "type": 2,
+        "magic": 1,
+        "elemAttr": "F",
+        "conMP": 2
+      }
+    }
+  },
+  "6130101": {
+    "id": 6130101,
+    "level": 60,
+    "PADamage": 200,
+    "MADamage": 300,
+    "PDDamage": 320,
+    "MDDamage": 320,
+    "acc": 150,
+    "eva": 27,
+    "exp": 1200,
+    "maxHP": 20000,
+    "boss": 1,
+    "skills": {
+      "attack1": {
+        "type": 0,
+        "PADamage": 300
+      }
+    }
+  },
+  "6130102": {
+    "id": 6130102,
+    "level": 60,
+    "PADamage": 167,
+    "MADamage": 0,
+    "PDDamage": 210,
+    "MDDamage": 225,
+    "acc": 200,
+    "eva": 30,
+    "exp": 420,
+    "maxHP": 7200,
+    "elemAttr": "I2F3"
+  },
+  "6130104": {
+    "id": 6130104,
+    "level": 35,
+    "PADamage": 180,
+    "MADamage": 300,
+    "PDDamage": 250,
+    "MDDamage": 300,
+    "acc": 250,
+    "eva": 35,
+    "exp": 400,
+    "maxHP": 14800,
+    "elemAttr": "H2"
+  },
+  "6130200": {
+    "id": 6130200,
+    "level": 61,
+    "PADamage": 170,
+    "MADamage": 210,
+    "PDDamage": 213,
+    "MDDamage": 229,
+    "acc": 130,
+    "eva": 23,
+    "exp": 230,
+    "maxHP": 7400,
+    "skills": {
+      "attack1": {
+        "type": 1,
+        "magic": 1,
+        "elemAttr": "L",
+        "conMP": 2
+      }
+    }
+  },
+  "6130201": {
+    "id": 6130201,
+    "level": 60,
+    "PADamage": 165,
+    "MADamage": 0,
+    "PDDamage": 170,
+    "MDDamage": 180,
+    "acc": 150,
+    "eva": 38,
+    "exp": 0,
+    "maxHP": 3500,
+    "elemAttr": "H3I3"
+  },
+  "6130202": {
+    "id": 6130202,
+    "level": 60,
+    "PADamage": 195,
+    "MADamage": 200,
+    "PDDamage": 220,
+    "MDDamage": 230,
+    "acc": 200,
+    "eva": 25,
+    "exp": 330,
+    "maxHP": 7000,
+    "elemAttr": "F2I2H3",
+    "skills": {
+      "attack1": {
+        "type": 1,
+        "magic": 1
+      }
+    }
+  },
+  "6130203": {
+    "id": 6130203,
+    "level": 60,
+    "PADamage": 180,
+    "MADamage": 0,
+    "PDDamage": 200,
+    "MDDamage": 230,
+    "acc": 150,
+    "eva": 22,
+    "exp": 225,
+    "maxHP": 6500,
+    "skills": {
+      "attack1": {
+        "type": 1,
+        "PADamage": 165
+      }
+    }
+  },
+  "6130204": {
+    "id": 6130204,
+    "level": 64,
+    "PADamage": 180,
+    "MADamage": 230,
+    "PDDamage": 190,
+    "MDDamage": 230,
+    "acc": 140,
+    "eva": 25,
+    "exp": 250,
+    "maxHP": 7800,
+    "skills": {
+      "attack1": {
+        "type": 2,
+        "magic": 1,
+        "conMP": 2
+      },
+      "attack2": {
+        "type": 0,
+        "magic": 1,
+        "conMP": 3
+      }
+    }
+  },
+  "6130207": {
+    "id": 6130207,
+    "level": 62,
+    "PADamage": 185,
+    "MADamage": 200,
+    "PDDamage": 170,
+    "MDDamage": 200,
+    "acc": 200,
+    "eva": 25,
+    "exp": 240,
+    "maxHP": 7500,
+    "skills": {
+      "attack1": {
+        "type": 2,
+        "PADamage": 200,
+        "conMP": 1
+      }
+    }
+  },
+  "6130208": {
+    "id": 6130208,
+    "level": 68,
+    "PADamage": 200,
+    "MADamage": 290,
+    "PDDamage": 190,
+    "MDDamage": 250,
+    "acc": 130,
+    "eva": 26,
+    "exp": 265,
+    "maxHP": 12500,
+    "skills": {
+      "attack1": {
+        "type": 0,
+        "PADamage": 210
+      }
+    }
+  },
+  "6130209": {
+    "id": 6130209,
+    "level": 66,
+    "PADamage": 220,
+    "MADamage": 270,
+    "PDDamage": 160,
+    "MDDamage": 200,
+    "acc": 120,
+    "eva": 24,
+    "exp": 255,
+    "maxHP": 9000,
+    "skills": {
+      "attack1": {
+        "type": 0,
+        "PADamage": 235,
+        "conMP": 2
+      }
+    }
+  },
+  "6220000": {
+    "id": 6220000,
+    "level": 65,
+    "PADamage": 190,
+    "MADamage": 200,
+    "PDDamage": 190,
+    "MDDamage": 220,
+    "acc": 150,
+    "eva": 30,
+    "exp": 810,
+    "maxHP": 31000,
+    "boss": 1
+  },
+  "6220001": {
+    "id": 6220001,
+    "level": 65,
+    "PADamage": 205,
+    "MADamage": 0,
+    "PDDamage": 210,
+    "MDDamage": 200,
+    "acc": 150,
+    "eva": 29,
+    "exp": 940,
+    "maxHP": 36000,
+    "boss": 1,
+    "skills": {
+      "attack1": {
+        "type": 0,
+        "PADamage": 230
+      }
+    }
+  },
+  "6230100": {
+    "id": 6230100,
+    "level": 62,
+    "PADamage": 210,
+    "MADamage": 0,
+    "PDDamage": 180,
+    "MDDamage": 130,
+    "acc": 100,
+    "eva": 20,
+    "exp": 240,
+    "maxHP": 5500
+  },
+  "6230101": {
+    "id": 6230101,
+    "level": 63,
+    "PADamage": 257,
+    "MADamage": 0,
+    "PDDamage": 200,
+    "MDDamage": 220,
+    "acc": 145,
+    "eva": 36,
+    "exp": 190,
+    "maxHP": 20000
+  },
+  "6230200": {
+    "id": 6230200,
+    "level": 64,
+    "PADamage": 177,
+    "MADamage": 0,
+    "PDDamage": 220,
+    "MDDamage": 240,
+    "acc": 210,
+    "eva": 31,
+    "exp": 250,
+    "maxHP": 7800,
+    "elemAttr": "H3"
+  },
+  "6230300": {
+    "id": 6230300,
+    "level": 66,
+    "PADamage": 190,
+    "MADamage": 210,
+    "PDDamage": 180,
+    "MDDamage": 254,
+    "acc": 140,
+    "eva": 26,
+    "exp": 260,
+    "maxHP": 9400,
+    "skills": {
+      "attack1": {
+        "type": 1,
+        "magic": 1,
+        "elemAttr": "L",
+        "conMP": 2
+      }
+    }
+  },
+  "6230400": {
+    "id": 6230400,
+    "level": 63,
+    "PADamage": 190,
+    "MADamage": 220,
+    "PDDamage": 190,
+    "MDDamage": 215,
+    "acc": 140,
+    "eva": 25,
+    "exp": 245,
+    "maxHP": 7600,
+    "elemAttr": "L2I2H3",
+    "skills": {
+      "attack1": {
+        "type": 1,
+        "magic": 1,
+        "elemAttr": "L",
+        "conMP": 2
+      }
+    }
+  },
+  "6230401": {
+    "id": 6230401,
+    "level": 63,
+    "PADamage": 190,
+    "MADamage": 200,
+    "PDDamage": 190,
+    "MDDamage": 220,
+    "acc": 170,
+    "eva": 25,
+    "exp": 245,
+    "maxHP": 7600,
+    "elemAttr": "S1H3"
+  },
+  "6230500": {
+    "id": 6230500,
+    "level": 67,
+    "PADamage": 210,
+    "MADamage": 220,
+    "PDDamage": 210,
+    "MDDamage": 250,
+    "acc": 140,
+    "eva": 27,
+    "exp": 265,
+    "maxHP": 11000,
+    "elemAttr": "L2I1H3",
+    "skills": {
+      "attack1": {
+        "type": 1,
+        "magic": 1,
+        "elemAttr": "L",
+        "conMP": 2
+      }
+    }
+  },
+  "6230600": {
+    "id": 6230600,
+    "level": 64,
+    "PADamage": 210,
+    "MADamage": 230,
+    "PDDamage": 200,
+    "MDDamage": 230,
+    "acc": 150,
+    "eva": 25,
+    "exp": 250,
+    "maxHP": 7700,
+    "elemAttr": "I2F3",
+    "skills": {
+      "attack1": {
+        "type": 2,
+        "magic": 1,
+        "elemAttr": "I",
+        "conMP": 2
+      }
+    }
+  },
+  "6230601": {
+    "id": 6230601,
+    "level": 68,
+    "PADamage": 220,
+    "MADamage": 250,
+    "PDDamage": 205,
+    "MDDamage": 250,
+    "acc": 170,
+    "eva": 27,
+    "exp": 265,
+    "maxHP": 13000,
+    "skills": {
+      "attack1": {
+        "type": 2,
+        "magic": 1,
+        "conMP": 2
+      }
+    }
+  },
+  "6230602": {
+    "id": 6230602,
+    "level": 63,
+    "PADamage": 170,
+    "MADamage": 200,
+    "PDDamage": 190,
+    "MDDamage": 230,
+    "acc": 150,
+    "eva": 25,
+    "exp": 240,
+    "maxHP": 7500,
+    "elemAttr": "H3",
+    "skills": {
+      "attack1": {
+        "type": 1,
+        "PADamage": 185
+      }
+    }
+  },
+  "6300000": {
+    "id": 6300000,
+    "level": 65,
+    "PADamage": 182,
+    "MADamage": 270,
+    "PDDamage": 170,
+    "MDDamage": 245,
+    "acc": 110,
+    "eva": 24,
+    "exp": 255,
+    "maxHP": 11000,
+    "elemAttr": "I2F3",
+    "skills": {
+      "attack1": {
+        "type": 0,
+        "PADamage": 270
+      }
+    }
+  },
+  "6300003": {
+    "id": 6300003,
+    "level": 67,
+    "PADamage": 310,
+    "MADamage": 435,
+    "PDDamage": 270,
+    "MDDamage": 410,
+    "acc": 165,
+    "eva": 37,
+    "exp": 210,
+    "maxHP": 40000,
+    "elemAttr": "H2",
+    "skills": {
+      "attack1": {
+        "type": 1,
+        "magic": 1,
+        "elemAttr": "L",
+        "conMP": 1
+      }
+    }
+  },
+  "6300004": {
+    "id": 6300004,
+    "level": 66,
+    "PADamage": 300,
+    "MADamage": 420,
+    "PDDamage": 250,
+    "MDDamage": 400,
+    "acc": 150,
+    "eva": 35,
+    "exp": 200,
+    "maxHP": 38000,
+    "boss": 1,
+    "elemAttr": "F1H2L2S2I1",
+    "skills": {
+      "attack1": {
+        "type": 0,
+        "conMP": 0
+      }
+    }
+  },
+  "6300005": {
+    "id": 6300005,
+    "level": 65,
+    "PADamage": 250,
+    "MADamage": 380,
+    "PDDamage": 350,
+    "MDDamage": 400,
+    "acc": 155,
+    "eva": 30,
+    "exp": 1500,
+    "maxHP": 35000,
+    "boss": 1,
+    "skills": {
+      "attack1": {
+        "type": 0,
+        "PADamage": 300
+      }
+    }
+  },
+  "6300100": {
+    "id": 6300100,
+    "level": 74,
+    "PADamage": 290,
+    "MADamage": 320,
+    "PDDamage": 340,
+    "MDDamage": 330,
+    "acc": 165,
+    "eva": 27,
+    "exp": 340,
+    "maxHP": 16000,
+    "elemAttr": "I3F2",
+    "skills": {
+      "attack1": {
+        "type": 0,
+        "elemAttr": "F",
+        "PADamage": 280
+      }
+    }
+  },
+  "6400000": {
+    "id": 6400000,
+    "level": 68,
+    "PADamage": 210,
+    "MADamage": 290,
+    "PDDamage": 190,
+    "MDDamage": 270,
+    "acc": 130,
+    "eva": 26,
+    "exp": 265,
+    "maxHP": 13000,
+    "elemAttr": "H3",
+    "skills": {
+      "attack1": {
+        "type": 0,
+        "PADamage": 290
+      }
+    }
+  },
+  "6400003": {
+    "id": 6400003,
+    "level": 69,
+    "PADamage": 372,
+    "MADamage": 565,
+    "PDDamage": 320,
+    "MDDamage": 530,
+    "acc": 170,
+    "eva": 40,
+    "exp": 240,
+    "maxHP": 60000,
+    "elemAttr": "H2",
+    "skills": {
+      "attack1": {
+        "type": 1,
+        "magic": 1,
+        "elemAttr": "L",
+        "conMP": 1
+      }
+    }
+  },
+  "6400004": {
+    "id": 6400004,
+    "level": 70,
+    "PADamage": 400,
+    "MADamage": 600,
+    "PDDamage": 350,
+    "MDDamage": 550,
+    "acc": 180,
+    "eva": 50,
+    "exp": 250,
+    "maxHP": 80000,
+    "boss": 1,
+    "elemAttr": "L2H2S2I1F3",
+    "skills": {
+      "attack1": {
+        "type": 1,
+        "magic": 1,
+        "elemAttr": "I",
+        "conMP": 1
+      }
+    }
+  },
+  "6400100": {
+    "id": 6400100,
+    "level": 77,
+    "PADamage": 310,
+    "MADamage": 340,
+    "PDDamage": 400,
+    "MDDamage": 410,
+    "acc": 170,
+    "eva": 28,
+    "exp": 385,
+    "maxHP": 19000,
+    "elemAttr": "I3F2",
+    "skills": {
+      "attack1": {
+        "type": 0,
+        "elemAttr": "F",
+        "PADamage": 300
+      }
+    }
+  },
+  "7090000": {
+    "id": 7090000,
+    "level": 75,
+    "PADamage": 300,
+    "MADamage": 380,
+    "PDDamage": 550,
+    "MDDamage": 290,
+    "acc": 130,
+    "eva": 999,
+    "exp": 350,
+    "maxHP": 16000,
+    "boss": 1
+  },
+  "7110300": {
+    "id": 7110300,
+    "level": 75,
+    "PADamage": 330,
+    "MADamage": 380,
+    "PDDamage": 800,
+    "MDDamage": 290,
+    "acc": 160,
+    "eva": 25,
+    "exp": 350,
+    "maxHP": 16000,
+    "skills": {
+      "attack1": {
+        "type": 0,
+        "magic": 1,
+        "conMP": 2
+      },
+      "attack2": {
+        "type": 0,
+        "magic": 1,
+        "conMP": 2
+      }
+    }
+  },
+  "7110301": {
+    "id": 7110301,
+    "level": 73,
+    "PADamage": 280,
+    "MADamage": 315,
+    "PDDamage": 300,
+    "MDDamage": 320,
+    "acc": 160,
+    "eva": 28,
+    "exp": 320,
+    "maxHP": 15500
+  },
+  "7130000": {
+    "id": 7130000,
+    "level": 73,
+    "PADamage": 280,
+    "MADamage": 315,
+    "PDDamage": 300,
+    "MDDamage": 320,
+    "acc": 160,
+    "eva": 28,
+    "exp": 320,
+    "maxHP": 15500,
+    "elemAttr": "S1H3",
+    "skills": {
+      "attack1": {
+        "type": 1,
+        "magic": 1,
+        "elemAttr": "F"
+      }
+    }
+  },
+  "7130001": {
+    "id": 7130001,
+    "level": 72,
+    "PADamage": 272,
+    "MADamage": 315,
+    "PDDamage": 320,
+    "MDDamage": 265,
+    "acc": 175,
+    "eva": 30,
+    "exp": 295,
+    "maxHP": 15200,
+    "skills": {
+      "attack1": {
+        "type": 0,
+        "PADamage": 310
+      }
+    }
+  },
+  "7130002": {
+    "id": 7130002,
+    "level": 72,
+    "PADamage": 272,
+    "MADamage": 310,
+    "PDDamage": 335,
+    "MDDamage": 265,
+    "acc": 175,
+    "eva": 30,
+    "exp": 295,
+    "maxHP": 15200,
+    "elemAttr": "L2",
+    "skills": {
+      "attack1": {
+        "type": 0,
+        "PADamage": 290,
+        "conMP": 2
+      }
+    }
+  },
+  "7130003": {
+    "id": 7130003,
+    "level": 76,
+    "PADamage": 300,
+    "MADamage": 350,
+    "PDDamage": 400,
+    "MDDamage": 400,
+    "acc": 140,
+    "eva": 27,
+    "exp": 370,
+    "maxHP": 18000,
+    "elemAttr": "L2",
+    "skills": {
+      "attack1": {
+        "type": 1,
+        "magic": 1,
+        "elemAttr": "L",
+        "conMP": 2
+      }
+    }
+  },
+  "7130004": {
+    "id": 7130004,
+    "level": 78,
+    "PADamage": 330,
+    "MADamage": 365,
+    "PDDamage": 600,
+    "MDDamage": 450,
+    "acc": 145,
+    "eva": 30,
+    "exp": 400,
+    "maxHP": 20000,
+    "elemAttr": "F3S3",
+    "skills": {
+      "attack1": {
+        "type": 1,
+        "conMP": 1
+      }
+    }
+  },
+  "7130010": {
+    "id": 7130010,
+    "level": 85,
+    "PADamage": 375,
+    "MADamage": 430,
+    "PDDamage": 700,
+    "MDDamage": 465,
+    "acc": 160,
+    "eva": 27,
+    "exp": 1300,
+    "maxHP": 32000,
+    "elemAttr": "H3F3",
+    "skills": {
+      "attack1": {
+        "type": 2,
+        "magic": 1,
+        "elemAttr": "L",
+        "conMP": 1
+      }
+    }
+  },
+  "7130020": {
+    "id": 7130020,
+    "level": 85,
+    "PADamage": 370,
+    "MADamage": 0,
+    "PDDamage": 645,
+    "MDDamage": 430,
+    "acc": 160,
+    "eva": 29,
+    "exp": 1400,
+    "maxHP": 17000,
+    "elemAttr": "F2"
+  },
+  "7130100": {
+    "id": 7130100,
+    "level": 70,
+    "PADamage": 270,
+    "MADamage": 320,
+    "PDDamage": 250,
+    "MDDamage": 250,
+    "acc": 120,
+    "eva": 15,
+    "exp": 270,
+    "maxHP": 15000,
+    "elemAttr": "S1",
+    "skills": {
+      "attack1": {
+        "type": 0,
+        "magic": 1,
+        "elemAttr": "L",
+        "conMP": 2
+      }
+    }
+  },
+  "7130101": {
+    "id": 7130101,
+    "level": 75,
+    "PADamage": 300,
+    "MADamage": 390,
+    "PDDamage": 550,
+    "MDDamage": 400,
+    "acc": 130,
+    "eva": 30,
+    "exp": 350,
+    "maxHP": 18000,
+    "elemAttr": "S1F2L2",
+    "skills": {
+      "attack1": {
+        "type": 0,
+        "magic": 1,
+        "elemAttr": "L",
+        "conMP": 2
+      },
+      "attack2": {
+        "type": 0,
+        "magic": 1,
+        "conMP": 2
+      }
+    }
+  },
+  "7130102": {
+    "id": 7130102,
+    "level": 78,
+    "PADamage": 330,
+    "MADamage": 365,
+    "PDDamage": 600,
+    "MDDamage": 450,
+    "acc": 145,
+    "eva": 30,
+    "exp": 0,
+    "maxHP": 20000,
+    "elemAttr": "I2F3",
+    "skills": {
+      "attack1": {
+        "type": 0,
+        "PADamage": 365
+      }
+    }
+  },
+  "7130103": {
+    "id": 7130103,
+    "level": 73,
+    "PADamage": 275,
+    "MADamage": 300,
+    "PDDamage": 330,
+    "MDDamage": 300,
+    "acc": 190,
+    "eva": 32,
+    "exp": 315,
+    "maxHP": 15300,
+    "elemAttr": "H3I2S1"
+  },
+  "7130104": {
+    "id": 7130104,
+    "level": 70,
+    "PADamage": 210,
+    "MADamage": 320,
+    "PDDamage": 250,
+    "MDDamage": 260,
+    "acc": 165,
+    "eva": 26,
+    "exp": 282,
+    "maxHP": 15000,
+    "skills": {
+      "attack1": {
+        "type": 0,
+        "PADamage": 220
+      }
+    }
+  },
+  "7130200": {
+    "id": 7130200,
+    "level": 75,
+    "PADamage": 330,
+    "MADamage": 380,
+    "PDDamage": 800,
+    "MDDamage": 290,
+    "acc": 160,
+    "eva": 25,
+    "exp": 350,
+    "maxHP": 16000,
+    "skills": {
+      "attack1": {
+        "type": 0,
+        "magic": 1,
+        "conMP": 2
+      }
+    }
+  },
+  "7130300": {
+    "id": 7130300,
+    "level": 89,
+    "PADamage": 400,
+    "MADamage": 450,
+    "PDDamage": 750,
+    "MDDamage": 480,
+    "acc": 180,
+    "eva": 28,
+    "exp": 1720,
+    "maxHP": 40000,
+    "elemAttr": "H3I2L2",
+    "skills": {
+      "attack1": {
+        "type": 2,
+        "magic": 1,
+        "elemAttr": "L",
+        "conMP": 1
+      }
+    }
+  },
+  "7130400": {
+    "id": 7130400,
+    "level": 70,
+    "PADamage": 285,
+    "MADamage": 335,
+    "PDDamage": 280,
+    "MDDamage": 280,
+    "acc": 120,
+    "eva": 15,
+    "exp": 400,
+    "maxHP": 25000,
+    "boss": 1,
+    "elemAttr": "F2I3",
+    "skills": {
+      "attack1": {
+        "type": 0,
+        "magic": 1,
+        "elemAttr": "F",
+        "conMP": 2
+      }
+    }
+  },
+  "7130401": {
+    "id": 7130401,
+    "level": 70,
+    "PADamage": 285,
+    "MADamage": 335,
+    "PDDamage": 280,
+    "MDDamage": 280,
+    "acc": 120,
+    "eva": 15,
+    "exp": 400,
+    "maxHP": 25000,
+    "boss": 1,
+    "elemAttr": "F3I2",
+    "skills": {
+      "attack1": {
+        "type": 0,
+        "magic": 1,
+        "elemAttr": "I",
+        "conMP": 2
+      }
+    }
+  },
+  "7130402": {
+    "id": 7130402,
+    "level": 70,
+    "PADamage": 285,
+    "MADamage": 335,
+    "PDDamage": 280,
+    "MDDamage": 280,
+    "acc": 120,
+    "eva": 15,
+    "exp": 400,
+    "maxHP": 25000,
+    "boss": 1,
+    "elemAttr": "S1",
+    "skills": {
+      "attack1": {
+        "type": 0,
+        "PADamage": 270,
+        "conMP": 2
+      }
+    }
+  },
+  "7130500": {
+    "id": 7130500,
+    "level": 70,
+    "PADamage": 245,
+    "MADamage": 0,
+    "PDDamage": 235,
+    "MDDamage": 245,
+    "acc": 130,
+    "eva": 25,
+    "exp": 270,
+    "maxHP": 14500,
+    "elemAttr": "S3",
+    "skills": {
+      "attack1": {
+        "type": 2,
+        "PADamage": 255
+      }
+    }
+  },
+  "7130501": {
+    "id": 7130501,
+    "level": 74,
+    "PADamage": 295,
+    "MADamage": 0,
+    "PDDamage": 285,
+    "MDDamage": 295,
+    "acc": 160,
+    "eva": 27,
+    "exp": 340,
+    "maxHP": 15500,
+    "elemAttr": "S2",
+    "skills": {
+      "attack1": {
+        "type": 2,
+        "PADamage": 300
+      }
+    }
+  },
+  "7130600": {
+    "id": 7130600,
+    "level": 72,
+    "PADamage": 270,
+    "MADamage": 310,
+    "PDDamage": 330,
+    "MDDamage": 260,
+    "acc": 160,
+    "eva": 25,
+    "exp": 295,
+    "maxHP": 15000,
+    "elemAttr": "S3",
+    "skills": {
+      "attack1": {
+        "type": 0,
+        "PADamage": 280
+      }
+    }
+  },
+  "7130601": {
+    "id": 7130601,
+    "level": 76,
+    "PADamage": 300,
+    "MADamage": 350,
+    "PDDamage": 400,
+    "MDDamage": 350,
+    "acc": 170,
+    "eva": 28,
+    "exp": 370,
+    "maxHP": 18000,
+    "elemAttr": "S2",
+    "skills": {
+      "attack1": {
+        "type": 0,
+        "PADamage": 310
+      }
+    }
+  },
+  "7140000": {
+    "id": 7140000,
+    "level": 83,
+    "PADamage": 365,
+    "MADamage": 400,
+    "PDDamage": 710,
+    "MDDamage": 460,
+    "acc": 150,
+    "eva": 27,
+    "exp": 1100,
+    "maxHP": 30000,
+    "elemAttr": "I2F3",
+    "skills": {
+      "attack1": {
+        "type": 1,
+        "magic": 1,
+        "elemAttr": "L"
+      }
+    }
+  },
+  "7160000": {
+    "id": 7160000,
+    "level": 87,
+    "PADamage": 385,
+    "MADamage": 425,
+    "PDDamage": 775,
+    "MDDamage": 470,
+    "acc": 160,
+    "eva": 28,
+    "exp": 1500,
+    "maxHP": 35000,
+    "elemAttr": "I2F3",
+    "skills": {
+      "attack1": {
+        "type": 1,
+        "magic": 1,
+        "elemAttr": "L"
+      }
+    }
+  },
+  "7220000": {
+    "id": 7220000,
+    "level": 71,
+    "PADamage": 285,
+    "MADamage": 310,
+    "PDDamage": 335,
+    "MDDamage": 265,
+    "acc": 175,
+    "eva": 30,
+    "exp": 1580,
+    "maxHP": 93000,
+    "boss": 1,
+    "skills": {
+      "attack1": {
+        "type": 1,
+        "magic": 1
+      },
+      "attack2": {
+        "type": 2,
+        "magic": 1,
+        "conMP": 2
+      }
+    }
+  },
+  "7220001": {
+    "id": 7220001,
+    "level": 70,
+    "PADamage": 260,
+    "MADamage": 310,
+    "PDDamage": 280,
+    "MDDamage": 265,
+    "acc": 130,
+    "eva": 25,
+    "exp": 1300,
+    "maxHP": 89000,
+    "boss": 1,
+    "skills": {
+      "attack1": {
+        "type": 0,
+        "PADamage": 280
+      }
+    }
+  },
+  "7220002": {
+    "id": 7220002,
+    "level": 77,
+    "PADamage": 320,
+    "MADamage": 350,
+    "PDDamage": 520,
+    "MDDamage": 410,
+    "acc": 160,
+    "eva": 27,
+    "exp": 2280,
+    "maxHP": 108000,
+    "boss": 1,
+    "skills": {
+      "attack1": {
+        "type": 0,
+        "magic": 1,
+        "conMP": 2
+      }
+    }
+  },
+  "8090000": {
+    "id": 8090000,
+    "level": 80,
+    "PADamage": 350,
+    "MADamage": 410,
+    "PDDamage": 650,
+    "MDDamage": 450,
+    "acc": 140,
+    "eva": 999,
+    "exp": 850,
+    "maxHP": 27000,
+    "boss": 1
+  },
+  "8110300": {
+    "id": 8110300,
+    "level": 80,
+    "PADamage": 350,
+    "MADamage": 410,
+    "PDDamage": 650,
+    "MDDamage": 450,
+    "acc": 140,
+    "eva": 28,
+    "exp": 850,
+    "maxHP": 27000,
+    "skills": {
+      "attack1": {
+        "type": 0,
+        "PADamage": 125,
+        "conMP": 1
+      },
+      "attack2": {
+        "type": 0,
+        "PADamage": 125,
+        "conMP": 1
+      }
+    }
+  },
+  "8130100": {
+    "id": 8130100,
+    "level": 80,
+    "PADamage": 450,
+    "MADamage": 605,
+    "PDDamage": 420,
+    "MDDamage": 450,
+    "acc": 150,
+    "eva": 30,
+    "exp": 2000,
+    "maxHP": 50000,
+    "boss": 1,
+    "elemAttr": "S1H3",
+    "skills": {
+      "attack1": {
+        "type": 1,
+        "magic": 1,
+        "elemAttr": "F",
+        "conMP": 2
+      },
+      "attack2": {
+        "type": 2,
+        "magic": 1,
+        "elemAttr": "F",
+        "conMP": 2
+      },
+      "attack3": {
+        "type": 0,
+        "magic": 1,
+        "conMP": 2
+      }
+    }
+  },
+  "8140000": {
+    "id": 8140000,
+    "level": 80,
+    "PADamage": 350,
+    "MADamage": 410,
+    "PDDamage": 650,
+    "MDDamage": 520,
+    "acc": 140,
+    "eva": 28,
+    "exp": 850,
+    "maxHP": 27000,
+    "elemAttr": "I2F3",
+    "skills": {
+      "attack1": {
+        "type": 0,
+        "magic": 1,
+        "conMP": 2
+      }
+    }
+  },
+  "8140001": {
+    "id": 8140001,
+    "level": 80,
+    "PADamage": 350,
+    "MADamage": 410,
+    "PDDamage": 650,
+    "MDDamage": 450,
+    "acc": 140,
+    "eva": 28,
+    "exp": 850,
+    "maxHP": 27000,
+    "elemAttr": "S3",
+    "skills": {
+      "attack1": {
+        "type": 1,
+        "conMP": 1
+      }
+    }
+  },
+  "8140002": {
+    "id": 8140002,
+    "level": 83,
+    "PADamage": 365,
+    "MADamage": 400,
+    "PDDamage": 700,
+    "MDDamage": 465,
+    "acc": 150,
+    "eva": 27,
+    "exp": 1100,
+    "maxHP": 30000,
+    "elemAttr": "F2I3",
+    "skills": {
+      "attack1": {
+        "type": 0,
+        "conMP": 1
+      },
+      "attack2": {
+        "type": 0,
+        "elemAttr": "F",
+        "conMP": 1
+      }
+    }
+  },
+  "8140100": {
+    "id": 8140100,
+    "level": 82,
+    "PADamage": 360,
+    "MADamage": 390,
+    "PDDamage": 700,
+    "MDDamage": 500,
+    "acc": 160,
+    "eva": 30,
+    "exp": 0,
+    "maxHP": 29000,
+    "elemAttr": "H3",
+    "skills": {
+      "attack1": {
+        "type": 0,
+        "PADamage": 390
+      }
+    }
+  },
+  "8140101": {
+    "id": 8140101,
+    "level": 88,
+    "PADamage": 390,
+    "MADamage": 430,
+    "PDDamage": 800,
+    "MDDamage": 495,
+    "acc": 170,
+    "eva": 28,
+    "exp": 1600,
+    "maxHP": 37000,
+    "elemAttr": "H3",
+    "skills": {
+      "attack1": {
+        "type": 0,
+        "magic": 1
+      },
+      "attack2": {
+        "type": 2,
+        "magic": 1
+      }
+    }
+  },
+  "8140102": {
+    "id": 8140102,
+    "level": 88,
+    "PADamage": 390,
+    "MADamage": 430,
+    "PDDamage": 800,
+    "MDDamage": 495,
+    "acc": 170,
+    "eva": 28,
+    "exp": 1600,
+    "maxHP": 37000,
+    "elemAttr": "F2I3",
+    "skills": {
+      "attack1": {
+        "type": 0,
+        "magic": 1
+      },
+      "attack2": {
+        "type": 2,
+        "magic": 1
+      }
+    }
+  },
+  "8140103": {
+    "id": 8140103,
+    "level": 88,
+    "PADamage": 390,
+    "MADamage": 430,
+    "PDDamage": 800,
+    "MDDamage": 495,
+    "acc": 170,
+    "eva": 28,
+    "exp": 1600,
+    "maxHP": 37000,
+    "elemAttr": "I2F3",
+    "skills": {
+      "attack1": {
+        "type": 0,
+        "magic": 1
+      },
+      "attack2": {
+        "type": 2,
+        "magic": 1
+      }
+    }
+  },
+  "8140110": {
+    "id": 8140110,
+    "level": 85,
+    "PADamage": 380,
+    "MADamage": 0,
+    "PDDamage": 760,
+    "MDDamage": 465,
+    "acc": 160,
+    "eva": 27,
+    "exp": 1420,
+    "maxHP": 32000,
+    "elemAttr": "H2I3",
+    "skills": {
+      "attack1": {
+        "type": 0,
+        "PADamage": 400
+      }
+    }
+  },
+  "8140111": {
+    "id": 8140111,
+    "level": 88,
+    "PADamage": 395,
+    "MADamage": 0,
+    "PDDamage": 850,
+    "MDDamage": 480,
+    "acc": 170,
+    "eva": 28,
+    "exp": 1620,
+    "maxHP": 37000,
+    "elemAttr": "H2S2",
+    "skills": {
+      "attack1": {
+        "type": 0,
+        "PADamage": 415
+      },
+      "attack2": {
+        "type": 0,
+        "PADamage": 410
+      }
+    }
+  },
+  "8140200": {
+    "id": 8140200,
+    "level": 70,
+    "PADamage": 250,
+    "MADamage": 320,
+    "PDDamage": 250,
+    "MDDamage": 250,
+    "acc": 130,
+    "eva": 26,
+    "exp": 270,
+    "maxHP": 15000,
+    "elemAttr": "H3F3",
+    "skills": {
+      "attack1": {
+        "type": 1,
+        "magic": 1,
+        "elemAttr": "L",
+        "conMP": 2
+      }
+    }
+  },
+  "8140300": {
+    "id": 8140300,
+    "level": 76,
+    "PADamage": 300,
+    "MADamage": 350,
+    "PDDamage": 380,
+    "MDDamage": 400,
+    "acc": 140,
+    "eva": 27,
+    "exp": 370,
+    "maxHP": 18000,
+    "elemAttr": "H3",
+    "skills": {
+      "attack1": {
+        "type": 1,
+        "magic": 1,
+        "elemAttr": "L",
+        "conMP": 2
+      }
+    }
+  },
+  "8140500": {
+    "id": 8140500,
+    "level": 90,
+    "PADamage": 425,
+    "MADamage": 465,
+    "PDDamage": 835,
+    "MDDamage": 505,
+    "acc": 195,
+    "eva": 38,
+    "exp": 1800,
+    "maxHP": 45000,
+    "elemAttr": "F2I3",
+    "skills": {
+      "attack1": {
+        "type": 2,
+        "magic": 1,
+        "elemAttr": "F",
+        "conMP": 3
+      }
+    }
+  },
+  "8140555": {
+    "id": 8140555,
+    "level": 90,
+    "PADamage": 410,
+    "MADamage": 450,
+    "PDDamage": 840,
+    "MDDamage": 530,
+    "acc": 196,
+    "eva": 35,
+    "exp": 0,
+    "maxHP": 40500,
+    "elemAttr": "F2I2L2S2",
+    "skills": {
+      "attack1": {
+        "type": 0,
+        "PADamage": 500
+      }
+    }
+  },
+  "8140600": {
+    "id": 8140600,
+    "level": 92,
+    "PADamage": 420,
+    "MADamage": 460,
+    "PDDamage": 840,
+    "MDDamage": 540,
+    "acc": 197,
+    "eva": 38,
+    "exp": 2000,
+    "maxHP": 42500,
+    "elemAttr": "F2H3",
+    "skills": {
+      "attack1": {
+        "type": 0,
+        "magic": 1,
+        "conMP": 2
+      }
+    }
+  },
+  "8140700": {
+    "id": 8140700,
+    "level": 90,
+    "PADamage": 410,
+    "MADamage": 0,
+    "PDDamage": 820,
+    "MDDamage": 480,
+    "acc": 195,
+    "eva": 37,
+    "exp": 1780,
+    "maxHP": 40000,
+    "elemAttr": "F3I2",
+    "skills": {
+      "attack1": {
+        "type": 0,
+        "PADamage": 420
+      }
+    }
+  },
+  "8140701": {
+    "id": 8140701,
+    "level": 93,
+    "PADamage": 420,
+    "MADamage": 0,
+    "PDDamage": 830,
+    "MDDamage": 500,
+    "acc": 200,
+    "eva": 37,
+    "exp": 2100,
+    "maxHP": 49000,
+    "elemAttr": "F2I3",
+    "skills": {
+      "attack1": {
+        "type": 0,
+        "PADamage": 440
+      }
+    }
+  },
+  "8140702": {
+    "id": 8140702,
+    "level": 95,
+    "PADamage": 460,
+    "MADamage": 510,
+    "PDDamage": 840,
+    "MDDamage": 550,
+    "acc": 200,
+    "eva": 37,
+    "exp": 2280,
+    "maxHP": 50000,
+    "elemAttr": "L3S3",
+    "skills": {
+      "attack1": {
+        "type": 2,
+        "magic": 1,
+        "elemAttr": "L",
+        "conMP": 2
+      },
+      "attack2": {
+        "type": 0,
+        "magic": 1,
+        "conMP": 3
+      }
+    }
+  },
+  "8140703": {
+    "id": 8140703,
+    "level": 97,
+    "PADamage": 470,
+    "MADamage": 520,
+    "PDDamage": 850,
+    "MDDamage": 570,
+    "acc": 200,
+    "eva": 37,
+    "exp": 2500,
+    "maxHP": 55000,
+    "elemAttr": "F2I3",
+    "skills": {
+      "attack1": {
+        "type": 2,
+        "magic": 1,
+        "elemAttr": "F",
+        "conMP": 2
+      },
+      "attack2": {
+        "type": 0,
+        "magic": 1,
+        "conMP": 3
+      }
+    }
+  },
+  "8141000": {
+    "id": 8141000,
+    "level": 93,
+    "PADamage": 430,
+    "MADamage": 480,
+    "PDDamage": 830,
+    "MDDamage": 530,
+    "acc": 200,
+    "eva": 37,
+    "exp": 2100,
+    "maxHP": 50000,
+    "elemAttr": "F2L3",
+    "skills": {
+      "attack1": {
+        "type": 2,
+        "magic": 1,
+        "elemAttr": "F"
+      }
+    }
+  },
+  "8141100": {
+    "id": 8141100,
+    "level": 98,
+    "PADamage": 460,
+    "MADamage": 520,
+    "PDDamage": 845,
+    "MDDamage": 580,
+    "acc": 205,
+    "eva": 38,
+    "exp": 2600,
+    "maxHP": 58000,
+    "elemAttr": "F2L3",
+    "skills": {
+      "attack1": {
+        "type": 2,
+        "magic": 1,
+        "elemAttr": "F"
+      }
+    }
+  },
+  "8141300": {
+    "id": 8141300,
+    "level": 94,
+    "PADamage": 430,
+    "MADamage": 485,
+    "PDDamage": 830,
+    "MDDamage": 525,
+    "acc": 200,
+    "eva": 37,
+    "exp": 2200,
+    "maxHP": 46000,
+    "elemAttr": "S2F2",
+    "skills": {
+      "attack1": {
+        "type": 1,
+        "PADamage": 145
+      }
+    }
+  },
+  "8142000": {
+    "id": 8142000,
+    "level": 95,
+    "PADamage": 450,
+    "MADamage": 500,
+    "PDDamage": 835,
+    "MDDamage": 530,
+    "acc": 200,
+    "eva": 37,
+    "exp": 2300,
+    "maxHP": 53000,
+    "elemAttr": "H3I2F3",
+    "skills": {
+      "attack1": {
+        "type": 2,
+        "magic": 1,
+        "elemAttr": "I"
+      }
+    }
+  },
+  "8142100": {
+    "id": 8142100,
+    "level": 97,
+    "PADamage": 445,
+    "MADamage": 500,
+    "PDDamage": 830,
+    "MDDamage": 550,
+    "acc": 203,
+    "eva": 37,
+    "exp": 2500,
+    "maxHP": 49000,
+    "elemAttr": "F2L2",
+    "skills": {
+      "attack1": {
+        "type": 0,
+        "PADamage": 300
+      },
+      "attack2": {
+        "type": 0,
+        "PADamage": 300
+      }
+    }
+  },
+  "8143000": {
+    "id": 8143000,
+    "level": 99,
+    "PADamage": 465,
+    "MADamage": 530,
+    "PDDamage": 850,
+    "MDDamage": 570,
+    "acc": 205,
+    "eva": 38,
+    "exp": 2800,
+    "maxHP": 60000,
+    "elemAttr": "H3F3I1",
+    "skills": {
+      "attack1": {
+        "type": 3,
+        "magic": 1,
+        "elemAttr": "I",
+        "conMP": 2
+      }
+    }
+  },
+  "8150000": {
+    "id": 8150000,
+    "level": 100,
+    "PADamage": 500,
+    "MADamage": 720,
+    "PDDamage": 800,
+    "MDDamage": 800,
+    "acc": 180,
+    "eva": 40,
+    "exp": 3500,
+    "maxHP": 100000,
+    "boss": 1,
+    "elemAttr": "S1H3",
+    "skills": {
+      "attack1": {
+        "type": 2,
+        "magic": 1,
+        "conMP": 2
+      },
+      "attack2": {
+        "type": 0,
+        "magic": 1,
+        "conMP": 2
+      }
+    }
+  },
+  "8150100": {
+    "id": 8150100,
+    "level": 100,
+    "PADamage": 490,
+    "MADamage": 530,
+    "PDDamage": 850,
+    "MDDamage": 570,
+    "acc": 205,
+    "eva": 38,
+    "exp": 3000,
+    "maxHP": 56000,
+    "elemAttr": "F2",
+    "skills": {
+      "attack1": {
+        "type": 2,
+        "magic": 1,
+        "conMP": 2
+      }
+    }
+  },
+  "8150101": {
+    "id": 8150101,
+    "level": 102,
+    "PADamage": 500,
+    "MADamage": 535,
+    "PDDamage": 855,
+    "MDDamage": 575,
+    "acc": 205,
+    "eva": 38,
+    "exp": 3100,
+    "maxHP": 58500,
+    "elemAttr": "F2I2",
+    "skills": {
+      "attack1": {
+        "type": 0,
+        "magic": 1,
+        "conMP": 2
+      }
+    }
+  },
+  "8150200": {
+    "id": 8150200,
+    "level": 100,
+    "PADamage": 480,
+    "MADamage": 0,
+    "PDDamage": 800,
+    "MDDamage": 500,
+    "acc": 205,
+    "eva": 45,
+    "exp": 3000,
+    "maxHP": 56000,
+    "elemAttr": "S2",
+    "skills": {
+      "attack1": {
+        "type": 0,
+        "PADamage": 490
+      },
+      "attack2": {
+        "type": 0,
+        "PADamage": 500
+      }
+    }
+  },
+  "8150201": {
+    "id": 8150201,
+    "level": 105,
+    "PADamage": 495,
+    "MADamage": 0,
+    "PDDamage": 800,
+    "MDDamage": 500,
+    "acc": 205,
+    "eva": 45,
+    "exp": 3700,
+    "maxHP": 67000,
+    "elemAttr": "S2",
+    "skills": {
+      "attack1": {
+        "type": 0,
+        "PADamage": 505
+      },
+      "attack2": {
+        "type": 0,
+        "PADamage": 515
+      }
+    }
+  },
+  "8150300": {
+    "id": 8150300,
+    "level": 97,
+    "PADamage": 450,
+    "MADamage": 500,
+    "PDDamage": 830,
+    "MDDamage": 550,
+    "acc": 203,
+    "eva": 37,
+    "exp": 2500,
+    "maxHP": 53000,
+    "elemAttr": "F2I3",
+    "skills": {
+      "attack1": {
+        "type": 1,
+        "magic": 1,
+        "elemAttr": "F"
+      },
+      "attack2": {
+        "type": 0,
+        "magic": 1
+      }
+    }
+  },
+  "8150301": {
+    "id": 8150301,
+    "level": 101,
+    "PADamage": 495,
+    "MADamage": 535,
+    "PDDamage": 850,
+    "MDDamage": 570,
+    "acc": 205,
+    "eva": 38,
+    "exp": 3050,
+    "maxHP": 57000,
+    "elemAttr": "F3I2",
+    "skills": {
+      "attack1": {
+        "type": 1,
+        "magic": 1,
+        "elemAttr": "I"
+      },
+      "attack2": {
+        "type": 0,
+        "magic": 1
+      }
+    }
+  },
+  "8150302": {
+    "id": 8150302,
+    "level": 103,
+    "PADamage": 505,
+    "MADamage": 540,
+    "PDDamage": 900,
+    "MDDamage": 580,
+    "acc": 205,
+    "eva": 38,
+    "exp": 3150,
+    "maxHP": 60000,
+    "skills": {
+      "attack1": {
+        "type": 3,
+        "magic": 1
+      },
+      "attack2": {
+        "type": 0,
+        "magic": 1
+      }
+    }
+  },
+  "8160000": {
+    "id": 8160000,
+    "level": 108,
+    "PADamage": 550,
+    "MADamage": 600,
+    "PDDamage": 900,
+    "MDDamage": 650,
+    "acc": 210,
+    "eva": 37,
+    "exp": 4300,
+    "maxHP": 78000,
+    "elemAttr": "L2",
+    "skills": {
+      "attack1": {
+        "type": 0,
+        "PADamage": 600
+      },
+      "attack2": {
+        "type": 0,
+        "magic": 1,
+        "elemAttr": "L",
+        "conMP": 2
+      }
+    }
+  },
+  "8170000": {
+    "id": 8170000,
+    "level": 108,
+    "PADamage": 510,
+    "MADamage": 620,
+    "PDDamage": 850,
+    "MDDamage": 680,
+    "acc": 210,
+    "eva": 38,
+    "exp": 4100,
+    "maxHP": 70000,
+    "elemAttr": "H3I2",
+    "skills": {
+      "attack1": {
+        "type": 3,
+        "magic": 1,
+        "elemAttr": "I",
+        "conMP": 2
+      }
+    }
+  },
+  "8180000": {
+    "id": 8180000,
+    "level": 105,
+    "PADamage": 550,
+    "MADamage": 680,
+    "PDDamage": 900,
+    "MDDamage": 850,
+    "acc": 200,
+    "eva": 39,
+    "exp": 13500,
+    "maxHP": 3700000,
+    "boss": 1,
+    "elemAttr": "F2I3",
+    "skills": {
+      "attack1": {
+        "type": 0,
+        "magic": 1,
+        "elemAttr": "F",
+        "conMP": 1
+      },
+      "attack2": {
+        "type": 0,
+        "magic": 1,
+        "conMP": 1
+      },
+      "attack3": {
+        "type": 0,
+        "magic": 1,
+        "conMP": 1
+      }
+    }
+  },
+  "8180001": {
+    "id": 8180001,
+    "level": 105,
+    "PADamage": 550,
+    "MADamage": 680,
+    "PDDamage": 900,
+    "MDDamage": 850,
+    "acc": 200,
+    "eva": 39,
+    "exp": 13500,
+    "maxHP": 3700000,
+    "boss": 1,
+    "elemAttr": "L2S3",
+    "skills": {
+      "attack1": {
+        "type": 0,
+        "magic": 1,
+        "conMP": 3
+      },
+      "attack2": {
+        "type": 0,
+        "magic": 1,
+        "conMP": 2
+      },
+      "attack3": {
+        "type": 0,
+        "magic": 1,
+        "elemAttr": "L",
+        "conMP": 2
+      }
+    }
+  },
+  "8190000": {
+    "id": 8190000,
+    "level": 105,
+    "PADamage": 500,
+    "MADamage": 550,
+    "PDDamage": 750,
+    "MDDamage": 680,
+    "acc": 205,
+    "eva": 38,
+    "exp": 3800,
+    "maxHP": 68000,
+    "skills": {
+      "attack1": {
+        "type": 1,
+        "PADamage": 510
+      },
+      "attack2": {
+        "type": 0,
+        "PADamage": 515
+      }
+    }
+  },
+  "8190002": {
+    "id": 8190002,
+    "level": 110,
+    "PADamage": 580,
+    "MADamage": 650,
+    "PDDamage": 900,
+    "MDDamage": 600,
+    "acc": 210,
+    "eva": 38,
+    "exp": 8050,
+    "maxHP": 80000,
+    "skills": {
+      "attack1": {
+        "type": 3,
+        "PADamage": 600
+      },
+      "attack2": {
+        "type": 0,
+        "PADamage": 590
+      }
+    }
+  },
+  "8190003": {
+    "id": 8190003,
+    "level": 110,
+    "PADamage": 520,
+    "MADamage": 660,
+    "PDDamage": 800,
+    "MDDamage": 700,
+    "acc": 210,
+    "eva": 38,
+    "exp": 4500,
+    "maxHP": 80000,
+    "elemAttr": "H3",
+    "skills": {
+      "attack1": {
+        "type": 0,
+        "magic": 1
+      }
+    }
+  },
+  "8190004": {
+    "id": 8190004,
+    "level": 113,
+    "PADamage": 530,
+    "MADamage": 670,
+    "PDDamage": 810,
+    "MDDamage": 710,
+    "acc": 210,
+    "eva": 38,
+    "exp": 4750,
+    "maxHP": 85000,
+    "elemAttr": "H3",
+    "skills": {
+      "attack1": {
+        "type": 0,
+        "magic": 1
+      }
+    }
+  },
+  "8200000": {
+    "id": 8200000,
+    "level": 80,
+    "PADamage": 350,
+    "MADamage": 410,
+    "PDDamage": 650,
+    "MDDamage": 450,
+    "acc": 140,
+    "eva": 30,
+    "exp": 850,
+    "maxHP": 24000,
+    "skills": {
+      "attack1": {
+        "type": 0,
+        "magic": 1,
+        "conMP": 1
+      },
+      "attack2": {
+        "type": 1,
+        "PADamage": 380,
+        "conMP": 1
+      }
+    }
+  },
+  "8200001": {
+    "id": 8200001,
+    "level": 91,
+    "PADamage": 400,
+    "MADamage": 460,
+    "PDDamage": 650,
+    "MDDamage": 670,
+    "acc": 190,
+    "eva": 37,
+    "exp": 1900,
+    "maxHP": 41000,
+    "elemAttr": "S2L2",
+    "skills": {
+      "attack1": {
+        "type": 0,
+        "magic": 1,
+        "conMP": 1
+      }
+    }
+  },
+  "8200002": {
+    "id": 8200002,
+    "level": 94,
+    "PADamage": 420,
+    "MADamage": 510,
+    "PDDamage": 660,
+    "MDDamage": 720,
+    "acc": 195,
+    "eva": 37,
+    "exp": 2200,
+    "maxHP": 45000,
+    "elemAttr": "S2L2",
+    "skills": {
+      "attack1": {
+        "type": 0,
+        "magic": 1,
+        "conMP": 1
+      },
+      "attack2": {
+        "type": 1,
+        "PADamage": 480,
+        "conMP": 1
+      }
+    }
+  },
+  "8200003": {
+    "id": 8200003,
+    "level": 98,
+    "PADamage": 460,
+    "MADamage": 525,
+    "PDDamage": 870,
+    "MDDamage": 530,
+    "acc": 200,
+    "eva": 37,
+    "exp": 2600,
+    "maxHP": 53000,
+    "elemAttr": "S2L2",
+    "skills": {
+      "attack1": {
+        "type": 1,
+        "magic": 1,
+        "conMP": 1
+      },
+      "attack2": {
+        "type": 3,
+        "PADamage": 510,
+        "conMP": 1
+      }
+    }
+  },
+  "8200005": {
+    "id": 8200005,
+    "level": 106,
+    "PADamage": 520,
+    "MADamage": 560,
+    "PDDamage": 690,
+    "MDDamage": 750,
+    "acc": 205,
+    "eva": 37,
+    "exp": 3350,
+    "maxHP": 71000,
+    "elemAttr": "I2F3L3",
+    "skills": {
+      "attack1": {
+        "type": 0,
+        "magic": 1,
+        "conMP": 1
+      }
+    }
+  },
+  "8200006": {
+    "id": 8200006,
+    "level": 109,
+    "PADamage": 530,
+    "MADamage": 600,
+    "PDDamage": 700,
+    "MDDamage": 800,
+    "acc": 210,
+    "eva": 38,
+    "exp": 3600,
+    "maxHP": 79000,
+    "elemAttr": "I2F3L3",
+    "skills": {
+      "attack1": {
+        "type": 0,
+        "magic": 1,
+        "conMP": 1
+      },
+      "attack2": {
+        "type": 1,
+        "elemAttr": "I",
+        "PADamage": 550,
+        "conMP": 1
+      },
+      "attack3": {
+        "type": 0,
+        "PADamage": 580,
+        "conMP": 1
+      }
+    }
+  },
+  "8200007": {
+    "id": 8200007,
+    "level": 113,
+    "PADamage": 560,
+    "MADamage": 638,
+    "PDDamage": 940,
+    "MDDamage": 570,
+    "acc": 210,
+    "eva": 39,
+    "exp": 4500,
+    "maxHP": 90000,
+    "elemAttr": "I2F3L3",
+    "skills": {
+      "attack1": {
+        "type": 1,
+        "magic": 1,
+        "conMP": 1
+      },
+      "attack2": {
+        "type": 3,
+        "PADamage": 623,
+        "conMP": 1
+      }
+    }
+  },
+  "8200008": {
+    "id": 8200008,
+    "level": 116,
+    "PADamage": 575,
+    "MADamage": 655,
+    "PDDamage": 990,
+    "MDDamage": 590,
+    "acc": 215,
+    "eva": 40,
+    "exp": 4960,
+    "maxHP": 99000,
+    "elemAttr": "I2F3L3",
+    "skills": {
+      "attack1": {
+        "type": 1,
+        "magic": 1,
+        "conMP": 1
+      },
+      "attack2": {
+        "type": 0,
+        "PADamage": 650,
+        "conMP": 1
+      },
+      "attack3": {
+        "type": 2,
+        "PADamage": 600,
+        "conMP": 1
+      }
+    }
+  },
+  "8200009": {
+    "id": 8200009,
+    "level": 121,
+    "PADamage": 605,
+    "MADamage": 685,
+    "PDDamage": 740,
+    "MDDamage": 870,
+    "acc": 215,
+    "eva": 41,
+    "exp": 5750,
+    "maxHP": 115000,
+    "elemAttr": "F2S3",
+    "skills": {
+      "attack1": {
+        "type": 0,
+        "magic": 1,
+        "conMP": 1
+      }
+    }
+  },
+  "8200010": {
+    "id": 8200010,
+    "level": 124,
+    "PADamage": 620,
+    "MADamage": 700,
+    "PDDamage": 760,
+    "MDDamage": 910,
+    "acc": 220,
+    "eva": 43,
+    "exp": 6150,
+    "maxHP": 123000,
+    "elemAttr": "F2S3",
+    "skills": {
+      "attack1": {
+        "type": 0,
+        "magic": 1,
+        "conMP": 1
+      },
+      "attack2": {
+        "type": 1,
+        "elemAttr": "F",
+        "conMP": 1
+      },
+      "attack3": {
+        "type": 0,
+        "PADamage": 680,
+        "conMP": 1
+      }
+    }
+  },
+  "8200011": {
+    "id": 8200011,
+    "level": 128,
+    "PADamage": 635,
+    "MADamage": 715,
+    "PDDamage": 1030,
+    "MDDamage": 630,
+    "acc": 220,
+    "eva": 45,
+    "exp": 6670,
+    "maxHP": 133000,
+    "elemAttr": "F2S3",
+    "skills": {
+      "attack1": {
+        "type": 1,
+        "magic": 1,
+        "conMP": 1
+      },
+      "attack2": {
+        "type": 3,
+        "PADamage": 700,
+        "conMP": 1
+      }
+    }
+  },
+  "8200012": {
+    "id": 8200012,
+    "level": 131,
+    "PADamage": 645,
+    "MADamage": 725,
+    "PDDamage": 1060,
+    "MDDamage": 680,
+    "acc": 230,
+    "eva": 47,
+    "exp": 7060,
+    "maxHP": 141000,
+    "elemAttr": "F2S3",
+    "skills": {
+      "attack1": {
+        "type": 1,
+        "magic": 1,
+        "conMP": 1
+      },
+      "attack2": {
+        "type": 0,
+        "PADamage": 755,
+        "conMP": 1
+      },
+      "attack3": {
+        "type": 0,
+        "elemAttr": "F",
+        "PADamage": 700,
+        "conMP": 1
+      }
+    }
+  },
+  "8220000": {
+    "id": 8220000,
+    "level": 83,
+    "PADamage": 420,
+    "MADamage": 400,
+    "PDDamage": 600,
+    "MDDamage": 450,
+    "acc": 150,
+    "eva": 30,
+    "exp": 2800,
+    "maxHP": 87000,
+    "boss": 1,
+    "skills": {
+      "attack1": {
+        "type": 3,
+        "magic": 1,
+        "conMP": 3
+      }
+    }
+  },
+  "8220001": {
+    "id": 8220001,
+    "level": 90,
+    "PADamage": 450,
+    "MADamage": 430,
+    "PDDamage": 800,
+    "MDDamage": 500,
+    "acc": 195,
+    "eva": 38,
+    "exp": 5200,
+    "maxHP": 120000,
+    "boss": 1,
+    "skills": {
+      "attack1": {
+        "type": 2
+      }
+    }
+  },
+  "8220002": {
+    "id": 8220002,
+    "level": 85,
+    "PADamage": 430,
+    "MADamage": 430,
+    "PDDamage": 700,
+    "MDDamage": 465,
+    "acc": 160,
+    "eva": 27,
+    "exp": 3000,
+    "maxHP": 96000,
+    "boss": 1,
+    "skills": {
+      "attack1": {
+        "type": 2
+      }
+    }
+  },
+  "8220003": {
+    "id": 8220003,
+    "level": 120,
+    "PADamage": 620,
+    "MADamage": 710,
+    "PDDamage": 950,
+    "MDDamage": 1050,
+    "acc": 230,
+    "eva": 41,
+    "exp": 47355,
+    "maxHP": 13400000,
+    "boss": 1,
+    "elemAttr": "F2I2",
+    "skills": {
+      "attack1": {
+        "type": 0,
+        "magic": 1,
+        "elemAttr": "I",
+        "conMP": 1
+      },
+      "attack2": {
+        "type": 0,
+        "magic": 1,
+        "elemAttr": "F",
+        "conMP": 1
+      }
+    }
+  },
+  "8220004": {
+    "id": 8220004,
+    "level": 121,
+    "PADamage": 630,
+    "MADamage": 715,
+    "PDDamage": 950,
+    "MDDamage": 1050,
+    "acc": 218,
+    "eva": 42,
+    "exp": 20850,
+    "maxHP": 5900000,
+    "boss": 1,
+    "elemAttr": "F2I2L2S2",
+    "skills": {
+      "attack1": {
+        "type": 2,
+        "PADamage": 670,
+        "conMP": 10
+      },
+      "attack2": {
+        "type": 0,
+        "magic": 1,
+        "conMP": 20
+      }
+    }
+  },
+  "8220005": {
+    "id": 8220005,
+    "level": 131,
+    "PADamage": 665,
+    "MADamage": 735,
+    "PDDamage": 1020,
+    "MDDamage": 1110,
+    "acc": 232,
+    "eva": 47,
+    "exp": 26850,
+    "maxHP": 7600000,
+    "boss": 1,
+    "elemAttr": "I2L3",
+    "skills": {
+      "attack1": {
+        "type": 0,
+        "magic": 1,
+        "elemAttr": "I",
+        "conMP": 1
+      },
+      "attack2": {
+        "type": 0,
+        "magic": 1,
+        "elemAttr": "F",
+        "conMP": 1
+      }
+    }
+  },
+  "8220006": {
+    "id": 8220006,
+    "level": 141,
+    "PADamage": 675,
+    "MADamage": 755,
+    "PDDamage": 1100,
+    "MDDamage": 1170,
+    "acc": 239,
+    "eva": 49,
+    "exp": 32865,
+    "maxHP": 9300000,
+    "boss": 1,
+    "elemAttr": "F2S3",
+    "skills": {
+      "attack1": {
+        "type": 4,
+        "PADamage": 720,
+        "conMP": 1
+      },
+      "attack2": {
+        "type": 0,
+        "magic": 1,
+        "elemAttr": "F",
+        "conMP": 1
+      }
+    }
+  },
+  "8500001": {
+    "id": 8500001,
+    "level": 125,
+    "PADamage": 630,
+    "MADamage": 480,
+    "PDDamage": 1000,
+    "MDDamage": 1100,
+    "acc": 250,
+    "eva": 12,
+    "exp": 596000,
+    "maxHP": 23000000,
+    "boss": 1,
+    "skills": {
+      "attack1": {
+        "type": 0,
+        "magic": 1,
+        "elemAttr": "L",
+        "conMP": 10
+      },
+      "attack2": {
+        "type": 0,
+        "magic": 1,
+        "elemAttr": "I",
+        "conMP": 100
+      },
+      "attack3": {
+        "type": 0,
+        "magic": 1,
+        "elemAttr": "L",
+        "conMP": 10
+      },
+      "attack4": {
+        "type": 0,
+        "magic": 1,
+        "elemAttr": "F",
+        "conMP": 100
+      }
+    }
+  },
+  "8500002": {
+    "id": 8500002,
+    "level": 125,
+    "PADamage": 800,
+    "MADamage": 1000,
+    "PDDamage": 800,
+    "MDDamage": 1200,
+    "acc": 230,
+    "eva": 40,
+    "exp": 970000,
+    "maxHP": 1590000,
+    "boss": 1
+  },
+  "8500003": {
+    "id": 8500003,
+    "level": 71,
+    "PADamage": 500,
+    "MADamage": 0,
+    "PDDamage": 300,
+    "MDDamage": 300,
+    "acc": 999,
+    "eva": 23,
+    "exp": 0,
+    "maxHP": 10000,
+    "boss": 1,
+    "elemAttr": "F2I3",
+    "skills": {
+      "attack1": {
+        "type": 0,
+        "PADamage": 1000
+      }
+    }
+  },
+  "8500004": {
+    "id": 8500004,
+    "level": 80,
+    "PADamage": 500,
+    "MADamage": 0,
+    "PDDamage": 300,
+    "MDDamage": 500,
+    "acc": 999,
+    "eva": 15,
+    "exp": 0,
+    "maxHP": 10000,
+    "boss": 1,
+    "elemAttr": "F2I3",
+    "skills": {
+      "attack1": {
+        "type": 0,
+        "PADamage": 700
+      }
+    }
+  },
+  "8510000": {
+    "id": 8510000,
+    "level": 110,
+    "PADamage": 790,
+    "MADamage": 780,
+    "PDDamage": 1150,
+    "MDDamage": 1270,
+    "acc": 245,
+    "eva": 14,
+    "exp": 1300000,
+    "maxHP": 30000000,
+    "boss": 1,
+    "elemAttr": "F3",
+    "skills": {
+      "attack1": {
+        "type": 0,
+        "magic": 1,
+        "elemAttr": "F",
+        "conMP": 10
+      },
+      "attack2": {
+        "type": 3,
+        "magic": 1,
+        "conMP": 10
+      },
+      "attack3": {
+        "type": 0,
+        "magic": 1,
+        "conMP": 10
+      }
+    }
+  },
+  "8510100": {
+    "id": 8510100,
+    "level": 75,
+    "PADamage": 500,
+    "MADamage": 0,
+    "PDDamage": 300,
+    "MDDamage": 400,
+    "acc": 220,
+    "eva": 20,
+    "exp": 0,
+    "maxHP": 10000,
+    "boss": 1,
+    "elemAttr": "F1L1",
+    "skills": {
+      "attack1": {
+        "type": 0,
+        "PADamage": 1100
+      }
+    }
+  },
+  "8520000": {
+    "id": 8520000,
+    "level": 110,
+    "PADamage": 670,
+    "MADamage": 670,
+    "PDDamage": 1000,
+    "MDDamage": 1100,
+    "acc": 245,
+    "eva": 14,
+    "exp": 900000,
+    "maxHP": 24000000,
+    "boss": 1,
+    "elemAttr": "F3",
+    "skills": {
+      "attack1": {
+        "type": 0,
+        "magic": 1,
+        "elemAttr": "F",
+        "conMP": 10
+      },
+      "attack2": {
+        "type": 3,
+        "magic": 1,
+        "conMP": 10
+      },
+      "attack3": {
+        "type": 0,
+        "magic": 1,
+        "conMP": 10
+      }
+    }
+  },
+  "8800000": {
+    "id": 8800000,
+    "level": 140,
+    "PADamage": 980,
+    "MADamage": 530,
+    "PDDamage": 1000,
+    "MDDamage": 1100,
+    "acc": 250,
+    "eva": 12,
+    "exp": 0,
+    "maxHP": 66000000,
+    "boss": 1,
+    "skills": {
+      "attack1": {
+        "type": 0,
+        "magic": 1,
+        "conMP": 100
+      },
+      "attack2": {
+        "type": 0,
+        "magic": 1,
+        "elemAttr": "L",
+        "conMP": 10
+      },
+      "attack3": {
+        "type": 3,
+        "PADamage": 560,
+        "conMP": 10
+      }
+    }
+  },
+  "8800001": {
+    "id": 8800001,
+    "level": 140,
+    "PADamage": 1040,
+    "MADamage": 550,
+    "PDDamage": 1100,
+    "MDDamage": 1300,
+    "acc": 250,
+    "eva": 14,
+    "exp": 0,
+    "maxHP": 88000000,
+    "boss": 1,
+    "skills": {
+      "attack1": {
+        "type": 0,
+        "magic": 1,
+        "conMP": 100
+      },
+      "attack2": {
+        "type": 0,
+        "magic": 1,
+        "elemAttr": "L",
+        "conMP": 10
+      },
+      "attack3": {
+        "type": 3,
+        "PADamage": 580,
+        "conMP": 10
+      }
+    }
+  },
+  "8800002": {
+    "id": 8800002,
+    "level": 140,
+    "PADamage": 1080,
+    "MADamage": 570,
+    "PDDamage": 1200,
+    "MDDamage": 1500,
+    "acc": 250,
+    "eva": 16,
+    "exp": 7000000,
+    "maxHP": 110000000,
+    "boss": 1,
+    "skills": {
+      "attack1": {
+        "type": 0,
+        "magic": 1,
+        "conMP": 100
+      },
+      "attack2": {
+        "type": 0,
+        "magic": 1,
+        "elemAttr": "L",
+        "conMP": 10
+      },
+      "attack3": {
+        "type": 3,
+        "PADamage": 600,
+        "conMP": 10
+      }
+    }
+  },
+  "8800003": {
+    "id": 8800003,
+    "level": 140,
+    "PADamage": 505,
+    "MADamage": 460,
+    "PDDamage": 800,
+    "MDDamage": 800,
+    "acc": 200,
+    "eva": 14,
+    "exp": 1344000,
+    "maxHP": 33000000,
+    "boss": 1,
+    "skills": {
+      "attack1": {
+        "type": 0,
+        "magic": 1,
+        "conMP": 10
+      },
+      "attack2": {
+        "type": 0,
+        "magic": 1,
+        "conMP": 10
+      }
+    }
+  },
+  "8800004": {
+    "id": 8800004,
+    "level": 140,
+    "PADamage": 505,
+    "MADamage": 460,
+    "PDDamage": 800,
+    "MDDamage": 800,
+    "acc": 200,
+    "eva": 14,
+    "exp": 1344000,
+    "maxHP": 33000000,
+    "boss": 1,
+    "skills": {
+      "attack1": {
+        "type": 0,
+        "magic": 1,
+        "conMP": 10
+      },
+      "attack2": {
+        "type": 0,
+        "magic": 1,
+        "conMP": 10
+      }
+    }
+  },
+  "8800005": {
+    "id": 8800005,
+    "level": 140,
+    "PADamage": 530,
+    "MADamage": 485,
+    "PDDamage": 800,
+    "MDDamage": 950,
+    "acc": 200,
+    "eva": 14,
+    "exp": 896000,
+    "maxHP": 22000000,
+    "boss": 1,
+    "elemAttr": "F2I3S1",
+    "skills": {
+      "attack1": {
+        "type": 0,
+        "magic": 1,
+        "elemAttr": "F",
+        "conMP": 10
+      }
+    }
+  },
+  "8800006": {
+    "id": 8800006,
+    "level": 140,
+    "PADamage": 530,
+    "MADamage": 485,
+    "PDDamage": 800,
+    "MDDamage": 950,
+    "acc": 200,
+    "eva": 14,
+    "exp": 896000,
+    "maxHP": 22000000,
+    "boss": 1,
+    "elemAttr": "I2L2F3",
+    "skills": {
+      "attack1": {
+        "type": 3,
+        "PADamage": 515,
+        "conMP": 10
+      },
+      "attack2": {
+        "type": 0,
+        "magic": 1,
+        "elemAttr": "L",
+        "conMP": 10
+      }
+    }
+  },
+  "8800007": {
+    "id": 8800007,
+    "level": 140,
+    "PADamage": 550,
+    "MADamage": 515,
+    "PDDamage": 1050,
+    "MDDamage": 1050,
+    "acc": 200,
+    "eva": 14,
+    "exp": 1120000,
+    "maxHP": 27500000,
+    "boss": 1
+  },
+  "8800008": {
+    "id": 8800008,
+    "level": 140,
+    "PADamage": 550,
+    "MADamage": 515,
+    "PDDamage": 1050,
+    "MDDamage": 1050,
+    "acc": 200,
+    "eva": 14,
+    "exp": 1120000,
+    "maxHP": 30000000,
+    "boss": 1
+  },
+  "8800009": {
+    "id": 8800009,
+    "level": 140,
+    "PADamage": 510,
+    "MADamage": 500,
+    "PDDamage": 1050,
+    "MDDamage": 750,
+    "acc": 200,
+    "eva": 14,
+    "exp": 1030400,
+    "maxHP": 25300000,
+    "boss": 1,
+    "skills": {
+      "attack1": {
+        "type": 0,
+        "PADamage": 530
+      },
+      "attack2": {
+        "type": 1,
+        "PADamage": 500,
+        "conMP": 10
+      }
+    }
+  },
+  "8800010": {
+    "id": 8800010,
+    "level": 140,
+    "PADamage": 510,
+    "MADamage": 500,
+    "PDDamage": 1050,
+    "MDDamage": 750,
+    "acc": 200,
+    "eva": 14,
+    "exp": 1030400,
+    "maxHP": 25300000,
+    "boss": 1,
+    "skills": {
+      "attack1": {
+        "type": 0,
+        "PADamage": 530
+      },
+      "attack2": {
+        "type": 1,
+        "PADamage": 500,
+        "conMP": 10
+      }
+    }
+  },
+  "8810000": {
+    "id": 8810000,
+    "level": 160,
+    "PADamage": 1350,
+    "MADamage": 820,
+    "PDDamage": 1760,
+    "MDDamage": 1840,
+    "acc": 250,
+    "eva": 18,
+    "exp": 9732030,
+    "maxHP": 330000000,
+    "boss": 1,
+    "skills": {
+      "attack1": {
+        "type": 0,
+        "magic": 1,
+        "elemAttr": "I",
+        "conMP": 1
+      },
+      "attack2": {
+        "type": 3,
+        "elemAttr": "I",
+        "conMP": 1
+      },
+      "attack3": {
+        "type": 4,
+        "elemAttr": "I",
+        "conMP": 1
+      }
+    }
+  },
+  "8810001": {
+    "id": 8810001,
+    "level": 160,
+    "PADamage": 1350,
+    "MADamage": 820,
+    "PDDamage": 1760,
+    "MDDamage": 1840,
+    "acc": 250,
+    "eva": 18,
+    "exp": 9732030,
+    "maxHP": 330000000,
+    "boss": 1,
+    "skills": {
+      "attack1": {
+        "type": 0,
+        "magic": 1,
+        "elemAttr": "L",
+        "conMP": 1
+      },
+      "attack2": {
+        "type": 3,
+        "magic": 1,
+        "elemAttr": "L",
+        "conMP": 1
+      },
+      "attack3": {
+        "type": 0,
+        "magic": 1,
+        "elemAttr": "L",
+        "conMP": 1
+      }
+    }
+  },
+  "8810002": {
+    "id": 8810002,
+    "level": 160,
+    "PADamage": 1350,
+    "MADamage": 820,
+    "PDDamage": 1760,
+    "MDDamage": 1840,
+    "acc": 250,
+    "eva": 43,
+    "exp": 13902900,
+    "maxHP": 330000000,
+    "boss": 1,
+    "skills": {
+      "attack1": {
+        "type": 0,
+        "magic": 1,
+        "elemAttr": "I",
+        "conMP": 1
+      },
+      "attack2": {
+        "type": 4,
+        "elemAttr": "I",
+        "conMP": 1
+      },
+      "attack3": {
+        "type": 0,
+        "elemAttr": "I",
+        "PADamage": 820,
+        "conMP": 1
+      }
+    }
+  },
+  "8810003": {
+    "id": 8810003,
+    "level": 160,
+    "PADamage": 1540,
+    "MADamage": 840,
+    "PDDamage": 1840,
+    "MDDamage": 1920,
+    "acc": 250,
+    "eva": 45,
+    "exp": 20673700,
+    "maxHP": 490000000,
+    "boss": 1,
+    "skills": {
+      "attack1": {
+        "type": 0,
+        "magic": 1,
+        "elemAttr": "F",
+        "conMP": 1
+      },
+      "attack2": {
+        "type": 3,
+        "elemAttr": "F",
+        "conMP": 1
+      },
+      "attack3": {
+        "type": 0,
+        "magic": 1,
+        "elemAttr": "F",
+        "conMP": 1
+      }
+    }
+  },
+  "8810004": {
+    "id": 8810004,
+    "level": 160,
+    "PADamage": 1350,
+    "MADamage": 820,
+    "PDDamage": 1760,
+    "MDDamage": 1840,
+    "acc": 250,
+    "eva": 43,
+    "exp": 13902900,
+    "maxHP": 330000000,
+    "boss": 1,
+    "skills": {
+      "attack1": {
+        "type": 0,
+        "magic": 1,
+        "elemAttr": "L",
+        "conMP": 1
+      },
+      "attack2": {
+        "type": 3,
+        "magic": 1,
+        "elemAttr": "L",
+        "conMP": 1
+      },
+      "attack3": {
+        "type": 0,
+        "magic": 1,
+        "elemAttr": "L",
+        "conMP": 1
+      }
+    }
+  },
+  "8810005": {
+    "id": 8810005,
+    "level": 160,
+    "PADamage": 960,
+    "MADamage": 525,
+    "PDDamage": 1350,
+    "MDDamage": 1450,
+    "acc": 230,
+    "eva": 40,
+    "exp": 9689900,
+    "maxHP": 230000000,
+    "boss": 1,
+    "skills": {
+      "attack1": {
+        "type": 0,
+        "magic": 1,
+        "conMP": 10
+      }
+    }
+  },
+  "8810006": {
+    "id": 8810006,
+    "level": 160,
+    "PADamage": 960,
+    "MADamage": 525,
+    "PDDamage": 1350,
+    "MDDamage": 1450,
+    "acc": 230,
+    "eva": 40,
+    "exp": 9689900,
+    "maxHP": 230000000,
+    "boss": 1,
+    "skills": {
+      "attack1": {
+        "type": 0,
+        "magic": 1,
+        "conMP": 5
+      }
+    }
+  },
+  "8810007": {
+    "id": 8810007,
+    "level": 160,
+    "PADamage": 940,
+    "MADamage": 550,
+    "PDDamage": 1440,
+    "MDDamage": 1640,
+    "acc": 210,
+    "eva": 42,
+    "exp": 11375100,
+    "maxHP": 270000000,
+    "boss": 1
+  },
+  "8810008": {
+    "id": 8810008,
+    "level": 160,
+    "PADamage": 1160,
+    "MADamage": 560,
+    "PDDamage": 1380,
+    "MDDamage": 1580,
+    "acc": 210,
+    "eva": 42,
+    "exp": 5476900,
+    "maxHP": 130000000,
+    "boss": 1,
+    "skills": {
+      "attack1": {
+        "type": 0,
+        "PADamage": 950
+      },
+      "attack2": {
+        "type": 0,
+        "PADamage": 950
+      },
+      "attack3": {
+        "type": 0,
+        "PADamage": 950
+      },
+      "attack4": {
+        "type": 0,
+        "PADamage": 950
+      }
+    }
+  },
+  "8810009": {
+    "id": 8810009,
+    "level": 160,
+    "PADamage": 1750,
+    "MADamage": 570,
+    "PDDamage": 1430,
+    "MDDamage": 1630,
+    "acc": 210,
+    "eva": 40,
+    "exp": 3370400,
+    "maxHP": 80000000,
+    "boss": 1,
+    "skills": {
+      "attack1": {
+        "type": 0,
+        "PADamage": 850
+      }
+    }
+  },
+  "9001000": {
+    "id": 9001000,
+    "level": 80,
+    "PADamage": 330,
+    "MADamage": 0,
+    "PDDamage": 530,
+    "MDDamage": 115,
+    "acc": 150,
+    "eva": 15,
+    "exp": 2400,
+    "maxHP": 150000,
+    "boss": 1,
+    "skills": {
+      "attack1": {
+        "type": 0,
+        "PADamage": 380,
+        "conMP": 3
+      },
+      "attack2": {
+        "type": 0,
+        "PADamage": 410,
+        "conMP": 5
+      }
+    }
+  },
+  "9001001": {
+    "id": 9001001,
+    "level": 80,
+    "PADamage": 170,
+    "MADamage": 335,
+    "PDDamage": 120,
+    "MDDamage": 350,
+    "acc": 100,
+    "eva": 10,
+    "exp": 2400,
+    "maxHP": 90000,
+    "boss": 1,
+    "skills": {
+      "attack1": {
+        "type": 0,
+        "magic": 1,
+        "conMP": 3
+      },
+      "attack2": {
+        "type": 0,
+        "magic": 1,
+        "conMP": 3
+      },
+      "attack3": {
+        "type": 0,
+        "magic": 1,
+        "conMP": 3
+      }
+    }
+  },
+  "9001002": {
+    "id": 9001002,
+    "level": 80,
+    "PADamage": 260,
+    "MADamage": 0,
+    "PDDamage": 260,
+    "MDDamage": 220,
+    "acc": 210,
+    "eva": 25,
+    "exp": 2400,
+    "maxHP": 120000,
+    "boss": 1,
+    "skills": {
+      "attack1": {
+        "type": 2,
+        "PADamage": 300,
+        "conMP": 3
+      },
+      "attack2": {
+        "type": 2,
+        "PADamage": 350,
+        "conMP": 5
+      }
+    }
+  },
+  "9001003": {
+    "id": 9001003,
+    "level": 80,
+    "PADamage": 260,
+    "MADamage": 0,
+    "PDDamage": 260,
+    "MDDamage": 220,
+    "acc": 180,
+    "eva": 32,
+    "exp": 2400,
+    "maxHP": 120000,
+    "boss": 1,
+    "skills": {
+      "attack1": {
+        "type": 2,
+        "PADamage": 300,
+        "conMP": 3
+      },
+      "attack2": {
+        "type": 2,
+        "PADamage": 350,
+        "conMP": 5
+      }
+    }
+  },
+  "9001008": {
+    "id": 9001008,
+    "level": 80,
+    "PADamage": 140,
+    "MADamage": 0,
+    "PDDamage": 220,
+    "MDDamage": 115,
+    "acc": 150,
+    "eva": 15,
+    "exp": 0,
+    "maxHP": 70000,
+    "skills": {
+      "attack1": {
+        "type": 1,
+        "PADamage": 150
+      },
+      "attack2": {
+        "type": 0,
+        "PADamage": 170
+      },
+      "attack3": {
+        "type": 1,
+        "PADamage": 130
+      },
+      "attack4": {
+        "type": 0,
+        "PADamage": 190
+      }
+    }
+  },
+  "9300003": {
+    "id": 9300003,
+    "level": 40,
+    "PADamage": 130,
+    "MADamage": 165,
+    "PDDamage": 160,
+    "MDDamage": 160,
+    "acc": 140,
+    "eva": 10,
+    "exp": 800,
+    "maxHP": 8000,
+    "elemAttr": "I2F2L2H2",
+    "skills": {
+      "attack1": {
+        "type": 0,
+        "PADamage": 165,
+        "conMP": 2
+      }
+    }
+  },
+  "9300005": {
+    "id": 9300005,
+    "level": 32,
+    "PADamage": 112,
+    "MADamage": 0,
+    "PDDamage": 85,
+    "MDDamage": 95,
+    "acc": 80,
+    "eva": 13,
+    "exp": 260,
+    "maxHP": 3700
+  },
+  "9300008": {
+    "id": 9300008,
+    "level": 43,
+    "PADamage": 130,
+    "MADamage": 0,
+    "PDDamage": 470,
+    "MDDamage": 70,
+    "acc": 120,
+    "eva": 18,
+    "exp": 340,
+    "maxHP": 7100
+  },
+  "9300014": {
+    "id": 9300014,
+    "level": 43,
+    "PADamage": 130,
+    "MADamage": 0,
+    "PDDamage": 70,
+    "MDDamage": 470,
+    "acc": 120,
+    "eva": 18,
+    "exp": 340,
+    "maxHP": 6500,
+    "elemAttr": "I2L2F2H2"
+  },
+  "9300019": {
+    "id": 9300019,
+    "level": 65,
+    "PADamage": 285,
+    "MADamage": 0,
+    "PDDamage": 380,
+    "MDDamage": 560,
+    "acc": 145,
+    "eva": 23,
+    "exp": 1120,
+    "maxHP": 40000,
+    "elemAttr": "I2F2L2S2",
+    "skills": {
+      "attack1": {
+        "type": 1,
+        "PADamage": 135
+      }
+    }
+  },
+  "9300020": {
+    "id": 9300020,
+    "level": 63,
+    "PADamage": 285,
+    "MADamage": 0,
+    "PDDamage": 350,
+    "MDDamage": 560,
+    "acc": 140,
+    "eva": 23,
+    "exp": 520,
+    "maxHP": 16000,
+    "elemAttr": "I2F2L2S2",
+    "skills": {
+      "attack1": {
+        "type": 1,
+        "PADamage": 135
+      }
+    }
+  },
+  "9300022": {
+    "id": 9300022,
+    "level": 66,
+    "PADamage": 250,
+    "MADamage": 320,
+    "PDDamage": 550,
+    "MDDamage": 320,
+    "acc": 145,
+    "eva": 25,
+    "exp": 1060,
+    "maxHP": 40000,
+    "elemAttr": "H3S2",
+    "skills": {
+      "attack1": {
+        "type": 0,
+        "magic": 1,
+        "conMP": 1
+      }
+    }
+  },
+  "9300023": {
+    "id": 9300023,
+    "level": 66,
+    "PADamage": 250,
+    "MADamage": 320,
+    "PDDamage": 550,
+    "MDDamage": 320,
+    "acc": 145,
+    "eva": 25,
+    "exp": 1060,
+    "maxHP": 40000,
+    "elemAttr": "H3S2",
+    "skills": {
+      "attack1": {
+        "type": 1,
+        "magic": 1,
+        "conMP": 1
+      }
+    }
+  },
+  "9300024": {
+    "id": 9300024,
+    "level": 67,
+    "PADamage": 310,
+    "MADamage": 0,
+    "PDDamage": 370,
+    "MDDamage": 800,
+    "acc": 145,
+    "eva": 21,
+    "exp": 1100,
+    "maxHP": 35000,
+    "elemAttr": "I2F2L2S2H2",
+    "skills": {
+      "attack1": {
+        "type": 0,
+        "PADamage": 270
+      }
+    }
+  },
+  "9300025": {
+    "id": 9300025,
+    "level": 68,
+    "PADamage": 260,
+    "MADamage": 360,
+    "PDDamage": 340,
+    "MDDamage": 570,
+    "acc": 140,
+    "eva": 20,
+    "exp": 1150,
+    "maxHP": 35000,
+    "elemAttr": "I2F2L2S2H2",
+    "skills": {
+      "attack1": {
+        "type": 4,
+        "magic": 1,
+        "conMP": 2
+      }
+    }
+  },
+  "9300026": {
+    "id": 9300026,
+    "level": 62,
+    "PADamage": 220,
+    "MADamage": 0,
+    "PDDamage": 250,
+    "MDDamage": 250,
+    "acc": 130,
+    "eva": 26,
+    "exp": 430,
+    "maxHP": 15000
+  },
+  "9300027": {
+    "id": 9300027,
+    "level": 23,
+    "PADamage": 95,
+    "MADamage": 0,
+    "PDDamage": 30,
+    "MDDamage": 40,
+    "acc": 55,
+    "eva": 8,
+    "exp": 170,
+    "maxHP": 1000
+  },
+  "9300028": {
+    "id": 9300028,
+    "level": 115,
+    "PADamage": 700,
+    "MADamage": 700,
+    "PDDamage": 1100,
+    "MDDamage": 1200,
+    "acc": 230,
+    "eva": 18,
+    "exp": 150000,
+    "maxHP": 1700000,
+    "boss": 1,
+    "elemAttr": "I2F2L2H2S2",
+    "skills": {
+      "attack1": {
+        "type": 0,
+        "magic": 1,
+        "elemAttr": "F",
+        "conMP": 3
+      },
+      "attack2": {
+        "type": 0,
+        "magic": 1,
+        "elemAttr": "L",
+        "conMP": 3
+      },
+      "attack3": {
+        "type": 3,
+        "magic": 1,
+        "conMP": 3
+      }
+    }
+  },
+  "9300139": {
+    "id": 9300139,
+    "level": 81,
+    "PADamage": 400,
+    "MADamage": 400,
+    "PDDamage": 700,
+    "MDDamage": 990,
+    "acc": 170,
+    "eva": 28,
+    "exp": 12000,
+    "maxHP": 660000,
+    "boss": 1,
+    "skills": {
+      "attack1": {
+        "type": 1,
+        "magic": 1,
+        "conMP": 2
+      },
+      "attack2": {
+        "type": 0,
+        "PADamage": 420,
+        "conMP": 2
+      }
+    }
+  },
+  "9300140": {
+    "id": 9300140,
+    "level": 84,
+    "PADamage": 440,
+    "MADamage": 440,
+    "PDDamage": 800,
+    "MDDamage": 990,
+    "acc": 190,
+    "eva": 33,
+    "exp": 25000,
+    "maxHP": 850000,
+    "boss": 1,
+    "elemAttr": "L2S2",
+    "skills": {
+      "attack1": {
+        "type": 1,
+        "magic": 1,
+        "conMP": 2
+      },
+      "attack2": {
+        "type": 0,
+        "PADamage": 460,
+        "conMP": 2
+      }
+    }
+  },
+  "9400000": {
+    "id": 9400000,
+    "level": 25,
+    "PADamage": 90,
+    "MADamage": 0,
+    "PDDamage": 30,
+    "MDDamage": 30,
+    "acc": 50,
+    "eva": 10,
+    "exp": 42,
+    "maxHP": 550,
+    "elemAttr": "L3"
+  },
+  "9400001": {
+    "id": 9400001,
+    "level": 30,
+    "PADamage": 95,
+    "MADamage": 105,
+    "PDDamage": 85,
+    "MDDamage": 65,
+    "acc": 65,
+    "eva": 12,
+    "exp": 55,
+    "maxHP": 900,
+    "elemAttr": "I3"
+  },
+  "9400002": {
+    "id": 9400002,
+    "level": 30,
+    "PADamage": 98,
+    "MADamage": 0,
+    "PDDamage": 80,
+    "MDDamage": 70,
+    "acc": 60,
+    "eva": 12,
+    "exp": 55,
+    "maxHP": 920,
+    "elemAttr": "F3"
+  },
+  "9400003": {
+    "id": 9400003,
+    "level": 60,
+    "PADamage": 165,
+    "MADamage": 0,
+    "PDDamage": 200,
+    "MDDamage": 220,
+    "acc": 160,
+    "eva": 25,
+    "exp": 220,
+    "maxHP": 7100,
+    "elemAttr": "H3F3I3"
+  },
+  "9400004": {
+    "id": 9400004,
+    "level": 45,
+    "PADamage": 145,
+    "MADamage": 0,
+    "PDDamage": 125,
+    "MDDamage": 175,
+    "acc": 180,
+    "eva": 20,
+    "exp": 110,
+    "maxHP": 2600,
+    "elemAttr": "L3"
+  },
+  "9400011": {
+    "id": 9400011,
+    "level": 40,
+    "PADamage": 120,
+    "MADamage": 145,
+    "PDDamage": 140,
+    "MDDamage": 160,
+    "acc": 150,
+    "eva": 25,
+    "exp": 93,
+    "maxHP": 1920,
+    "elemAttr": "F2I3",
+    "skills": {
+      "attack1": {
+        "type": 0,
+        "PADamage": 130
+      },
+      "attack2": {
+        "type": 0,
+        "magic": 1,
+        "elemAttr": "F"
+      }
+    }
+  },
+  "9400012": {
+    "id": 9400012,
+    "level": 60,
+    "PADamage": 190,
+    "MADamage": 250,
+    "PDDamage": 200,
+    "MDDamage": 230,
+    "acc": 190,
+    "eva": 22,
+    "exp": 220,
+    "maxHP": 7100,
+    "elemAttr": "I2F3",
+    "skills": {
+      "attack1": {
+        "type": 0,
+        "magic": 1,
+        "elemAttr": "I"
+      },
+      "attack2": {
+        "type": 1,
+        "PADamage": 200
+      }
+    }
+  },
+  "9400013": {
+    "id": 9400013,
+    "level": 100,
+    "PADamage": 480,
+    "MADamage": 540,
+    "PDDamage": 810,
+    "MDDamage": 580,
+    "acc": 210,
+    "eva": 34,
+    "exp": 3200,
+    "maxHP": 68000,
+    "elemAttr": "S1H3",
+    "skills": {
+      "attack1": {
+        "type": 0
+      },
+      "attack2": {
+        "type": 0
+      }
+    }
+  },
+  "9400014": {
+    "id": 9400014,
+    "level": 115,
+    "PADamage": 1000,
+    "MADamage": 800,
+    "PDDamage": 1400,
+    "MDDamage": 1300,
+    "acc": 250,
+    "eva": 39,
+    "exp": 1780000,
+    "maxHP": 35000000,
+    "boss": 1,
+    "elemAttr": "L3",
+    "skills": {
+      "attack1": {
+        "type": 0
+      },
+      "attack2": {
+        "type": 0
+      }
+    }
+  },
+  "9400205": {
+    "id": 9400205,
+    "level": 90,
+    "PADamage": 450,
+    "MADamage": 540,
+    "PDDamage": 810,
+    "MDDamage": 520,
+    "acc": 220,
+    "eva": 64,
+    "exp": 10000,
+    "maxHP": 200000,
+    "boss": 1,
+    "elemAttr": "F3",
+    "skills": {
+      "attack1": {
+        "type": 0,
+        "PADamage": 300
+      }
+    }
+  },
+  "9400400": {
+    "id": 9400400,
+    "level": 25,
+    "PADamage": 95,
+    "MADamage": 0,
+    "PDDamage": 20,
+    "MDDamage": 35,
+    "acc": 90,
+    "eva": 14,
+    "exp": 75,
+    "maxHP": 600,
+    "elemAttr": "S3F3",
+    "skills": {
+      "attack1": {
+        "type": 0,
+        "PADamage": 120
+      }
+    }
+  },
+  "9400401": {
+    "id": 9400401,
+    "level": 50,
+    "PADamage": 162,
+    "MADamage": 0,
+    "PDDamage": 115,
+    "MDDamage": 180,
+    "acc": 162,
+    "eva": 40,
+    "exp": 190,
+    "maxHP": 4200,
+    "elemAttr": "L3F3",
+    "skills": {
+      "attack1": {
+        "type": 0,
+        "PADamage": 110
+      }
+    }
+  },
+  "9400402": {
+    "id": 9400402,
+    "level": 80,
+    "PADamage": 370,
+    "MADamage": 405,
+    "PDDamage": 610,
+    "MDDamage": 470,
+    "acc": 155,
+    "eva": 30,
+    "exp": 1150,
+    "maxHP": 25000,
+    "elemAttr": "H3S1",
+    "skills": {
+      "attack1": {
+        "type": 0,
+        "magic": 1
+      }
+    }
+  },
+  "9400403": {
+    "id": 9400403,
+    "level": 100,
+    "PADamage": 580,
+    "MADamage": 620,
+    "PDDamage": 1020,
+    "MDDamage": 610,
+    "acc": 215,
+    "eva": 35,
+    "exp": 4050,
+    "maxHP": 71000,
+    "elemAttr": "H3L2S1F2",
+    "skills": {
+      "attack1": {
+        "type": 0,
+        "magic": 1
+      },
+      "attack2": {
+        "type": 0,
+        "PADamage": 200
+      }
+    }
+  },
+  "9400404": {
+    "id": 9400404,
+    "level": 30,
+    "PADamage": 125,
+    "MADamage": 0,
+    "PDDamage": 60,
+    "MDDamage": 50,
+    "acc": 55,
+    "eva": 8,
+    "exp": 100,
+    "maxHP": 950,
+    "elemAttr": "I3S3",
+    "skills": {
+      "attack1": {
+        "type": 0,
+        "PADamage": 110
+      }
+    }
+  },
+  "9400405": {
+    "id": 9400405,
+    "level": 120,
+    "PADamage": 1150,
+    "MADamage": 1080,
+    "PDDamage": 3200,
+    "MDDamage": 1200,
+    "acc": 270,
+    "eva": 42,
+    "exp": 3680000,
+    "maxHP": 78000000,
+    "boss": 1,
+    "elemAttr": "F2L3H3I3S1",
+    "skills": {
+      "attack1": {
+        "type": 0,
+        "PADamage": 580
+      },
+      "attack2": {
+        "type": 0,
+        "magic": 1,
+        "elemAttr": "L",
+        "conMP": 10
+      }
+    }
+  },
+  "9400406": {
+    "id": 9400406,
+    "level": 60,
+    "PADamage": 200,
+    "MADamage": 280,
+    "PDDamage": 165,
+    "MDDamage": 210,
+    "acc": 210,
+    "eva": 22,
+    "exp": 290,
+    "maxHP": 6500,
+    "elemAttr": "F3H3",
+    "skills": {
+      "attack1": {
+        "type": 0,
+        "PADamage": 320
+      }
+    }
+  },
+  "9400538": {
+    "id": 9400538,
+    "level": 19,
+    "PADamage": 100,
+    "MADamage": 0,
+    "PDDamage": 40,
+    "MDDamage": 50,
+    "acc": 80,
+    "eva": 15,
+    "exp": 35,
+    "maxHP": 320
+  },
+  "9400539": {
+    "id": 9400539,
+    "level": 21,
+    "PADamage": 90,
+    "MADamage": 0,
+    "PDDamage": 10,
+    "MDDamage": 60,
+    "acc": 55,
+    "eva": 7,
+    "exp": 37,
+    "maxHP": 350
+  },
+  "9400540": {
+    "id": 9400540,
+    "level": 25,
+    "PADamage": 105,
+    "MADamage": 0,
+    "PDDamage": 40,
+    "MDDamage": 75,
+    "acc": 65,
+    "eva": 5,
+    "exp": 60,
+    "maxHP": 730
+  },
+  "9400542": {
+    "id": 9400542,
+    "level": 36,
+    "PADamage": 110,
+    "MADamage": 140,
+    "PDDamage": 70,
+    "MDDamage": 70,
+    "acc": 130,
+    "eva": 10,
+    "exp": 85,
+    "maxHP": 1450,
+    "elemAttr": "S2F1I3",
+    "skills": {
+      "attack1": {
+        "type": 1,
+        "PADamage": 125
+      }
+    }
+  },
+  "9400543": {
+    "id": 9400543,
+    "level": 41,
+    "PADamage": 130,
+    "MADamage": 0,
+    "PDDamage": 90,
+    "MDDamage": 110,
+    "acc": 160,
+    "eva": 28,
+    "exp": 95,
+    "maxHP": 1600,
+    "elemAttr": "I1L2F3",
+    "skills": {
+      "attack1": {
+        "type": 0,
+        "PADamage": 300
+      }
+    }
+  },
+  "9400544": {
+    "id": 9400544,
+    "level": 50,
+    "PADamage": 190,
+    "MADamage": 140,
+    "PDDamage": 155,
+    "MDDamage": 170,
+    "acc": 175,
+    "eva": 23,
+    "exp": 220,
+    "maxHP": 3300
+  },
+  "9400545": {
+    "id": 9400545,
+    "level": 80,
+    "PADamage": 450,
+    "MADamage": 490,
+    "PDDamage": 700,
+    "MDDamage": 650,
+    "acc": 175,
+    "eva": 30,
+    "exp": 1200,
+    "maxHP": 28000
+  },
+  "9400546": {
+    "id": 9400546,
+    "level": 44,
+    "PADamage": 130,
+    "MADamage": 140,
+    "PDDamage": 150,
+    "MDDamage": 195,
+    "acc": 180,
+    "eva": 30,
+    "exp": 120,
+    "maxHP": 2490,
+    "skills": {
+      "attack1": {
+        "type": 1,
+        "PADamage": 125
+      }
+    }
+  },
+  "9400547": {
+    "id": 9400547,
+    "level": 27,
+    "PADamage": 105,
+    "MADamage": 0,
+    "PDDamage": 45,
+    "MDDamage": 75,
+    "acc": 75,
+    "eva": 10,
+    "exp": 55,
+    "maxHP": 700,
+    "elemAttr": "F2I3",
+    "skills": {
+      "attack1": {
+        "type": 0,
+        "conMP": 0
+      }
+    }
+  },
+  "9400548": {
+    "id": 9400548,
+    "level": 30,
+    "PADamage": 110,
+    "MADamage": 110,
+    "PDDamage": 50,
+    "MDDamage": 70,
+    "acc": 100,
+    "eva": 10,
+    "exp": 65,
+    "maxHP": 950,
+    "elemAttr": "H3",
+    "skills": {
+      "attack1": {
+        "type": 1,
+        "PADamage": 165
+      }
+    }
+  },
+  "9400549": {
+    "id": 9400549,
+    "level": 101,
+    "PADamage": 600,
+    "MADamage": 650,
+    "PDDamage": 800,
+    "MDDamage": 800,
+    "acc": 190,
+    "eva": 42,
+    "exp": 300000,
+    "maxHP": 3500000,
+    "boss": 1,
+    "elemAttr": "L3",
+    "skills": {
+      "attack1": {
+        "type": 0
+      },
+      "attack2": {
+        "type": 0
+      }
+    }
+  },
+  "9400556": {
+    "id": 9400556,
+    "level": 21,
+    "PADamage": 90,
+    "MADamage": 0,
+    "PDDamage": 20,
+    "MDDamage": 20,
+    "acc": 85,
+    "eva": 10,
+    "exp": 37,
+    "maxHP": 300
+  },
+  "9400558": {
+    "id": 9400558,
+    "level": 30,
+    "PADamage": 95,
+    "MADamage": 100,
+    "PDDamage": 60,
+    "MDDamage": 50,
+    "acc": 80,
+    "eva": 12,
+    "exp": 73,
+    "maxHP": 850,
+    "skills": {
+      "attack1": {
+        "type": 1,
+        "magic": 1,
+        "elemAttr": "S",
+        "conMP": 2
+      }
+    }
+  },
+  "9400559": {
+    "id": 9400559,
+    "level": 50,
+    "PADamage": 140,
+    "MADamage": 130,
+    "PDDamage": 170,
+    "MDDamage": 170,
+    "acc": 125,
+    "eva": 18,
+    "exp": 55,
+    "maxHP": 2000
+  },
+  "9400560": {
+    "id": 9400560,
+    "level": 50,
+    "PADamage": 140,
+    "MADamage": 130,
+    "PDDamage": 170,
+    "MDDamage": 170,
+    "acc": 120,
+    "eva": 19,
+    "exp": 115,
+    "maxHP": 1800
+  },
+  "9400561": {
+    "id": 9400561,
+    "level": 60,
+    "PADamage": 190,
+    "MADamage": 200,
+    "PDDamage": 240,
+    "MDDamage": 210,
+    "acc": 210,
+    "eva": 22,
+    "exp": 335,
+    "maxHP": 6800
+  },
+  "9400562": {
+    "id": 9400562,
+    "level": 60,
+    "PADamage": 190,
+    "MADamage": 200,
+    "PDDamage": 240,
+    "MDDamage": 210,
+    "acc": 210,
+    "eva": 22,
+    "exp": 335,
+    "maxHP": 6800
+  },
+  "9400563": {
+    "id": 9400563,
+    "level": 40,
+    "PADamage": 125,
+    "MADamage": 120,
+    "PDDamage": 130,
+    "MDDamage": 140,
+    "acc": 165,
+    "eva": 18,
+    "exp": 120,
+    "skills": {
+      "attack1": {
+        "type": 1,
+        "magic": 1,
+        "elemAttr": "S",
+        "conMP": 2
+      }
+    }
+  },
+  "9400573": {
+    "id": 9400573,
+    "level": 40,
+    "PADamage": 0,
+    "MADamage": 0,
+    "PDDamage": 0,
+    "MDDamage": 0,
+    "acc": 0,
+    "eva": 0,
+    "exp": 10,
+    "maxHP": 100,
+    "skills": {
+      "attack1": {
+        "type": 0,
+        "PADamage": 100
+      }
+    }
+  },
+  "9400574": {
+    "id": 9400574,
+    "level": 100,
+    "PADamage": 270,
+    "MADamage": 400,
+    "PDDamage": 500,
+    "MDDamage": 450,
+    "acc": 180,
+    "eva": 40,
+    "exp": 3200,
+    "maxHP": 56000,
+    "elemAttr": "I1S1",
+    "skills": {
+      "attack1": {
+        "type": 0,
+        "PADamage": 230
+      }
+    }
+  },
+  "9400575": {
+    "id": 9400575,
+    "level": 110,
+    "PADamage": 1200,
+    "MADamage": 700,
+    "PDDamage": 1400,
+    "MDDamage": 1400,
+    "acc": 230,
+    "eva": 37,
+    "exp": 2660000,
+    "maxHP": 32000000,
+    "boss": 1,
+    "elemAttr": "F3I1H1",
+    "skills": {
+      "attack1": {
+        "type": 0,
+        "PADamage": 160
+      }
+    }
+  },
+  "9400576": {
+    "id": 9400576,
+    "level": 70,
+    "PADamage": 300,
+    "MADamage": 415,
+    "PDDamage": 265,
+    "MDDamage": 365,
+    "acc": 190,
+    "eva": 30,
+    "exp": 800,
+    "maxHP": 16000,
+    "elemAttr": "S1",
+    "skills": {
+      "attack1": {
+        "type": 0,
+        "PADamage": 300
+      }
+    }
+  },
+  "9400577": {
+    "id": 9400577,
+    "level": 90,
+    "PADamage": 420,
+    "MADamage": 490,
+    "PDDamage": 820,
+    "MDDamage": 600,
+    "acc": 195,
+    "eva": 37,
+    "exp": 910,
+    "maxHP": 21000,
+    "elemAttr": "F2",
+    "skills": {
+      "attack1": {
+        "type": 2,
+        "magic": 1,
+        "conMP": 5
+      }
+    }
+  },
+  "9400578": {
+    "id": 9400578,
+    "level": 90,
+    "PADamage": 470,
+    "MADamage": 560,
+    "PDDamage": 920,
+    "MDDamage": 700,
+    "acc": 195,
+    "eva": 37,
+    "exp": 2350,
+    "maxHP": 45000,
+    "elemAttr": "F1I3",
+    "skills": {
+      "attack1": {
+        "type": 0,
+        "PADamage": 470,
+        "conMP": 5
+      }
+    }
+  },
+  "9400579": {
+    "id": 9400579,
+    "level": 100,
+    "PADamage": 480,
+    "MADamage": 610,
+    "PDDamage": 800,
+    "MDDamage": 560,
+    "acc": 210,
+    "eva": 45,
+    "exp": 3600,
+    "maxHP": 70000,
+    "elemAttr": "I1S1",
+    "skills": {
+      "attack1": {
+        "type": 0,
+        "PADamage": 480
+      }
+    }
+  },
+  "9400580": {
+    "id": 9400580,
+    "level": 95,
+    "PADamage": 560,
+    "MADamage": 610,
+    "PDDamage": 940,
+    "MDDamage": 550,
+    "acc": 200,
+    "eva": 38,
+    "exp": 2480,
+    "maxHP": 51000,
+    "elemAttr": "H3I1"
+  },
+  "9400581": {
+    "id": 9400581,
+    "level": 80,
+    "PADamage": 410,
+    "MADamage": 460,
+    "PDDamage": 700,
+    "MDDamage": 480,
+    "acc": 160,
+    "eva": 30,
+    "exp": 1650,
+    "maxHP": 38000,
+    "elemAttr": "L1",
+    "skills": {
+      "attack1": {
+        "type": 0,
+        "magic": 1,
+        "conMP": 2
+      },
+      "attack2": {
+        "type": 0,
+        "PADamage": 400,
+        "conMP": 5
+      }
+    }
+  },
+  "9400582": {
+    "id": 9400582,
+    "level": 120,
+    "PADamage": 650,
+    "MADamage": 800,
+    "PDDamage": 1000,
+    "MDDamage": 800,
+    "acc": 230,
+    "eva": 40,
+    "exp": 6100,
+    "maxHP": 120000,
+    "elemAttr": "F2I2L2S2H1",
+    "skills": {
+      "attack1": {
+        "type": 0,
+        "PADamage": 500
+      },
+      "attack2": {
+        "type": 0,
+        "magic": 1
+      }
+    }
+  },
+  "9400583": {
+    "id": 9400583,
+    "level": 45,
+    "PADamage": 135,
+    "MADamage": 0,
+    "PDDamage": 150,
+    "MDDamage": 160,
+    "acc": 200,
+    "eva": 20,
+    "exp": 135,
+    "maxHP": 2800,
+    "elemAttr": "H3I1",
+    "skills": {
+      "attack1": {
+        "type": 0,
+        "PADamage": 1000,
+        "conMP": 2
+      }
+    }
+  },
+  "9400585": {
+    "id": 9400585,
+    "level": 75,
+    "PADamage": 140,
+    "MADamage": 0,
+    "PDDamage": 150,
+    "MDDamage": 200,
+    "acc": 150,
+    "eva": 10,
+    "exp": 122,
+    "maxHP": 3500,
+    "elemAttr": "F3",
+    "skills": {
+      "attack1": {
+        "type": 0,
+        "PADamage": 140,
+        "conMP": 5
+      }
+    }
+  },
+  "9400586": {
+    "id": 9400586,
+    "level": 75,
+    "PADamage": 140,
+    "MADamage": 0,
+    "PDDamage": 150,
+    "MDDamage": 200,
+    "acc": 150,
+    "eva": 10,
+    "exp": 122,
+    "maxHP": 3500,
+    "elemAttr": "F3",
+    "skills": {
+      "attack1": {
+        "type": 0,
+        "PADamage": 140,
+        "conMP": 5
+      }
+    }
+  },
+  "9400587": {
+    "id": 9400587,
+    "level": 50,
+    "PADamage": 140,
+    "MADamage": 0,
+    "PDDamage": 150,
+    "MDDamage": 200,
+    "acc": 150,
+    "eva": 10,
+    "exp": 122,
+    "maxHP": 3500,
+    "elemAttr": "F3",
+    "skills": {
+      "attack1": {
+        "type": 0,
+        "PADamage": 140,
+        "conMP": 5
+      }
+    }
+  },
+  "9400588": {
+    "id": 9400588,
+    "level": 50,
+    "PADamage": 140,
+    "MADamage": 0,
+    "PDDamage": 150,
+    "MDDamage": 200,
+    "acc": 150,
+    "eva": 10,
+    "exp": 122,
+    "maxHP": 3500,
+    "elemAttr": "F3",
+    "skills": {
+      "attack1": {
+        "type": 0,
+        "PADamage": 140,
+        "conMP": 5
+      }
+    }
+  },
+  "9400589": {
+    "id": 9400589,
+    "wzVersion": 83,
+    "level": 30,
+    "PADamage": 150,
+    "MADamage": 20,
+    "PDDamage": 500,
+    "MDDamage": 450,
+    "acc": 1000,
+    "eva": 10,
+    "exp": 500,
+    "maxHP": 400000,
+    "boss": 1,
+    "skills": {
+      "attack1": {
+        "type": 0,
+        "PADamage": 180
+      },
+      "attack2": {
+        "type": 0,
+        "PADamage": 200
+      }
+    }
+  },
+  "9400590": {
+    "id": 9400590,
+    "wzVersion": 83,
+    "level": 130,
+    "PADamage": 620,
+    "MADamage": 500,
+    "PDDamage": 800,
+    "MDDamage": 1000,
+    "acc": 280,
+    "eva": 42,
+    "exp": 4300000,
+    "maxHP": 200000000,
+    "boss": 1,
+    "elemAttr": "H1L2F2I2F2",
+    "skills": {
+      "attack1": {
+        "type": 0,
+        "PADamage": 620
+      }
+    }
+  },
+  "9400591": {
+    "id": 9400591,
+    "wzVersion": 83,
+    "level": 130,
+    "PADamage": 630,
+    "MADamage": 480,
+    "PDDamage": 1000,
+    "MDDamage": 850,
+    "acc": 260,
+    "eva": 39,
+    "exp": 4550000,
+    "maxHP": 255000000,
+    "boss": 1,
+    "skills": {
+      "attack1": {
+        "type": 0,
+        "PADamage": 630
+      },
+      "attack2": {
+        "type": 0,
+        "PADamage": 630
+      }
+    }
+  },
+  "9400592": {
+    "id": 9400592,
+    "wzVersion": 83,
+    "level": 130,
+    "PADamage": 600,
+    "MADamage": 490,
+    "PDDamage": 800,
+    "MDDamage": 900,
+    "acc": 300,
+    "eva": 45,
+    "exp": 4450000,
+    "maxHP": 231000000,
+    "boss": 1,
+    "elemAttr": "H1F3",
+    "skills": {
+      "attack1": {
+        "type": 0,
+        "magic": 1
+      },
+      "attack2": {
+        "type": 0,
+        "magic": 1,
+        "elemAttr": "L"
+      },
+      "attack3": {
+        "type": 0,
+        "magic": 1
+      },
+      "attack4": {
+        "type": 0,
+        "PADamage": 600
+      }
+    }
+  },
+  "9400593": {
+    "id": 9400593,
+    "wzVersion": 83,
+    "level": 130,
+    "PADamage": 610,
+    "MADamage": 490,
+    "PDDamage": 8000,
+    "MDDamage": 900,
+    "acc": 230,
+    "eva": 55,
+    "exp": 4510000,
+    "maxHP": 233000000,
+    "boss": 1,
+    "elemAttr": "I3H1",
+    "skills": {
+      "attack1": {
+        "type": 0,
+        "PADamage": 610
+      },
+      "attack2": {
+        "type": 0,
+        "PADamage": 610
+      },
+      "attack3": {
+        "type": 0,
+        "PADamage": 610
+      },
+      "attack4": {
+        "type": 0,
+        "PADamage": 610
+      }
+    }
+  },
+  "9400594": {
+    "id": 9400594,
+    "wzVersion": 83,
+    "level": 100,
+    "PADamage": 450,
+    "MADamage": 500,
+    "PDDamage": 1000,
+    "MDDamage": 800,
+    "acc": 230,
+    "eva": 40,
+    "exp": 10000,
+    "maxHP": 7000000,
+    "boss": 1,
+    "elemAttr": "I1F1S1L1H1",
+    "skills": {
+      "attack1": {
+        "type": 0,
+        "magic": 1,
+        "PADamage": 450
+      },
+      "attack2": {
+        "type": 0,
+        "PADamage": 450
+      }
+    }
+  },
+  "9410000": {
+    "id": 9410000,
+    "level": 23,
+    "PADamage": 80,
+    "MADamage": 0,
+    "PDDamage": 28,
+    "MDDamage": 45,
+    "acc": 60,
+    "eva": 7,
+    "exp": 40,
+    "maxHP": 500
+  },
+  "9410001": {
+    "id": 9410001,
+    "level": 25,
+    "PADamage": 85,
+    "MADamage": 0,
+    "PDDamage": 30,
+    "MDDamage": 50,
+    "acc": 60,
+    "eva": 8,
+    "exp": 43,
+    "maxHP": 550
+  },
+  "9410002": {
+    "id": 9410002,
+    "level": 42,
+    "PADamage": 140,
+    "MADamage": 150,
+    "PDDamage": 160,
+    "MDDamage": 110,
+    "acc": 160,
+    "eva": 20,
+    "exp": 102,
+    "maxHP": 2300,
+    "skills": {
+      "attack1": {
+        "type": 0
+      }
+    }
+  },
+  "9410003": {
+    "id": 9410003,
+    "level": 40,
+    "PADamage": 120,
+    "MADamage": 130,
+    "PDDamage": 140,
+    "MDDamage": 150,
+    "acc": 110,
+    "eva": 25,
+    "exp": 95,
+    "maxHP": 1850,
+    "skills": {
+      "attack1": {
+        "type": 2,
+        "elemAttr": "F",
+        "PADamage": 130,
+        "conMP": 1
+      },
+      "attack2": {
+        "type": 2,
+        "elemAttr": "I",
+        "PADamage": 130,
+        "conMP": 1
+      },
+      "attack3": {
+        "type": 2,
+        "elemAttr": "S",
+        "PADamage": 130,
+        "conMP": 1
+      }
+    }
+  },
+  "9410004": {
+    "id": 9410004,
+    "level": 47,
+    "PADamage": 150,
+    "MADamage": 0,
+    "PDDamage": 180,
+    "MDDamage": 200,
+    "acc": 130,
+    "eva": 18,
+    "exp": 117,
+    "maxHP": 2800,
+    "skills": {
+      "attack1": {
+        "type": 0
+      }
+    }
+  },
+  "9410005": {
+    "id": 9410005,
+    "level": 38,
+    "PADamage": 120,
+    "MADamage": 135,
+    "PDDamage": 105,
+    "MDDamage": 120,
+    "acc": 140,
+    "eva": 15,
+    "exp": 88,
+    "maxHP": 1900,
+    "elemAttr": "F2I3",
+    "skills": {
+      "attack1": {
+        "type": 2,
+        "magic": 1,
+        "elemAttr": "F",
+        "conMP": 2
+      }
+    }
+  },
+  "9410006": {
+    "id": 9410006,
+    "level": 38,
+    "PADamage": 120,
+    "MADamage": 135,
+    "PDDamage": 105,
+    "MDDamage": 120,
+    "acc": 140,
+    "eva": 15,
+    "exp": 88,
+    "maxHP": 1900,
+    "elemAttr": "L2S3",
+    "skills": {
+      "attack1": {
+        "type": 2,
+        "magic": 1,
+        "elemAttr": "L",
+        "conMP": 2
+      }
+    }
+  },
+  "9410007": {
+    "id": 9410007,
+    "level": 38,
+    "PADamage": 120,
+    "MADamage": 135,
+    "PDDamage": 105,
+    "MDDamage": 120,
+    "acc": 140,
+    "eva": 15,
+    "exp": 88,
+    "maxHP": 1900,
+    "elemAttr": "S2L3",
+    "skills": {
+      "attack1": {
+        "type": 2,
+        "magic": 1,
+        "elemAttr": "S",
+        "conMP": 2
+      }
+    }
+  },
+  "9410008": {
+    "id": 9410008,
+    "level": 50,
+    "PADamage": 175,
+    "MADamage": 160,
+    "PDDamage": 160,
+    "MDDamage": 210,
+    "acc": 152,
+    "eva": 20,
+    "exp": 135,
+    "maxHP": 3800,
+    "skills": {
+      "attack1": {
+        "type": 2,
+        "PADamage": 180,
+        "conMP": 2
+      },
+      "attack2": {
+        "type": 2,
+        "magic": 1,
+        "conMP": 2
+      }
+    }
+  },
+  "9410009": {
+    "id": 9410009,
+    "level": 36,
+    "PADamage": 120,
+    "MADamage": 0,
+    "PDDamage": 90,
+    "MDDamage": 90,
+    "acc": 120,
+    "eva": 10,
+    "exp": 81,
+    "maxHP": 1550
+  },
+  "9410010": {
+    "id": 9410010,
+    "level": 50,
+    "PADamage": 175,
+    "MADamage": 160,
+    "PDDamage": 160,
+    "MDDamage": 210,
+    "acc": 152,
+    "eva": 20,
+    "exp": 135,
+    "maxHP": 3800,
+    "skills": {
+      "attack1": {
+        "type": 2,
+        "PADamage": 170,
+        "conMP": 2
+      },
+      "attack2": {
+        "type": 2,
+        "magic": 1,
+        "conMP": 2
+      }
+    }
+  },
+  "9410011": {
+    "id": 9410011,
+    "level": 36,
+    "PADamage": 120,
+    "MADamage": 0,
+    "PDDamage": 80,
+    "MDDamage": 85,
+    "acc": 120,
+    "eva": 10,
+    "exp": 81,
+    "maxHP": 1400
+  },
+  "9410012": {
+    "id": 9410012,
+    "level": 60,
+    "PADamage": 160,
+    "MADamage": 0,
+    "PDDamage": 160,
+    "MDDamage": 160,
+    "acc": 140,
+    "eva": 10,
+    "exp": 0,
+    "maxHP": 1500
+  },
+  "9410013": {
+    "id": 9410013,
+    "level": 60,
+    "PADamage": 210,
+    "MADamage": 225,
+    "PDDamage": 180,
+    "MDDamage": 190,
+    "acc": 155,
+    "eva": 20,
+    "exp": 280,
+    "maxHP": 6000,
+    "skills": {
+      "attack1": {
+        "type": 0,
+        "magic": 1
+      }
+    }
+  },
+  "9410015": {
+    "id": 9410015,
+    "level": 85,
+    "PADamage": 480,
+    "MADamage": 520,
+    "PDDamage": 720,
+    "MDDamage": 660,
+    "acc": 200,
+    "eva": 40,
+    "exp": 4230,
+    "maxHP": 230000,
+    "boss": 1,
+    "skills": {
+      "attack1": {
+        "type": 0,
+        "PADamage": 500
+      },
+      "attack2": {
+        "type": 0,
+        "magic": 1,
+        "elemAttr": "F",
+        "conMP": 2
+      },
+      "attack3": {
+        "type": 0,
+        "magic": 1,
+        "conMP": 2
+      }
+    }
+  },
+  "9420000": {
+    "id": 9420000,
+    "level": 28,
+    "PADamage": 105,
+    "MADamage": 0,
+    "PDDamage": 60,
+    "MDDamage": 73,
+    "acc": 115,
+    "eva": 12,
+    "exp": 58,
+    "maxHP": 720,
+    "skills": {
+      "attack1": {
+        "type": 0,
+        "conMP": 1
+      }
+    }
+  },
+  "9420001": {
+    "id": 9420001,
+    "level": 8,
+    "PADamage": 52,
+    "MADamage": 0,
+    "PDDamage": 5,
+    "MDDamage": 10,
+    "acc": 42,
+    "eva": 1,
+    "exp": 17,
+    "maxHP": 75
+  },
+  "9420002": {
+    "id": 9420002,
+    "level": 60,
+    "PADamage": 200,
+    "MADamage": 190,
+    "PDDamage": 160,
+    "MDDamage": 220,
+    "acc": 150,
+    "eva": 22,
+    "exp": 230,
+    "maxHP": 6000,
+    "skills": {
+      "attack1": {
+        "type": 0,
+        "conMP": 1
+      },
+      "attack2": {
+        "type": 0,
+        "conMP": 1
+      }
+    }
+  },
+  "9420003": {
+    "id": 9420003,
+    "level": 40,
+    "PADamage": 124,
+    "MADamage": 0,
+    "PDDamage": 110,
+    "MDDamage": 130,
+    "acc": 65,
+    "eva": 15,
+    "exp": 95,
+    "maxHP": 1920,
+    "skills": {
+      "attack1": {
+        "type": 0,
+        "conMP": 1
+      }
+    }
+  },
+  "9420004": {
+    "id": 9420004,
+    "level": 25,
+    "PADamage": 90,
+    "MADamage": 0,
+    "PDDamage": 20,
+    "MDDamage": 30,
+    "acc": 50,
+    "eva": 8,
+    "exp": 46,
+    "maxHP": 500
+  },
+  "9420005": {
+    "id": 9420005,
+    "level": 15,
+    "PADamage": 82,
+    "MADamage": 0,
+    "PDDamage": 11,
+    "MDDamage": 40,
+    "acc": 45,
+    "eva": 5,
+    "exp": 28,
+    "maxHP": 230
+  },
+  "9600001": {
+    "id": 9600001,
+    "level": 20,
+    "PADamage": 85,
+    "MADamage": 0,
+    "PDDamage": 10,
+    "MDDamage": 20,
+    "acc": 55,
+    "eva": 7,
+    "exp": 33,
+    "maxHP": 340
+  },
+  "9600002": {
+    "id": 9600002,
+    "level": 22,
+    "PADamage": 90,
+    "MADamage": 0,
+    "PDDamage": 20,
+    "MDDamage": 20,
+    "acc": 55,
+    "eva": 7,
+    "exp": 37,
+    "maxHP": 380
+  },
+  "9600003": {
+    "id": 9600003,
+    "level": 25,
+    "PADamage": 95,
+    "MADamage": 0,
+    "PDDamage": 20,
+    "MDDamage": 30,
+    "acc": 50,
+    "eva": 8,
+    "exp": 42,
+    "maxHP": 550
+  },
+  "9600004": {
+    "id": 9600004,
+    "level": 30,
+    "PADamage": 100,
+    "MADamage": 0,
+    "PDDamage": 40,
+    "MDDamage": 40,
+    "acc": 65,
+    "eva": 12,
+    "exp": 58,
+    "maxHP": 900
+  },
+  "9600005": {
+    "id": 9600005,
+    "level": 35,
+    "PADamage": 120,
+    "MADamage": 0,
+    "PDDamage": 60,
+    "MDDamage": 50,
+    "acc": 65,
+    "eva": 12,
+    "exp": 71,
+    "maxHP": 1250,
+    "skills": {
+      "attack1": {
+        "type": 0,
+        "PADamage": 130,
+        "conMP": 1
+      }
+    }
+  },
+  "9600006": {
+    "id": 9600006,
+    "level": 33,
+    "PADamage": 110,
+    "MADamage": 0,
+    "PDDamage": 50,
+    "MDDamage": 40,
+    "acc": 60,
+    "eva": 12,
+    "exp": 66,
+    "maxHP": 1200
+  },
+  "9600007": {
+    "id": 9600007,
+    "level": 38,
+    "PADamage": 120,
+    "MADamage": 0,
+    "PDDamage": 105,
+    "MDDamage": 120,
+    "acc": 100,
+    "eva": 20,
+    "exp": 86,
+    "maxHP": 1800,
+    "skills": {
+      "attack1": {
+        "type": 0,
+        "PADamage": 130
+      }
+    }
+  },
+  "9600008": {
+    "id": 9600008,
+    "level": 37,
+    "PADamage": 115,
+    "MADamage": 125,
+    "PDDamage": 100,
+    "MDDamage": 115,
+    "acc": 90,
+    "eva": 18,
+    "exp": 79,
+    "maxHP": 1500,
+    "skills": {
+      "attack1": {
+        "type": 0,
+        "magic": 1,
+        "conMP": 1
+      }
+    }
+  },
+  "9600009": {
+    "id": 9600009,
+    "level": 50,
+    "PADamage": 320,
+    "MADamage": 340,
+    "PDDamage": 300,
+    "MDDamage": 150,
+    "acc": 150,
+    "eva": 27,
+    "exp": 108,
+    "maxHP": 18000,
+    "boss": 1,
+    "skills": {
+      "attack1": {
+        "type": 0,
+        "magic": 1,
+        "elemAttr": "S",
+        "conMP": 1
+      },
+      "attack2": {
+        "type": 0,
+        "magic": 1,
+        "conMP": 1
+      },
+      "attack3": {
+        "type": 0,
+        "magic": 1,
+        "conMP": 1
+      }
+    }
+  }
+}
