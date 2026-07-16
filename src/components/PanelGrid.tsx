@@ -7,10 +7,11 @@ import StatPanel from './panels/StatPanel'
 import SkillPanel from './panels/SkillPanel'
 import AttackPanel from './panels/AttackPanel'
 import DetailStatPanel from './panels/DetailStatPanel'
+import IncomingDamagePanel from './panels/IncomingDamagePanel'
 
 /**
  * 3열 세로 스택. 같은 열에서 위 패널을 접으면 아래 패널이 올라온다.
- * 1열: 장비·스탯·세부스탯 / 2열: 인벤토리·스킬 / 3열: 몬스터·공격력 계산
+ * 1열: 장비·스탯·세부스탯 / 2열: 인벤토리·스킬 / 3열: 몬스터·공격력·피격데미지
  */
 export default function PanelGrid() {
   return (
@@ -34,6 +35,7 @@ export default function PanelGrid() {
       <Stack spacing={2}>
         <MonsterPanel />
         <AttackPanel />
+        <IncomingDamagePanel />
       </Stack>
     </Box>
   )

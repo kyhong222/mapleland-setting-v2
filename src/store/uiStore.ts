@@ -13,6 +13,7 @@ export type PanelId =
   | 'skill'
   | 'attack'
   | 'detail'
+  | 'incoming'
 
 interface UiState {
   /** 접힌 패널 (없거나 false = 펼침) */
