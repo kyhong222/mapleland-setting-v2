@@ -50,6 +50,19 @@ export function formatElemAttr(elemAttr?: string): string {
   return e.length ? e.map((x) => `${x.element} ${x.effect}`).join(', ') : '무속성'
 }
 
+/**
+ * 몬스터 공격 스킬 (mobWzData.skills, attack1~4 등).
+ * 스킬 키는 maplestory.io mob render 엔드포인트의 애니메이션 이름으로도 쓰인다.
+ */
+export interface MobSkill {
+  /** 마법 스킬이면 1 */
+  magic?: number
+  /** 속성 코드 (F/I/L/S/H) */
+  elemAttr?: string
+  /** 물리 스킬 공격력 (물리 스킬만) */
+  PADamage?: number
+}
+
 /** 단일 몬스터 (목록 메타 + 전투 수치 병합) */
 export interface Monster {
   id: number
@@ -77,6 +90,8 @@ export interface Monster {
   eva?: number
   exp?: number
   elemAttr?: ElementAttribute
+  /** 공격 스킬 (attack1~4 등) */
+  skills?: Record<string, MobSkill>
 }
 
 /** 몬스터 아이콘 URL (maplestory.io mob 아이콘) */

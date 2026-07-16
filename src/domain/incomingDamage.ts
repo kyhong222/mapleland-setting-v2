@@ -7,6 +7,7 @@
  */
 
 import type { BaseStats } from './stats'
+import type { MobSkill } from './monster'
 
 export interface IncomingRange {
   min: number
@@ -95,4 +96,72 @@ export function applyPowerUp(range: IncomingRange, enabled: boolean, isBoss: boo
     min: Math.max(1, Math.floor(range.min * m)),
     max: Math.max(1, Math.floor(range.max * m)),
   }
+}
+
+const ELEM_LABEL: Record<string, string> = { F: '불', I: '얼음', L: '번개', S: '독', H: '성' }
+
+/** 스킬 표시 라벨 ("번개속성 마법", "불속성 물리", "물리" 등) */
+function skillLabel(skill: MobSkill): string {
+  if (skill.magic === 1) {
+    const e = skill.elemAttr ? ELEM_LABEL[skill.elemAttr] ?? skill.elemAttr : '무'
+    return `${e}속성 마법`
+  }
+  const e = skill.elemAttr ? `${ELEM_LABEL[skill.elemAttr] ?? skill.elemAttr}속성 ` : ''
+  return `${e}물리`
+}
+
+/** 몬스터 스킬 한 개의 피격 데미지 */
+export interface SkillIncoming {
+  /** 스킬 키(attack1 등) — render 애니메이션 이름 */
+  key: string
+  label: string
+  isMagic: boolean
+  range: IncomingRange
+}
+
+/**
+ * 몬스터 스킬별 피격 데미지 목록.
+ *  - 마법 스킬(magic===1): 몬스터 MADamage로 마법 피격 계산
+ *  - 물리 스킬(PADamage 보유): 스킬 자체 PADamage로 물리 피격 계산
+ *  - 그 외(비데미지 스킬): 제외
+ */
+export function monsterSkillIncoming(p: {
+  skills: Record<string, MobSkill>
+  monsterMatt: number
+  charLevel: number
+  monLevel: number
+  pdd: number
+  stdPdd: number
+  mdd: number
+  isWarrior: boolean
+  isMagician: boolean
+  stats: BaseStats
+}): SkillIncoming[] {
+  const out: SkillIncoming[] = []
+  for (const [key, sk] of Object.entries(p.skills)) {
+    if (sk.magic === 1) {
+      out.push({
+        key,
+        label: skillLabel(sk),
+        isMagic: true,
+        range: magicIncoming({ monsterMatt: p.monsterMatt, mdd: p.mdd, isMagician: p.isMagician, stats: p.stats }),
+      })
+    } else if (sk.PADamage) {
+      out.push({
+        key,
+        label: skillLabel(sk),
+        isMagic: false,
+        range: physicalIncoming({
+          monsterAtt: sk.PADamage,
+          charLevel: p.charLevel,
+          monLevel: p.monLevel,
+          pdd: p.pdd,
+          stdPdd: p.stdPdd,
+          isWarrior: p.isWarrior,
+          stats: p.stats,
+        }),
+      })
+    }
+  }
+  return out
 }
