@@ -97,7 +97,8 @@ export function calcLuckySeven(luk: number, watk: number): DamageRange {
  * 마법 데미지.
  * @param magic    총마력
  * @param int      최종 지력
- * @param spellAtk 스킬 마법공격력(계수) — 스킬 데이터 확정 전까지 호출부에서 주입
+ * @param spellAtk 스킬 마법공격력(계수) — 스킬 데이터 확정 전까지 호출부에서 주입.
+ *                 기본 표기(스킬 미선택)는 1을 넣어 base 실질 마법 데미지를 얻는다.
  * @param mastery  숙련도(0~1)
  */
 export function calcMagic(magic: number, int: number, spellAtk: number, mastery: number): DamageRange {
@@ -105,4 +106,89 @@ export function calcMagic(magic: number, int: number, spellAtk: number, mastery:
   const max = ((sq + magic) / 30 + int / 200) * spellAtk
   const min = ((sq + magic * mastery * 0.9) / 30 + int / 200) * spellAtk
   return { min: Math.floor(min), max: Math.floor(max) }
+}
+
+/**
+ * 공탯비 — 1(주스탯) ↔ 1(공/마력) 교환비 (평균 기대값 기준).
+ *  - atkToStat: 1공(마력) = ? 주스탯(INT)
+ *  - statToAtk: 1 주스탯(INT) = ? 공(마력)
+ */
+export interface AtkStatRatio {
+  atkToStat: number
+  statToAtk: number
+}
+
+const EMPTY_RATIO: AtkStatRatio = { atkToStat: 0, statToAtk: 0 }
+
+/** 무기배수 K 기반 물리 공탯비: num = P·K + 2S, den = K·A */
+function physRatio(primary: number, secondary: number, watk: number, k: number): AtkStatRatio {
+  const num = primary * k + 2 * secondary
+  const den = k * watk
+  if (num === 0 || den === 0) return EMPTY_RATIO
+  return { atkToStat: num / den, statToAtk: den / num }
+}
+
+/** 물리 공탯비 묶음 (데미지 PhysicalResult와 동일 구조) */
+export interface PhysicalRatios {
+  display: AtkStatRatio
+  swing: AtkStatRatio
+  stab: AtkStatRatio
+}
+
+/** 물리 공탯비 — 표기(스탯창)/베기/찌르기 (데미지 케이스와 동일 구조) */
+export function calcPhysicalRatios(primary: number, secondary: number, weaponType: WeaponType, watk: number, mastery: number): PhysicalRatios {
+  const wc = WEAPON_CONSTANTS[weaponType]
+  return {
+    display: physRatio(primary, secondary, watk, wc.constMin * 0.9 * mastery + wc.constMax),
+    swing: physRatio(primary, secondary, watk, wc.constMax * (0.9 * mastery + 1)),
+    stab: physRatio(primary, secondary, watk, wc.constMin * (0.9 * mastery + 1)),
+  }
+}
+
+/** 럭키세븐/트리플스로우 공탯비: 1공 = LUK/총공, 1LUK = 총공/LUK */
+export function calcLuckyRatio(luk: number, watk: number): AtkStatRatio {
+  if (luk === 0 || watk === 0) return EMPTY_RATIO
+  return { atkToStat: luk / watk, statToAtk: watk / luk }
+}
+
+/** 마법 공탯비: α=(1+0.9M)/2, 1마력 마진=(2·MAD/1000+α)/30, 1인트 마진=+1/200 */
+export function calcMagicRatio(magic: number, mastery: number): AtkStatRatio {
+  if (magic <= 0) return EMPTY_RATIO
+  const alpha = (1 + 0.9 * mastery) / 2
+  const madMarginal = (2 * magic / 1000 + alpha) / 30
+  const intMarginal = madMarginal + 1 / 200
+  return { atkToStat: madMarginal / intMarginal, statToAtk: intMarginal / madMarginal }
+}
+
+/** 렙차 D = max(0, 몬스터레벨 − 캐릭터레벨) */
+export function levelPenalty(monsterLevel: number, charLevel: number): number {
+  return Math.max(0, monsterLevel - charLevel)
+}
+
+/**
+ * 물리 실질 데미지 — 스탯창(표기) 데미지에 몬스터 물리방어·렙차 적용.
+ *   MAX = 최대스공 × (1 − 0.01D) − WDEF × 0.5
+ *   MIN = 최소스공 × (1 − 0.01D) − WDEF × 0.6
+ * 결과는 최소 1로 고정.
+ */
+export function physicalVsMonster(display: DamageRange, wdef: number, D: number): DamageRange {
+  const f = 1 - 0.01 * D
+  return {
+    max: Math.max(1, Math.floor(display.max * f - wdef * 0.5)),
+    min: Math.max(1, Math.floor(display.min * f - wdef * 0.6)),
+  }
+}
+
+/**
+ * 마법 실질 데미지 — 마법 데미지에 몬스터 마법방어·렙차 적용.
+ *   MAX = 최대스킬뎀 − MDEF × 0.5 × (1 + 0.01D)
+ *   MIN = 최소스킬뎀 − MDEF × 0.6 × (1 + 0.01D)
+ * 결과는 최소 1로 고정.
+ */
+export function magicVsMonster(magic: DamageRange, mdef: number, D: number): DamageRange {
+  const g = 1 + 0.01 * D
+  return {
+    max: Math.max(1, Math.floor(magic.max - mdef * 0.5 * g)),
+    min: Math.max(1, Math.floor(magic.min - mdef * 0.6 * g)),
+  }
 }
