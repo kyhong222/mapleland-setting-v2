@@ -15,7 +15,7 @@ import { useBuffEffects } from '../../store/useBuffEffects'
 import { JOBS } from '../../domain/jobs'
 import { getMonster } from '../../data/mobs'
 import { lookupStandardPDD } from '../../data/standardPDD'
-import { physicalIncoming, magicIncoming, applyPowerUp, monsterSkillIncoming } from '../../domain/incomingDamage'
+import { physicalIncoming, applyPowerUp, monsterSkillIncoming } from '../../domain/incomingDamage'
 import type { IncomingRange } from '../../domain/incomingDamage'
 
 const fmtRange = (r: IncomingRange) => `${r.min.toLocaleString()} ~ ${r.max.toLocaleString()}`
@@ -99,10 +99,6 @@ export default function IncomingDamagePanel() {
       powerUp,
       isBoss,
     )
-    const hasMagic = (monster.MADamage ?? 0) > 0
-    const magic = hasMagic
-      ? applyPowerUp(magicIncoming({ monsterMatt: monster.MADamage ?? 0, mdd, isMagician, stats: finalStats }), magicUp, isBoss)
-      : null
 
     const skills = monster.skills
       ? monsterSkillIncoming({
@@ -124,7 +120,6 @@ export default function IncomingDamagePanel() {
         </Box>
         <Divider sx={{ mb: 0.5 }} />
         <DmgRow label="물리 접촉" range={phys} />
-        {magic && <DmgRow label="마법 피격" range={magic} />}
 
         {skills.length > 0 && (
           <>
