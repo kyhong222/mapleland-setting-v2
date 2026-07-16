@@ -15,7 +15,7 @@ import { useBuffEffects } from '../../store/useBuffEffects'
 import { JOBS } from '../../domain/jobs'
 import { getMonster } from '../../data/mobs'
 import { lookupStandardPDD } from '../../data/standardPDD'
-import { physicalIncoming, applyPowerUp, monsterSkillIncoming } from '../../domain/incomingDamage'
+import { physicalIncoming, applyDefenses, monsterSkillIncoming } from '../../domain/incomingDamage'
 import type { IncomingRange } from '../../domain/incomingDamage'
 
 const fmtRange = (r: IncomingRange) => `${r.min.toLocaleString()} ~ ${r.max.toLocaleString()}`
@@ -94,10 +94,10 @@ export default function IncomingDamagePanel() {
     const mdd = (effects.mdef ?? 0) + finalStats.INT
     const stdPdd = lookupStandardPDD(job.classId, level)
 
-    const phys = applyPowerUp(
+    const def = { effects, jobClass: job.classId, isBoss, powerUp, magicUp }
+    const phys = applyDefenses(
       physicalIncoming({ monsterAtt: monster.PADamage ?? 0, charLevel: level, monLevel: monster.level, pdd, stdPdd, isWarrior, stats: finalStats }),
-      powerUp,
-      isBoss,
+      { ...def, type: 'touch' },
     )
 
     const skills = monster.skills
@@ -105,7 +105,7 @@ export default function IncomingDamagePanel() {
           skills: monster.skills,
           monsterMatt: monster.MADamage ?? 0,
           charLevel: level, monLevel: monster.level, pdd, stdPdd, mdd, isWarrior, isMagician, stats: finalStats,
-        }).map((e) => ({ ...e, range: applyPowerUp(e.range, e.isMagic ? magicUp : powerUp, isBoss) }))
+        }).map((e) => ({ ...e, range: applyDefenses(e.range, { ...def, type: e.type }) }))
       : []
 
     content = (

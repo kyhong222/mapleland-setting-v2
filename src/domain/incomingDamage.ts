@@ -8,6 +8,8 @@
 
 import type { BaseStats } from './stats'
 import type { MobSkill } from './monster'
+import type { EffectId, EffectMap } from './effects'
+import type { ClassId } from './jobs'
 
 export interface IncomingRange {
   min: number
@@ -88,13 +90,79 @@ export function magicIncoming(p: {
   }
 }
 
-/** 파워업/매직업 배율 적용 (일반 1.15 / 보스 1.3), 최소 1 유지. */
-export function applyPowerUp(range: IncomingRange, enabled: boolean, isBoss: boolean): IncomingRange {
-  if (!enabled) return range
-  const m = isBoss ? POWER_UP_BOSS : POWER_UP_NORMAL
+/** 피격 데미지 타입 */
+export type IncomingType = 'touch' | 'physical' | 'magic' | 'fire' | 'ice' | 'lightning' | 'poison'
+
+const ELEM_TO_TYPE: Record<string, IncomingType> = { F: 'fire', I: 'ice', L: 'lightning', S: 'poison' }
+const ELEM_TYPES: readonly IncomingType[] = ['fire', 'ice', 'lightning', 'poison']
+/** 속성 → 개별 저항 효과 id */
+const SPECIFIC_RES: Partial<Record<IncomingType, EffectId>> = {
+  fire: 'fireRes', ice: 'coldRes', lightning: 'lightningRes', poison: 'poisonRes',
+}
+
+/** 몬스터 스킬/접촉의 데미지 타입 분류 (속성 우선, 그 외 물리/마법) */
+export function skillDamageType(skill: MobSkill): IncomingType {
+  if (skill.elemAttr && ELEM_TO_TYPE[skill.elemAttr]) return ELEM_TO_TYPE[skill.elemAttr]
+  return skill.magic === 1 ? 'magic' : 'physical'
+}
+
+/**
+ * 데미지 타입별 스킬 감소 배율 (v1 getReductionMultiplier 대응, 곱연산).
+ *  - 파워가드(damageReflectP): touch만, 보스는 절반
+ *  - 아킬레스(damageReduce, 전사): 전 타입
+ *  - 엘리먼트/파셜 레지스턴스(allRes / *Res): 속성 타입
+ *  - physicalRes: 물리/접촉
+ * (메소가드는 별도 흡수 — mesoAbsorbRate 참고)
+ */
+export function reductionMultiplier(type: IncomingType, effects: EffectMap, jobClass: ClassId, isBoss: boolean): number {
+  const v = (id: EffectId): number => effects[id] ?? 0
+  let m = 1
+  if (type === 'touch') {
+    const pg = isBoss ? v('damageReflectP') / 2 : v('damageReflectP')
+    m *= 1 - pg / 100
+  }
+  if (jobClass === 'warrior') m *= 1 - v('damageReduce') / 100 // 아킬레스
+  if (ELEM_TYPES.includes(type)) {
+    m *= 1 - v('allRes') / 100
+    const specific = SPECIFIC_RES[type]
+    if (specific) m *= 1 - v(specific) / 100
+  }
+  if (type === 'touch' || type === 'physical') m *= 1 - v('physicalRes') / 100
+  return m
+}
+
+/** 메소가드 흡수율 (도적의 damageReduce = 50% 고정 흡수, powerUp 적용 전 기준) */
+export function mesoAbsorbRate(effects: EffectMap, jobClass: ClassId): number {
+  return jobClass === 'thief' ? (effects.damageReduce ?? 0) / 100 : 0
+}
+
+/**
+ * 방어 적용 (v1 applyModifiers): 스킬감소 → 파워업 → 메소흡수 차감.
+ *   reduced   = max(1, floor(base × 감소배율))
+ *   mesoAbs   = floor(reduced × 메소흡수율)   (파워업 적용 전 기준)
+ *   afterPUp  = floor(reduced × 파워업배율)
+ *   final     = max(1, afterPUp − mesoAbs)
+ * 파워업배율: 물리/접촉=파워업 토글, 그 외=매직업 토글 (일반 1.15 / 보스 1.3)
+ */
+export function applyDefenses(base: IncomingRange, o: {
+  type: IncomingType
+  effects: EffectMap
+  jobClass: ClassId
+  isBoss: boolean
+  powerUp: boolean
+  magicUp: boolean
+}): IncomingRange {
+  const red = reductionMultiplier(o.type, o.effects, o.jobClass, o.isBoss)
+  const reducedMin = Math.max(1, Math.floor(base.min * red))
+  const reducedMax = Math.max(1, Math.floor(base.max * red))
+  const meso = mesoAbsorbRate(o.effects, o.jobClass)
+  const mesoMin = Math.floor(reducedMin * meso)
+  const mesoMax = Math.floor(reducedMax * meso)
+  const pUpOn = o.type === 'touch' || o.type === 'physical' ? o.powerUp : o.magicUp
+  const pMult = pUpOn ? (o.isBoss ? POWER_UP_BOSS : POWER_UP_NORMAL) : 1
   return {
-    min: Math.max(1, Math.floor(range.min * m)),
-    max: Math.max(1, Math.floor(range.max * m)),
+    min: Math.max(1, Math.floor(reducedMin * pMult) - mesoMin),
+    max: Math.max(1, Math.floor(reducedMax * pMult) - mesoMax),
   }
 }
 
@@ -116,6 +184,9 @@ export interface SkillIncoming {
   key: string
   label: string
   isMagic: boolean
+  /** 데미지 타입(방어 감소·파워업 적용 기준) */
+  type: IncomingType
+  /** 방어 적용 전 base 데미지 */
   range: IncomingRange
 }
 
@@ -144,6 +215,7 @@ export function monsterSkillIncoming(p: {
         key,
         label: skillLabel(sk),
         isMagic: true,
+        type: skillDamageType(sk),
         range: magicIncoming({ monsterMatt: p.monsterMatt, mdd: p.mdd, isMagician: p.isMagician, stats: p.stats }),
       })
     } else if (sk.PADamage) {
@@ -151,6 +223,7 @@ export function monsterSkillIncoming(p: {
         key,
         label: skillLabel(sk),
         isMagic: false,
+        type: skillDamageType(sk),
         range: physicalIncoming({
           monsterAtt: sk.PADamage,
           charLevel: p.charLevel,
