@@ -19,6 +19,7 @@ import EffectList from '../common/EffectList'
 import CatalogSection from './CatalogSection'
 import ScrollSection from './ScrollSection'
 import GemSection from './GemSection'
+import GrowthSection, { defaultGrowth } from './GrowthSection'
 
 interface Props {
   open: boolean
@@ -32,9 +33,10 @@ interface Draft {
   adjustments: EffectMap
   scrolls: AppliedScroll[]
   gems: GemSelection[]
+  growth: EffectMap
 }
 
-const EMPTY: Draft = { base: null, adjustments: {}, scrolls: [], gems: [] }
+const EMPTY: Draft = { base: null, adjustments: {}, scrolls: [], gems: [], growth: {} }
 
 export default function ItemMakerDialog({ open, initial, onClose, onConfirm }: Props) {
   const [draft, setDraft] = useState<Draft>(EMPTY)
@@ -48,6 +50,7 @@ export default function ItemMakerDialog({ open, initial, onClose, onConfirm }: P
             adjustments: { ...(initial.adjustments ?? {}) },
             scrolls: [...initial.scrolls],
             gems: [...initial.gems],
+            growth: { ...(initial.growth ?? {}) },
           }
         : EMPTY,
     )
@@ -55,7 +58,7 @@ export default function ItemMakerDialog({ open, initial, onClose, onConfirm }: P
 
   const base = draft.base
   const built: BuiltItem | null = base
-    ? { base, adjustments: draft.adjustments, scrolls: draft.scrolls, gems: draft.gems }
+    ? { base, adjustments: draft.adjustments, scrolls: draft.scrolls, gems: draft.gems, growth: draft.growth }
     : null
   const result = built ? resolveBuiltItem(built) : null
 
@@ -66,6 +69,7 @@ export default function ItemMakerDialog({ open, initial, onClose, onConfirm }: P
       adjustments: Object.keys(draft.adjustments).length ? draft.adjustments : undefined,
       scrolls: draft.scrolls,
       gems: draft.gems,
+      growth: Object.keys(draft.growth).length ? draft.growth : undefined,
     })
     onClose()
   }
@@ -78,7 +82,7 @@ export default function ItemMakerDialog({ open, initial, onClose, onConfirm }: P
           <CatalogSection
             base={null}
             adjustments={draft.adjustments}
-            onPickBase={(item) => setDraft({ base: item, adjustments: {}, scrolls: [], gems: [] })}
+            onPickBase={(item) => setDraft({ base: item, adjustments: {}, scrolls: [], gems: [], growth: defaultGrowth(item) ?? {} })}
             onChangeAdjust={(adjustments) => setDraft((d) => ({ ...d, adjustments }))}
           />
         ) : (
@@ -113,8 +117,15 @@ export default function ItemMakerDialog({ open, initial, onClose, onConfirm }: P
             <CatalogSection
               base={base}
               adjustments={draft.adjustments}
-              onPickBase={(item) => setDraft({ base: item, adjustments: {}, scrolls: [], gems: [] })}
+              onPickBase={(item) => setDraft({ base: item, adjustments: {}, scrolls: [], gems: [], growth: defaultGrowth(item) ?? {} })}
               onChangeAdjust={(adjustments) => setDraft((d) => ({ ...d, adjustments }))}
+            />
+
+            {/* 리버스/타임리스 레벨업 성장 (해당 아이템만 표시) */}
+            <GrowthSection
+              item={base}
+              growth={draft.growth}
+              onChange={(growth) => setDraft((d) => ({ ...d, growth }))}
             />
 
             <ScrollSection

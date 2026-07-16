@@ -32,6 +32,8 @@ export interface BuiltItem {
   scrolls: AppliedScroll[]
   /** 적용 보석 (슬롯 용량 이내) */
   gems: GemSelection[]
+  /** 리버스/타임리스 레벨업 성장치(누적). 정옵/등급과 무관하게 최종 효과에만 가산. */
+  growth?: EffectMap
 }
 
 export interface BuiltItemResult {
@@ -54,7 +56,8 @@ export function builtItemDelta(b: BuiltItem): EffectMap {
 
 export function resolveBuiltItem(b: BuiltItem): BuiltItemResult {
   const delta = builtItemDelta(b)
-  const finalEffects = sumEffects(b.base.effects, delta)
+  // 성장치는 등급(정옵 대비 delta)에는 넣지 않고 최종 효과에만 가산한다.
+  const finalEffects = sumEffects(b.base.effects, delta, b.growth ?? {})
   const grade = computeGrade(delta, b.scrolls.length > 0)
   return { delta, finalEffects, grade }
 }
