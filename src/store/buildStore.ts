@@ -14,7 +14,7 @@ import { persist } from 'zustand/middleware'
 import { JOBS } from '../domain/jobs'
 import type { JobId } from '../domain/jobs'
 import type { BaseStats, StatId } from '../domain/stats'
-import { STAT_BASE, MAX_LEVEL, STAT_IDS, totalAP, minLevelForClass } from '../domain/stats'
+import { STAT_BASE, STAT_IDS, totalAP, minLevelForClass, maxLevelForOrder } from '../domain/stats'
 import { defaultBuffLevel } from '../domain/buff'
 import { getBuff } from '../data/buff'
 import type { EquipInstance } from './equipInstance'
@@ -74,7 +74,7 @@ const baseFour = (): BaseStats => ({ STR: STAT_BASE, DEX: STAT_BASE, INT: STAT_B
 /** current 값 기준으로 AP 한도 내 재배분 — 비주스탯=입력값, 주스탯=남은 AP */
 function recomputeStats(jobId: JobId, level: number, current: BaseStats): BaseStats {
   const job = JOBS[jobId]
-  const ap = totalAP(level)
+  const ap = totalAP(level, job.order)
   const next = baseFour()
   let used = 0
   for (const stat of STAT_IDS) {
@@ -130,7 +130,8 @@ export const useBuildStore = create<BuildState>()(
       setLevel: (n) =>
         set((s) => {
           const min = s.jobId ? minLevelForClass(JOBS[s.jobId].classId) : 1
-          const level = Math.max(min, Math.min(MAX_LEVEL, Math.floor(n) || min))
+          const max = s.jobId ? maxLevelForOrder(JOBS[s.jobId].order) : maxLevelForOrder()
+          const level = Math.max(min, Math.min(max, Math.floor(n) || min))
           const baseStats = s.jobId ? recomputeStats(s.jobId, level, s.baseStats) : s.baseStats
           return { level, baseStats }
         }),

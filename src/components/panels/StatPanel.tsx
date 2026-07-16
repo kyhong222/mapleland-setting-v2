@@ -70,7 +70,7 @@ export default function StatPanel() {
         <Typography variant="body2" color="text.secondary">총 스탯합</Typography>
         <TextField
           size="small"
-          value={totalPureStats(level)}
+          value={totalPureStats(level, job.order)}
           disabled
           slotProps={{ htmlInput: { style: { textAlign: 'center' } } }}
         />

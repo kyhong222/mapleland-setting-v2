@@ -4,21 +4,17 @@ import Typography from '@mui/material/Typography'
 import Paper from '@mui/material/Paper'
 import Stack from '@mui/material/Stack'
 import ButtonBase from '@mui/material/ButtonBase'
-import { ALL_CLASSES, jobsOfClass } from '../domain/jobs'
+import { ALL_CLASSES, jobsOfClass, JOB_ORDER_LABELS } from '../domain/jobs'
+import type { JobId, JobOrder } from '../domain/jobs'
 import { useBuildStore } from '../store/buildStore'
 
-export default function JobSelectScreen() {
-  const selectJob = useBuildStore((s) => s.selectJob)
-
+/** 한 계열(모험가/시그너스)의 클래스별 직업 그리드 */
+function OrderSection({ order, onSelect }: { order: JobOrder; onSelect: (id: JobId) => void }) {
   return (
-    <Container maxWidth="lg" sx={{ py: 6 }}>
-      <Typography variant="h5" sx={{ fontWeight: 800, mb: 1 }}>
-        직업 선택
+    <Box>
+      <Typography variant="subtitle1" sx={{ fontWeight: 800, mb: 2 }}>
+        {JOB_ORDER_LABELS[order]}
       </Typography>
-      <Typography variant="body2" color="text.secondary" sx={{ mb: 4 }}>
-        직업은 선택 후 변경할 수 없습니다. 변경하려면 초기화 후 새로 작성하세요.
-      </Typography>
-
       <Box
         sx={{
           display: 'grid',
@@ -40,10 +36,10 @@ export default function JobSelectScreen() {
               {cls.label}
             </Typography>
             <Stack spacing={1.5}>
-              {jobsOfClass(cls.id).map((job) => (
+              {jobsOfClass(cls.id, order).map((job) => (
                 <ButtonBase
                   key={job.id}
-                  onClick={() => selectJob(job.id)}
+                  onClick={() => onSelect(job.id)}
                   sx={{ borderRadius: 2, display: 'block' }}
                 >
                   <Paper
@@ -67,6 +63,26 @@ export default function JobSelectScreen() {
           </Box>
         ))}
       </Box>
+    </Box>
+  )
+}
+
+export default function JobSelectScreen() {
+  const selectJob = useBuildStore((s) => s.selectJob)
+
+  return (
+    <Container maxWidth="lg" sx={{ py: 6 }}>
+      <Typography variant="h5" sx={{ fontWeight: 800, mb: 1 }}>
+        직업 선택
+      </Typography>
+      <Typography variant="body2" color="text.secondary" sx={{ mb: 4 }}>
+        직업은 선택 후 변경할 수 없습니다. 변경하려면 초기화 후 새로 작성하세요.
+      </Typography>
+
+      <Stack spacing={5}>
+        <OrderSection order="explorer" onSelect={selectJob} />
+        <OrderSection order="cygnus" onSelect={selectJob} />
+      </Stack>
     </Container>
   )
 }
