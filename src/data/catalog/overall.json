@@ -2489,5 +2489,165 @@
     "iconUrl": "https://maplestory.io/api/GMS/200/item/1051107/icon",
     "tuc": 10,
     "reqDex": 310
+  },
+  {
+    "id": 1052155,
+    "name": "타임리스 타라곤",
+    "slot": "overall",
+    "effects": {
+      "STR": 9,
+      "DEX": 7,
+      "pdef": 196,
+      "acc": 3
+    },
+    "reqLevel": 120,
+    "reqStr": 370,
+    "tuc": 10,
+    "reqJob": 1,
+    "iconUrl": "https://maplestory.io/api/gms/200/item/1052155/icon"
+  },
+  {
+    "id": 1052156,
+    "name": "타임리스 미스트 블루",
+    "slot": "overall",
+    "effects": {
+      "INT": 9,
+      "LUK": 4,
+      "mp": 50,
+      "pdef": 100,
+      "mdef": 50
+    },
+    "reqLevel": 118,
+    "reqInt": 355,
+    "tuc": 10,
+    "reqJob": 2,
+    "iconUrl": "https://maplestory.io/api/gms/200/item/1052156/icon"
+  },
+  {
+    "id": 1052157,
+    "name": "타임리스 에버뉴",
+    "slot": "overall",
+    "effects": {
+      "STR": 6,
+      "DEX": 9,
+      "pdef": 125,
+      "eva": 3
+    },
+    "reqLevel": 120,
+    "reqDex": 370,
+    "tuc": 10,
+    "reqJob": 4,
+    "iconUrl": "https://maplestory.io/api/gms/200/item/1052157/icon"
+  },
+  {
+    "id": 1052158,
+    "name": "타임리스 프린지드",
+    "slot": "overall",
+    "effects": {
+      "DEX": 5,
+      "LUK": 8,
+      "pdef": 125,
+      "eva": 4
+    },
+    "reqLevel": 120,
+    "reqLuk": 300,
+    "tuc": 10,
+    "reqJob": 8,
+    "iconUrl": "https://maplestory.io/api/gms/200/item/1052158/icon"
+  },
+  {
+    "id": 1052159,
+    "name": "타임리스 부르군트",
+    "slot": "overall",
+    "effects": {
+      "STR": 8,
+      "DEX": 8,
+      "hp": 30,
+      "pdef": 125
+    },
+    "reqLevel": 120,
+    "tuc": 10,
+    "reqJob": 16,
+    "iconUrl": "https://maplestory.io/api/gms/200/item/1052159/icon"
+  },
+  {
+    "id": 1052160,
+    "name": "리버스 타라곤",
+    "slot": "overall",
+    "effects": {
+      "STR": 8,
+      "DEX": 7,
+      "pdef": 196,
+      "acc": 3
+    },
+    "reqLevel": 120,
+    "reqStr": 370,
+    "tuc": 10,
+    "reqJob": 1,
+    "iconUrl": "https://maplestory.io/api/gms/200/item/1052160/icon"
+  },
+  {
+    "id": 1052161,
+    "name": "리버스 미스트 블루",
+    "slot": "overall",
+    "effects": {
+      "INT": 8,
+      "LUK": 4,
+      "mp": 50,
+      "pdef": 100,
+      "mdef": 50
+    },
+    "reqLevel": 118,
+    "reqInt": 355,
+    "tuc": 10,
+    "reqJob": 2,
+    "iconUrl": "https://maplestory.io/api/gms/200/item/1052161/icon"
+  },
+  {
+    "id": 1052162,
+    "name": "리버스 에버뉴",
+    "slot": "overall",
+    "effects": {
+      "STR": 6,
+      "DEX": 8,
+      "pdef": 125,
+      "eva": 3
+    },
+    "reqLevel": 120,
+    "reqDex": 370,
+    "tuc": 10,
+    "reqJob": 4,
+    "iconUrl": "https://maplestory.io/api/gms/200/item/1052162/icon"
+  },
+  {
+    "id": 1052163,
+    "name": "리버스 프린지드",
+    "slot": "overall",
+    "effects": {
+      "DEX": 5,
+      "LUK": 7,
+      "pdef": 125,
+      "eva": 4
+    },
+    "reqLevel": 120,
+    "reqLuk": 300,
+    "tuc": 10,
+    "reqJob": 8,
+    "iconUrl": "https://maplestory.io/api/gms/200/item/1052163/icon"
+  },
+  {
+    "id": 1052164,
+    "name": "리버스 부르군트",
+    "slot": "overall",
+    "effects": {
+      "STR": 7,
+      "DEX": 7,
+      "hp": 30,
+      "pdef": 125
+    },
+    "reqLevel": 120,
+    "tuc": 10,
+    "reqJob": 16,
+    "iconUrl": "https://maplestory.io/api/gms/200/item/1052164/icon"
   }
 ]

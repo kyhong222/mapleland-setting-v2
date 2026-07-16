@@ -2975,5 +2975,165 @@
     "iconUrl": "https://maplestory.io/api/GMS/200/item/1072229/icon",
     "tuc": 5,
     "reqDex": 310
+  },
+  {
+    "id": 1072355,
+    "name": "타임리스 그라베",
+    "slot": "shoes",
+    "effects": {
+      "STR": 6,
+      "DEX": 3,
+      "pdef": 84,
+      "acc": 1
+    },
+    "reqLevel": 120,
+    "reqStr": 390,
+    "tuc": 5,
+    "reqJob": 1,
+    "iconUrl": "https://maplestory.io/api/gms/200/item/1072355/icon"
+  },
+  {
+    "id": 1072356,
+    "name": "타임리스 카바티나",
+    "slot": "shoes",
+    "effects": {
+      "INT": 5,
+      "LUK": 4,
+      "mad": 1,
+      "pdef": 47,
+      "mdef": 23
+    },
+    "reqLevel": 120,
+    "reqInt": 368,
+    "tuc": 5,
+    "reqJob": 2,
+    "iconUrl": "https://maplestory.io/api/gms/200/item/1072356/icon"
+  },
+  {
+    "id": 1072357,
+    "name": "타임리스 론타노",
+    "slot": "shoes",
+    "effects": {
+      "STR": 3,
+      "DEX": 6,
+      "pdef": 70,
+      "eva": 1
+    },
+    "reqLevel": 120,
+    "reqDex": 370,
+    "tuc": 5,
+    "reqJob": 4,
+    "iconUrl": "https://maplestory.io/api/gms/200/item/1072357/icon"
+  },
+  {
+    "id": 1072358,
+    "name": "타임리스 문스티드",
+    "slot": "shoes",
+    "effects": {
+      "DEX": 4,
+      "LUK": 5,
+      "pdef": 70,
+      "eva": 1
+    },
+    "reqLevel": 120,
+    "reqLuk": 300,
+    "tuc": 5,
+    "reqJob": 8,
+    "iconUrl": "https://maplestory.io/api/gms/200/item/1072358/icon"
+  },
+  {
+    "id": 1072359,
+    "name": "타임리스 파라온",
+    "slot": "shoes",
+    "effects": {
+      "STR": 5,
+      "DEX": 5,
+      "pdef": 70,
+      "eva": 1
+    },
+    "reqLevel": 120,
+    "tuc": 5,
+    "reqJob": 16,
+    "iconUrl": "https://maplestory.io/api/gms/200/item/1072359/icon"
+  },
+  {
+    "id": 1072361,
+    "name": "리버스 그라베",
+    "slot": "shoes",
+    "effects": {
+      "STR": 5,
+      "DEX": 3,
+      "pdef": 84,
+      "acc": 1
+    },
+    "reqLevel": 120,
+    "reqStr": 390,
+    "tuc": 5,
+    "reqJob": 1,
+    "iconUrl": "https://maplestory.io/api/gms/200/item/1072361/icon"
+  },
+  {
+    "id": 1072362,
+    "name": "리버스 카바티나",
+    "slot": "shoes",
+    "effects": {
+      "INT": 4,
+      "LUK": 4,
+      "mad": 1,
+      "pdef": 47,
+      "mdef": 23
+    },
+    "reqLevel": 120,
+    "reqInt": 368,
+    "tuc": 5,
+    "reqJob": 2,
+    "iconUrl": "https://maplestory.io/api/gms/200/item/1072362/icon"
+  },
+  {
+    "id": 1072363,
+    "name": "리버스 론타노",
+    "slot": "shoes",
+    "effects": {
+      "STR": 3,
+      "DEX": 5,
+      "pdef": 70,
+      "eva": 1
+    },
+    "reqLevel": 120,
+    "reqDex": 370,
+    "tuc": 5,
+    "reqJob": 4,
+    "iconUrl": "https://maplestory.io/api/gms/200/item/1072363/icon"
+  },
+  {
+    "id": 1072364,
+    "name": "리버스 문스티드",
+    "slot": "shoes",
+    "effects": {
+      "DEX": 4,
+      "LUK": 4,
+      "pdef": 70,
+      "eva": 1
+    },
+    "reqLevel": 120,
+    "reqLuk": 300,
+    "tuc": 5,
+    "reqJob": 8,
+    "iconUrl": "https://maplestory.io/api/gms/200/item/1072364/icon"
+  },
+  {
+    "id": 1072365,
+    "name": "리버스 파라온",
+    "slot": "shoes",
+    "effects": {
+      "STR": 4,
+      "DEX": 4,
+      "pdef": 70,
+      "eva": 1
+    },
+    "reqLevel": 120,
+    "tuc": 5,
+    "reqJob": 16,
+    "iconUrl": "https://maplestory.io/api/gms/200/item/1072365/icon"
   }
 ]

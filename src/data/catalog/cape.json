@@ -596,5 +596,17 @@
     "reqLevel": 100,
     "iconUrl": "https://maplestory.io/api/GMS/200/item/1102057/icon",
     "tuc": 5
+  },
+  {
+    "id": 1102172,
+    "name": "타임리스 문라이트",
+    "slot": "cape",
+    "effects": {
+      "pdef": 55,
+      "mdef": 60
+    },
+    "reqLevel": 120,
+    "tuc": 5,
+    "iconUrl": "https://maplestory.io/api/gms/200/item/1102172/icon"
   }
 ]

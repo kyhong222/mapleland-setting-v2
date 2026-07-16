@@ -491,5 +491,51 @@
     "iconUrl": "https://maplestory.io/api/GMS/200/item/1092042/icon",
     "tuc": 7,
     "reqStr": 370
+  },
+  {
+    "id": 1092057,
+    "name": "타임리스 프렐류드",
+    "slot": "shield",
+    "effects": {
+      "INT": 5,
+      "pdef": 60,
+      "mdef": 110
+    },
+    "reqLevel": 120,
+    "reqInt": 368,
+    "tuc": 7,
+    "reqJob": 2,
+    "iconUrl": "https://maplestory.io/api/gms/200/item/1092057/icon"
+  },
+  {
+    "id": 1092058,
+    "name": "타임리스 카이트 실드",
+    "slot": "shield",
+    "effects": {
+      "STR": 7,
+      "DEX": 5,
+      "pdef": 100,
+      "mdef": 35,
+      "eva": 5
+    },
+    "reqLevel": 120,
+    "reqStr": 370,
+    "tuc": 7,
+    "reqJob": 1,
+    "iconUrl": "https://maplestory.io/api/gms/200/item/1092058/icon"
+  },
+  {
+    "id": 1092059,
+    "name": "타임리스 리스트",
+    "slot": "shield",
+    "effects": {
+      "LUK": 5,
+      "pdef": 84
+    },
+    "reqLevel": 120,
+    "reqLuk": 300,
+    "tuc": 7,
+    "reqJob": 8,
+    "iconUrl": "https://maplestory.io/api/gms/200/item/1092059/icon"
   }
 ]

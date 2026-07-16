@@ -90,6 +90,60 @@ const ACCESSORY_GROWTH: GrowthRange[] = [
 
 const ACCESSORY_SLOTS: SlotId[] = ['earring', 'cape']
 
+// ── 방어구 레벨업 1회당 성장 범위 (직업별) ──
+type ArmorClass = 'warrior' | 'magician' | 'bowman' | 'thief' | 'pirate'
+
+/** reqJob 비트마스크 → 직업 계열 (방어구는 단일 직업) */
+const ARMOR_CLASS_BY_REQJOB: Record<number, ArmorClass> = { 1: 'warrior', 2: 'magician', 4: 'bowman', 8: 'thief', 16: 'pirate' }
+
+const g = (effectId: EffectId, perLevelMin: number, perLevelMax: number): GrowthRange => ({ effectId, perLevelMin, perLevelMax })
+
+const HAT_GROWTH: Record<ArmorClass, GrowthRange[]> = {
+  warrior: [g('STR', 0, 1), g('DEX', 0, 1), g('hp', 10, 20)],
+  magician: [g('INT', 0, 1), g('LUK', 0, 1), g('hp', 5, 10), g('mp', 5, 10)],
+  bowman: [g('STR', 0, 1), g('DEX', 0, 1), g('hp', 20, 30)],
+  thief: [g('STR', 0, 1), g('DEX', 0, 1), g('LUK', 0, 1), g('hp', 20, 30)],
+  pirate: [g('STR', 0, 1), g('DEX', 0, 1), g('hp', 10, 20)],
+}
+// 상의/전신 공용
+const BODY_GROWTH: Record<ArmorClass, GrowthRange[]> = {
+  warrior: [g('STR', 0, 1), g('DEX', 0, 1), g('eva', 1, 2)],
+  magician: [g('INT', 0, 1), g('LUK', 0, 1), g('eva', 1, 2)],
+  bowman: [g('STR', 0, 1), g('DEX', 0, 1), g('eva', 1, 3)],
+  thief: [g('STR', 0, 1), g('DEX', 0, 1), g('LUK', 0, 1), g('eva', 1, 3)],
+  pirate: [g('STR', 0, 1), g('DEX', 0, 1), g('eva', 1, 3)],
+}
+const GLOVES_GROWTH: Record<ArmorClass, GrowthRange[]> = {
+  warrior: [g('STR', 0, 1), g('DEX', 0, 1), g('acc', 1, 2)],
+  magician: [g('mad', 0, 1), g('INT', 0, 1), g('LUK', 0, 1)],
+  bowman: [g('STR', 0, 1), g('DEX', 0, 1), g('hp', 5, 10)],
+  thief: [g('STR', 0, 1), g('DEX', 0, 1), g('LUK', 0, 1), g('hp', 5, 10)],
+  pirate: [g('STR', 0, 1), g('DEX', 0, 1), g('hp', 5, 10)],
+}
+const SHOES_GROWTH: Record<ArmorClass, GrowthRange[]> = {
+  warrior: [g('STR', 0, 1), g('DEX', 0, 1), g('speed', 0, 1), g('jump', 0, 1)],
+  magician: [g('INT', 0, 1), g('LUK', 0, 1), g('speed', 0, 1), g('jump', 0, 1)],
+  bowman: [g('STR', 0, 1), g('DEX', 0, 1), g('speed', 0, 1), g('jump', 0, 1)],
+  thief: [g('STR', 0, 1), g('DEX', 0, 1), g('LUK', 0, 1), g('speed', 0, 1), g('jump', 0, 1)],
+  pirate: [g('STR', 0, 1), g('DEX', 0, 1), g('speed', 0, 1), g('jump', 0, 1)],
+}
+// 방패는 전사/법사/도적만 존재
+const SHIELD_GROWTH: Partial<Record<ArmorClass, GrowthRange[]>> = {
+  warrior: [g('pdef', 5, 10), g('STR', 0, 1), g('DEX', 0, 1)],
+  magician: [g('pdef', 5, 10), g('mdef', 5, 10), g('INT', 0, 1), g('LUK', 0, 1)],
+  thief: [g('pdef', 5, 10), g('STR', 0, 1), g('DEX', 0, 1), g('LUK', 1, 1)],
+}
+
+const ARMOR_GROWTH: Partial<Record<SlotId, Partial<Record<ArmorClass, GrowthRange[]>>>> = {
+  hat: HAT_GROWTH,
+  top: BODY_GROWTH,
+  bottom: BODY_GROWTH,
+  overall: BODY_GROWTH,
+  gloves: GLOVES_GROWTH,
+  shoes: SHOES_GROWTH,
+  shield: SHIELD_GROWTH,
+}
+
 /** 이름 접두사로 성장 티어 판별 ("타임리스 …" / "리버스 …") */
 export function growthTier(name: string): GrowthTier | null {
   if (/^타임리스\s/.test(name)) return 'timeless'
@@ -97,11 +151,15 @@ export function growthTier(name: string): GrowthTier | null {
   return null
 }
 
-/** 부위/무기종류에 해당하는 레벨업 성장 범위 (미정의면 null) */
+/** 부위/무기종류/직업에 해당하는 레벨업 성장 범위 (미정의면 null) */
 function growthRangesFor(item: ItemData): GrowthRange[] | null {
   if (item.slot === 'weapon' && item.weaponType) return WEAPON_GROWTH[item.weaponType] ?? null
   if (ACCESSORY_SLOTS.includes(item.slot)) return ACCESSORY_GROWTH
-  // 방어구 등은 데이터 추가 시 확장
+  const armor = ARMOR_GROWTH[item.slot]
+  if (armor) {
+    const cls = ARMOR_CLASS_BY_REQJOB[item.reqJob ?? 0]
+    return (cls && armor[cls]) ?? null
+  }
   return null
 }
 

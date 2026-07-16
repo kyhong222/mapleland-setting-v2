@@ -4140,5 +4140,147 @@
     "iconUrl": "https://maplestory.io/api/GMS/200/item/1002408/icon",
     "tuc": 7,
     "reqDex": 310
+  },
+  {
+    "id": 1002776,
+    "name": "타임리스 휀넬",
+    "slot": "hat",
+    "effects": {
+      "STR": 7,
+      "pdef": 120
+    },
+    "reqLevel": 120,
+    "reqStr": 330,
+    "tuc": 7,
+    "reqJob": 1,
+    "iconUrl": "https://maplestory.io/api/gms/200/item/1002776/icon"
+  },
+  {
+    "id": 1002777,
+    "name": "타임리스 코럴",
+    "slot": "hat",
+    "effects": {
+      "INT": 7,
+      "LUK": 5,
+      "mp": 25,
+      "pdef": 60,
+      "mdef": 90
+    },
+    "reqLevel": 120,
+    "reqInt": 368,
+    "tuc": 7,
+    "reqJob": 2,
+    "iconUrl": "https://maplestory.io/api/gms/200/item/1002777/icon"
+  },
+  {
+    "id": 1002778,
+    "name": "타임리스 라피드",
+    "slot": "hat",
+    "effects": {
+      "STR": 3,
+      "DEX": 7,
+      "hp": 30,
+      "pdef": 75
+    },
+    "reqLevel": 120,
+    "reqDex": 370,
+    "tuc": 7,
+    "reqJob": 4,
+    "iconUrl": "https://maplestory.io/api/gms/200/item/1002778/icon"
+  },
+  {
+    "id": 1002779,
+    "name": "타임리스 차이브",
+    "slot": "hat",
+    "effects": {
+      "DEX": 4,
+      "LUK": 6,
+      "hp": 30,
+      "pdef": 75
+    },
+    "reqLevel": 120,
+    "reqLuk": 300,
+    "tuc": 7,
+    "reqJob": 8,
+    "iconUrl": "https://maplestory.io/api/gms/200/item/1002779/icon"
+  },
+  {
+    "id": 1002780,
+    "name": "타임리스 콘라드 헨켈",
+    "slot": "hat",
+    "effects": {
+      "STR": 3,
+      "DEX": 7,
+      "hp": 30,
+      "pdef": 75
+    },
+    "reqLevel": 120,
+    "reqDex": 370,
+    "tuc": 7,
+    "reqJob": 4,
+    "iconUrl": "https://maplestory.io/api/gms/62/item/1002780/icon"
+  },
+  {
+    "id": 1002790,
+    "name": "리버스 휀넬",
+    "slot": "hat",
+    "effects": {
+      "STR": 6,
+      "pdef": 120
+    },
+    "reqLevel": 120,
+    "reqStr": 330,
+    "tuc": 7,
+    "reqJob": 1,
+    "iconUrl": "https://maplestory.io/api/gms/200/item/1002790/icon"
+  },
+  {
+    "id": 1002791,
+    "name": "리버스 코럴",
+    "slot": "hat",
+    "effects": {
+      "INT": 6,
+      "LUK": 5,
+      "mp": 25,
+      "pdef": 60,
+      "mdef": 90
+    },
+    "reqLevel": 120,
+    "reqInt": 368,
+    "tuc": 7,
+    "reqJob": 2,
+    "iconUrl": "https://maplestory.io/api/gms/200/item/1002791/icon"
+  },
+  {
+    "id": 1002792,
+    "name": "리버스 라피드",
+    "slot": "hat",
+    "effects": {
+      "STR": 3,
+      "DEX": 6,
+      "hp": 30,
+      "pdef": 75
+    },
+    "reqLevel": 120,
+    "reqDex": 370,
+    "tuc": 7,
+    "reqJob": 4,
+    "iconUrl": "https://maplestory.io/api/gms/200/item/1002792/icon"
+  },
+  {
+    "id": 1002793,
+    "name": "리버스 차이브",
+    "slot": "hat",
+    "effects": {
+      "DEX": 4,
+      "LUK": 5,
+      "hp": 30,
+      "pdef": 75
+    },
+    "reqLevel": 120,
+    "reqLuk": 300,
+    "tuc": 7,
+    "reqJob": 8,
+    "iconUrl": "https://maplestory.io/api/gms/200/item/1002793/icon"
   }
 ]

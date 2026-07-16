@@ -5786,5 +5786,431 @@
     "tuc": 7,
     "reqInt": 325,
     "reqLuk": 110
+  },
+  {
+    "id": 1302086,
+    "name": "리버스 엑서큐서너스",
+    "slot": "weapon",
+    "effects": {
+      "pad": 108,
+      "attackSpeed": 5
+    },
+    "reqLevel": 120,
+    "reqStr": 340,
+    "tuc": 7,
+    "reqJob": 1,
+    "weaponType": "oneHandedSword",
+    "iconUrl": "https://maplestory.io/api/gms/200/item/1302086/icon"
+  },
+  {
+    "id": 1312038,
+    "name": "리버스 버디슈",
+    "slot": "weapon",
+    "effects": {
+      "pad": 108,
+      "attackSpeed": 6
+    },
+    "reqLevel": 120,
+    "reqStr": 350,
+    "tuc": 7,
+    "reqJob": 1,
+    "weaponType": "oneHandedAxe",
+    "iconUrl": "https://maplestory.io/api/gms/200/item/1312038/icon"
+  },
+  {
+    "id": 1322061,
+    "name": "리버스 알라르간도",
+    "slot": "weapon",
+    "effects": {
+      "pad": 108,
+      "attackSpeed": 6
+    },
+    "reqLevel": 120,
+    "reqStr": 290,
+    "tuc": 7,
+    "reqJob": 1,
+    "weaponType": "oneHandedMace",
+    "iconUrl": "https://maplestory.io/api/gms/200/item/1322061/icon"
+  },
+  {
+    "id": 1332073,
+    "name": "타임리스 페스카즈",
+    "slot": "weapon",
+    "effects": {
+      "pad": 107,
+      "attackSpeed": 4
+    },
+    "reqLevel": 120,
+    "tuc": 7,
+    "reqJob": 9,
+    "weaponType": "dagger",
+    "iconUrl": "https://maplestory.io/api/gms/200/item/1332073/icon"
+  },
+  {
+    "id": 1332074,
+    "name": "타임리스 킬릭",
+    "slot": "weapon",
+    "effects": {
+      "pad": 105,
+      "attackSpeed": 4
+    },
+    "reqLevel": 120,
+    "reqLuk": 290,
+    "tuc": 7,
+    "reqJob": 8,
+    "weaponType": "dagger",
+    "iconUrl": "https://maplestory.io/api/gms/200/item/1332074/icon"
+  },
+  {
+    "id": 1332075,
+    "name": "리버스 페스카즈",
+    "slot": "weapon",
+    "effects": {
+      "pad": 105,
+      "attackSpeed": 4
+    },
+    "reqLevel": 120,
+    "tuc": 7,
+    "reqJob": 9,
+    "weaponType": "dagger",
+    "iconUrl": "https://maplestory.io/api/gms/200/item/1332075/icon"
+  },
+  {
+    "id": 1332076,
+    "name": "리버스 킬릭",
+    "slot": "weapon",
+    "effects": {
+      "pad": 103,
+      "attackSpeed": 4
+    },
+    "reqLevel": 120,
+    "reqLuk": 290,
+    "tuc": 7,
+    "reqJob": 8,
+    "weaponType": "dagger",
+    "iconUrl": "https://maplestory.io/api/gms/200/item/1332076/icon"
+  },
+  {
+    "id": 1372044,
+    "name": "타임리스 엔릴 티어",
+    "slot": "weapon",
+    "effects": {
+      "pad": 82,
+      "mad": 138,
+      "attackSpeed": 6
+    },
+    "reqLevel": 118,
+    "reqInt": 355,
+    "tuc": 7,
+    "reqJob": 2,
+    "weaponType": "wand",
+    "iconUrl": "https://maplestory.io/api/gms/200/item/1372044/icon"
+  },
+  {
+    "id": 1372045,
+    "name": "리버스 엔릴 티어",
+    "slot": "weapon",
+    "effects": {
+      "pad": 81,
+      "mad": 133,
+      "attackSpeed": 6
+    },
+    "reqLevel": 118,
+    "reqInt": 355,
+    "tuc": 7,
+    "reqJob": 2,
+    "weaponType": "wand",
+    "iconUrl": "https://maplestory.io/api/gms/200/item/1372045/icon"
+  },
+  {
+    "id": 1382057,
+    "name": "타임리스 에아스 핸드",
+    "slot": "weapon",
+    "effects": {
+      "pad": 88,
+      "mad": 140,
+      "attackSpeed": 8
+    },
+    "reqLevel": 120,
+    "reqInt": 363,
+    "tuc": 7,
+    "reqJob": 2,
+    "weaponType": "staff",
+    "iconUrl": "https://maplestory.io/api/gms/200/item/1382057/icon"
+  },
+  {
+    "id": 1382059,
+    "name": "리버스 에아스 핸드",
+    "slot": "weapon",
+    "effects": {
+      "pad": 86,
+      "mad": 135,
+      "attackSpeed": 8
+    },
+    "reqLevel": 120,
+    "reqInt": 363,
+    "tuc": 7,
+    "reqJob": 2,
+    "weaponType": "staff",
+    "iconUrl": "https://maplestory.io/api/gms/200/item/1382059/icon"
+  },
+  {
+    "id": 1402047,
+    "name": "리버스 니플하임",
+    "slot": "weapon",
+    "effects": {
+      "pad": 110,
+      "attackSpeed": 6
+    },
+    "reqLevel": 120,
+    "reqStr": 370,
+    "tuc": 7,
+    "reqJob": 1,
+    "weaponType": "twoHandedSword",
+    "iconUrl": "https://maplestory.io/api/gms/200/item/1402047/icon"
+  },
+  {
+    "id": 1412034,
+    "name": "리버스 타바르진",
+    "slot": "weapon",
+    "effects": {
+      "pad": 112,
+      "attackSpeed": 6
+    },
+    "reqLevel": 120,
+    "reqStr": 370,
+    "tuc": 7,
+    "reqJob": 1,
+    "weaponType": "twoHandedAxe",
+    "iconUrl": "https://maplestory.io/api/gms/200/item/1412034/icon"
+  },
+  {
+    "id": 1422038,
+    "name": "리버스 벨로체",
+    "slot": "weapon",
+    "effects": {
+      "pad": 112,
+      "attackSpeed": 7
+    },
+    "reqLevel": 120,
+    "reqStr": 370,
+    "tuc": 7,
+    "reqJob": 1,
+    "weaponType": "twoHandedMace",
+    "iconUrl": "https://maplestory.io/api/gms/200/item/1422038/icon"
+  },
+  {
+    "id": 1432047,
+    "name": "타임리스 알슈피스",
+    "slot": "weapon",
+    "effects": {
+      "pad": 114,
+      "attackSpeed": 6
+    },
+    "reqLevel": 120,
+    "reqStr": 370,
+    "tuc": 7,
+    "reqJob": 1,
+    "weaponType": "spear",
+    "iconUrl": "https://maplestory.io/api/gms/200/item/1432047/icon"
+  },
+  {
+    "id": 1432049,
+    "name": "리버스 알슈피스",
+    "slot": "weapon",
+    "effects": {
+      "pad": 112,
+      "attackSpeed": 6
+    },
+    "reqLevel": 120,
+    "reqStr": 370,
+    "tuc": 7,
+    "reqJob": 1,
+    "weaponType": "spear",
+    "iconUrl": "https://maplestory.io/api/gms/200/item/1432049/icon"
+  },
+  {
+    "id": 1442063,
+    "name": "타임리스 디에스이라에",
+    "slot": "weapon",
+    "effects": {
+      "pad": 114,
+      "attackSpeed": 8
+    },
+    "reqLevel": 120,
+    "reqStr": 370,
+    "tuc": 7,
+    "reqJob": 1,
+    "weaponType": "polearm",
+    "iconUrl": "https://maplestory.io/api/gms/200/item/1442063/icon"
+  },
+  {
+    "id": 1442067,
+    "name": "리버스 디에스이라에",
+    "slot": "weapon",
+    "effects": {
+      "pad": 112,
+      "attackSpeed": 8
+    },
+    "reqLevel": 120,
+    "reqStr": 370,
+    "tuc": 7,
+    "reqJob": 1,
+    "weaponType": "polearm",
+    "iconUrl": "https://maplestory.io/api/gms/200/item/1442067/icon"
+  },
+  {
+    "id": 1452057,
+    "name": "타임리스 엔가우",
+    "slot": "weapon",
+    "effects": {
+      "pad": 107,
+      "speed": 12,
+      "attackSpeed": 6
+    },
+    "reqLevel": 120,
+    "reqDex": 305,
+    "tuc": 7,
+    "reqJob": 4,
+    "weaponType": "bow",
+    "iconUrl": "https://maplestory.io/api/gms/200/item/1452057/icon"
+  },
+  {
+    "id": 1452059,
+    "name": "리버스 엔가우",
+    "slot": "weapon",
+    "effects": {
+      "pad": 105,
+      "speed": 12,
+      "attackSpeed": 6
+    },
+    "reqLevel": 120,
+    "reqDex": 305,
+    "tuc": 7,
+    "reqJob": 4,
+    "weaponType": "bow",
+    "iconUrl": "https://maplestory.io/api/gms/200/item/1452059/icon"
+  },
+  {
+    "id": 1462050,
+    "name": "타임리스 블랙뷰티",
+    "slot": "weapon",
+    "effects": {
+      "pad": 110,
+      "speed": 12,
+      "attackSpeed": 6
+    },
+    "reqLevel": 120,
+    "reqDex": 330,
+    "tuc": 7,
+    "reqJob": 4,
+    "weaponType": "crossbow",
+    "iconUrl": "https://maplestory.io/api/gms/200/item/1462050/icon"
+  },
+  {
+    "id": 1462051,
+    "name": "리버스 블랙뷰티",
+    "slot": "weapon",
+    "effects": {
+      "pad": 108,
+      "speed": 12,
+      "attackSpeed": 6
+    },
+    "reqLevel": 120,
+    "reqDex": 330,
+    "tuc": 7,
+    "reqJob": 4,
+    "weaponType": "crossbow",
+    "iconUrl": "https://maplestory.io/api/gms/200/item/1462051/icon"
+  },
+  {
+    "id": 1472068,
+    "name": "타임리스 람피온",
+    "slot": "weapon",
+    "effects": {
+      "LUK": 8,
+      "pad": 56,
+      "eva": 8,
+      "attackSpeed": 4
+    },
+    "reqLevel": 120,
+    "reqLuk": 350,
+    "tuc": 7,
+    "reqJob": 8,
+    "weaponType": "claw",
+    "iconUrl": "https://maplestory.io/api/gms/200/item/1472068/icon"
+  },
+  {
+    "id": 1472071,
+    "name": "리버스 람피온",
+    "slot": "weapon",
+    "effects": {
+      "LUK": 8,
+      "pad": 54,
+      "eva": 8,
+      "attackSpeed": 4
+    },
+    "reqLevel": 120,
+    "reqLuk": 350,
+    "tuc": 7,
+    "reqJob": 8,
+    "weaponType": "claw",
+    "iconUrl": "https://maplestory.io/api/gms/200/item/1472071/icon"
+  },
+  {
+    "id": 1482023,
+    "name": "타임리스 에퀴녹스",
+    "slot": "weapon",
+    "effects": {
+      "pad": 84,
+      "attackSpeed": 5
+    },
+    "reqLevel": 120,
+    "tuc": 7,
+    "reqJob": 16,
+    "weaponType": "knuckle",
+    "iconUrl": "https://maplestory.io/api/gms/200/item/1482023/icon"
+  },
+  {
+    "id": 1482024,
+    "name": "리버스 에퀴녹스",
+    "slot": "weapon",
+    "effects": {
+      "pad": 82,
+      "attackSpeed": 5
+    },
+    "reqLevel": 120,
+    "tuc": 7,
+    "reqJob": 16,
+    "weaponType": "knuckle",
+    "iconUrl": "https://maplestory.io/api/gms/200/item/1482024/icon"
+  },
+  {
+    "id": 1492023,
+    "name": "타임리스 블라인드니스",
+    "slot": "weapon",
+    "effects": {
+      "pad": 84,
+      "attackSpeed": 5
+    },
+    "reqLevel": 120,
+    "tuc": 7,
+    "reqJob": 16,
+    "weaponType": "gun",
+    "iconUrl": "https://maplestory.io/api/gms/200/item/1492023/icon"
+  },
+  {
+    "id": 1492025,
+    "name": "리버스 블라인드니스",
+    "slot": "weapon",
+    "effects": {
+      "pad": 82,
+      "attackSpeed": 5
+    },
+    "reqLevel": 120,
+    "tuc": 7,
+    "reqJob": 16,
+    "weaponType": "gun",
+    "iconUrl": "https://maplestory.io/api/gms/200/item/1492025/icon"
   }
 ]

@@ -2156,5 +2156,165 @@
     "iconUrl": "https://maplestory.io/api/GMS/200/item/1082160/icon",
     "tuc": 5,
     "reqDex": 290
+  },
+  {
+    "id": 1082234,
+    "name": "타임리스 베르가못",
+    "slot": "gloves",
+    "effects": {
+      "STR": 7,
+      "DEX": 4,
+      "mp": 25,
+      "pdef": 51
+    },
+    "reqLevel": 120,
+    "reqStr": 390,
+    "tuc": 5,
+    "reqJob": 1,
+    "iconUrl": "https://maplestory.io/api/gms/200/item/1082234/icon"
+  },
+  {
+    "id": 1082235,
+    "name": "타임리스 헤르모사",
+    "slot": "gloves",
+    "effects": {
+      "INT": 6,
+      "LUK": 6,
+      "mp": 15,
+      "pdef": 50,
+      "mdef": 17
+    },
+    "reqLevel": 120,
+    "reqInt": 368,
+    "tuc": 5,
+    "reqJob": 2,
+    "iconUrl": "https://maplestory.io/api/gms/200/item/1082235/icon"
+  },
+  {
+    "id": 1082236,
+    "name": "타임리스 프레스토",
+    "slot": "gloves",
+    "effects": {
+      "STR": 5,
+      "DEX": 7,
+      "mp": 30,
+      "pdef": 48
+    },
+    "reqLevel": 120,
+    "reqDex": 340,
+    "tuc": 5,
+    "reqJob": 4,
+    "iconUrl": "https://maplestory.io/api/gms/200/item/1082236/icon"
+  },
+  {
+    "id": 1082237,
+    "name": "타임리스 루바브",
+    "slot": "gloves",
+    "effects": {
+      "DEX": 6,
+      "LUK": 7,
+      "mp": 30,
+      "pdef": 46
+    },
+    "reqLevel": 120,
+    "reqLuk": 300,
+    "tuc": 5,
+    "reqJob": 8,
+    "iconUrl": "https://maplestory.io/api/gms/200/item/1082237/icon"
+  },
+  {
+    "id": 1082238,
+    "name": "타임리스 차알스톤",
+    "slot": "gloves",
+    "effects": {
+      "STR": 6,
+      "DEX": 6,
+      "hp": 20,
+      "pdef": 48
+    },
+    "reqLevel": 120,
+    "tuc": 5,
+    "reqJob": 16,
+    "iconUrl": "https://maplestory.io/api/gms/200/item/1082238/icon"
+  },
+  {
+    "id": 1082239,
+    "name": "리버스 베르가못",
+    "slot": "gloves",
+    "effects": {
+      "STR": 6,
+      "DEX": 4,
+      "mp": 25,
+      "pdef": 51
+    },
+    "reqLevel": 120,
+    "reqStr": 390,
+    "tuc": 5,
+    "reqJob": 1,
+    "iconUrl": "https://maplestory.io/api/gms/200/item/1082239/icon"
+  },
+  {
+    "id": 1082240,
+    "name": "리버스 헤르모사",
+    "slot": "gloves",
+    "effects": {
+      "INT": 5,
+      "LUK": 5,
+      "mp": 15,
+      "pdef": 50,
+      "mdef": 17
+    },
+    "reqLevel": 120,
+    "reqInt": 368,
+    "tuc": 5,
+    "reqJob": 2,
+    "iconUrl": "https://maplestory.io/api/gms/200/item/1082240/icon"
+  },
+  {
+    "id": 1082241,
+    "name": "리버스 프레스토",
+    "slot": "gloves",
+    "effects": {
+      "STR": 5,
+      "DEX": 6,
+      "mp": 30,
+      "pdef": 48
+    },
+    "reqLevel": 120,
+    "reqDex": 340,
+    "tuc": 5,
+    "reqJob": 4,
+    "iconUrl": "https://maplestory.io/api/gms/200/item/1082241/icon"
+  },
+  {
+    "id": 1082242,
+    "name": "리버스 루바브",
+    "slot": "gloves",
+    "effects": {
+      "DEX": 6,
+      "LUK": 6,
+      "mp": 30,
+      "pdef": 46
+    },
+    "reqLevel": 120,
+    "reqLuk": 300,
+    "tuc": 5,
+    "reqJob": 8,
+    "iconUrl": "https://maplestory.io/api/gms/200/item/1082242/icon"
+  },
+  {
+    "id": 1082243,
+    "name": "리버스 차알스톤",
+    "slot": "gloves",
+    "effects": {
+      "STR": 5,
+      "DEX": 5,
+      "hp": 20,
+      "pdef": 48
+    },
+    "reqLevel": 120,
+    "tuc": 5,
+    "reqJob": 16,
+    "iconUrl": "https://maplestory.io/api/gms/200/item/1082243/icon"
   }
 ]

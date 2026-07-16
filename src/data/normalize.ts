@@ -77,6 +77,9 @@ export function normalizeItem(
   if (typeof meta.tuc === 'number') {
     item.tuc = meta.tuc
   }
+  if (typeof meta.reqJob === 'number' && meta.reqJob > 0) {
+    item.reqJob = meta.reqJob
+  }
 
   if (slot === 'weapon') {
     const weaponType = resolveWeaponType(subCategory)

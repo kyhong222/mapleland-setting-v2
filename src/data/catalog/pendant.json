@@ -102,5 +102,22 @@
       "eva": 39
     },
     "iconUrl": "https://maplestory.io/api/kms/284/item/1122000/icon"
+  },
+  {
+    "id": 1122012,
+    "name": "타임리스 펜던트",
+    "slot": "pendant",
+    "effects": {
+      "STR": 9,
+      "DEX": 9,
+      "INT": 9,
+      "LUK": 9,
+      "pdef": 126,
+      "mdef": 126,
+      "eva": 28
+    },
+    "reqLevel": 140,
+    "tuc": 3,
+    "iconUrl": "https://maplestory.io/api/gms/200/item/1122012/icon"
   }
 ]
