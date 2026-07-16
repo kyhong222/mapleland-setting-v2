@@ -8,9 +8,15 @@ import CollapsiblePanel from '../common/CollapsiblePanel'
 import MonsterIcon from '../monster/MonsterIcon'
 import MonsterSelectDialog from '../monster/MonsterSelectDialog'
 import { useMonsterStore } from '../../store/monsterStore'
+import { useBuildStore } from '../../store/buildStore'
+import { useInventoryStore } from '../../store/inventoryStore'
+import { aggregateBuild, equippedBuilts } from '../../store/aggregate'
+import { useBuffEffects } from '../../store/useBuffEffects'
 import { getMonster } from '../../data/mobs'
 import { monsterLabel, parseElemAttr } from '../../domain/monster'
 import type { Monster } from '../../domain/monster'
+import { computeVsMonster } from '../../domain/combat'
+import type { VsMonsterResult } from '../../domain/combat'
 
 /** 속성 효과별 칩 색상 (공격자 관점: 약점=이득, 무효=불리) */
 const ELEM_COLOR: Record<'무효' | '반감' | '약점', 'error' | 'warning' | 'success'> = {
@@ -65,29 +71,46 @@ function MonsterInfo({ m }: { m: Monster }) {
   )
 }
 
-/** vs 몬스터 성능 — 필요 명중률 · 명중확률 · 물리/마법 회피확률 (계산식은 확정 후 연결) */
-function VsPerformance() {
+const pct = (n: number): string => `${n.toFixed(1)}%`
+
+/** vs 몬스터 성능 — 필요 명중률 · 명중확률 · 물리/마법 회피확률 */
+function VsPerformance({ result }: { result: VsMonsterResult | null }) {
   return (
     <Box>
       <Typography variant="caption" sx={{ fontWeight: 700, display: 'block', mb: 0.5 }}>vs 몬스터 성능</Typography>
-      <Box sx={{ display: 'grid', gridTemplateColumns: '1fr', rowGap: 0.25 }}>
-        <StatLine label="필요 명중률" value={undefined} />
-        <StatLine label="명중확률" value={undefined} />
-        <StatLine label="물리회피확률" value={undefined} />
-        <StatLine label="마법회피확률" value={undefined} />
-      </Box>
-      <Typography variant="caption" color="text.disabled" sx={{ display: 'block', mt: 0.5 }}>
-        ※ 계산식 확정 후 적용
-      </Typography>
+      {result ? (
+        <Box sx={{ display: 'grid', gridTemplateColumns: '1fr', rowGap: 0.25 }}>
+          <StatLine label="필요 명중률" value={result.requiredAcc === Infinity ? '불가' : result.requiredAcc} />
+          <StatLine label={result.isMagician ? '마법 명중확률' : '명중확률'} value={pct(result.hitRate)} />
+          <StatLine label="물리회피확률" value={pct(result.physEvade)} />
+          <StatLine label="마법회피확률" value={pct(result.magicEvade)} />
+        </Box>
+      ) : (
+        <Typography variant="caption" color="text.disabled" sx={{ display: 'block', mt: 0.5 }}>
+          직업을 선택하면 표시됩니다.
+        </Typography>
+      )}
     </Box>
   )
 }
 
 export default function MonsterPanel() {
   const selectedId = useMonsterStore((s) => s.selectedId)
+  const jobId = useBuildStore((s) => s.jobId)
+  const level = useBuildStore((s) => s.level)
+  const baseStats = useBuildStore((s) => s.baseStats)
+  const equipped = useBuildStore((s) => s.equipped)
+  const invItems = useInventoryStore((s) => s.items)
+  const buffEffects = useBuffEffects()
   const [open, setOpen] = useState(false)
 
   const selected = selectedId != null ? getMonster(selectedId) : undefined
+
+  let vsResult: VsMonsterResult | null = null
+  if (jobId && selected) {
+    const { finalStats, effects } = aggregateBuild(baseStats, equippedBuilts(equipped, invItems), buffEffects)
+    vsResult = computeVsMonster(jobId, level, finalStats, effects, selected)
+  }
 
   return (
     <CollapsiblePanel
@@ -103,7 +126,7 @@ export default function MonsterPanel() {
         <>
           <MonsterInfo m={selected} />
           <Divider sx={{ my: 1 }} />
-          <VsPerformance />
+          <VsPerformance result={vsResult} />
         </>
       ) : (
         <Box sx={{ py: 3, textAlign: 'center' }}>
