@@ -1,6 +1,9 @@
 # dependencies
 node_modules/
 
+# npm 프로젝트 — yarn.lock 사용 안 함
+yarn.lock
+
 # build output
 dist/
 dist-ssr/
