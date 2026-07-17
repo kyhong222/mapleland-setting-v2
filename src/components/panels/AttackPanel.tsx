@@ -28,6 +28,9 @@ import { attackSkillsForJob, skillAttackAt } from '../../data/skills'
 
 const fmtRange = (r: DamageRange) => `${r.min.toLocaleString()} ~ ${r.max.toLocaleString()}`
 const STAT_SHORT: Record<StatId, string> = { STR: '힘', DEX: '덱', INT: '인', LUK: '럭' }
+const ELEM_KO: Record<string, string> = { F: '불', I: '얼음', L: '번개', S: '독', H: '성' }
+const REACTION_KO: Record<string, string> = { weak: '약점 1.5×', half: '반감 0.5×', immune: '무효 0×', none: '' }
+const skillIconSrc = (icon?: string) => (icon ? `data:image/png;base64,${icon}` : undefined)
 
 export default function AttackPanel() {
   const jobId = useBuildStore((s) => s.jobId)
@@ -89,7 +92,7 @@ export default function AttackPanel() {
       : undefined
     // 크리 순보너스 = 합산 criticalDamage (크리 가능 시에만)
     const critBonus = critRate > 0 ? critDamage : 0
-    return { att, result: computeSkillDamage({ base, element: reaction, defense, skillPercent: att.skillPercent, critBonus }) }
+    return { att, reaction, result: computeSkillDamage({ base, element: reaction, defense, skillPercent: att.skillPercent, critBonus }) }
   })()
 
   return (
@@ -171,7 +174,10 @@ export default function AttackPanel() {
             >
               <MenuItem value=""><em>스킬 선택</em></MenuItem>
               {attackSkills.map((s) => (
-                <MenuItem key={s.id} value={s.id} sx={{ fontSize: 13 }}>{s.description?.name ?? s.id}</MenuItem>
+                <MenuItem key={s.id} value={s.id} sx={{ fontSize: 13, gap: 0.75 }}>
+                  {s.icon && <Box component="img" src={skillIconSrc(s.icon)} alt="" sx={{ width: 18, height: 18, flexShrink: 0 }} />}
+                  {s.description?.name ?? s.id}
+                </MenuItem>
               ))}
             </Select>
             {selectedSkill && (
@@ -186,15 +192,21 @@ export default function AttackPanel() {
 
           {skillResult && (
             <>
-              <DmgRow
-                label={`${selectedSkill?.description?.name ?? ''} (${skillResult.att.kind === 'magic' ? `마력계수 ${skillResult.att.spellAtk}` : `${skillResult.att.skillPercent}%`})`}
-                range={skillResult.result.normal}
-                strong
-              />
+              <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', px: 1, py: 0.25, gap: 1 }}>
+                <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5, minWidth: 0 }}>
+                  {selectedSkill?.icon && <Box component="img" src={skillIconSrc(selectedSkill.icon)} alt="" sx={{ width: 20, height: 20, flexShrink: 0 }} />}
+                  <Typography variant="body2" color="text.secondary" noWrap>
+                    {selectedSkill?.description?.name} ({skillResult.att.kind === 'magic' ? `마력계수 ${skillResult.att.spellAtk}` : `${skillResult.att.skillPercent}%`})
+                  </Typography>
+                </Box>
+                <Typography variant="body2" sx={{ fontWeight: 700, color: 'primary.main', whiteSpace: 'nowrap' }}>{fmtRange(skillResult.result.normal)}</Typography>
+              </Box>
               {skillResult.result.critical && <DmgRow label={`크리티컬 (확률 ${critRate}%)`} range={skillResult.result.critical} />}
               <Typography variant="caption" color="text.disabled" sx={{ display: 'block', px: 1 }}>
-                {critRate > 0 ? `크리 데미지 +${critDamage}% · ` : ''}
-                {monster ? `vs ${monster.koreanName || monster.name} (방어·속성 반영)` : '방어 미반영(몬스터 미선택)'}
+                속성: {skillResult.att.element ? ELEM_KO[skillResult.att.element] ?? skillResult.att.element : '무속성'}
+                {monster && skillResult.reaction !== 'none' ? ` (${REACTION_KO[skillResult.reaction]})` : ''}
+                {critRate > 0 ? ` · 크리 +${critDamage}%` : ''}
+                {monster ? ` · 방어 반영` : ' · 방어 미반영'}
               </Typography>
             </>
           )}

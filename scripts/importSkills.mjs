@@ -16,9 +16,9 @@ const SRC = join(HERE, '..', '..', 'ms-skill-simulator', 'src', 'data', 'skillbo
 const OUT = join(HERE, '..', 'src', 'data', 'skills', 'skillbooks')
 
 function stripSkill(s) {
-  // base64 아이콘 3종(대문자 O 주의)·soundPath 제거, 나머지 데이터 유지
-  const { icon, iconDisabled, iconMouseOver, soundPath, ...rest } = s
-  void icon; void iconDisabled; void iconMouseOver; void soundPath
+  // 메인 아이콘(icon, PNG base64)은 UI용으로 유지. 비활성/마우스오버/사운드만 제거.
+  const { iconDisabled, iconMouseOver, soundPath, ...rest } = s
+  void iconDisabled; void iconMouseOver; void soundPath
   return rest
 }
 
