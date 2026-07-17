@@ -1,0 +1,971 @@
+{
+  "id": 320,
+  "job": {
+    "id": 320,
+    "name": "Crossbowman (2nd)"
+  },
+  "description": {
+    "id": 320,
+    "desc": "",
+    "name": "",
+    "shortDesc": "",
+    "bookName": "석궁의 모든 것"
+  },
+  "skills": [
+    {
+      "masterLevel": 20,
+      "weapons": [],
+      "id": 3200000,
+      "description": {
+        "id": 3200000,
+        "desc": "석궁 계열 무기의 숙련도와 명중률을 상승시킨다. 반드시 이 기술은 석궁을 들었을 경우에만 적용된다.",
+        "name": "크로스보우 마스터리",
+        "bookName": "",
+        "detail": "석궁 계열 무기의 숙련도 #mastery%, 명중률 #x 상승."
+      },
+      "levelProperties": [
+        {
+          "hs": "h1",
+          "mastery": "1",
+          "x": "1"
+        },
+        {
+          "hs": "h10",
+          "mastery": "5",
+          "x": "10"
+        },
+        {
+          "hs": "h11",
+          "mastery": "6",
+          "x": "11"
+        },
+        {
+          "hs": "h12",
+          "mastery": "6",
+          "x": "12"
+        },
+        {
+          "hs": "h13",
+          "mastery": "7",
+          "x": "13"
+        },
+        {
+          "hs": "h14",
+          "mastery": "7",
+          "x": "14"
+        },
+        {
+          "hs": "h15",
+          "mastery": "8",
+          "x": "15"
+        },
+        {
+          "hs": "h16",
+          "mastery": "8",
+          "x": "16"
+        },
+        {
+          "hs": "h17",
+          "mastery": "9",
+          "x": "17"
+        },
+        {
+          "hs": "h18",
+          "mastery": "9",
+          "x": "18"
+        },
+        {
+          "hs": "h19",
+          "mastery": "10",
+          "x": "19"
+        },
+        {
+          "hs": "h2",
+          "mastery": "1",
+          "x": "2"
+        },
+        {
+          "hs": "h20",
+          "mastery": "10",
+          "x": "20"
+        },
+        {
+          "hs": "h3",
+          "mastery": "2",
+          "x": "3"
+        },
+        {
+          "hs": "h4",
+          "mastery": "2",
+          "x": "4"
+        },
+        {
+          "hs": "h5",
+          "mastery": "3",
+          "x": "5"
+        },
+        {
+          "hs": "h6",
+          "mastery": "3",
+          "x": "6"
+        },
+        {
+          "hs": "h7",
+          "mastery": "4",
+          "x": "7"
+        },
+        {
+          "hs": "h8",
+          "mastery": "4",
+          "x": "8"
+        },
+        {
+          "hs": "h9",
+          "mastery": "5",
+          "x": "9"
+        }
+      ]
+    },
+    {
+      "masterLevel": 30,
+      "weapons": [],
+      "id": 3200001,
+      "description": {
+        "id": 3200001,
+        "desc": "일정 확률로 공격 스킬이 사용된 후 연속 공격이 발동된다. 다만 석궁을 들었을 경우에만 발동된다.",
+        "name": "파이널 어택 : 석궁",
+        "bookName": "",
+        "detail": "#prop%의 확률로 석궁 데미지 #damage%의 파이널 어택 발동"
+      },
+      "requiredSkillLevels": {
+        "3200000": 3
+      },
+      "levelProperties": [
+        {
+          "damage": "105",
+          "hs": "h1",
+          "prop": "2"
+        },
+        {
+          "damage": "150",
+          "hs": "h10",
+          "prop": "20"
+        },
+        {
+          "damage": "155",
+          "hs": "h11",
+          "prop": "22"
+        },
+        {
+          "damage": "160",
+          "hs": "h12",
+          "prop": "24"
+        },
+        {
+          "damage": "165",
+          "hs": "h13",
+          "prop": "26"
+        },
+        {
+          "damage": "170",
+          "hs": "h14",
+          "prop": "28"
+        },
+        {
+          "damage": "175",
+          "hs": "h15",
+          "prop": "30"
+        },
+        {
+          "damage": "180",
+          "hs": "h16",
+          "prop": "32"
+        },
+        {
+          "damage": "185",
+          "hs": "h17",
+          "prop": "34"
+        },
+        {
+          "damage": "190",
+          "hs": "h18",
+          "prop": "36"
+        },
+        {
+          "damage": "195",
+          "hs": "h19",
+          "prop": "38"
+        },
+        {
+          "damage": "110",
+          "hs": "h2",
+          "prop": "4"
+        },
+        {
+          "damage": "200",
+          "hs": "h20",
+          "prop": "40"
+        },
+        {
+          "damage": "205",
+          "hs": "h21",
+          "prop": "42"
+        },
+        {
+          "damage": "210",
+          "hs": "h22",
+          "prop": "44"
+        },
+        {
+          "damage": "215",
+          "hs": "h23",
+          "prop": "46"
+        },
+        {
+          "damage": "220",
+          "hs": "h24",
+          "prop": "48"
+        },
+        {
+          "damage": "225",
+          "hs": "h25",
+          "prop": "50"
+        },
+        {
+          "damage": "230",
+          "hs": "h26",
+          "prop": "52"
+        },
+        {
+          "damage": "235",
+          "hs": "h27",
+          "prop": "54"
+        },
+        {
+          "damage": "240",
+          "hs": "h28",
+          "prop": "56"
+        },
+        {
+          "damage": "245",
+          "hs": "h29",
+          "prop": "58"
+        },
+        {
+          "damage": "115",
+          "hs": "h3",
+          "prop": "6"
+        },
+        {
+          "damage": "250",
+          "hs": "h30",
+          "prop": "60"
+        },
+        {
+          "damage": "120",
+          "hs": "h4",
+          "prop": "8"
+        },
+        {
+          "damage": "125",
+          "hs": "h5",
+          "prop": "10"
+        },
+        {
+          "damage": "130",
+          "hs": "h6",
+          "prop": "12"
+        },
+        {
+          "damage": "135",
+          "hs": "h7",
+          "prop": "14"
+        },
+        {
+          "damage": "140",
+          "hs": "h8",
+          "prop": "16"
+        },
+        {
+          "damage": "145",
+          "hs": "h9",
+          "prop": "18"
+        }
+      ]
+    },
+    {
+      "masterLevel": 20,
+      "actions": [
+        "alert2"
+      ],
+      "weapons": [],
+      "id": 3201002,
+      "description": {
+        "id": 3201002,
+        "desc": "HP, MP를 소비하여 일정 시간동안 석궁의 공격 속도를 한 단계 상승시킨다. 석궁을 들었을 경우에만 발동이 가능하다.",
+        "name": "크로스보우 부스터",
+        "bookName": "",
+        "detail": "HP #hpCon, MP #mpCon 소비하여 #time초간 석궁의 공격속도 향상"
+      },
+      "requiredSkillLevels": {
+        "3200000": 5
+      },
+      "levelProperties": [
+        {
+          "hpCon": "29",
+          "hs": "h1",
+          "mpCon": "29",
+          "time": "10",
+          "x": "-2"
+        },
+        {
+          "hpCon": "20",
+          "hs": "h10",
+          "mpCon": "20",
+          "time": "100",
+          "x": "-2"
+        },
+        {
+          "hpCon": "19",
+          "hs": "h11",
+          "mpCon": "19",
+          "time": "110",
+          "x": "-2"
+        },
+        {
+          "hpCon": "18",
+          "hs": "h12",
+          "mpCon": "18",
+          "time": "120",
+          "x": "-2"
+        },
+        {
+          "hpCon": "17",
+          "hs": "h13",
+          "mpCon": "17",
+          "time": "130",
+          "x": "-2"
+        },
+        {
+          "hpCon": "16",
+          "hs": "h14",
+          "mpCon": "16",
+          "time": "140",
+          "x": "-2"
+        },
+        {
+          "hpCon": "15",
+          "hs": "h15",
+          "mpCon": "15",
+          "time": "150",
+          "x": "-2"
+        },
+        {
+          "hpCon": "14",
+          "hs": "h16",
+          "mpCon": "14",
+          "time": "160",
+          "x": "-2"
+        },
+        {
+          "hpCon": "13",
+          "hs": "h17",
+          "mpCon": "13",
+          "time": "170",
+          "x": "-2"
+        },
+        {
+          "hpCon": "12",
+          "hs": "h18",
+          "mpCon": "12",
+          "time": "180",
+          "x": "-2"
+        },
+        {
+          "hpCon": "11",
+          "hs": "h19",
+          "mpCon": "11",
+          "time": "190",
+          "x": "-2"
+        },
+        {
+          "hpCon": "28",
+          "hs": "h2",
+          "mpCon": "28",
+          "time": "20",
+          "x": "-2"
+        },
+        {
+          "hpCon": "10",
+          "hs": "h20",
+          "mpCon": "10",
+          "time": "200",
+          "x": "-2"
+        },
+        {
+          "hpCon": "27",
+          "hs": "h3",
+          "mpCon": "27",
+          "time": "30",
+          "x": "-2"
+        },
+        {
+          "hpCon": "26",
+          "hs": "h4",
+          "mpCon": "26",
+          "time": "40",
+          "x": "-2"
+        },
+        {
+          "hpCon": "25",
+          "hs": "h5",
+          "mpCon": "25",
+          "time": "50",
+          "x": "-2"
+        },
+        {
+          "hpCon": "24",
+          "hs": "h6",
+          "mpCon": "24",
+          "time": "60",
+          "x": "-2"
+        },
+        {
+          "hpCon": "23",
+          "hs": "h7",
+          "mpCon": "23",
+          "time": "70",
+          "x": "-2"
+        },
+        {
+          "hpCon": "22",
+          "hs": "h8",
+          "mpCon": "22",
+          "time": "80",
+          "x": "-2"
+        },
+        {
+          "hpCon": "21",
+          "hs": "h9",
+          "mpCon": "21",
+          "time": "90",
+          "x": "-2"
+        }
+      ]
+    },
+    {
+      "masterLevel": 20,
+      "weapons": [
+        46
+      ],
+      "id": 3201003,
+      "description": {
+        "id": 3201003,
+        "desc": "석궁을 휘둘렀을 경우 적을 크게 뒤로 밀 수 있는 확률을 증가시킨다. 더불어 레벨이 올라갈수록 한 번에 밀 수 있는 적의 수가 증가한다.",
+        "name": "파워 넉백",
+        "bookName": "",
+        "detail": "MP #mpCon 소비하여 넉백 확률 #prop% 증가, 데미지 #damage%, #mobCount명 넉백."
+      },
+      "levelProperties": [
+        {
+          "damage": "105",
+          "hs": "h1",
+          "mobCount": "2",
+          "mpCon": "8",
+          "prop": "13",
+          "range": "130"
+        },
+        {
+          "damage": "150",
+          "hs": "h10",
+          "mobCount": "3",
+          "mpCon": "8",
+          "prop": "40",
+          "range": "130"
+        },
+        {
+          "damage": "155",
+          "hs": "h11",
+          "mobCount": "4",
+          "mpCon": "15",
+          "prop": "43",
+          "range": "150"
+        },
+        {
+          "damage": "160",
+          "hs": "h12",
+          "mobCount": "4",
+          "mpCon": "15",
+          "prop": "46",
+          "range": "150"
+        },
+        {
+          "damage": "165",
+          "hs": "h13",
+          "mobCount": "4",
+          "mpCon": "15",
+          "prop": "49",
+          "range": "150"
+        },
+        {
+          "damage": "170",
+          "hs": "h14",
+          "mobCount": "4",
+          "mpCon": "15",
+          "prop": "52",
+          "range": "150"
+        },
+        {
+          "damage": "175",
+          "hs": "h15",
+          "mobCount": "4",
+          "mpCon": "15",
+          "prop": "55",
+          "range": "150"
+        },
+        {
+          "damage": "180",
+          "hs": "h16",
+          "mobCount": "5",
+          "mpCon": "15",
+          "prop": "58",
+          "range": "150"
+        },
+        {
+          "damage": "185",
+          "hs": "h17",
+          "mobCount": "5",
+          "mpCon": "15",
+          "prop": "61",
+          "range": "150"
+        },
+        {
+          "damage": "190",
+          "hs": "h18",
+          "mobCount": "5",
+          "mpCon": "15",
+          "prop": "64",
+          "range": "150"
+        },
+        {
+          "damage": "195",
+          "hs": "h19",
+          "mobCount": "5",
+          "mpCon": "15",
+          "prop": "67",
+          "range": "150"
+        },
+        {
+          "damage": "110",
+          "hs": "h2",
+          "mobCount": "2",
+          "mpCon": "8",
+          "prop": "16",
+          "range": "130"
+        },
+        {
+          "damage": "200",
+          "hs": "h20",
+          "mobCount": "6",
+          "mpCon": "15",
+          "prop": "70",
+          "range": "150"
+        },
+        {
+          "damage": "115",
+          "hs": "h3",
+          "mobCount": "2",
+          "mpCon": "8",
+          "prop": "19",
+          "range": "130"
+        },
+        {
+          "damage": "120",
+          "hs": "h4",
+          "mobCount": "2",
+          "mpCon": "8",
+          "prop": "22",
+          "range": "130"
+        },
+        {
+          "damage": "125",
+          "hs": "h5",
+          "mobCount": "2",
+          "mpCon": "8",
+          "prop": "25",
+          "range": "130"
+        },
+        {
+          "damage": "130",
+          "hs": "h6",
+          "mobCount": "3",
+          "mpCon": "8",
+          "prop": "28",
+          "range": "130"
+        },
+        {
+          "damage": "135",
+          "hs": "h7",
+          "mobCount": "3",
+          "mpCon": "8",
+          "prop": "31",
+          "range": "130"
+        },
+        {
+          "damage": "140",
+          "hs": "h8",
+          "mobCount": "3",
+          "mpCon": "8",
+          "prop": "34",
+          "range": "130"
+        },
+        {
+          "damage": "145",
+          "hs": "h9",
+          "mobCount": "3",
+          "mpCon": "8",
+          "prop": "37",
+          "range": "130"
+        }
+      ]
+    },
+    {
+      "masterLevel": 20,
+      "actions": [
+        "alert2"
+      ],
+      "weapons": [
+        46
+      ],
+      "id": 3201004,
+      "description": {
+        "id": 3201004,
+        "desc": "일정 시간동안 석궁 전용 화살을 소비하지 않고도 석궁을 쏠 수 있다. 석궁을 들고 있을 때만 사용할 수 있는 기술이다.",
+        "name": "소울 에로우 : 석궁",
+        "bookName": "",
+        "detail": "MP #mpCon 소비하여 #time초간 화살 소비 없이 공격 가능"
+      },
+      "requiredSkillLevels": {
+        "3201002": 5
+      },
+      "levelProperties": [
+        {
+          "hs": "h1",
+          "mpCon": "15",
+          "time": "30",
+          "x": "1"
+        },
+        {
+          "hs": "h10",
+          "mpCon": "15",
+          "time": "300",
+          "x": "1"
+        },
+        {
+          "hs": "h11",
+          "mpCon": "20",
+          "time": "330",
+          "x": "1"
+        },
+        {
+          "hs": "h12",
+          "mpCon": "20",
+          "time": "360",
+          "x": "1"
+        },
+        {
+          "hs": "h13",
+          "mpCon": "20",
+          "time": "390",
+          "x": "1"
+        },
+        {
+          "hs": "h14",
+          "mpCon": "20",
+          "time": "420",
+          "x": "1"
+        },
+        {
+          "hs": "h15",
+          "mpCon": "20",
+          "time": "450",
+          "x": "1"
+        },
+        {
+          "hs": "h16",
+          "mpCon": "20",
+          "time": "480",
+          "x": "1"
+        },
+        {
+          "hs": "h17",
+          "mpCon": "20",
+          "time": "510",
+          "x": "1"
+        },
+        {
+          "hs": "h18",
+          "mpCon": "20",
+          "time": "540",
+          "x": "1"
+        },
+        {
+          "hs": "h19",
+          "mpCon": "20",
+          "time": "570",
+          "x": "1"
+        },
+        {
+          "hs": "h2",
+          "mpCon": "15",
+          "time": "60",
+          "x": "1"
+        },
+        {
+          "hs": "h20",
+          "mpCon": "20",
+          "time": "600",
+          "x": "1"
+        },
+        {
+          "hs": "h3",
+          "mpCon": "15",
+          "time": "90",
+          "x": "1"
+        },
+        {
+          "hs": "h4",
+          "mpCon": "15",
+          "time": "120",
+          "x": "1"
+        },
+        {
+          "hs": "h5",
+          "mpCon": "15",
+          "time": "150",
+          "x": "1"
+        },
+        {
+          "hs": "h6",
+          "mpCon": "15",
+          "time": "180",
+          "x": "1"
+        },
+        {
+          "hs": "h7",
+          "mpCon": "15",
+          "time": "210",
+          "x": "1"
+        },
+        {
+          "hs": "h8",
+          "mpCon": "15",
+          "time": "240",
+          "x": "1"
+        },
+        {
+          "hs": "h9",
+          "mpCon": "15",
+          "time": "270",
+          "x": "1"
+        }
+      ]
+    },
+    {
+      "masterLevel": 30,
+      "weapons": [
+        46
+      ],
+      "id": 3201005,
+      "description": {
+        "id": 3201005,
+        "desc": "발사한 화살은 적을 통과하여 뒤에 있는 적까지 공격할 수 있다. 적 하나를 꿰뚫을 때마다 데미지가 줄어든다. 최대 6명까지 공격할 수 있다.",
+        "name": "아이언 에로우:석궁",
+        "bookName": "",
+        "detail": "MP #mpCon 소비하여 데미지 #damage%"
+      },
+      "levelProperties": [
+        {
+          "damage": "122",
+          "hs": "h1",
+          "mobCount": "6",
+          "mpCon": "23"
+        },
+        {
+          "damage": "140",
+          "hs": "h10",
+          "mobCount": "6",
+          "mpCon": "24"
+        },
+        {
+          "damage": "142",
+          "hs": "h11",
+          "mobCount": "6",
+          "mpCon": "25"
+        },
+        {
+          "damage": "144",
+          "hs": "h12",
+          "mobCount": "6",
+          "mpCon": "25"
+        },
+        {
+          "damage": "146",
+          "hs": "h13",
+          "mobCount": "6",
+          "mpCon": "25"
+        },
+        {
+          "damage": "148",
+          "hs": "h14",
+          "mobCount": "6",
+          "mpCon": "25"
+        },
+        {
+          "damage": "150",
+          "hs": "h15",
+          "mobCount": "6",
+          "mpCon": "25"
+        },
+        {
+          "damage": "152",
+          "hs": "h16",
+          "mobCount": "6",
+          "mpCon": "26"
+        },
+        {
+          "damage": "154",
+          "hs": "h17",
+          "mobCount": "6",
+          "mpCon": "26"
+        },
+        {
+          "damage": "156",
+          "hs": "h18",
+          "mobCount": "6",
+          "mpCon": "26"
+        },
+        {
+          "damage": "158",
+          "hs": "h19",
+          "mobCount": "6",
+          "mpCon": "26"
+        },
+        {
+          "damage": "124",
+          "hs": "h2",
+          "mobCount": "6",
+          "mpCon": "23"
+        },
+        {
+          "damage": "160",
+          "hs": "h20",
+          "mobCount": "6",
+          "mpCon": "27"
+        },
+        {
+          "damage": "162",
+          "hs": "h21",
+          "mobCount": "6",
+          "mpCon": "27"
+        },
+        {
+          "damage": "164",
+          "hs": "h22",
+          "mobCount": "6",
+          "mpCon": "27"
+        },
+        {
+          "damage": "166",
+          "hs": "h23",
+          "mobCount": "6",
+          "mpCon": "27"
+        },
+        {
+          "damage": "168",
+          "hs": "h24",
+          "mobCount": "6",
+          "mpCon": "27"
+        },
+        {
+          "damage": "170",
+          "hs": "h25",
+          "mobCount": "6",
+          "mpCon": "27"
+        },
+        {
+          "damage": "172",
+          "hs": "h26",
+          "mobCount": "6",
+          "mpCon": "28"
+        },
+        {
+          "damage": "174",
+          "hs": "h27",
+          "mobCount": "6",
+          "mpCon": "28"
+        },
+        {
+          "damage": "176",
+          "hs": "h28",
+          "mobCount": "6",
+          "mpCon": "28"
+        },
+        {
+          "damage": "178",
+          "hs": "h29",
+          "mobCount": "6",
+          "mpCon": "28"
+        },
+        {
+          "damage": "126",
+          "hs": "h3",
+          "mobCount": "6",
+          "mpCon": "23"
+        },
+        {
+          "damage": "180",
+          "hs": "h30",
+          "mobCount": "6",
+          "mpCon": "28"
+        },
+        {
+          "damage": "128",
+          "hs": "h4",
+          "mobCount": "6",
+          "mpCon": "23"
+        },
+        {
+          "damage": "130",
+          "hs": "h5",
+          "mobCount": "6",
+          "mpCon": "23"
+        },
+        {
+          "damage": "132",
+          "hs": "h6",
+          "mobCount": "6",
+          "mpCon": "24"
+        },
+        {
+          "damage": "134",
+          "hs": "h7",
+          "mobCount": "6",
+          "mpCon": "24"
+        },
+        {
+          "damage": "136",
+          "hs": "h8",
+          "mobCount": "6",
+          "mpCon": "24"
+        },
+        {
+          "damage": "138",
+          "hs": "h9",
+          "mobCount": "6",
+          "mpCon": "24"
+        }
+      ]
+    }
+  ]
+}

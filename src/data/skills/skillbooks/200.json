@@ -1,0 +1,713 @@
+{
+  "id": 200,
+  "job": {
+    "id": 200,
+    "name": "Magician (1st)"
+  },
+  "description": {
+    "id": 200,
+    "desc": "",
+    "name": "",
+    "shortDesc": "",
+    "bookName": "마법사 입문서"
+  },
+  "skills": [
+    {
+      "masterLevel": 16,
+      "weapons": [],
+      "id": 2000000,
+      "description": {
+        "id": 2000000,
+        "desc": "10초마다 더욱 많은 양의 MP를 회복할 수 있다. 캐릭터의 레벨이 높고 스킬 레벨이 높을수록 한 번에 회복되는 양이 많다.",
+        "name": "MP 회복력 향상",
+        "bookName": "",
+        "detail": "현재 MP 일정량 추가 회복"
+      },
+      "levelProperties": [
+        {
+          "hs": "h1"
+        },
+        {
+          "hs": "h10"
+        },
+        {
+          "hs": "h11"
+        },
+        {
+          "hs": "h12"
+        },
+        {
+          "hs": "h13"
+        },
+        {
+          "hs": "h14"
+        },
+        {
+          "hs": "h15"
+        },
+        {
+          "hs": "h16"
+        },
+        {
+          "hs": "h2"
+        },
+        {
+          "hs": "h3"
+        },
+        {
+          "hs": "h4"
+        },
+        {
+          "hs": "h5"
+        },
+        {
+          "hs": "h6"
+        },
+        {
+          "hs": "h7"
+        },
+        {
+          "hs": "h8"
+        },
+        {
+          "hs": "h9"
+        }
+      ]
+    },
+    {
+      "masterLevel": 10,
+      "weapons": [],
+      "id": 2000001,
+      "description": {
+        "id": 2000001,
+        "desc": "Level UP 할 때, Max MP에 AP를 사용할 때 Max MP의 증가량을 향상시킨다.",
+        "name": "MP 증가량 향상",
+        "bookName": "",
+        "detail": "MaxMP LevelUP시 #x, AP 부여시 #y 추가 향상"
+      },
+      "requiredSkillLevels": {
+        "2000000": 5
+      },
+      "levelProperties": [
+        {
+          "hs": "h1",
+          "x": "2",
+          "y": "1"
+        },
+        {
+          "hs": "h10",
+          "x": "20",
+          "y": "10"
+        },
+        {
+          "hs": "h2",
+          "x": "4",
+          "y": "2"
+        },
+        {
+          "hs": "h3",
+          "x": "6",
+          "y": "3"
+        },
+        {
+          "hs": "h4",
+          "x": "8",
+          "y": "4"
+        },
+        {
+          "hs": "h5",
+          "x": "10",
+          "y": "5"
+        },
+        {
+          "hs": "h6",
+          "x": "12",
+          "y": "6"
+        },
+        {
+          "hs": "h7",
+          "x": "14",
+          "y": "7"
+        },
+        {
+          "hs": "h8",
+          "x": "16",
+          "y": "8"
+        },
+        {
+          "hs": "h9",
+          "x": "18",
+          "y": "9"
+        }
+      ]
+    },
+    {
+      "masterLevel": 20,
+      "actions": [
+        "alert2"
+      ],
+      "weapons": [],
+      "id": 2001002,
+      "description": {
+        "id": 2001002,
+        "desc": "일정 시간동안 받는 데미지의 일정 수치를 MP로 대신한다. 다만 MP가 0일 경우에는 그대로 HP를 소비하게 된다.",
+        "name": "매직 가드",
+        "bookName": "",
+        "detail": "#time초간 MP #mpCon 소비하여 데미지의 #x%를 MP로 대신함"
+      },
+      "levelProperties": [
+        {
+          "hs": "h1",
+          "mpCon": "6",
+          "time": "111",
+          "x": "11"
+        },
+        {
+          "hs": "h10",
+          "mpCon": "8",
+          "time": "330",
+          "x": "42"
+        },
+        {
+          "hs": "h11",
+          "mpCon": "10",
+          "time": "381",
+          "x": "49"
+        },
+        {
+          "hs": "h12",
+          "mpCon": "10",
+          "time": "402",
+          "x": "52"
+        },
+        {
+          "hs": "h13",
+          "mpCon": "10",
+          "time": "423",
+          "x": "55"
+        },
+        {
+          "hs": "h14",
+          "mpCon": "10",
+          "time": "444",
+          "x": "58"
+        },
+        {
+          "hs": "h15",
+          "mpCon": "10",
+          "time": "465",
+          "x": "61"
+        },
+        {
+          "hs": "h16",
+          "mpCon": "12",
+          "time": "516",
+          "x": "68"
+        },
+        {
+          "hs": "h17",
+          "mpCon": "12",
+          "time": "537",
+          "x": "71"
+        },
+        {
+          "hs": "h18",
+          "mpCon": "12",
+          "time": "558",
+          "x": "74"
+        },
+        {
+          "hs": "h19",
+          "mpCon": "12",
+          "time": "579",
+          "x": "77"
+        },
+        {
+          "hs": "h2",
+          "mpCon": "6",
+          "time": "132",
+          "x": "14"
+        },
+        {
+          "hs": "h20",
+          "mpCon": "12",
+          "time": "600",
+          "x": "80"
+        },
+        {
+          "hs": "h3",
+          "mpCon": "6",
+          "time": "153",
+          "x": "17"
+        },
+        {
+          "hs": "h4",
+          "mpCon": "6",
+          "time": "174",
+          "x": "20"
+        },
+        {
+          "hs": "h5",
+          "mpCon": "6",
+          "time": "195",
+          "x": "23"
+        },
+        {
+          "hs": "h6",
+          "mpCon": "8",
+          "time": "246",
+          "x": "30"
+        },
+        {
+          "hs": "h7",
+          "mpCon": "8",
+          "time": "267",
+          "x": "33"
+        },
+        {
+          "hs": "h8",
+          "mpCon": "8",
+          "time": "288",
+          "x": "36"
+        },
+        {
+          "hs": "h9",
+          "mpCon": "8",
+          "time": "309",
+          "x": "39"
+        }
+      ]
+    },
+    {
+      "masterLevel": 20,
+      "actions": [
+        "alert2"
+      ],
+      "weapons": [],
+      "id": 2001003,
+      "description": {
+        "id": 2001003,
+        "desc": "일정 시간 갑옷에 마력을 응집시켜 물리 방어력을 상승시킨다.",
+        "name": "매직 아머",
+        "bookName": "",
+        "detail": "#time초간 MP #mpCon 소비하여 물리 방어력 +#pdd"
+      },
+      "requiredSkillLevels": {
+        "2001002": 3
+      },
+      "levelProperties": [
+        {
+          "hs": "h1",
+          "mpCon": "8",
+          "pdd": "2",
+          "time": "54"
+        },
+        {
+          "hs": "h10",
+          "mpCon": "10",
+          "pdd": "20",
+          "time": "200"
+        },
+        {
+          "hs": "h11",
+          "mpCon": "13",
+          "pdd": "22",
+          "time": "244"
+        },
+        {
+          "hs": "h12",
+          "mpCon": "13",
+          "pdd": "24",
+          "time": "258"
+        },
+        {
+          "hs": "h13",
+          "mpCon": "13",
+          "pdd": "26",
+          "time": "272"
+        },
+        {
+          "hs": "h14",
+          "mpCon": "13",
+          "pdd": "28",
+          "time": "286"
+        },
+        {
+          "hs": "h15",
+          "mpCon": "13",
+          "pdd": "30",
+          "time": "300"
+        },
+        {
+          "hs": "h16",
+          "mpCon": "16",
+          "pdd": "32",
+          "time": "344"
+        },
+        {
+          "hs": "h17",
+          "mpCon": "16",
+          "pdd": "34",
+          "time": "358"
+        },
+        {
+          "hs": "h18",
+          "mpCon": "16",
+          "pdd": "36",
+          "time": "372"
+        },
+        {
+          "hs": "h19",
+          "mpCon": "16",
+          "pdd": "38",
+          "time": "386"
+        },
+        {
+          "hs": "h2",
+          "mpCon": "8",
+          "pdd": "4",
+          "time": "68"
+        },
+        {
+          "hs": "h20",
+          "mpCon": "16",
+          "pdd": "40",
+          "time": "400"
+        },
+        {
+          "hs": "h3",
+          "mpCon": "8",
+          "pdd": "6",
+          "time": "82"
+        },
+        {
+          "hs": "h4",
+          "mpCon": "8",
+          "pdd": "8",
+          "time": "96"
+        },
+        {
+          "hs": "h5",
+          "mpCon": "8",
+          "pdd": "10",
+          "time": "110"
+        },
+        {
+          "hs": "h6",
+          "mpCon": "10",
+          "pdd": "12",
+          "time": "144"
+        },
+        {
+          "hs": "h7",
+          "mpCon": "10",
+          "pdd": "14",
+          "time": "158"
+        },
+        {
+          "hs": "h8",
+          "mpCon": "10",
+          "pdd": "16",
+          "time": "172"
+        },
+        {
+          "hs": "h9",
+          "mpCon": "10",
+          "pdd": "18",
+          "time": "186"
+        }
+      ]
+    },
+    {
+      "masterLevel": 20,
+      "weapons": [],
+      "id": 2001004,
+      "description": {
+        "id": 2001004,
+        "desc": "MP를 소비하여 적 하나를 공격한다.",
+        "name": "에너지 볼트",
+        "bookName": "",
+        "detail": "MP #mpCon 소비, 기본 공격력 #mad, 숙련도 #mastery%"
+      },
+      "levelProperties": [
+        {
+          "hs": "h1",
+          "mad": "20",
+          "mastery": "1",
+          "mpCon": "6"
+        },
+        {
+          "hs": "h10",
+          "mad": "35",
+          "mastery": "5",
+          "mpCon": "9"
+        },
+        {
+          "hs": "h11",
+          "mad": "36",
+          "mastery": "6",
+          "mpCon": "9"
+        },
+        {
+          "hs": "h12",
+          "mad": "39",
+          "mastery": "6",
+          "mpCon": "10"
+        },
+        {
+          "hs": "h13",
+          "mad": "40",
+          "mastery": "7",
+          "mpCon": "10"
+        },
+        {
+          "hs": "h14",
+          "mad": "43",
+          "mastery": "7",
+          "mpCon": "11"
+        },
+        {
+          "hs": "h15",
+          "mad": "44",
+          "mastery": "8",
+          "mpCon": "11"
+        },
+        {
+          "hs": "h16",
+          "mad": "47",
+          "mastery": "8",
+          "mpCon": "12"
+        },
+        {
+          "hs": "h17",
+          "mad": "48",
+          "mastery": "9",
+          "mpCon": "12"
+        },
+        {
+          "hs": "h18",
+          "mad": "51",
+          "mastery": "9",
+          "mpCon": "13"
+        },
+        {
+          "hs": "h19",
+          "mad": "52",
+          "mastery": "10",
+          "mpCon": "13"
+        },
+        {
+          "hs": "h2",
+          "mad": "21",
+          "mastery": "1",
+          "mpCon": "6"
+        },
+        {
+          "hs": "h20",
+          "mad": "55",
+          "mastery": "10",
+          "mpCon": "14"
+        },
+        {
+          "hs": "h3",
+          "mad": "22",
+          "mastery": "2",
+          "mpCon": "6"
+        },
+        {
+          "hs": "h4",
+          "mad": "23",
+          "mastery": "2",
+          "mpCon": "6"
+        },
+        {
+          "hs": "h5",
+          "mad": "26",
+          "mastery": "3",
+          "mpCon": "7"
+        },
+        {
+          "hs": "h6",
+          "mad": "27",
+          "mastery": "3",
+          "mpCon": "7"
+        },
+        {
+          "hs": "h7",
+          "mad": "28",
+          "mastery": "4",
+          "mpCon": "7"
+        },
+        {
+          "hs": "h8",
+          "mad": "31",
+          "mastery": "4",
+          "mpCon": "8"
+        },
+        {
+          "hs": "h9",
+          "mad": "32",
+          "mastery": "5",
+          "mpCon": "8"
+        }
+      ]
+    },
+    {
+      "masterLevel": 20,
+      "weapons": [],
+      "id": 2001005,
+      "description": {
+        "id": 2001005,
+        "desc": "MP를 소비하여 적 하나를 두 번 공격한다.",
+        "name": "매직 클로",
+        "bookName": "",
+        "detail": "MP #mpCon 소비, 기본 공격력 #mad, 숙련도 #mastery%"
+      },
+      "requiredSkillLevels": {
+        "2001004": 1
+      },
+      "levelProperties": [
+        {
+          "attackCount": "2",
+          "hs": "h1",
+          "mad": "11",
+          "mastery": "1",
+          "mpCon": "10"
+        },
+        {
+          "attackCount": "2",
+          "hs": "h10",
+          "mad": "23",
+          "mastery": "5",
+          "mpCon": "13"
+        },
+        {
+          "attackCount": "2",
+          "hs": "h11",
+          "mad": "24",
+          "mastery": "6",
+          "mpCon": "13"
+        },
+        {
+          "attackCount": "2",
+          "hs": "h12",
+          "mad": "26",
+          "mastery": "6",
+          "mpCon": "14"
+        },
+        {
+          "attackCount": "2",
+          "hs": "h13",
+          "mad": "27",
+          "mastery": "7",
+          "mpCon": "14"
+        },
+        {
+          "attackCount": "2",
+          "hs": "h14",
+          "mad": "29",
+          "mastery": "7",
+          "mpCon": "15"
+        },
+        {
+          "attackCount": "2",
+          "hs": "h15",
+          "mad": "30",
+          "mastery": "8",
+          "mpCon": "15"
+        },
+        {
+          "attackCount": "2",
+          "hs": "h16",
+          "mad": "32",
+          "mastery": "8",
+          "mpCon": "16"
+        },
+        {
+          "attackCount": "2",
+          "hs": "h17",
+          "mad": "34",
+          "mastery": "9",
+          "mpCon": "17"
+        },
+        {
+          "attackCount": "2",
+          "hs": "h18",
+          "mad": "36",
+          "mastery": "9",
+          "mpCon": "18"
+        },
+        {
+          "attackCount": "2",
+          "hs": "h19",
+          "mad": "38",
+          "mastery": "10",
+          "mpCon": "19"
+        },
+        {
+          "attackCount": "2",
+          "hs": "h2",
+          "mad": "12",
+          "mastery": "1",
+          "mpCon": "10"
+        },
+        {
+          "attackCount": "2",
+          "hs": "h20",
+          "mad": "40",
+          "mastery": "10",
+          "mpCon": "20"
+        },
+        {
+          "attackCount": "2",
+          "hs": "h3",
+          "mad": "13",
+          "mastery": "2",
+          "mpCon": "10"
+        },
+        {
+          "attackCount": "2",
+          "hs": "h4",
+          "mad": "14",
+          "mastery": "2",
+          "mpCon": "10"
+        },
+        {
+          "attackCount": "2",
+          "hs": "h5",
+          "mad": "16",
+          "mastery": "3",
+          "mpCon": "11"
+        },
+        {
+          "attackCount": "2",
+          "hs": "h6",
+          "mad": "17",
+          "mastery": "3",
+          "mpCon": "11"
+        },
+        {
+          "attackCount": "2",
+          "hs": "h7",
+          "mad": "18",
+          "mastery": "4",
+          "mpCon": "11"
+        },
+        {
+          "attackCount": "2",
+          "hs": "h8",
+          "mad": "20",
+          "mastery": "4",
+          "mpCon": "12"
+        },
+        {
+          "attackCount": "2",
+          "hs": "h9",
+          "mad": "21",
+          "mastery": "5",
+          "mpCon": "12"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,591 @@
+{
+  "id": 1300,
+  "job": {
+    "id": 1300,
+    "name": "Wind Archer (1st)"
+  },
+  "description": {
+    "id": 1300,
+    "desc": "",
+    "name": "",
+    "shortDesc": "",
+    "bookName": "윈드브레이커의 기본"
+  },
+  "skills": [
+    {
+      "masterLevel": 20,
+      "weapons": [],
+      "id": 13000000,
+      "description": {
+        "id": 13000000,
+        "desc": "일정 확률로 크리티컬 공격이 가능해진다.",
+        "name": "크리티컬 샷",
+        "bookName": "",
+        "detail": "#prop% 확률, 크리티컬 데미지 #damage%"
+      },
+      "levelProperties": [
+        {
+          "damage": "105",
+          "hs": "h1",
+          "prop": "12"
+        },
+        {
+          "damage": "150",
+          "hs": "h10",
+          "prop": "30"
+        },
+        {
+          "damage": "155",
+          "hs": "h11",
+          "prop": "31"
+        },
+        {
+          "damage": "160",
+          "hs": "h12",
+          "prop": "32"
+        },
+        {
+          "damage": "165",
+          "hs": "h13",
+          "prop": "33"
+        },
+        {
+          "damage": "170",
+          "hs": "h14",
+          "prop": "34"
+        },
+        {
+          "damage": "175",
+          "hs": "h15",
+          "prop": "35"
+        },
+        {
+          "damage": "180",
+          "hs": "h16",
+          "prop": "36"
+        },
+        {
+          "damage": "185",
+          "hs": "h17",
+          "prop": "37"
+        },
+        {
+          "damage": "190",
+          "hs": "h18",
+          "prop": "38"
+        },
+        {
+          "damage": "195",
+          "hs": "h19",
+          "prop": "39"
+        },
+        {
+          "damage": "110",
+          "hs": "h2",
+          "prop": "14"
+        },
+        {
+          "damage": "200",
+          "hs": "h20",
+          "prop": "40"
+        },
+        {
+          "damage": "115",
+          "hs": "h3",
+          "prop": "16"
+        },
+        {
+          "damage": "120",
+          "hs": "h4",
+          "prop": "18"
+        },
+        {
+          "damage": "125",
+          "hs": "h5",
+          "prop": "20"
+        },
+        {
+          "damage": "130",
+          "hs": "h6",
+          "prop": "22"
+        },
+        {
+          "damage": "135",
+          "hs": "h7",
+          "prop": "24"
+        },
+        {
+          "damage": "140",
+          "hs": "h8",
+          "prop": "26"
+        },
+        {
+          "damage": "145",
+          "hs": "h9",
+          "prop": "28"
+        }
+      ]
+    },
+    {
+      "masterLevel": 8,
+      "weapons": [],
+      "id": 13000001,
+      "description": {
+        "id": 13000001,
+        "desc": "활과 석궁의 사정 거리를 늘려준다.",
+        "name": "아마존의 눈",
+        "bookName": "",
+        "detail": "활과 석궁의 사정 거리 #range 증가"
+      },
+      "levelProperties": [
+        {
+          "hs": "h1",
+          "range": "15"
+        },
+        {
+          "hs": "h2",
+          "range": "30"
+        },
+        {
+          "hs": "h3",
+          "range": "45"
+        },
+        {
+          "hs": "h4",
+          "range": "60"
+        },
+        {
+          "hs": "h5",
+          "range": "75"
+        },
+        {
+          "hs": "h6",
+          "range": "90"
+        },
+        {
+          "hs": "h7",
+          "range": "105"
+        },
+        {
+          "hs": "h8",
+          "range": "120"
+        }
+      ]
+    },
+    {
+      "masterLevel": 10,
+      "weapons": [],
+      "id": 13001002,
+      "description": {
+        "id": 13001002,
+        "desc": "집중하여 일정 시간동안 명중률과 회피율을 상승시킨다.",
+        "name": "포커스",
+        "bookName": "",
+        "detail": "#time초간 MP #mpCon 소비하여 명중률 #acc, 회피율 #eva 향상"
+      },
+      "requiredSkillLevels": {
+        "13000001": 5
+      },
+      "levelProperties": [
+        {
+          "acc": "2",
+          "eva": "2",
+          "hs": "h1",
+          "mpCon": "8",
+          "time": "110"
+        },
+        {
+          "acc": "20",
+          "eva": "20",
+          "hs": "h10",
+          "mpCon": "12",
+          "time": "200"
+        },
+        {
+          "acc": "4",
+          "eva": "4",
+          "hs": "h2",
+          "mpCon": "8",
+          "time": "120"
+        },
+        {
+          "acc": "6",
+          "eva": "6",
+          "hs": "h3",
+          "mpCon": "8",
+          "time": "130"
+        },
+        {
+          "acc": "8",
+          "eva": "8",
+          "hs": "h4",
+          "mpCon": "8",
+          "time": "140"
+        },
+        {
+          "acc": "10",
+          "eva": "10",
+          "hs": "h5",
+          "mpCon": "8",
+          "time": "150"
+        },
+        {
+          "acc": "12",
+          "eva": "12",
+          "hs": "h6",
+          "mpCon": "12",
+          "time": "160"
+        },
+        {
+          "acc": "14",
+          "eva": "14",
+          "hs": "h7",
+          "mpCon": "12",
+          "time": "170"
+        },
+        {
+          "acc": "16",
+          "eva": "16",
+          "hs": "h8",
+          "mpCon": "12",
+          "time": "180"
+        },
+        {
+          "acc": "18",
+          "eva": "18",
+          "hs": "h9",
+          "mpCon": "12",
+          "time": "190"
+        }
+      ]
+    },
+    {
+      "masterLevel": 20,
+      "weapons": [],
+      "id": 13001003,
+      "description": {
+        "id": 13001003,
+        "desc": "두개의 화살을 소비하여 두 번 적을 공격한다.",
+        "name": "더블 샷",
+        "bookName": "",
+        "detail": "MP #mpCon 소비하여 데미지 #damage%"
+      },
+      "levelProperties": [
+        {
+          "bulletCount": "2",
+          "damage": "92",
+          "hs": "h1",
+          "mpCon": "10"
+        },
+        {
+          "bulletCount": "2",
+          "damage": "110",
+          "hs": "h10",
+          "mpCon": "12"
+        },
+        {
+          "bulletCount": "2",
+          "damage": "112",
+          "hs": "h11",
+          "mpCon": "13"
+        },
+        {
+          "bulletCount": "2",
+          "damage": "114",
+          "hs": "h12",
+          "mpCon": "13"
+        },
+        {
+          "bulletCount": "2",
+          "damage": "116",
+          "hs": "h13",
+          "mpCon": "13"
+        },
+        {
+          "bulletCount": "2",
+          "damage": "118",
+          "hs": "h14",
+          "mpCon": "14"
+        },
+        {
+          "bulletCount": "2",
+          "damage": "120",
+          "hs": "h15",
+          "mpCon": "14"
+        },
+        {
+          "bulletCount": "2",
+          "damage": "122",
+          "hs": "h16",
+          "mpCon": "14"
+        },
+        {
+          "bulletCount": "2",
+          "damage": "124",
+          "hs": "h17",
+          "mpCon": "15"
+        },
+        {
+          "bulletCount": "2",
+          "damage": "126",
+          "hs": "h18",
+          "mpCon": "15"
+        },
+        {
+          "bulletCount": "2",
+          "damage": "128",
+          "hs": "h19",
+          "mpCon": "15"
+        },
+        {
+          "bulletCount": "2",
+          "damage": "94",
+          "hs": "h2",
+          "mpCon": "10"
+        },
+        {
+          "bulletCount": "2",
+          "damage": "130",
+          "hs": "h20",
+          "mpCon": "16"
+        },
+        {
+          "bulletCount": "2",
+          "damage": "96",
+          "hs": "h3",
+          "mpCon": "10"
+        },
+        {
+          "bulletCount": "2",
+          "damage": "98",
+          "hs": "h4",
+          "mpCon": "10"
+        },
+        {
+          "bulletCount": "2",
+          "damage": "100",
+          "hs": "h5",
+          "mpCon": "11"
+        },
+        {
+          "bulletCount": "2",
+          "damage": "102",
+          "hs": "h6",
+          "mpCon": "11"
+        },
+        {
+          "bulletCount": "2",
+          "damage": "104",
+          "hs": "h7",
+          "mpCon": "11"
+        },
+        {
+          "bulletCount": "2",
+          "damage": "106",
+          "hs": "h8",
+          "mpCon": "12"
+        },
+        {
+          "bulletCount": "2",
+          "damage": "108",
+          "hs": "h9",
+          "mpCon": "12"
+        }
+      ]
+    },
+    {
+      "masterLevel": 20,
+      "weapons": [],
+      "id": 13001004,
+      "description": {
+        "id": 13001004,
+        "desc": "자신을 수호하는 정령을 소환한다. 주위에 근접한 적을 공격한다.",
+        "name": "스톰",
+        "bookName": "",
+        "detail": "MP #mpCon 소비하여 #time초간 물리 공격력 +#pad, 물리 방어력 +#pdd, 마법 방어력 +#mdd의 정령을 소환"
+      },
+      "levelProperties": [
+        {
+          "hs": "h1",
+          "mdd": "10",
+          "mpCon": "11",
+          "pad": "21",
+          "pdd": "10",
+          "time": "105",
+          "x": "1"
+        },
+        {
+          "hs": "h10",
+          "mdd": "15",
+          "mpCon": "15",
+          "pad": "30",
+          "pdd": "15",
+          "time": "150",
+          "x": "1"
+        },
+        {
+          "hs": "h11",
+          "mdd": "20",
+          "mpCon": "16",
+          "pad": "31",
+          "pdd": "20",
+          "time": "155",
+          "x": "1"
+        },
+        {
+          "hs": "h12",
+          "mdd": "20",
+          "mpCon": "16",
+          "pad": "32",
+          "pdd": "20",
+          "time": "160",
+          "x": "1"
+        },
+        {
+          "hs": "h13",
+          "mdd": "20",
+          "mpCon": "17",
+          "pad": "33",
+          "pdd": "20",
+          "time": "165",
+          "x": "1"
+        },
+        {
+          "hs": "h14",
+          "mdd": "20",
+          "mpCon": "17",
+          "pad": "34",
+          "pdd": "20",
+          "time": "170",
+          "x": "1"
+        },
+        {
+          "hs": "h15",
+          "mdd": "20",
+          "mpCon": "18",
+          "pad": "35",
+          "pdd": "20",
+          "time": "175",
+          "x": "1"
+        },
+        {
+          "hs": "h16",
+          "mdd": "25",
+          "mpCon": "18",
+          "pad": "36",
+          "pdd": "25",
+          "time": "180",
+          "x": "1"
+        },
+        {
+          "hs": "h17",
+          "mdd": "25",
+          "mpCon": "19",
+          "pad": "37",
+          "pdd": "25",
+          "time": "185",
+          "x": "1"
+        },
+        {
+          "hs": "h18",
+          "mdd": "25",
+          "mpCon": "19",
+          "pad": "38",
+          "pdd": "25",
+          "time": "190",
+          "x": "1"
+        },
+        {
+          "hs": "h19",
+          "mdd": "25",
+          "mpCon": "20",
+          "pad": "39",
+          "pdd": "25",
+          "time": "195",
+          "x": "1"
+        },
+        {
+          "hs": "h2",
+          "mdd": "10",
+          "mpCon": "11",
+          "pad": "22",
+          "pdd": "10",
+          "time": "110",
+          "x": "1"
+        },
+        {
+          "hs": "h20",
+          "mdd": "25",
+          "mpCon": "20",
+          "pad": "40",
+          "pdd": "25",
+          "time": "200",
+          "x": "1"
+        },
+        {
+          "hs": "h3",
+          "mdd": "10",
+          "mpCon": "12",
+          "pad": "23",
+          "pdd": "10",
+          "time": "115",
+          "x": "1"
+        },
+        {
+          "hs": "h4",
+          "mdd": "10",
+          "mpCon": "12",
+          "pad": "24",
+          "pdd": "10",
+          "time": "120",
+          "x": "1"
+        },
+        {
+          "hs": "h5",
+          "mdd": "10",
+          "mpCon": "13",
+          "pad": "25",
+          "pdd": "10",
+          "time": "125",
+          "x": "1"
+        },
+        {
+          "hs": "h6",
+          "mdd": "15",
+          "mpCon": "13",
+          "pad": "26",
+          "pdd": "15",
+          "time": "130",
+          "x": "1"
+        },
+        {
+          "hs": "h7",
+          "mdd": "15",
+          "mpCon": "14",
+          "pad": "27",
+          "pdd": "15",
+          "time": "135",
+          "x": "1"
+        },
+        {
+          "hs": "h8",
+          "mdd": "15",
+          "mpCon": "14",
+          "pad": "28",
+          "pdd": "15",
+          "time": "140",
+          "x": "1"
+        },
+        {
+          "hs": "h9",
+          "mdd": "15",
+          "mpCon": "15",
+          "pad": "29",
+          "pdd": "15",
+          "time": "145",
+          "x": "1"
+        }
+      ]
+    }
+  ]
+}

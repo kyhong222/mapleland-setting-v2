@@ -1,0 +1,1115 @@
+{
+  "id": 520,
+  "job": {
+    "id": 520,
+    "name": "Gunslinger (2nd)"
+  },
+  "description": {
+    "id": 520,
+    "desc": "",
+    "name": "",
+    "shortDesc": "",
+    "bookName": "건슬링거 가이드"
+  },
+  "skills": [
+    {
+      "masterLevel": 20,
+      "weapons": [],
+      "id": 5200000,
+      "description": {
+        "id": 5200000,
+        "desc": "건 계열 무기의 숙련도와 명중률을 상승시킨다. 반드시 이 기술은 건을 들었을 경우에만 적용된다.",
+        "name": "건 마스터리",
+        "bookName": "",
+        "detail": "건 계열 무기의 숙련도 #mastery%, 명중률 #x, 불릿수 #y 상승."
+      },
+      "levelProperties": [
+        {
+          "hs": "h1",
+          "mastery": "1",
+          "x": "1",
+          "y": "10"
+        },
+        {
+          "hs": "h10",
+          "mastery": "5",
+          "x": "10",
+          "y": "100"
+        },
+        {
+          "hs": "h11",
+          "mastery": "6",
+          "x": "11",
+          "y": "110"
+        },
+        {
+          "hs": "h12",
+          "mastery": "6",
+          "x": "12",
+          "y": "120"
+        },
+        {
+          "hs": "h13",
+          "mastery": "7",
+          "x": "13",
+          "y": "130"
+        },
+        {
+          "hs": "h14",
+          "mastery": "7",
+          "x": "14",
+          "y": "140"
+        },
+        {
+          "hs": "h15",
+          "mastery": "8",
+          "x": "15",
+          "y": "150"
+        },
+        {
+          "hs": "h16",
+          "mastery": "8",
+          "x": "16",
+          "y": "160"
+        },
+        {
+          "hs": "h17",
+          "mastery": "9",
+          "x": "17",
+          "y": "170"
+        },
+        {
+          "hs": "h18",
+          "mastery": "9",
+          "x": "18",
+          "y": "180"
+        },
+        {
+          "hs": "h19",
+          "mastery": "10",
+          "x": "19",
+          "y": "190"
+        },
+        {
+          "hs": "h2",
+          "mastery": "1",
+          "x": "2",
+          "y": "20"
+        },
+        {
+          "hs": "h20",
+          "mastery": "10",
+          "x": "20",
+          "y": "200"
+        },
+        {
+          "hs": "h3",
+          "mastery": "2",
+          "x": "3",
+          "y": "30"
+        },
+        {
+          "hs": "h4",
+          "mastery": "2",
+          "x": "4",
+          "y": "40"
+        },
+        {
+          "hs": "h5",
+          "mastery": "3",
+          "x": "5",
+          "y": "50"
+        },
+        {
+          "hs": "h6",
+          "mastery": "3",
+          "x": "6",
+          "y": "60"
+        },
+        {
+          "hs": "h7",
+          "mastery": "4",
+          "x": "7",
+          "y": "70"
+        },
+        {
+          "hs": "h8",
+          "mastery": "4",
+          "x": "8",
+          "y": "80"
+        },
+        {
+          "hs": "h9",
+          "mastery": "5",
+          "x": "9",
+          "y": "90"
+        }
+      ]
+    },
+    {
+      "masterLevel": 20,
+      "weapons": [
+        49
+      ],
+      "id": 5201001,
+      "description": {
+        "id": 5201001,
+        "desc": "짧은 시간에 눈에 보이지 않을 정도로 빠르게 총을 쏴서 다수의 적을 공격한다.",
+        "name": "인비지블샷",
+        "bookName": "",
+        "detail": "MP #mpCon 소비, 데미지 #damage%, #mobCount명을 공격"
+      },
+      "levelProperties": [
+        {
+          "bulletConsume": "1",
+          "damage": "75",
+          "hs": "h1",
+          "lt": "Point [ X=-250, Y=-80 ]",
+          "mobCount": "3",
+          "mpCon": "10",
+          "rb": "Point [ X=-10, Y=40 ]"
+        },
+        {
+          "bulletConsume": "1",
+          "damage": "120",
+          "hs": "h10",
+          "lt": "Point [ X=-250, Y=-80 ]",
+          "mobCount": "3",
+          "mpCon": "15",
+          "rb": "Point [ X=-10, Y=40 ]"
+        },
+        {
+          "bulletConsume": "1",
+          "damage": "125",
+          "hs": "h11",
+          "lt": "Point [ X=-250, Y=-80 ]",
+          "mobCount": "3",
+          "mpCon": "20",
+          "rb": "Point [ X=-10, Y=40 ]"
+        },
+        {
+          "bulletConsume": "1",
+          "damage": "130",
+          "hs": "h12",
+          "lt": "Point [ X=-250, Y=-80 ]",
+          "mobCount": "3",
+          "mpCon": "20",
+          "rb": "Point [ X=-10, Y=40 ]"
+        },
+        {
+          "bulletConsume": "1",
+          "damage": "135",
+          "hs": "h13",
+          "lt": "Point [ X=-250, Y=-80 ]",
+          "mobCount": "3",
+          "mpCon": "20",
+          "rb": "Point [ X=-10, Y=40 ]"
+        },
+        {
+          "bulletConsume": "1",
+          "damage": "140",
+          "hs": "h14",
+          "lt": "Point [ X=-250, Y=-80 ]",
+          "mobCount": "3",
+          "mpCon": "20",
+          "rb": "Point [ X=-10, Y=40 ]"
+        },
+        {
+          "bulletConsume": "1",
+          "damage": "145",
+          "hs": "h15",
+          "lt": "Point [ X=-250, Y=-80 ]",
+          "mobCount": "3",
+          "mpCon": "20",
+          "rb": "Point [ X=-10, Y=40 ]"
+        },
+        {
+          "bulletConsume": "1",
+          "damage": "150",
+          "hs": "h16",
+          "lt": "Point [ X=-250, Y=-80 ]",
+          "mobCount": "3",
+          "mpCon": "25",
+          "rb": "Point [ X=-10, Y=40 ]"
+        },
+        {
+          "bulletConsume": "1",
+          "damage": "155",
+          "hs": "h17",
+          "lt": "Point [ X=-250, Y=-80 ]",
+          "mobCount": "3",
+          "mpCon": "25",
+          "rb": "Point [ X=-10, Y=40 ]"
+        },
+        {
+          "bulletConsume": "1",
+          "damage": "160",
+          "hs": "h18",
+          "lt": "Point [ X=-250, Y=-80 ]",
+          "mobCount": "3",
+          "mpCon": "25",
+          "rb": "Point [ X=-10, Y=40 ]"
+        },
+        {
+          "bulletConsume": "1",
+          "damage": "165",
+          "hs": "h19",
+          "lt": "Point [ X=-250, Y=-80 ]",
+          "mobCount": "3",
+          "mpCon": "25",
+          "rb": "Point [ X=-10, Y=40 ]"
+        },
+        {
+          "bulletConsume": "1",
+          "damage": "80",
+          "hs": "h2",
+          "lt": "Point [ X=-250, Y=-80 ]",
+          "mobCount": "3",
+          "mpCon": "10",
+          "rb": "Point [ X=-10, Y=40 ]"
+        },
+        {
+          "bulletConsume": "1",
+          "damage": "170",
+          "hs": "h20",
+          "lt": "Point [ X=-250, Y=-80 ]",
+          "mobCount": "3",
+          "mpCon": "25",
+          "rb": "Point [ X=-10, Y=40 ]"
+        },
+        {
+          "bulletConsume": "1",
+          "damage": "85",
+          "hs": "h3",
+          "lt": "Point [ X=-250, Y=-80 ]",
+          "mobCount": "3",
+          "mpCon": "10",
+          "rb": "Point [ X=-10, Y=40 ]"
+        },
+        {
+          "bulletConsume": "1",
+          "damage": "90",
+          "hs": "h4",
+          "lt": "Point [ X=-250, Y=-80 ]",
+          "mobCount": "3",
+          "mpCon": "10",
+          "rb": "Point [ X=-10, Y=40 ]"
+        },
+        {
+          "bulletConsume": "1",
+          "damage": "95",
+          "hs": "h5",
+          "lt": "Point [ X=-250, Y=-80 ]",
+          "mobCount": "3",
+          "mpCon": "10",
+          "rb": "Point [ X=-10, Y=40 ]"
+        },
+        {
+          "bulletConsume": "1",
+          "damage": "100",
+          "hs": "h6",
+          "lt": "Point [ X=-250, Y=-80 ]",
+          "mobCount": "3",
+          "mpCon": "15",
+          "rb": "Point [ X=-10, Y=40 ]"
+        },
+        {
+          "bulletConsume": "1",
+          "damage": "105",
+          "hs": "h7",
+          "lt": "Point [ X=-250, Y=-80 ]",
+          "mobCount": "3",
+          "mpCon": "15",
+          "rb": "Point [ X=-10, Y=40 ]"
+        },
+        {
+          "bulletConsume": "1",
+          "damage": "110",
+          "hs": "h8",
+          "lt": "Point [ X=-250, Y=-80 ]",
+          "mobCount": "3",
+          "mpCon": "15",
+          "rb": "Point [ X=-10, Y=40 ]"
+        },
+        {
+          "bulletConsume": "1",
+          "damage": "115",
+          "hs": "h9",
+          "lt": "Point [ X=-250, Y=-80 ]",
+          "mobCount": "3",
+          "mpCon": "15",
+          "rb": "Point [ X=-10, Y=40 ]"
+        }
+      ]
+    },
+    {
+      "masterLevel": 20,
+      "weapons": [],
+      "id": 5201002,
+      "description": {
+        "id": 5201002,
+        "desc": "폭탄을 던져 적을 공격한다. 스킬키를 누르고 있는 시간에 비례하여 사정거리가 결정된다.",
+        "name": "스로잉봄",
+        "bookName": "",
+        "detail": "MP #mpCon 소비, 데미지 #damage%, #mobCount명을 공격"
+      },
+      "levelProperties": [
+        {
+          "damage": "45",
+          "hs": "h1",
+          "lt": "Point [ X=-50, Y=-50 ]",
+          "mobCount": "3",
+          "mpCon": "15",
+          "rb": "Point [ X=50, Y=20 ]"
+        },
+        {
+          "damage": "90",
+          "hs": "h10",
+          "lt": "Point [ X=-50, Y=-50 ]",
+          "mobCount": "4",
+          "mpCon": "19",
+          "rb": "Point [ X=50, Y=20 ]"
+        },
+        {
+          "damage": "95",
+          "hs": "h11",
+          "lt": "Point [ X=-50, Y=-50 ]",
+          "mobCount": "5",
+          "mpCon": "23",
+          "rb": "Point [ X=50, Y=20 ]"
+        },
+        {
+          "damage": "100",
+          "hs": "h12",
+          "lt": "Point [ X=-50, Y=-50 ]",
+          "mobCount": "5",
+          "mpCon": "23",
+          "rb": "Point [ X=50, Y=20 ]"
+        },
+        {
+          "damage": "105",
+          "hs": "h13",
+          "lt": "Point [ X=-50, Y=-50 ]",
+          "mobCount": "5",
+          "mpCon": "23",
+          "rb": "Point [ X=50, Y=20 ]"
+        },
+        {
+          "damage": "110",
+          "hs": "h14",
+          "lt": "Point [ X=-50, Y=-50 ]",
+          "mobCount": "5",
+          "mpCon": "23",
+          "rb": "Point [ X=50, Y=20 ]"
+        },
+        {
+          "damage": "115",
+          "hs": "h15",
+          "lt": "Point [ X=-50, Y=-50 ]",
+          "mobCount": "5",
+          "mpCon": "23",
+          "rb": "Point [ X=50, Y=20 ]"
+        },
+        {
+          "damage": "120",
+          "hs": "h16",
+          "lt": "Point [ X=-50, Y=-50 ]",
+          "mobCount": "6",
+          "mpCon": "27",
+          "rb": "Point [ X=50, Y=20 ]"
+        },
+        {
+          "damage": "125",
+          "hs": "h17",
+          "lt": "Point [ X=-50, Y=-50 ]",
+          "mobCount": "6",
+          "mpCon": "27",
+          "rb": "Point [ X=50, Y=20 ]"
+        },
+        {
+          "damage": "130",
+          "hs": "h18",
+          "lt": "Point [ X=-50, Y=-50 ]",
+          "mobCount": "6",
+          "mpCon": "27",
+          "rb": "Point [ X=50, Y=20 ]"
+        },
+        {
+          "damage": "135",
+          "hs": "h19",
+          "lt": "Point [ X=-50, Y=-50 ]",
+          "mobCount": "6",
+          "mpCon": "27",
+          "rb": "Point [ X=50, Y=20 ]"
+        },
+        {
+          "damage": "50",
+          "hs": "h2",
+          "lt": "Point [ X=-50, Y=-50 ]",
+          "mobCount": "3",
+          "mpCon": "15",
+          "rb": "Point [ X=50, Y=20 ]"
+        },
+        {
+          "damage": "140",
+          "hs": "h20",
+          "lt": "Point [ X=-50, Y=-50 ]",
+          "mobCount": "6",
+          "mpCon": "27",
+          "rb": "Point [ X=50, Y=20 ]"
+        },
+        {
+          "damage": "55",
+          "hs": "h3",
+          "lt": "Point [ X=-50, Y=-50 ]",
+          "mobCount": "3",
+          "mpCon": "15",
+          "rb": "Point [ X=50, Y=20 ]"
+        },
+        {
+          "damage": "60",
+          "hs": "h4",
+          "lt": "Point [ X=-50, Y=-50 ]",
+          "mobCount": "3",
+          "mpCon": "15",
+          "rb": "Point [ X=50, Y=20 ]"
+        },
+        {
+          "damage": "65",
+          "hs": "h5",
+          "lt": "Point [ X=-50, Y=-50 ]",
+          "mobCount": "3",
+          "mpCon": "15",
+          "rb": "Point [ X=50, Y=20 ]"
+        },
+        {
+          "damage": "70",
+          "hs": "h6",
+          "lt": "Point [ X=-50, Y=-50 ]",
+          "mobCount": "4",
+          "mpCon": "19",
+          "rb": "Point [ X=50, Y=20 ]"
+        },
+        {
+          "damage": "75",
+          "hs": "h7",
+          "lt": "Point [ X=-50, Y=-50 ]",
+          "mobCount": "4",
+          "mpCon": "19",
+          "rb": "Point [ X=50, Y=20 ]"
+        },
+        {
+          "damage": "80",
+          "hs": "h8",
+          "lt": "Point [ X=-50, Y=-50 ]",
+          "mobCount": "4",
+          "mpCon": "19",
+          "rb": "Point [ X=50, Y=20 ]"
+        },
+        {
+          "damage": "85",
+          "hs": "h9",
+          "lt": "Point [ X=-50, Y=-50 ]",
+          "mobCount": "4",
+          "mpCon": "19",
+          "rb": "Point [ X=50, Y=20 ]"
+        }
+      ]
+    },
+    {
+      "masterLevel": 20,
+      "actions": [
+        "alert2"
+      ],
+      "weapons": [],
+      "id": 5201003,
+      "description": {
+        "id": 5201003,
+        "desc": "HP, MP를 소비하여 일정 시간동안 건의 공격 속도를 한 단계 상승시킨다. 건을 들었을 경우에만 발동이 가능하다.",
+        "name": "건 부스터",
+        "bookName": "",
+        "detail": "HP #hpCon%, MP #mpCon% 소비하여 #time초간 건의 공격속도 향상"
+      },
+      "requiredSkillLevels": {
+        "5200000": 5
+      },
+      "levelProperties": [
+        {
+          "hpCon": "29",
+          "hs": "h1",
+          "mpCon": "29",
+          "time": "10",
+          "x": "-2"
+        },
+        {
+          "hpCon": "20",
+          "hs": "h10",
+          "mpCon": "20",
+          "time": "100",
+          "x": "-2"
+        },
+        {
+          "hpCon": "19",
+          "hs": "h11",
+          "mpCon": "19",
+          "time": "110",
+          "x": "-2"
+        },
+        {
+          "hpCon": "18",
+          "hs": "h12",
+          "mpCon": "18",
+          "time": "120",
+          "x": "-2"
+        },
+        {
+          "hpCon": "17",
+          "hs": "h13",
+          "mpCon": "17",
+          "time": "130",
+          "x": "-2"
+        },
+        {
+          "hpCon": "16",
+          "hs": "h14",
+          "mpCon": "16",
+          "time": "140",
+          "x": "-2"
+        },
+        {
+          "hpCon": "15",
+          "hs": "h15",
+          "mpCon": "15",
+          "time": "150",
+          "x": "-2"
+        },
+        {
+          "hpCon": "14",
+          "hs": "h16",
+          "mpCon": "14",
+          "time": "160",
+          "x": "-2"
+        },
+        {
+          "hpCon": "13",
+          "hs": "h17",
+          "mpCon": "13",
+          "time": "170",
+          "x": "-2"
+        },
+        {
+          "hpCon": "12",
+          "hs": "h18",
+          "mpCon": "12",
+          "time": "180",
+          "x": "-2"
+        },
+        {
+          "hpCon": "11",
+          "hs": "h19",
+          "mpCon": "11",
+          "time": "190",
+          "x": "-2"
+        },
+        {
+          "hpCon": "28",
+          "hs": "h2",
+          "mpCon": "28",
+          "time": "20",
+          "x": "-2"
+        },
+        {
+          "hpCon": "10",
+          "hs": "h20",
+          "mpCon": "10",
+          "time": "200",
+          "x": "-2"
+        },
+        {
+          "hpCon": "27",
+          "hs": "h3",
+          "mpCon": "27",
+          "time": "30",
+          "x": "-2"
+        },
+        {
+          "hpCon": "26",
+          "hs": "h4",
+          "mpCon": "26",
+          "time": "40",
+          "x": "-2"
+        },
+        {
+          "hpCon": "25",
+          "hs": "h5",
+          "mpCon": "25",
+          "time": "50",
+          "x": "-2"
+        },
+        {
+          "hpCon": "24",
+          "hs": "h6",
+          "mpCon": "24",
+          "time": "60",
+          "x": "-2"
+        },
+        {
+          "hpCon": "23",
+          "hs": "h7",
+          "mpCon": "23",
+          "time": "70",
+          "x": "-2"
+        },
+        {
+          "hpCon": "22",
+          "hs": "h8",
+          "mpCon": "22",
+          "time": "80",
+          "x": "-2"
+        },
+        {
+          "hpCon": "21",
+          "hs": "h9",
+          "mpCon": "21",
+          "time": "90",
+          "x": "-2"
+        }
+      ]
+    },
+    {
+      "masterLevel": 20,
+      "actions": [
+        "fake"
+      ],
+      "weapons": [
+        49
+      ],
+      "id": 5201004,
+      "description": {
+        "id": 5201004,
+        "desc": "총을 쏘는 척하면서 불릿대신 깃발을 발사시켜 다수의 몬스터들을 당황하여 움직일 수 없게 만든다. 한 번에 3마리 이하의 적을 공격할 수 있다.",
+        "name": "페이크샷",
+        "bookName": "",
+        "detail": "MP #mpCon 소비하여 #prop% 확률로 #time초간 스턴, 데미지 #damage%"
+      },
+      "levelProperties": [
+        {
+          "damage": "63",
+          "hs": "h1",
+          "lt": "Point [ X=-250, Y=-80 ]",
+          "mobCount": "3",
+          "mpCon": "10",
+          "prop": "43",
+          "rb": "Point [ X=-20, Y=30 ]",
+          "time": "1"
+        },
+        {
+          "damage": "90",
+          "hs": "h10",
+          "lt": "Point [ X=-250, Y=-80 ]",
+          "mobCount": "3",
+          "mpCon": "15",
+          "prop": "70",
+          "rb": "Point [ X=-20, Y=30 ]",
+          "time": "2"
+        },
+        {
+          "damage": "93",
+          "hs": "h11",
+          "lt": "Point [ X=-250, Y=-80 ]",
+          "mobCount": "3",
+          "mpCon": "20",
+          "prop": "73",
+          "rb": "Point [ X=-20, Y=30 ]",
+          "time": "3"
+        },
+        {
+          "damage": "96",
+          "hs": "h12",
+          "lt": "Point [ X=-250, Y=-80 ]",
+          "mobCount": "3",
+          "mpCon": "20",
+          "prop": "76",
+          "rb": "Point [ X=-20, Y=30 ]",
+          "time": "3"
+        },
+        {
+          "damage": "99",
+          "hs": "h13",
+          "lt": "Point [ X=-250, Y=-80 ]",
+          "mobCount": "3",
+          "mpCon": "20",
+          "prop": "79",
+          "rb": "Point [ X=-20, Y=30 ]",
+          "time": "3"
+        },
+        {
+          "damage": "102",
+          "hs": "h14",
+          "lt": "Point [ X=-250, Y=-80 ]",
+          "mobCount": "3",
+          "mpCon": "20",
+          "prop": "82",
+          "rb": "Point [ X=-20, Y=30 ]",
+          "time": "3"
+        },
+        {
+          "damage": "105",
+          "hs": "h15",
+          "lt": "Point [ X=-250, Y=-80 ]",
+          "mobCount": "3",
+          "mpCon": "20",
+          "prop": "85",
+          "rb": "Point [ X=-20, Y=30 ]",
+          "time": "3"
+        },
+        {
+          "damage": "108",
+          "hs": "h16",
+          "lt": "Point [ X=-250, Y=-80 ]",
+          "mobCount": "3",
+          "mpCon": "25",
+          "prop": "88",
+          "rb": "Point [ X=-20, Y=30 ]",
+          "time": "4"
+        },
+        {
+          "damage": "111",
+          "hs": "h17",
+          "lt": "Point [ X=-250, Y=-80 ]",
+          "mobCount": "3",
+          "mpCon": "25",
+          "prop": "91",
+          "rb": "Point [ X=-20, Y=30 ]",
+          "time": "4"
+        },
+        {
+          "damage": "114",
+          "hs": "h18",
+          "lt": "Point [ X=-250, Y=-80 ]",
+          "mobCount": "3",
+          "mpCon": "25",
+          "prop": "94",
+          "rb": "Point [ X=-20, Y=30 ]",
+          "time": "4"
+        },
+        {
+          "damage": "117",
+          "hs": "h19",
+          "lt": "Point [ X=-250, Y=-80 ]",
+          "mobCount": "3",
+          "mpCon": "25",
+          "prop": "97",
+          "rb": "Point [ X=-20, Y=30 ]",
+          "time": "4"
+        },
+        {
+          "damage": "66",
+          "hs": "h2",
+          "lt": "Point [ X=-250, Y=-80 ]",
+          "mobCount": "3",
+          "mpCon": "10",
+          "prop": "46",
+          "rb": "Point [ X=-20, Y=30 ]",
+          "time": "1"
+        },
+        {
+          "damage": "120",
+          "hs": "h20",
+          "lt": "Point [ X=-250, Y=-80 ]",
+          "mobCount": "3",
+          "mpCon": "25",
+          "prop": "100",
+          "rb": "Point [ X=-20, Y=30 ]",
+          "time": "4"
+        },
+        {
+          "damage": "69",
+          "hs": "h3",
+          "lt": "Point [ X=-250, Y=-80 ]",
+          "mobCount": "3",
+          "mpCon": "10",
+          "prop": "49",
+          "rb": "Point [ X=-20, Y=30 ]",
+          "time": "1"
+        },
+        {
+          "damage": "72",
+          "hs": "h4",
+          "lt": "Point [ X=-250, Y=-80 ]",
+          "mobCount": "3",
+          "mpCon": "10",
+          "prop": "52",
+          "rb": "Point [ X=-20, Y=30 ]",
+          "time": "1"
+        },
+        {
+          "damage": "75",
+          "hs": "h5",
+          "lt": "Point [ X=-250, Y=-80 ]",
+          "mobCount": "3",
+          "mpCon": "10",
+          "prop": "55",
+          "rb": "Point [ X=-20, Y=30 ]",
+          "time": "1"
+        },
+        {
+          "damage": "78",
+          "hs": "h6",
+          "lt": "Point [ X=-250, Y=-80 ]",
+          "mobCount": "3",
+          "mpCon": "15",
+          "prop": "58",
+          "rb": "Point [ X=-20, Y=30 ]",
+          "time": "2"
+        },
+        {
+          "damage": "81",
+          "hs": "h7",
+          "lt": "Point [ X=-250, Y=-80 ]",
+          "mobCount": "3",
+          "mpCon": "15",
+          "prop": "61",
+          "rb": "Point [ X=-20, Y=30 ]",
+          "time": "2"
+        },
+        {
+          "damage": "84",
+          "hs": "h8",
+          "lt": "Point [ X=-250, Y=-80 ]",
+          "mobCount": "3",
+          "mpCon": "15",
+          "prop": "64",
+          "rb": "Point [ X=-20, Y=30 ]",
+          "time": "2"
+        },
+        {
+          "damage": "87",
+          "hs": "h9",
+          "lt": "Point [ X=-250, Y=-80 ]",
+          "mobCount": "3",
+          "mpCon": "15",
+          "prop": "67",
+          "rb": "Point [ X=-20, Y=30 ]",
+          "time": "2"
+        }
+      ]
+    },
+    {
+      "masterLevel": 10,
+      "weapons": [],
+      "id": 5201005,
+      "description": {
+        "id": 5201005,
+        "desc": "기존 점프보다 체공 시간이 더 긴 점프를 한다.",
+        "name": "윙즈",
+        "bookName": "",
+        "detail": "MP #mpCon 소비, 낙하속도 #x"
+      },
+      "levelProperties": [
+        {
+          "hs": "h1",
+          "mpCon": "50",
+          "time": "5",
+          "x": "280"
+        },
+        {
+          "hs": "h10",
+          "mpCon": "14",
+          "time": "5",
+          "x": "100"
+        },
+        {
+          "hs": "h2",
+          "mpCon": "46",
+          "time": "5",
+          "x": "260"
+        },
+        {
+          "hs": "h3",
+          "mpCon": "42",
+          "time": "5",
+          "x": "240"
+        },
+        {
+          "hs": "h4",
+          "mpCon": "38",
+          "time": "5",
+          "x": "220"
+        },
+        {
+          "hs": "h5",
+          "mpCon": "34",
+          "time": "5",
+          "x": "200"
+        },
+        {
+          "hs": "h6",
+          "mpCon": "30",
+          "time": "5",
+          "x": "180"
+        },
+        {
+          "hs": "h7",
+          "mpCon": "26",
+          "time": "5",
+          "x": "160"
+        },
+        {
+          "hs": "h8",
+          "mpCon": "22",
+          "time": "5",
+          "x": "140"
+        },
+        {
+          "hs": "h9",
+          "mpCon": "18",
+          "time": "5",
+          "x": "120"
+        }
+      ]
+    },
+    {
+      "masterLevel": 20,
+      "actions": [
+        "backstep"
+      ],
+      "weapons": [
+        49
+      ],
+      "id": 5201006,
+      "description": {
+        "id": 5201006,
+        "desc": "총 반동을 이용하여 총을 쏘며 후방으로 멀리 이동한다.",
+        "name": "백스탭샷",
+        "bookName": "",
+        "detail": "MP #mpCon 소비, 데미지 #damage%"
+      },
+      "requiredSkillLevels": {
+        "5201005": 5
+      },
+      "levelProperties": [
+        {
+          "damage": "70",
+          "hs": "h1",
+          "mpCon": "14",
+          "range": "115"
+        },
+        {
+          "damage": "160",
+          "hs": "h10",
+          "mpCon": "18",
+          "range": "175"
+        },
+        {
+          "damage": "170",
+          "hs": "h11",
+          "mpCon": "22",
+          "range": "190"
+        },
+        {
+          "damage": "180",
+          "hs": "h12",
+          "mpCon": "22",
+          "range": "190"
+        },
+        {
+          "damage": "190",
+          "hs": "h13",
+          "mpCon": "22",
+          "range": "205"
+        },
+        {
+          "damage": "200",
+          "hs": "h14",
+          "mpCon": "22",
+          "range": "205"
+        },
+        {
+          "damage": "210",
+          "hs": "h15",
+          "mpCon": "22",
+          "range": "220"
+        },
+        {
+          "damage": "220",
+          "hs": "h16",
+          "mpCon": "26",
+          "range": "220"
+        },
+        {
+          "damage": "230",
+          "hs": "h17",
+          "mpCon": "26",
+          "range": "235"
+        },
+        {
+          "damage": "240",
+          "hs": "h18",
+          "mpCon": "26",
+          "range": "235"
+        },
+        {
+          "damage": "250",
+          "hs": "h19",
+          "mpCon": "26",
+          "range": "250"
+        },
+        {
+          "damage": "80",
+          "hs": "h2",
+          "mpCon": "14",
+          "range": "115"
+        },
+        {
+          "damage": "260",
+          "hs": "h20",
+          "mpCon": "26",
+          "range": "250"
+        },
+        {
+          "damage": "90",
+          "hs": "h3",
+          "mpCon": "14",
+          "range": "130"
+        },
+        {
+          "damage": "100",
+          "hs": "h4",
+          "mpCon": "14",
+          "range": "130"
+        },
+        {
+          "damage": "110",
+          "hs": "h5",
+          "mpCon": "14",
+          "range": "145"
+        },
+        {
+          "damage": "120",
+          "hs": "h6",
+          "mpCon": "18",
+          "range": "145"
+        },
+        {
+          "damage": "130",
+          "hs": "h7",
+          "mpCon": "18",
+          "range": "160"
+        },
+        {
+          "damage": "140",
+          "hs": "h8",
+          "mpCon": "18",
+          "range": "160"
+        },
+        {
+          "damage": "150",
+          "hs": "h9",
+          "mpCon": "18",
+          "range": "175"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,641 @@
+{
+  "id": 100,
+  "job": {
+    "id": 100,
+    "name": "Swordsman (1st)"
+  },
+  "description": {
+    "id": 100,
+    "desc": "",
+    "name": "",
+    "shortDesc": "",
+    "bookName": "전사의 기본"
+  },
+  "skills": [
+    {
+      "masterLevel": 16,
+      "weapons": [],
+      "id": 1000000,
+      "description": {
+        "id": 1000000,
+        "desc": "움직이지 않을 경우 5초마다 더욱 많은 양의 HP를 회복할 수 있다.",
+        "name": "HP 회복력 향상",
+        "bookName": "",
+        "detail": "HP #hp 추가 회복"
+      },
+      "levelProperties": [
+        {
+          "hp": "3",
+          "hs": "h1"
+        },
+        {
+          "hp": "30",
+          "hs": "h10"
+        },
+        {
+          "hp": "33",
+          "hs": "h11"
+        },
+        {
+          "hp": "36",
+          "hs": "h12"
+        },
+        {
+          "hp": "39",
+          "hs": "h13"
+        },
+        {
+          "hp": "42",
+          "hs": "h14"
+        },
+        {
+          "hp": "45",
+          "hs": "h15"
+        },
+        {
+          "hp": "50",
+          "hs": "h16"
+        },
+        {
+          "hp": "6",
+          "hs": "h2"
+        },
+        {
+          "hp": "9",
+          "hs": "h3"
+        },
+        {
+          "hp": "12",
+          "hs": "h4"
+        },
+        {
+          "hp": "15",
+          "hs": "h5"
+        },
+        {
+          "hp": "18",
+          "hs": "h6"
+        },
+        {
+          "hp": "21",
+          "hs": "h7"
+        },
+        {
+          "hp": "24",
+          "hs": "h8"
+        },
+        {
+          "hp": "27",
+          "hs": "h9"
+        }
+      ]
+    },
+    {
+      "masterLevel": 10,
+      "weapons": [],
+      "id": 1000001,
+      "description": {
+        "id": 1000001,
+        "desc": "Level UP 할 때, Max HP에 AP를 사용할 때 Max HP의 증가량을 향상시킨다.",
+        "name": "HP 증가량 향상",
+        "bookName": "",
+        "detail": "MaxHP LevelUP시 #x, AP 부여시 #y 추가 향상"
+      },
+      "requiredSkillLevels": {
+        "1000000": 5
+      },
+      "levelProperties": [
+        {
+          "hs": "h1",
+          "x": "4",
+          "y": "3"
+        },
+        {
+          "hs": "h10",
+          "x": "40",
+          "y": "30"
+        },
+        {
+          "hs": "h2",
+          "x": "8",
+          "y": "6"
+        },
+        {
+          "hs": "h3",
+          "x": "12",
+          "y": "9"
+        },
+        {
+          "hs": "h4",
+          "x": "16",
+          "y": "12"
+        },
+        {
+          "hs": "h5",
+          "x": "20",
+          "y": "15"
+        },
+        {
+          "hs": "h6",
+          "x": "24",
+          "y": "18"
+        },
+        {
+          "hs": "h7",
+          "x": "28",
+          "y": "21"
+        },
+        {
+          "hs": "h8",
+          "x": "32",
+          "y": "24"
+        },
+        {
+          "hs": "h9",
+          "x": "36",
+          "y": "27"
+        }
+      ]
+    },
+    {
+      "masterLevel": 8,
+      "weapons": [],
+      "id": 1000002,
+      "description": {
+        "id": 1000002,
+        "desc": "사다리나 로프에 가만히 매달려 있는 상태에서도 일정 시간마다 HP를 회복할 수 있다.",
+        "name": "인듀어",
+        "bookName": "",
+        "detail": "#time초 마다 HP를 회복"
+      },
+      "requiredSkillLevels": {
+        "1000001": 3
+      },
+      "levelProperties": [
+        {
+          "hs": "h1",
+          "time": "31"
+        },
+        {
+          "hs": "h2",
+          "time": "28"
+        },
+        {
+          "hs": "h3",
+          "time": "25"
+        },
+        {
+          "hs": "h4",
+          "time": "22"
+        },
+        {
+          "hs": "h5",
+          "time": "19"
+        },
+        {
+          "hs": "h6",
+          "time": "16"
+        },
+        {
+          "hs": "h7",
+          "time": "13"
+        },
+        {
+          "hs": "h8",
+          "time": "10"
+        }
+      ]
+    },
+    {
+      "masterLevel": 20,
+      "actions": [
+        "alert2"
+      ],
+      "weapons": [],
+      "id": 1001003,
+      "description": {
+        "id": 1001003,
+        "desc": "일정 시간동안 물리 방어력을 증가시켜 준다.",
+        "name": "아이언 바디",
+        "bookName": "",
+        "detail": "#time초간 MP #mpCon 소비하여 물리 방어력 +#pdd"
+      },
+      "requiredSkillLevels": {
+        "1000002": 3
+      },
+      "levelProperties": [
+        {
+          "hs": "h1",
+          "mpCon": "8",
+          "pdd": "2",
+          "time": "75"
+        },
+        {
+          "hs": "h10",
+          "mpCon": "10",
+          "pdd": "20",
+          "time": "175"
+        },
+        {
+          "hs": "h11",
+          "mpCon": "11",
+          "pdd": "22",
+          "time": "190"
+        },
+        {
+          "hs": "h12",
+          "mpCon": "11",
+          "pdd": "24",
+          "time": "200"
+        },
+        {
+          "hs": "h13",
+          "mpCon": "12",
+          "pdd": "26",
+          "time": "215"
+        },
+        {
+          "hs": "h14",
+          "mpCon": "12",
+          "pdd": "28",
+          "time": "225"
+        },
+        {
+          "hs": "h15",
+          "mpCon": "13",
+          "pdd": "30",
+          "time": "240"
+        },
+        {
+          "hs": "h16",
+          "mpCon": "13",
+          "pdd": "32",
+          "time": "250"
+        },
+        {
+          "hs": "h17",
+          "mpCon": "14",
+          "pdd": "34",
+          "time": "265"
+        },
+        {
+          "hs": "h18",
+          "mpCon": "14",
+          "pdd": "36",
+          "time": "275"
+        },
+        {
+          "hs": "h19",
+          "mpCon": "15",
+          "pdd": "38",
+          "time": "290"
+        },
+        {
+          "hs": "h2",
+          "mpCon": "8",
+          "pdd": "4",
+          "time": "85"
+        },
+        {
+          "hs": "h20",
+          "mpCon": "15",
+          "pdd": "40",
+          "time": "300"
+        },
+        {
+          "hs": "h3",
+          "mpCon": "8",
+          "pdd": "6",
+          "time": "95"
+        },
+        {
+          "hs": "h4",
+          "mpCon": "8",
+          "pdd": "8",
+          "time": "105"
+        },
+        {
+          "hs": "h5",
+          "mpCon": "9",
+          "pdd": "10",
+          "time": "120"
+        },
+        {
+          "hs": "h6",
+          "mpCon": "9",
+          "pdd": "12",
+          "time": "130"
+        },
+        {
+          "hs": "h7",
+          "mpCon": "9",
+          "pdd": "14",
+          "time": "140"
+        },
+        {
+          "hs": "h8",
+          "mpCon": "10",
+          "pdd": "16",
+          "time": "155"
+        },
+        {
+          "hs": "h9",
+          "mpCon": "10",
+          "pdd": "18",
+          "time": "165"
+        }
+      ]
+    },
+    {
+      "masterLevel": 20,
+      "weapons": [],
+      "id": 1001004,
+      "description": {
+        "id": 1001004,
+        "desc": "MP를 소비하여 장착한 무기로 적에게 일격을 가한다.",
+        "name": "파워 스트라이크",
+        "bookName": "",
+        "detail": "MP #mpCon 소비, 데미지 #damage%"
+      },
+      "levelProperties": [
+        {
+          "damage": "114",
+          "hs": "h1",
+          "mpCon": "4"
+        },
+        {
+          "damage": "180",
+          "hs": "h10",
+          "mpCon": "7"
+        },
+        {
+          "damage": "186",
+          "hs": "h11",
+          "mpCon": "7"
+        },
+        {
+          "damage": "196",
+          "hs": "h12",
+          "mpCon": "8"
+        },
+        {
+          "damage": "202",
+          "hs": "h13",
+          "mpCon": "8"
+        },
+        {
+          "damage": "212",
+          "hs": "h14",
+          "mpCon": "9"
+        },
+        {
+          "damage": "218",
+          "hs": "h15",
+          "mpCon": "9"
+        },
+        {
+          "damage": "228",
+          "hs": "h16",
+          "mpCon": "10"
+        },
+        {
+          "damage": "234",
+          "hs": "h17",
+          "mpCon": "10"
+        },
+        {
+          "damage": "244",
+          "hs": "h18",
+          "mpCon": "11"
+        },
+        {
+          "damage": "250",
+          "hs": "h19",
+          "mpCon": "11"
+        },
+        {
+          "damage": "120",
+          "hs": "h2",
+          "mpCon": "4"
+        },
+        {
+          "damage": "260",
+          "hs": "h20",
+          "mpCon": "12"
+        },
+        {
+          "damage": "126",
+          "hs": "h3",
+          "mpCon": "4"
+        },
+        {
+          "damage": "132",
+          "hs": "h4",
+          "mpCon": "4"
+        },
+        {
+          "damage": "142",
+          "hs": "h5",
+          "mpCon": "5"
+        },
+        {
+          "damage": "148",
+          "hs": "h6",
+          "mpCon": "5"
+        },
+        {
+          "damage": "154",
+          "hs": "h7",
+          "mpCon": "5"
+        },
+        {
+          "damage": "164",
+          "hs": "h8",
+          "mpCon": "6"
+        },
+        {
+          "damage": "170",
+          "hs": "h9",
+          "mpCon": "6"
+        }
+      ]
+    },
+    {
+      "masterLevel": 20,
+      "weapons": [],
+      "id": 1001005,
+      "description": {
+        "id": 1001005,
+        "desc": "HP, MP를 소비하여 장착한 무기로 주위의 적에게 전체 공격을 가한다.",
+        "name": "슬래시 블러스트",
+        "bookName": "",
+        "detail": "HP #hpCon, MP #mpCon 소비하여 데미지 #damage%"
+      },
+      "requiredSkillLevels": {
+        "1001004": 1
+      },
+      "levelProperties": [
+        {
+          "damage": "57",
+          "hpCon": "8",
+          "hs": "h1",
+          "mobCount": "6",
+          "mpCon": "6",
+          "range": "130"
+        },
+        {
+          "damage": "90",
+          "hpCon": "11",
+          "hs": "h10",
+          "mobCount": "6",
+          "mpCon": "9",
+          "range": "130"
+        },
+        {
+          "damage": "93",
+          "hpCon": "11",
+          "hs": "h11",
+          "mobCount": "6",
+          "mpCon": "9",
+          "range": "150"
+        },
+        {
+          "damage": "98",
+          "hpCon": "12",
+          "hs": "h12",
+          "mobCount": "6",
+          "mpCon": "10",
+          "range": "150"
+        },
+        {
+          "damage": "101",
+          "hpCon": "12",
+          "hs": "h13",
+          "mobCount": "6",
+          "mpCon": "10",
+          "range": "150"
+        },
+        {
+          "damage": "106",
+          "hpCon": "13",
+          "hs": "h14",
+          "mobCount": "6",
+          "mpCon": "11",
+          "range": "150"
+        },
+        {
+          "damage": "109",
+          "hpCon": "13",
+          "hs": "h15",
+          "mobCount": "6",
+          "mpCon": "11",
+          "range": "150"
+        },
+        {
+          "damage": "114",
+          "hpCon": "14",
+          "hs": "h16",
+          "mobCount": "6",
+          "mpCon": "12",
+          "range": "150"
+        },
+        {
+          "damage": "117",
+          "hpCon": "14",
+          "hs": "h17",
+          "mobCount": "6",
+          "mpCon": "12",
+          "range": "150"
+        },
+        {
+          "damage": "122",
+          "hpCon": "15",
+          "hs": "h18",
+          "mobCount": "6",
+          "mpCon": "13",
+          "range": "150"
+        },
+        {
+          "damage": "125",
+          "hpCon": "15",
+          "hs": "h19",
+          "mobCount": "6",
+          "mpCon": "13",
+          "range": "150"
+        },
+        {
+          "damage": "60",
+          "hpCon": "8",
+          "hs": "h2",
+          "mobCount": "6",
+          "mpCon": "6",
+          "range": "130"
+        },
+        {
+          "damage": "130",
+          "hpCon": "16",
+          "hs": "h20",
+          "mobCount": "6",
+          "mpCon": "14",
+          "range": "150"
+        },
+        {
+          "damage": "63",
+          "hpCon": "8",
+          "hs": "h3",
+          "mobCount": "6",
+          "mpCon": "6",
+          "range": "130"
+        },
+        {
+          "damage": "66",
+          "hpCon": "8",
+          "hs": "h4",
+          "mobCount": "6",
+          "mpCon": "6",
+          "range": "130"
+        },
+        {
+          "damage": "71",
+          "hpCon": "9",
+          "hs": "h5",
+          "mobCount": "6",
+          "mpCon": "7",
+          "range": "130"
+        },
+        {
+          "damage": "74",
+          "hpCon": "9",
+          "hs": "h6",
+          "mobCount": "6",
+          "mpCon": "7",
+          "range": "130"
+        },
+        {
+          "damage": "77",
+          "hpCon": "9",
+          "hs": "h7",
+          "mobCount": "6",
+          "mpCon": "7",
+          "range": "130"
+        },
+        {
+          "damage": "82",
+          "hpCon": "10",
+          "hs": "h8",
+          "mobCount": "6",
+          "mpCon": "8",
+          "range": "130"
+        },
+        {
+          "damage": "85",
+          "hpCon": "10",
+          "hs": "h9",
+          "mobCount": "6",
+          "mpCon": "8",
+          "range": "130"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1434 @@
+{
+  "id": 511,
+  "job": {
+    "id": 511,
+    "name": "Marauder (3rd)"
+  },
+  "description": {
+    "id": 511,
+    "desc": "",
+    "name": "",
+    "shortDesc": "",
+    "bookName": "버커니어의 길"
+  },
+  "skills": [
+    {
+      "masterLevel": 20,
+      "weapons": [],
+      "id": 5110000,
+      "description": {
+        "id": 5110000,
+        "desc": "스턴 상태인 적을 공격할 때 일정 확률로 크리티컬 공격이 발동한다.",
+        "name": "스턴 마스터리",
+        "bookName": "",
+        "detail": "#prop% 확률, 크리티컬 데미지 #damage%"
+      },
+      "levelProperties": [
+        {
+          "damage": "103",
+          "hs": "h1",
+          "prop": "22"
+        },
+        {
+          "damage": "130",
+          "hs": "h10",
+          "prop": "40"
+        },
+        {
+          "damage": "133",
+          "hs": "h11",
+          "prop": "42"
+        },
+        {
+          "damage": "136",
+          "hs": "h12",
+          "prop": "44"
+        },
+        {
+          "damage": "139",
+          "hs": "h13",
+          "prop": "46"
+        },
+        {
+          "damage": "142",
+          "hs": "h14",
+          "prop": "48"
+        },
+        {
+          "damage": "145",
+          "hs": "h15",
+          "prop": "50"
+        },
+        {
+          "damage": "148",
+          "hs": "h16",
+          "prop": "52"
+        },
+        {
+          "damage": "151",
+          "hs": "h17",
+          "prop": "54"
+        },
+        {
+          "damage": "154",
+          "hs": "h18",
+          "prop": "56"
+        },
+        {
+          "damage": "157",
+          "hs": "h19",
+          "prop": "58"
+        },
+        {
+          "damage": "106",
+          "hs": "h2",
+          "prop": "24"
+        },
+        {
+          "damage": "160",
+          "hs": "h20",
+          "prop": "60"
+        },
+        {
+          "damage": "109",
+          "hs": "h3",
+          "prop": "26"
+        },
+        {
+          "damage": "112",
+          "hs": "h4",
+          "prop": "28"
+        },
+        {
+          "damage": "115",
+          "hs": "h5",
+          "prop": "30"
+        },
+        {
+          "damage": "118",
+          "hs": "h6",
+          "prop": "32"
+        },
+        {
+          "damage": "121",
+          "hs": "h7",
+          "prop": "34"
+        },
+        {
+          "damage": "124",
+          "hs": "h8",
+          "prop": "36"
+        },
+        {
+          "damage": "127",
+          "hs": "h9",
+          "prop": "38"
+        }
+      ]
+    },
+    {
+      "masterLevel": 40,
+      "weapons": [],
+      "id": 5110001,
+      "description": {
+        "id": 5110001,
+        "desc": "공격을 할 때마다 일정량의 에너지가 충전된다. 에너지가 완충되면 바디어택 효과와 일정 확률로 스탠스 효과가 발동되며 에너지를 이용하는 스킬들을 사용할 수 있다.",
+        "name": "에너지 차지",
+        "bookName": "",
+        "detail": "명중률과 회피율 +#acc, #pad지속시간 #time초"
+      },
+      "levelProperties": [
+        {
+          "acc": "1",
+          "damage": "5",
+          "eva": "1",
+          "hs": "h1",
+          "pad": "0",
+          "prop": "11",
+          "time": "31",
+          "x": "75"
+        },
+        {
+          "acc": "5",
+          "damage": "50",
+          "eva": "5",
+          "hs": "h10",
+          "pad": "12",
+          "prop": "20",
+          "time": "35",
+          "x": "102"
+        },
+        {
+          "acc": "6",
+          "damage": "55",
+          "eva": "6",
+          "hs": "h11",
+          "pad": "12",
+          "prop": "21",
+          "time": "36",
+          "x": "105"
+        },
+        {
+          "acc": "6",
+          "damage": "60",
+          "eva": "6",
+          "hs": "h12",
+          "pad": "13",
+          "prop": "22",
+          "time": "36",
+          "x": "108"
+        },
+        {
+          "acc": "7",
+          "damage": "65",
+          "eva": "7",
+          "hs": "h13",
+          "pad": "13",
+          "prop": "23",
+          "time": "37",
+          "x": "111"
+        },
+        {
+          "acc": "7",
+          "damage": "70",
+          "eva": "7",
+          "hs": "h14",
+          "pad": "13",
+          "prop": "24",
+          "time": "37",
+          "x": "114"
+        },
+        {
+          "acc": "8",
+          "damage": "75",
+          "eva": "8",
+          "hs": "h15",
+          "pad": "13",
+          "prop": "25",
+          "time": "38",
+          "x": "117"
+        },
+        {
+          "acc": "8",
+          "damage": "80",
+          "eva": "8",
+          "hs": "h16",
+          "pad": "14",
+          "prop": "26",
+          "time": "38",
+          "x": "120"
+        },
+        {
+          "acc": "9",
+          "damage": "85",
+          "eva": "9",
+          "hs": "h17",
+          "pad": "14",
+          "prop": "27",
+          "time": "39",
+          "x": "123"
+        },
+        {
+          "acc": "9",
+          "damage": "90",
+          "eva": "9",
+          "hs": "h18",
+          "pad": "14",
+          "prop": "28",
+          "time": "39",
+          "x": "126"
+        },
+        {
+          "acc": "10",
+          "damage": "95",
+          "eva": "10",
+          "hs": "h19",
+          "pad": "14",
+          "prop": "29",
+          "time": "40",
+          "x": "129"
+        },
+        {
+          "acc": "1",
+          "damage": "10",
+          "eva": "1",
+          "hs": "h2",
+          "pad": "0",
+          "prop": "12",
+          "time": "31",
+          "x": "78"
+        },
+        {
+          "acc": "10",
+          "damage": "100",
+          "eva": "10",
+          "hs": "h20",
+          "pad": "15",
+          "prop": "30",
+          "time": "40",
+          "x": "132"
+        },
+        {
+          "acc": "11",
+          "damage": "105",
+          "eva": "11",
+          "hs": "h21",
+          "pad": "15",
+          "prop": "31",
+          "time": "41",
+          "x": "135"
+        },
+        {
+          "acc": "11",
+          "damage": "110",
+          "eva": "11",
+          "hs": "h22",
+          "pad": "15",
+          "prop": "32",
+          "time": "41",
+          "x": "138"
+        },
+        {
+          "acc": "12",
+          "damage": "115",
+          "eva": "12",
+          "hs": "h23",
+          "pad": "15",
+          "prop": "33",
+          "time": "42",
+          "x": "141"
+        },
+        {
+          "acc": "12",
+          "damage": "120",
+          "eva": "12",
+          "hs": "h24",
+          "pad": "16",
+          "prop": "34",
+          "time": "42",
+          "x": "144"
+        },
+        {
+          "acc": "13",
+          "damage": "125",
+          "eva": "13",
+          "hs": "h25",
+          "pad": "16",
+          "prop": "35",
+          "time": "43",
+          "x": "147"
+        },
+        {
+          "acc": "13",
+          "damage": "130",
+          "eva": "13",
+          "hs": "h26",
+          "pad": "16",
+          "prop": "36",
+          "time": "43",
+          "x": "150"
+        },
+        {
+          "acc": "14",
+          "damage": "135",
+          "eva": "14",
+          "hs": "h27",
+          "pad": "16",
+          "prop": "37",
+          "time": "44",
+          "x": "153"
+        },
+        {
+          "acc": "14",
+          "damage": "140",
+          "eva": "14",
+          "hs": "h28",
+          "pad": "17",
+          "prop": "38",
+          "time": "44",
+          "x": "156"
+        },
+        {
+          "acc": "15",
+          "damage": "145",
+          "eva": "15",
+          "hs": "h29",
+          "pad": "17",
+          "prop": "39",
+          "time": "45",
+          "x": "159"
+        },
+        {
+          "acc": "2",
+          "damage": "15",
+          "eva": "2",
+          "hs": "h3",
+          "pad": "0",
+          "prop": "13",
+          "time": "32",
+          "x": "81"
+        },
+        {
+          "acc": "15",
+          "damage": "150",
+          "eva": "15",
+          "hs": "h30",
+          "pad": "17",
+          "prop": "40",
+          "time": "45",
+          "x": "162"
+        },
+        {
+          "acc": "16",
+          "damage": "155",
+          "eva": "16",
+          "hs": "h31",
+          "pad": "17",
+          "prop": "41",
+          "time": "46",
+          "x": "165"
+        },
+        {
+          "acc": "16",
+          "damage": "160",
+          "eva": "16",
+          "hs": "h32",
+          "pad": "18",
+          "prop": "42",
+          "time": "46",
+          "x": "168"
+        },
+        {
+          "acc": "17",
+          "damage": "165",
+          "eva": "17",
+          "hs": "h33",
+          "pad": "18",
+          "prop": "43",
+          "time": "47",
+          "x": "171"
+        },
+        {
+          "acc": "17",
+          "damage": "170",
+          "eva": "17",
+          "hs": "h34",
+          "pad": "18",
+          "prop": "44",
+          "time": "47",
+          "x": "174"
+        },
+        {
+          "acc": "18",
+          "damage": "175",
+          "eva": "18",
+          "hs": "h35",
+          "pad": "18",
+          "prop": "45",
+          "time": "48",
+          "x": "177"
+        },
+        {
+          "acc": "18",
+          "damage": "180",
+          "eva": "18",
+          "hs": "h36",
+          "pad": "19",
+          "prop": "46",
+          "time": "48",
+          "x": "180"
+        },
+        {
+          "acc": "19",
+          "damage": "185",
+          "eva": "19",
+          "hs": "h37",
+          "pad": "19",
+          "prop": "47",
+          "time": "49",
+          "x": "183"
+        },
+        {
+          "acc": "19",
+          "damage": "190",
+          "eva": "19",
+          "hs": "h38",
+          "pad": "19",
+          "prop": "48",
+          "time": "49",
+          "x": "186"
+        },
+        {
+          "acc": "20",
+          "damage": "195",
+          "eva": "20",
+          "hs": "h39",
+          "pad": "19",
+          "prop": "49",
+          "time": "50",
+          "x": "189"
+        },
+        {
+          "acc": "2",
+          "damage": "20",
+          "eva": "2",
+          "hs": "h4",
+          "pad": "11",
+          "prop": "14",
+          "time": "32",
+          "x": "84"
+        },
+        {
+          "acc": "20",
+          "damage": "200",
+          "eva": "20",
+          "hs": "h40",
+          "pad": "20",
+          "prop": "50",
+          "time": "50",
+          "x": "192"
+        },
+        {
+          "acc": "3",
+          "damage": "25",
+          "eva": "3",
+          "hs": "h5",
+          "pad": "11",
+          "prop": "15",
+          "time": "33",
+          "x": "87"
+        },
+        {
+          "acc": "3",
+          "damage": "30",
+          "eva": "3",
+          "hs": "h6",
+          "pad": "11",
+          "prop": "16",
+          "time": "33",
+          "x": "90"
+        },
+        {
+          "acc": "4",
+          "damage": "35",
+          "eva": "4",
+          "hs": "h7",
+          "pad": "11",
+          "prop": "17",
+          "time": "34",
+          "x": "93"
+        },
+        {
+          "acc": "4",
+          "damage": "40",
+          "eva": "4",
+          "hs": "h8",
+          "pad": "12",
+          "prop": "18",
+          "time": "34",
+          "x": "96"
+        },
+        {
+          "acc": "5",
+          "damage": "45",
+          "eva": "5",
+          "hs": "h9",
+          "pad": "12",
+          "prop": "19",
+          "time": "35",
+          "x": "99"
+        }
+      ]
+    },
+    {
+      "masterLevel": 30,
+      "actions": [
+        "eburster"
+      ],
+      "weapons": [],
+      "id": 5111002,
+      "description": {
+        "id": 5111002,
+        "desc": "에너지를 터뜨려 가까이 있는 다수의 적을 공격한다. 에너지가 완충된 상태에서만 사용할 수 있다.",
+        "name": "에너지 버스터",
+        "bookName": "",
+        "detail": "MP #mpCon 소비, 데미지 #damage%, #mobCount명을 공격"
+      },
+      "requiredSkillLevels": {},
+      "levelProperties": [
+        {
+          "hs": "h1",
+          "mpCon": "24",
+          "damage": "246",
+          "mobCount": "2"
+        },
+        {
+          "hs": "h2",
+          "mpCon": "24",
+          "damage": "252",
+          "mobCount": "2"
+        },
+        {
+          "hs": "h3",
+          "mpCon": "24",
+          "damage": "258",
+          "mobCount": "2"
+        },
+        {
+          "hs": "h4",
+          "mpCon": "24",
+          "damage": "264",
+          "mobCount": "2"
+        },
+        {
+          "hs": "h5",
+          "mpCon": "24",
+          "damage": "270",
+          "mobCount": "2"
+        },
+        {
+          "hs": "h6",
+          "mpCon": "24",
+          "damage": "276",
+          "mobCount": "2"
+        },
+        {
+          "hs": "h7",
+          "mpCon": "24",
+          "damage": "282",
+          "mobCount": "2"
+        },
+        {
+          "hs": "h8",
+          "mpCon": "24",
+          "damage": "288",
+          "mobCount": "2"
+        },
+        {
+          "hs": "h9",
+          "mpCon": "24",
+          "damage": "294",
+          "mobCount": "2"
+        },
+        {
+          "hs": "h10",
+          "mpCon": "24",
+          "damage": "300",
+          "mobCount": "2"
+        },
+        {
+          "hs": "h11",
+          "mpCon": "30",
+          "damage": "306",
+          "mobCount": "3"
+        },
+        {
+          "hs": "h12",
+          "mpCon": "30",
+          "damage": "312",
+          "mobCount": "3"
+        },
+        {
+          "hs": "h13",
+          "mpCon": "30",
+          "damage": "318",
+          "mobCount": "3"
+        },
+        {
+          "hs": "h14",
+          "mpCon": "30",
+          "damage": "324",
+          "mobCount": "3"
+        },
+        {
+          "hs": "h15",
+          "mpCon": "30",
+          "damage": "330",
+          "mobCount": "3"
+        },
+        {
+          "hs": "h16",
+          "mpCon": "30",
+          "damage": "336",
+          "mobCount": "3"
+        },
+        {
+          "hs": "h17",
+          "mpCon": "30",
+          "damage": "342",
+          "mobCount": "3"
+        },
+        {
+          "hs": "h18",
+          "mpCon": "30",
+          "damage": "348",
+          "mobCount": "3"
+        },
+        {
+          "hs": "h19",
+          "mpCon": "30",
+          "damage": "354",
+          "mobCount": "3"
+        },
+        {
+          "hs": "h20",
+          "mpCon": "30",
+          "damage": "360",
+          "mobCount": "3"
+        },
+        {
+          "hs": "h21",
+          "mpCon": "36",
+          "damage": "366",
+          "mobCount": "4"
+        },
+        {
+          "hs": "h22",
+          "mpCon": "36",
+          "damage": "372",
+          "mobCount": "4"
+        },
+        {
+          "hs": "h23",
+          "mpCon": "36",
+          "damage": "378",
+          "mobCount": "4"
+        },
+        {
+          "hs": "h24",
+          "mpCon": "36",
+          "damage": "384",
+          "mobCount": "4"
+        },
+        {
+          "hs": "h25",
+          "mpCon": "36",
+          "damage": "390",
+          "mobCount": "4"
+        },
+        {
+          "hs": "h26",
+          "mpCon": "36",
+          "damage": "396",
+          "mobCount": "4"
+        },
+        {
+          "hs": "h27",
+          "mpCon": "36",
+          "damage": "402",
+          "mobCount": "4"
+        },
+        {
+          "hs": "h28",
+          "mpCon": "36",
+          "damage": "408",
+          "mobCount": "4"
+        },
+        {
+          "hs": "h29",
+          "mpCon": "36",
+          "damage": "414",
+          "mobCount": "4"
+        },
+        {
+          "hs": "h30",
+          "mpCon": "36",
+          "damage": "420",
+          "mobCount": "4"
+        }
+      ]
+    },
+    {
+      "masterLevel": 20,
+      "actions": [
+        "edrain"
+      ],
+      "weapons": [],
+      "id": 5111004,
+      "description": {
+        "id": 5111004,
+        "desc": "에너지를 이용하여 적의 HP 일부를 자신의 HP로 변환시킨다. 에너지가 완충된 상태에서만 사용할 수 있다.",
+        "name": "에너지 드레인",
+        "bookName": "",
+        "detail": "데미지 #damage%, 데미지의 #x% 만큼 체력 회복"
+      },
+      "requiredSkillLevels": {},
+      "levelProperties": [
+        {
+          "damage": "265",
+          "hs": "h1",
+          "lt": "Point [ X=-200, Y=-100 ]",
+          "mobCount": "1",
+          "rb": "Point [ X=0, Y=0 ]",
+          "x": "11"
+        },
+        {
+          "damage": "310",
+          "hs": "h10",
+          "lt": "Point [ X=-200, Y=-100 ]",
+          "mobCount": "1",
+          "rb": "Point [ X=0, Y=0 ]",
+          "x": "15"
+        },
+        {
+          "damage": "315",
+          "hs": "h11",
+          "lt": "Point [ X=-200, Y=-100 ]",
+          "mobCount": "1",
+          "rb": "Point [ X=0, Y=0 ]",
+          "x": "16"
+        },
+        {
+          "damage": "320",
+          "hs": "h12",
+          "lt": "Point [ X=-200, Y=-100 ]",
+          "mobCount": "1",
+          "rb": "Point [ X=0, Y=0 ]",
+          "x": "16"
+        },
+        {
+          "damage": "325",
+          "hs": "h13",
+          "lt": "Point [ X=-200, Y=-100 ]",
+          "mobCount": "1",
+          "rb": "Point [ X=0, Y=0 ]",
+          "x": "17"
+        },
+        {
+          "damage": "330",
+          "hs": "h14",
+          "lt": "Point [ X=-200, Y=-100 ]",
+          "mobCount": "1",
+          "rb": "Point [ X=0, Y=0 ]",
+          "x": "17"
+        },
+        {
+          "damage": "335",
+          "hs": "h15",
+          "lt": "Point [ X=-200, Y=-100 ]",
+          "mobCount": "1",
+          "rb": "Point [ X=0, Y=0 ]",
+          "x": "18"
+        },
+        {
+          "damage": "340",
+          "hs": "h16",
+          "lt": "Point [ X=-200, Y=-100 ]",
+          "mobCount": "1",
+          "rb": "Point [ X=0, Y=0 ]",
+          "x": "18"
+        },
+        {
+          "damage": "345",
+          "hs": "h17",
+          "lt": "Point [ X=-200, Y=-100 ]",
+          "mobCount": "1",
+          "rb": "Point [ X=0, Y=0 ]",
+          "x": "19"
+        },
+        {
+          "damage": "350",
+          "hs": "h18",
+          "lt": "Point [ X=-200, Y=-100 ]",
+          "mobCount": "1",
+          "rb": "Point [ X=0, Y=0 ]",
+          "x": "19"
+        },
+        {
+          "damage": "355",
+          "hs": "h19",
+          "lt": "Point [ X=-200, Y=-100 ]",
+          "mobCount": "1",
+          "rb": "Point [ X=0, Y=0 ]",
+          "x": "20"
+        },
+        {
+          "damage": "270",
+          "hs": "h2",
+          "lt": "Point [ X=-200, Y=-100 ]",
+          "mobCount": "1",
+          "rb": "Point [ X=0, Y=0 ]",
+          "x": "11"
+        },
+        {
+          "damage": "360",
+          "hs": "h20",
+          "lt": "Point [ X=-200, Y=-100 ]",
+          "mobCount": "1",
+          "rb": "Point [ X=0, Y=0 ]",
+          "x": "20"
+        },
+        {
+          "damage": "275",
+          "hs": "h3",
+          "lt": "Point [ X=-200, Y=-100 ]",
+          "mobCount": "1",
+          "rb": "Point [ X=0, Y=0 ]",
+          "x": "12"
+        },
+        {
+          "damage": "280",
+          "hs": "h4",
+          "lt": "Point [ X=-200, Y=-100 ]",
+          "mobCount": "1",
+          "rb": "Point [ X=0, Y=0 ]",
+          "x": "12"
+        },
+        {
+          "damage": "285",
+          "hs": "h5",
+          "lt": "Point [ X=-200, Y=-100 ]",
+          "mobCount": "1",
+          "rb": "Point [ X=0, Y=0 ]",
+          "x": "13"
+        },
+        {
+          "damage": "290",
+          "hs": "h6",
+          "lt": "Point [ X=-200, Y=-100 ]",
+          "mobCount": "1",
+          "rb": "Point [ X=0, Y=0 ]",
+          "x": "13"
+        },
+        {
+          "damage": "295",
+          "hs": "h7",
+          "lt": "Point [ X=-200, Y=-100 ]",
+          "mobCount": "1",
+          "rb": "Point [ X=0, Y=0 ]",
+          "x": "14"
+        },
+        {
+          "damage": "300",
+          "hs": "h8",
+          "lt": "Point [ X=-200, Y=-100 ]",
+          "mobCount": "1",
+          "rb": "Point [ X=0, Y=0 ]",
+          "x": "14"
+        },
+        {
+          "damage": "305",
+          "hs": "h9",
+          "lt": "Point [ X=-200, Y=-100 ]",
+          "mobCount": "1",
+          "rb": "Point [ X=0, Y=0 ]",
+          "x": "15"
+        }
+      ]
+    },
+    {
+      "masterLevel": 20,
+      "weapons": [],
+      "id": 5111005,
+      "description": {
+        "id": 5111005,
+        "desc": "120초 동안 트랜스폼 상태로 변신한다.\\n사용가능스킬 : 쇼크웨이브, 너클 부스터, 에너지 버스터, 에너지 드레인, 메이플 용사, 용사의 의지, 윈드 부스터, 타임 리프",
+        "name": "트랜스폼",
+        "bookName": "",
+        "detail": "MP #mpCon 소비하여 물리 방어, 마법 방어 #pdd 향상, 재사용 대기시간 #cooltime초"
+      },
+      "levelProperties": [
+        {
+          "cooltime": "550",
+          "hs": "h1",
+          "jump": "20",
+          "mdd": "2",
+          "morph": "1000",
+          "mpCon": "22",
+          "pdd": "2",
+          "speed": "40",
+          "str": "1",
+          "time": "120"
+        },
+        {
+          "cooltime": "460",
+          "hs": "h10",
+          "jump": "20",
+          "mdd": "20",
+          "morph": "1000",
+          "mpCon": "40",
+          "pdd": "20",
+          "speed": "40",
+          "str": "10",
+          "time": "120"
+        },
+        {
+          "cooltime": "450",
+          "hs": "h11",
+          "jump": "20",
+          "mdd": "22",
+          "morph": "1000",
+          "mpCon": "42",
+          "pdd": "22",
+          "speed": "40",
+          "str": "11",
+          "time": "120"
+        },
+        {
+          "cooltime": "440",
+          "hs": "h12",
+          "jump": "20",
+          "mdd": "24",
+          "morph": "1000",
+          "mpCon": "44",
+          "pdd": "24",
+          "speed": "40",
+          "str": "12",
+          "time": "120"
+        },
+        {
+          "cooltime": "430",
+          "hs": "h13",
+          "jump": "20",
+          "mdd": "26",
+          "morph": "1000",
+          "mpCon": "46",
+          "pdd": "26",
+          "speed": "40",
+          "str": "13",
+          "time": "120"
+        },
+        {
+          "cooltime": "420",
+          "hs": "h14",
+          "jump": "20",
+          "mdd": "28",
+          "morph": "1000",
+          "mpCon": "48",
+          "pdd": "28",
+          "speed": "40",
+          "str": "14",
+          "time": "120"
+        },
+        {
+          "cooltime": "410",
+          "hs": "h15",
+          "jump": "20",
+          "mdd": "30",
+          "morph": "1000",
+          "mpCon": "50",
+          "pdd": "30",
+          "speed": "40",
+          "str": "15",
+          "time": "120"
+        },
+        {
+          "cooltime": "400",
+          "hs": "h16",
+          "jump": "20",
+          "mdd": "32",
+          "morph": "1000",
+          "mpCon": "52",
+          "pdd": "32",
+          "speed": "40",
+          "str": "16",
+          "time": "120"
+        },
+        {
+          "cooltime": "390",
+          "hs": "h17",
+          "jump": "20",
+          "mdd": "34",
+          "morph": "1000",
+          "mpCon": "54",
+          "pdd": "34",
+          "speed": "40",
+          "str": "17",
+          "time": "120"
+        },
+        {
+          "cooltime": "380",
+          "hs": "h18",
+          "jump": "20",
+          "mdd": "36",
+          "morph": "1000",
+          "mpCon": "56",
+          "pdd": "36",
+          "speed": "40",
+          "str": "18",
+          "time": "120"
+        },
+        {
+          "cooltime": "370",
+          "hs": "h19",
+          "jump": "20",
+          "mdd": "38",
+          "morph": "1000",
+          "mpCon": "58",
+          "pdd": "38",
+          "speed": "40",
+          "str": "19",
+          "time": "120"
+        },
+        {
+          "cooltime": "540",
+          "hs": "h2",
+          "jump": "20",
+          "mdd": "4",
+          "morph": "1000",
+          "mpCon": "24",
+          "pdd": "4",
+          "speed": "40",
+          "str": "2",
+          "time": "120"
+        },
+        {
+          "cooltime": "360",
+          "hs": "h20",
+          "jump": "20",
+          "mdd": "40",
+          "morph": "1000",
+          "mpCon": "60",
+          "pdd": "40",
+          "speed": "40",
+          "str": "20",
+          "time": "120"
+        },
+        {
+          "cooltime": "530",
+          "hs": "h3",
+          "jump": "20",
+          "mdd": "6",
+          "morph": "1000",
+          "mpCon": "26",
+          "pdd": "6",
+          "speed": "40",
+          "str": "3",
+          "time": "120"
+        },
+        {
+          "cooltime": "520",
+          "hs": "h4",
+          "jump": "20",
+          "mdd": "8",
+          "morph": "1000",
+          "mpCon": "28",
+          "pdd": "8",
+          "speed": "40",
+          "str": "4",
+          "time": "120"
+        },
+        {
+          "cooltime": "510",
+          "hs": "h5",
+          "jump": "20",
+          "mdd": "10",
+          "morph": "1000",
+          "mpCon": "30",
+          "pdd": "10",
+          "speed": "40",
+          "str": "5",
+          "time": "120"
+        },
+        {
+          "cooltime": "500",
+          "hs": "h6",
+          "jump": "20",
+          "mdd": "12",
+          "morph": "1000",
+          "mpCon": "32",
+          "pdd": "12",
+          "speed": "40",
+          "str": "6",
+          "time": "120"
+        },
+        {
+          "cooltime": "490",
+          "hs": "h7",
+          "jump": "20",
+          "mdd": "14",
+          "morph": "1000",
+          "mpCon": "34",
+          "pdd": "14",
+          "speed": "40",
+          "str": "7",
+          "time": "120"
+        },
+        {
+          "cooltime": "480",
+          "hs": "h8",
+          "jump": "20",
+          "mdd": "16",
+          "morph": "1000",
+          "mpCon": "36",
+          "pdd": "16",
+          "speed": "40",
+          "str": "8",
+          "time": "120"
+        },
+        {
+          "cooltime": "470",
+          "hs": "h9",
+          "jump": "20",
+          "mdd": "18",
+          "morph": "1000",
+          "mpCon": "38",
+          "pdd": "18",
+          "speed": "40",
+          "str": "9",
+          "time": "120"
+        }
+      ]
+    },
+    {
+      "masterLevel": 30,
+      "actions": [
+        "swingO1"
+      ],
+      "weapons": [],
+      "id": 5111006,
+      "description": {
+        "id": 5111006,
+        "desc": "강력하게 땅을 내리쳐 그 충격으로 다수의 적에게 데미지를 준다. 트랜스폼, 슈퍼트랜스폼 상태에서만 사용할 수 있다.",
+        "name": "쇼크웨이브",
+        "bookName": "",
+        "detail": "MP #mpCon 소비, 데미지 #damage%, #mobCount명을 공격"
+      },
+      "requiredSkillLevels": {
+        "5111005": 1
+      },
+      "levelProperties": [
+        {
+          "damage": "265",
+          "hs": "h1",
+          "lt": "Point [ X=-330, Y=-140 ]",
+          "mobCount": "4",
+          "mpCon": "18",
+          "rb": "Point [ X=10, Y=20 ]"
+        },
+        {
+          "damage": "400",
+          "hs": "h10",
+          "lt": "Point [ X=-330, Y=-140 ]",
+          "mobCount": "4",
+          "mpCon": "22",
+          "rb": "Point [ X=0, Y=20 ]"
+        },
+        {
+          "damage": "415",
+          "hs": "h11",
+          "lt": "Point [ X=-330, Y=-140 ]",
+          "mobCount": "5",
+          "mpCon": "26",
+          "rb": "Point [ X=0, Y=20 ]"
+        },
+        {
+          "damage": "430",
+          "hs": "h12",
+          "lt": "Point [ X=-330, Y=-140 ]",
+          "mobCount": "5",
+          "mpCon": "26",
+          "rb": "Point [ X=0, Y=20 ]"
+        },
+        {
+          "damage": "445",
+          "hs": "h13",
+          "lt": "Point [ X=-330, Y=-140 ]",
+          "mobCount": "5",
+          "mpCon": "26",
+          "rb": "Point [ X=0, Y=20 ]"
+        },
+        {
+          "damage": "460",
+          "hs": "h14",
+          "lt": "Point [ X=-330, Y=-140 ]",
+          "mobCount": "5",
+          "mpCon": "26",
+          "rb": "Point [ X=0, Y=20 ]"
+        },
+        {
+          "damage": "475",
+          "hs": "h15",
+          "lt": "Point [ X=-330, Y=-140 ]",
+          "mobCount": "5",
+          "mpCon": "26",
+          "rb": "Point [ X=0, Y=20 ]"
+        },
+        {
+          "damage": "490",
+          "hs": "h16",
+          "lt": "Point [ X=-330, Y=-140 ]",
+          "mobCount": "5",
+          "mpCon": "30",
+          "rb": "Point [ X=0, Y=20 ]"
+        },
+        {
+          "damage": "505",
+          "hs": "h17",
+          "lt": "Point [ X=-330, Y=-140 ]",
+          "mobCount": "5",
+          "mpCon": "30",
+          "rb": "Point [ X=0, Y=20 ]"
+        },
+        {
+          "damage": "520",
+          "hs": "h18",
+          "lt": "Point [ X=-330, Y=-140 ]",
+          "mobCount": "5",
+          "mpCon": "30",
+          "rb": "Point [ X=0, Y=20 ]"
+        },
+        {
+          "damage": "535",
+          "hs": "h19",
+          "lt": "Point [ X=-330, Y=-140 ]",
+          "mobCount": "5",
+          "mpCon": "30",
+          "rb": "Point [ X=0, Y=20 ]"
+        },
+        {
+          "damage": "280",
+          "hs": "h2",
+          "lt": "Point [ X=-330, Y=-140 ]",
+          "mobCount": "4",
+          "mpCon": "18",
+          "rb": "Point [ X=0, Y=20 ]"
+        },
+        {
+          "damage": "550",
+          "hs": "h20",
+          "lt": "Point [ X=-330, Y=-140 ]",
+          "mobCount": "5",
+          "mpCon": "30",
+          "rb": "Point [ X=0, Y=20 ]"
+        },
+        {
+          "damage": "565",
+          "hs": "h21",
+          "lt": "Point [ X=-330, Y=-140 ]",
+          "mobCount": "6",
+          "mpCon": "34",
+          "rb": "Point [ X=0, Y=20 ]"
+        },
+        {
+          "damage": "580",
+          "hs": "h22",
+          "lt": "Point [ X=-330, Y=-140 ]",
+          "mobCount": "6",
+          "mpCon": "34",
+          "rb": "Point [ X=0, Y=20 ]"
+        },
+        {
+          "damage": "595",
+          "hs": "h23",
+          "lt": "Point [ X=-330, Y=-140 ]",
+          "mobCount": "6",
+          "mpCon": "34",
+          "rb": "Point [ X=0, Y=20 ]"
+        },
+        {
+          "damage": "610",
+          "hs": "h24",
+          "lt": "Point [ X=-330, Y=-140 ]",
+          "mobCount": "6",
+          "mpCon": "34",
+          "rb": "Point [ X=0, Y=20 ]"
+        },
+        {
+          "damage": "625",
+          "hs": "h25",
+          "lt": "Point [ X=-330, Y=-140 ]",
+          "mobCount": "6",
+          "mpCon": "34",
+          "rb": "Point [ X=0, Y=20 ]"
+        },
+        {
+          "damage": "640",
+          "hs": "h26",
+          "lt": "Point [ X=-330, Y=-140 ]",
+          "mobCount": "6",
+          "mpCon": "38",
+          "rb": "Point [ X=0, Y=20 ]"
+        },
+        {
+          "damage": "655",
+          "hs": "h27",
+          "lt": "Point [ X=-330, Y=-140 ]",
+          "mobCount": "6",
+          "mpCon": "38",
+          "rb": "Point [ X=0, Y=20 ]"
+        },
+        {
+          "damage": "670",
+          "hs": "h28",
+          "lt": "Point [ X=-330, Y=-140 ]",
+          "mobCount": "6",
+          "mpCon": "38",
+          "rb": "Point [ X=0, Y=20 ]"
+        },
+        {
+          "damage": "685",
+          "hs": "h29",
+          "lt": "Point [ X=-330, Y=-140 ]",
+          "mobCount": "6",
+          "mpCon": "38",
+          "rb": "Point [ X=0, Y=20 ]"
+        },
+        {
+          "damage": "295",
+          "hs": "h3",
+          "lt": "Point [ X=-330, Y=-140 ]",
+          "mobCount": "4",
+          "mpCon": "18",
+          "rb": "Point [ X=0, Y=20 ]"
+        },
+        {
+          "damage": "700",
+          "hs": "h30",
+          "lt": "Point [ X=-330, Y=-140 ]",
+          "mobCount": "6",
+          "mpCon": "38",
+          "rb": "Point [ X=0, Y=20 ]"
+        },
+        {
+          "damage": "310",
+          "hs": "h4",
+          "lt": "Point [ X=-330, Y=-140 ]",
+          "mobCount": "4",
+          "mpCon": "18",
+          "rb": "Point [ X=0, Y=20 ]"
+        },
+        {
+          "damage": "325",
+          "hs": "h5",
+          "lt": "Point [ X=-330, Y=-140 ]",
+          "mobCount": "4",
+          "mpCon": "18",
+          "rb": "Point [ X=0, Y=20 ]"
+        },
+        {
+          "damage": "340",
+          "hs": "h6",
+          "lt": "Point [ X=-330, Y=-140 ]",
+          "mobCount": "4",
+          "mpCon": "22",
+          "rb": "Point [ X=0, Y=20 ]"
+        },
+        {
+          "damage": "355",
+          "hs": "h7",
+          "lt": "Point [ X=-330, Y=-140 ]",
+          "mobCount": "4",
+          "mpCon": "22",
+          "rb": "Point [ X=0, Y=20 ]"
+        },
+        {
+          "damage": "370",
+          "hs": "h8",
+          "lt": "Point [ X=-330, Y=-140 ]",
+          "mobCount": "4",
+          "mpCon": "22",
+          "rb": "Point [ X=0, Y=20 ]"
+        },
+        {
+          "damage": "385",
+          "hs": "h9",
+          "lt": "Point [ X=-330, Y=-140 ]",
+          "mobCount": "4",
+          "mpCon": "22",
+          "rb": "Point [ X=0, Y=20 ]"
+        }
+      ]
+    }
+  ]
+}

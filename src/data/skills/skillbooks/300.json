@@ -1,0 +1,668 @@
+{
+  "id": 300,
+  "job": {
+    "id": 300,
+    "name": "Archer (1st)"
+  },
+  "description": {
+    "id": 300,
+    "desc": "",
+    "name": "",
+    "shortDesc": "",
+    "bookName": "궁수의 기본"
+  },
+  "skills": [
+    {
+      "masterLevel": 16,
+      "weapons": [],
+      "id": 3000000,
+      "description": {
+        "id": 3000000,
+        "desc": "명중률을 증가시켜 준다.",
+        "name": "아마존의 축복",
+        "bookName": "",
+        "detail": "명중률 #x 증가"
+      },
+      "levelProperties": [
+        {
+          "hs": "h1",
+          "x": "1"
+        },
+        {
+          "hs": "h10",
+          "x": "10"
+        },
+        {
+          "hs": "h11",
+          "x": "11"
+        },
+        {
+          "hs": "h12",
+          "x": "12"
+        },
+        {
+          "hs": "h13",
+          "x": "13"
+        },
+        {
+          "hs": "h14",
+          "x": "14"
+        },
+        {
+          "hs": "h15",
+          "x": "15"
+        },
+        {
+          "hs": "h16",
+          "x": "16"
+        },
+        {
+          "hs": "h2",
+          "x": "2"
+        },
+        {
+          "hs": "h3",
+          "x": "3"
+        },
+        {
+          "hs": "h4",
+          "x": "4"
+        },
+        {
+          "hs": "h5",
+          "x": "5"
+        },
+        {
+          "hs": "h6",
+          "x": "6"
+        },
+        {
+          "hs": "h7",
+          "x": "7"
+        },
+        {
+          "hs": "h8",
+          "x": "8"
+        },
+        {
+          "hs": "h9",
+          "x": "9"
+        }
+      ]
+    },
+    {
+      "masterLevel": 20,
+      "weapons": [],
+      "id": 3000001,
+      "description": {
+        "id": 3000001,
+        "desc": "일정 확률로 크리티컬 공격이 가능해진다.",
+        "name": "크리티컬 샷",
+        "bookName": "",
+        "detail": "#prop% 확률, 크리티컬 데미지 #damage%"
+      },
+      "levelProperties": [
+        {
+          "damage": "105",
+          "hs": "h1",
+          "prop": "12"
+        },
+        {
+          "damage": "150",
+          "hs": "h10",
+          "prop": "30"
+        },
+        {
+          "damage": "155",
+          "hs": "h11",
+          "prop": "31"
+        },
+        {
+          "damage": "160",
+          "hs": "h12",
+          "prop": "32"
+        },
+        {
+          "damage": "165",
+          "hs": "h13",
+          "prop": "33"
+        },
+        {
+          "damage": "170",
+          "hs": "h14",
+          "prop": "34"
+        },
+        {
+          "damage": "175",
+          "hs": "h15",
+          "prop": "35"
+        },
+        {
+          "damage": "180",
+          "hs": "h16",
+          "prop": "36"
+        },
+        {
+          "damage": "185",
+          "hs": "h17",
+          "prop": "37"
+        },
+        {
+          "damage": "190",
+          "hs": "h18",
+          "prop": "38"
+        },
+        {
+          "damage": "195",
+          "hs": "h19",
+          "prop": "39"
+        },
+        {
+          "damage": "110",
+          "hs": "h2",
+          "prop": "14"
+        },
+        {
+          "damage": "200",
+          "hs": "h20",
+          "prop": "40"
+        },
+        {
+          "damage": "115",
+          "hs": "h3",
+          "prop": "16"
+        },
+        {
+          "damage": "120",
+          "hs": "h4",
+          "prop": "18"
+        },
+        {
+          "damage": "125",
+          "hs": "h5",
+          "prop": "20"
+        },
+        {
+          "damage": "130",
+          "hs": "h6",
+          "prop": "22"
+        },
+        {
+          "damage": "135",
+          "hs": "h7",
+          "prop": "24"
+        },
+        {
+          "damage": "140",
+          "hs": "h8",
+          "prop": "26"
+        },
+        {
+          "damage": "145",
+          "hs": "h9",
+          "prop": "28"
+        }
+      ]
+    },
+    {
+      "masterLevel": 8,
+      "weapons": [],
+      "id": 3000002,
+      "description": {
+        "id": 3000002,
+        "desc": "활과 석궁의 사정 거리를 늘려준다.",
+        "name": "아마존의 눈",
+        "bookName": "",
+        "detail": "활과 석궁의 사정 거리 #range 증가"
+      },
+      "requiredSkillLevels": {
+        "3000000": 3
+      },
+      "levelProperties": [
+        {
+          "hs": "h1",
+          "range": "15"
+        },
+        {
+          "hs": "h2",
+          "range": "30"
+        },
+        {
+          "hs": "h3",
+          "range": "45"
+        },
+        {
+          "hs": "h4",
+          "range": "60"
+        },
+        {
+          "hs": "h5",
+          "range": "75"
+        },
+        {
+          "hs": "h6",
+          "range": "90"
+        },
+        {
+          "hs": "h7",
+          "range": "105"
+        },
+        {
+          "hs": "h8",
+          "range": "120"
+        }
+      ]
+    },
+    {
+      "masterLevel": 20,
+      "actions": [
+        "alert2"
+      ],
+      "weapons": [],
+      "id": 3001003,
+      "description": {
+        "id": 3001003,
+        "desc": "집중하여 일정 시간동안 명중률과 회피율을 상승시킨다.",
+        "name": "포커스",
+        "bookName": "",
+        "detail": "#time초간 MP #mpCon 소비하여 명중률 #acc, 회피율 #eva 향상"
+      },
+      "requiredSkillLevels": {
+        "3000000": 3
+      },
+      "levelProperties": [
+        {
+          "acc": "1",
+          "eva": "1",
+          "hs": "h1",
+          "mpCon": "8",
+          "time": "70"
+        },
+        {
+          "acc": "10",
+          "eva": "10",
+          "hs": "h10",
+          "mpCon": "10",
+          "time": "170"
+        },
+        {
+          "acc": "11",
+          "eva": "11",
+          "hs": "h11",
+          "mpCon": "13",
+          "time": "195"
+        },
+        {
+          "acc": "12",
+          "eva": "12",
+          "hs": "h12",
+          "mpCon": "13",
+          "time": "205"
+        },
+        {
+          "acc": "13",
+          "eva": "13",
+          "hs": "h13",
+          "mpCon": "13",
+          "time": "215"
+        },
+        {
+          "acc": "14",
+          "eva": "14",
+          "hs": "h14",
+          "mpCon": "13",
+          "time": "225"
+        },
+        {
+          "acc": "15",
+          "eva": "15",
+          "hs": "h15",
+          "mpCon": "13",
+          "time": "235"
+        },
+        {
+          "acc": "16",
+          "eva": "16",
+          "hs": "h16",
+          "mpCon": "16",
+          "time": "260"
+        },
+        {
+          "acc": "17",
+          "eva": "17",
+          "hs": "h17",
+          "mpCon": "16",
+          "time": "270"
+        },
+        {
+          "acc": "18",
+          "eva": "18",
+          "hs": "h18",
+          "mpCon": "16",
+          "time": "280"
+        },
+        {
+          "acc": "19",
+          "eva": "19",
+          "hs": "h19",
+          "mpCon": "16",
+          "time": "290"
+        },
+        {
+          "acc": "2",
+          "eva": "2",
+          "hs": "h2",
+          "mpCon": "8",
+          "time": "80"
+        },
+        {
+          "acc": "20",
+          "eva": "20",
+          "hs": "h20",
+          "mpCon": "16",
+          "time": "300"
+        },
+        {
+          "acc": "3",
+          "eva": "3",
+          "hs": "h3",
+          "mpCon": "8",
+          "time": "90"
+        },
+        {
+          "acc": "4",
+          "eva": "4",
+          "hs": "h4",
+          "mpCon": "8",
+          "time": "100"
+        },
+        {
+          "acc": "5",
+          "eva": "5",
+          "hs": "h5",
+          "mpCon": "8",
+          "time": "110"
+        },
+        {
+          "acc": "6",
+          "eva": "6",
+          "hs": "h6",
+          "mpCon": "10",
+          "time": "130"
+        },
+        {
+          "acc": "7",
+          "eva": "7",
+          "hs": "h7",
+          "mpCon": "10",
+          "time": "140"
+        },
+        {
+          "acc": "8",
+          "eva": "8",
+          "hs": "h8",
+          "mpCon": "10",
+          "time": "150"
+        },
+        {
+          "acc": "9",
+          "eva": "9",
+          "hs": "h9",
+          "mpCon": "10",
+          "time": "160"
+        }
+      ]
+    },
+    {
+      "masterLevel": 20,
+      "weapons": [],
+      "id": 3001004,
+      "description": {
+        "id": 3001004,
+        "desc": "강하게 화살을 발사한다. 평소보다 많은 피해를 줄 수 있다.",
+        "name": "애로우 블로우",
+        "bookName": "",
+        "detail": "MP #mpCon 소비하여 데미지 #damage%"
+      },
+      "levelProperties": [
+        {
+          "damage": "190",
+          "hs": "h1",
+          "mpCon": "7"
+        },
+        {
+          "damage": "220",
+          "hs": "h10",
+          "mpCon": "10"
+        },
+        {
+          "damage": "223",
+          "hs": "h11",
+          "mpCon": "11"
+        },
+        {
+          "damage": "226",
+          "hs": "h12",
+          "mpCon": "11"
+        },
+        {
+          "damage": "230",
+          "hs": "h13",
+          "mpCon": "11"
+        },
+        {
+          "damage": "233",
+          "hs": "h14",
+          "mpCon": "12"
+        },
+        {
+          "damage": "236",
+          "hs": "h15",
+          "mpCon": "12"
+        },
+        {
+          "damage": "240",
+          "hs": "h16",
+          "mpCon": "12"
+        },
+        {
+          "damage": "243",
+          "hs": "h17",
+          "mpCon": "13"
+        },
+        {
+          "damage": "248",
+          "hs": "h18",
+          "mpCon": "13"
+        },
+        {
+          "damage": "283",
+          "hs": "h19",
+          "mpCon": "13"
+        },
+        {
+          "damage": "193",
+          "hs": "h2",
+          "mpCon": "8"
+        },
+        {
+          "damage": "260",
+          "hs": "h20",
+          "mpCon": "14"
+        },
+        {
+          "damage": "196",
+          "hs": "h3",
+          "mpCon": "8"
+        },
+        {
+          "damage": "200",
+          "hs": "h4",
+          "mpCon": "8"
+        },
+        {
+          "damage": "203",
+          "hs": "h5",
+          "mpCon": "9"
+        },
+        {
+          "damage": "206",
+          "hs": "h6",
+          "mpCon": "9"
+        },
+        {
+          "damage": "210",
+          "hs": "h7",
+          "mpCon": "9"
+        },
+        {
+          "damage": "213",
+          "hs": "h8",
+          "mpCon": "10"
+        },
+        {
+          "damage": "216",
+          "hs": "h9",
+          "mpCon": "10"
+        }
+      ]
+    },
+    {
+      "masterLevel": 20,
+      "weapons": [],
+      "id": 3001005,
+      "description": {
+        "id": 3001005,
+        "desc": "두개의 화살을 소비하여 두 번 적을 공격한다.",
+        "name": "더블 샷",
+        "bookName": "",
+        "detail": "MP #mpCon 소비하여 데미지 #damage%"
+      },
+      "requiredSkillLevels": {
+        "3001004": 1
+      },
+      "levelProperties": [
+        {
+          "bulletCount": "2",
+          "damage": "92",
+          "hs": "h1",
+          "mpCon": "10"
+        },
+        {
+          "bulletCount": "2",
+          "damage": "110",
+          "hs": "h10",
+          "mpCon": "12"
+        },
+        {
+          "bulletCount": "2",
+          "damage": "112",
+          "hs": "h11",
+          "mpCon": "13"
+        },
+        {
+          "bulletCount": "2",
+          "damage": "114",
+          "hs": "h12",
+          "mpCon": "13"
+        },
+        {
+          "bulletCount": "2",
+          "damage": "116",
+          "hs": "h13",
+          "mpCon": "13"
+        },
+        {
+          "bulletCount": "2",
+          "damage": "118",
+          "hs": "h14",
+          "mpCon": "14"
+        },
+        {
+          "bulletCount": "2",
+          "damage": "120",
+          "hs": "h15",
+          "mpCon": "14"
+        },
+        {
+          "bulletCount": "2",
+          "damage": "122",
+          "hs": "h16",
+          "mpCon": "14"
+        },
+        {
+          "bulletCount": "2",
+          "damage": "124",
+          "hs": "h17",
+          "mpCon": "15"
+        },
+        {
+          "bulletCount": "2",
+          "damage": "126",
+          "hs": "h18",
+          "mpCon": "15"
+        },
+        {
+          "bulletCount": "2",
+          "damage": "128",
+          "hs": "h19",
+          "mpCon": "15"
+        },
+        {
+          "bulletCount": "2",
+          "damage": "94",
+          "hs": "h2",
+          "mpCon": "10"
+        },
+        {
+          "bulletCount": "2",
+          "damage": "130",
+          "hs": "h20",
+          "mpCon": "16"
+        },
+        {
+          "bulletCount": "2",
+          "damage": "96",
+          "hs": "h3",
+          "mpCon": "10"
+        },
+        {
+          "bulletCount": "2",
+          "damage": "98",
+          "hs": "h4",
+          "mpCon": "10"
+        },
+        {
+          "bulletCount": "2",
+          "damage": "100",
+          "hs": "h5",
+          "mpCon": "11"
+        },
+        {
+          "bulletCount": "2",
+          "damage": "102",
+          "hs": "h6",
+          "mpCon": "11"
+        },
+        {
+          "bulletCount": "2",
+          "damage": "104",
+          "hs": "h7",
+          "mpCon": "11"
+        },
+        {
+          "bulletCount": "2",
+          "damage": "106",
+          "hs": "h8",
+          "mpCon": "12"
+        },
+        {
+          "bulletCount": "2",
+          "damage": "108",
+          "hs": "h9",
+          "mpCon": "12"
+        }
+      ]
+    }
+  ]
+}

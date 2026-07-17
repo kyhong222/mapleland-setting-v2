@@ -1,0 +1,2308 @@
+{
+  "id": 122,
+  "job": {
+    "id": 122,
+    "name": "Paladin (4th)"
+  },
+  "description": {
+    "id": 122,
+    "desc": "",
+    "name": "",
+    "shortDesc": "",
+    "bookName": "빛의 팔라딘"
+  },
+  "skills": [
+    {
+      "masterLevel": 30,
+      "weapons": [],
+      "id": 1220005,
+      "description": {
+        "id": 1220005,
+        "desc": "영구적으로 갑옷을 강화하여 적에게 입는 데미지를 줄여 준다.",
+        "name": "아킬레스",
+        "bookName": "",
+        "detail": "적에게 입는 데미지 #x% 감소"
+      },
+      "levelProperties": [
+        {
+          "hs": "h1",
+          "x": "995"
+        },
+        {
+          "hs": "h10",
+          "x": "950"
+        },
+        {
+          "hs": "h11",
+          "x": "945"
+        },
+        {
+          "hs": "h12",
+          "x": "940"
+        },
+        {
+          "hs": "h13",
+          "x": "935"
+        },
+        {
+          "hs": "h14",
+          "x": "930"
+        },
+        {
+          "hs": "h15",
+          "x": "925"
+        },
+        {
+          "hs": "h16",
+          "x": "920"
+        },
+        {
+          "hs": "h17",
+          "x": "915"
+        },
+        {
+          "hs": "h18",
+          "x": "910"
+        },
+        {
+          "hs": "h19",
+          "x": "905"
+        },
+        {
+          "hs": "h2",
+          "x": "990"
+        },
+        {
+          "hs": "h20",
+          "x": "900"
+        },
+        {
+          "hs": "h21",
+          "x": "895"
+        },
+        {
+          "hs": "h22",
+          "x": "890"
+        },
+        {
+          "hs": "h23",
+          "x": "885"
+        },
+        {
+          "hs": "h24",
+          "x": "880"
+        },
+        {
+          "hs": "h25",
+          "x": "875"
+        },
+        {
+          "hs": "h26",
+          "x": "870"
+        },
+        {
+          "hs": "h27",
+          "x": "865"
+        },
+        {
+          "hs": "h28",
+          "x": "860"
+        },
+        {
+          "hs": "h29",
+          "x": "855"
+        },
+        {
+          "hs": "h3",
+          "x": "985"
+        },
+        {
+          "hs": "h30",
+          "x": "850"
+        },
+        {
+          "hs": "h4",
+          "x": "980"
+        },
+        {
+          "hs": "h5",
+          "x": "975"
+        },
+        {
+          "hs": "h6",
+          "x": "970"
+        },
+        {
+          "hs": "h7",
+          "x": "965"
+        },
+        {
+          "hs": "h8",
+          "x": "960"
+        },
+        {
+          "hs": "h9",
+          "x": "955"
+        }
+      ]
+    },
+    {
+      "invisible": true,
+      "masterLevel": 30,
+      "weapons": [],
+      "id": 1220006,
+      "description": {
+        "id": 1220006,
+        "desc": "일정 확률로 방패를 사용하여 적의 공격을 막는다. 추가로 근접 공격을 블록하게 되면 자신을 공격한 적은 2초간 기절 상태가 된다. 방패를 착용하였을 때 스킬 효과가 발동된다.",
+        "name": "블로킹",
+        "bookName": "",
+        "detail": "#prop%의 확률로 적의 공격을 블록"
+      },
+      "levelProperties": [
+        {
+          "hs": "h1",
+          "prop": "5",
+          "time": "2"
+        },
+        {
+          "hs": "h10",
+          "prop": "50",
+          "time": "2"
+        },
+        {
+          "hs": "h11",
+          "prop": "55",
+          "time": "2"
+        },
+        {
+          "hs": "h12",
+          "prop": "60",
+          "time": "2"
+        },
+        {
+          "hs": "h13",
+          "prop": "65",
+          "time": "2"
+        },
+        {
+          "hs": "h14",
+          "prop": "70",
+          "time": "2"
+        },
+        {
+          "hs": "h15",
+          "prop": "75",
+          "time": "2"
+        },
+        {
+          "hs": "h16",
+          "prop": "80",
+          "time": "2"
+        },
+        {
+          "hs": "h17",
+          "prop": "85",
+          "time": "2"
+        },
+        {
+          "hs": "h18",
+          "prop": "90",
+          "time": "2"
+        },
+        {
+          "hs": "h19",
+          "prop": "95",
+          "time": "2"
+        },
+        {
+          "hs": "h2",
+          "prop": "10",
+          "time": "2"
+        },
+        {
+          "hs": "h20",
+          "prop": "100",
+          "time": "2"
+        },
+        {
+          "hs": "h21",
+          "prop": "105",
+          "time": "2"
+        },
+        {
+          "hs": "h22",
+          "prop": "110",
+          "time": "2"
+        },
+        {
+          "hs": "h23",
+          "prop": "115",
+          "time": "2"
+        },
+        {
+          "hs": "h24",
+          "prop": "120",
+          "time": "2"
+        },
+        {
+          "hs": "h25",
+          "prop": "125",
+          "time": "2"
+        },
+        {
+          "hs": "h26",
+          "prop": "130",
+          "time": "2"
+        },
+        {
+          "hs": "h27",
+          "prop": "135",
+          "time": "2"
+        },
+        {
+          "hs": "h28",
+          "prop": "140",
+          "time": "2"
+        },
+        {
+          "hs": "h29",
+          "prop": "145",
+          "time": "2"
+        },
+        {
+          "hs": "h3",
+          "prop": "15",
+          "time": "2"
+        },
+        {
+          "hs": "h30",
+          "prop": "150",
+          "time": "2"
+        },
+        {
+          "hs": "h4",
+          "prop": "20",
+          "time": "2"
+        },
+        {
+          "hs": "h5",
+          "prop": "25",
+          "time": "2"
+        },
+        {
+          "hs": "h6",
+          "prop": "30",
+          "time": "2"
+        },
+        {
+          "hs": "h7",
+          "prop": "35",
+          "time": "2"
+        },
+        {
+          "hs": "h8",
+          "prop": "40",
+          "time": "2"
+        },
+        {
+          "hs": "h9",
+          "prop": "45",
+          "time": "2"
+        }
+      ]
+    },
+    {
+      "invisible": true,
+      "masterLevel": 10,
+      "weapons": [],
+      "id": 1220010,
+      "description": {
+        "id": 1220010,
+        "desc": "차지 블로우를 사용했을 때 데미지가 상승하고 일정 확률로 차지 상태가 해제되지 않는다.",
+        "name": "어드밴스드 차지",
+        "bookName": "",
+        "detail": "데미지 #damage%, #x%의 확률로 차지가 해제되지 않음."
+      },
+      "requiredSkillLevels": {
+        "1211002": 30
+      },
+      "levelProperties": [
+        {
+          "damage": "260",
+          "hs": "h1",
+          "x": "10"
+        },
+        {
+          "damage": "350",
+          "hs": "h10",
+          "x": "100"
+        },
+        {
+          "damage": "270",
+          "hs": "h2",
+          "x": "20"
+        },
+        {
+          "damage": "280",
+          "hs": "h3",
+          "x": "30"
+        },
+        {
+          "damage": "290",
+          "hs": "h4",
+          "x": "40"
+        },
+        {
+          "damage": "300",
+          "hs": "h5",
+          "x": "50"
+        },
+        {
+          "damage": "310",
+          "hs": "h6",
+          "x": "60"
+        },
+        {
+          "damage": "320",
+          "hs": "h7",
+          "x": "70"
+        },
+        {
+          "damage": "330",
+          "hs": "h8",
+          "x": "80"
+        },
+        {
+          "damage": "340",
+          "hs": "h9",
+          "x": "90"
+        }
+      ]
+    },
+    {
+      "invisible": true,
+      "masterLevel": 30,
+      "actions": [
+        "alert3"
+      ],
+      "weapons": [],
+      "id": 1221000,
+      "description": {
+        "id": 1221000,
+        "desc": "일정 시간 동안 파티원의 모든 스탯을 일정 퍼센트 올려 준다.",
+        "name": "메이플 용사",
+        "bookName": "",
+        "detail": "MP #mpCon 소비하여 #time초간 모든 스탯 #x% 향상"
+      },
+      "levelProperties": [
+        {
+          "hs": "h1",
+          "lt": "Point [ X=-400, Y=-300 ]",
+          "mpCon": "10",
+          "rb": "Point [ X=400, Y=300 ]",
+          "time": "30",
+          "x": "1"
+        },
+        {
+          "hs": "h10",
+          "lt": "Point [ X=-400, Y=-300 ]",
+          "mpCon": "20",
+          "rb": "Point [ X=400, Y=300 ]",
+          "time": "300",
+          "x": "5"
+        },
+        {
+          "hs": "h11",
+          "lt": "Point [ X=-400, Y=-300 ]",
+          "mpCon": "30",
+          "rb": "Point [ X=400, Y=300 ]",
+          "time": "330",
+          "x": "6"
+        },
+        {
+          "hs": "h12",
+          "lt": "Point [ X=-400, Y=-300 ]",
+          "mpCon": "30",
+          "rb": "Point [ X=400, Y=300 ]",
+          "time": "360",
+          "x": "6"
+        },
+        {
+          "hs": "h13",
+          "lt": "Point [ X=-400, Y=-300 ]",
+          "mpCon": "30",
+          "rb": "Point [ X=400, Y=300 ]",
+          "time": "390",
+          "x": "7"
+        },
+        {
+          "hs": "h14",
+          "lt": "Point [ X=-400, Y=-300 ]",
+          "mpCon": "30",
+          "rb": "Point [ X=400, Y=300 ]",
+          "time": "420",
+          "x": "7"
+        },
+        {
+          "hs": "h15",
+          "lt": "Point [ X=-400, Y=-300 ]",
+          "mpCon": "30",
+          "rb": "Point [ X=400, Y=300 ]",
+          "time": "450",
+          "x": "8"
+        },
+        {
+          "hs": "h16",
+          "lt": "Point [ X=-400, Y=-300 ]",
+          "mpCon": "40",
+          "rb": "Point [ X=400, Y=300 ]",
+          "time": "480",
+          "x": "8"
+        },
+        {
+          "hs": "h17",
+          "lt": "Point [ X=-400, Y=-300 ]",
+          "mpCon": "40",
+          "rb": "Point [ X=400, Y=300 ]",
+          "time": "510",
+          "x": "9"
+        },
+        {
+          "hs": "h18",
+          "lt": "Point [ X=-400, Y=-300 ]",
+          "mpCon": "40",
+          "rb": "Point [ X=400, Y=300 ]",
+          "time": "540",
+          "x": "9"
+        },
+        {
+          "hs": "h19",
+          "lt": "Point [ X=-400, Y=-300 ]",
+          "mpCon": "40",
+          "rb": "Point [ X=400, Y=300 ]",
+          "time": "570",
+          "x": "10"
+        },
+        {
+          "hs": "h2",
+          "lt": "Point [ X=-400, Y=-300 ]",
+          "mpCon": "10",
+          "rb": "Point [ X=400, Y=300 ]",
+          "time": "60",
+          "x": "1"
+        },
+        {
+          "hs": "h20",
+          "lt": "Point [ X=-400, Y=-300 ]",
+          "mpCon": "50",
+          "rb": "Point [ X=400, Y=300 ]",
+          "time": "600",
+          "x": "10"
+        },
+        {
+          "hs": "h3",
+          "lt": "Point [ X=-400, Y=-300 ]",
+          "mpCon": "10",
+          "rb": "Point [ X=400, Y=300 ]",
+          "time": "90",
+          "x": "2"
+        },
+        {
+          "hs": "h4",
+          "lt": "Point [ X=-400, Y=-300 ]",
+          "mpCon": "10",
+          "rb": "Point [ X=400, Y=300 ]",
+          "time": "120",
+          "x": "2"
+        },
+        {
+          "hs": "h5",
+          "lt": "Point [ X=-400, Y=-300 ]",
+          "mpCon": "10",
+          "rb": "Point [ X=400, Y=300 ]",
+          "time": "150",
+          "x": "3"
+        },
+        {
+          "hs": "h6",
+          "lt": "Point [ X=-400, Y=-300 ]",
+          "mpCon": "20",
+          "rb": "Point [ X=400, Y=300 ]",
+          "time": "180",
+          "x": "3"
+        },
+        {
+          "hs": "h7",
+          "lt": "Point [ X=-400, Y=-300 ]",
+          "mpCon": "20",
+          "rb": "Point [ X=400, Y=300 ]",
+          "time": "210",
+          "x": "4"
+        },
+        {
+          "hs": "h8",
+          "lt": "Point [ X=-400, Y=-300 ]",
+          "mpCon": "20",
+          "rb": "Point [ X=400, Y=300 ]",
+          "time": "240",
+          "x": "4"
+        },
+        {
+          "hs": "h9",
+          "lt": "Point [ X=-400, Y=-300 ]",
+          "mpCon": "20",
+          "rb": "Point [ X=400, Y=300 ]",
+          "time": "270",
+          "x": "5"
+        },
+        {
+          "hs": "h21",
+          "lt": "Point [ X=-400, Y=-300 ]",
+          "mpCon": "50",
+          "rb": "Point [ X=400, Y=300 ]",
+          "time": "630",
+          "x": "11"
+        },
+        {
+          "hs": "h22",
+          "lt": "Point [ X=-400, Y=-300 ]",
+          "mpCon": "50",
+          "rb": "Point [ X=400, Y=300 ]",
+          "time": "660",
+          "x": "11"
+        },
+        {
+          "hs": "h23",
+          "lt": "Point [ X=-400, Y=-300 ]",
+          "mpCon": "50",
+          "rb": "Point [ X=400, Y=300 ]",
+          "time": "690",
+          "x": "12"
+        },
+        {
+          "hs": "h24",
+          "lt": "Point [ X=-400, Y=-300 ]",
+          "mpCon": "50",
+          "rb": "Point [ X=400, Y=300 ]",
+          "time": "720",
+          "x": "12"
+        },
+        {
+          "hs": "h25",
+          "lt": "Point [ X=-400, Y=-300 ]",
+          "mpCon": "60",
+          "rb": "Point [ X=400, Y=300 ]",
+          "time": "750",
+          "x": "13"
+        },
+        {
+          "hs": "h26",
+          "lt": "Point [ X=-400, Y=-300 ]",
+          "mpCon": "60",
+          "rb": "Point [ X=400, Y=300 ]",
+          "time": "780",
+          "x": "13"
+        },
+        {
+          "hs": "h27",
+          "lt": "Point [ X=-400, Y=-300 ]",
+          "mpCon": "60",
+          "rb": "Point [ X=400, Y=300 ]",
+          "time": "810",
+          "x": "14"
+        },
+        {
+          "hs": "h28",
+          "lt": "Point [ X=-400, Y=-300 ]",
+          "mpCon": "60",
+          "rb": "Point [ X=400, Y=300 ]",
+          "time": "840",
+          "x": "14"
+        },
+        {
+          "hs": "h29",
+          "lt": "Point [ X=-400, Y=-300 ]",
+          "mpCon": "60",
+          "rb": "Point [ X=400, Y=300 ]",
+          "time": "870",
+          "x": "15"
+        },
+        {
+          "hs": "h30",
+          "lt": "Point [ X=-400, Y=-300 ]",
+          "mpCon": "70",
+          "rb": "Point [ X=400, Y=300 ]",
+          "time": "900",
+          "x": "15"
+        }
+      ]
+    },
+    {
+      "masterLevel": 30,
+      "weapons": [],
+      "id": 1221001,
+      "description": {
+        "id": 1221001,
+        "desc": "원거리에 있는 적을 자신의 앞으로 끌어 당긴다.",
+        "name": "몬스터 마그넷",
+        "bookName": "",
+        "detail": "MP #mpCon 소비, 범위 #range%, 성공률 #prop%"
+      },
+      "levelProperties": [
+        {
+          "hs": "h1",
+          "mobCount": "6",
+          "mpCon": "10",
+          "prop": "42",
+          "range": "200"
+        },
+        {
+          "hs": "h10",
+          "mobCount": "6",
+          "mpCon": "13",
+          "prop": "60",
+          "range": "200"
+        },
+        {
+          "hs": "h11",
+          "mobCount": "6",
+          "mpCon": "18",
+          "prop": "62",
+          "range": "300"
+        },
+        {
+          "hs": "h12",
+          "mobCount": "6",
+          "mpCon": "18",
+          "prop": "64",
+          "range": "300"
+        },
+        {
+          "hs": "h13",
+          "mobCount": "6",
+          "mpCon": "18",
+          "prop": "66",
+          "range": "300"
+        },
+        {
+          "hs": "h14",
+          "mobCount": "6",
+          "mpCon": "18",
+          "prop": "68",
+          "range": "300"
+        },
+        {
+          "hs": "h15",
+          "mobCount": "6",
+          "mpCon": "18",
+          "prop": "70",
+          "range": "300"
+        },
+        {
+          "hs": "h16",
+          "mobCount": "6",
+          "mpCon": "21",
+          "prop": "72",
+          "range": "300"
+        },
+        {
+          "hs": "h17",
+          "mobCount": "6",
+          "mpCon": "21",
+          "prop": "74",
+          "range": "300"
+        },
+        {
+          "hs": "h18",
+          "mobCount": "6",
+          "mpCon": "21",
+          "prop": "76",
+          "range": "300"
+        },
+        {
+          "hs": "h19",
+          "mobCount": "6",
+          "mpCon": "21",
+          "prop": "78",
+          "range": "300"
+        },
+        {
+          "hs": "h2",
+          "mobCount": "6",
+          "mpCon": "10",
+          "prop": "44",
+          "range": "200"
+        },
+        {
+          "hs": "h20",
+          "mobCount": "6",
+          "mpCon": "21",
+          "prop": "80",
+          "range": "300"
+        },
+        {
+          "hs": "h21",
+          "mobCount": "6",
+          "mpCon": "26",
+          "prop": "82",
+          "range": "400"
+        },
+        {
+          "hs": "h22",
+          "mobCount": "6",
+          "mpCon": "26",
+          "prop": "84",
+          "range": "400"
+        },
+        {
+          "hs": "h23",
+          "mobCount": "6",
+          "mpCon": "26",
+          "prop": "86",
+          "range": "400"
+        },
+        {
+          "hs": "h24",
+          "mobCount": "6",
+          "mpCon": "26",
+          "prop": "88",
+          "range": "400"
+        },
+        {
+          "hs": "h25",
+          "mobCount": "6",
+          "mpCon": "26",
+          "prop": "90",
+          "range": "400"
+        },
+        {
+          "hs": "h26",
+          "mobCount": "6",
+          "mpCon": "25",
+          "prop": "91",
+          "range": "400"
+        },
+        {
+          "hs": "h27",
+          "mobCount": "6",
+          "mpCon": "24",
+          "prop": "92",
+          "range": "400"
+        },
+        {
+          "hs": "h28",
+          "mobCount": "6",
+          "mpCon": "23",
+          "prop": "93",
+          "range": "400"
+        },
+        {
+          "hs": "h29",
+          "mobCount": "6",
+          "mpCon": "22",
+          "prop": "94",
+          "range": "400"
+        },
+        {
+          "hs": "h3",
+          "mobCount": "6",
+          "mpCon": "10",
+          "prop": "46",
+          "range": "200"
+        },
+        {
+          "hs": "h30",
+          "mobCount": "6",
+          "mpCon": "21",
+          "prop": "95",
+          "range": "400"
+        },
+        {
+          "hs": "h4",
+          "mobCount": "6",
+          "mpCon": "10",
+          "prop": "48",
+          "range": "200"
+        },
+        {
+          "hs": "h5",
+          "mobCount": "6",
+          "mpCon": "10",
+          "prop": "50",
+          "range": "200"
+        },
+        {
+          "hs": "h6",
+          "mobCount": "6",
+          "mpCon": "13",
+          "prop": "52",
+          "range": "200"
+        },
+        {
+          "hs": "h7",
+          "mobCount": "6",
+          "mpCon": "13",
+          "prop": "54",
+          "range": "200"
+        },
+        {
+          "hs": "h8",
+          "mobCount": "6",
+          "mpCon": "13",
+          "prop": "56",
+          "range": "200"
+        },
+        {
+          "hs": "h9",
+          "mobCount": "6",
+          "mpCon": "13",
+          "prop": "58",
+          "range": "200"
+        }
+      ]
+    },
+    {
+      "invisible": true,
+      "masterLevel": 30,
+      "actions": [
+        "alert4"
+      ],
+      "weapons": [],
+      "id": 1221002,
+      "description": {
+        "id": 1221002,
+        "desc": "강인한 정신력으로 적의 공격에도 뒤로 물러서지 않는다.",
+        "name": "스탠스",
+        "bookName": "",
+        "detail": "MP #mpCon 소비, #time초간 #prop%의 확률로 넉백되지 않음."
+      },
+      "levelProperties": [
+        {
+          "hs": "h1",
+          "mpCon": "30",
+          "prop": "42",
+          "time": "10",
+          "x": "1"
+        },
+        {
+          "hs": "h10",
+          "mpCon": "36",
+          "prop": "60",
+          "time": "100",
+          "x": "1"
+        },
+        {
+          "hs": "h11",
+          "mpCon": "42",
+          "prop": "62",
+          "time": "110",
+          "x": "1"
+        },
+        {
+          "hs": "h12",
+          "mpCon": "42",
+          "prop": "64",
+          "time": "120",
+          "x": "1"
+        },
+        {
+          "hs": "h13",
+          "mpCon": "42",
+          "prop": "66",
+          "time": "130",
+          "x": "1"
+        },
+        {
+          "hs": "h14",
+          "mpCon": "42",
+          "prop": "68",
+          "time": "140",
+          "x": "1"
+        },
+        {
+          "hs": "h15",
+          "mpCon": "42",
+          "prop": "70",
+          "time": "150",
+          "x": "1"
+        },
+        {
+          "hs": "h16",
+          "mpCon": "48",
+          "prop": "72",
+          "time": "160",
+          "x": "1"
+        },
+        {
+          "hs": "h17",
+          "mpCon": "48",
+          "prop": "74",
+          "time": "170",
+          "x": "1"
+        },
+        {
+          "hs": "h18",
+          "mpCon": "48",
+          "prop": "76",
+          "time": "180",
+          "x": "1"
+        },
+        {
+          "hs": "h19",
+          "mpCon": "48",
+          "prop": "78",
+          "time": "190",
+          "x": "1"
+        },
+        {
+          "hs": "h2",
+          "mpCon": "30",
+          "prop": "44",
+          "time": "20",
+          "x": "1"
+        },
+        {
+          "hs": "h20",
+          "mpCon": "48",
+          "prop": "80",
+          "time": "200",
+          "x": "1"
+        },
+        {
+          "hs": "h21",
+          "mpCon": "54",
+          "prop": "81",
+          "time": "210",
+          "x": "1"
+        },
+        {
+          "hs": "h22",
+          "mpCon": "54",
+          "prop": "82",
+          "time": "220",
+          "x": "1"
+        },
+        {
+          "hs": "h23",
+          "mpCon": "54",
+          "prop": "83",
+          "time": "230",
+          "x": "1"
+        },
+        {
+          "hs": "h24",
+          "mpCon": "54",
+          "prop": "84",
+          "time": "240",
+          "x": "1"
+        },
+        {
+          "hs": "h25",
+          "mpCon": "54",
+          "prop": "85",
+          "time": "250",
+          "x": "1"
+        },
+        {
+          "hs": "h26",
+          "mpCon": "53",
+          "prop": "86",
+          "time": "260",
+          "x": "1"
+        },
+        {
+          "hs": "h27",
+          "mpCon": "52",
+          "prop": "87",
+          "time": "270",
+          "x": "1"
+        },
+        {
+          "hs": "h28",
+          "mpCon": "51",
+          "prop": "88",
+          "time": "280",
+          "x": "1"
+        },
+        {
+          "hs": "h29",
+          "mpCon": "50",
+          "prop": "89",
+          "time": "290",
+          "x": "1"
+        },
+        {
+          "hs": "h3",
+          "mpCon": "30",
+          "prop": "46",
+          "time": "30",
+          "x": "1"
+        },
+        {
+          "hs": "h30",
+          "mpCon": "50",
+          "prop": "90",
+          "time": "300",
+          "x": "1"
+        },
+        {
+          "hs": "h4",
+          "mpCon": "30",
+          "prop": "48",
+          "time": "40",
+          "x": "1"
+        },
+        {
+          "hs": "h5",
+          "mpCon": "30",
+          "prop": "50",
+          "time": "50",
+          "x": "1"
+        },
+        {
+          "hs": "h6",
+          "mpCon": "36",
+          "prop": "52",
+          "time": "60",
+          "x": "1"
+        },
+        {
+          "hs": "h7",
+          "mpCon": "36",
+          "prop": "54",
+          "time": "70",
+          "x": "1"
+        },
+        {
+          "hs": "h8",
+          "mpCon": "36",
+          "prop": "56",
+          "time": "80",
+          "x": "1"
+        },
+        {
+          "hs": "h9",
+          "mpCon": "36",
+          "prop": "58",
+          "time": "90",
+          "x": "1"
+        }
+      ]
+    },
+    {
+      "invisible": true,
+      "masterLevel": 20,
+      "actions": [
+        "alert4"
+      ],
+      "weapons": [],
+      "id": 1221003,
+      "description": {
+        "id": 1221003,
+        "desc": "일정 시간동안 검에 성속성을 부여한다. 시간이 다 되거나 차지 블로우를 사용하면 취소된다.",
+        "name": "홀리 차지 : 검",
+        "bookName": "",
+        "detail": "MP #mpCon 소비, 데미지 #damage%, 지속시간 #time초"
+      },
+      "levelProperties": [
+        {
+          "damage": "112",
+          "hs": "h1",
+          "lt": "Point [ X=-45, Y=-30 ]",
+          "mad": "11",
+          "mobCount": "6",
+          "mpCon": "20",
+          "rb": "Point [ X=45, Y=30 ]",
+          "time": "15",
+          "x": "1",
+          "z": "43"
+        },
+        {
+          "damage": "114",
+          "hs": "h2",
+          "lt": "Point [ X=-45, Y=-30 ]",
+          "mad": "12",
+          "mobCount": "6",
+          "mpCon": "20",
+          "rb": "Point [ X=45, Y=30 ]",
+          "time": "30",
+          "x": "1",
+          "z": "46"
+        },
+        {
+          "damage": "116",
+          "hs": "h3",
+          "lt": "Point [ X=-45, Y=-30 ]",
+          "mad": "13",
+          "mobCount": "6",
+          "mpCon": "20",
+          "rb": "Point [ X=45, Y=30 ]",
+          "time": "45",
+          "x": "1",
+          "z": "49"
+        },
+        {
+          "damage": "118",
+          "hs": "h4",
+          "lt": "Point [ X=-45, Y=-30 ]",
+          "mad": "14",
+          "mobCount": "6",
+          "mpCon": "20",
+          "rb": "Point [ X=45, Y=30 ]",
+          "time": "60",
+          "x": "1",
+          "z": "52"
+        },
+        {
+          "damage": "120",
+          "hs": "h5",
+          "lt": "Point [ X=-45, Y=-30 ]",
+          "mad": "15",
+          "mobCount": "6",
+          "mpCon": "20",
+          "rb": "Point [ X=45, Y=30 ]",
+          "time": "75",
+          "x": "1",
+          "z": "55"
+        },
+        {
+          "damage": "122",
+          "hs": "h6",
+          "lt": "Point [ X=-45, Y=-30 ]",
+          "mad": "16",
+          "mobCount": "6",
+          "mpCon": "20",
+          "rb": "Point [ X=45, Y=30 ]",
+          "time": "90",
+          "x": "1",
+          "z": "58"
+        },
+        {
+          "damage": "124",
+          "hs": "h7",
+          "lt": "Point [ X=-45, Y=-30 ]",
+          "mad": "17",
+          "mobCount": "6",
+          "mpCon": "20",
+          "rb": "Point [ X=45, Y=30 ]",
+          "time": "105",
+          "x": "1",
+          "z": "61"
+        },
+        {
+          "damage": "126",
+          "hs": "h8",
+          "lt": "Point [ X=-45, Y=-30 ]",
+          "mad": "18",
+          "mobCount": "6",
+          "mpCon": "20",
+          "rb": "Point [ X=45, Y=30 ]",
+          "time": "120",
+          "x": "1",
+          "z": "64"
+        },
+        {
+          "damage": "128",
+          "hs": "h9",
+          "lt": "Point [ X=-45, Y=-30 ]",
+          "mad": "19",
+          "mobCount": "6",
+          "mpCon": "20",
+          "rb": "Point [ X=45, Y=30 ]",
+          "time": "135",
+          "x": "1",
+          "z": "67"
+        },
+        {
+          "damage": "130",
+          "hs": "h10",
+          "lt": "Point [ X=-45, Y=-30 ]",
+          "mad": "20",
+          "mobCount": "6",
+          "mpCon": "20",
+          "rb": "Point [ X=45, Y=30 ]",
+          "time": "150",
+          "x": "1",
+          "z": "70"
+        },
+        {
+          "damage": "132",
+          "hs": "h11",
+          "lt": "Point [ X=-50, Y=-35 ]",
+          "mad": "21",
+          "mobCount": "6",
+          "mpCon": "30",
+          "rb": "Point [ X=50, Y=35 ]",
+          "time": "165",
+          "x": "1",
+          "z": "73"
+        },
+        {
+          "damage": "134",
+          "hs": "h12",
+          "lt": "Point [ X=-50, Y=-35 ]",
+          "mad": "22",
+          "mobCount": "6",
+          "mpCon": "30",
+          "rb": "Point [ X=50, Y=35 ]",
+          "time": "180",
+          "x": "1",
+          "z": "76"
+        },
+        {
+          "damage": "136",
+          "hs": "h13",
+          "lt": "Point [ X=-50, Y=-35 ]",
+          "mad": "23",
+          "mobCount": "6",
+          "mpCon": "30",
+          "rb": "Point [ X=50, Y=35 ]",
+          "time": "195",
+          "x": "1",
+          "z": "79"
+        },
+        {
+          "damage": "138",
+          "hs": "h14",
+          "lt": "Point [ X=-50, Y=-35 ]",
+          "mad": "24",
+          "mobCount": "6",
+          "mpCon": "30",
+          "rb": "Point [ X=50, Y=35 ]",
+          "time": "210",
+          "x": "1",
+          "z": "82"
+        },
+        {
+          "damage": "140",
+          "hs": "h15",
+          "lt": "Point [ X=-50, Y=-35 ]",
+          "mad": "25",
+          "mobCount": "6",
+          "mpCon": "30",
+          "rb": "Point [ X=50, Y=35 ]",
+          "time": "225",
+          "x": "1",
+          "z": "85"
+        },
+        {
+          "damage": "142",
+          "hs": "h16",
+          "lt": "Point [ X=-50, Y=-35 ]",
+          "mad": "26",
+          "mobCount": "6",
+          "mpCon": "30",
+          "rb": "Point [ X=50, Y=35 ]",
+          "time": "240",
+          "x": "1",
+          "z": "88"
+        },
+        {
+          "damage": "144",
+          "hs": "h17",
+          "lt": "Point [ X=-50, Y=-35 ]",
+          "mad": "27",
+          "mobCount": "6",
+          "mpCon": "30",
+          "rb": "Point [ X=50, Y=35 ]",
+          "time": "255",
+          "x": "1",
+          "z": "91"
+        },
+        {
+          "damage": "146",
+          "hs": "h18",
+          "lt": "Point [ X=-50, Y=-35 ]",
+          "mad": "28",
+          "mobCount": "6",
+          "mpCon": "30",
+          "rb": "Point [ X=50, Y=35 ]",
+          "time": "270",
+          "x": "1",
+          "z": "94"
+        },
+        {
+          "damage": "148",
+          "hs": "h19",
+          "lt": "Point [ X=-50, Y=-35 ]",
+          "mad": "29",
+          "mobCount": "6",
+          "mpCon": "30",
+          "rb": "Point [ X=50, Y=35 ]",
+          "time": "285",
+          "x": "1",
+          "z": "97"
+        },
+        {
+          "damage": "150",
+          "hs": "h20",
+          "lt": "Point [ X=-50, Y=-35 ]",
+          "mad": "30",
+          "mobCount": "6",
+          "mpCon": "30",
+          "rb": "Point [ X=50, Y=35 ]",
+          "time": "300",
+          "x": "1",
+          "z": "100"
+        }
+      ]
+    },
+    {
+      "invisible": true,
+      "masterLevel": 20,
+      "actions": [
+        "alert4"
+      ],
+      "weapons": [],
+      "id": 1221004,
+      "description": {
+        "id": 1221004,
+        "desc": "일정 시간동안 둔기에 성속성을 부여한다. 시간이 다 되거나 차지 블로우를 사용하면 취소된다.",
+        "name": "디바인 차지 : 둔기",
+        "bookName": "",
+        "detail": "MP #mpCon 소비, 데미지 #damage%, 지속시간 #time초"
+      },
+      "levelProperties": [
+        {
+          "damage": "112",
+          "hs": "h1",
+          "lt": "Point [ X=-45, Y=-30 ]",
+          "mad": "11",
+          "mobCount": "6",
+          "mpCon": "20",
+          "rb": "Point [ X=45, Y=30 ]",
+          "time": "15",
+          "x": "1",
+          "z": "43"
+        },
+        {
+          "damage": "114",
+          "hs": "h2",
+          "lt": "Point [ X=-45, Y=-30 ]",
+          "mad": "12",
+          "mobCount": "6",
+          "mpCon": "20",
+          "rb": "Point [ X=45, Y=30 ]",
+          "time": "30",
+          "x": "1",
+          "z": "46"
+        },
+        {
+          "damage": "116",
+          "hs": "h3",
+          "lt": "Point [ X=-45, Y=-30 ]",
+          "mad": "13",
+          "mobCount": "6",
+          "mpCon": "20",
+          "rb": "Point [ X=45, Y=30 ]",
+          "time": "45",
+          "x": "1",
+          "z": "49"
+        },
+        {
+          "damage": "118",
+          "hs": "h4",
+          "lt": "Point [ X=-45, Y=-30 ]",
+          "mad": "14",
+          "mobCount": "6",
+          "mpCon": "20",
+          "rb": "Point [ X=45, Y=30 ]",
+          "time": "60",
+          "x": "1",
+          "z": "52"
+        },
+        {
+          "damage": "120",
+          "hs": "h5",
+          "lt": "Point [ X=-45, Y=-30 ]",
+          "mad": "15",
+          "mobCount": "6",
+          "mpCon": "20",
+          "rb": "Point [ X=45, Y=30 ]",
+          "time": "75",
+          "x": "1",
+          "z": "55"
+        },
+        {
+          "damage": "122",
+          "hs": "h6",
+          "lt": "Point [ X=-45, Y=-30 ]",
+          "mad": "16",
+          "mobCount": "6",
+          "mpCon": "20",
+          "rb": "Point [ X=45, Y=30 ]",
+          "time": "90",
+          "x": "1",
+          "z": "58"
+        },
+        {
+          "damage": "124",
+          "hs": "h7",
+          "lt": "Point [ X=-45, Y=-30 ]",
+          "mad": "17",
+          "mobCount": "6",
+          "mpCon": "20",
+          "rb": "Point [ X=45, Y=30 ]",
+          "time": "105",
+          "x": "1",
+          "z": "61"
+        },
+        {
+          "damage": "126",
+          "hs": "h8",
+          "lt": "Point [ X=-45, Y=-30 ]",
+          "mad": "18",
+          "mobCount": "6",
+          "mpCon": "20",
+          "rb": "Point [ X=45, Y=30 ]",
+          "time": "120",
+          "x": "1",
+          "z": "64"
+        },
+        {
+          "damage": "128",
+          "hs": "h9",
+          "lt": "Point [ X=-45, Y=-30 ]",
+          "mad": "19",
+          "mobCount": "6",
+          "mpCon": "20",
+          "rb": "Point [ X=45, Y=30 ]",
+          "time": "135",
+          "x": "1",
+          "z": "67"
+        },
+        {
+          "damage": "130",
+          "hs": "h10",
+          "lt": "Point [ X=-45, Y=-30 ]",
+          "mad": "20",
+          "mobCount": "6",
+          "mpCon": "20",
+          "rb": "Point [ X=45, Y=30 ]",
+          "time": "150",
+          "x": "1",
+          "z": "70"
+        },
+        {
+          "damage": "132",
+          "hs": "h11",
+          "lt": "Point [ X=-50, Y=-35 ]",
+          "mad": "21",
+          "mobCount": "6",
+          "mpCon": "30",
+          "rb": "Point [ X=50, Y=35 ]",
+          "time": "165",
+          "x": "1",
+          "z": "73"
+        },
+        {
+          "damage": "134",
+          "hs": "h12",
+          "lt": "Point [ X=-50, Y=-35 ]",
+          "mad": "22",
+          "mobCount": "6",
+          "mpCon": "30",
+          "rb": "Point [ X=50, Y=35 ]",
+          "time": "180",
+          "x": "1",
+          "z": "76"
+        },
+        {
+          "damage": "136",
+          "hs": "h13",
+          "lt": "Point [ X=-50, Y=-35 ]",
+          "mad": "23",
+          "mobCount": "6",
+          "mpCon": "30",
+          "rb": "Point [ X=50, Y=35 ]",
+          "time": "195",
+          "x": "1",
+          "z": "79"
+        },
+        {
+          "damage": "138",
+          "hs": "h14",
+          "lt": "Point [ X=-50, Y=-35 ]",
+          "mad": "24",
+          "mobCount": "6",
+          "mpCon": "30",
+          "rb": "Point [ X=50, Y=35 ]",
+          "time": "210",
+          "x": "1",
+          "z": "82"
+        },
+        {
+          "damage": "140",
+          "hs": "h15",
+          "lt": "Point [ X=-50, Y=-35 ]",
+          "mad": "25",
+          "mobCount": "6",
+          "mpCon": "30",
+          "rb": "Point [ X=50, Y=35 ]",
+          "time": "225",
+          "x": "1",
+          "z": "85"
+        },
+        {
+          "damage": "142",
+          "hs": "h16",
+          "lt": "Point [ X=-50, Y=-35 ]",
+          "mad": "26",
+          "mobCount": "6",
+          "mpCon": "30",
+          "rb": "Point [ X=50, Y=35 ]",
+          "time": "240",
+          "x": "1",
+          "z": "88"
+        },
+        {
+          "damage": "144",
+          "hs": "h17",
+          "lt": "Point [ X=-50, Y=-35 ]",
+          "mad": "27",
+          "mobCount": "6",
+          "mpCon": "30",
+          "rb": "Point [ X=50, Y=35 ]",
+          "time": "255",
+          "x": "1",
+          "z": "91"
+        },
+        {
+          "damage": "146",
+          "hs": "h18",
+          "lt": "Point [ X=-50, Y=-35 ]",
+          "mad": "28",
+          "mobCount": "6",
+          "mpCon": "30",
+          "rb": "Point [ X=50, Y=35 ]",
+          "time": "270",
+          "x": "1",
+          "z": "94"
+        },
+        {
+          "damage": "148",
+          "hs": "h19",
+          "lt": "Point [ X=-50, Y=-35 ]",
+          "mad": "29",
+          "mobCount": "6",
+          "mpCon": "30",
+          "rb": "Point [ X=50, Y=35 ]",
+          "time": "285",
+          "x": "1",
+          "z": "97"
+        },
+        {
+          "damage": "150",
+          "hs": "h20",
+          "lt": "Point [ X=-50, Y=-35 ]",
+          "mad": "30",
+          "mobCount": "6",
+          "mpCon": "30",
+          "rb": "Point [ X=50, Y=35 ]",
+          "time": "300",
+          "x": "1",
+          "z": "100"
+        }
+      ]
+    },
+    {
+      "invisible": true,
+      "masterLevel": 30,
+      "actions": [
+        "rush2"
+      ],
+      "weapons": [],
+      "id": 1221007,
+      "description": {
+        "id": 1221007,
+        "desc": "전방으로 거칠게 돌격하며 자신 앞에 있는 적을 10마리까지 밀고 지나간다.",
+        "name": "돌진",
+        "bookName": "",
+        "detail": "MP #mpCon 소비, 데미지 #damage%, 범위 #distance%"
+      },
+      "levelProperties": [
+        {
+          "hs": "h1",
+          "damage": "72",
+          "distance": "80",
+          "mpCon": "22"
+        },
+        {
+          "hs": "h2",
+          "damage": "74",
+          "distance": "80",
+          "mpCon": "24"
+        },
+        {
+          "hs": "h3",
+          "damage": "76",
+          "distance": "80",
+          "mpCon": "26"
+        },
+        {
+          "hs": "h4",
+          "damage": "78",
+          "distance": "85",
+          "mpCon": "28"
+        },
+        {
+          "hs": "h5",
+          "damage": "80",
+          "distance": "85",
+          "mpCon": "30"
+        },
+        {
+          "hs": "h6",
+          "damage": "82",
+          "distance": "85",
+          "mpCon": "32"
+        },
+        {
+          "hs": "h7",
+          "damage": "84",
+          "distance": "85",
+          "mpCon": "34"
+        },
+        {
+          "hs": "h8",
+          "damage": "86",
+          "distance": "90",
+          "mpCon": "36"
+        },
+        {
+          "hs": "h9",
+          "damage": "88",
+          "distance": "90",
+          "mpCon": "38"
+        },
+        {
+          "hs": "h10",
+          "damage": "90",
+          "distance": "90",
+          "mpCon": "40"
+        },
+        {
+          "hs": "h11",
+          "damage": "92",
+          "distance": "95",
+          "mpCon": "42"
+        },
+        {
+          "hs": "h12",
+          "damage": "94",
+          "distance": "95",
+          "mpCon": "44"
+        },
+        {
+          "hs": "h13",
+          "damage": "96",
+          "distance": "95",
+          "mpCon": "46"
+        },
+        {
+          "hs": "h14",
+          "damage": "98",
+          "distance": "100",
+          "mpCon": "48"
+        },
+        {
+          "hs": "h15",
+          "damage": "100",
+          "distance": "100",
+          "mpCon": "50"
+        },
+        {
+          "hs": "h16",
+          "damage": "102",
+          "distance": "100",
+          "mpCon": "52"
+        },
+        {
+          "hs": "h17",
+          "damage": "104",
+          "distance": "105",
+          "mpCon": "54"
+        },
+        {
+          "hs": "h18",
+          "damage": "106",
+          "distance": "105",
+          "mpCon": "56"
+        },
+        {
+          "hs": "h19",
+          "damage": "108",
+          "distance": "105",
+          "mpCon": "58"
+        },
+        {
+          "hs": "h20",
+          "damage": "110",
+          "distance": "110",
+          "mpCon": "60"
+        },
+        {
+          "hs": "h21",
+          "damage": "112",
+          "distance": "110",
+          "mpCon": "59"
+        },
+        {
+          "hs": "h22",
+          "damage": "114",
+          "distance": "115",
+          "mpCon": "58"
+        },
+        {
+          "hs": "h23",
+          "damage": "116",
+          "distance": "115",
+          "mpCon": "57"
+        },
+        {
+          "hs": "h24",
+          "damage": "118",
+          "distance": "115",
+          "mpCon": "56"
+        },
+        {
+          "hs": "h25",
+          "damage": "120",
+          "distance": "120",
+          "mpCon": "55"
+        },
+        {
+          "hs": "h26",
+          "damage": "122",
+          "distance": "120",
+          "mpCon": "54"
+        },
+        {
+          "hs": "h27",
+          "damage": "124",
+          "distance": "120",
+          "mpCon": "53"
+        },
+        {
+          "hs": "h28",
+          "damage": "126",
+          "distance": "125",
+          "mpCon": "52"
+        },
+        {
+          "hs": "h29",
+          "damage": "128",
+          "distance": "125",
+          "mpCon": "51"
+        },
+        {
+          "hs": "h30",
+          "damage": "130",
+          "distance": "125",
+          "mpCon": "50"
+        }
+      ]
+    },
+    {
+      "masterLevel": 30,
+      "actions": [
+        "blast"
+      ],
+      "weapons": [],
+      "id": 1221009,
+      "description": {
+        "id": 1221009,
+        "desc": "적 하나에게 강력한 한방 공격을 가한다.",
+        "name": "블래스트",
+        "bookName": "",
+        "detail": "MP #mpCon 소비, 데미지 #damage%"
+      },
+      "levelProperties": [
+        {
+          "hs": "h1",
+          "damage": "200",
+          "mpCon": "17"
+        },
+        {
+          "hs": "h2",
+          "damage": "220",
+          "mpCon": "17"
+        },
+        {
+          "hs": "h3",
+          "damage": "240",
+          "mpCon": "17"
+        },
+        {
+          "hs": "h4",
+          "damage": "260",
+          "mpCon": "17"
+        },
+        {
+          "hs": "h5",
+          "damage": "280",
+          "mpCon": "17"
+        },
+        {
+          "hs": "h6",
+          "damage": "300",
+          "mpCon": "20"
+        },
+        {
+          "hs": "h7",
+          "damage": "320",
+          "mpCon": "20"
+        },
+        {
+          "hs": "h8",
+          "damage": "340",
+          "mpCon": "20"
+        },
+        {
+          "hs": "h9",
+          "damage": "360",
+          "mpCon": "20"
+        },
+        {
+          "hs": "h10",
+          "damage": "380",
+          "mpCon": "20"
+        },
+        {
+          "hs": "h11",
+          "damage": "390",
+          "mpCon": "23"
+        },
+        {
+          "hs": "h12",
+          "damage": "400",
+          "mpCon": "23"
+        },
+        {
+          "hs": "h13",
+          "damage": "410",
+          "mpCon": "23"
+        },
+        {
+          "hs": "h14",
+          "damage": "420",
+          "mpCon": "23"
+        },
+        {
+          "hs": "h15",
+          "damage": "430",
+          "mpCon": "23"
+        },
+        {
+          "hs": "h16",
+          "damage": "440",
+          "mpCon": "26"
+        },
+        {
+          "hs": "h17",
+          "damage": "450",
+          "mpCon": "26"
+        },
+        {
+          "hs": "h18",
+          "damage": "460",
+          "mpCon": "26"
+        },
+        {
+          "hs": "h19",
+          "damage": "470",
+          "mpCon": "26"
+        },
+        {
+          "hs": "h20",
+          "damage": "480",
+          "mpCon": "26"
+        },
+        {
+          "hs": "h21",
+          "damage": "490",
+          "mpCon": "29"
+        },
+        {
+          "hs": "h22",
+          "damage": "500",
+          "mpCon": "29"
+        },
+        {
+          "hs": "h23",
+          "damage": "510",
+          "mpCon": "29"
+        },
+        {
+          "hs": "h24",
+          "damage": "520",
+          "mpCon": "29"
+        },
+        {
+          "hs": "h25",
+          "damage": "530",
+          "mpCon": "29"
+        },
+        {
+          "hs": "h26",
+          "damage": "540",
+          "mpCon": "28"
+        },
+        {
+          "hs": "h27",
+          "damage": "550",
+          "mpCon": "27"
+        },
+        {
+          "hs": "h28",
+          "damage": "560",
+          "mpCon": "26"
+        },
+        {
+          "hs": "h29",
+          "damage": "570",
+          "mpCon": "25"
+        },
+        {
+          "hs": "h30",
+          "damage": "580",
+          "mpCon": "24"
+        }
+      ]
+    },
+    {
+      "invisible": true,
+      "masterLevel": 30,
+      "actions": [
+        "sanctuary"
+      ],
+      "elementalAttribute": "h",
+      "weapons": [],
+      "id": 1221011,
+      "description": {
+        "id": 1221011,
+        "desc": "커다란 망치로 땅을 쳐 15마리 이하의 다수의 적을 공격한다. 공격을 받는 적은 체력이 1 남는다.",
+        "name": "생츄어리",
+        "bookName": "",
+        "detail": "MP #mpCon 소비, 데미지 #damage%, 재사용 대기시간 #cooltime초"
+      },
+      "levelProperties": [
+        {
+          "cooltime": "360",
+          "damage": "420",
+          "hs": "h1",
+          "lt": "Point [ X=-400, Y=-350 ]",
+          "mobCount": "15",
+          "mpCon": "31",
+          "rb": "Point [ X=400, Y=250 ]"
+        },
+        {
+          "cooltime": "270",
+          "damage": "600",
+          "hs": "h10",
+          "lt": "Point [ X=-400, Y=-350 ]",
+          "mobCount": "15",
+          "mpCon": "40",
+          "rb": "Point [ X=400, Y=250 ]"
+        },
+        {
+          "cooltime": "260",
+          "damage": "620",
+          "hs": "h11",
+          "lt": "Point [ X=-400, Y=-350 ]",
+          "mobCount": "15",
+          "mpCon": "41",
+          "rb": "Point [ X=400, Y=250 ]"
+        },
+        {
+          "cooltime": "250",
+          "damage": "640",
+          "hs": "h12",
+          "lt": "Point [ X=-400, Y=-350 ]",
+          "mobCount": "15",
+          "mpCon": "42",
+          "rb": "Point [ X=400, Y=250 ]"
+        },
+        {
+          "cooltime": "240",
+          "damage": "660",
+          "hs": "h13",
+          "lt": "Point [ X=-400, Y=-350 ]",
+          "mobCount": "15",
+          "mpCon": "43",
+          "rb": "Point [ X=400, Y=250 ]"
+        },
+        {
+          "cooltime": "230",
+          "damage": "680",
+          "hs": "h14",
+          "lt": "Point [ X=-400, Y=-350 ]",
+          "mobCount": "15",
+          "mpCon": "44",
+          "rb": "Point [ X=400, Y=250 ]"
+        },
+        {
+          "cooltime": "220",
+          "damage": "700",
+          "hs": "h15",
+          "lt": "Point [ X=-400, Y=-350 ]",
+          "mobCount": "15",
+          "mpCon": "45",
+          "rb": "Point [ X=400, Y=250 ]"
+        },
+        {
+          "cooltime": "210",
+          "damage": "720",
+          "hs": "h16",
+          "lt": "Point [ X=-400, Y=-350 ]",
+          "mobCount": "15",
+          "mpCon": "46",
+          "rb": "Point [ X=400, Y=250 ]"
+        },
+        {
+          "cooltime": "200",
+          "damage": "740",
+          "hs": "h17",
+          "lt": "Point [ X=-400, Y=-350 ]",
+          "mobCount": "15",
+          "mpCon": "47",
+          "rb": "Point [ X=400, Y=250 ]"
+        },
+        {
+          "cooltime": "190",
+          "damage": "760",
+          "hs": "h18",
+          "lt": "Point [ X=-400, Y=-350 ]",
+          "mobCount": "15",
+          "mpCon": "48",
+          "rb": "Point [ X=400, Y=250 ]"
+        },
+        {
+          "cooltime": "180",
+          "damage": "780",
+          "hs": "h19",
+          "lt": "Point [ X=-400, Y=-350 ]",
+          "mobCount": "15",
+          "mpCon": "49",
+          "rb": "Point [ X=400, Y=250 ]"
+        },
+        {
+          "cooltime": "350",
+          "damage": "440",
+          "hs": "h2",
+          "lt": "Point [ X=-400, Y=-350 ]",
+          "mobCount": "15",
+          "mpCon": "32",
+          "rb": "Point [ X=400, Y=250 ]"
+        },
+        {
+          "cooltime": "170",
+          "damage": "800",
+          "hs": "h20",
+          "lt": "Point [ X=-400, Y=-350 ]",
+          "mobCount": "15",
+          "mpCon": "50",
+          "rb": "Point [ X=400, Y=250 ]"
+        },
+        {
+          "cooltime": "160",
+          "damage": "810",
+          "hs": "h21",
+          "lt": "Point [ X=-400, Y=-350 ]",
+          "mobCount": "15",
+          "mpCon": "51",
+          "rb": "Point [ X=400, Y=250 ]"
+        },
+        {
+          "cooltime": "150",
+          "damage": "820",
+          "hs": "h22",
+          "lt": "Point [ X=-400, Y=-350 ]",
+          "mobCount": "15",
+          "mpCon": "52",
+          "rb": "Point [ X=400, Y=250 ]"
+        },
+        {
+          "cooltime": "140",
+          "damage": "830",
+          "hs": "h23",
+          "lt": "Point [ X=-400, Y=-350 ]",
+          "mobCount": "15",
+          "mpCon": "53",
+          "rb": "Point [ X=400, Y=250 ]"
+        },
+        {
+          "cooltime": "130",
+          "damage": "840",
+          "hs": "h24",
+          "lt": "Point [ X=-400, Y=-350 ]",
+          "mobCount": "15",
+          "mpCon": "54",
+          "rb": "Point [ X=400, Y=250 ]"
+        },
+        {
+          "cooltime": "120",
+          "damage": "850",
+          "hs": "h25",
+          "lt": "Point [ X=-400, Y=-350 ]",
+          "mobCount": "15",
+          "mpCon": "55",
+          "rb": "Point [ X=400, Y=250 ]"
+        },
+        {
+          "cooltime": "110",
+          "damage": "860",
+          "hs": "h26",
+          "lt": "Point [ X=-400, Y=-350 ]",
+          "mobCount": "15",
+          "mpCon": "56",
+          "rb": "Point [ X=400, Y=250 ]"
+        },
+        {
+          "cooltime": "100",
+          "damage": "870",
+          "hs": "h27",
+          "lt": "Point [ X=-400, Y=-350 ]",
+          "mobCount": "15",
+          "mpCon": "57",
+          "rb": "Point [ X=400, Y=250 ]"
+        },
+        {
+          "cooltime": "90",
+          "damage": "880",
+          "hs": "h28",
+          "lt": "Point [ X=-400, Y=-350 ]",
+          "mobCount": "15",
+          "mpCon": "58",
+          "rb": "Point [ X=400, Y=250 ]"
+        },
+        {
+          "cooltime": "80",
+          "damage": "890",
+          "hs": "h29",
+          "lt": "Point [ X=-400, Y=-350 ]",
+          "mobCount": "15",
+          "mpCon": "59",
+          "rb": "Point [ X=400, Y=250 ]"
+        },
+        {
+          "cooltime": "340",
+          "damage": "460",
+          "hs": "h3",
+          "lt": "Point [ X=-400, Y=-350 ]",
+          "mobCount": "15",
+          "mpCon": "33",
+          "rb": "Point [ X=400, Y=250 ]"
+        },
+        {
+          "cooltime": "70",
+          "damage": "900",
+          "hs": "h30",
+          "lt": "Point [ X=-400, Y=-350 ]",
+          "mobCount": "15",
+          "mpCon": "60",
+          "rb": "Point [ X=400, Y=250 ]"
+        },
+        {
+          "cooltime": "330",
+          "damage": "480",
+          "hs": "h4",
+          "lt": "Point [ X=-400, Y=-350 ]",
+          "mobCount": "15",
+          "mpCon": "34",
+          "rb": "Point [ X=400, Y=250 ]"
+        },
+        {
+          "cooltime": "320",
+          "damage": "500",
+          "hs": "h5",
+          "lt": "Point [ X=-400, Y=-350 ]",
+          "mobCount": "15",
+          "mpCon": "35",
+          "rb": "Point [ X=400, Y=250 ]"
+        },
+        {
+          "cooltime": "310",
+          "damage": "520",
+          "hs": "h6",
+          "lt": "Point [ X=-400, Y=-350 ]",
+          "mobCount": "15",
+          "mpCon": "36",
+          "rb": "Point [ X=400, Y=250 ]"
+        },
+        {
+          "cooltime": "300",
+          "damage": "540",
+          "hs": "h7",
+          "lt": "Point [ X=-400, Y=-350 ]",
+          "mobCount": "15",
+          "mpCon": "37",
+          "rb": "Point [ X=400, Y=250 ]"
+        },
+        {
+          "cooltime": "290",
+          "damage": "560",
+          "hs": "h8",
+          "lt": "Point [ X=-400, Y=-350 ]",
+          "mobCount": "15",
+          "mpCon": "38",
+          "rb": "Point [ X=400, Y=250 ]"
+        },
+        {
+          "cooltime": "280",
+          "damage": "580",
+          "hs": "h9",
+          "lt": "Point [ X=-400, Y=-350 ]",
+          "mobCount": "15",
+          "mpCon": "39",
+          "rb": "Point [ X=400, Y=250 ]"
+        }
+      ]
+    },
+    {
+      "invisible": true,
+      "masterLevel": 5,
+      "weapons": [],
+      "id": 1221012,
+      "description": {
+        "id": 1221012,
+        "desc": "용사의 의지특정 상태 이상에서 벗어날 수 있다. 레벨이 올라감에 따라 해제할 수 있는 상태 이상이 늘어난다.",
+        "name": "용사의 의지",
+        "bookName": "",
+        "detail": "MP #mpCon 소비, 재사용 대기시간 #cooltime초"
+      },
+      "levelProperties": [
+        {
+          "cooltime": "600",
+          "hs": "h1",
+          "mpCon": "30",
+          "time": "1"
+        },
+        {
+          "cooltime": "540",
+          "hs": "h2",
+          "mpCon": "30",
+          "time": "1"
+        },
+        {
+          "cooltime": "480",
+          "hs": "h3",
+          "mpCon": "30",
+          "time": "1"
+        },
+        {
+          "cooltime": "420",
+          "hs": "h4",
+          "mpCon": "30",
+          "time": "1"
+        },
+        {
+          "cooltime": "360",
+          "hs": "h5",
+          "mpCon": "30",
+          "time": "1"
+        }
+      ]
+    }
+  ]
+}

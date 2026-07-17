@@ -1,0 +1,1164 @@
+{
+  "id": 220,
+  "job": {
+    "id": 220,
+    "name": "Wizard - Ice/Lightning (2nd)"
+  },
+  "description": {
+    "id": 220,
+    "desc": "",
+    "name": "",
+    "shortDesc": "",
+    "bookName": "냉기, 번개 마법 가이드"
+  },
+  "skills": [
+    {
+      "masterLevel": 20,
+      "weapons": [],
+      "id": 2200000,
+      "description": {
+        "id": 2200000,
+        "desc": "적에게 마법 공격을 가할 때마다 조금씩 적의 MP를 흡수한다. 다만 적의 MP 가 0 이라면 더 이상 흡수할 수 없다.",
+        "name": "MP 이터",
+        "bookName": "",
+        "detail": "한 번 공격할 때 #prop%의 확률로 적의 최대 MP의 #x%를 흡수."
+      },
+      "levelProperties": [
+        {
+          "hs": "h1",
+          "prop": "11",
+          "x": "21"
+        },
+        {
+          "hs": "h10",
+          "prop": "20",
+          "x": "30"
+        },
+        {
+          "hs": "h11",
+          "prop": "21",
+          "x": "31"
+        },
+        {
+          "hs": "h12",
+          "prop": "22",
+          "x": "32"
+        },
+        {
+          "hs": "h13",
+          "prop": "23",
+          "x": "33"
+        },
+        {
+          "hs": "h14",
+          "prop": "24",
+          "x": "34"
+        },
+        {
+          "hs": "h15",
+          "prop": "25",
+          "x": "35"
+        },
+        {
+          "hs": "h16",
+          "prop": "26",
+          "x": "36"
+        },
+        {
+          "hs": "h17",
+          "prop": "27",
+          "x": "37"
+        },
+        {
+          "hs": "h18",
+          "prop": "28",
+          "x": "38"
+        },
+        {
+          "hs": "h19",
+          "prop": "29",
+          "x": "39"
+        },
+        {
+          "hs": "h2",
+          "prop": "12",
+          "x": "22"
+        },
+        {
+          "hs": "h20",
+          "prop": "30",
+          "x": "40"
+        },
+        {
+          "hs": "h3",
+          "prop": "13",
+          "x": "23"
+        },
+        {
+          "hs": "h4",
+          "prop": "14",
+          "x": "24"
+        },
+        {
+          "hs": "h5",
+          "prop": "15",
+          "x": "25"
+        },
+        {
+          "hs": "h6",
+          "prop": "16",
+          "x": "26"
+        },
+        {
+          "hs": "h7",
+          "prop": "17",
+          "x": "27"
+        },
+        {
+          "hs": "h8",
+          "prop": "18",
+          "x": "28"
+        },
+        {
+          "hs": "h9",
+          "prop": "19",
+          "x": "29"
+        }
+      ]
+    },
+    {
+      "masterLevel": 20,
+      "actions": [
+        "alert2"
+      ],
+      "weapons": [],
+      "id": 2201001,
+      "description": {
+        "id": 2201001,
+        "desc": "잠깐동안 명상하여 주위에 있는 파티 전원의 마력을 일시적으로 향상시킨다.",
+        "name": "메디테이션",
+        "bookName": "",
+        "detail": "MP #mpCon 소비하여 #time초간 파티원의 마력 #mad 향상."
+      },
+      "requiredSkillLevels": {
+        "2200000": 3
+      },
+      "levelProperties": [
+        {
+          "hs": "h1",
+          "lt": "Point [ X=-250, Y=-150 ]",
+          "mad": "1",
+          "mpCon": "10",
+          "rb": "Point [ X=250, Y=150 ]",
+          "time": "10"
+        },
+        {
+          "hs": "h10",
+          "lt": "Point [ X=-250, Y=-150 ]",
+          "mad": "10",
+          "mpCon": "10",
+          "rb": "Point [ X=250, Y=150 ]",
+          "time": "100"
+        },
+        {
+          "hs": "h11",
+          "lt": "Point [ X=-300, Y=-200 ]",
+          "mad": "11",
+          "mpCon": "20",
+          "rb": "Point [ X=300, Y=200 ]",
+          "time": "110"
+        },
+        {
+          "hs": "h12",
+          "lt": "Point [ X=-300, Y=-200 ]",
+          "mad": "12",
+          "mpCon": "20",
+          "rb": "Point [ X=300, Y=200 ]",
+          "time": "120"
+        },
+        {
+          "hs": "h13",
+          "lt": "Point [ X=-300, Y=-200 ]",
+          "mad": "13",
+          "mpCon": "20",
+          "rb": "Point [ X=300, Y=200 ]",
+          "time": "130"
+        },
+        {
+          "hs": "h14",
+          "lt": "Point [ X=-300, Y=-200 ]",
+          "mad": "14",
+          "mpCon": "20",
+          "rb": "Point [ X=300, Y=200 ]",
+          "time": "140"
+        },
+        {
+          "hs": "h15",
+          "lt": "Point [ X=-300, Y=-200 ]",
+          "mad": "15",
+          "mpCon": "20",
+          "rb": "Point [ X=300, Y=200 ]",
+          "time": "150"
+        },
+        {
+          "hs": "h16",
+          "lt": "Point [ X=-300, Y=-200 ]",
+          "mad": "16",
+          "mpCon": "20",
+          "rb": "Point [ X=300, Y=200 ]",
+          "time": "160"
+        },
+        {
+          "hs": "h17",
+          "lt": "Point [ X=-300, Y=-200 ]",
+          "mad": "17",
+          "mpCon": "20",
+          "rb": "Point [ X=300, Y=200 ]",
+          "time": "170"
+        },
+        {
+          "hs": "h18",
+          "lt": "Point [ X=-300, Y=-200 ]",
+          "mad": "18",
+          "mpCon": "20",
+          "rb": "Point [ X=300, Y=200 ]",
+          "time": "180"
+        },
+        {
+          "hs": "h19",
+          "lt": "Point [ X=-300, Y=-200 ]",
+          "mad": "19",
+          "mpCon": "20",
+          "rb": "Point [ X=300, Y=200 ]",
+          "time": "190"
+        },
+        {
+          "hs": "h2",
+          "lt": "Point [ X=-250, Y=-150 ]",
+          "mad": "2",
+          "mpCon": "10",
+          "rb": "Point [ X=250, Y=150 ]",
+          "time": "20"
+        },
+        {
+          "hs": "h20",
+          "lt": "Point [ X=-300, Y=-200 ]",
+          "mad": "20",
+          "mpCon": "20",
+          "rb": "Point [ X=300, Y=200 ]",
+          "time": "200"
+        },
+        {
+          "hs": "h3",
+          "lt": "Point [ X=-250, Y=-150 ]",
+          "mad": "3",
+          "mpCon": "10",
+          "rb": "Point [ X=250, Y=150 ]",
+          "time": "30"
+        },
+        {
+          "hs": "h4",
+          "lt": "Point [ X=-250, Y=-150 ]",
+          "mad": "4",
+          "mpCon": "10",
+          "rb": "Point [ X=250, Y=150 ]",
+          "time": "40"
+        },
+        {
+          "hs": "h5",
+          "lt": "Point [ X=-250, Y=-150 ]",
+          "mad": "5",
+          "mpCon": "10",
+          "rb": "Point [ X=250, Y=150 ]",
+          "time": "50"
+        },
+        {
+          "hs": "h6",
+          "lt": "Point [ X=-250, Y=-150 ]",
+          "mad": "6",
+          "mpCon": "10",
+          "rb": "Point [ X=250, Y=150 ]",
+          "time": "60"
+        },
+        {
+          "hs": "h7",
+          "lt": "Point [ X=-250, Y=-150 ]",
+          "mad": "7",
+          "mpCon": "10",
+          "rb": "Point [ X=250, Y=150 ]",
+          "time": "70"
+        },
+        {
+          "hs": "h8",
+          "lt": "Point [ X=-250, Y=-150 ]",
+          "mad": "8",
+          "mpCon": "10",
+          "rb": "Point [ X=250, Y=150 ]",
+          "time": "80"
+        },
+        {
+          "hs": "h9",
+          "lt": "Point [ X=-250, Y=-150 ]",
+          "mad": "9",
+          "mpCon": "10",
+          "rb": "Point [ X=250, Y=150 ]",
+          "time": "90"
+        }
+      ]
+    },
+    {
+      "masterLevel": 20,
+      "weapons": [],
+      "id": 2201002,
+      "description": {
+        "id": 2201002,
+        "desc": "상, 하, 좌, 우 방향키를 이용하여 같은 맵 상의 다른 위치로 일정 간격으로 이동할 수 있다.",
+        "name": "텔레포트",
+        "bookName": "",
+        "detail": "MP #mpCon 소비하여 텔레포트, 이동거리 #range"
+      },
+      "levelProperties": [
+        {
+          "hs": "h1",
+          "mpCon": "60",
+          "range": "130"
+        },
+        {
+          "hs": "h10",
+          "mpCon": "33",
+          "range": "130"
+        },
+        {
+          "hs": "h11",
+          "mpCon": "31",
+          "range": "132"
+        },
+        {
+          "hs": "h12",
+          "mpCon": "29",
+          "range": "134"
+        },
+        {
+          "hs": "h13",
+          "mpCon": "27",
+          "range": "136"
+        },
+        {
+          "hs": "h14",
+          "mpCon": "25",
+          "range": "138"
+        },
+        {
+          "hs": "h15",
+          "mpCon": "23",
+          "range": "140"
+        },
+        {
+          "hs": "h16",
+          "mpCon": "21",
+          "range": "142"
+        },
+        {
+          "hs": "h17",
+          "mpCon": "19",
+          "range": "144"
+        },
+        {
+          "hs": "h18",
+          "mpCon": "17",
+          "range": "146"
+        },
+        {
+          "hs": "h19",
+          "mpCon": "15",
+          "range": "148"
+        },
+        {
+          "hs": "h2",
+          "mpCon": "57",
+          "range": "130"
+        },
+        {
+          "hs": "h20",
+          "mpCon": "13",
+          "range": "150"
+        },
+        {
+          "hs": "h3",
+          "mpCon": "54",
+          "range": "130"
+        },
+        {
+          "hs": "h4",
+          "mpCon": "51",
+          "range": "130"
+        },
+        {
+          "hs": "h5",
+          "mpCon": "48",
+          "range": "130"
+        },
+        {
+          "hs": "h6",
+          "mpCon": "45",
+          "range": "130"
+        },
+        {
+          "hs": "h7",
+          "mpCon": "42",
+          "range": "130"
+        },
+        {
+          "hs": "h8",
+          "mpCon": "39",
+          "range": "130"
+        },
+        {
+          "hs": "h9",
+          "mpCon": "36",
+          "range": "130"
+        }
+      ]
+    },
+    {
+      "masterLevel": 20,
+      "actions": [
+        "alert2"
+      ],
+      "weapons": [],
+      "id": 2201003,
+      "description": {
+        "id": 2201003,
+        "desc": "일정 시간동안 주위 적의 이동 속도를 낮춘다. 중복하여 사용할 수 없으며 한 번에 6마리 이상에게 사용할 수 없다.",
+        "name": "슬로우",
+        "bookName": "",
+        "detail": "MP #mpCon 소비하여 #time초간 적의 이동속도 -#x"
+      },
+      "requiredSkillLevels": {
+        "2201002": 5
+      },
+      "levelProperties": [
+        {
+          "hs": "h1",
+          "lt": "Point [ X=-200, Y=-150 ]",
+          "mobCount": "6",
+          "mpCon": "8",
+          "rb": "Point [ X=200, Y=150 ]",
+          "time": "2",
+          "x": "-2"
+        },
+        {
+          "hs": "h10",
+          "lt": "Point [ X=-200, Y=-150 ]",
+          "mobCount": "6",
+          "mpCon": "8",
+          "rb": "Point [ X=200, Y=150 ]",
+          "time": "20",
+          "x": "-20"
+        },
+        {
+          "hs": "h11",
+          "lt": "Point [ X=-250, Y=-150 ]",
+          "mobCount": "6",
+          "mpCon": "16",
+          "rb": "Point [ X=250, Y=150 ]",
+          "time": "22",
+          "x": "-22"
+        },
+        {
+          "hs": "h12",
+          "lt": "Point [ X=-250, Y=-150 ]",
+          "mobCount": "6",
+          "mpCon": "16",
+          "rb": "Point [ X=250, Y=150 ]",
+          "time": "24",
+          "x": "-24"
+        },
+        {
+          "hs": "h13",
+          "lt": "Point [ X=-250, Y=-150 ]",
+          "mobCount": "6",
+          "mpCon": "16",
+          "rb": "Point [ X=250, Y=150 ]",
+          "time": "26",
+          "x": "-26"
+        },
+        {
+          "hs": "h14",
+          "lt": "Point [ X=-250, Y=-150 ]",
+          "mobCount": "6",
+          "mpCon": "16",
+          "rb": "Point [ X=250, Y=150 ]",
+          "time": "28",
+          "x": "-28"
+        },
+        {
+          "hs": "h15",
+          "lt": "Point [ X=-250, Y=-150 ]",
+          "mobCount": "6",
+          "mpCon": "16",
+          "rb": "Point [ X=250, Y=150 ]",
+          "time": "30",
+          "x": "-30"
+        },
+        {
+          "hs": "h16",
+          "lt": "Point [ X=-250, Y=-150 ]",
+          "mobCount": "6",
+          "mpCon": "16",
+          "rb": "Point [ X=250, Y=150 ]",
+          "time": "32",
+          "x": "-32"
+        },
+        {
+          "hs": "h17",
+          "lt": "Point [ X=-250, Y=-150 ]",
+          "mobCount": "6",
+          "mpCon": "16",
+          "rb": "Point [ X=250, Y=150 ]",
+          "time": "34",
+          "x": "-34"
+        },
+        {
+          "hs": "h18",
+          "lt": "Point [ X=-250, Y=-150 ]",
+          "mobCount": "6",
+          "mpCon": "16",
+          "rb": "Point [ X=250, Y=150 ]",
+          "time": "36",
+          "x": "-36"
+        },
+        {
+          "hs": "h19",
+          "lt": "Point [ X=-250, Y=-150 ]",
+          "mobCount": "6",
+          "mpCon": "16",
+          "rb": "Point [ X=250, Y=150 ]",
+          "time": "38",
+          "x": "-38"
+        },
+        {
+          "hs": "h2",
+          "lt": "Point [ X=-200, Y=-150 ]",
+          "mobCount": "6",
+          "mpCon": "8",
+          "rb": "Point [ X=200, Y=150 ]",
+          "time": "4",
+          "x": "-4"
+        },
+        {
+          "hs": "h20",
+          "lt": "Point [ X=-250, Y=-150 ]",
+          "mobCount": "6",
+          "mpCon": "16",
+          "rb": "Point [ X=250, Y=150 ]",
+          "time": "40",
+          "x": "-40"
+        },
+        {
+          "hs": "h3",
+          "lt": "Point [ X=-200, Y=-150 ]",
+          "mobCount": "6",
+          "mpCon": "8",
+          "rb": "Point [ X=200, Y=150 ]",
+          "time": "6",
+          "x": "-6"
+        },
+        {
+          "hs": "h4",
+          "lt": "Point [ X=-200, Y=-150 ]",
+          "mobCount": "6",
+          "mpCon": "8",
+          "rb": "Point [ X=200, Y=150 ]",
+          "time": "8",
+          "x": "-8"
+        },
+        {
+          "hs": "h5",
+          "lt": "Point [ X=-200, Y=-150 ]",
+          "mobCount": "6",
+          "mpCon": "8",
+          "rb": "Point [ X=200, Y=150 ]",
+          "time": "10",
+          "x": "-10"
+        },
+        {
+          "hs": "h6",
+          "lt": "Point [ X=-200, Y=-150 ]",
+          "mobCount": "6",
+          "mpCon": "8",
+          "rb": "Point [ X=200, Y=150 ]",
+          "time": "12",
+          "x": "-12"
+        },
+        {
+          "hs": "h7",
+          "lt": "Point [ X=-200, Y=-150 ]",
+          "mobCount": "6",
+          "mpCon": "8",
+          "rb": "Point [ X=200, Y=150 ]",
+          "time": "14",
+          "x": "-14"
+        },
+        {
+          "hs": "h8",
+          "lt": "Point [ X=-200, Y=-150 ]",
+          "mobCount": "6",
+          "mpCon": "8",
+          "rb": "Point [ X=200, Y=150 ]",
+          "time": "16",
+          "x": "-16"
+        },
+        {
+          "hs": "h9",
+          "lt": "Point [ X=-200, Y=-150 ]",
+          "mobCount": "6",
+          "mpCon": "8",
+          "rb": "Point [ X=200, Y=150 ]",
+          "time": "18",
+          "x": "-18"
+        }
+      ]
+    },
+    {
+      "masterLevel": 30,
+      "elementalAttribute": "i",
+      "weapons": [],
+      "id": 2201004,
+      "description": {
+        "id": 2201004,
+        "desc": "날카로운 얼음 덩어리를 만들어 적 하나를 향해 쏜다. 명중한 적은 잠시 행동을 멈추게 된다. 불 속성의 적에게 큰 피해를 줄 수 있다.",
+        "name": "콜드 빔",
+        "bookName": "",
+        "detail": "MP #mpCon 소비, 기본 공격력 #mad, 숙련도 #mastery%"
+      },
+      "levelProperties": [
+        {
+          "hs": "h1",
+          "mad": "13",
+          "mastery": "1",
+          "mpCon": "12",
+          "time": "1",
+          "x": "-100"
+        },
+        {
+          "hs": "h10",
+          "mad": "40",
+          "mastery": "4",
+          "mpCon": "12",
+          "time": "1",
+          "x": "-100"
+        },
+        {
+          "hs": "h11",
+          "mad": "43",
+          "mastery": "4",
+          "mpCon": "12",
+          "time": "1",
+          "x": "-100"
+        },
+        {
+          "hs": "h12",
+          "mad": "46",
+          "mastery": "4",
+          "mpCon": "12",
+          "time": "1",
+          "x": "-100"
+        },
+        {
+          "hs": "h13",
+          "mad": "49",
+          "mastery": "5",
+          "mpCon": "12",
+          "time": "1",
+          "x": "-100"
+        },
+        {
+          "hs": "h14",
+          "mad": "52",
+          "mastery": "5",
+          "mpCon": "12",
+          "time": "1",
+          "x": "-100"
+        },
+        {
+          "hs": "h15",
+          "mad": "55",
+          "mastery": "5",
+          "mpCon": "12",
+          "time": "1",
+          "x": "-100"
+        },
+        {
+          "hs": "h16",
+          "mad": "58",
+          "mastery": "6",
+          "mpCon": "24",
+          "time": "2",
+          "x": "-100"
+        },
+        {
+          "hs": "h17",
+          "mad": "61",
+          "mastery": "6",
+          "mpCon": "24",
+          "time": "2",
+          "x": "-100"
+        },
+        {
+          "hs": "h18",
+          "mad": "64",
+          "mastery": "6",
+          "mpCon": "24",
+          "time": "2",
+          "x": "-100"
+        },
+        {
+          "hs": "h19",
+          "mad": "67",
+          "mastery": "7",
+          "mpCon": "24",
+          "time": "2",
+          "x": "-100"
+        },
+        {
+          "hs": "h2",
+          "mad": "16",
+          "mastery": "1",
+          "mpCon": "12",
+          "time": "1",
+          "x": "-100"
+        },
+        {
+          "hs": "h20",
+          "mad": "70",
+          "mastery": "7",
+          "mpCon": "24",
+          "time": "2",
+          "x": "-100"
+        },
+        {
+          "hs": "h21",
+          "mad": "73",
+          "mastery": "7",
+          "mpCon": "24",
+          "time": "2",
+          "x": "-100"
+        },
+        {
+          "hs": "h22",
+          "mad": "76",
+          "mastery": "8",
+          "mpCon": "24",
+          "time": "2",
+          "x": "-100"
+        },
+        {
+          "hs": "h23",
+          "mad": "79",
+          "mastery": "8",
+          "mpCon": "24",
+          "time": "2",
+          "x": "-100"
+        },
+        {
+          "hs": "h24",
+          "mad": "82",
+          "mastery": "8",
+          "mpCon": "24",
+          "time": "2",
+          "x": "-100"
+        },
+        {
+          "hs": "h25",
+          "mad": "85",
+          "mastery": "9",
+          "mpCon": "24",
+          "time": "2",
+          "x": "-100"
+        },
+        {
+          "hs": "h26",
+          "mad": "88",
+          "mastery": "9",
+          "mpCon": "24",
+          "time": "2",
+          "x": "-100"
+        },
+        {
+          "hs": "h27",
+          "mad": "91",
+          "mastery": "9",
+          "mpCon": "24",
+          "time": "2",
+          "x": "-100"
+        },
+        {
+          "hs": "h28",
+          "mad": "94",
+          "mastery": "10",
+          "mpCon": "24",
+          "time": "2",
+          "x": "-100"
+        },
+        {
+          "hs": "h29",
+          "mad": "97",
+          "mastery": "10",
+          "mpCon": "24",
+          "time": "2",
+          "x": "-100"
+        },
+        {
+          "hs": "h3",
+          "mad": "19",
+          "mastery": "1",
+          "mpCon": "12",
+          "time": "1",
+          "x": "-100"
+        },
+        {
+          "hs": "h30",
+          "mad": "100",
+          "mastery": "10",
+          "mpCon": "24",
+          "time": "2",
+          "x": "-100"
+        },
+        {
+          "hs": "h4",
+          "mad": "22",
+          "mastery": "2",
+          "mpCon": "12",
+          "time": "1",
+          "x": "-100"
+        },
+        {
+          "hs": "h5",
+          "mad": "25",
+          "mastery": "2",
+          "mpCon": "12",
+          "time": "1",
+          "x": "-100"
+        },
+        {
+          "hs": "h6",
+          "mad": "28",
+          "mastery": "2",
+          "mpCon": "12",
+          "time": "1",
+          "x": "-100"
+        },
+        {
+          "hs": "h7",
+          "mad": "31",
+          "mastery": "3",
+          "mpCon": "12",
+          "time": "1",
+          "x": "-100"
+        },
+        {
+          "hs": "h8",
+          "mad": "34",
+          "mastery": "3",
+          "mpCon": "12",
+          "time": "1",
+          "x": "-100"
+        },
+        {
+          "hs": "h9",
+          "mad": "37",
+          "mastery": "3",
+          "mpCon": "12",
+          "time": "1",
+          "x": "-100"
+        }
+      ]
+    },
+    {
+      "masterLevel": 30,
+      "elementalAttribute": "l",
+      "weapons": [],
+      "id": 2201005,
+      "description": {
+        "id": 2201005,
+        "desc": "술자 주변에 강력한 자기장을 만들어 주변의 적에게 번개 공격을 가한다. 일정 범위 내의 적을 모두 공격한다.",
+        "name": "선더 볼트",
+        "bookName": "",
+        "detail": "MP #mpCon 소비, 기본 공격력 #mad, 숙련도 #mastery%"
+      },
+      "levelProperties": [
+        {
+          "hs": "h1",
+          "lt": "Point [ X=-150, Y=-50 ]",
+          "mad": "2",
+          "mastery": "1",
+          "mobCount": "6",
+          "mpCon": "20",
+          "rb": "Point [ X=150, Y=50 ]"
+        },
+        {
+          "hs": "h10",
+          "lt": "Point [ X=-150, Y=-50 ]",
+          "mad": "20",
+          "mastery": "4",
+          "mobCount": "6",
+          "mpCon": "20",
+          "rb": "Point [ X=150, Y=50 ]"
+        },
+        {
+          "hs": "h11",
+          "lt": "Point [ X=-150, Y=-50 ]",
+          "mad": "22",
+          "mastery": "4",
+          "mobCount": "6",
+          "mpCon": "20",
+          "rb": "Point [ X=150, Y=50 ]"
+        },
+        {
+          "hs": "h12",
+          "lt": "Point [ X=-150, Y=-50 ]",
+          "mad": "24",
+          "mastery": "4",
+          "mobCount": "6",
+          "mpCon": "20",
+          "rb": "Point [ X=150, Y=50 ]"
+        },
+        {
+          "hs": "h13",
+          "lt": "Point [ X=-150, Y=-50 ]",
+          "mad": "26",
+          "mastery": "5",
+          "mobCount": "6",
+          "mpCon": "20",
+          "rb": "Point [ X=150, Y=50 ]"
+        },
+        {
+          "hs": "h14",
+          "lt": "Point [ X=-150, Y=-50 ]",
+          "mad": "28",
+          "mastery": "5",
+          "mobCount": "6",
+          "mpCon": "20",
+          "rb": "Point [ X=150, Y=50 ]"
+        },
+        {
+          "hs": "h15",
+          "lt": "Point [ X=-150, Y=-50 ]",
+          "mad": "30",
+          "mastery": "5",
+          "mobCount": "6",
+          "mpCon": "20",
+          "rb": "Point [ X=150, Y=50 ]"
+        },
+        {
+          "hs": "h16",
+          "lt": "Point [ X=-170, Y=-70 ]",
+          "mad": "32",
+          "mastery": "6",
+          "mobCount": "6",
+          "mpCon": "40",
+          "rb": "Point [ X=170, Y=70 ]"
+        },
+        {
+          "hs": "h17",
+          "lt": "Point [ X=-170, Y=-70 ]",
+          "mad": "34",
+          "mastery": "6",
+          "mobCount": "6",
+          "mpCon": "40",
+          "rb": "Point [ X=170, Y=70 ]"
+        },
+        {
+          "hs": "h18",
+          "lt": "Point [ X=-170, Y=-70 ]",
+          "mad": "36",
+          "mastery": "6",
+          "mobCount": "6",
+          "mpCon": "40",
+          "rb": "Point [ X=170, Y=70 ]"
+        },
+        {
+          "hs": "h19",
+          "lt": "Point [ X=-170, Y=-70 ]",
+          "mad": "38",
+          "mastery": "7",
+          "mobCount": "6",
+          "mpCon": "40",
+          "rb": "Point [ X=170, Y=70 ]"
+        },
+        {
+          "hs": "h2",
+          "lt": "Point [ X=-150, Y=-50 ]",
+          "mad": "4",
+          "mastery": "1",
+          "mobCount": "6",
+          "mpCon": "20",
+          "rb": "Point [ X=150, Y=50 ]"
+        },
+        {
+          "hs": "h20",
+          "lt": "Point [ X=-170, Y=-70 ]",
+          "mad": "40",
+          "mastery": "7",
+          "mobCount": "6",
+          "mpCon": "40",
+          "rb": "Point [ X=170, Y=70 ]"
+        },
+        {
+          "hs": "h21",
+          "lt": "Point [ X=-170, Y=-70 ]",
+          "mad": "42",
+          "mastery": "7",
+          "mobCount": "6",
+          "mpCon": "40",
+          "rb": "Point [ X=170, Y=70 ]"
+        },
+        {
+          "hs": "h22",
+          "lt": "Point [ X=-170, Y=-70 ]",
+          "mad": "44",
+          "mastery": "8",
+          "mobCount": "6",
+          "mpCon": "40",
+          "rb": "Point [ X=170, Y=70 ]"
+        },
+        {
+          "hs": "h23",
+          "lt": "Point [ X=-170, Y=-70 ]",
+          "mad": "46",
+          "mastery": "8",
+          "mobCount": "6",
+          "mpCon": "40",
+          "rb": "Point [ X=170, Y=70 ]"
+        },
+        {
+          "hs": "h24",
+          "lt": "Point [ X=-170, Y=-70 ]",
+          "mad": "48",
+          "mastery": "8",
+          "mobCount": "6",
+          "mpCon": "40",
+          "rb": "Point [ X=170, Y=70 ]"
+        },
+        {
+          "hs": "h25",
+          "lt": "Point [ X=-170, Y=-70 ]",
+          "mad": "50",
+          "mastery": "9",
+          "mobCount": "6",
+          "mpCon": "40",
+          "rb": "Point [ X=170, Y=70 ]"
+        },
+        {
+          "hs": "h26",
+          "lt": "Point [ X=-170, Y=-70 ]",
+          "mad": "52",
+          "mastery": "9",
+          "mobCount": "6",
+          "mpCon": "40",
+          "rb": "Point [ X=170, Y=70 ]"
+        },
+        {
+          "hs": "h27",
+          "lt": "Point [ X=-170, Y=-70 ]",
+          "mad": "54",
+          "mastery": "9",
+          "mobCount": "6",
+          "mpCon": "40",
+          "rb": "Point [ X=170, Y=70 ]"
+        },
+        {
+          "hs": "h28",
+          "lt": "Point [ X=-170, Y=-70 ]",
+          "mad": "56",
+          "mastery": "10",
+          "mobCount": "6",
+          "mpCon": "40",
+          "rb": "Point [ X=170, Y=70 ]"
+        },
+        {
+          "hs": "h29",
+          "lt": "Point [ X=-170, Y=-70 ]",
+          "mad": "58",
+          "mastery": "10",
+          "mobCount": "6",
+          "mpCon": "40",
+          "rb": "Point [ X=170, Y=70 ]"
+        },
+        {
+          "hs": "h3",
+          "lt": "Point [ X=-150, Y=-50 ]",
+          "mad": "6",
+          "mastery": "1",
+          "mobCount": "6",
+          "mpCon": "20",
+          "rb": "Point [ X=150, Y=50 ]"
+        },
+        {
+          "hs": "h30",
+          "lt": "Point [ X=-170, Y=-70 ]",
+          "mad": "60",
+          "mastery": "10",
+          "mobCount": "6",
+          "mpCon": "40",
+          "rb": "Point [ X=170, Y=70 ]"
+        },
+        {
+          "hs": "h4",
+          "lt": "Point [ X=-150, Y=-50 ]",
+          "mad": "8",
+          "mastery": "2",
+          "mobCount": "6",
+          "mpCon": "20",
+          "rb": "Point [ X=150, Y=50 ]"
+        },
+        {
+          "hs": "h5",
+          "lt": "Point [ X=-150, Y=-50 ]",
+          "mad": "10",
+          "mastery": "2",
+          "mobCount": "6",
+          "mpCon": "20",
+          "rb": "Point [ X=150, Y=50 ]"
+        },
+        {
+          "hs": "h6",
+          "lt": "Point [ X=-150, Y=-50 ]",
+          "mad": "12",
+          "mastery": "2",
+          "mobCount": "6",
+          "mpCon": "20",
+          "rb": "Point [ X=150, Y=50 ]"
+        },
+        {
+          "hs": "h7",
+          "lt": "Point [ X=-150, Y=-50 ]",
+          "mad": "14",
+          "mastery": "3",
+          "mobCount": "6",
+          "mpCon": "20",
+          "rb": "Point [ X=150, Y=50 ]"
+        },
+        {
+          "hs": "h8",
+          "lt": "Point [ X=-150, Y=-50 ]",
+          "mad": "16",
+          "mastery": "3",
+          "mobCount": "6",
+          "mpCon": "20",
+          "rb": "Point [ X=150, Y=50 ]"
+        },
+        {
+          "hs": "h9",
+          "lt": "Point [ X=-150, Y=-50 ]",
+          "mad": "18",
+          "mastery": "3",
+          "mobCount": "6",
+          "mpCon": "20",
+          "rb": "Point [ X=150, Y=50 ]"
+        }
+      ]
+    }
+  ]
+}

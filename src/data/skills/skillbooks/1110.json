@@ -1,0 +1,1016 @@
+{
+  "id": 1110,
+  "job": {
+    "id": 1110,
+    "name": "Dawn Warrior (2nd)"
+  },
+  "description": {
+    "id": 1110,
+    "desc": "",
+    "name": "",
+    "shortDesc": "",
+    "bookName": "소울마스터의 길"
+  },
+  "skills": [
+    {
+      "masterLevel": 20,
+      "weapons": [],
+      "id": 11100000,
+      "description": {
+        "id": 11100000,
+        "desc": "검 계열 무기의 숙련도와 명중률을 상승시킨다. 반드시 이 기술은 한 손 검, 두 손 검을 들었을 경우에만 적용된다.",
+        "name": "소드 마스터리",
+        "bookName": "",
+        "detail": "검 계열 무기의 숙련도 #mastery%, 명중률 #x 상승."
+      },
+      "levelProperties": [
+        {
+          "hs": "h1",
+          "mastery": "1",
+          "x": "1"
+        },
+        {
+          "hs": "h10",
+          "mastery": "5",
+          "x": "10"
+        },
+        {
+          "hs": "h11",
+          "mastery": "6",
+          "x": "11"
+        },
+        {
+          "hs": "h12",
+          "mastery": "6",
+          "x": "12"
+        },
+        {
+          "hs": "h13",
+          "mastery": "7",
+          "x": "13"
+        },
+        {
+          "hs": "h14",
+          "mastery": "7",
+          "x": "14"
+        },
+        {
+          "hs": "h15",
+          "mastery": "8",
+          "x": "15"
+        },
+        {
+          "hs": "h16",
+          "mastery": "8",
+          "x": "16"
+        },
+        {
+          "hs": "h17",
+          "mastery": "9",
+          "x": "17"
+        },
+        {
+          "hs": "h18",
+          "mastery": "9",
+          "x": "18"
+        },
+        {
+          "hs": "h19",
+          "mastery": "10",
+          "x": "19"
+        },
+        {
+          "hs": "h2",
+          "mastery": "1",
+          "x": "2"
+        },
+        {
+          "hs": "h20",
+          "mastery": "10",
+          "x": "20"
+        },
+        {
+          "hs": "h3",
+          "mastery": "2",
+          "x": "3"
+        },
+        {
+          "hs": "h4",
+          "mastery": "2",
+          "x": "4"
+        },
+        {
+          "hs": "h5",
+          "mastery": "3",
+          "x": "5"
+        },
+        {
+          "hs": "h6",
+          "mastery": "3",
+          "x": "6"
+        },
+        {
+          "hs": "h7",
+          "mastery": "4",
+          "x": "7"
+        },
+        {
+          "hs": "h8",
+          "mastery": "4",
+          "x": "8"
+        },
+        {
+          "hs": "h9",
+          "mastery": "5",
+          "x": "9"
+        }
+      ]
+    },
+    {
+      "masterLevel": 20,
+      "weapons": [],
+      "id": 11101001,
+      "description": {
+        "id": 11101001,
+        "desc": "HP, MP를 소비하여 일정 시간동안 검의 공격 속도를 한 단계 상승시킨다. 한 손 검, 두 손 검을 들었을 경우에만 발동이 가능하다.",
+        "name": "소드 부스터",
+        "bookName": "",
+        "detail": "HP #hpCon%, MP #mpCon% 소비하여 #time초간 검의 공격속도 향상"
+      },
+      "requiredSkillLevels": {
+        "11100000": 5
+      },
+      "levelProperties": [
+        {
+          "hpCon": "29",
+          "hs": "h1",
+          "mpCon": "29",
+          "time": "10",
+          "x": "-2"
+        },
+        {
+          "hpCon": "20",
+          "hs": "h10",
+          "mpCon": "20",
+          "time": "100",
+          "x": "-2"
+        },
+        {
+          "hpCon": "19",
+          "hs": "h11",
+          "mpCon": "19",
+          "time": "110",
+          "x": "-2"
+        },
+        {
+          "hpCon": "18",
+          "hs": "h12",
+          "mpCon": "18",
+          "time": "120",
+          "x": "-2"
+        },
+        {
+          "hpCon": "17",
+          "hs": "h13",
+          "mpCon": "17",
+          "time": "130",
+          "x": "-2"
+        },
+        {
+          "hpCon": "16",
+          "hs": "h14",
+          "mpCon": "16",
+          "time": "140",
+          "x": "-2"
+        },
+        {
+          "hpCon": "15",
+          "hs": "h15",
+          "mpCon": "15",
+          "time": "150",
+          "x": "-2"
+        },
+        {
+          "hpCon": "14",
+          "hs": "h16",
+          "mpCon": "14",
+          "time": "160",
+          "x": "-2"
+        },
+        {
+          "hpCon": "13",
+          "hs": "h17",
+          "mpCon": "13",
+          "time": "170",
+          "x": "-2"
+        },
+        {
+          "hpCon": "12",
+          "hs": "h18",
+          "mpCon": "12",
+          "time": "180",
+          "x": "-2"
+        },
+        {
+          "hpCon": "11",
+          "hs": "h19",
+          "mpCon": "11",
+          "time": "190",
+          "x": "-2"
+        },
+        {
+          "hpCon": "28",
+          "hs": "h2",
+          "mpCon": "28",
+          "time": "20",
+          "x": "-2"
+        },
+        {
+          "hpCon": "10",
+          "hs": "h20",
+          "mpCon": "10",
+          "time": "200",
+          "x": "-2"
+        },
+        {
+          "hpCon": "27",
+          "hs": "h3",
+          "mpCon": "27",
+          "time": "30",
+          "x": "-2"
+        },
+        {
+          "hpCon": "26",
+          "hs": "h4",
+          "mpCon": "26",
+          "time": "40",
+          "x": "-2"
+        },
+        {
+          "hpCon": "25",
+          "hs": "h5",
+          "mpCon": "25",
+          "time": "50",
+          "x": "-2"
+        },
+        {
+          "hpCon": "24",
+          "hs": "h6",
+          "mpCon": "24",
+          "time": "60",
+          "x": "-2"
+        },
+        {
+          "hpCon": "23",
+          "hs": "h7",
+          "mpCon": "23",
+          "time": "70",
+          "x": "-2"
+        },
+        {
+          "hpCon": "22",
+          "hs": "h8",
+          "mpCon": "22",
+          "time": "80",
+          "x": "-2"
+        },
+        {
+          "hpCon": "21",
+          "hs": "h9",
+          "mpCon": "21",
+          "time": "90",
+          "x": "-2"
+        }
+      ]
+    },
+    {
+      "masterLevel": 30,
+      "weapons": [],
+      "id": 11101002,
+      "description": {
+        "id": 11101002,
+        "desc": "일정 확률로 공격 스킬이 사용된 후 연속 공격이 발동된다. 다만 반드시 한 손 검, 혹은 두 손 검을 들었을 경우에만 발동된다.",
+        "name": "파이널 어택",
+        "bookName": "",
+        "detail": "#prop% 확률로 검 데미지 #damage%의 파이널 어택 발동."
+      },
+      "requiredSkillLevels": {
+        "11100000": 3
+      },
+      "levelProperties": [
+        {
+          "damage": "105",
+          "hs": "h1",
+          "mpCon": "6",
+          "prop": "2",
+          "time": "155",
+          "x": "1"
+        },
+        {
+          "damage": "150",
+          "hs": "h10",
+          "mpCon": "6",
+          "prop": "20",
+          "time": "200",
+          "x": "1"
+        },
+        {
+          "damage": "155",
+          "hs": "h11",
+          "mpCon": "9",
+          "prop": "22",
+          "time": "205",
+          "x": "1"
+        },
+        {
+          "damage": "160",
+          "hs": "h12",
+          "mpCon": "9",
+          "prop": "24",
+          "time": "210",
+          "x": "1"
+        },
+        {
+          "damage": "165",
+          "hs": "h13",
+          "mpCon": "9",
+          "prop": "26",
+          "time": "215",
+          "x": "1"
+        },
+        {
+          "damage": "170",
+          "hs": "h14",
+          "mpCon": "9",
+          "prop": "28",
+          "time": "220",
+          "x": "1"
+        },
+        {
+          "damage": "175",
+          "hs": "h15",
+          "mpCon": "9",
+          "prop": "30",
+          "time": "225",
+          "x": "1"
+        },
+        {
+          "damage": "180",
+          "hs": "h16",
+          "mpCon": "9",
+          "prop": "32",
+          "time": "230",
+          "x": "1"
+        },
+        {
+          "damage": "185",
+          "hs": "h17",
+          "mpCon": "9",
+          "prop": "34",
+          "time": "235",
+          "x": "1"
+        },
+        {
+          "damage": "190",
+          "hs": "h18",
+          "mpCon": "9",
+          "prop": "36",
+          "time": "240",
+          "x": "1"
+        },
+        {
+          "damage": "195",
+          "hs": "h19",
+          "mpCon": "9",
+          "prop": "38",
+          "time": "245",
+          "x": "1"
+        },
+        {
+          "damage": "110",
+          "hs": "h2",
+          "mpCon": "6",
+          "prop": "4",
+          "time": "160",
+          "x": "1"
+        },
+        {
+          "damage": "200",
+          "hs": "h20",
+          "mpCon": "9",
+          "prop": "40",
+          "time": "250",
+          "x": "1"
+        },
+        {
+          "damage": "205",
+          "hs": "h21",
+          "mpCon": "12",
+          "prop": "42",
+          "time": "255",
+          "x": "1"
+        },
+        {
+          "damage": "210",
+          "hs": "h22",
+          "mpCon": "12",
+          "prop": "44",
+          "time": "260",
+          "x": "1"
+        },
+        {
+          "damage": "215",
+          "hs": "h23",
+          "mpCon": "12",
+          "prop": "46",
+          "time": "265",
+          "x": "1"
+        },
+        {
+          "damage": "220",
+          "hs": "h24",
+          "mpCon": "12",
+          "prop": "48",
+          "time": "270",
+          "x": "1"
+        },
+        {
+          "damage": "225",
+          "hs": "h25",
+          "mpCon": "12",
+          "prop": "50",
+          "time": "275",
+          "x": "1"
+        },
+        {
+          "damage": "230",
+          "hs": "h26",
+          "mpCon": "12",
+          "prop": "52",
+          "time": "280",
+          "x": "1"
+        },
+        {
+          "damage": "235",
+          "hs": "h27",
+          "mpCon": "12",
+          "prop": "54",
+          "time": "285",
+          "x": "1"
+        },
+        {
+          "damage": "240",
+          "hs": "h28",
+          "mpCon": "12",
+          "prop": "56",
+          "time": "290",
+          "x": "1"
+        },
+        {
+          "damage": "245",
+          "hs": "h29",
+          "mpCon": "12",
+          "prop": "58",
+          "time": "295",
+          "x": "1"
+        },
+        {
+          "damage": "115",
+          "hs": "h3",
+          "mpCon": "6",
+          "prop": "6",
+          "time": "165",
+          "x": "1"
+        },
+        {
+          "damage": "250",
+          "hs": "h30",
+          "mpCon": "12",
+          "prop": "60",
+          "time": "300",
+          "x": "1"
+        },
+        {
+          "damage": "120",
+          "hs": "h4",
+          "mpCon": "6",
+          "prop": "8",
+          "time": "170",
+          "x": "1"
+        },
+        {
+          "damage": "125",
+          "hs": "h5",
+          "mpCon": "6",
+          "prop": "10",
+          "time": "175",
+          "x": "1"
+        },
+        {
+          "damage": "130",
+          "hs": "h6",
+          "mpCon": "6",
+          "prop": "12",
+          "time": "180",
+          "x": "1"
+        },
+        {
+          "damage": "135",
+          "hs": "h7",
+          "mpCon": "6",
+          "prop": "14",
+          "time": "185",
+          "x": "1"
+        },
+        {
+          "damage": "140",
+          "hs": "h8",
+          "mpCon": "6",
+          "prop": "16",
+          "time": "190",
+          "x": "1"
+        },
+        {
+          "damage": "145",
+          "hs": "h9",
+          "mpCon": "6",
+          "prop": "18",
+          "time": "195",
+          "x": "1"
+        }
+      ]
+    },
+    {
+      "masterLevel": 20,
+      "weapons": [],
+      "id": 11101003,
+      "description": {
+        "id": 11101003,
+        "desc": "일정 시간동안 주위에 있는 파티 전원의 물리 공격력은 상승하나 물리 방어력은 낮아진다.",
+        "name": "분노",
+        "bookName": "",
+        "detail": "MP #mpCon 소비하여 #time초간 물리 공격력 #pad 증가, 물리 방어력 #pdd 감소"
+      },
+      "levelProperties": [
+        {
+          "hs": "h1",
+          "lt": "Point [ X=-250, Y=-150 ]",
+          "mpCon": "12",
+          "pad": "3",
+          "pdd": "-3",
+          "rb": "Point [ X=250, Y=150 ]",
+          "time": "46"
+        },
+        {
+          "hs": "h10",
+          "lt": "Point [ X=-250, Y=-150 ]",
+          "mpCon": "12",
+          "pad": "7",
+          "pdd": "-7",
+          "rb": "Point [ X=250, Y=150 ]",
+          "time": "100"
+        },
+        {
+          "hs": "h11",
+          "lt": "Point [ X=-300, Y=-200 ]",
+          "mpCon": "20",
+          "pad": "8",
+          "pdd": "-8",
+          "rb": "Point [ X=300, Y=200 ]",
+          "time": "106"
+        },
+        {
+          "hs": "h12",
+          "lt": "Point [ X=-300, Y=-200 ]",
+          "mpCon": "20",
+          "pad": "8",
+          "pdd": "-8",
+          "rb": "Point [ X=300, Y=200 ]",
+          "time": "112"
+        },
+        {
+          "hs": "h13",
+          "lt": "Point [ X=-300, Y=-200 ]",
+          "mpCon": "20",
+          "pad": "9",
+          "pdd": "-9",
+          "rb": "Point [ X=300, Y=200 ]",
+          "time": "118"
+        },
+        {
+          "hs": "h14",
+          "lt": "Point [ X=-300, Y=-200 ]",
+          "mpCon": "20",
+          "pad": "9",
+          "pdd": "-9",
+          "rb": "Point [ X=300, Y=200 ]",
+          "time": "124"
+        },
+        {
+          "hs": "h15",
+          "lt": "Point [ X=-300, Y=-200 ]",
+          "mpCon": "20",
+          "pad": "10",
+          "pdd": "-10",
+          "rb": "Point [ X=300, Y=200 ]",
+          "time": "130"
+        },
+        {
+          "hs": "h16",
+          "lt": "Point [ X=-300, Y=-200 ]",
+          "mpCon": "20",
+          "pad": "10",
+          "pdd": "-10",
+          "rb": "Point [ X=300, Y=200 ]",
+          "time": "136"
+        },
+        {
+          "hs": "h17",
+          "lt": "Point [ X=-300, Y=-200 ]",
+          "mpCon": "20",
+          "pad": "11",
+          "pdd": "-11",
+          "rb": "Point [ X=300, Y=200 ]",
+          "time": "142"
+        },
+        {
+          "hs": "h18",
+          "lt": "Point [ X=-300, Y=-200 ]",
+          "mpCon": "20",
+          "pad": "11",
+          "pdd": "-11",
+          "rb": "Point [ X=300, Y=200 ]",
+          "time": "148"
+        },
+        {
+          "hs": "h19",
+          "lt": "Point [ X=-300, Y=-200 ]",
+          "mpCon": "20",
+          "pad": "12",
+          "pdd": "-12",
+          "rb": "Point [ X=300, Y=200 ]",
+          "time": "154"
+        },
+        {
+          "hs": "h2",
+          "lt": "Point [ X=-250, Y=-150 ]",
+          "mpCon": "12",
+          "pad": "3",
+          "pdd": "-3",
+          "rb": "Point [ X=250, Y=150 ]",
+          "time": "52"
+        },
+        {
+          "hs": "h20",
+          "lt": "Point [ X=-300, Y=-200 ]",
+          "mpCon": "20",
+          "pad": "12",
+          "pdd": "-12",
+          "rb": "Point [ X=300, Y=200 ]",
+          "time": "160"
+        },
+        {
+          "hs": "h3",
+          "lt": "Point [ X=-250, Y=-150 ]",
+          "mpCon": "12",
+          "pad": "4",
+          "pdd": "-4",
+          "rb": "Point [ X=250, Y=150 ]",
+          "time": "58"
+        },
+        {
+          "hs": "h4",
+          "lt": "Point [ X=-250, Y=-150 ]",
+          "mpCon": "12",
+          "pad": "4",
+          "pdd": "-4",
+          "rb": "Point [ X=250, Y=150 ]",
+          "time": "64"
+        },
+        {
+          "hs": "h5",
+          "lt": "Point [ X=-250, Y=-150 ]",
+          "mpCon": "12",
+          "pad": "5",
+          "pdd": "-5",
+          "rb": "Point [ X=250, Y=150 ]",
+          "time": "70"
+        },
+        {
+          "hs": "h6",
+          "lt": "Point [ X=-250, Y=-150 ]",
+          "mpCon": "12",
+          "pad": "5",
+          "pdd": "-5",
+          "rb": "Point [ X=250, Y=150 ]",
+          "time": "76"
+        },
+        {
+          "hs": "h7",
+          "lt": "Point [ X=-250, Y=-150 ]",
+          "mpCon": "12",
+          "pad": "6",
+          "pdd": "-6",
+          "rb": "Point [ X=250, Y=150 ]",
+          "time": "82"
+        },
+        {
+          "hs": "h8",
+          "lt": "Point [ X=-250, Y=-150 ]",
+          "mpCon": "12",
+          "pad": "6",
+          "pdd": "-6",
+          "rb": "Point [ X=250, Y=150 ]",
+          "time": "88"
+        },
+        {
+          "hs": "h9",
+          "lt": "Point [ X=-250, Y=-150 ]",
+          "mpCon": "12",
+          "pad": "7",
+          "pdd": "-7",
+          "rb": "Point [ X=250, Y=150 ]",
+          "time": "94"
+        }
+      ]
+    },
+    {
+      "masterLevel": 30,
+      "weapons": [],
+      "id": 11101004,
+      "description": {
+        "id": 11101004,
+        "desc": "눈에 보이지 않는 소울을 형상화시켜 적에게 날린다.",
+        "name": "소울 블레이드",
+        "bookName": "",
+        "detail": "MP #mpCon 소비하여 최대 #mobCount명에게 데미지 #damage%로 공격"
+      },
+      "levelProperties": [
+        {
+          "damage": "95",
+          "hs": "h1",
+          "mobCount": "3",
+          "mpCon": "15",
+          "range": "200"
+        },
+        {
+          "damage": "140",
+          "hs": "h10",
+          "mobCount": "3",
+          "mpCon": "15",
+          "range": "200"
+        },
+        {
+          "damage": "115",
+          "hs": "h11",
+          "mobCount": "4",
+          "mpCon": "20",
+          "range": "250"
+        },
+        {
+          "damage": "120",
+          "hs": "h12",
+          "mobCount": "4",
+          "mpCon": "20",
+          "range": "250"
+        },
+        {
+          "damage": "125",
+          "hs": "h13",
+          "mobCount": "4",
+          "mpCon": "20",
+          "range": "250"
+        },
+        {
+          "damage": "130",
+          "hs": "h14",
+          "mobCount": "4",
+          "mpCon": "20",
+          "range": "250"
+        },
+        {
+          "damage": "135",
+          "hs": "h15",
+          "mobCount": "4",
+          "mpCon": "20",
+          "range": "250"
+        },
+        {
+          "damage": "140",
+          "hs": "h16",
+          "mobCount": "4",
+          "mpCon": "20",
+          "range": "250"
+        },
+        {
+          "damage": "145",
+          "hs": "h17",
+          "mobCount": "4",
+          "mpCon": "20",
+          "range": "250"
+        },
+        {
+          "damage": "150",
+          "hs": "h18",
+          "mobCount": "4",
+          "mpCon": "20",
+          "range": "250"
+        },
+        {
+          "damage": "155",
+          "hs": "h19",
+          "mobCount": "4",
+          "mpCon": "20",
+          "range": "250"
+        },
+        {
+          "damage": "100",
+          "hs": "h2",
+          "mobCount": "3",
+          "mpCon": "15",
+          "range": "200"
+        },
+        {
+          "damage": "160",
+          "hs": "h20",
+          "mobCount": "4",
+          "mpCon": "20",
+          "range": "250"
+        },
+        {
+          "damage": "135",
+          "hs": "h21",
+          "mobCount": "5",
+          "mpCon": "25",
+          "range": "300"
+        },
+        {
+          "damage": "140",
+          "hs": "h22",
+          "mobCount": "5",
+          "mpCon": "25",
+          "range": "300"
+        },
+        {
+          "damage": "145",
+          "hs": "h23",
+          "mobCount": "5",
+          "mpCon": "25",
+          "range": "300"
+        },
+        {
+          "damage": "150",
+          "hs": "h24",
+          "mobCount": "5",
+          "mpCon": "25",
+          "range": "300"
+        },
+        {
+          "damage": "155",
+          "hs": "h25",
+          "mobCount": "5",
+          "mpCon": "25",
+          "range": "300"
+        },
+        {
+          "damage": "160",
+          "hs": "h26",
+          "mobCount": "5",
+          "mpCon": "25",
+          "range": "300"
+        },
+        {
+          "damage": "165",
+          "hs": "h27",
+          "mobCount": "5",
+          "mpCon": "25",
+          "range": "300"
+        },
+        {
+          "damage": "170",
+          "hs": "h28",
+          "mobCount": "5",
+          "mpCon": "25",
+          "range": "300"
+        },
+        {
+          "damage": "175",
+          "hs": "h29",
+          "mobCount": "5",
+          "mpCon": "25",
+          "range": "300"
+        },
+        {
+          "damage": "105",
+          "hs": "h3",
+          "mobCount": "3",
+          "mpCon": "15",
+          "range": "200"
+        },
+        {
+          "damage": "180",
+          "hs": "h30",
+          "mobCount": "5",
+          "mpCon": "25",
+          "range": "300"
+        },
+        {
+          "damage": "110",
+          "hs": "h4",
+          "mobCount": "3",
+          "mpCon": "15",
+          "range": "200"
+        },
+        {
+          "damage": "115",
+          "hs": "h5",
+          "mobCount": "3",
+          "mpCon": "15",
+          "range": "200"
+        },
+        {
+          "damage": "120",
+          "hs": "h6",
+          "mobCount": "3",
+          "mpCon": "15",
+          "range": "200"
+        },
+        {
+          "damage": "125",
+          "hs": "h7",
+          "mobCount": "3",
+          "mpCon": "15",
+          "range": "200"
+        },
+        {
+          "damage": "130",
+          "hs": "h8",
+          "mobCount": "3",
+          "mpCon": "15",
+          "range": "200"
+        },
+        {
+          "damage": "135",
+          "hs": "h9",
+          "mobCount": "3",
+          "mpCon": "15",
+          "range": "200"
+        }
+      ]
+    },
+    {
+      "masterLevel": 10,
+      "weapons": [],
+      "id": 11101005,
+      "description": {
+        "id": 11101005,
+        "desc": "소울의 힘을 받아 순간적으로 빠르게 이동한다.",
+        "name": "소울 러쉬",
+        "bookName": "",
+        "detail": "MP #mpCon 소비하여 소울의 힘으로 빠르게 이동"
+      },
+      "levelProperties": [
+        {
+          "hs": "h1",
+          "mpCon": "60"
+        },
+        {
+          "hs": "h10",
+          "mpCon": "15"
+        },
+        {
+          "hs": "h2",
+          "mpCon": "55"
+        },
+        {
+          "hs": "h3",
+          "mpCon": "50"
+        },
+        {
+          "hs": "h4",
+          "mpCon": "45"
+        },
+        {
+          "hs": "h5",
+          "mpCon": "40"
+        },
+        {
+          "hs": "h6",
+          "mpCon": "35"
+        },
+        {
+          "hs": "h7",
+          "mpCon": "30"
+        },
+        {
+          "hs": "h8",
+          "mpCon": "25"
+        },
+        {
+          "hs": "h9",
+          "mpCon": "20"
+        }
+      ]
+    }
+  ]
+}

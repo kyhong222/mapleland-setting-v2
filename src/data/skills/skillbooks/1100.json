@@ -1,0 +1,639 @@
+{
+  "id": 1100,
+  "job": {
+    "id": 1100,
+    "name": "Dawn Warrior (1st)"
+  },
+  "description": {
+    "id": 1100,
+    "desc": "",
+    "name": "",
+    "shortDesc": "",
+    "bookName": "소울마스터의 기본"
+  },
+  "skills": [
+    {
+      "masterLevel": 10,
+      "weapons": [],
+      "id": 11000000,
+      "description": {
+        "id": 11000000,
+        "desc": "Level UP 할 때, Max HP에 AP를 사용할 때 Max HP의 증가량을 향상시킨다.",
+        "name": "HP 증가량 향상",
+        "bookName": "",
+        "detail": "MaxHP LevelUP시 #x, AP 부여시 #y 추가 향상"
+      },
+      "levelProperties": [
+        {
+          "hs": "h1",
+          "x": "4",
+          "y": "3"
+        },
+        {
+          "hs": "h10",
+          "x": "40",
+          "y": "30"
+        },
+        {
+          "hs": "h2",
+          "x": "8",
+          "y": "6"
+        },
+        {
+          "hs": "h3",
+          "x": "12",
+          "y": "9"
+        },
+        {
+          "hs": "h4",
+          "x": "16",
+          "y": "12"
+        },
+        {
+          "hs": "h5",
+          "x": "20",
+          "y": "15"
+        },
+        {
+          "hs": "h6",
+          "x": "24",
+          "y": "18"
+        },
+        {
+          "hs": "h7",
+          "x": "28",
+          "y": "21"
+        },
+        {
+          "hs": "h8",
+          "x": "32",
+          "y": "24"
+        },
+        {
+          "hs": "h9",
+          "x": "36",
+          "y": "27"
+        }
+      ]
+    },
+    {
+      "masterLevel": 10,
+      "weapons": [],
+      "id": 11001001,
+      "description": {
+        "id": 11001001,
+        "desc": "일정 시간동안 물리 방어력을 증가시켜 준다.",
+        "name": "아이언 바디",
+        "bookName": "",
+        "detail": "#time초간 MP #mpCon 소비하여 물리 방어력 +#pdd"
+      },
+      "levelProperties": [
+        {
+          "hs": "h1",
+          "mpCon": "8",
+          "pdd": "3",
+          "time": "120"
+        },
+        {
+          "hs": "h10",
+          "mpCon": "17",
+          "pdd": "30",
+          "time": "300"
+        },
+        {
+          "hs": "h2",
+          "mpCon": "9",
+          "pdd": "6",
+          "time": "140"
+        },
+        {
+          "hs": "h3",
+          "mpCon": "10",
+          "pdd": "9",
+          "time": "160"
+        },
+        {
+          "hs": "h4",
+          "mpCon": "11",
+          "pdd": "12",
+          "time": "180"
+        },
+        {
+          "hs": "h5",
+          "mpCon": "12",
+          "pdd": "15",
+          "time": "200"
+        },
+        {
+          "hs": "h6",
+          "mpCon": "13",
+          "pdd": "18",
+          "time": "220"
+        },
+        {
+          "hs": "h7",
+          "mpCon": "14",
+          "pdd": "21",
+          "time": "240"
+        },
+        {
+          "hs": "h8",
+          "mpCon": "15",
+          "pdd": "24",
+          "time": "260"
+        },
+        {
+          "hs": "h9",
+          "mpCon": "16",
+          "pdd": "27",
+          "time": "280"
+        }
+      ]
+    },
+    {
+      "masterLevel": 20,
+      "weapons": [],
+      "id": 11001002,
+      "description": {
+        "id": 11001002,
+        "desc": "MP를 소비하여 장착한 무기로 적에게 일격을 가한다.",
+        "name": "파워 스트라이크",
+        "bookName": "",
+        "detail": "MP #mpCon 소비, 데미지 #damage%"
+      },
+      "levelProperties": [
+        {
+          "damage": "165",
+          "hs": "h1",
+          "mpCon": "4"
+        },
+        {
+          "damage": "210",
+          "hs": "h10",
+          "mpCon": "7"
+        },
+        {
+          "damage": "215",
+          "hs": "h11",
+          "mpCon": "7"
+        },
+        {
+          "damage": "220",
+          "hs": "h12",
+          "mpCon": "8"
+        },
+        {
+          "damage": "225",
+          "hs": "h13",
+          "mpCon": "8"
+        },
+        {
+          "damage": "230",
+          "hs": "h14",
+          "mpCon": "9"
+        },
+        {
+          "damage": "235",
+          "hs": "h15",
+          "mpCon": "9"
+        },
+        {
+          "damage": "240",
+          "hs": "h16",
+          "mpCon": "10"
+        },
+        {
+          "damage": "245",
+          "hs": "h17",
+          "mpCon": "10"
+        },
+        {
+          "damage": "250",
+          "hs": "h18",
+          "mpCon": "11"
+        },
+        {
+          "damage": "255",
+          "hs": "h19",
+          "mpCon": "11"
+        },
+        {
+          "damage": "170",
+          "hs": "h2",
+          "mpCon": "4"
+        },
+        {
+          "damage": "260",
+          "hs": "h20",
+          "mpCon": "12"
+        },
+        {
+          "damage": "175",
+          "hs": "h3",
+          "mpCon": "4"
+        },
+        {
+          "damage": "180",
+          "hs": "h4",
+          "mpCon": "4"
+        },
+        {
+          "damage": "185",
+          "hs": "h5",
+          "mpCon": "5"
+        },
+        {
+          "damage": "190",
+          "hs": "h6",
+          "mpCon": "5"
+        },
+        {
+          "damage": "195",
+          "hs": "h7",
+          "mpCon": "5"
+        },
+        {
+          "damage": "200",
+          "hs": "h8",
+          "mpCon": "6"
+        },
+        {
+          "damage": "205",
+          "hs": "h9",
+          "mpCon": "6"
+        }
+      ]
+    },
+    {
+      "masterLevel": 20,
+      "weapons": [],
+      "id": 11001003,
+      "description": {
+        "id": 11001003,
+        "desc": "HP, MP를 소비하여 장착한 무기로 주위의 적에게 전체 공격을 가한다.",
+        "name": "슬래시 블러스트",
+        "bookName": "",
+        "detail": "HP #hpCon, MP #mpCon 소비하여 데미지 #damage%"
+      },
+      "requiredSkillLevels": {
+        "11001002": 1
+      },
+      "levelProperties": [
+        {
+          "damage": "72",
+          "hpCon": "8",
+          "hs": "h1",
+          "mobCount": "6",
+          "mpCon": "6",
+          "range": "130"
+        },
+        {
+          "damage": "99",
+          "hpCon": "11",
+          "hs": "h10",
+          "mobCount": "6",
+          "mpCon": "9",
+          "range": "130"
+        },
+        {
+          "damage": "102",
+          "hpCon": "11",
+          "hs": "h11",
+          "mobCount": "6",
+          "mpCon": "9",
+          "range": "150"
+        },
+        {
+          "damage": "105",
+          "hpCon": "12",
+          "hs": "h12",
+          "mobCount": "6",
+          "mpCon": "10",
+          "range": "150"
+        },
+        {
+          "damage": "108",
+          "hpCon": "12",
+          "hs": "h13",
+          "mobCount": "6",
+          "mpCon": "10",
+          "range": "150"
+        },
+        {
+          "damage": "111",
+          "hpCon": "13",
+          "hs": "h14",
+          "mobCount": "6",
+          "mpCon": "11",
+          "range": "150"
+        },
+        {
+          "damage": "114",
+          "hpCon": "13",
+          "hs": "h15",
+          "mobCount": "6",
+          "mpCon": "11",
+          "range": "150"
+        },
+        {
+          "damage": "117",
+          "hpCon": "14",
+          "hs": "h16",
+          "mobCount": "6",
+          "mpCon": "12",
+          "range": "150"
+        },
+        {
+          "damage": "120",
+          "hpCon": "14",
+          "hs": "h17",
+          "mobCount": "6",
+          "mpCon": "12",
+          "range": "150"
+        },
+        {
+          "damage": "123",
+          "hpCon": "15",
+          "hs": "h18",
+          "mobCount": "6",
+          "mpCon": "13",
+          "range": "150"
+        },
+        {
+          "damage": "126",
+          "hpCon": "15",
+          "hs": "h19",
+          "mobCount": "6",
+          "mpCon": "13",
+          "range": "150"
+        },
+        {
+          "damage": "75",
+          "hpCon": "8",
+          "hs": "h2",
+          "mobCount": "6",
+          "mpCon": "6",
+          "range": "130"
+        },
+        {
+          "damage": "130",
+          "hpCon": "16",
+          "hs": "h20",
+          "mobCount": "6",
+          "mpCon": "14",
+          "range": "150"
+        },
+        {
+          "damage": "78",
+          "hpCon": "8",
+          "hs": "h3",
+          "mobCount": "6",
+          "mpCon": "6",
+          "range": "130"
+        },
+        {
+          "damage": "81",
+          "hpCon": "8",
+          "hs": "h4",
+          "mobCount": "6",
+          "mpCon": "6",
+          "range": "130"
+        },
+        {
+          "damage": "84",
+          "hpCon": "9",
+          "hs": "h5",
+          "mobCount": "6",
+          "mpCon": "7",
+          "range": "130"
+        },
+        {
+          "damage": "87",
+          "hpCon": "9",
+          "hs": "h6",
+          "mobCount": "6",
+          "mpCon": "7",
+          "range": "130"
+        },
+        {
+          "damage": "90",
+          "hpCon": "9",
+          "hs": "h7",
+          "mobCount": "6",
+          "mpCon": "7",
+          "range": "130"
+        },
+        {
+          "damage": "93",
+          "hpCon": "10",
+          "hs": "h8",
+          "mobCount": "6",
+          "mpCon": "8",
+          "range": "130"
+        },
+        {
+          "damage": "96",
+          "hpCon": "10",
+          "hs": "h9",
+          "mobCount": "6",
+          "mpCon": "8",
+          "range": "130"
+        }
+      ]
+    },
+    {
+      "masterLevel": 20,
+      "weapons": [],
+      "id": 11001004,
+      "description": {
+        "id": 11001004,
+        "desc": "자신을 수호하는 정령을 소환한다. 주위에 근접한 적을 공격한다.",
+        "name": "소울",
+        "bookName": "",
+        "detail": "MP #mpCon 소비하여 #time초간 물리 공격력 +#pad, 물리 방어력 +#pdd, 마법 방어력 +#mdd의 정령을 소환"
+      },
+      "levelProperties": [
+        {
+          "hs": "h1",
+          "mdd": "10",
+          "mpCon": "11",
+          "pad": "21",
+          "pdd": "10",
+          "time": "105",
+          "x": "1"
+        },
+        {
+          "hs": "h10",
+          "mdd": "15",
+          "mpCon": "15",
+          "pad": "30",
+          "pdd": "15",
+          "time": "150",
+          "x": "1"
+        },
+        {
+          "hs": "h11",
+          "mdd": "20",
+          "mpCon": "16",
+          "pad": "31",
+          "pdd": "20",
+          "time": "155",
+          "x": "1"
+        },
+        {
+          "hs": "h12",
+          "mdd": "20",
+          "mpCon": "16",
+          "pad": "32",
+          "pdd": "20",
+          "time": "160",
+          "x": "1"
+        },
+        {
+          "hs": "h13",
+          "mdd": "20",
+          "mpCon": "17",
+          "pad": "33",
+          "pdd": "20",
+          "time": "165",
+          "x": "1"
+        },
+        {
+          "hs": "h14",
+          "mdd": "20",
+          "mpCon": "17",
+          "pad": "34",
+          "pdd": "20",
+          "time": "170",
+          "x": "1"
+        },
+        {
+          "hs": "h15",
+          "mdd": "20",
+          "mpCon": "18",
+          "pad": "35",
+          "pdd": "20",
+          "time": "175",
+          "x": "1"
+        },
+        {
+          "hs": "h16",
+          "mdd": "25",
+          "mpCon": "18",
+          "pad": "36",
+          "pdd": "25",
+          "time": "180",
+          "x": "1"
+        },
+        {
+          "hs": "h17",
+          "mdd": "25",
+          "mpCon": "19",
+          "pad": "37",
+          "pdd": "25",
+          "time": "185",
+          "x": "1"
+        },
+        {
+          "hs": "h18",
+          "mdd": "25",
+          "mpCon": "19",
+          "pad": "38",
+          "pdd": "25",
+          "time": "190",
+          "x": "1"
+        },
+        {
+          "hs": "h19",
+          "mdd": "25",
+          "mpCon": "20",
+          "pad": "39",
+          "pdd": "25",
+          "time": "195",
+          "x": "1"
+        },
+        {
+          "hs": "h2",
+          "mdd": "10",
+          "mpCon": "11",
+          "pad": "22",
+          "pdd": "10",
+          "time": "110",
+          "x": "1"
+        },
+        {
+          "hs": "h20",
+          "mdd": "25",
+          "mpCon": "20",
+          "pad": "40",
+          "pdd": "25",
+          "time": "200",
+          "x": "1"
+        },
+        {
+          "hs": "h3",
+          "mdd": "10",
+          "mpCon": "12",
+          "pad": "23",
+          "pdd": "10",
+          "time": "115",
+          "x": "1"
+        },
+        {
+          "hs": "h4",
+          "mdd": "10",
+          "mpCon": "12",
+          "pad": "24",
+          "pdd": "10",
+          "time": "120",
+          "x": "1"
+        },
+        {
+          "hs": "h5",
+          "mdd": "10",
+          "mpCon": "13",
+          "pad": "25",
+          "pdd": "10",
+          "time": "125",
+          "x": "1"
+        },
+        {
+          "hs": "h6",
+          "mdd": "15",
+          "mpCon": "13",
+          "pad": "26",
+          "pdd": "15",
+          "time": "130",
+          "x": "1"
+        },
+        {
+          "hs": "h7",
+          "mdd": "15",
+          "mpCon": "14",
+          "pad": "27",
+          "pdd": "15",
+          "time": "135",
+          "x": "1"
+        },
+        {
+          "hs": "h8",
+          "mdd": "15",
+          "mpCon": "14",
+          "pad": "28",
+          "pdd": "15",
+          "time": "140",
+          "x": "1"
+        },
+        {
+          "hs": "h9",
+          "mdd": "15",
+          "mpCon": "15",
+          "pad": "29",
+          "pdd": "15",
+          "time": "145",
+          "x": "1"
+        }
+      ]
+    }
+  ]
+}

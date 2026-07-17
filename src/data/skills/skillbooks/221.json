@@ -1,0 +1,1407 @@
+{
+  "id": 221,
+  "job": {
+    "id": 221,
+    "name": "Mage - Ice/Lightning (3rd)"
+  },
+  "description": {
+    "id": 221,
+    "desc": "",
+    "name": "",
+    "shortDesc": "",
+    "bookName": "상급 냉기, 번개 마법"
+  },
+  "skills": [
+    {
+      "masterLevel": 20,
+      "weapons": [],
+      "id": 2210000,
+      "description": {
+        "id": 2210000,
+        "desc": "적으로부터 받는 냉기, 번개 속성의 마법 공격에 대한 내성을 지니게 된다.",
+        "name": "파셜 레지스턴스",
+        "bookName": "",
+        "detail": "냉기, 번개 속성 마법 내성 #x% 증가"
+      },
+      "levelProperties": [
+        {
+          "hs": "h1",
+          "x": "23"
+        },
+        {
+          "hs": "h10",
+          "x": "50"
+        },
+        {
+          "hs": "h11",
+          "x": "52"
+        },
+        {
+          "hs": "h12",
+          "x": "54"
+        },
+        {
+          "hs": "h13",
+          "x": "56"
+        },
+        {
+          "hs": "h14",
+          "x": "58"
+        },
+        {
+          "hs": "h15",
+          "x": "60"
+        },
+        {
+          "hs": "h16",
+          "x": "62"
+        },
+        {
+          "hs": "h17",
+          "x": "64"
+        },
+        {
+          "hs": "h18",
+          "x": "66"
+        },
+        {
+          "hs": "h19",
+          "x": "68"
+        },
+        {
+          "hs": "h2",
+          "x": "26"
+        },
+        {
+          "hs": "h20",
+          "x": "70"
+        },
+        {
+          "hs": "h3",
+          "x": "29"
+        },
+        {
+          "hs": "h4",
+          "x": "32"
+        },
+        {
+          "hs": "h5",
+          "x": "35"
+        },
+        {
+          "hs": "h6",
+          "x": "38"
+        },
+        {
+          "hs": "h7",
+          "x": "41"
+        },
+        {
+          "hs": "h8",
+          "x": "44"
+        },
+        {
+          "hs": "h9",
+          "x": "47"
+        }
+      ]
+    },
+    {
+      "masterLevel": 30,
+      "weapons": [],
+      "id": 2210001,
+      "description": {
+        "id": 2210001,
+        "desc": " 더 많은 MP를 소비하여 자신이 사용하는 모든 공격 마법을 증폭시킨다.",
+        "name": "엘리먼트 엠플리피케이션",
+        "bookName": "",
+        "detail": "소비 MP #x% 증가, 공격 마법 데미지 #y% 증가"
+      },
+      "levelProperties": [
+        {
+          "hs": "h1",
+          "x": "105",
+          "y": "107"
+        },
+        {
+          "hs": "h2",
+          "x": "110",
+          "y": "109"
+        },
+        {
+          "hs": "h3",
+          "x": "115",
+          "y": "111"
+        },
+        {
+          "hs": "h4",
+          "x": "120",
+          "y": "113"
+        },
+        {
+          "hs": "h5",
+          "x": "125",
+          "y": "114"
+        },
+        {
+          "hs": "h6",
+          "x": "130",
+          "y": "115"
+        },
+        {
+          "hs": "h7",
+          "x": "135",
+          "y": "116"
+        },
+        {
+          "hs": "h8",
+          "x": "140",
+          "y": "117"
+        },
+        {
+          "hs": "h9",
+          "x": "145",
+          "y": "118"
+        },
+        {
+          "hs": "h10",
+          "x": "150",
+          "y": "119"
+        },
+        {
+          "hs": "h11",
+          "x": "160",
+          "y": "121"
+        },
+        {
+          "hs": "h12",
+          "x": "155",
+          "y": "121"
+        },
+        {
+          "hs": "h13",
+          "x": "165",
+          "y": "123"
+        },
+        {
+          "hs": "h14",
+          "x": "160",
+          "y": "123"
+        },
+        {
+          "hs": "h15",
+          "x": "170",
+          "y": "125"
+        },
+        {
+          "hs": "h16",
+          "x": "165",
+          "y": "125"
+        },
+        {
+          "hs": "h17",
+          "x": "175",
+          "y": "127"
+        },
+        {
+          "hs": "h18",
+          "x": "170",
+          "y": "127"
+        },
+        {
+          "hs": "h19",
+          "x": "180",
+          "y": "129"
+        },
+        {
+          "hs": "h20",
+          "x": "175",
+          "y": "129"
+        },
+        {
+          "hs": "h21",
+          "x": "185",
+          "y": "131"
+        },
+        {
+          "hs": "h22",
+          "x": "180",
+          "y": "131"
+        },
+        {
+          "hs": "h23",
+          "x": "190",
+          "y": "133"
+        },
+        {
+          "hs": "h24",
+          "x": "185",
+          "y": "133"
+        },
+        {
+          "hs": "h25",
+          "x": "195",
+          "y": "135"
+        },
+        {
+          "hs": "h26",
+          "x": "190",
+          "y": "135"
+        },
+        {
+          "hs": "h27",
+          "x": "205",
+          "y": "137"
+        },
+        {
+          "hs": "h28",
+          "x": "200",
+          "y": "137"
+        },
+        {
+          "hs": "h29",
+          "x": "195",
+          "y": "137"
+        },
+        {
+          "hs": "h30",
+          "x": "200",
+          "y": "140"
+        }
+      ]
+    },
+    {
+      "masterLevel": 30,
+      "actions": [
+        "magic2"
+      ],
+      "elementalAttribute": "i",
+      "weapons": [],
+      "id": 2211002,
+      "description": {
+        "id": 2211002,
+        "desc": "날카로운 얼음 덩어리를 만들어 여러 명의 적을 향해 날린다. 명중시 냉기 속성 외의 몬스터는 얼어붙게 되며 한 번에 6마리 이상은 공격할 수 없다.",
+        "name": "아이스 스트라이크",
+        "bookName": "",
+        "detail": "MP #mpCon 소비, 기본 공격력 #mad, 숙련도 #mastery%, 공격범위 #lt%"
+      },
+      "levelProperties": [
+        {
+          "hs": "h1",
+          "lt": "Point [ X=-110, Y=-82 ]",
+          "mad": "32",
+          "mastery": "1",
+          "mobCount": "6",
+          "mpCon": "21",
+          "rb": "Point [ X=110, Y=83 ]",
+          "time": "1"
+        },
+        {
+          "hs": "h10",
+          "lt": "Point [ X=-140, Y=-105 ]",
+          "mad": "50",
+          "mastery": "4",
+          "mobCount": "6",
+          "mpCon": "30",
+          "rb": "Point [ X=140, Y=105 ]",
+          "time": "1"
+        },
+        {
+          "hs": "h11",
+          "lt": "Point [ X=-140, Y=-105 ]",
+          "mad": "52",
+          "mastery": "4",
+          "mobCount": "6",
+          "mpCon": "31",
+          "rb": "Point [ X=140, Y=105 ]",
+          "time": "1"
+        },
+        {
+          "hs": "h12",
+          "lt": "Point [ X=-140, Y=-105 ]",
+          "mad": "54",
+          "mastery": "4",
+          "mobCount": "6",
+          "mpCon": "32",
+          "rb": "Point [ X=140, Y=105 ]",
+          "time": "1"
+        },
+        {
+          "hs": "h13",
+          "lt": "Point [ X=-150, Y=-112 ]",
+          "mad": "56",
+          "mastery": "5",
+          "mobCount": "6",
+          "mpCon": "33",
+          "rb": "Point [ X=150, Y=113 ]",
+          "time": "1"
+        },
+        {
+          "hs": "h14",
+          "lt": "Point [ X=-150, Y=-112 ]",
+          "mad": "58",
+          "mastery": "5",
+          "mobCount": "6",
+          "mpCon": "34",
+          "rb": "Point [ X=150, Y=113 ]",
+          "time": "1"
+        },
+        {
+          "hs": "h15",
+          "lt": "Point [ X=-150, Y=-112 ]",
+          "mad": "60",
+          "mastery": "5",
+          "mobCount": "6",
+          "mpCon": "35",
+          "rb": "Point [ X=150, Y=113 ]",
+          "time": "1"
+        },
+        {
+          "hs": "h16",
+          "lt": "Point [ X=-160, Y=-120 ]",
+          "mad": "62",
+          "mastery": "6",
+          "mobCount": "6",
+          "mpCon": "36",
+          "rb": "Point [ X=160, Y=120 ]",
+          "time": "2"
+        },
+        {
+          "hs": "h17",
+          "lt": "Point [ X=-160, Y=-120 ]",
+          "mad": "64",
+          "mastery": "6",
+          "mobCount": "6",
+          "mpCon": "37",
+          "rb": "Point [ X=160, Y=120 ]",
+          "time": "2"
+        },
+        {
+          "hs": "h18",
+          "lt": "Point [ X=-160, Y=-120 ]",
+          "mad": "66",
+          "mastery": "6",
+          "mobCount": "6",
+          "mpCon": "38",
+          "rb": "Point [ X=160, Y=120 ]",
+          "time": "2"
+        },
+        {
+          "hs": "h19",
+          "lt": "Point [ X=-170, Y=-127 ]",
+          "mad": "68",
+          "mastery": "7",
+          "mobCount": "6",
+          "mpCon": "39",
+          "rb": "Point [ X=170, Y=128 ]",
+          "time": "2"
+        },
+        {
+          "hs": "h2",
+          "lt": "Point [ X=-110, Y=-82 ]",
+          "mad": "34",
+          "mastery": "1",
+          "mobCount": "6",
+          "mpCon": "22",
+          "rb": "Point [ X=110, Y=83 ]",
+          "time": "1"
+        },
+        {
+          "hs": "h20",
+          "lt": "Point [ X=-170, Y=-127 ]",
+          "mad": "70",
+          "mastery": "7",
+          "mobCount": "6",
+          "mpCon": "40",
+          "rb": "Point [ X=170, Y=128 ]",
+          "time": "2"
+        },
+        {
+          "hs": "h21",
+          "lt": "Point [ X=-170, Y=-127 ]",
+          "mad": "72",
+          "mastery": "7",
+          "mobCount": "6",
+          "mpCon": "41",
+          "rb": "Point [ X=170, Y=128 ]",
+          "time": "2"
+        },
+        {
+          "hs": "h22",
+          "lt": "Point [ X=-180, Y=-135 ]",
+          "mad": "74",
+          "mastery": "8",
+          "mobCount": "6",
+          "mpCon": "42",
+          "rb": "Point [ X=180, Y=135 ]",
+          "time": "2"
+        },
+        {
+          "hs": "h23",
+          "lt": "Point [ X=-180, Y=-135 ]",
+          "mad": "76",
+          "mastery": "8",
+          "mobCount": "6",
+          "mpCon": "43",
+          "rb": "Point [ X=180, Y=135 ]",
+          "time": "2"
+        },
+        {
+          "hs": "h24",
+          "lt": "Point [ X=-180, Y=-135 ]",
+          "mad": "78",
+          "mastery": "8",
+          "mobCount": "6",
+          "mpCon": "44",
+          "rb": "Point [ X=180, Y=135 ]",
+          "time": "2"
+        },
+        {
+          "hs": "h25",
+          "lt": "Point [ X=-190, Y=-142 ]",
+          "mad": "80",
+          "mastery": "9",
+          "mobCount": "6",
+          "mpCon": "45",
+          "rb": "Point [ X=190, Y=143 ]",
+          "time": "2"
+        },
+        {
+          "hs": "h26",
+          "lt": "Point [ X=-190, Y=-142 ]",
+          "mad": "82",
+          "mastery": "9",
+          "mobCount": "6",
+          "mpCon": "46",
+          "rb": "Point [ X=190, Y=143 ]",
+          "time": "2"
+        },
+        {
+          "hs": "h27",
+          "lt": "Point [ X=-190, Y=-142 ]",
+          "mad": "84",
+          "mastery": "9",
+          "mobCount": "6",
+          "mpCon": "47",
+          "rb": "Point [ X=190, Y=143 ]",
+          "time": "2"
+        },
+        {
+          "hs": "h28",
+          "lt": "Point [ X=-200, Y=-150 ]",
+          "mad": "86",
+          "mastery": "10",
+          "mobCount": "6",
+          "mpCon": "48",
+          "rb": "Point [ X=200, Y=150 ]",
+          "time": "2"
+        },
+        {
+          "hs": "h29",
+          "lt": "Point [ X=-200, Y=-150 ]",
+          "mad": "88",
+          "mastery": "10",
+          "mobCount": "6",
+          "mpCon": "49",
+          "rb": "Point [ X=200, Y=150 ]",
+          "time": "2"
+        },
+        {
+          "hs": "h3",
+          "lt": "Point [ X=-110, Y=-82 ]",
+          "mad": "36",
+          "mastery": "1",
+          "mobCount": "6",
+          "mpCon": "23",
+          "rb": "Point [ X=110, Y=83 ]",
+          "time": "1"
+        },
+        {
+          "hs": "h30",
+          "lt": "Point [ X=-200, Y=-150 ]",
+          "mad": "90",
+          "mastery": "10",
+          "mobCount": "6",
+          "mpCon": "50",
+          "rb": "Point [ X=200, Y=150 ]",
+          "time": "2"
+        },
+        {
+          "hs": "h4",
+          "lt": "Point [ X=-120, Y=-90 ]",
+          "mad": "38",
+          "mastery": "2",
+          "mobCount": "6",
+          "mpCon": "24",
+          "rb": "Point [ X=120, Y=90 ]",
+          "time": "1"
+        },
+        {
+          "hs": "h5",
+          "lt": "Point [ X=-120, Y=-90 ]",
+          "mad": "40",
+          "mastery": "2",
+          "mobCount": "6",
+          "mpCon": "25",
+          "rb": "Point [ X=120, Y=90 ]",
+          "time": "1"
+        },
+        {
+          "hs": "h6",
+          "lt": "Point [ X=-120, Y=-90 ]",
+          "mad": "42",
+          "mastery": "2",
+          "mobCount": "6",
+          "mpCon": "26",
+          "rb": "Point [ X=120, Y=90 ]",
+          "time": "1"
+        },
+        {
+          "hs": "h7",
+          "lt": "Point [ X=-130, Y=-97 ]",
+          "mad": "44",
+          "mastery": "3",
+          "mobCount": "6",
+          "mpCon": "27",
+          "rb": "Point [ X=130, Y=98 ]",
+          "time": "1"
+        },
+        {
+          "hs": "h8",
+          "lt": "Point [ X=-130, Y=-97 ]",
+          "mad": "46",
+          "mastery": "3",
+          "mobCount": "6",
+          "mpCon": "28",
+          "rb": "Point [ X=130, Y=98 ]",
+          "time": "1"
+        },
+        {
+          "hs": "h9",
+          "lt": "Point [ X=-130, Y=-97 ]",
+          "mad": "48",
+          "mastery": "3",
+          "mobCount": "6",
+          "mpCon": "29",
+          "rb": "Point [ X=130, Y=98 ]",
+          "time": "1"
+        }
+      ]
+    },
+    {
+      "masterLevel": 30,
+      "actions": [
+        "magic1"
+      ],
+      "elementalAttribute": "l",
+      "weapons": [],
+      "id": 2211003,
+      "description": {
+        "id": 2211003,
+        "desc": "번개의 힘을 모아 창을 만들어 적 하나를 공격한다. 몬스터는 번개 속성 공격을 받게 된다.",
+        "name": "썬더 스피어",
+        "bookName": "",
+        "detail": "MP #mpCon 소비, 기본 공격력 #mad, 숙련도 #mastery%"
+      },
+      "levelProperties": [
+        {
+          "hs": "h1",
+          "mad": "80",
+          "mastery": "1",
+          "mpCon": "10"
+        },
+        {
+          "hs": "h10",
+          "mad": "121",
+          "mastery": "4",
+          "mpCon": "14"
+        },
+        {
+          "hs": "h11",
+          "mad": "124",
+          "mastery": "4",
+          "mpCon": "15"
+        },
+        {
+          "hs": "h12",
+          "mad": "127",
+          "mastery": "4",
+          "mpCon": "15"
+        },
+        {
+          "hs": "h13",
+          "mad": "130",
+          "mastery": "5",
+          "mpCon": "16"
+        },
+        {
+          "hs": "h14",
+          "mad": "133",
+          "mastery": "5",
+          "mpCon": "16"
+        },
+        {
+          "hs": "h15",
+          "mad": "135",
+          "mastery": "5",
+          "mpCon": "17"
+        },
+        {
+          "hs": "h16",
+          "mad": "138",
+          "mastery": "6",
+          "mpCon": "17"
+        },
+        {
+          "hs": "h17",
+          "mad": "141",
+          "mastery": "6",
+          "mpCon": "18"
+        },
+        {
+          "hs": "h18",
+          "mad": "143",
+          "mastery": "6",
+          "mpCon": "18"
+        },
+        {
+          "hs": "h19",
+          "mad": "145",
+          "mastery": "7",
+          "mpCon": "19"
+        },
+        {
+          "hs": "h2",
+          "mad": "90",
+          "mastery": "1",
+          "mpCon": "10"
+        },
+        {
+          "hs": "h20",
+          "mad": "148",
+          "mastery": "7",
+          "mpCon": "19"
+        },
+        {
+          "hs": "h21",
+          "mad": "150",
+          "mastery": "7",
+          "mpCon": "20"
+        },
+        {
+          "hs": "h22",
+          "mad": "153",
+          "mastery": "8",
+          "mpCon": "20"
+        },
+        {
+          "hs": "h23",
+          "mad": "155",
+          "mastery": "8",
+          "mpCon": "21"
+        },
+        {
+          "hs": "h24",
+          "mad": "157",
+          "mastery": "8",
+          "mpCon": "21"
+        },
+        {
+          "hs": "h25",
+          "mad": "159",
+          "mastery": "9",
+          "mpCon": "22"
+        },
+        {
+          "hs": "h26",
+          "mad": "162",
+          "mastery": "9",
+          "mpCon": "22"
+        },
+        {
+          "hs": "h27",
+          "mad": "164",
+          "mastery": "9",
+          "mpCon": "23"
+        },
+        {
+          "hs": "h28",
+          "mad": "166",
+          "mastery": "10",
+          "mpCon": "23"
+        },
+        {
+          "hs": "h29",
+          "mad": "168",
+          "mastery": "10",
+          "mpCon": "24"
+        },
+        {
+          "hs": "h3",
+          "mad": "95",
+          "mastery": "1",
+          "mpCon": "11"
+        },
+        {
+          "hs": "h30",
+          "mad": "170",
+          "mastery": "10",
+          "mpCon": "24"
+        },
+        {
+          "hs": "h4",
+          "mad": "100",
+          "mastery": "2",
+          "mpCon": "11"
+        },
+        {
+          "hs": "h5",
+          "mad": "104",
+          "mastery": "2",
+          "mpCon": "12"
+        },
+        {
+          "hs": "h6",
+          "mad": "108",
+          "mastery": "2",
+          "mpCon": "12"
+        },
+        {
+          "hs": "h7",
+          "mad": "111",
+          "mastery": "3",
+          "mpCon": "13"
+        },
+        {
+          "hs": "h8",
+          "mad": "115",
+          "mastery": "3",
+          "mpCon": "13"
+        },
+        {
+          "hs": "h9",
+          "mad": "118",
+          "mastery": "3",
+          "mpCon": "14"
+        }
+      ]
+    },
+    {
+      "masterLevel": 20,
+      "actions": [
+        "alert4"
+      ],
+      "weapons": [],
+      "id": 2211004,
+      "description": {
+        "id": 2211004,
+        "desc": "일정 시간동안 주변에 있는 적 다수를 봉인 상태로 만든다. 봉인 상태가 된 몬스터는 스킬을 쓸 수 없게 되며 보스 몬스터에게는 통하지 않는다.",
+        "name": "씰",
+        "bookName": "",
+        "detail": "MP #mpCon 소비, #time초간 #prop% 확률로 봉인 상태"
+      },
+      "requiredSkillLevels": {
+        "2210001": 3
+      },
+      "levelProperties": [
+        {
+          "hs": "h1",
+          "lt": "Point [ X=-250, Y=-150 ]",
+          "mobCount": "6",
+          "mpCon": "12",
+          "prop": "38",
+          "rb": "Point [ X=250, Y=150 ]",
+          "time": "10"
+        },
+        {
+          "hs": "h10",
+          "lt": "Point [ X=-250, Y=-150 ]",
+          "mobCount": "6",
+          "mpCon": "18",
+          "prop": "65",
+          "rb": "Point [ X=250, Y=150 ]",
+          "time": "15"
+        },
+        {
+          "hs": "h11",
+          "lt": "Point [ X=-280, Y=-150 ]",
+          "mobCount": "6",
+          "mpCon": "24",
+          "prop": "68",
+          "rb": "Point [ X=280, Y=150 ]",
+          "time": "15"
+        },
+        {
+          "hs": "h12",
+          "lt": "Point [ X=-280, Y=-150 ]",
+          "mobCount": "6",
+          "mpCon": "24",
+          "prop": "71",
+          "rb": "Point [ X=280, Y=150 ]",
+          "time": "16"
+        },
+        {
+          "hs": "h13",
+          "lt": "Point [ X=-280, Y=-150 ]",
+          "mobCount": "6",
+          "mpCon": "24",
+          "prop": "74",
+          "rb": "Point [ X=280, Y=150 ]",
+          "time": "16"
+        },
+        {
+          "hs": "h14",
+          "lt": "Point [ X=-280, Y=-150 ]",
+          "mobCount": "6",
+          "mpCon": "24",
+          "prop": "77",
+          "rb": "Point [ X=280, Y=150 ]",
+          "time": "17"
+        },
+        {
+          "hs": "h15",
+          "lt": "Point [ X=-280, Y=-150 ]",
+          "mobCount": "6",
+          "mpCon": "24",
+          "prop": "80",
+          "rb": "Point [ X=280, Y=150 ]",
+          "time": "17"
+        },
+        {
+          "hs": "h16",
+          "lt": "Point [ X=-280, Y=-150 ]",
+          "mobCount": "6",
+          "mpCon": "30",
+          "prop": "83",
+          "rb": "Point [ X=280, Y=150 ]",
+          "time": "18"
+        },
+        {
+          "hs": "h17",
+          "lt": "Point [ X=-280, Y=-150 ]",
+          "mobCount": "6",
+          "mpCon": "30",
+          "prop": "86",
+          "rb": "Point [ X=280, Y=150 ]",
+          "time": "18"
+        },
+        {
+          "hs": "h18",
+          "lt": "Point [ X=-280, Y=-150 ]",
+          "mobCount": "6",
+          "mpCon": "30",
+          "prop": "89",
+          "rb": "Point [ X=280, Y=150 ]",
+          "time": "19"
+        },
+        {
+          "hs": "h19",
+          "lt": "Point [ X=-280, Y=-150 ]",
+          "mobCount": "6",
+          "mpCon": "30",
+          "prop": "92",
+          "rb": "Point [ X=280, Y=150 ]",
+          "time": "19"
+        },
+        {
+          "hs": "h2",
+          "lt": "Point [ X=-250, Y=-150 ]",
+          "mobCount": "6",
+          "mpCon": "12",
+          "prop": "41",
+          "rb": "Point [ X=250, Y=150 ]",
+          "time": "11"
+        },
+        {
+          "hs": "h20",
+          "lt": "Point [ X=-280, Y=-150 ]",
+          "mobCount": "6",
+          "mpCon": "30",
+          "prop": "95",
+          "rb": "Point [ X=280, Y=150 ]",
+          "time": "20"
+        },
+        {
+          "hs": "h3",
+          "lt": "Point [ X=-250, Y=-150 ]",
+          "mobCount": "6",
+          "mpCon": "12",
+          "prop": "44",
+          "rb": "Point [ X=250, Y=150 ]",
+          "time": "11"
+        },
+        {
+          "hs": "h4",
+          "lt": "Point [ X=-250, Y=-150 ]",
+          "mobCount": "6",
+          "mpCon": "12",
+          "prop": "47",
+          "rb": "Point [ X=250, Y=150 ]",
+          "time": "12"
+        },
+        {
+          "hs": "h5",
+          "lt": "Point [ X=-250, Y=-150 ]",
+          "mobCount": "6",
+          "mpCon": "12",
+          "prop": "50",
+          "rb": "Point [ X=250, Y=150 ]",
+          "time": "12"
+        },
+        {
+          "hs": "h6",
+          "lt": "Point [ X=-250, Y=-150 ]",
+          "mobCount": "6",
+          "mpCon": "18",
+          "prop": "53",
+          "rb": "Point [ X=250, Y=150 ]",
+          "time": "13"
+        },
+        {
+          "hs": "h7",
+          "lt": "Point [ X=-250, Y=-150 ]",
+          "mobCount": "6",
+          "mpCon": "18",
+          "prop": "56",
+          "rb": "Point [ X=250, Y=150 ]",
+          "time": "13"
+        },
+        {
+          "hs": "h8",
+          "lt": "Point [ X=-250, Y=-150 ]",
+          "mobCount": "6",
+          "mpCon": "18",
+          "prop": "59",
+          "rb": "Point [ X=250, Y=150 ]",
+          "time": "14"
+        },
+        {
+          "hs": "h9",
+          "lt": "Point [ X=-250, Y=-150 ]",
+          "mobCount": "6",
+          "mpCon": "18",
+          "prop": "62",
+          "rb": "Point [ X=250, Y=150 ]",
+          "time": "14"
+        }
+      ]
+    },
+    {
+      "masterLevel": 20,
+      "actions": [
+        "alert"
+      ],
+      "weapons": [],
+      "id": 2211005,
+      "description": {
+        "id": 2211005,
+        "desc": "많은 양의 HP와 MP를 소비하여 마법 공격 속도를 향상시킨다.",
+        "name": "매직 부스터",
+        "bookName": "",
+        "detail": "HP #hpCon, MP #mpCon 소비하여 #time초간 마법 공격 속도 #x단계 향상"
+      },
+      "requiredSkillLevels": {
+        "2210001": 3
+      },
+      "levelProperties": [
+        {
+          "hpCon": "58",
+          "hs": "h1",
+          "mpCon": "53",
+          "time": "10",
+          "x": "-1"
+        },
+        {
+          "hpCon": "40",
+          "hs": "h10",
+          "mpCon": "35",
+          "time": "100",
+          "x": "-1"
+        },
+        {
+          "hpCon": "39",
+          "hs": "h11",
+          "mpCon": "34",
+          "time": "110",
+          "x": "-2"
+        },
+        {
+          "hpCon": "38",
+          "hs": "h12",
+          "mpCon": "33",
+          "time": "120",
+          "x": "-2"
+        },
+        {
+          "hpCon": "37",
+          "hs": "h13",
+          "mpCon": "32",
+          "time": "130",
+          "x": "-2"
+        },
+        {
+          "hpCon": "36",
+          "hs": "h14",
+          "mpCon": "31",
+          "time": "140",
+          "x": "-2"
+        },
+        {
+          "hpCon": "35",
+          "hs": "h15",
+          "mpCon": "30",
+          "time": "150",
+          "x": "-2"
+        },
+        {
+          "hpCon": "34",
+          "hs": "h16",
+          "mpCon": "29",
+          "time": "160",
+          "x": "-2"
+        },
+        {
+          "hpCon": "33",
+          "hs": "h17",
+          "mpCon": "28",
+          "time": "170",
+          "x": "-2"
+        },
+        {
+          "hpCon": "32",
+          "hs": "h18",
+          "mpCon": "27",
+          "time": "180",
+          "x": "-2"
+        },
+        {
+          "hpCon": "31",
+          "hs": "h19",
+          "mpCon": "26",
+          "time": "190",
+          "x": "-2"
+        },
+        {
+          "hpCon": "56",
+          "hs": "h2",
+          "mpCon": "51",
+          "time": "20",
+          "x": "-1"
+        },
+        {
+          "hpCon": "30",
+          "hs": "h20",
+          "mpCon": "25",
+          "time": "200",
+          "x": "-2"
+        },
+        {
+          "hpCon": "54",
+          "hs": "h3",
+          "mpCon": "49",
+          "time": "30",
+          "x": "-1"
+        },
+        {
+          "hpCon": "52",
+          "hs": "h4",
+          "mpCon": "47",
+          "time": "40",
+          "x": "-1"
+        },
+        {
+          "hpCon": "50",
+          "hs": "h5",
+          "mpCon": "45",
+          "time": "50",
+          "x": "-1"
+        },
+        {
+          "hpCon": "48",
+          "hs": "h6",
+          "mpCon": "43",
+          "time": "60",
+          "x": "-1"
+        },
+        {
+          "hpCon": "46",
+          "hs": "h7",
+          "mpCon": "41",
+          "time": "70",
+          "x": "-1"
+        },
+        {
+          "hpCon": "44",
+          "hs": "h8",
+          "mpCon": "39",
+          "time": "80",
+          "x": "-1"
+        },
+        {
+          "hpCon": "42",
+          "hs": "h9",
+          "mpCon": "37",
+          "time": "90",
+          "x": "-1"
+        }
+      ]
+    },
+    {
+      "masterLevel": 30,
+      "actions": [
+        "shoot6"
+      ],
+      "weapons": [],
+      "id": 2211006,
+      "description": {
+        "id": 2211006,
+        "desc": "냉기와 번개 속성을 혼합한 마법으로 적 하나를 공격한다. 냉기나 번개가 약점인 몬스터에게 큰 데미지를 줄 수 있으며 일정 확률로 적은 결빙된다.",
+        "name": "매직 컴포지션",
+        "bookName": "",
+        "detail": "MP #mpCon 소비, 기본 공격력 #mad, 숙련도 #mastery%, #time초간 결빙"
+      },
+      "levelProperties": [
+        {
+          "hs": "h1",
+          "mad": "80",
+          "mastery": "1",
+          "mpCon": "14",
+          "time": "1",
+          "x": "1"
+        },
+        {
+          "hs": "h10",
+          "mad": "104",
+          "mastery": "4",
+          "mpCon": "14",
+          "time": "1",
+          "x": "1"
+        },
+        {
+          "hs": "h11",
+          "mad": "106",
+          "mastery": "4",
+          "mpCon": "18",
+          "time": "1",
+          "x": "1"
+        },
+        {
+          "hs": "h12",
+          "mad": "108",
+          "mastery": "4",
+          "mpCon": "18",
+          "time": "1",
+          "x": "1"
+        },
+        {
+          "hs": "h13",
+          "mad": "110",
+          "mastery": "5",
+          "mpCon": "18",
+          "time": "1",
+          "x": "1"
+        },
+        {
+          "hs": "h14",
+          "mad": "112",
+          "mastery": "5",
+          "mpCon": "18",
+          "time": "1",
+          "x": "1"
+        },
+        {
+          "hs": "h15",
+          "mad": "114",
+          "mastery": "5",
+          "mpCon": "18",
+          "time": "1",
+          "x": "1"
+        },
+        {
+          "hs": "h16",
+          "mad": "116",
+          "mastery": "6",
+          "mpCon": "18",
+          "time": "2",
+          "x": "1"
+        },
+        {
+          "hs": "h17",
+          "mad": "118",
+          "mastery": "6",
+          "mpCon": "18",
+          "time": "2",
+          "x": "1"
+        },
+        {
+          "hs": "h18",
+          "mad": "120",
+          "mastery": "6",
+          "mpCon": "18",
+          "time": "2",
+          "x": "1"
+        },
+        {
+          "hs": "h19",
+          "mad": "122",
+          "mastery": "7",
+          "mpCon": "18",
+          "time": "2",
+          "x": "1"
+        },
+        {
+          "hs": "h2",
+          "mad": "84",
+          "mastery": "1",
+          "mpCon": "14",
+          "time": "1",
+          "x": "1"
+        },
+        {
+          "hs": "h20",
+          "mad": "124",
+          "mastery": "7",
+          "mpCon": "18",
+          "time": "2",
+          "x": "1"
+        },
+        {
+          "hs": "h21",
+          "mad": "126",
+          "mastery": "7",
+          "mpCon": "22",
+          "time": "2",
+          "x": "1"
+        },
+        {
+          "hs": "h22",
+          "mad": "128",
+          "mastery": "8",
+          "mpCon": "22",
+          "time": "2",
+          "x": "1"
+        },
+        {
+          "hs": "h23",
+          "mad": "130",
+          "mastery": "8",
+          "mpCon": "22",
+          "time": "2",
+          "x": "1"
+        },
+        {
+          "hs": "h24",
+          "mad": "132",
+          "mastery": "8",
+          "mpCon": "22",
+          "time": "2",
+          "x": "1"
+        },
+        {
+          "hs": "h25",
+          "mad": "134",
+          "mastery": "9",
+          "mpCon": "22",
+          "time": "2",
+          "x": "1"
+        },
+        {
+          "hs": "h26",
+          "mad": "136",
+          "mastery": "9",
+          "mpCon": "22",
+          "time": "2",
+          "x": "1"
+        },
+        {
+          "hs": "h27",
+          "mad": "137",
+          "mastery": "9",
+          "mpCon": "22",
+          "time": "2",
+          "x": "1"
+        },
+        {
+          "hs": "h28",
+          "mad": "138",
+          "mastery": "10",
+          "mpCon": "22",
+          "time": "2",
+          "x": "1"
+        },
+        {
+          "hs": "h29",
+          "mad": "139",
+          "mastery": "10",
+          "mpCon": "22",
+          "time": "2",
+          "x": "1"
+        },
+        {
+          "hs": "h3",
+          "mad": "87",
+          "mastery": "1",
+          "mpCon": "14",
+          "time": "1",
+          "x": "1"
+        },
+        {
+          "hs": "h30",
+          "mad": "140",
+          "mastery": "10",
+          "mpCon": "22",
+          "time": "2",
+          "x": "1"
+        },
+        {
+          "hs": "h4",
+          "mad": "90",
+          "mastery": "2",
+          "mpCon": "14",
+          "time": "1",
+          "x": "1"
+        },
+        {
+          "hs": "h5",
+          "mad": "93",
+          "mastery": "2",
+          "mpCon": "14",
+          "time": "1",
+          "x": "1"
+        },
+        {
+          "hs": "h6",
+          "mad": "96",
+          "mastery": "2",
+          "mpCon": "14",
+          "time": "1",
+          "x": "1"
+        },
+        {
+          "hs": "h7",
+          "mad": "98",
+          "mastery": "3",
+          "mpCon": "14",
+          "time": "1",
+          "x": "1"
+        },
+        {
+          "hs": "h8",
+          "mad": "100",
+          "mastery": "3",
+          "mpCon": "14",
+          "time": "1",
+          "x": "1"
+        },
+        {
+          "hs": "h9",
+          "mad": "102",
+          "mastery": "3",
+          "mpCon": "14",
+          "time": "1",
+          "x": "1"
+        }
+      ]
+    }
+  ]
+}

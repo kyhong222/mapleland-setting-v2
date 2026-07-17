@@ -1,0 +1,1161 @@
+{
+  "id": 1311,
+  "job": {
+    "id": 1311,
+    "name": "Wind Archer (3rd)"
+  },
+  "description": {
+    "id": 1311,
+    "desc": "",
+    "name": "",
+    "shortDesc": "",
+    "bookName": "윈드브레이커의 길"
+  },
+  "skills": [
+    {
+      "invisible": true,
+      "masterLevel": 20,
+      "weapons": [],
+      "id": 13110003,
+      "description": {
+        "id": 13110003,
+        "desc": "활 계열 무기의 숙련도와 공격력을 상승시킨다. 반드시 활을 들었을 경우에만 적용된다.",
+        "name": "보우 엑스퍼트",
+        "bookName": "",
+        "detail": "활 무기의 숙련도 #mastery%, 물리 공격력 #x 상승"
+      },
+      "requiredSkillLevels": {
+        "13100000": 20
+      },
+      "levelProperties": [
+        {
+          "hs": "h1",
+          "mastery": "11",
+          "x": "0"
+        },
+        {
+          "hs": "h10",
+          "mastery": "12",
+          "x": "3"
+        },
+        {
+          "hs": "h11",
+          "mastery": "13",
+          "x": "4"
+        },
+        {
+          "hs": "h12",
+          "mastery": "13",
+          "x": "4"
+        },
+        {
+          "hs": "h13",
+          "mastery": "13",
+          "x": "4"
+        },
+        {
+          "hs": "h14",
+          "mastery": "13",
+          "x": "5"
+        },
+        {
+          "hs": "h15",
+          "mastery": "13",
+          "x": "5"
+        },
+        {
+          "hs": "h16",
+          "mastery": "14",
+          "x": "5"
+        },
+        {
+          "hs": "h17",
+          "mastery": "14",
+          "x": "6"
+        },
+        {
+          "hs": "h18",
+          "mastery": "14",
+          "x": "6"
+        },
+        {
+          "hs": "h19",
+          "mastery": "14",
+          "x": "6"
+        },
+        {
+          "hs": "h2",
+          "mastery": "11",
+          "x": "1"
+        },
+        {
+          "hs": "h20",
+          "mastery": "14",
+          "x": "7"
+        },
+        {
+          "hs": "h3",
+          "mastery": "11",
+          "x": "1"
+        },
+        {
+          "hs": "h4",
+          "mastery": "11",
+          "x": "1"
+        },
+        {
+          "hs": "h5",
+          "mastery": "11",
+          "x": "2"
+        },
+        {
+          "hs": "h6",
+          "mastery": "12",
+          "x": "2"
+        },
+        {
+          "hs": "h7",
+          "mastery": "12",
+          "x": "2"
+        },
+        {
+          "hs": "h8",
+          "mastery": "12",
+          "x": "3"
+        },
+        {
+          "hs": "h9",
+          "mastery": "12",
+          "x": "3"
+        }
+      ]
+    },
+    {
+      "masterLevel": 20,
+      "weapons": [
+        45
+      ],
+      "id": 13111000,
+      "description": {
+        "id": 13111000,
+        "desc": "하늘로 여러 발의 화살을 쏘아올려 주변의 적 여러 마리를 공격한다. 6마리 이상은 공격할 수 없으며 활을 장비하고 있을 때만 사용이 가능하다.",
+        "name": "에로우 레인",
+        "bookName": "",
+        "detail": "MP #mpCon 소비, 데미지 #damage%"
+      },
+      "levelProperties": [
+        {
+          "damage": "65",
+          "hs": "h1",
+          "lt": "Point [ X=-170, Y=-100 ]",
+          "mobCount": "6",
+          "mpCon": "18",
+          "rb": "Point [ X=170, Y=100 ]"
+        },
+        {
+          "damage": "110",
+          "hs": "h10",
+          "lt": "Point [ X=-170, Y=-100 ]",
+          "mobCount": "6",
+          "mpCon": "22",
+          "rb": "Point [ X=170, Y=100 ]"
+        },
+        {
+          "damage": "115",
+          "hs": "h11",
+          "lt": "Point [ X=-210, Y=-100 ]",
+          "mobCount": "6",
+          "mpCon": "26",
+          "rb": "Point [ X=210, Y=100 ]"
+        },
+        {
+          "damage": "120",
+          "hs": "h12",
+          "lt": "Point [ X=-210, Y=-100 ]",
+          "mobCount": "6",
+          "mpCon": "26",
+          "rb": "Point [ X=210, Y=100 ]"
+        },
+        {
+          "damage": "125",
+          "hs": "h13",
+          "lt": "Point [ X=-210, Y=-100 ]",
+          "mobCount": "6",
+          "mpCon": "26",
+          "rb": "Point [ X=210, Y=100 ]"
+        },
+        {
+          "damage": "130",
+          "hs": "h14",
+          "lt": "Point [ X=-210, Y=-100 ]",
+          "mobCount": "6",
+          "mpCon": "26",
+          "rb": "Point [ X=210, Y=100 ]"
+        },
+        {
+          "damage": "135",
+          "hs": "h15",
+          "lt": "Point [ X=-210, Y=-100 ]",
+          "mobCount": "6",
+          "mpCon": "26",
+          "rb": "Point [ X=210, Y=100 ]"
+        },
+        {
+          "damage": "140",
+          "hs": "h16",
+          "lt": "Point [ X=-210, Y=-100 ]",
+          "mobCount": "6",
+          "mpCon": "30",
+          "rb": "Point [ X=210, Y=100 ]"
+        },
+        {
+          "damage": "145",
+          "hs": "h17",
+          "lt": "Point [ X=-210, Y=-100 ]",
+          "mobCount": "6",
+          "mpCon": "30",
+          "rb": "Point [ X=210, Y=100 ]"
+        },
+        {
+          "damage": "150",
+          "hs": "h18",
+          "lt": "Point [ X=-210, Y=-100 ]",
+          "mobCount": "6",
+          "mpCon": "30",
+          "rb": "Point [ X=210, Y=100 ]"
+        },
+        {
+          "damage": "155",
+          "hs": "h19",
+          "lt": "Point [ X=-210, Y=-100 ]",
+          "mobCount": "6",
+          "mpCon": "30",
+          "rb": "Point [ X=210, Y=100 ]"
+        },
+        {
+          "damage": "70",
+          "hs": "h2",
+          "lt": "Point [ X=-170, Y=-100 ]",
+          "mobCount": "6",
+          "mpCon": "18",
+          "rb": "Point [ X=170, Y=100 ]"
+        },
+        {
+          "damage": "160",
+          "hs": "h20",
+          "lt": "Point [ X=-210, Y=-100 ]",
+          "mobCount": "6",
+          "mpCon": "30",
+          "rb": "Point [ X=210, Y=100 ]"
+        },
+        {
+          "damage": "75",
+          "hs": "h3",
+          "lt": "Point [ X=-170, Y=-100 ]",
+          "mobCount": "6",
+          "mpCon": "18",
+          "rb": "Point [ X=170, Y=100 ]"
+        },
+        {
+          "damage": "80",
+          "hs": "h4",
+          "lt": "Point [ X=-170, Y=-100 ]",
+          "mobCount": "6",
+          "mpCon": "18",
+          "rb": "Point [ X=170, Y=100 ]"
+        },
+        {
+          "damage": "85",
+          "hs": "h5",
+          "lt": "Point [ X=-170, Y=-100 ]",
+          "mobCount": "6",
+          "mpCon": "18",
+          "rb": "Point [ X=170, Y=100 ]"
+        },
+        {
+          "damage": "90",
+          "hs": "h6",
+          "lt": "Point [ X=-170, Y=-100 ]",
+          "mobCount": "6",
+          "mpCon": "22",
+          "rb": "Point [ X=170, Y=100 ]"
+        },
+        {
+          "damage": "95",
+          "hs": "h7",
+          "lt": "Point [ X=-170, Y=-100 ]",
+          "mobCount": "6",
+          "mpCon": "22",
+          "rb": "Point [ X=170, Y=100 ]"
+        },
+        {
+          "damage": "100",
+          "hs": "h8",
+          "lt": "Point [ X=-170, Y=-100 ]",
+          "mobCount": "6",
+          "mpCon": "22",
+          "rb": "Point [ X=170, Y=100 ]"
+        },
+        {
+          "damage": "105",
+          "hs": "h9",
+          "lt": "Point [ X=-170, Y=-100 ]",
+          "mobCount": "6",
+          "mpCon": "22",
+          "rb": "Point [ X=170, Y=100 ]"
+        }
+      ]
+    },
+    {
+      "masterLevel": 30,
+      "weapons": [
+        45
+      ],
+      "id": 13111001,
+      "description": {
+        "id": 13111001,
+        "desc": "한 명의 적에게 4발의 화살을 쏘아 공격한다.",
+        "name": "스트레이프",
+        "bookName": "",
+        "detail": "MP #mpCon 소비, 데미지 #damage%, 4회 공격"
+      },
+      "levelProperties": [
+        {
+          "bulletCount": "4",
+          "damage": "71",
+          "hs": "h1",
+          "mpCon": "26"
+        },
+        {
+          "bulletCount": "4",
+          "damage": "80",
+          "hs": "h10",
+          "mpCon": "26"
+        },
+        {
+          "bulletCount": "4",
+          "damage": "81",
+          "hs": "h11",
+          "mpCon": "26"
+        },
+        {
+          "bulletCount": "4",
+          "damage": "82",
+          "hs": "h12",
+          "mpCon": "26"
+        },
+        {
+          "bulletCount": "4",
+          "damage": "83",
+          "hs": "h13",
+          "mpCon": "26"
+        },
+        {
+          "bulletCount": "4",
+          "damage": "84",
+          "hs": "h14",
+          "mpCon": "26"
+        },
+        {
+          "bulletCount": "4",
+          "damage": "85",
+          "hs": "h15",
+          "mpCon": "26"
+        },
+        {
+          "bulletCount": "4",
+          "damage": "86",
+          "hs": "h16",
+          "mpCon": "32"
+        },
+        {
+          "bulletCount": "4",
+          "damage": "87",
+          "hs": "h17",
+          "mpCon": "32"
+        },
+        {
+          "bulletCount": "4",
+          "damage": "88",
+          "hs": "h18",
+          "mpCon": "32"
+        },
+        {
+          "bulletCount": "4",
+          "damage": "89",
+          "hs": "h19",
+          "mpCon": "32"
+        },
+        {
+          "bulletCount": "4",
+          "damage": "72",
+          "hs": "h2",
+          "mpCon": "26"
+        },
+        {
+          "bulletCount": "4",
+          "damage": "90",
+          "hs": "h20",
+          "mpCon": "32"
+        },
+        {
+          "bulletCount": "4",
+          "damage": "91",
+          "hs": "h21",
+          "mpCon": "32"
+        },
+        {
+          "bulletCount": "4",
+          "damage": "92",
+          "hs": "h22",
+          "mpCon": "32"
+        },
+        {
+          "bulletCount": "4",
+          "damage": "93",
+          "hs": "h23",
+          "mpCon": "32"
+        },
+        {
+          "bulletCount": "4",
+          "damage": "94",
+          "hs": "h24",
+          "mpCon": "32"
+        },
+        {
+          "bulletCount": "4",
+          "damage": "95",
+          "hs": "h25",
+          "mpCon": "32"
+        },
+        {
+          "bulletCount": "4",
+          "damage": "96",
+          "hs": "h26",
+          "mpCon": "32"
+        },
+        {
+          "bulletCount": "4",
+          "damage": "97",
+          "hs": "h27",
+          "mpCon": "32"
+        },
+        {
+          "bulletCount": "4",
+          "damage": "98",
+          "hs": "h28",
+          "mpCon": "32"
+        },
+        {
+          "bulletCount": "4",
+          "damage": "99",
+          "hs": "h29",
+          "mpCon": "32"
+        },
+        {
+          "bulletCount": "4",
+          "damage": "73",
+          "hs": "h3",
+          "mpCon": "26"
+        },
+        {
+          "bulletCount": "4",
+          "damage": "100",
+          "hs": "h30",
+          "mpCon": "32"
+        },
+        {
+          "bulletCount": "4",
+          "damage": "74",
+          "hs": "h4",
+          "mpCon": "26"
+        },
+        {
+          "bulletCount": "4",
+          "damage": "75",
+          "hs": "h5",
+          "mpCon": "26"
+        },
+        {
+          "bulletCount": "4",
+          "damage": "76",
+          "hs": "h6",
+          "mpCon": "26"
+        },
+        {
+          "bulletCount": "4",
+          "damage": "77",
+          "hs": "h7",
+          "mpCon": "26"
+        },
+        {
+          "bulletCount": "4",
+          "damage": "78",
+          "hs": "h8",
+          "mpCon": "26"
+        },
+        {
+          "bulletCount": "4",
+          "damage": "79",
+          "hs": "h9",
+          "mpCon": "26"
+        }
+      ]
+    },
+    {
+      "invisible": true,
+      "masterLevel": 20,
+      "weapons": [
+        45
+      ],
+      "id": 13111002,
+      "description": {
+        "id": 13111002,
+        "desc": "폭풍우가 몰아치듯 빠른 속도로 화살을 발사한다. 스킬 키를 누르고 있으면 지속적으로 화살이 나간다.",
+        "name": "폭풍의 시",
+        "bookName": "",
+        "detail": "MP #mpCon 소비, 데미지 #damage%"
+      },
+      "levelProperties": [
+        {
+          "damage": "52",
+          "hs": "h1",
+          "mpCon": "6"
+        },
+        {
+          "damage": "70",
+          "hs": "h10",
+          "mpCon": "6"
+        },
+        {
+          "damage": "72",
+          "hs": "h11",
+          "mpCon": "8"
+        },
+        {
+          "damage": "74",
+          "hs": "h12",
+          "mpCon": "8"
+        },
+        {
+          "damage": "76",
+          "hs": "h13",
+          "mpCon": "8"
+        },
+        {
+          "damage": "78",
+          "hs": "h14",
+          "mpCon": "8"
+        },
+        {
+          "damage": "80",
+          "hs": "h15",
+          "mpCon": "8"
+        },
+        {
+          "damage": "82",
+          "hs": "h16",
+          "mpCon": "8"
+        },
+        {
+          "damage": "84",
+          "hs": "h17",
+          "mpCon": "8"
+        },
+        {
+          "damage": "86",
+          "hs": "h18",
+          "mpCon": "8"
+        },
+        {
+          "damage": "88",
+          "hs": "h19",
+          "mpCon": "8"
+        },
+        {
+          "damage": "54",
+          "hs": "h2",
+          "mpCon": "6"
+        },
+        {
+          "damage": "90",
+          "hs": "h20",
+          "mpCon": "8"
+        },
+        {
+          "damage": "56",
+          "hs": "h3",
+          "mpCon": "6"
+        },
+        {
+          "damage": "58",
+          "hs": "h4",
+          "mpCon": "6"
+        },
+        {
+          "damage": "60",
+          "hs": "h5",
+          "mpCon": "6"
+        },
+        {
+          "damage": "62",
+          "hs": "h6",
+          "mpCon": "6"
+        },
+        {
+          "damage": "64",
+          "hs": "h7",
+          "mpCon": "6"
+        },
+        {
+          "damage": "66",
+          "hs": "h8",
+          "mpCon": "6"
+        },
+        {
+          "damage": "68",
+          "hs": "h9",
+          "mpCon": "6"
+        }
+      ]
+    },
+    {
+      "masterLevel": 20,
+      "weapons": [],
+      "id": 13111004,
+      "description": {
+        "id": 13111004,
+        "desc": "일정 시간동안 퍼펫(자신의 분신)을 소환해 낸다. 퍼펫이 있는 동안 몬스터들은 자신이 아닌 퍼펫을 공격하게 된다.",
+        "name": "퍼펫",
+        "bookName": "",
+        "detail": "MP #mpCon 소비, #time초간 HP #x인 분신 소환"
+      },
+      "levelProperties": [
+        {
+          "hs": "h1",
+          "mpCon": "23",
+          "time": "5",
+          "x": "500"
+        },
+        {
+          "hs": "h10",
+          "mpCon": "26",
+          "time": "30",
+          "x": "1800"
+        },
+        {
+          "hs": "h11",
+          "mpCon": "29",
+          "time": "30",
+          "x": "2000"
+        },
+        {
+          "hs": "h12",
+          "mpCon": "29",
+          "time": "40",
+          "x": "2400"
+        },
+        {
+          "hs": "h13",
+          "mpCon": "29",
+          "time": "40",
+          "x": "2800"
+        },
+        {
+          "hs": "h14",
+          "mpCon": "29",
+          "time": "40",
+          "x": "3200"
+        },
+        {
+          "hs": "h15",
+          "mpCon": "29",
+          "time": "50",
+          "x": "3600"
+        },
+        {
+          "hs": "h16",
+          "mpCon": "32",
+          "time": "50",
+          "x": "4000"
+        },
+        {
+          "hs": "h17",
+          "mpCon": "32",
+          "time": "50",
+          "x": "4500"
+        },
+        {
+          "hs": "h18",
+          "mpCon": "32",
+          "time": "60",
+          "x": "5000"
+        },
+        {
+          "hs": "h19",
+          "mpCon": "32",
+          "time": "60",
+          "x": "5500"
+        },
+        {
+          "hs": "h2",
+          "mpCon": "23",
+          "time": "5",
+          "x": "600"
+        },
+        {
+          "hs": "h20",
+          "mpCon": "32",
+          "time": "60",
+          "x": "6000"
+        },
+        {
+          "hs": "h3",
+          "mpCon": "23",
+          "time": "10",
+          "x": "700"
+        },
+        {
+          "hs": "h4",
+          "mpCon": "23",
+          "time": "10",
+          "x": "800"
+        },
+        {
+          "hs": "h5",
+          "mpCon": "23",
+          "time": "10",
+          "x": "900"
+        },
+        {
+          "hs": "h6",
+          "mpCon": "26",
+          "time": "20",
+          "x": "1000"
+        },
+        {
+          "hs": "h7",
+          "mpCon": "26",
+          "time": "20",
+          "x": "1200"
+        },
+        {
+          "hs": "h8",
+          "mpCon": "26",
+          "time": "20",
+          "x": "1400"
+        },
+        {
+          "hs": "h9",
+          "mpCon": "26",
+          "time": "30",
+          "x": "1600"
+        }
+      ]
+    },
+    {
+      "masterLevel": 10,
+      "weapons": [
+        45
+      ],
+      "id": 13111005,
+      "description": {
+        "id": 13111005,
+        "desc": "120초간 활을 자유자재로 사용할 수 있었던 영웅인 알바트로스로 변신을 한다. 이동 속도와 점프력이 증가하고 알바트로스 전용 스킬을 사용할 수 있다.",
+        "name": "알바트로스",
+        "bookName": "",
+        "detail": "MP #mpCon 소비하여 #time초간 알바트로스로 변신, 재사용 대기시간 #cooltime초"
+      },
+      "levelProperties": [
+        {
+          "cooltime": "270",
+          "hs": "h1",
+          "jump": "20",
+          "mdd": "12",
+          "morph": "1003",
+          "mpCon": "25",
+          "pdd": "12",
+          "speed": "40",
+          "time": "120"
+        },
+        {
+          "cooltime": "180",
+          "hs": "h10",
+          "jump": "20",
+          "mdd": "30",
+          "morph": "1003",
+          "mpCon": "70",
+          "pdd": "30",
+          "speed": "40",
+          "time": "120"
+        },
+        {
+          "cooltime": "260",
+          "hs": "h2",
+          "jump": "20",
+          "mdd": "14",
+          "morph": "1003",
+          "mpCon": "30",
+          "pdd": "14",
+          "speed": "40",
+          "time": "120"
+        },
+        {
+          "cooltime": "250",
+          "hs": "h3",
+          "jump": "20",
+          "mdd": "16",
+          "morph": "1003",
+          "mpCon": "35",
+          "pdd": "16",
+          "speed": "40",
+          "time": "120"
+        },
+        {
+          "cooltime": "240",
+          "hs": "h4",
+          "jump": "20",
+          "mdd": "18",
+          "morph": "1003",
+          "mpCon": "40",
+          "pdd": "18",
+          "speed": "40",
+          "time": "120"
+        },
+        {
+          "cooltime": "230",
+          "hs": "h5",
+          "jump": "20",
+          "mdd": "20",
+          "morph": "1003",
+          "mpCon": "45",
+          "pdd": "20",
+          "speed": "40",
+          "time": "120"
+        },
+        {
+          "cooltime": "220",
+          "hs": "h6",
+          "jump": "20",
+          "mdd": "22",
+          "morph": "1003",
+          "mpCon": "50",
+          "pdd": "22",
+          "speed": "40",
+          "time": "120"
+        },
+        {
+          "cooltime": "210",
+          "hs": "h7",
+          "jump": "20",
+          "mdd": "24",
+          "morph": "1003",
+          "mpCon": "55",
+          "pdd": "24",
+          "speed": "40",
+          "time": "120"
+        },
+        {
+          "cooltime": "200",
+          "hs": "h8",
+          "jump": "20",
+          "mdd": "26",
+          "morph": "1003",
+          "mpCon": "60",
+          "pdd": "26",
+          "speed": "40",
+          "time": "120"
+        },
+        {
+          "cooltime": "190",
+          "hs": "h9",
+          "jump": "20",
+          "mdd": "28",
+          "morph": "1003",
+          "mpCon": "65",
+          "pdd": "28",
+          "speed": "40",
+          "time": "120"
+        }
+      ]
+    },
+    {
+      "masterLevel": 20,
+      "weapons": [
+        45
+      ],
+      "id": 13111006,
+      "description": {
+        "id": 13111006,
+        "desc": "다수의 적에게 강력한 한 방 공격을 한다. 알바트로스 변신 중에만 사용할 수 있다.",
+        "name": "윈드 피어싱",
+        "bookName": "",
+        "detail": "MP #mpCon 소비하여 최대 #mobCount명에게 데미지 #damage%"
+      },
+      "requiredSkillLevels": {
+        "13111005": 1
+      },
+      "levelProperties": [
+        {
+          "damage": "170",
+          "hs": "h1",
+          "mobCount": "3",
+          "mpCon": "15"
+        },
+        {
+          "damage": "350",
+          "hs": "h10",
+          "mobCount": "4",
+          "mpCon": "20"
+        },
+        {
+          "damage": "370",
+          "hs": "h11",
+          "mobCount": "5",
+          "mpCon": "25"
+        },
+        {
+          "damage": "390",
+          "hs": "h12",
+          "mobCount": "5",
+          "mpCon": "25"
+        },
+        {
+          "damage": "410",
+          "hs": "h13",
+          "mobCount": "5",
+          "mpCon": "25"
+        },
+        {
+          "damage": "430",
+          "hs": "h14",
+          "mobCount": "5",
+          "mpCon": "25"
+        },
+        {
+          "damage": "450",
+          "hs": "h15",
+          "mobCount": "5",
+          "mpCon": "25"
+        },
+        {
+          "damage": "470",
+          "hs": "h16",
+          "mobCount": "6",
+          "mpCon": "30"
+        },
+        {
+          "damage": "490",
+          "hs": "h17",
+          "mobCount": "6",
+          "mpCon": "30"
+        },
+        {
+          "damage": "510",
+          "hs": "h18",
+          "mobCount": "6",
+          "mpCon": "30"
+        },
+        {
+          "damage": "530",
+          "hs": "h19",
+          "mobCount": "6",
+          "mpCon": "30"
+        },
+        {
+          "damage": "190",
+          "hs": "h2",
+          "mobCount": "3",
+          "mpCon": "15"
+        },
+        {
+          "damage": "550",
+          "hs": "h20",
+          "mobCount": "6",
+          "mpCon": "30"
+        },
+        {
+          "damage": "210",
+          "hs": "h3",
+          "mobCount": "3",
+          "mpCon": "15"
+        },
+        {
+          "damage": "230",
+          "hs": "h4",
+          "mobCount": "3",
+          "mpCon": "15"
+        },
+        {
+          "damage": "250",
+          "hs": "h5",
+          "mobCount": "3",
+          "mpCon": "15"
+        },
+        {
+          "damage": "270",
+          "hs": "h6",
+          "mobCount": "4",
+          "mpCon": "20"
+        },
+        {
+          "damage": "290",
+          "hs": "h7",
+          "mobCount": "4",
+          "mpCon": "20"
+        },
+        {
+          "damage": "310",
+          "hs": "h8",
+          "mobCount": "4",
+          "mpCon": "20"
+        },
+        {
+          "damage": "330",
+          "hs": "h9",
+          "mobCount": "4",
+          "mpCon": "20"
+        }
+      ]
+    },
+    {
+      "masterLevel": 20,
+      "weapons": [
+        45
+      ],
+      "id": 13111007,
+      "description": {
+        "id": 13111007,
+        "desc": "바람에 흩날리듯 화살 세 개를 날려 적에게 데미지를 준다. 알바트로스 변신 중에만 사용할 수 있다.",
+        "name": "윈드 샷",
+        "bookName": "",
+        "detail": "MP #mpCon 소비하여 데미지 #damage%로 #attackCount번 공격"
+      },
+      "requiredSkillLevels": {
+        "13111005": 1
+      },
+      "levelProperties": [
+        {
+          "attackCount": "3",
+          "damage": "160",
+          "hs": "h1",
+          "mpCon": "18"
+        },
+        {
+          "attackCount": "3",
+          "damage": "250",
+          "hs": "h10",
+          "mpCon": "23"
+        },
+        {
+          "attackCount": "3",
+          "damage": "260",
+          "hs": "h11",
+          "mpCon": "28"
+        },
+        {
+          "attackCount": "3",
+          "damage": "270",
+          "hs": "h12",
+          "mpCon": "28"
+        },
+        {
+          "attackCount": "3",
+          "damage": "280",
+          "hs": "h13",
+          "mpCon": "28"
+        },
+        {
+          "attackCount": "3",
+          "damage": "290",
+          "hs": "h14",
+          "mpCon": "28"
+        },
+        {
+          "attackCount": "3",
+          "damage": "300",
+          "hs": "h15",
+          "mpCon": "28"
+        },
+        {
+          "attackCount": "3",
+          "damage": "310",
+          "hs": "h16",
+          "mpCon": "33"
+        },
+        {
+          "attackCount": "3",
+          "damage": "320",
+          "hs": "h17",
+          "mpCon": "33"
+        },
+        {
+          "attackCount": "3",
+          "damage": "330",
+          "hs": "h18",
+          "mpCon": "33"
+        },
+        {
+          "attackCount": "3",
+          "damage": "340",
+          "hs": "h19",
+          "mpCon": "33"
+        },
+        {
+          "attackCount": "3",
+          "damage": "170",
+          "hs": "h2",
+          "mpCon": "18"
+        },
+        {
+          "attackCount": "3",
+          "damage": "350",
+          "hs": "h20",
+          "mpCon": "33"
+        },
+        {
+          "attackCount": "3",
+          "damage": "180",
+          "hs": "h3",
+          "mpCon": "18"
+        },
+        {
+          "attackCount": "3",
+          "damage": "190",
+          "hs": "h4",
+          "mpCon": "18"
+        },
+        {
+          "attackCount": "3",
+          "damage": "200",
+          "hs": "h5",
+          "mpCon": "18"
+        },
+        {
+          "attackCount": "3",
+          "damage": "210",
+          "hs": "h6",
+          "mpCon": "23"
+        },
+        {
+          "attackCount": "3",
+          "damage": "220",
+          "hs": "h7",
+          "mpCon": "23"
+        },
+        {
+          "attackCount": "3",
+          "damage": "230",
+          "hs": "h8",
+          "mpCon": "23"
+        },
+        {
+          "attackCount": "3",
+          "damage": "240",
+          "hs": "h9",
+          "mpCon": "23"
+        }
+      ]
+    }
+  ]
+}

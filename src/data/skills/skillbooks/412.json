@@ -1,0 +1,1822 @@
+{
+  "id": 412,
+  "job": {
+    "id": 412,
+    "name": "Night Lord (4th)"
+  },
+  "description": {
+    "id": 412,
+    "desc": "",
+    "name": "",
+    "shortDesc": "",
+    "bookName": "나이트로드의 비기"
+  },
+  "skills": [
+    {
+      "masterLevel": 30,
+      "weapons": [],
+      "id": 4120002,
+      "description": {
+        "id": 4120002,
+        "desc": "나무 인형으로 적을 속여 공격을 피한다.",
+        "name": "페이크",
+        "bookName": "",
+        "detail": "#prop%의 확률로 적의 공격을 회피"
+      },
+      "levelProperties": [
+        {
+          "hs": "h1",
+          "prop": "1"
+        },
+        {
+          "hs": "h10",
+          "prop": "10"
+        },
+        {
+          "hs": "h11",
+          "prop": "11"
+        },
+        {
+          "hs": "h12",
+          "prop": "12"
+        },
+        {
+          "hs": "h13",
+          "prop": "13"
+        },
+        {
+          "hs": "h14",
+          "prop": "14"
+        },
+        {
+          "hs": "h15",
+          "prop": "15"
+        },
+        {
+          "hs": "h16",
+          "prop": "16"
+        },
+        {
+          "hs": "h17",
+          "prop": "17"
+        },
+        {
+          "hs": "h18",
+          "prop": "18"
+        },
+        {
+          "hs": "h19",
+          "prop": "19"
+        },
+        {
+          "hs": "h2",
+          "prop": "2"
+        },
+        {
+          "hs": "h20",
+          "prop": "20"
+        },
+        {
+          "hs": "h21",
+          "prop": "21"
+        },
+        {
+          "hs": "h22",
+          "prop": "22"
+        },
+        {
+          "hs": "h23",
+          "prop": "23"
+        },
+        {
+          "hs": "h24",
+          "prop": "24"
+        },
+        {
+          "hs": "h25",
+          "prop": "25"
+        },
+        {
+          "hs": "h26",
+          "prop": "26"
+        },
+        {
+          "hs": "h27",
+          "prop": "27"
+        },
+        {
+          "hs": "h28",
+          "prop": "28"
+        },
+        {
+          "hs": "h29",
+          "prop": "29"
+        },
+        {
+          "hs": "h3",
+          "prop": "3"
+        },
+        {
+          "hs": "h30",
+          "prop": "30"
+        },
+        {
+          "hs": "h4",
+          "prop": "4"
+        },
+        {
+          "hs": "h5",
+          "prop": "5"
+        },
+        {
+          "hs": "h6",
+          "prop": "6"
+        },
+        {
+          "hs": "h7",
+          "prop": "7"
+        },
+        {
+          "hs": "h8",
+          "prop": "8"
+        },
+        {
+          "hs": "h9",
+          "prop": "9"
+        }
+      ]
+    },
+    {
+      "masterLevel": 30,
+      "weapons": [
+        47
+      ],
+      "id": 4120005,
+      "description": {
+        "id": 4120005,
+        "desc": "표창에 독을 발라 공격한다. 일정 확률로 적이 중독상태에 빠져 지속적으로 데미지를 입는다. 최대 3회까지 중복이 가능하고 적의 HP가 1 이하로 떨어지지 않는다.",
+        "name": "베놈",
+        "bookName": "",
+        "detail": "공격력 #mad, 지속시간 #time초, 성공률 #prop%"
+      },
+      "levelProperties": [
+        {
+          "hs": "h1",
+          "mad": "31",
+          "prop": "12",
+          "time": "2"
+        },
+        {
+          "hs": "h10",
+          "mad": "40",
+          "prop": "18",
+          "time": "2"
+        },
+        {
+          "hs": "h11",
+          "mad": "41",
+          "prop": "18",
+          "time": "3"
+        },
+        {
+          "hs": "h12",
+          "mad": "42",
+          "prop": "18",
+          "time": "3"
+        },
+        {
+          "hs": "h13",
+          "mad": "43",
+          "prop": "20",
+          "time": "3"
+        },
+        {
+          "hs": "h14",
+          "mad": "44",
+          "prop": "20",
+          "time": "3"
+        },
+        {
+          "hs": "h15",
+          "mad": "45",
+          "prop": "20",
+          "time": "3"
+        },
+        {
+          "hs": "h16",
+          "mad": "46",
+          "prop": "22",
+          "time": "3"
+        },
+        {
+          "hs": "h17",
+          "mad": "47",
+          "prop": "22",
+          "time": "3"
+        },
+        {
+          "hs": "h18",
+          "mad": "48",
+          "prop": "22",
+          "time": "3"
+        },
+        {
+          "hs": "h19",
+          "mad": "49",
+          "prop": "24",
+          "time": "3"
+        },
+        {
+          "hs": "h2",
+          "mad": "32",
+          "prop": "12",
+          "time": "2"
+        },
+        {
+          "hs": "h20",
+          "mad": "50",
+          "prop": "24",
+          "time": "3"
+        },
+        {
+          "hs": "h21",
+          "mad": "51",
+          "prop": "24",
+          "time": "4"
+        },
+        {
+          "hs": "h22",
+          "mad": "52",
+          "prop": "26",
+          "time": "4"
+        },
+        {
+          "hs": "h23",
+          "mad": "53",
+          "prop": "26",
+          "time": "4"
+        },
+        {
+          "hs": "h24",
+          "mad": "54",
+          "prop": "26",
+          "time": "4"
+        },
+        {
+          "hs": "h25",
+          "mad": "55",
+          "prop": "28",
+          "time": "4"
+        },
+        {
+          "hs": "h26",
+          "mad": "56",
+          "prop": "28",
+          "time": "4"
+        },
+        {
+          "hs": "h27",
+          "mad": "57",
+          "prop": "28",
+          "time": "4"
+        },
+        {
+          "hs": "h28",
+          "mad": "58",
+          "prop": "30",
+          "time": "4"
+        },
+        {
+          "hs": "h29",
+          "mad": "59",
+          "prop": "30",
+          "time": "4"
+        },
+        {
+          "hs": "h3",
+          "mad": "33",
+          "prop": "12",
+          "time": "2"
+        },
+        {
+          "hs": "h30",
+          "mad": "60",
+          "prop": "30",
+          "time": "4"
+        },
+        {
+          "hs": "h4",
+          "mad": "34",
+          "prop": "14",
+          "time": "2"
+        },
+        {
+          "hs": "h5",
+          "mad": "35",
+          "prop": "14",
+          "time": "2"
+        },
+        {
+          "hs": "h6",
+          "mad": "36",
+          "prop": "14",
+          "time": "2"
+        },
+        {
+          "hs": "h7",
+          "mad": "37",
+          "prop": "16",
+          "time": "2"
+        },
+        {
+          "hs": "h8",
+          "mad": "38",
+          "prop": "16",
+          "time": "2"
+        },
+        {
+          "hs": "h9",
+          "mad": "39",
+          "prop": "16",
+          "time": "2"
+        }
+      ]
+    },
+    {
+      "invisible": true,
+      "masterLevel": 30,
+      "actions": [
+        "alert3"
+      ],
+      "weapons": [],
+      "id": 4121000,
+      "description": {
+        "id": 4121000,
+        "desc": "일정 시간 동안 파티원의 모든 스탯을 일정 퍼센트 올려 준다.",
+        "name": "메이플 용사",
+        "bookName": "",
+        "detail": "MP #mpCon 소비하여 #time초간 모든 스탯 #x% 향상"
+      },
+      "levelProperties": [
+        {
+          "hs": "h1",
+          "lt": "Point [ X=-400, Y=-300 ]",
+          "mpCon": "10",
+          "rb": "Point [ X=400, Y=300 ]",
+          "time": "30",
+          "x": "1"
+        },
+        {
+          "hs": "h10",
+          "lt": "Point [ X=-400, Y=-300 ]",
+          "mpCon": "20",
+          "rb": "Point [ X=400, Y=300 ]",
+          "time": "300",
+          "x": "5"
+        },
+        {
+          "hs": "h11",
+          "lt": "Point [ X=-400, Y=-300 ]",
+          "mpCon": "30",
+          "rb": "Point [ X=400, Y=300 ]",
+          "time": "330",
+          "x": "6"
+        },
+        {
+          "hs": "h12",
+          "lt": "Point [ X=-400, Y=-300 ]",
+          "mpCon": "30",
+          "rb": "Point [ X=400, Y=300 ]",
+          "time": "360",
+          "x": "6"
+        },
+        {
+          "hs": "h13",
+          "lt": "Point [ X=-400, Y=-300 ]",
+          "mpCon": "30",
+          "rb": "Point [ X=400, Y=300 ]",
+          "time": "390",
+          "x": "7"
+        },
+        {
+          "hs": "h14",
+          "lt": "Point [ X=-400, Y=-300 ]",
+          "mpCon": "30",
+          "rb": "Point [ X=400, Y=300 ]",
+          "time": "420",
+          "x": "7"
+        },
+        {
+          "hs": "h15",
+          "lt": "Point [ X=-400, Y=-300 ]",
+          "mpCon": "30",
+          "rb": "Point [ X=400, Y=300 ]",
+          "time": "450",
+          "x": "8"
+        },
+        {
+          "hs": "h16",
+          "lt": "Point [ X=-400, Y=-300 ]",
+          "mpCon": "40",
+          "rb": "Point [ X=400, Y=300 ]",
+          "time": "480",
+          "x": "8"
+        },
+        {
+          "hs": "h17",
+          "lt": "Point [ X=-400, Y=-300 ]",
+          "mpCon": "40",
+          "rb": "Point [ X=400, Y=300 ]",
+          "time": "510",
+          "x": "9"
+        },
+        {
+          "hs": "h18",
+          "lt": "Point [ X=-400, Y=-300 ]",
+          "mpCon": "40",
+          "rb": "Point [ X=400, Y=300 ]",
+          "time": "540",
+          "x": "9"
+        },
+        {
+          "hs": "h19",
+          "lt": "Point [ X=-400, Y=-300 ]",
+          "mpCon": "40",
+          "rb": "Point [ X=400, Y=300 ]",
+          "time": "570",
+          "x": "10"
+        },
+        {
+          "hs": "h2",
+          "lt": "Point [ X=-400, Y=-300 ]",
+          "mpCon": "10",
+          "rb": "Point [ X=400, Y=300 ]",
+          "time": "60",
+          "x": "1"
+        },
+        {
+          "hs": "h20",
+          "lt": "Point [ X=-400, Y=-300 ]",
+          "mpCon": "50",
+          "rb": "Point [ X=400, Y=300 ]",
+          "time": "600",
+          "x": "10"
+        },
+        {
+          "hs": "h3",
+          "lt": "Point [ X=-400, Y=-300 ]",
+          "mpCon": "10",
+          "rb": "Point [ X=400, Y=300 ]",
+          "time": "90",
+          "x": "2"
+        },
+        {
+          "hs": "h4",
+          "lt": "Point [ X=-400, Y=-300 ]",
+          "mpCon": "10",
+          "rb": "Point [ X=400, Y=300 ]",
+          "time": "120",
+          "x": "2"
+        },
+        {
+          "hs": "h5",
+          "lt": "Point [ X=-400, Y=-300 ]",
+          "mpCon": "10",
+          "rb": "Point [ X=400, Y=300 ]",
+          "time": "150",
+          "x": "3"
+        },
+        {
+          "hs": "h6",
+          "lt": "Point [ X=-400, Y=-300 ]",
+          "mpCon": "20",
+          "rb": "Point [ X=400, Y=300 ]",
+          "time": "180",
+          "x": "3"
+        },
+        {
+          "hs": "h7",
+          "lt": "Point [ X=-400, Y=-300 ]",
+          "mpCon": "20",
+          "rb": "Point [ X=400, Y=300 ]",
+          "time": "210",
+          "x": "4"
+        },
+        {
+          "hs": "h8",
+          "lt": "Point [ X=-400, Y=-300 ]",
+          "mpCon": "20",
+          "rb": "Point [ X=400, Y=300 ]",
+          "time": "240",
+          "x": "4"
+        },
+        {
+          "hs": "h9",
+          "lt": "Point [ X=-400, Y=-300 ]",
+          "mpCon": "20",
+          "rb": "Point [ X=400, Y=300 ]",
+          "time": "270",
+          "x": "5"
+        },
+        {
+          "hs": "h21",
+          "lt": "Point [ X=-400, Y=-300 ]",
+          "mpCon": "50",
+          "rb": "Point [ X=400, Y=300 ]",
+          "time": "630",
+          "x": "11"
+        },
+        {
+          "hs": "h22",
+          "lt": "Point [ X=-400, Y=-300 ]",
+          "mpCon": "50",
+          "rb": "Point [ X=400, Y=300 ]",
+          "time": "660",
+          "x": "11"
+        },
+        {
+          "hs": "h23",
+          "lt": "Point [ X=-400, Y=-300 ]",
+          "mpCon": "50",
+          "rb": "Point [ X=400, Y=300 ]",
+          "time": "690",
+          "x": "12"
+        },
+        {
+          "hs": "h24",
+          "lt": "Point [ X=-400, Y=-300 ]",
+          "mpCon": "50",
+          "rb": "Point [ X=400, Y=300 ]",
+          "time": "720",
+          "x": "12"
+        },
+        {
+          "hs": "h25",
+          "lt": "Point [ X=-400, Y=-300 ]",
+          "mpCon": "60",
+          "rb": "Point [ X=400, Y=300 ]",
+          "time": "750",
+          "x": "13"
+        },
+        {
+          "hs": "h26",
+          "lt": "Point [ X=-400, Y=-300 ]",
+          "mpCon": "60",
+          "rb": "Point [ X=400, Y=300 ]",
+          "time": "780",
+          "x": "13"
+        },
+        {
+          "hs": "h27",
+          "lt": "Point [ X=-400, Y=-300 ]",
+          "mpCon": "60",
+          "rb": "Point [ X=400, Y=300 ]",
+          "time": "810",
+          "x": "14"
+        },
+        {
+          "hs": "h28",
+          "lt": "Point [ X=-400, Y=-300 ]",
+          "mpCon": "60",
+          "rb": "Point [ X=400, Y=300 ]",
+          "time": "840",
+          "x": "14"
+        },
+        {
+          "hs": "h29",
+          "lt": "Point [ X=-400, Y=-300 ]",
+          "mpCon": "60",
+          "rb": "Point [ X=400, Y=300 ]",
+          "time": "870",
+          "x": "15"
+        },
+        {
+          "hs": "h30",
+          "lt": "Point [ X=-400, Y=-300 ]",
+          "mpCon": "70",
+          "rb": "Point [ X=400, Y=300 ]",
+          "time": "900",
+          "x": "15"
+        }
+      ]
+    },
+    {
+      "invisible": true,
+      "masterLevel": 30,
+      "actions": [
+        "showdown"
+      ],
+      "weapons": [],
+      "id": 4121003,
+      "description": {
+        "id": 4121003,
+        "desc": "적을 도발한다. 적의 방어력이 상승하면서 획득하는 경험치와 아이템을 떨어뜨릴 확률도 상승시킨다.",
+        "name": "쇼다운",
+        "bookName": "",
+        "detail": "MP #mpCon 소비, 적의 방어력, 획득 경험치, 아이템 드롭율 #x% 상승"
+      },
+      "requiredSkillLevels": {
+        "4120002": 10
+      },
+      "levelProperties": [
+        {
+          "hs": "h1",
+          "mobCount": "6",
+          "mpCon": "21",
+          "time": "120",
+          "x": "11"
+        },
+        {
+          "hs": "h10",
+          "mobCount": "6",
+          "mpCon": "30",
+          "time": "120",
+          "x": "20"
+        },
+        {
+          "hs": "h11",
+          "mobCount": "6",
+          "mpCon": "31",
+          "time": "120",
+          "x": "21"
+        },
+        {
+          "hs": "h12",
+          "mobCount": "6",
+          "mpCon": "32",
+          "time": "120",
+          "x": "22"
+        },
+        {
+          "hs": "h13",
+          "mobCount": "6",
+          "mpCon": "33",
+          "time": "120",
+          "x": "23"
+        },
+        {
+          "hs": "h14",
+          "mobCount": "6",
+          "mpCon": "34",
+          "time": "120",
+          "x": "24"
+        },
+        {
+          "hs": "h15",
+          "mobCount": "6",
+          "mpCon": "35",
+          "time": "120",
+          "x": "25"
+        },
+        {
+          "hs": "h16",
+          "mobCount": "6",
+          "mpCon": "36",
+          "time": "120",
+          "x": "26"
+        },
+        {
+          "hs": "h17",
+          "mobCount": "6",
+          "mpCon": "37",
+          "time": "120",
+          "x": "27"
+        },
+        {
+          "hs": "h18",
+          "mobCount": "6",
+          "mpCon": "38",
+          "time": "120",
+          "x": "28"
+        },
+        {
+          "hs": "h19",
+          "mobCount": "6",
+          "mpCon": "39",
+          "time": "120",
+          "x": "29"
+        },
+        {
+          "hs": "h2",
+          "mobCount": "6",
+          "mpCon": "22",
+          "time": "120",
+          "x": "12"
+        },
+        {
+          "hs": "h20",
+          "mobCount": "6",
+          "mpCon": "40",
+          "time": "120",
+          "x": "30"
+        },
+        {
+          "hs": "h21",
+          "mobCount": "6",
+          "mpCon": "41",
+          "time": "120",
+          "x": "31"
+        },
+        {
+          "hs": "h22",
+          "mobCount": "6",
+          "mpCon": "42",
+          "time": "120",
+          "x": "32"
+        },
+        {
+          "hs": "h23",
+          "mobCount": "6",
+          "mpCon": "43",
+          "time": "120",
+          "x": "33"
+        },
+        {
+          "hs": "h24",
+          "mobCount": "6",
+          "mpCon": "44",
+          "time": "120",
+          "x": "34"
+        },
+        {
+          "hs": "h25",
+          "mobCount": "6",
+          "mpCon": "45",
+          "time": "120",
+          "x": "35"
+        },
+        {
+          "hs": "h26",
+          "mobCount": "6",
+          "mpCon": "44",
+          "time": "120",
+          "x": "36"
+        },
+        {
+          "hs": "h27",
+          "mobCount": "6",
+          "mpCon": "43",
+          "time": "120",
+          "x": "37"
+        },
+        {
+          "hs": "h28",
+          "mobCount": "6",
+          "mpCon": "42",
+          "time": "120",
+          "x": "38"
+        },
+        {
+          "hs": "h29",
+          "mobCount": "6",
+          "mpCon": "41",
+          "time": "120",
+          "x": "39"
+        },
+        {
+          "hs": "h3",
+          "mobCount": "6",
+          "mpCon": "23",
+          "time": "120",
+          "x": "13"
+        },
+        {
+          "hs": "h30",
+          "mobCount": "6",
+          "mpCon": "40",
+          "time": "120",
+          "x": "40"
+        },
+        {
+          "hs": "h4",
+          "mobCount": "6",
+          "mpCon": "24",
+          "time": "120",
+          "x": "14"
+        },
+        {
+          "hs": "h5",
+          "mobCount": "6",
+          "mpCon": "25",
+          "time": "120",
+          "x": "15"
+        },
+        {
+          "hs": "h6",
+          "mobCount": "6",
+          "mpCon": "26",
+          "time": "120",
+          "x": "16"
+        },
+        {
+          "hs": "h7",
+          "mobCount": "6",
+          "mpCon": "27",
+          "time": "120",
+          "x": "17"
+        },
+        {
+          "hs": "h8",
+          "mobCount": "6",
+          "mpCon": "28",
+          "time": "120",
+          "x": "18"
+        },
+        {
+          "hs": "h9",
+          "mobCount": "6",
+          "mpCon": "29",
+          "time": "120",
+          "x": "19"
+        }
+      ]
+    },
+    {
+      "invisible": true,
+      "masterLevel": 30,
+      "actions": [
+        "alert3"
+      ],
+      "weapons": [],
+      "id": 4121004,
+      "description": {
+        "id": 4121004,
+        "desc": "숨어 있던 동료들이 뛰쳐나와 일정 시간동안 지속적으로 적을 공격한다. 한 번에 6마리 이상은 공격할 수 없고 HP가 1 이하로 떨어지지 않는다.",
+        "name": "닌자 앰부쉬",
+        "bookName": "",
+        "detail": "MP #mpCon 소비, 데미지 #damage%, 지속시간 #time초, 공격범위 #lt%"
+      },
+      "requiredSkillLevels": {
+        "4120002": 5
+      },
+      "levelProperties": [
+        {
+          "damage": "62",
+          "hs": "h1",
+          "lt": "Point [ X=-110, Y=-130 ]",
+          "mobCount": "6",
+          "mpCon": "16",
+          "rb": "Point [ X=110, Y=70 ]",
+          "time": "4"
+        },
+        {
+          "damage": "80",
+          "hs": "h10",
+          "lt": "Point [ X=-140, Y=-130 ]",
+          "mobCount": "6",
+          "mpCon": "16",
+          "rb": "Point [ X=140, Y=70 ]",
+          "time": "4"
+        },
+        {
+          "damage": "81",
+          "hs": "h11",
+          "lt": "Point [ X=-140, Y=-130 ]",
+          "mobCount": "6",
+          "mpCon": "32",
+          "rb": "Point [ X=140, Y=70 ]",
+          "time": "8"
+        },
+        {
+          "damage": "82",
+          "hs": "h12",
+          "lt": "Point [ X=-140, Y=-130 ]",
+          "mobCount": "6",
+          "mpCon": "32",
+          "rb": "Point [ X=140, Y=70 ]",
+          "time": "8"
+        },
+        {
+          "damage": "83",
+          "hs": "h13",
+          "lt": "Point [ X=-150, Y=-130 ]",
+          "mobCount": "6",
+          "mpCon": "32",
+          "rb": "Point [ X=150, Y=70 ]",
+          "time": "8"
+        },
+        {
+          "damage": "84",
+          "hs": "h14",
+          "lt": "Point [ X=-150, Y=-130 ]",
+          "mobCount": "6",
+          "mpCon": "32",
+          "rb": "Point [ X=150, Y=70 ]",
+          "time": "8"
+        },
+        {
+          "damage": "85",
+          "hs": "h15",
+          "lt": "Point [ X=-150, Y=-130 ]",
+          "mobCount": "6",
+          "mpCon": "32",
+          "rb": "Point [ X=150, Y=70 ]",
+          "time": "8"
+        },
+        {
+          "damage": "86",
+          "hs": "h16",
+          "lt": "Point [ X=-160, Y=-130 ]",
+          "mobCount": "6",
+          "mpCon": "32",
+          "rb": "Point [ X=160, Y=70 ]",
+          "time": "8"
+        },
+        {
+          "damage": "87",
+          "hs": "h17",
+          "lt": "Point [ X=-160, Y=-130 ]",
+          "mobCount": "6",
+          "mpCon": "32",
+          "rb": "Point [ X=160, Y=70 ]",
+          "time": "8"
+        },
+        {
+          "damage": "88",
+          "hs": "h18",
+          "lt": "Point [ X=-160, Y=-130 ]",
+          "mobCount": "6",
+          "mpCon": "32",
+          "rb": "Point [ X=160, Y=70 ]",
+          "time": "8"
+        },
+        {
+          "damage": "89",
+          "hs": "h19",
+          "lt": "Point [ X=-170, Y=-130 ]",
+          "mobCount": "6",
+          "mpCon": "32",
+          "rb": "Point [ X=170, Y=70 ]",
+          "time": "8"
+        },
+        {
+          "damage": "64",
+          "hs": "h2",
+          "lt": "Point [ X=-110, Y=-130 ]",
+          "mobCount": "6",
+          "mpCon": "16",
+          "rb": "Point [ X=110, Y=70 ]",
+          "time": "4"
+        },
+        {
+          "damage": "90",
+          "hs": "h20",
+          "lt": "Point [ X=-170, Y=-130 ]",
+          "mobCount": "6",
+          "mpCon": "32",
+          "rb": "Point [ X=170, Y=70 ]",
+          "time": "8"
+        },
+        {
+          "damage": "91",
+          "hs": "h21",
+          "lt": "Point [ X=-170, Y=-130 ]",
+          "mobCount": "6",
+          "mpCon": "48",
+          "rb": "Point [ X=170, Y=70 ]",
+          "time": "12"
+        },
+        {
+          "damage": "92",
+          "hs": "h22",
+          "lt": "Point [ X=-180, Y=-130 ]",
+          "mobCount": "6",
+          "mpCon": "48",
+          "rb": "Point [ X=180, Y=70 ]",
+          "time": "12"
+        },
+        {
+          "damage": "93",
+          "hs": "h23",
+          "lt": "Point [ X=-180, Y=-130 ]",
+          "mobCount": "6",
+          "mpCon": "48",
+          "rb": "Point [ X=180, Y=70 ]",
+          "time": "12"
+        },
+        {
+          "damage": "94",
+          "hs": "h24",
+          "lt": "Point [ X=-180, Y=-130 ]",
+          "mobCount": "6",
+          "mpCon": "48",
+          "rb": "Point [ X=180, Y=70 ]",
+          "time": "12"
+        },
+        {
+          "damage": "95",
+          "hs": "h25",
+          "lt": "Point [ X=-190, Y=-130 ]",
+          "mobCount": "6",
+          "mpCon": "48",
+          "rb": "Point [ X=190, Y=70 ]",
+          "time": "12"
+        },
+        {
+          "damage": "96",
+          "hs": "h26",
+          "lt": "Point [ X=-190, Y=-130 ]",
+          "mobCount": "6",
+          "mpCon": "48",
+          "rb": "Point [ X=190, Y=70 ]",
+          "time": "12"
+        },
+        {
+          "damage": "97",
+          "hs": "h27",
+          "lt": "Point [ X=-190, Y=-130 ]",
+          "mobCount": "6",
+          "mpCon": "48",
+          "rb": "Point [ X=190, Y=70 ]",
+          "time": "12"
+        },
+        {
+          "damage": "98",
+          "hs": "h28",
+          "lt": "Point [ X=-200, Y=-130 ]",
+          "mobCount": "6",
+          "mpCon": "48",
+          "rb": "Point [ X=200, Y=70 ]",
+          "time": "12"
+        },
+        {
+          "damage": "99",
+          "hs": "h29",
+          "lt": "Point [ X=-200, Y=-130 ]",
+          "mobCount": "6",
+          "mpCon": "48",
+          "rb": "Point [ X=200, Y=70 ]",
+          "time": "12"
+        },
+        {
+          "damage": "66",
+          "hs": "h3",
+          "lt": "Point [ X=-110, Y=-130 ]",
+          "mobCount": "6",
+          "mpCon": "16",
+          "rb": "Point [ X=110, Y=70 ]",
+          "time": "4"
+        },
+        {
+          "damage": "100",
+          "hs": "h30",
+          "lt": "Point [ X=-200, Y=-130 ]",
+          "mobCount": "6",
+          "mpCon": "43",
+          "rb": "Point [ X=200, Y=70 ]",
+          "time": "12"
+        },
+        {
+          "damage": "68",
+          "hs": "h4",
+          "lt": "Point [ X=-120, Y=-130 ]",
+          "mobCount": "6",
+          "mpCon": "16",
+          "rb": "Point [ X=120, Y=70 ]",
+          "time": "4"
+        },
+        {
+          "damage": "70",
+          "hs": "h5",
+          "lt": "Point [ X=-120, Y=-130 ]",
+          "mobCount": "6",
+          "mpCon": "16",
+          "rb": "Point [ X=120, Y=70 ]",
+          "time": "4"
+        },
+        {
+          "damage": "72",
+          "hs": "h6",
+          "lt": "Point [ X=-120, Y=-130 ]",
+          "mobCount": "6",
+          "mpCon": "16",
+          "rb": "Point [ X=120, Y=70 ]",
+          "time": "4"
+        },
+        {
+          "damage": "74",
+          "hs": "h7",
+          "lt": "Point [ X=-130, Y=-130 ]",
+          "mobCount": "6",
+          "mpCon": "16",
+          "rb": "Point [ X=130, Y=70 ]",
+          "time": "4"
+        },
+        {
+          "damage": "76",
+          "hs": "h8",
+          "lt": "Point [ X=-130, Y=-130 ]",
+          "mobCount": "6",
+          "mpCon": "16",
+          "rb": "Point [ X=130, Y=70 ]",
+          "time": "4"
+        },
+        {
+          "damage": "78",
+          "hs": "h9",
+          "lt": "Point [ X=-130, Y=-130 ]",
+          "mobCount": "6",
+          "mpCon": "16",
+          "rb": "Point [ X=130, Y=70 ]",
+          "time": "4"
+        }
+      ]
+    },
+    {
+      "masterLevel": 30,
+      "weapons": [],
+      "id": 4121006,
+      "description": {
+        "id": 4121006,
+        "desc": "표창 200개를 한 번에 소비한 후 일정 시간 동안 지속적으로 표창을 소모하지 않고 공격을 한다.",
+        "name": "스피릿 자벨린",
+        "bookName": "",
+        "detail": "MP #mpCon 소비, 지속시간 #time초"
+      },
+      "levelProperties": [
+        {
+          "bulletConsume": "200",
+          "hs": "h1",
+          "mpCon": "15",
+          "time": "62",
+          "x": "1"
+        },
+        {
+          "bulletConsume": "200",
+          "hs": "h10",
+          "mpCon": "15",
+          "time": "80",
+          "x": "1"
+        },
+        {
+          "bulletConsume": "200",
+          "hs": "h11",
+          "mpCon": "20",
+          "time": "82",
+          "x": "1"
+        },
+        {
+          "bulletConsume": "200",
+          "hs": "h12",
+          "mpCon": "20",
+          "time": "84",
+          "x": "1"
+        },
+        {
+          "bulletConsume": "200",
+          "hs": "h13",
+          "mpCon": "20",
+          "time": "86",
+          "x": "1"
+        },
+        {
+          "bulletConsume": "200",
+          "hs": "h14",
+          "mpCon": "20",
+          "time": "88",
+          "x": "1"
+        },
+        {
+          "bulletConsume": "200",
+          "hs": "h15",
+          "mpCon": "20",
+          "time": "90",
+          "x": "1"
+        },
+        {
+          "bulletConsume": "200",
+          "hs": "h16",
+          "mpCon": "20",
+          "time": "92",
+          "x": "1"
+        },
+        {
+          "bulletConsume": "200",
+          "hs": "h17",
+          "mpCon": "20",
+          "time": "94",
+          "x": "1"
+        },
+        {
+          "bulletConsume": "200",
+          "hs": "h18",
+          "mpCon": "20",
+          "time": "96",
+          "x": "1"
+        },
+        {
+          "bulletConsume": "200",
+          "hs": "h19",
+          "mpCon": "20",
+          "time": "98",
+          "x": "1"
+        },
+        {
+          "bulletConsume": "200",
+          "hs": "h2",
+          "mpCon": "15",
+          "time": "64",
+          "x": "1"
+        },
+        {
+          "bulletConsume": "200",
+          "hs": "h20",
+          "mpCon": "20",
+          "time": "100",
+          "x": "1"
+        },
+        {
+          "bulletConsume": "200",
+          "hs": "h21",
+          "mpCon": "25",
+          "time": "102",
+          "x": "1"
+        },
+        {
+          "bulletConsume": "200",
+          "hs": "h22",
+          "mpCon": "25",
+          "time": "104",
+          "x": "1"
+        },
+        {
+          "bulletConsume": "200",
+          "hs": "h23",
+          "mpCon": "25",
+          "time": "106",
+          "x": "1"
+        },
+        {
+          "bulletConsume": "200",
+          "hs": "h24",
+          "mpCon": "25",
+          "time": "108",
+          "x": "1"
+        },
+        {
+          "bulletConsume": "200",
+          "hs": "h25",
+          "mpCon": "25",
+          "time": "110",
+          "x": "1"
+        },
+        {
+          "bulletConsume": "200",
+          "hs": "h26",
+          "mpCon": "25",
+          "time": "112",
+          "x": "1"
+        },
+        {
+          "bulletConsume": "200",
+          "hs": "h27",
+          "mpCon": "25",
+          "time": "114",
+          "x": "1"
+        },
+        {
+          "bulletConsume": "200",
+          "hs": "h28",
+          "mpCon": "25",
+          "time": "116",
+          "x": "1"
+        },
+        {
+          "bulletConsume": "200",
+          "hs": "h29",
+          "mpCon": "25",
+          "time": "118",
+          "x": "1"
+        },
+        {
+          "bulletConsume": "200",
+          "hs": "h3",
+          "mpCon": "15",
+          "time": "66",
+          "x": "1"
+        },
+        {
+          "bulletConsume": "200",
+          "hs": "h30",
+          "mpCon": "25",
+          "time": "120",
+          "x": "1"
+        },
+        {
+          "bulletConsume": "200",
+          "hs": "h4",
+          "mpCon": "15",
+          "time": "68",
+          "x": "1"
+        },
+        {
+          "bulletConsume": "200",
+          "hs": "h5",
+          "mpCon": "15",
+          "time": "70",
+          "x": "1"
+        },
+        {
+          "bulletConsume": "200",
+          "hs": "h6",
+          "mpCon": "15",
+          "time": "72",
+          "x": "1"
+        },
+        {
+          "bulletConsume": "200",
+          "hs": "h7",
+          "mpCon": "15",
+          "time": "74",
+          "x": "1"
+        },
+        {
+          "bulletConsume": "200",
+          "hs": "h8",
+          "mpCon": "15",
+          "time": "76",
+          "x": "1"
+        },
+        {
+          "bulletConsume": "200",
+          "hs": "h9",
+          "mpCon": "15",
+          "time": "78",
+          "x": "1"
+        }
+      ]
+    },
+    {
+      "invisible": true,
+      "masterLevel": 30,
+      "weapons": [
+        47
+      ],
+      "id": 4121007,
+      "description": {
+        "id": 4121007,
+        "desc": "한 번에 표창 3개를 던져 공격을 한다.",
+        "name": "트리플 스로우",
+        "bookName": "",
+        "detail": "MP #mpCon를 소비하여 데미지 #damage%"
+      },
+      "levelProperties": [
+        {
+          "bulletCount": "3",
+          "damage": "102",
+          "hs": "h1",
+          "mpCon": "11"
+        },
+        {
+          "bulletCount": "3",
+          "damage": "120",
+          "hs": "h10",
+          "mpCon": "14"
+        },
+        {
+          "bulletCount": "3",
+          "damage": "122",
+          "hs": "h11",
+          "mpCon": "14"
+        },
+        {
+          "bulletCount": "3",
+          "damage": "124",
+          "hs": "h12",
+          "mpCon": "14"
+        },
+        {
+          "bulletCount": "3",
+          "damage": "126",
+          "hs": "h13",
+          "mpCon": "15"
+        },
+        {
+          "bulletCount": "3",
+          "damage": "128",
+          "hs": "h14",
+          "mpCon": "15"
+        },
+        {
+          "bulletCount": "3",
+          "damage": "130",
+          "hs": "h15",
+          "mpCon": "15"
+        },
+        {
+          "bulletCount": "3",
+          "damage": "132",
+          "hs": "h16",
+          "mpCon": "16"
+        },
+        {
+          "bulletCount": "3",
+          "damage": "134",
+          "hs": "h17",
+          "mpCon": "16"
+        },
+        {
+          "bulletCount": "3",
+          "damage": "136",
+          "hs": "h18",
+          "mpCon": "16"
+        },
+        {
+          "bulletCount": "3",
+          "damage": "138",
+          "hs": "h19",
+          "mpCon": "17"
+        },
+        {
+          "bulletCount": "3",
+          "damage": "104",
+          "hs": "h2",
+          "mpCon": "11"
+        },
+        {
+          "bulletCount": "3",
+          "damage": "140",
+          "hs": "h20",
+          "mpCon": "17"
+        },
+        {
+          "bulletCount": "3",
+          "damage": "141",
+          "hs": "h21",
+          "mpCon": "17"
+        },
+        {
+          "bulletCount": "3",
+          "damage": "142",
+          "hs": "h22",
+          "mpCon": "18"
+        },
+        {
+          "bulletCount": "3",
+          "damage": "143",
+          "hs": "h23",
+          "mpCon": "18"
+        },
+        {
+          "bulletCount": "3",
+          "damage": "144",
+          "hs": "h24",
+          "mpCon": "18"
+        },
+        {
+          "bulletCount": "3",
+          "damage": "145",
+          "hs": "h25",
+          "mpCon": "19"
+        },
+        {
+          "bulletCount": "3",
+          "damage": "146",
+          "hs": "h26",
+          "mpCon": "19"
+        },
+        {
+          "bulletCount": "3",
+          "damage": "147",
+          "hs": "h27",
+          "mpCon": "19"
+        },
+        {
+          "bulletCount": "3",
+          "damage": "148",
+          "hs": "h28",
+          "mpCon": "20"
+        },
+        {
+          "bulletCount": "3",
+          "damage": "149",
+          "hs": "h29",
+          "mpCon": "20"
+        },
+        {
+          "bulletCount": "3",
+          "damage": "106",
+          "hs": "h3",
+          "mpCon": "11"
+        },
+        {
+          "bulletCount": "3",
+          "damage": "150",
+          "hs": "h30",
+          "mpCon": "20"
+        },
+        {
+          "bulletCount": "3",
+          "damage": "108",
+          "hs": "h4",
+          "mpCon": "12"
+        },
+        {
+          "bulletCount": "3",
+          "damage": "110",
+          "hs": "h5",
+          "mpCon": "12"
+        },
+        {
+          "bulletCount": "3",
+          "damage": "112",
+          "hs": "h6",
+          "mpCon": "12"
+        },
+        {
+          "bulletCount": "3",
+          "damage": "114",
+          "hs": "h7",
+          "mpCon": "13"
+        },
+        {
+          "bulletCount": "3",
+          "damage": "116",
+          "hs": "h8",
+          "mpCon": "13"
+        },
+        {
+          "bulletCount": "3",
+          "damage": "118",
+          "hs": "h9",
+          "mpCon": "13"
+        }
+      ]
+    },
+    {
+      "invisible": true,
+      "masterLevel": 30,
+      "actions": [
+        "ninjastorm"
+      ],
+      "weapons": [
+        47
+      ],
+      "id": 4121008,
+      "description": {
+        "id": 4121008,
+        "desc": "숨어 있던 닌자들이 회오리처럼 빠르게 움직이며 주위의 적을 좌우로 밀쳐낸다.",
+        "name": "닌자 스톰",
+        "bookName": "",
+        "detail": "MP #mpCon를 소비, 데미지 #damage%, #prop%의 확률로 적을 #range 밀어냄"
+      },
+      "levelProperties": [
+        {
+          "hs": "h1",
+          "mpCon": "16",
+          "damage": "42",
+          "prop": "42",
+          "range": "100"
+        },
+        {
+          "hs": "h2",
+          "mpCon": "16",
+          "damage": "44",
+          "prop": "44",
+          "range": "100"
+        },
+        {
+          "hs": "h3",
+          "mpCon": "16",
+          "damage": "46",
+          "prop": "46",
+          "range": "100"
+        },
+        {
+          "hs": "h4",
+          "mpCon": "16",
+          "damage": "48",
+          "prop": "48",
+          "range": "100"
+        },
+        {
+          "hs": "h5",
+          "mpCon": "16",
+          "damage": "50",
+          "prop": "50",
+          "range": "100"
+        },
+        {
+          "hs": "h6",
+          "mpCon": "16",
+          "damage": "52",
+          "prop": "52",
+          "range": "100"
+        },
+        {
+          "hs": "h7",
+          "mpCon": "16",
+          "damage": "54",
+          "prop": "54",
+          "range": "100"
+        },
+        {
+          "hs": "h8",
+          "mpCon": "16",
+          "damage": "56",
+          "prop": "56",
+          "range": "100"
+        },
+        {
+          "hs": "h9",
+          "mpCon": "16",
+          "damage": "58",
+          "prop": "58",
+          "range": "100"
+        },
+        {
+          "hs": "h10",
+          "mpCon": "16",
+          "damage": "60",
+          "prop": "60",
+          "range": "100"
+        },
+        {
+          "hs": "h11",
+          "mpCon": "24",
+          "damage": "61",
+          "prop": "62",
+          "range": "200"
+        },
+        {
+          "hs": "h12",
+          "mpCon": "24",
+          "damage": "62",
+          "prop": "64",
+          "range": "200"
+        },
+        {
+          "hs": "h13",
+          "mpCon": "24",
+          "damage": "63",
+          "prop": "66",
+          "range": "200"
+        },
+        {
+          "hs": "h14",
+          "mpCon": "24",
+          "damage": "64",
+          "prop": "68",
+          "range": "200"
+        },
+        {
+          "hs": "h15",
+          "mpCon": "24",
+          "damage": "65",
+          "prop": "70",
+          "range": "200"
+        },
+        {
+          "hs": "h16",
+          "mpCon": "24",
+          "damage": "66",
+          "prop": "72",
+          "range": "200"
+        },
+        {
+          "hs": "h17",
+          "mpCon": "24",
+          "damage": "67",
+          "prop": "74",
+          "range": "200"
+        },
+        {
+          "hs": "h18",
+          "mpCon": "24",
+          "damage": "68",
+          "prop": "76",
+          "range": "200"
+        },
+        {
+          "hs": "h19",
+          "mpCon": "24",
+          "damage": "69",
+          "prop": "78",
+          "range": "200"
+        },
+        {
+          "hs": "h20",
+          "mpCon": "24",
+          "damage": "70",
+          "prop": "80",
+          "range": "200"
+        },
+        {
+          "hs": "h21",
+          "mpCon": "30",
+          "damage": "71",
+          "prop": "82",
+          "range": "300"
+        },
+        {
+          "hs": "h22",
+          "mpCon": "30",
+          "damage": "72",
+          "prop": "84",
+          "range": "300"
+        },
+        {
+          "hs": "h23",
+          "mpCon": "30",
+          "damage": "73",
+          "prop": "86",
+          "range": "300"
+        },
+        {
+          "hs": "h24",
+          "mpCon": "30",
+          "damage": "74",
+          "prop": "88",
+          "range": "300"
+        },
+        {
+          "hs": "h25",
+          "mpCon": "30",
+          "damage": "75",
+          "prop": "90",
+          "range": "300"
+        },
+        {
+          "hs": "h26",
+          "mpCon": "29",
+          "damage": "76",
+          "prop": "92",
+          "range": "300"
+        },
+        {
+          "hs": "h27",
+          "mpCon": "28",
+          "damage": "77",
+          "prop": "94",
+          "range": "300"
+        },
+        {
+          "hs": "h28",
+          "mpCon": "27",
+          "damage": "78",
+          "prop": "96",
+          "range": "300"
+        },
+        {
+          "hs": "h29",
+          "mpCon": "26",
+          "damage": "79",
+          "prop": "98",
+          "range": "300"
+        },
+        {
+          "hs": "h30",
+          "mpCon": "25",
+          "damage": "80",
+          "prop": "100",
+          "range": "300"
+        }
+      ]
+    },
+    {
+      "invisible": true,
+      "masterLevel": 5,
+      "weapons": [],
+      "id": 4121009,
+      "description": {
+        "id": 4121009,
+        "desc": "용사의 의지특정 상태 이상에서 벗어날 수 있다. 레벨이 올라감에 따라 해제할 수 있는 상태 이상이 늘어난다.",
+        "name": "용사의 의지",
+        "bookName": "",
+        "detail": "MP #mpCon 소비, 재사용 대기시간 #cooltime초"
+      },
+      "levelProperties": [
+        {
+          "cooltime": "600",
+          "hs": "h1",
+          "mpCon": "30",
+          "time": "1"
+        },
+        {
+          "cooltime": "540",
+          "hs": "h2",
+          "mpCon": "30",
+          "time": "1"
+        },
+        {
+          "cooltime": "480",
+          "hs": "h3",
+          "mpCon": "30",
+          "time": "1"
+        },
+        {
+          "cooltime": "420",
+          "hs": "h4",
+          "mpCon": "30",
+          "time": "1"
+        },
+        {
+          "cooltime": "360",
+          "hs": "h5",
+          "mpCon": "30",
+          "time": "1"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1239 @@
+{
+  "id": 411,
+  "job": {
+    "id": 411,
+    "name": "Hermit (3rd)"
+  },
+  "description": {
+    "id": 411,
+    "desc": "",
+    "name": "",
+    "shortDesc": "",
+    "bookName": "허밋의 길"
+  },
+  "skills": [
+    {
+      "masterLevel": 20,
+      "properties": {
+        "maxLevel": "20",
+        "x": "110+2*x",
+        "y": "110+2*x"
+      },
+      "weapons": [],
+      "id": 4110000,
+      "description": {
+        "id": 4110000,
+        "desc": "포션 등 회복 아이템의 효과가 상승하거나 상태변화 아이템의 적용시간이 늘어난다. 단, 엘릭서와 같이 %로 회복시켜 주는 아이템에는 적용되지 않는다.",
+        "name": "알케미스트",
+        "shortDesc": "Recovery Rate: +#x%, Duration: +#y%",
+        "bookName": "",
+        "detail": "회복량 #rec%, 적용시간 #pdu% 상승"
+      },
+      "levelProperties": [
+        {
+          "hs": "h1",
+          "rec": "103",
+          "pdu": "103"
+        },
+        {
+          "hs": "h2",
+          "rec": "106",
+          "pdu": "106"
+        },
+        {
+          "hs": "h3",
+          "rec": "109",
+          "pdu": "109"
+        },
+        {
+          "hs": "h4",
+          "rec": "112",
+          "pdu": "112"
+        },
+        {
+          "hs": "h5",
+          "rec": "115",
+          "pdu": "115"
+        },
+        {
+          "hs": "h6",
+          "rec": "118",
+          "pdu": "118"
+        },
+        {
+          "hs": "h7",
+          "rec": "121",
+          "pdu": "121"
+        },
+        {
+          "hs": "h8",
+          "rec": "124",
+          "pdu": "124"
+        },
+        {
+          "hs": "h9",
+          "rec": "127",
+          "pdu": "127"
+        },
+        {
+          "hs": "h10",
+          "rec": "130",
+          "pdu": "130"
+        },
+        {
+          "hs": "h11",
+          "rec": "132",
+          "pdu": "132"
+        },
+        {
+          "hs": "h12",
+          "rec": "134",
+          "pdu": "134"
+        },
+        {
+          "hs": "h13",
+          "rec": "136",
+          "pdu": "136"
+        },
+        {
+          "hs": "h14",
+          "rec": "138",
+          "pdu": "138"
+        },
+        {
+          "hs": "h15",
+          "rec": "140",
+          "pdu": "140"
+        },
+        {
+          "hs": "h16",
+          "rec": "142",
+          "pdu": "142"
+        },
+        {
+          "hs": "h17",
+          "rec": "144",
+          "pdu": "144"
+        },
+        {
+          "hs": "h18",
+          "rec": "146",
+          "pdu": "146"
+        },
+        {
+          "hs": "h19",
+          "rec": "148",
+          "pdu": "148"
+        },
+        {
+          "hs": "h20",
+          "rec": "150",
+          "pdu": "150"
+        }
+      ]
+    },
+    {
+      "masterLevel": 20,
+      "properties": {
+        "lt": "Point [ X=-300, Y=-200 ]",
+        "maxLevel": "20",
+        "mpCon": "45+5*d(x/6)",
+        "rb": "Point [ X=300, Y=200 ]",
+        "time": "20+5*x",
+        "x": "110+2*x"
+      },
+      "actions": [
+        "alert4"
+      ],
+      "weapons": [],
+      "id": 4111001,
+      "description": {
+        "id": 4111001,
+        "desc": "일정 시간동안 자신을 포함한 주변의 파티원에 한하여 적으로부터 더욱 많은 메소가 떨어지도록 한다.",
+        "name": "메소 업",
+        "shortDesc": "MP Cost: #mpCon, Meso Increase: +#x%, Duration: #time sec",
+        "bookName": "",
+        "detail": "MP #mpCon 소비하여 #time초간 메소 드롭양 #x% 향상"
+      },
+      "levelProperties": [
+        {
+          "hs": "h1",
+          "mpCon": "45",
+          "x": "3",
+          "time": "25"
+        },
+        {
+          "hs": "h2",
+          "mpCon": "45",
+          "x": "6",
+          "time": "30"
+        },
+        {
+          "hs": "h3",
+          "mpCon": "45",
+          "x": "9",
+          "time": "35"
+        },
+        {
+          "hs": "h4",
+          "mpCon": "45",
+          "x": "12",
+          "time": "40"
+        },
+        {
+          "hs": "h5",
+          "mpCon": "45",
+          "x": "15",
+          "time": "45"
+        },
+        {
+          "hs": "h6",
+          "mpCon": "50",
+          "x": "18",
+          "time": "50"
+        },
+        {
+          "hs": "h7",
+          "mpCon": "50",
+          "x": "21",
+          "time": "55"
+        },
+        {
+          "hs": "h8",
+          "mpCon": "50",
+          "x": "24",
+          "time": "60"
+        },
+        {
+          "hs": "h9",
+          "mpCon": "50",
+          "x": "27",
+          "time": "65"
+        },
+        {
+          "hs": "h10",
+          "mpCon": "50",
+          "x": "30",
+          "time": "70"
+        },
+        {
+          "hs": "h11",
+          "mpCon": "55",
+          "x": "32",
+          "time": "75"
+        },
+        {
+          "hs": "h12",
+          "mpCon": "55",
+          "x": "34",
+          "time": "80"
+        },
+        {
+          "hs": "h13",
+          "mpCon": "55",
+          "x": "36",
+          "time": "85"
+        },
+        {
+          "hs": "h14",
+          "mpCon": "55",
+          "x": "38",
+          "time": "90"
+        },
+        {
+          "hs": "h15",
+          "mpCon": "55",
+          "x": "40",
+          "time": "95"
+        },
+        {
+          "hs": "h16",
+          "mpCon": "60",
+          "x": "42",
+          "time": "100"
+        },
+        {
+          "hs": "h17",
+          "mpCon": "60",
+          "x": "44",
+          "time": "105"
+        },
+        {
+          "hs": "h18",
+          "mpCon": "60",
+          "x": "46",
+          "time": "110"
+        },
+        {
+          "hs": "h19",
+          "mpCon": "60",
+          "x": "48",
+          "time": "115"
+        },
+        {
+          "hs": "h20",
+          "mpCon": "60",
+          "x": "50",
+          "time": "120"
+        }
+      ]
+    },
+    {
+      "masterLevel": 30,
+      "properties": {
+        "itemCon": "4006001",
+        "itemConNo": "1",
+        "maxLevel": "20",
+        "mpCon": "40+4*d(x/2)",
+        "time": "60+40*d(x/6)",
+        "x": "10+2*x",
+        "y": "10+2*x"
+      },
+      "actions": [
+        "alert"
+      ],
+      "weapons": [],
+      "id": 4111002,
+      "description": {
+        "id": 4111002,
+        "desc": "일정 시간동안 자신과 똑같은 행동을 하는 그림자 동료를 소환해 낸다. 별도의 체력은 없으며 시간이 지나면 사라지게 된다.",
+        "name": "쉐도우 파트너",
+        "shortDesc": "MP Cost: #mpCon, consumes 1 Summoning Rock, Attack: #x%, Duration: #time sec",
+        "bookName": "",
+        "detail": "MP #mpCon 소환의 돌 1개 소비, #time초간 소환, 통상 #x% 스킬 #y%"
+      },
+      "levelProperties": [
+        {
+          "hs": "h1",
+          "mpCon": "200",
+          "x": "20",
+          "y": "21",
+          "time": "60"
+        },
+        {
+          "hs": "h2",
+          "mpCon": "195",
+          "x": "24",
+          "y": "21",
+          "time": "60"
+        },
+        {
+          "hs": "h3",
+          "mpCon": "190",
+          "x": "28",
+          "y": "21",
+          "time": "60"
+        },
+        {
+          "hs": "h4",
+          "mpCon": "185",
+          "x": "31",
+          "y": "21",
+          "time": "60"
+        },
+        {
+          "hs": "h5",
+          "mpCon": "180",
+          "x": "34",
+          "y": "21",
+          "time": "60"
+        },
+        {
+          "hs": "h6",
+          "mpCon": "175",
+          "x": "37",
+          "y": "21",
+          "time": "60"
+        },
+        {
+          "hs": "h7",
+          "mpCon": "170",
+          "x": "40",
+          "y": "21",
+          "time": "60"
+        },
+        {
+          "hs": "h8",
+          "mpCon": "165",
+          "x": "43",
+          "y": "22",
+          "time": "60"
+        },
+        {
+          "hs": "h9",
+          "mpCon": "160",
+          "x": "46",
+          "y": "23",
+          "time": "60"
+        },
+        {
+          "hs": "h10",
+          "mpCon": "155",
+          "x": "49",
+          "y": "24",
+          "time": "60"
+        },
+        {
+          "hs": "h11",
+          "mpCon": "150",
+          "x": "52",
+          "y": "25",
+          "time": "120"
+        },
+        {
+          "hs": "h12",
+          "mpCon": "145",
+          "x": "54",
+          "y": "26",
+          "time": "120"
+        },
+        {
+          "hs": "h13",
+          "mpCon": "140",
+          "x": "56",
+          "y": "27",
+          "time": "120"
+        },
+        {
+          "hs": "h14",
+          "mpCon": "135",
+          "x": "58",
+          "y": "28",
+          "time": "120"
+        },
+        {
+          "hs": "h15",
+          "mpCon": "130",
+          "x": "60",
+          "y": "29",
+          "time": "120"
+        },
+        {
+          "hs": "h16",
+          "mpCon": "125",
+          "x": "62",
+          "y": "30",
+          "time": "120"
+        },
+        {
+          "hs": "h17",
+          "mpCon": "120",
+          "x": "64",
+          "y": "31",
+          "time": "120"
+        },
+        {
+          "hs": "h18",
+          "mpCon": "115",
+          "x": "66",
+          "y": "32",
+          "time": "120"
+        },
+        {
+          "hs": "h19",
+          "mpCon": "110",
+          "x": "68",
+          "y": "33",
+          "time": "120"
+        },
+        {
+          "hs": "h20",
+          "mpCon": "105",
+          "x": "70",
+          "y": "34",
+          "time": "120"
+        },
+        {
+          "hs": "h21",
+          "mpCon": "100",
+          "x": "71",
+          "y": "35",
+          "time": "180"
+        },
+        {
+          "hs": "h22",
+          "mpCon": "95",
+          "x": "72",
+          "y": "36",
+          "time": "180"
+        },
+        {
+          "hs": "h23",
+          "mpCon": "90",
+          "x": "73",
+          "y": "37",
+          "time": "180"
+        },
+        {
+          "hs": "h24",
+          "mpCon": "85",
+          "x": "74",
+          "y": "38",
+          "time": "180"
+        },
+        {
+          "hs": "h25",
+          "mpCon": "80",
+          "x": "75",
+          "y": "40",
+          "time": "180"
+        },
+        {
+          "hs": "h26",
+          "mpCon": "75",
+          "x": "76",
+          "y": "42",
+          "time": "180"
+        },
+        {
+          "hs": "h27",
+          "mpCon": "70",
+          "x": "77",
+          "y": "44",
+          "time": "180"
+        },
+        {
+          "hs": "h28",
+          "mpCon": "65",
+          "x": "78",
+          "y": "46",
+          "time": "180"
+        },
+        {
+          "hs": "h29",
+          "mpCon": "60",
+          "x": "79",
+          "y": "48",
+          "time": "180"
+        },
+        {
+          "hs": "h30",
+          "mpCon": "55",
+          "x": "80",
+          "y": "50",
+          "time": "180"
+        }
+      ]
+    },
+    {
+      "masterLevel": 20,
+      "properties": {
+        "lt": "Point [ X=-250, Y=-120 ]",
+        "maxLevel": "20",
+        "mobCount": "6",
+        "mpCon": "10+2*d(x/3)",
+        "prop": "40+3*x",
+        "rb": "Point [ X=0, Y=0 ]",
+        "time": "5+d(x/6)"
+      },
+      "actions": [
+        "swingO1"
+      ],
+      "weapons": [],
+      "id": 4111003,
+      "description": {
+        "id": 4111003,
+        "desc": "자신의 그림자를 거미줄로 만들어 6마리 이하 다수의 적을 움직일 수 없게 만든다. 거미줄로 포박당한 적은 움직일 수 없다.",
+        "name": "쉐도우 웹",
+        "shortDesc": "MP Cost: #mpCon, Bind Chance: #prop%, Duration: #time sec",
+        "bookName": "",
+        "detail": "MP #mpCon 소비, #time초간 #prop% 확률로 포박"
+      },
+      "levelProperties": [
+        {
+          "hs": "h1",
+          "mpCon": "10",
+          "prop": "42",
+          "time": "5"
+        },
+        {
+          "hs": "h2",
+          "mpCon": "10",
+          "prop": "44",
+          "time": "5"
+        },
+        {
+          "hs": "h3",
+          "mpCon": "10",
+          "prop": "46",
+          "time": "5"
+        },
+        {
+          "hs": "h4",
+          "mpCon": "10",
+          "prop": "48",
+          "time": "5"
+        },
+        {
+          "hs": "h5",
+          "mpCon": "10",
+          "prop": "50",
+          "time": "5"
+        },
+        {
+          "hs": "h6",
+          "mpCon": "10",
+          "prop": "52",
+          "time": "6"
+        },
+        {
+          "hs": "h7",
+          "mpCon": "14",
+          "prop": "54",
+          "time": "6"
+        },
+        {
+          "hs": "h8",
+          "mpCon": "14",
+          "prop": "56",
+          "time": "6"
+        },
+        {
+          "hs": "h9",
+          "mpCon": "14",
+          "prop": "58",
+          "time": "6"
+        },
+        {
+          "hs": "h10",
+          "mpCon": "14",
+          "prop": "60",
+          "time": "6"
+        },
+        {
+          "hs": "h11",
+          "mpCon": "18",
+          "prop": "62",
+          "time": "7"
+        },
+        {
+          "hs": "h12",
+          "mpCon": "18",
+          "prop": "64",
+          "time": "7"
+        },
+        {
+          "hs": "h13",
+          "mpCon": "18",
+          "prop": "66",
+          "time": "7"
+        },
+        {
+          "hs": "h14",
+          "mpCon": "18",
+          "prop": "68",
+          "time": "7"
+        },
+        {
+          "hs": "h15",
+          "mpCon": "18",
+          "prop": "70",
+          "time": "7"
+        },
+        {
+          "hs": "h16",
+          "mpCon": "22",
+          "prop": "72",
+          "time": "8"
+        },
+        {
+          "hs": "h17",
+          "mpCon": "22",
+          "prop": "74",
+          "time": "8"
+        },
+        {
+          "hs": "h18",
+          "mpCon": "22",
+          "prop": "76",
+          "time": "8"
+        },
+        {
+          "hs": "h19",
+          "mpCon": "22",
+          "prop": "78",
+          "time": "8"
+        },
+        {
+          "hs": "h20",
+          "mpCon": "22",
+          "prop": "80",
+          "time": "8"
+        }
+      ]
+    },
+    {
+      "masterLevel": 30,
+      "properties": {
+        "maxLevel": "20",
+        "moneyCon": "270+15*x",
+        "prop": "10+x",
+        "x": "20+2*x",
+        "y": "140+10*x",
+        "z": "400+20*x"
+      },
+      "weapons": [],
+      "id": 4111004,
+      "description": {
+        "id": 4111004,
+        "desc": "메소를 던져서 던진 메소에 비례한 데미지로 적을 공격한다. 몬스터의 물리가드 업, 매직가드 업 효과를 무시하는 공격이다.",
+        "name": "쉐도우 메소",
+        "shortDesc": "Mesos Consumed: #y to #z mesos, Bonus Damage Chance: #prop%, Damage: #x%",
+        "bookName": "",
+        "detail": "최소 #x, 최대 #y 메소 소비하여 공격 #prop% 확률로 데미지 #damage% 증가"
+      },
+      "levelProperties": [
+        {
+          "hs": "h1",
+          "x": "50",
+          "y": "220",
+          "prop": "1",
+          "damage": "50"
+        },
+        {
+          "hs": "h2",
+          "x": "60",
+          "y": "240",
+          "prop": "1",
+          "damage": "50"
+        },
+        {
+          "hs": "h3",
+          "x": "70",
+          "y": "260",
+          "prop": "1",
+          "damage": "50"
+        },
+        {
+          "hs": "h4",
+          "x": "80",
+          "y": "280",
+          "prop": "2",
+          "damage": "50"
+        },
+        {
+          "hs": "h5",
+          "x": "90",
+          "y": "300",
+          "prop": "2",
+          "damage": "50"
+        },
+        {
+          "hs": "h6",
+          "x": "100",
+          "y": "320",
+          "prop": "2",
+          "damage": "50"
+        },
+        {
+          "hs": "h7",
+          "x": "110",
+          "y": "340",
+          "prop": "3",
+          "damage": "50"
+        },
+        {
+          "hs": "h8",
+          "x": "120",
+          "y": "360",
+          "prop": "3",
+          "damage": "50"
+        },
+        {
+          "hs": "h9",
+          "x": "120",
+          "y": "360",
+          "prop": "3",
+          "damage": "50"
+        },
+        {
+          "hs": "h10",
+          "x": "140",
+          "y": "400",
+          "prop": "4",
+          "damage": "50"
+        },
+        {
+          "hs": "h11",
+          "x": "150",
+          "y": "420",
+          "prop": "4",
+          "damage": "50"
+        },
+        {
+          "hs": "h12",
+          "x": "160",
+          "y": "440",
+          "prop": "4",
+          "damage": "50"
+        },
+        {
+          "hs": "h13",
+          "x": "170",
+          "y": "460",
+          "prop": "5",
+          "damage": "50"
+        },
+        {
+          "hs": "h14",
+          "x": "180",
+          "y": "480",
+          "prop": "5",
+          "damage": "50"
+        },
+        {
+          "hs": "h15",
+          "x": "190",
+          "y": "500",
+          "prop": "5",
+          "damage": "50"
+        },
+        {
+          "hs": "h16",
+          "x": "200",
+          "y": "520",
+          "prop": "6",
+          "damage": "50"
+        },
+        {
+          "hs": "h17",
+          "x": "210",
+          "y": "540",
+          "prop": "6",
+          "damage": "50"
+        },
+        {
+          "hs": "h18",
+          "x": "220",
+          "y": "560",
+          "prop": "6",
+          "damage": "50"
+        },
+        {
+          "hs": "h19",
+          "x": "230",
+          "y": "580",
+          "prop": "7",
+          "damage": "50"
+        },
+        {
+          "hs": "h20",
+          "x": "240",
+          "y": "600",
+          "prop": "7",
+          "damage": "50"
+        },
+        {
+          "hs": "h21",
+          "x": "250",
+          "y": "620",
+          "prop": "7",
+          "damage": "50"
+        },
+        {
+          "hs": "h22",
+          "x": "260",
+          "y": "640",
+          "prop": "8",
+          "damage": "50"
+        },
+        {
+          "hs": "h23",
+          "x": "270",
+          "y": "660",
+          "prop": "8",
+          "damage": "50"
+        },
+        {
+          "hs": "h24",
+          "x": "280",
+          "y": "680",
+          "prop": "8",
+          "damage": "50"
+        },
+        {
+          "hs": "h25",
+          "x": "290",
+          "y": "700",
+          "prop": "9",
+          "damage": "50"
+        },
+        {
+          "hs": "h26",
+          "x": "300",
+          "y": "720",
+          "prop": "9",
+          "damage": "50"
+        },
+        {
+          "hs": "h27",
+          "x": "310",
+          "y": "740",
+          "prop": "9",
+          "damage": "50"
+        },
+        {
+          "hs": "h28",
+          "x": "320",
+          "y": "760",
+          "prop": "10",
+          "damage": "50"
+        },
+        {
+          "hs": "h29",
+          "x": "330",
+          "y": "780",
+          "prop": "10",
+          "damage": "50"
+        },
+        {
+          "hs": "h30",
+          "x": "340",
+          "y": "800",
+          "prop": "10",
+          "damage": "50"
+        }
+      ],
+      "requiredSkillLevels": {
+        "4111001": 5
+      }
+    },
+    {
+      "masterLevel": 30,
+      "properties": {
+        "bulletConsume": "3",
+        "damage": "270+4*x",
+        "maxLevel": "20",
+        "mobCount": "3+u(x/7)",
+        "mpCon": "9+7*u(x/7)"
+      },
+      "actions": [
+        "avenger"
+      ],
+      "weapons": [],
+      "id": 4111005,
+      "description": {
+        "id": 4111005,
+        "desc": "MP를 소모하여 커다란 표창을 만들어 던진다. 던져진 표창은 적을 통과하여 그 뒤의 적까지 공격할 수 있다.",
+        "name": "어벤져",
+        "shortDesc": "MP Cost: #mpCon, Consumes #bulletConsume throwing stars, Damage: #damage%, Max Monsters Hit: #mobCount",
+        "bookName": "",
+        "detail": "MP #mpCon 표창 #x개 소비하여 최대 #mobCount명 공격, 데미지 #damage%"
+      },
+      "levelProperties": [
+        {
+          "hs": "h1",
+          "mpCon": "16",
+          "damage": "65",
+          "x": "3",
+          "mobCount": "4"
+        },
+        {
+          "hs": "h2",
+          "mpCon": "16",
+          "damage": "70",
+          "x": "3",
+          "mobCount": "4"
+        },
+        {
+          "hs": "h3",
+          "mpCon": "16",
+          "damage": "75",
+          "x": "3",
+          "mobCount": "4"
+        },
+        {
+          "hs": "h4",
+          "mpCon": "16",
+          "damage": "80",
+          "x": "3",
+          "mobCount": "4"
+        },
+        {
+          "hs": "h5",
+          "mpCon": "16",
+          "damage": "85",
+          "x": "3",
+          "mobCount": "4"
+        },
+        {
+          "hs": "h6",
+          "mpCon": "16",
+          "damage": "90",
+          "x": "3",
+          "mobCount": "4"
+        },
+        {
+          "hs": "h7",
+          "mpCon": "16",
+          "damage": "90",
+          "x": "3",
+          "mobCount": "4"
+        },
+        {
+          "hs": "h8",
+          "mpCon": "16",
+          "damage": "100",
+          "x": "3",
+          "mobCount": "4"
+        },
+        {
+          "hs": "h9",
+          "mpCon": "16",
+          "damage": "105",
+          "x": "3",
+          "mobCount": "4"
+        },
+        {
+          "hs": "h10",
+          "mpCon": "16",
+          "damage": "110",
+          "x": "3",
+          "mobCount": "4"
+        },
+        {
+          "hs": "h11",
+          "mpCon": "23",
+          "damage": "114",
+          "x": "3",
+          "mobCount": "5"
+        },
+        {
+          "hs": "h12",
+          "mpCon": "23",
+          "damage": "118",
+          "x": "3",
+          "mobCount": "5"
+        },
+        {
+          "hs": "h13",
+          "mpCon": "23",
+          "damage": "122",
+          "x": "3",
+          "mobCount": "5"
+        },
+        {
+          "hs": "h14",
+          "mpCon": "23",
+          "damage": "126",
+          "x": "3",
+          "mobCount": "5"
+        },
+        {
+          "hs": "h15",
+          "mpCon": "23",
+          "damage": "130",
+          "x": "3",
+          "mobCount": "5"
+        },
+        {
+          "hs": "h16",
+          "mpCon": "23",
+          "damage": "134",
+          "x": "3",
+          "mobCount": "5"
+        },
+        {
+          "hs": "h17",
+          "mpCon": "23",
+          "damage": "138",
+          "x": "3",
+          "mobCount": "5"
+        },
+        {
+          "hs": "h18",
+          "mpCon": "23",
+          "damage": "142",
+          "x": "3",
+          "mobCount": "5"
+        },
+        {
+          "hs": "h19",
+          "mpCon": "23",
+          "damage": "146",
+          "x": "3",
+          "mobCount": "5"
+        },
+        {
+          "hs": "h20",
+          "mpCon": "23",
+          "damage": "150",
+          "x": "3",
+          "mobCount": "5"
+        },
+        {
+          "hs": "h21",
+          "mpCon": "30",
+          "damage": "153",
+          "x": "3",
+          "mobCount": "6"
+        },
+        {
+          "hs": "h22",
+          "mpCon": "30",
+          "damage": "156",
+          "x": "3",
+          "mobCount": "6"
+        },
+        {
+          "hs": "h23",
+          "mpCon": "30",
+          "damage": "159",
+          "x": "3",
+          "mobCount": "6"
+        },
+        {
+          "hs": "h24",
+          "mpCon": "30",
+          "damage": "162",
+          "x": "3",
+          "mobCount": "6"
+        },
+        {
+          "hs": "h25",
+          "mpCon": "30",
+          "damage": "165",
+          "x": "3",
+          "mobCount": "6"
+        },
+        {
+          "hs": "h26",
+          "mpCon": "30",
+          "damage": "168",
+          "x": "3",
+          "mobCount": "6"
+        },
+        {
+          "hs": "h27",
+          "mpCon": "30",
+          "damage": "171",
+          "x": "3",
+          "mobCount": "6"
+        },
+        {
+          "hs": "h28",
+          "mpCon": "30",
+          "damage": "174",
+          "x": "3",
+          "mobCount": "6"
+        },
+        {
+          "hs": "h29",
+          "mpCon": "30",
+          "damage": "177",
+          "x": "3",
+          "mobCount": "6"
+        },
+        {
+          "hs": "h30",
+          "mpCon": "30",
+          "damage": "180",
+          "x": "3",
+          "mobCount": "6"
+        }
+      ]
+    },
+    {
+      "masterLevel": 20,
+      "properties": {
+        "maxLevel": "20",
+        "mpCon": "52-2*x"
+      },
+      "weapons": [],
+      "id": 4111006,
+      "description": {
+        "id": 4111006,
+        "desc": "점프하여 공중에 떠 있는채로 사용하면 진행 방향으로 한번 더 점프한다. 스킬 레벨이 올라갈수록 점프 거리가 늘어난다.",
+        "name": "플래시 점프",
+        "shortDesc": "MP Cost: #mpCon, jumps a a certain distance",
+        "bookName": "",
+        "detail": "MP #mpCon 소비하여 일정거리를 점프"
+      },
+      "levelProperties": [
+        {
+          "hs": "h1",
+          "mpCon": "60"
+        },
+        {
+          "hs": "h2",
+          "mpCon": "57"
+        },
+        {
+          "hs": "h3",
+          "mpCon": "54"
+        },
+        {
+          "hs": "h4",
+          "mpCon": "51"
+        },
+        {
+          "hs": "h5",
+          "mpCon": "48"
+        },
+        {
+          "hs": "h6",
+          "mpCon": "45"
+        },
+        {
+          "hs": "h7",
+          "mpCon": "42"
+        },
+        {
+          "hs": "h8",
+          "mpCon": "39"
+        },
+        {
+          "hs": "h9",
+          "mpCon": "36"
+        },
+        {
+          "hs": "h10",
+          "mpCon": "33"
+        },
+        {
+          "hs": "h11",
+          "mpCon": "31"
+        },
+        {
+          "hs": "h12",
+          "mpCon": "29"
+        },
+        {
+          "hs": "h13",
+          "mpCon": "27"
+        },
+        {
+          "hs": "h14",
+          "mpCon": "25"
+        },
+        {
+          "hs": "h15",
+          "mpCon": "23"
+        },
+        {
+          "hs": "h16",
+          "mpCon": "21"
+        },
+        {
+          "hs": "h17",
+          "mpCon": "19"
+        },
+        {
+          "hs": "h18",
+          "mpCon": "17"
+        },
+        {
+          "hs": "h19",
+          "mpCon": "15"
+        },
+        {
+          "hs": "h20",
+          "mpCon": "13"
+        }
+      ],
+      "requiredSkillLevels": {
+        "4111005": 5
+      }
+    }
+  ]
+}
