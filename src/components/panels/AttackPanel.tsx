@@ -14,8 +14,8 @@ import { aggregateBuild, equippedBuilts, equippedWeaponType } from '../../store/
 import { useBuffEffects } from '../../store/useBuffEffects'
 import {
   totalAttack, totalMagic, masteryRatio, calcPhysical, calcLuckySeven, calcMagic,
-  calcPhysicalRatios, calcLuckyRatio, calcMagicRatio,
-  levelPenalty, physicalVsMonster, magicVsMonster,
+  calcPhysicalRatios, calcLuckyRatio,
+  levelPenalty, physicalVsMonster,
   magicAmpMultiplier, scaleDamage,
 } from '../../domain/attackPower'
 import type { AtkStatRatio, DamageRange } from '../../domain/attackPower'
@@ -64,16 +64,13 @@ export default function AttackPanel() {
   const lucky = weaponType === 'claw' ? calcLuckySeven(finalStats.LUK, watk) : null
   const luckyRatio = weaponType === 'claw' ? calcLuckyRatio(finalStats.LUK, watk) : null
 
-  // 마법: 스킬 미선택 기준 base 실질 마법 데미지(계수 1). 엘앰프 등 마법 증폭 반영.
+  // 마법 데미지 증폭(엘앰프 등) — 스킬 마법 데미지에 반영
   const ampMult = magicAmpMultiplier(effects)
-  const magic = isMagic ? scaleDamage(calcMagic(matk, finalStats.INT, 1, mastery), ampMult) : null
-  const magicRatio = isMagic ? calcMagicRatio(matk, mastery) : null
 
-  // vs 몬스터 실질 데미지
+  // vs 몬스터 물리 실질 데미지 (일반 공격 기준). 마법은 스킬 데미지 섹션에서 처리.
   const monster = selectedMobId != null ? getMonster(selectedMobId) : undefined
   const D = monster ? levelPenalty(monster.level, level) : 0
   const physVs = phys && monster ? physicalVsMonster(phys.display, monster.PDDamage ?? 0, D) : null
-  const magicVs = magic && monster ? magicVsMonster(magic, monster.MDDamage ?? 0, D) : null
 
   // ── 스킬 데미지 (10단계 파이프라인) ──
   // 크리는 버프 적용 결과(합산 효과)로 결정: criticalP(확률) / criticalDamage(추가데미지)
@@ -106,17 +103,7 @@ export default function AttackPanel() {
         <Row label="숙련도" value={`${Math.round(mastery * 100)}%`} />
       </Box>
 
-      {isMagic ? (
-        <>
-          <Divider sx={{ my: 1 }} />
-          {magic && (
-            <>
-              <DmgRow label="실질 마법 데미지" range={magic} strong />
-              <RatioText ratio={magicRatio} statLabel="인" atkLabel="마력" digits={3} />
-            </>
-          )}
-        </>
-      ) : !weaponType ? (
+      {isMagic ? null : !weaponType ? (
         <>
           <Divider sx={{ my: 1 }} />
           <Typography variant="caption" color="text.disabled">무기를 장착하세요.</Typography>
@@ -145,14 +132,13 @@ export default function AttackPanel() {
         )
       )}
 
-      {monster && (physVs || magicVs) && (
+      {monster && physVs && (
         <>
           <Divider sx={{ my: 1 }} />
           <Typography variant="caption" sx={{ fontWeight: 700, display: 'block', mb: 0.25 }}>
             실질 데미지 vs {monster.koreanName || monster.name}
           </Typography>
-          {physVs && <DmgRow label="물리 실질" range={physVs} strong />}
-          {magicVs && <DmgRow label="마법 실질" range={magicVs} strong />}
+          <DmgRow label="물리 실질" range={physVs} strong />
         </>
       )}
 
