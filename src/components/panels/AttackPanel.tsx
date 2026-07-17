@@ -5,8 +5,6 @@ import Divider from '@mui/material/Divider'
 import Select from '@mui/material/Select'
 import MenuItem from '@mui/material/MenuItem'
 import TextField from '@mui/material/TextField'
-import FormControlLabel from '@mui/material/FormControlLabel'
-import Switch from '@mui/material/Switch'
 import CollapsiblePanel from '../common/CollapsiblePanel'
 import { useBuildStore } from '../../store/buildStore'
 import { useInventoryStore } from '../../store/inventoryStore'
@@ -29,7 +27,6 @@ import { attackSkillsForJob, skillAttackAt } from '../../data/skills'
 
 const fmtRange = (r: DamageRange) => `${r.min.toLocaleString()} ~ ${r.max.toLocaleString()}`
 const STAT_SHORT: Record<StatId, string> = { STR: '힘', DEX: '덱', INT: '인', LUK: '럭' }
-const num = (s: string, fallback: number) => (s.trim() === '' ? fallback : Number(s) || 0)
 
 export default function AttackPanel() {
   const jobId = useBuildStore((s) => s.jobId)
@@ -41,8 +38,6 @@ export default function AttackPanel() {
 
   const [skillId, setSkillId] = useState<number | ''>('')
   const [skillLevel, setSkillLevel] = useState(1)
-  const [critPct, setCritPct] = useState(0)
-  const [sharpEyes, setSharpEyes] = useState(false)
 
   const { finalStats, effects } = aggregateBuild(baseStats, equippedBuilts(equipped, invItems), useBuffEffects())
   const job = jobId ? JOBS[jobId] : null
@@ -73,6 +68,9 @@ export default function AttackPanel() {
   const magicVs = magic && monster ? magicVsMonster(magic, monster.MDDamage ?? 0, D) : null
 
   // ── 스킬 데미지 (10단계 파이프라인) ──
+  // 크리는 버프 적용 결과(합산 효과)로 결정: criticalP(확률) / criticalDamage(추가데미지)
+  const critRate = effects.criticalP ?? 0
+  const critDamage = effects.criticalDamage ?? 0
   const attackSkills = jobId ? attackSkillsForJob(jobId) : []
   const selectedSkill = attackSkills.find((s) => s.id === skillId)
   const skillResult = (() => {
@@ -85,8 +83,8 @@ export default function AttackPanel() {
     const defense = monster
       ? { kind: att.kind, def: att.kind === 'magic' ? monster.MDDamage ?? 0 : monster.PDDamage ?? 0, levelPenalty: D }
       : undefined
-    // 크리 순보너스: 크리스킬%는 −100(기본 크리 상쇄), 샤프아이즈는 +140 순증가
-    const critBonus = (critPct > 0 ? critPct - 100 : 0) + (sharpEyes ? 140 : 0)
+    // 크리 순보너스 = 합산 criticalDamage (크리 가능 시에만)
+    const critBonus = critRate > 0 ? critDamage : 0
     return { att, result: computeSkillDamage({ base, element: reaction, defense, skillPercent: att.skillPercent, critBonus }) }
   })()
 
@@ -182,21 +180,6 @@ export default function AttackPanel() {
             )}
           </Box>
 
-          {selectedSkill && (
-            <Box sx={{ display: 'flex', gap: 1, alignItems: 'center', mb: 0.5 }}>
-              <TextField
-                size="small" type="number" label="크리 데미지%"
-                value={critPct}
-                onChange={(e) => setCritPct(Math.max(0, num(e.target.value, 0)))}
-                slotProps={{ htmlInput: { style: { width: 60, textAlign: 'center' }, min: 0 } }}
-              />
-              <FormControlLabel
-                control={<Switch size="small" checked={sharpEyes} onChange={(e) => setSharpEyes(e.target.checked)} />}
-                label={<Typography variant="caption">샤프아이즈 +140%</Typography>}
-              />
-            </Box>
-          )}
-
           {skillResult && (
             <>
               <DmgRow
@@ -204,8 +187,9 @@ export default function AttackPanel() {
                 range={skillResult.result.normal}
                 strong
               />
-              {skillResult.result.critical && <DmgRow label="크리티컬" range={skillResult.result.critical} />}
+              {skillResult.result.critical && <DmgRow label={`크리티컬 (확률 ${critRate}%)`} range={skillResult.result.critical} />}
               <Typography variant="caption" color="text.disabled" sx={{ display: 'block', px: 1 }}>
+                {critRate > 0 ? `크리 데미지 +${critDamage}% · ` : ''}
                 {monster ? `vs ${monster.koreanName || monster.name} (방어·속성 반영)` : '방어 미반영(몬스터 미선택)'}
               </Typography>
             </>

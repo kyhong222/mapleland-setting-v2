@@ -524,123 +524,123 @@
     "effectsByLevel": [
       {
         "criticalP": 1,
-        "criticalDamage": 11
+        "criticalDamage": 111
       },
       {
         "criticalP": 1,
-        "criticalDamage": 12
+        "criticalDamage": 112
       },
       {
         "criticalP": 2,
-        "criticalDamage": 13
+        "criticalDamage": 113
       },
       {
         "criticalP": 2,
-        "criticalDamage": 14
+        "criticalDamage": 114
       },
       {
         "criticalP": 3,
-        "criticalDamage": 15
+        "criticalDamage": 115
       },
       {
         "criticalP": 3,
-        "criticalDamage": 16
+        "criticalDamage": 116
       },
       {
         "criticalP": 4,
-        "criticalDamage": 17
+        "criticalDamage": 117
       },
       {
         "criticalP": 4,
-        "criticalDamage": 18
+        "criticalDamage": 118
       },
       {
         "criticalP": 5,
-        "criticalDamage": 19
+        "criticalDamage": 119
       },
       {
         "criticalP": 5,
-        "criticalDamage": 20
+        "criticalDamage": 120
       },
       {
         "criticalP": 6,
-        "criticalDamage": 21
+        "criticalDamage": 121
       },
       {
         "criticalP": 6,
-        "criticalDamage": 22
+        "criticalDamage": 122
       },
       {
         "criticalP": 7,
-        "criticalDamage": 23
+        "criticalDamage": 123
       },
       {
         "criticalP": 7,
-        "criticalDamage": 24
+        "criticalDamage": 124
       },
       {
         "criticalP": 8,
-        "criticalDamage": 25
+        "criticalDamage": 125
       },
       {
         "criticalP": 8,
-        "criticalDamage": 26
+        "criticalDamage": 126
       },
       {
         "criticalP": 9,
-        "criticalDamage": 27
+        "criticalDamage": 127
       },
       {
         "criticalP": 9,
-        "criticalDamage": 28
+        "criticalDamage": 128
       },
       {
         "criticalP": 10,
-        "criticalDamage": 29
+        "criticalDamage": 129
       },
       {
         "criticalP": 10,
-        "criticalDamage": 30
+        "criticalDamage": 130
       },
       {
         "criticalP": 11,
-        "criticalDamage": 31
+        "criticalDamage": 131
       },
       {
         "criticalP": 11,
-        "criticalDamage": 32
+        "criticalDamage": 132
       },
       {
         "criticalP": 12,
-        "criticalDamage": 33
+        "criticalDamage": 133
       },
       {
         "criticalP": 12,
-        "criticalDamage": 34
+        "criticalDamage": 134
       },
       {
         "criticalP": 13,
-        "criticalDamage": 35
+        "criticalDamage": 135
       },
       {
         "criticalP": 13,
-        "criticalDamage": 36
+        "criticalDamage": 136
       },
       {
         "criticalP": 14,
-        "criticalDamage": 37
+        "criticalDamage": 137
       },
       {
         "criticalP": 14,
-        "criticalDamage": 38
+        "criticalDamage": 138
       },
       {
         "criticalP": 15,
-        "criticalDamage": 39
+        "criticalDamage": 139
       },
       {
         "criticalP": 15,
-        "criticalDamage": 40
+        "criticalDamage": 140
       }
     ],
     "icon": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAA7EAAAOxAGVKw4bAAAEnElEQVR4nL1X4bWrIAxOz7kL0BHsCDqCjqAj6Ag4Ao6gI9gRdAQZoY5QR+hLAkG07Tv31805rRCSLx8hgP7AUV7wN3KRRkzgtSyPP4meZbeXkBACL72UcIeWOyYd35ystfwkmy3Sb9xxGvo3qud2mqZvGK2t+EmxuuzOJIgAzzxNkzdDIiKBZ+g4hEmn/86umDPna3ciMZ5IMs7QVMUrLEFsJIakS5Qb14nTdbZwMz0RqeaCCU75ciCS2uQQWOIkUPMzEAhBZ08kd0SkP0DlE62c3hbck+UY84lJVBIYkq+4jLfORwKBCBo03jh2iHUdzuKcgQYJKVBMMPYTIaJ9/l5bbwRozXOloLoXMJYTP0WoT0K6ai0g8WWzrjI+7uPeTzA2tTH2uTgPBMhgxWSXaQ+DdancsMyneoH72kAxZNwWItQnIZ0I6ZJUQY8ZknHGKBeuCyrOmMRbBlScMw9+DlR0vq/f+2yPfQom44d9e5JAgGa/4S7Pcfazbdg5azNYzHKYIelGbUKbJO6zvT7ak46Kk3aIZOFrBlwWarf/MXVZc4Ol30/IdV4hiwqSg5z6QY++Mjmt+o82EQGavWHjZnCAo3FONwTarMvjc3nC/+SaXd0ksA4m71+1Dq+vx5CFEsyJgIIQfDRusGgbfj764x1x3zqoru1BNz4NlEofCN58BiaPR0SIhIr8dgJbycF7NC4aB/4Y3y8nCf56vcCuHbTbDOuwsm7E2ERCRIjfKkdk7A00noR1l8hOgIIbo6HC4OfAklaaXRy8qDrOXFIqSPvEj+mDfTwRItL3mknUeb8TaIYCtKmhQsDntAcX5v2koa2GoC/w1LON3ZNn8Qysd8IKLxDT13ArnP/DYxIRwqSxzi8vE6jrHG+mIQQXR92XLgCna9/MlHJZSOWPQxWvLNqTj/jfiqsn8nQksK8NLfngCHTtHAV3xjWy5JAr/idx2TihtNPMuV3TyWfgBtnOIfIlrKEZGJtJ4E/i/Hj6PuVXbj+wmriNUprSwXkbqnZa63RJ/ZFr8N5L4XK58JjgbeSDybm3Q5g9YdKP8AUvFCGtTW7y0GYj2A8ThRdU0d5wSz242mUbyqxlG5IN2c6du25jHMGnNtkQzR8HTmlMwHausFKdhAKMdwTpHLkHV/tZvvkIpuBTLK4jyUBf45WJO2Gs/XWKWzLRySEDdBx/OhdiicfFT3AsBozxNW5D2n1hCWQwSZxh1bnjU2m3WHLx/Fpq57d2bqajxsNHdZBumvHtejqI5I6mO4hJaM/2ROS3snVbCMxEfPAQ5/xK1szuDabHdzshoVTJAMPWYlGtO/iXCz4+C3Jc51oZDjjgbZmCCy5xqH8gQIFJWm8AXC/DPpbvgcimVOYQ/I4kTX58TyS7u5soHgkttyXOcD9lgN5y6UXzDBKPk4iN2AfffPpo9w0rOWeAHGLns0Ot8gPRb8A50BpvH+1i/Pi1/ELfavR1JA6dLQ6OpJcvJDxi/BP4RqRgsvLupbz0PulHHBJKP34VUfMiGWAS/Th5oOMhI2xljPr0tEGXRzpXoNb3P+FIcMmAyIW+1eBvJHye/wMg1rWy3LP6EQAAAABJRU5ErkJggg=="
