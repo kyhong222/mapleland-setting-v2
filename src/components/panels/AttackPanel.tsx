@@ -1,6 +1,12 @@
+import { useState } from 'react'
 import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
 import Divider from '@mui/material/Divider'
+import Select from '@mui/material/Select'
+import MenuItem from '@mui/material/MenuItem'
+import TextField from '@mui/material/TextField'
+import FormControlLabel from '@mui/material/FormControlLabel'
+import Switch from '@mui/material/Switch'
 import CollapsiblePanel from '../common/CollapsiblePanel'
 import { useBuildStore } from '../../store/buildStore'
 import { useInventoryStore } from '../../store/inventoryStore'
@@ -13,13 +19,17 @@ import {
   levelPenalty, physicalVsMonster, magicVsMonster,
 } from '../../domain/attackPower'
 import type { AtkStatRatio, DamageRange } from '../../domain/attackPower'
+import { computeSkillDamage } from '../../domain/damage'
 import { WEAPON_CONSTANTS } from '../../domain/weapons'
 import { JOBS } from '../../domain/jobs'
 import type { StatId } from '../../domain/stats'
 import { getMonster } from '../../data/mobs'
+import { elementReaction } from '../../domain/monster'
+import { attackSkillsForJob, skillAttackAt } from '../../data/skills'
 
 const fmtRange = (r: DamageRange) => `${r.min.toLocaleString()} ~ ${r.max.toLocaleString()}`
 const STAT_SHORT: Record<StatId, string> = { STR: '힘', DEX: '덱', INT: '인', LUK: '럭' }
+const num = (s: string, fallback: number) => (s.trim() === '' ? fallback : Number(s) || 0)
 
 export default function AttackPanel() {
   const jobId = useBuildStore((s) => s.jobId)
@@ -28,6 +38,11 @@ export default function AttackPanel() {
   const equipped = useBuildStore((s) => s.equipped)
   const invItems = useInventoryStore((s) => s.items)
   const selectedMobId = useMonsterStore((s) => s.selectedId)
+
+  const [skillId, setSkillId] = useState<number | ''>('')
+  const [skillLevel, setSkillLevel] = useState(1)
+  const [critPct, setCritPct] = useState(0)
+  const [sharpEyes, setSharpEyes] = useState(false)
 
   const { finalStats, effects } = aggregateBuild(baseStats, equippedBuilts(equipped, invItems), useBuffEffects())
   const job = jobId ? JOBS[jobId] : null
@@ -56,6 +71,24 @@ export default function AttackPanel() {
   const D = monster ? levelPenalty(monster.level, level) : 0
   const physVs = phys && monster ? physicalVsMonster(phys.display, monster.PDDamage ?? 0, D) : null
   const magicVs = magic && monster ? magicVsMonster(magic, monster.MDDamage ?? 0, D) : null
+
+  // ── 스킬 데미지 (10단계 파이프라인) ──
+  const attackSkills = jobId ? attackSkillsForJob(jobId) : []
+  const selectedSkill = attackSkills.find((s) => s.id === skillId)
+  const skillResult = (() => {
+    if (!selectedSkill) return null
+    const att = skillAttackAt(selectedSkill, skillLevel)
+    if (!att) return null
+    const base = att.kind === 'magic' ? calcMagic(matk, finalStats.INT, att.spellAtk, mastery) : phys?.display
+    if (!base) return null
+    const reaction = elementReaction(monster?.elemAttr, att.element)
+    const defense = monster
+      ? { kind: att.kind, def: att.kind === 'magic' ? monster.MDDamage ?? 0 : monster.PDDamage ?? 0, levelPenalty: D }
+      : undefined
+    // 크리 순보너스: 크리스킬%는 −100(기본 크리 상쇄), 샤프아이즈는 +140 순증가
+    const critBonus = (critPct > 0 ? critPct - 100 : 0) + (sharpEyes ? 140 : 0)
+    return { att, result: computeSkillDamage({ base, element: reaction, defense, skillPercent: att.skillPercent, critBonus }) }
+  })()
 
   return (
     <CollapsiblePanel id="attack" title="공격력 계산">
@@ -114,6 +147,71 @@ export default function AttackPanel() {
           {magicVs && <DmgRow label="마법 실질" range={magicVs} strong />}
         </>
       )}
+
+      {/* ── 스킬 데미지 ── */}
+      {attackSkills.length > 0 && (
+        <>
+          <Divider sx={{ my: 1 }} />
+          <Typography variant="caption" sx={{ fontWeight: 700, display: 'block', mb: 0.5 }}>스킬 데미지</Typography>
+          <Box sx={{ display: 'flex', gap: 0.5, mb: 0.5 }}>
+            <Select<number | ''>
+              size="small"
+              displayEmpty
+              value={skillId}
+              onChange={(e) => {
+                const raw = e.target.value
+                const id = raw === '' ? '' : Number(raw)
+                setSkillId(id)
+                const sk = attackSkills.find((s) => s.id === id)
+                if (sk) setSkillLevel(sk.masterLevel)
+              }}
+              sx={{ flexGrow: 1, fontSize: 13 }}
+            >
+              <MenuItem value=""><em>스킬 선택</em></MenuItem>
+              {attackSkills.map((s) => (
+                <MenuItem key={s.id} value={s.id} sx={{ fontSize: 13 }}>{s.description?.name ?? s.id}</MenuItem>
+              ))}
+            </Select>
+            {selectedSkill && (
+              <TextField
+                size="small" type="number" label="Lv"
+                value={skillLevel}
+                onChange={(e) => setSkillLevel(Math.max(1, Math.min(selectedSkill.masterLevel, Number(e.target.value) || 1)))}
+                slotProps={{ htmlInput: { style: { width: 44, textAlign: 'center' }, min: 1, max: selectedSkill.masterLevel } }}
+              />
+            )}
+          </Box>
+
+          {selectedSkill && (
+            <Box sx={{ display: 'flex', gap: 1, alignItems: 'center', mb: 0.5 }}>
+              <TextField
+                size="small" type="number" label="크리 데미지%"
+                value={critPct}
+                onChange={(e) => setCritPct(Math.max(0, num(e.target.value, 0)))}
+                slotProps={{ htmlInput: { style: { width: 60, textAlign: 'center' }, min: 0 } }}
+              />
+              <FormControlLabel
+                control={<Switch size="small" checked={sharpEyes} onChange={(e) => setSharpEyes(e.target.checked)} />}
+                label={<Typography variant="caption">샤프아이즈 +140%</Typography>}
+              />
+            </Box>
+          )}
+
+          {skillResult && (
+            <>
+              <DmgRow
+                label={`${selectedSkill?.description?.name ?? ''} (${skillResult.att.kind === 'magic' ? `마력계수 ${skillResult.att.spellAtk}` : `${skillResult.att.skillPercent}%`})`}
+                range={skillResult.result.normal}
+                strong
+              />
+              {skillResult.result.critical && <DmgRow label="크리티컬" range={skillResult.result.critical} />}
+              <Typography variant="caption" color="text.disabled" sx={{ display: 'block', px: 1 }}>
+                {monster ? `vs ${monster.koreanName || monster.name} (방어·속성 반영)` : '방어 미반영(몬스터 미선택)'}
+              </Typography>
+            </>
+          )}
+        </>
+      )}
     </CollapsiblePanel>
   )
 }
@@ -129,9 +227,9 @@ function Row({ label, value }: { label: string; value: string }) {
 
 function DmgRow({ label, range, strong = false }: { label: string; range: DamageRange; strong?: boolean }) {
   return (
-    <Box sx={{ display: 'flex', justifyContent: 'space-between', px: 1, py: 0.25 }}>
-      <Typography variant="body2" color="text.secondary">{label}</Typography>
-      <Typography variant="body2" sx={{ fontWeight: strong ? 700 : 500, color: strong ? 'primary.main' : 'text.primary' }}>
+    <Box sx={{ display: 'flex', justifyContent: 'space-between', px: 1, py: 0.25, gap: 1 }}>
+      <Typography variant="body2" color="text.secondary" sx={{ minWidth: 0, overflow: 'hidden', textOverflow: 'ellipsis' }}>{label}</Typography>
+      <Typography variant="body2" sx={{ fontWeight: strong ? 700 : 500, color: strong ? 'primary.main' : 'text.primary', whiteSpace: 'nowrap' }}>
         {fmtRange(range)}
       </Typography>
     </Box>

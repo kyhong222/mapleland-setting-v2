@@ -78,7 +78,36 @@ export function skillNum(props: ILevelProperties | undefined, key: string): numb
   return v === undefined ? 0 : Number(v) || 0
 }
 
-/** 공격 스킬 여부 (마법계수 mad 또는 물리 damage 보유) */
+/** 공격 스킬 여부 (물리 damage 또는 마법 mad 보유; 차지/메디테이션 등 버프 제외) */
 export function isAttackSkill(skill: IJobSkill): boolean {
+  const name = skill.description?.name ?? ''
+  if (name.includes('차지') || name === '메디테이션') return false
   return skill.levelProperties.some((p) => p.mad !== undefined || p.damage !== undefined)
+}
+
+/** 직업의 공격 스킬 목록 */
+export function attackSkillsForJob(jobId: JobId): IJobSkill[] {
+  return skillsForJob(jobId).filter(isAttackSkill)
+}
+
+export interface SkillAttack {
+  kind: 'physical' | 'magic'
+  /** 물리 스킬 배율%(마법은 100) */
+  skillPercent: number
+  /** 마법 Spell Attack(mad) */
+  spellAtk: number
+  /** 속성 코드(F/I/L/S/H) — 무속성이면 undefined */
+  element?: string
+}
+
+/** 특정 레벨에서 스킬의 공격 파라미터(물리 damage% / 마법 mad) */
+export function skillAttackAt(skill: IJobSkill, level: number): SkillAttack | null {
+  const props = skillPropsAtLevel(skill, level)
+  if (!props) return null
+  const mad = skillNum(props, 'mad')
+  const dmg = skillNum(props, 'damage')
+  const element = skill.elementalAttribute ? skill.elementalAttribute.toUpperCase() : undefined
+  if (mad > 0) return { kind: 'magic', skillPercent: 100, spellAtk: mad, element }
+  if (dmg > 0) return { kind: 'physical', skillPercent: dmg, spellAtk: 0, element }
+  return null
 }

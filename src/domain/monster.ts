@@ -103,3 +103,14 @@ export function monsterIconUrl(id: number): string {
 export function monsterLabel(m: Monster): string {
   return m.koreanName || m.name
 }
+
+/** 스킬 속성(F/I/L/S/H) 대비 몬스터 반응 (약점/반감/무효/무관) */
+export function elementReaction(
+  elemAttr: string | undefined,
+  skillElement: string | undefined,
+): 'weak' | 'half' | 'immune' | 'none' {
+  if (!skillElement) return 'none'
+  const entry = parseElemAttr(elemAttr).find((e) => e.code === skillElement.toUpperCase())
+  if (!entry) return 'none'
+  return entry.effect === '약점' ? 'weak' : entry.effect === '반감' ? 'half' : 'immune'
+}
