@@ -177,8 +177,8 @@ export default function AttackPanel() {
             >
               <MenuItem value=""><em>스킬 선택</em></MenuItem>
               {attackSkills.map((s) => (
-                <MenuItem key={s.id} value={s.id} sx={{ fontSize: 13, gap: 0.75 }}>
-                  <Box component="img" src={skillIconSrc(s.id)} alt="" onError={hideOnError} sx={{ width: 18, height: 18, flexShrink: 0 }} />
+                <MenuItem key={s.id} value={s.id} sx={{ fontSize: 13, gap: 1 }}>
+                  <Box component="img" src={skillIconSrc(s.id)} alt="" onError={hideOnError} sx={{ width: 28, height: 28, flexShrink: 0, imageRendering: 'pixelated' }} />
                   {s.description?.name ?? s.id}
                 </MenuItem>
               ))}
@@ -197,7 +197,7 @@ export default function AttackPanel() {
             <>
               <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', px: 1, py: 0.25, gap: 1 }}>
                 <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5, minWidth: 0 }}>
-                  {selectedSkill && <Box component="img" src={skillIconSrc(selectedSkill.id)} alt="" onError={hideOnError} sx={{ width: 20, height: 20, flexShrink: 0 }} />}
+                  {selectedSkill && <Box component="img" src={skillIconSrc(selectedSkill.id)} alt="" onError={hideOnError} sx={{ width: 32, height: 32, flexShrink: 0, imageRendering: 'pixelated' }} />}
                   <Typography variant="body2" color="text.secondary" noWrap>
                     {selectedSkill?.description?.name} ({skillResult.att.kind === 'magic' ? `마력계수 ${skillResult.att.spellAtk}` : `${skillResult.att.skillPercent}%`})
                   </Typography>
