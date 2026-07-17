@@ -100,13 +100,28 @@ export interface SkillAttack {
   element?: string
 }
 
+/**
+ * 소스 데이터에 elementalAttribute가 누락된 스킬의 속성 보완 (이름 → 속성코드).
+ * 주로 FP(불독)계 화염 마법이 소스에 속성이 비어 있어 채운다.
+ */
+const SKILL_ELEMENT_OVERRIDE: Record<string, string> = {
+  '파이어 에로우': 'F',
+  '파이어 스트라이크': 'F',
+  '파이어 필라': 'F',
+  '플레임': 'F',
+  '플레임 기어': 'F',
+  '메테오': 'F',
+  '이프리트': 'F',
+}
+
 /** 특정 레벨에서 스킬의 공격 파라미터(물리 damage% / 마법 mad) */
 export function skillAttackAt(skill: IJobSkill, level: number): SkillAttack | null {
   const props = skillPropsAtLevel(skill, level)
   if (!props) return null
   const mad = skillNum(props, 'mad')
   const dmg = skillNum(props, 'damage')
-  const element = skill.elementalAttribute ? skill.elementalAttribute.toUpperCase() : undefined
+  const rawElement = skill.elementalAttribute || SKILL_ELEMENT_OVERRIDE[skill.description?.name ?? '']
+  const element = rawElement ? rawElement.toUpperCase() : undefined
   if (mad > 0) return { kind: 'magic', skillPercent: 100, spellAtk: mad, element }
   if (dmg > 0) return { kind: 'physical', skillPercent: dmg, spellAtk: 0, element }
   return null
