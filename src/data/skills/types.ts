@@ -26,9 +26,7 @@ export interface ISkillDescription {
 export interface IJobSkill {
   id: number
   masterLevel: number
-  /** 스킬 아이콘 (PNG base64) */
-  icon?: string
-  /** 사용 가능 무기 종류 */
+  /** 사용 가능 무기 종류 (아이콘은 public/skill-icons/<id>.png 로 분리) */
   weapons: string[]
   /** 스킬 액션 키 */
   actions?: string[]

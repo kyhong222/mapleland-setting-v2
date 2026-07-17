@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import type { SyntheticEvent } from 'react'
 import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
 import Divider from '@mui/material/Divider'
@@ -30,7 +31,9 @@ const fmtRange = (r: DamageRange) => `${r.min.toLocaleString()} ~ ${r.max.toLoca
 const STAT_SHORT: Record<StatId, string> = { STR: '힘', DEX: '덱', INT: '인', LUK: '럭' }
 const ELEM_KO: Record<string, string> = { F: '불', I: '얼음', L: '번개', S: '독', H: '성' }
 const REACTION_KO: Record<string, string> = { weak: '약점 1.5×', half: '반감 0.5×', immune: '무효 0×', none: '' }
-const skillIconSrc = (icon?: string) => (icon ? `data:image/png;base64,${icon}` : undefined)
+/** 분리 저장된 스킬 아이콘 경로 (public/skill-icons/<id>.png) */
+const skillIconSrc = (id: number) => `/skill-icons/${id}.png`
+const hideOnError = (e: SyntheticEvent<HTMLImageElement>) => { e.currentTarget.style.visibility = 'hidden' }
 
 export default function AttackPanel() {
   const jobId = useBuildStore((s) => s.jobId)
@@ -175,7 +178,7 @@ export default function AttackPanel() {
               <MenuItem value=""><em>스킬 선택</em></MenuItem>
               {attackSkills.map((s) => (
                 <MenuItem key={s.id} value={s.id} sx={{ fontSize: 13, gap: 0.75 }}>
-                  {s.icon && <Box component="img" src={skillIconSrc(s.icon)} alt="" sx={{ width: 18, height: 18, flexShrink: 0 }} />}
+                  <Box component="img" src={skillIconSrc(s.id)} alt="" onError={hideOnError} sx={{ width: 18, height: 18, flexShrink: 0 }} />
                   {s.description?.name ?? s.id}
                 </MenuItem>
               ))}
@@ -194,7 +197,7 @@ export default function AttackPanel() {
             <>
               <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', px: 1, py: 0.25, gap: 1 }}>
                 <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5, minWidth: 0 }}>
-                  {selectedSkill?.icon && <Box component="img" src={skillIconSrc(selectedSkill.icon)} alt="" sx={{ width: 20, height: 20, flexShrink: 0 }} />}
+                  {selectedSkill && <Box component="img" src={skillIconSrc(selectedSkill.id)} alt="" onError={hideOnError} sx={{ width: 20, height: 20, flexShrink: 0 }} />}
                   <Typography variant="body2" color="text.secondary" noWrap>
                     {selectedSkill?.description?.name} ({skillResult.att.kind === 'magic' ? `마력계수 ${skillResult.att.spellAtk}` : `${skillResult.att.skillPercent}%`})
                   </Typography>
