@@ -78,10 +78,13 @@ export function skillNum(props: ILevelProperties | undefined, key: string): numb
   return v === undefined ? 0 : Number(v) || 0
 }
 
-/** 공격 스킬 여부 (물리 damage 또는 마법 mad 보유; 차지/메디테이션 등 버프 제외) */
+/** 소환수 스킬 — 데미지 지원 대상에서 제외 (물리 소환수는 mad/damage가 없어 자동 제외됨) */
+const SUMMON_SKILLS = new Set(['이프리트', '엘퀴네스', '바하뮤트', '서먼 드래곤'])
+
+/** 공격 스킬 여부 (물리 damage 또는 마법 mad 보유; 차지/메디테이션/소환수 제외) */
 export function isAttackSkill(skill: IJobSkill): boolean {
   const name = skill.description?.name ?? ''
-  if (name.includes('차지') || name === '메디테이션') return false
+  if (name.includes('차지') || name === '메디테이션' || SUMMON_SKILLS.has(name)) return false
   return skill.levelProperties.some((p) => p.mad !== undefined || p.damage !== undefined)
 }
 
@@ -111,7 +114,6 @@ const SKILL_ELEMENT_OVERRIDE: Record<string, string> = {
   '플레임': 'F',
   '플레임 기어': 'F',
   '메테오': 'F',
-  '이프리트': 'F',
 }
 
 /** 특정 레벨에서 스킬의 공격 파라미터(물리 damage% / 마법 mad) */
