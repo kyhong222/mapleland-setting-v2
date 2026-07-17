@@ -15,6 +15,7 @@ import {
   totalAttack, totalMagic, masteryRatio, calcPhysical, calcLuckySeven, calcMagic,
   calcPhysicalRatios, calcLuckyRatio, calcMagicRatio,
   levelPenalty, physicalVsMonster, magicVsMonster,
+  magicAmpMultiplier, scaleDamage,
 } from '../../domain/attackPower'
 import type { AtkStatRatio, DamageRange } from '../../domain/attackPower'
 import { computeSkillDamage } from '../../domain/damage'
@@ -57,8 +58,9 @@ export default function AttackPanel() {
   const lucky = weaponType === 'claw' ? calcLuckySeven(finalStats.LUK, watk) : null
   const luckyRatio = weaponType === 'claw' ? calcLuckyRatio(finalStats.LUK, watk) : null
 
-  // 마법: 스킬 미선택 기준 base 실질 마법 데미지(계수 1)
-  const magic = isMagic ? calcMagic(matk, finalStats.INT, 1, mastery) : null
+  // 마법: 스킬 미선택 기준 base 실질 마법 데미지(계수 1). 엘앰프 등 마법 증폭 반영.
+  const ampMult = magicAmpMultiplier(effects)
+  const magic = isMagic ? scaleDamage(calcMagic(matk, finalStats.INT, 1, mastery), ampMult) : null
   const magicRatio = isMagic ? calcMagicRatio(matk, mastery) : null
 
   // vs 몬스터 실질 데미지
@@ -77,7 +79,9 @@ export default function AttackPanel() {
     if (!selectedSkill) return null
     const att = skillAttackAt(selectedSkill, skillLevel)
     if (!att) return null
-    const base = att.kind === 'magic' ? calcMagic(matk, finalStats.INT, att.spellAtk, mastery) : phys?.display
+    const base = att.kind === 'magic'
+      ? scaleDamage(calcMagic(matk, finalStats.INT, att.spellAtk, mastery), ampMult)
+      : phys?.display
     if (!base) return null
     const reaction = elementReaction(monster?.elemAttr, att.element)
     const defense = monster

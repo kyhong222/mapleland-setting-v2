@@ -58,6 +58,16 @@ export function totalMagic(effects: EffectMap, totalInt: number): number {
   return Math.floor(flat * (1 + (effects.madP ?? 0) / 100))
 }
 
+/** 마법 데미지 증폭 배율 (엘리먼트 앰플리피케이션 등 amplifiedMagicDamageP): ×(1 + %/100) */
+export function magicAmpMultiplier(effects: EffectMap): number {
+  return 1 + (effects.amplifiedMagicDamageP ?? 0) / 100
+}
+
+/** DamageRange에 배율 적용(floor) */
+export function scaleDamage(range: DamageRange, mult: number): DamageRange {
+  return { min: Math.floor(range.min * mult), max: Math.floor(range.max * mult) }
+}
+
 /** 숙련도(0~1) = (기본 10% + Σmastery%) / 100 (최대 100%) */
 export function masteryRatio(effects: EffectMap): number {
   return Math.min(1, (10 + (effects.mastery ?? 0)) / 100)
