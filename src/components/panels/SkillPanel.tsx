@@ -221,7 +221,7 @@ function BuffRow({ buff, onOpen }: { buff: Buff; onOpen: (b: Buff) => void }) {
   const eff = buffEffectsAtLevel(buff, shownLevel)
   return (
     <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5, py: 0.25 }}>
-      <BuffIcon buff={buff} active={active} highlightActive onClick={() => onOpen(buff)} onContextMenu={(e) => { e.preventDefault(); toggleBuff(buff.id) }} />
+      <BuffIcon buff={buff} active={active} highlightActive onClick={() => toggleBuff(buff.id)} onContextMenu={(e) => { e.preventDefault(); onOpen(buff) }} />
       <Box sx={{ flex: 1, minWidth: 0 }}>
         <BuffName buff={buff} level={shownLevel} />
         <Typography variant="caption" color={active ? 'success.main' : 'text.disabled'} noWrap sx={{ display: 'block' }}>
@@ -242,7 +242,7 @@ function MasteryRow({ buff, onOpen }: { buff: Buff; onOpen: (b: Buff) => void })
   const eff = buffEffectsAtLevel(buff, shownLevel)
   return (
     <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5, py: 0.25 }}>
-      <BuffIcon buff={buff} active={!off} highlightActive onClick={() => onOpen(buff)} onContextMenu={(e) => { e.preventDefault(); toggleMastery(buff.id) }} />
+      <BuffIcon buff={buff} active={!off} highlightActive onClick={() => toggleMastery(buff.id)} onContextMenu={(e) => { e.preventDefault(); onOpen(buff) }} />
       <Box sx={{ flex: 1, minWidth: 0 }}>
         <BuffName buff={buff} level={shownLevel} />
         <Typography variant="caption" color={off ? 'text.disabled' : 'success.main'} noWrap sx={{ display: 'block' }}>
@@ -284,7 +284,7 @@ function BuffSelect({ buffs, appliedIds, onAdd, placeholder }: { buffs: Buff[]; 
   )
 }
 
-/** 적용된 버프 목록 — 좌클릭: 레벨 변경(아이템 제외) / 우클릭: 제거 / 호버: 효과 */
+/** 적용된 버프 목록 — 좌클릭: 제거 / 우클릭: 레벨 변경(아이템 제외) / 호버: 효과 */
 function AppliedBuffList({ entries, levels, onOpen, onRemove }: { entries: Buff[]; levels: Record<string, number>; onOpen: (b: Buff) => void; onRemove: (id: string) => void }) {
   if (entries.length === 0) return <Typography variant="caption" color="text.disabled">위에서 버프를 선택해 추가하세요</Typography>
   return (
@@ -298,11 +298,11 @@ function AppliedBuffList({ entries, levels, onOpen, onRemove }: { entries: Buff[
             buff={b}
             size={44}
             tooltip={buffTooltip(b, lv)}
-            onClick={hasLevel ? () => onOpen(b) : undefined}
-            onContextMenu={(e) => {
+            onClick={() => onRemove(b.id)}
+            onContextMenu={hasLevel ? (e) => {
               e.preventDefault()
-              onRemove(b.id)
-            }}
+              onOpen(b)
+            } : undefined}
           />
         )
       })}
@@ -352,7 +352,7 @@ export default function SkillPanel() {
     <CollapsiblePanel id="skill" title="스킬 및 도핑">
       <SectionTitle>공통 버프</SectionTitle>
       <Typography variant="caption" color="text.disabled" sx={{ display: 'block', mb: 0.25 }}>
-        좌클릭: 레벨 변경 · 우클릭: ON/OFF
+        좌클릭: ON/OFF · 우클릭: 레벨 변경
       </Typography>
       {COMMON_BUFFS.map((b) => (
         <BuffRow key={b.id} buff={b} onOpen={open('toggle')} />
@@ -377,7 +377,7 @@ export default function SkillPanel() {
 
       <SectionTitle>적용된 버프</SectionTitle>
       <Typography variant="caption" color="text.disabled" sx={{ display: 'block', mb: 0.5 }}>
-        좌클릭: 레벨 변경 · 우클릭: 제거 · 호버: 효과
+        좌클릭: 제거 · 우클릭: 레벨 변경 · 호버: 효과
       </Typography>
       <AppliedBuffList entries={appliedEntries} levels={appliedBuffs} onOpen={open('applied')} onRemove={removeBuff} />
 
@@ -390,7 +390,7 @@ export default function SkillPanel() {
 
       <SectionTitle>특화 버프 (패시브)</SectionTitle>
       <Typography variant="caption" color="text.disabled" sx={{ display: 'block', mb: 0.25 }}>
-        좌클릭: 레벨 변경 · 우클릭: ON/OFF
+        좌클릭: ON/OFF · 우클릭: 레벨 변경
       </Typography>
       {masteries.length > 0 && (
         <>
