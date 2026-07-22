@@ -89,12 +89,12 @@ const SKILL_MAP = {
   1101006: { name: '분노', scope: 'party', dir: 'enhancement', mode: 'active', derive: p => ({ pad: n(p, 'pad'), pdef: n(p, 'pdd') }) },
   // 아이언 월: 물·마방 (파티버프)
   1301006: { name: '아이언 월', scope: 'party', dir: 'enhancement', mode: 'active', derive: p => ({ pdef: n(p, 'pdd'), mdef: n(p, 'mdd') }) },
+  // 인레이지: 파티버프. 스펙 변경 → 추가공격력(addPad), 전 구간 -10 (Lv1=1 ... 마스터=16)
+  1121010: { name: '인레이지', scope: 'party', dir: 'enhancement', mode: 'active', derive: p => ({ addPad: n(p, 'pad') - 10 }) },
 
   // ── 개인 패시브/버프(personal·jobSpecific) ────────
   // 전사
   1001003: pActive('아이언 바디', p => ({ pdef: n(p, 'pdd') })),
-  // 인레이지: 개인버프(향후 파티 전환 예정). 스펙 변경 → 추가공격력(addPad), 전 구간 -10 (Lv1=1 ... 마스터=16)
-  1121010: pActive('인레이지', p => ({ addPad: n(p, 'pad') - 10 })),
   1120004: pPassive('아킬레스', achilles), 1220005: pPassive('아킬레스', achilles), 1320005: pPassive('아킬레스', achilles),
   1121002: pActive('스탠스', stance), 1221002: pActive('스탠스', stance), 1321002: pActive('스탠스', stance),
   // 블로킹: 마스터 시 15% (prop/10)

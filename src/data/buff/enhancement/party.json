@@ -735,5 +735,106 @@
       }
     ],
     "icon": "/buff-icons/4101004.png"
+  },
+  {
+    "id": "1121010",
+    "type": "skill",
+    "name": "인레이지",
+    "scope": "party",
+    "mode": "active",
+    "masterLevel": 30,
+    "effectsByLevel": [
+      {
+        "addPad": 1
+      },
+      {
+        "addPad": 2
+      },
+      {
+        "addPad": 2
+      },
+      {
+        "addPad": 3
+      },
+      {
+        "addPad": 3
+      },
+      {
+        "addPad": 4
+      },
+      {
+        "addPad": 4
+      },
+      {
+        "addPad": 5
+      },
+      {
+        "addPad": 5
+      },
+      {
+        "addPad": 6
+      },
+      {
+        "addPad": 6
+      },
+      {
+        "addPad": 7
+      },
+      {
+        "addPad": 7
+      },
+      {
+        "addPad": 8
+      },
+      {
+        "addPad": 8
+      },
+      {
+        "addPad": 9
+      },
+      {
+        "addPad": 9
+      },
+      {
+        "addPad": 10
+      },
+      {
+        "addPad": 10
+      },
+      {
+        "addPad": 11
+      },
+      {
+        "addPad": 11
+      },
+      {
+        "addPad": 12
+      },
+      {
+        "addPad": 12
+      },
+      {
+        "addPad": 13
+      },
+      {
+        "addPad": 13
+      },
+      {
+        "addPad": 14
+      },
+      {
+        "addPad": 14
+      },
+      {
+        "addPad": 15
+      },
+      {
+        "addPad": 15
+      },
+      {
+        "addPad": 16
+      }
+    ],
+    "icon": "/buff-icons/1121010.png"
   }
 ]
