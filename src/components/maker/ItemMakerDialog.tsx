@@ -38,6 +38,9 @@ interface Draft {
 
 const EMPTY: Draft = { base: null, adjustments: {}, scrolls: [], gems: [], growth: {} }
 
+/** 미리보기 영역 고정 높이 (카탈로그 목록 360 + 필터 영역과 대략 맞춤) */
+const PREVIEW_HEIGHT = 470
+
 export default function ItemMakerDialog({ open, initial, onClose, onConfirm }: Props) {
   const [draft, setDraft] = useState<Draft>(EMPTY)
   const [hover, setHover] = useState<ItemData | null>(null)
@@ -90,34 +93,36 @@ export default function ItemMakerDialog({ open, initial, onClose, onConfirm }: P
                 onHoverItem={setHover}
               />
             </Box>
-            {/* 우측 미리보기 (정옵) — 공간 고정 */}
+            {/* 우측 미리보기 (정옵) — 높이 고정: 호버로 다이얼로그가 흔들리지 않게 */}
             <Box sx={{ width: 264, flexShrink: 0, position: 'sticky', top: 0 }}>
               <Typography variant="caption" color="text.secondary" sx={{ display: 'block', mb: 0.5 }}>
                 미리보기 (정옵)
               </Typography>
-              {hover ? (
-                <ItemTooltip built={{ base: hover, adjustments: {}, scrolls: [], gems: [], growth: {} }} />
-              ) : (
-                <Box
-                  sx={{
-                    minHeight: 220,
-                    border: '1px dashed',
-                    borderColor: 'divider',
-                    borderRadius: 2,
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    p: 2,
-                    textAlign: 'center',
-                  }}
-                >
-                  <Typography variant="body2" color="text.disabled">
-                    아이템에 마우스를 올리면
-                    <br />
-                    정보가 표시됩니다
-                  </Typography>
-                </Box>
-              )}
+              <Box sx={{ height: PREVIEW_HEIGHT, overflow: 'auto' }}>
+                {hover ? (
+                  <ItemTooltip built={{ base: hover, adjustments: {}, scrolls: [], gems: [], growth: {} }} />
+                ) : (
+                  <Box
+                    sx={{
+                      height: '100%',
+                      border: '1px dashed',
+                      borderColor: 'divider',
+                      borderRadius: 2,
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      p: 2,
+                      textAlign: 'center',
+                    }}
+                  >
+                    <Typography variant="body2" color="text.disabled">
+                      아이템에 마우스를 올리면
+                      <br />
+                      정보가 표시됩니다
+                    </Typography>
+                  </Box>
+                )}
+              </Box>
             </Box>
           </Box>
         ) : (

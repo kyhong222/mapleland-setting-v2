@@ -198,7 +198,8 @@ export default function CatalogSection({
           </Typography>
         )}
 
-        <Box sx={{ maxHeight: 360, overflow: 'auto', border: 1, borderColor: 'divider', borderRadius: 1, p: 1 }}>
+        {/* 목록 높이 고정 — 아이템 수/호버에 따라 다이얼로그가 흔들리지 않도록 */}
+        <Box sx={{ height: 360, overflow: 'auto', border: 1, borderColor: 'divider', borderRadius: 1, p: 1 }}>
           {groups.map(([bucket, items]) => (
             <Box key={bucket} sx={{ mb: 1.5 }}>
               <Typography variant="caption" color="text.secondary" sx={{ display: 'block', mb: 0.5 }}>
