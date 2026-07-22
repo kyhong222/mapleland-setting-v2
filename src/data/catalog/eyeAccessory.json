@@ -11,6 +11,8 @@
       "hp": 20,
       "mp": 20
     },
+    "reqLevel": 45,
+    "tuc": 3,
     "iconUrl": "https://maplestory.io/api/GMS/200/item/1022073/icon"
   }
 ]
