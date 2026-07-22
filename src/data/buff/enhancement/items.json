@@ -1,30 +1,232 @@
 [
-  { "id": "2002006", "type": "item", "name": "전사의 알약", "effects": { "pad": 5 } },
-  { "id": "2002007", "type": "item", "name": "마법사의 알약", "effects": { "mad": 5 } },
-  { "id": "2002008", "type": "item", "name": "명사수의 알약", "effects": { "acc": 10 } },
-  { "id": "2002009", "type": "item", "name": "민첩함의 알약", "effects": { "eva": 10 } },
-  { "id": "2002010", "type": "item", "name": "속도 향상의 알약", "effects": { "speed": 10 } },
-  { "id": "2002011", "type": "item", "name": "통증 완화제", "effects": { "pdef": 30 } },
-
-  { "id": "2022025", "type": "item", "name": "타코야끼", "effects": { "pad": 8 } },
-  { "id": "2022027", "type": "item", "name": "야끼소바", "effects": { "mad": 10 } },
-  { "id": "2022002", "type": "item", "name": "사이다", "effects": { "pad": 10, "acc": -5 } },
-  { "id": "2022156", "type": "item", "name": "솔로부대의 자장면", "effects": { "pad": 13, "mad": 23 } },
-  { "id": "2022274", "type": "item", "name": "글레이즈드 올리브", "effects": { "speed": 40, "jump": 25 } },
-
-  { "id": "2022109", "type": "item", "name": "나인스피릿의 숨결(알버프)", "effects": { "pad": 25, "mad": 35, "pdef": 150, "mdef": 150 } },
-  { "id": "2022108", "type": "item", "name": "혼테일 원정대의 승리(혼버프)", "effects": { "pad": 30, "mad": 40, "pdef": 200, "mdef": 200 } },
-
-  { "id": "2002003", "type": "item", "name": "현자의 물약", "effects": { "mad": 10 } },
-
-  { "id": "2002016", "type": "item", "name": "도적의 비약", "effects": { "acc": 9, "eva": 15 } },
-  { "id": "2002017", "type": "item", "name": "전사의 비약", "effects": { "addPad": 2 } },
-  { "id": "2002018", "type": "item", "name": "마법사의 비약", "effects": { "addMad": 5 } },
-  { "id": "2002019", "type": "item", "name": "궁수의 비약", "effects": { "eva": 20 } },
-
-  { "id": "2022245", "type": "item", "name": "하트스토퍼", "effects": { "addPad": 10, "eva": 60, "speed": 60 } },
-  { "id": "2022121", "type": "item", "name": "겔트 초콜릿", "effects": { "addPad": 20, "pdef": 120, "eva": 30, "acc": 30, "speed": 10, "jump": 10 } },
-  { "id": "2022123", "type": "item", "name": "바나나 그레이엄 파이", "effects": { "mad": 30, "mdef": 120, "eva": 30, "acc": 30, "speed": 10, "jump": 10 } },
-  { "id": "2022273", "type": "item", "name": "스위스 치즈", "effects": { "mad": 40 } },
-  { "id": "2022042", "type": "item", "name": "쿠키", "effects": { "pad": 20, "mad": 30 } }
+  {
+    "id": "2002006",
+    "type": "item",
+    "name": "전사의 알약",
+    "effects": {
+      "pad": 5
+    },
+    "icon": "/buff-icons/2002006.png"
+  },
+  {
+    "id": "2002007",
+    "type": "item",
+    "name": "마법사의 알약",
+    "effects": {
+      "mad": 5
+    },
+    "icon": "/buff-icons/2002007.png"
+  },
+  {
+    "id": "2002008",
+    "type": "item",
+    "name": "명사수의 알약",
+    "effects": {
+      "acc": 10
+    },
+    "icon": "/buff-icons/2002008.png"
+  },
+  {
+    "id": "2002009",
+    "type": "item",
+    "name": "민첩함의 알약",
+    "effects": {
+      "eva": 10
+    },
+    "icon": "/buff-icons/2002009.png"
+  },
+  {
+    "id": "2002010",
+    "type": "item",
+    "name": "속도 향상의 알약",
+    "effects": {
+      "speed": 10
+    },
+    "icon": "/buff-icons/2002010.png"
+  },
+  {
+    "id": "2002011",
+    "type": "item",
+    "name": "통증 완화제",
+    "effects": {
+      "pdef": 30
+    },
+    "icon": "/buff-icons/2002011.png"
+  },
+  {
+    "id": "2022025",
+    "type": "item",
+    "name": "타코야끼",
+    "effects": {
+      "pad": 8
+    },
+    "icon": "/buff-icons/2022025.png"
+  },
+  {
+    "id": "2022027",
+    "type": "item",
+    "name": "야끼소바",
+    "effects": {
+      "mad": 10
+    },
+    "icon": "/buff-icons/2022027.png"
+  },
+  {
+    "id": "2022002",
+    "type": "item",
+    "name": "사이다",
+    "effects": {
+      "pad": 10,
+      "acc": -5
+    },
+    "icon": "/buff-icons/2022002.png"
+  },
+  {
+    "id": "2022156",
+    "type": "item",
+    "name": "솔로부대의 자장면",
+    "effects": {
+      "pad": 13,
+      "mad": 23
+    },
+    "icon": "/buff-icons/2022156.png"
+  },
+  {
+    "id": "2022274",
+    "type": "item",
+    "name": "글레이즈드 올리브",
+    "effects": {
+      "speed": 40,
+      "jump": 25
+    },
+    "icon": "/buff-icons/2022274.png"
+  },
+  {
+    "id": "2022109",
+    "type": "item",
+    "name": "나인스피릿의 숨결(알버프)",
+    "effects": {
+      "pad": 25,
+      "mad": 35,
+      "pdef": 150,
+      "mdef": 150
+    },
+    "icon": "/buff-icons/2022109.png"
+  },
+  {
+    "id": "2022108",
+    "type": "item",
+    "name": "혼테일 원정대의 승리(혼버프)",
+    "effects": {
+      "pad": 30,
+      "mad": 40,
+      "pdef": 200,
+      "mdef": 200
+    },
+    "icon": "/buff-icons/2022108.png"
+  },
+  {
+    "id": "2002003",
+    "type": "item",
+    "name": "현자의 물약",
+    "effects": {
+      "mad": 10
+    },
+    "icon": "/buff-icons/2002003.png"
+  },
+  {
+    "id": "2002016",
+    "type": "item",
+    "name": "도적의 비약",
+    "effects": {
+      "acc": 9,
+      "eva": 15
+    },
+    "icon": "/buff-icons/2002016.png"
+  },
+  {
+    "id": "2002017",
+    "type": "item",
+    "name": "전사의 비약",
+    "effects": {
+      "addPad": 2
+    },
+    "icon": "/buff-icons/2002017.png"
+  },
+  {
+    "id": "2002018",
+    "type": "item",
+    "name": "마법사의 비약",
+    "effects": {
+      "addMad": 5
+    },
+    "icon": "/buff-icons/2002018.png"
+  },
+  {
+    "id": "2002019",
+    "type": "item",
+    "name": "궁수의 비약",
+    "effects": {
+      "eva": 20
+    },
+    "icon": "/buff-icons/2002019.png"
+  },
+  {
+    "id": "2022245",
+    "type": "item",
+    "name": "하트스토퍼",
+    "effects": {
+      "addPad": 10,
+      "eva": 60,
+      "speed": 60
+    },
+    "icon": "/buff-icons/2022245.png"
+  },
+  {
+    "id": "2022121",
+    "type": "item",
+    "name": "겔트 초콜릿",
+    "effects": {
+      "addPad": 20,
+      "pdef": 120,
+      "eva": 30,
+      "acc": 30,
+      "speed": 10,
+      "jump": 10
+    },
+    "icon": "/buff-icons/2022121.png"
+  },
+  {
+    "id": "2022123",
+    "type": "item",
+    "name": "바나나 그레이엄 파이",
+    "effects": {
+      "mad": 30,
+      "mdef": 120,
+      "eva": 30,
+      "acc": 30,
+      "speed": 10,
+      "jump": 10
+    },
+    "icon": "/buff-icons/2022123.png"
+  },
+  {
+    "id": "2022273",
+    "type": "item",
+    "name": "스위스 치즈",
+    "effects": {
+      "mad": 40
+    },
+    "icon": "/buff-icons/2022273.png"
+  },
+  {
+    "id": "2022042",
+    "type": "item",
+    "name": "쿠키",
+    "effects": {
+      "pad": 20,
+      "mad": 30
+    },
+    "icon": "/buff-icons/2022042.png"
+  }
 ]
