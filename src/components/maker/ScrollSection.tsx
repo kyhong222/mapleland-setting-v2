@@ -2,10 +2,10 @@ import { useMemo } from 'react'
 import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
 import Tooltip from '@mui/material/Tooltip'
-import { listScrollsForItem } from '../../data/scrolls'
+import { listScrollsForItem, getScroll } from '../../data/scrolls'
 import type { ItemData } from '../../domain/item'
 import type { AppliedScroll } from '../../domain/builtItem'
-import type { ScrollRate } from '../../domain/scrolls'
+import type { ScrollDef, ScrollRate } from '../../domain/scrolls'
 import { formatEffects } from '../../lib/effectFormat'
 import ItemIcon from '../common/ItemIcon'
 
@@ -20,6 +20,12 @@ const RATE_ICON: Record<ScrollRate, string> = {
   100: 'https://maplestory.io/api/gms/62/item/2044500/icon',
   60: 'https://maplestory.io/api/gms/62/item/2044501/icon',
   10: 'https://maplestory.io/api/gms/62/item/2044502/icon',
+}
+
+/** 주문서 아이콘: 전용 주문서(option.itemId)는 자체 아이콘, 그 외 확률별 기본 아이콘 */
+function scrollIconSrc(def: ScrollDef | undefined, rate: ScrollRate): string {
+  const itemId = def?.options.find((o) => o.rate === rate)?.itemId
+  return itemId ? `https://maplestory.io/api/gms/62/item/${itemId}/icon` : RATE_ICON[rate]
 }
 
 function IconBtn({
@@ -94,7 +100,7 @@ export default function ScrollSection({ base, scrolls, onChange }: Props) {
           scrolls.map((s, i) => (
             <IconBtn
               key={i}
-              src={RATE_ICON[s.rate]}
+              src={scrollIconSrc(getScroll(s.key), s.rate)}
               title={`${nameOf(s.key)} ${s.rate}% · ${formatEffects(s.effects)} (클릭 제거)`}
               onClick={() => removeAt(i)}
             />
@@ -118,7 +124,7 @@ export default function ScrollSection({ base, scrolls, onChange }: Props) {
                 {def.options.map((o) => (
                   <IconBtn
                     key={o.rate}
-                    src={RATE_ICON[o.rate]}
+                    src={scrollIconSrc(def, o.rate)}
                     title={`${o.rate}% · ${formatEffects(o.effects)}`}
                     disabled={full}
                     onClick={() => add(def.key, o.rate, o.effects)}

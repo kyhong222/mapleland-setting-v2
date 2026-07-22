@@ -33,15 +33,14 @@ export function listScrollsForWeaponType(weaponType: WeaponType): ScrollDef[] {
 
 /**
  * 특정 아이템에 바를 수 있는 주문서.
- *  - itemIds 전용 주문서(커스텀) 매칭
- *  - 무기: weaponType 일치, 그 외: slot 일치
+ *  - 전용(itemIds) 주문서가 있는 아이템(메이플 이어링·혼테일 목걸이 등)은 전용 주문서만 사용
+ *  - 그 외: 무기는 weaponType 일치, 나머지는 slot 일치
  */
 export function listScrollsForItem(item: ItemData): ScrollDef[] {
-  return SCROLLS.filter((s) => {
-    if (s.itemIds?.includes(item.id)) return true
-    if (item.slot === 'weapon') {
-      return item.weaponType != null && s.weaponType === item.weaponType
-    }
-    return s.slot === item.slot
-  })
+  const exclusive = SCROLLS.filter((s) => s.itemIds?.includes(item.id))
+  if (exclusive.length > 0) return exclusive
+  if (item.slot === 'weapon') {
+    return SCROLLS.filter((s) => item.weaponType != null && s.weaponType === item.weaponType)
+  }
+  return SCROLLS.filter((s) => s.slot === item.slot)
 }

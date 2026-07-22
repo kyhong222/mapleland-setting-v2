@@ -37,7 +37,7 @@
   },
   {
     "id": 1032040,
-    "name": "메이플 이어링",
+    "name": "메이플 이어링(0단계)",
     "slot": "earring",
     "effects": {},
     "reqLevel": 20,
@@ -172,7 +172,7 @@
   },
   {
     "id": 1032041,
-    "name": "메이플 이어링",
+    "name": "메이플 이어링(1단계)",
     "slot": "earring",
     "effects": {
       "mdef": 20,
@@ -273,7 +273,7 @@
   },
   {
     "id": 1032042,
-    "name": "메이플 이어링",
+    "name": "메이플 이어링(2단계)",
     "slot": "earring",
     "effects": {
       "mdef": 50,
