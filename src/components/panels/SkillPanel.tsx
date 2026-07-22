@@ -9,6 +9,7 @@ import DialogTitle from '@mui/material/DialogTitle'
 import DialogContent from '@mui/material/DialogContent'
 import Slider from '@mui/material/Slider'
 import Switch from '@mui/material/Switch'
+import Button from '@mui/material/Button'
 import Radio from '@mui/material/Radio'
 import RadioGroup from '@mui/material/RadioGroup'
 import FormControlLabel from '@mui/material/FormControlLabel'
@@ -117,11 +118,12 @@ function BuffDialog({ buff, kind, onClose }: { buff: Buff; kind: BuffKind; onClo
   const setAppliedLevel = useBuildStore((s) => s.setAppliedLevel)
   const masteryLevels = useBuildStore((s) => s.masteryLevels)
   const setMasteryLevel = useBuildStore((s) => s.setMasteryLevel)
+  const buffLevels = useBuildStore((s) => s.buffLevels)
 
   const isSkill = buff.type === 'skill'
   const master = isSkill ? buff.masterLevel : 1
   const active = kind === 'toggle' ? buff.id in activeBuffs : true
-  const fallback = defaultBuffLevel(buff)
+  const fallback = kind === 'toggle' ? buffLevels[buff.id] ?? defaultBuffLevel(buff) : defaultBuffLevel(buff)
   const level =
     kind === 'toggle' ? activeBuffs[buff.id] ?? fallback : kind === 'applied' ? appliedBuffs[buff.id] ?? fallback : masteryLevels[buff.id] ?? fallback
 
@@ -162,8 +164,24 @@ function BuffDialog({ buff, kind, onClose }: { buff: Buff; kind: BuffKind; onClo
         ) : hasLevel ? (
           <Box sx={{ mt: 1, px: 1 }}>
             <Typography variant="body2" gutterBottom>스킬 레벨: {level} / {master}</Typography>
+            {buff.id === '1121000' && (
+              <Box sx={{ display: 'flex', gap: 0.5, mb: 1 }}>
+                {[0, 10, 20, 30].map((v) => (
+                  <Button
+                    key={v}
+                    size="small"
+                    variant={level === v ? 'contained' : 'outlined'}
+                    disabled={kind === 'toggle' && !active}
+                    onClick={() => setLevel(v)}
+                    sx={{ minWidth: 0, flex: 1, py: 0.25 }}
+                  >
+                    {v}
+                  </Button>
+                ))}
+              </Box>
+            )}
             <Slider
-              min={1}
+              min={buff.id === '1121000' ? 0 : 1}
               max={master}
               value={level}
               disabled={kind === 'toggle' && !active}
@@ -185,9 +203,10 @@ function BuffDialog({ buff, kind, onClose }: { buff: Buff; kind: BuffKind; onClo
 /** 토글형 버프 행 (영메·메용 / 직업 특화 패시브) — 아이콘 클릭 시 모달 */
 function BuffRow({ buff, onOpen }: { buff: Buff; onOpen: (b: Buff) => void }) {
   const level = useBuildStore((s) => s.activeBuffs[buff.id])
+  const remembered = useBuildStore((s) => s.buffLevels[buff.id])
   const toggleBuff = useBuildStore((s) => s.toggleBuff)
   const active = level !== undefined
-  const shownLevel = active ? level : defaultBuffLevel(buff)
+  const shownLevel = active ? level : remembered ?? defaultBuffLevel(buff)
   const eff = buffEffectsAtLevel(buff, shownLevel)
   return (
     <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5, py: 0.25 }}>

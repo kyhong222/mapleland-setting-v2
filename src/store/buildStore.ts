@@ -44,6 +44,8 @@ export interface BuildState {
   activeBuffs: Record<string, number>
   appliedBuffs: Record<string, number>
   masteryLevels: Record<string, number>
+  /** 토글 버프의 레벨 기억 (on/off와 무관하게 유지 — 껐다 켜도 레벨 보존) */
+  buffLevels: Record<string, number>
 
   selectJob: (id: JobId) => void
   reset: () => void
@@ -119,6 +121,7 @@ export const useBuildStore = create<BuildState>()(
       activeBuffs: {},
       appliedBuffs: {},
       masteryLevels: {},
+      buffLevels: {},
 
       selectJob: (id) =>
         set((s) => {
@@ -126,7 +129,7 @@ export const useBuildStore = create<BuildState>()(
           const level = minLevelForClass(JOBS[id].classId)
           return { jobId: id, level, baseStats: recomputeStats(id, level, baseFour()) }
         }),
-      reset: () => set({ jobId: null, level: 1, baseStats: baseFour(), equipped: {}, activeBuffs: {}, appliedBuffs: {}, masteryLevels: {} }),
+      reset: () => set({ jobId: null, level: 1, baseStats: baseFour(), equipped: {}, activeBuffs: {}, appliedBuffs: {}, masteryLevels: {}, buffLevels: {} }),
       setLevel: (n) =>
         set((s) => {
           const min = s.jobId ? minLevelForClass(JOBS[s.jobId].classId) : 1
@@ -167,22 +170,26 @@ export const useBuildStore = create<BuildState>()(
         }),
       toggleBuff: (id) =>
         set((s) => {
-          const next = { ...s.activeBuffs }
-          if (id in next) {
-            delete next[id]
+          const active = { ...s.activeBuffs }
+          const levels = { ...s.buffLevels }
+          if (id in active) {
+            levels[id] = active[id] // 끄기 전 레벨 기억
+            delete active[id]
           } else {
             const b = getBuff(id)
-            next[id] = b ? defaultBuffLevel(b) : 1
+            active[id] = levels[id] ?? (b ? defaultBuffLevel(b) : 1) // 기억된 레벨 복원
           }
-          return { activeBuffs: next }
+          return { activeBuffs: active, buffLevels: levels }
         }),
       setBuffLevel: (id, level) =>
         set((s) => {
-          if (!(id in s.activeBuffs)) return s
           const b = getBuff(id)
           const max = b && b.type === 'skill' ? b.masterLevel : 1
-          const lv = Math.max(1, Math.min(max, Math.floor(level) || 1))
-          return { activeBuffs: { ...s.activeBuffs, [id]: lv } }
+          const n = Math.floor(level)
+          const lv = Math.max(0, Math.min(max, Number.isFinite(n) ? n : 0))
+          const levels = { ...s.buffLevels, [id]: lv }
+          const active = id in s.activeBuffs ? { ...s.activeBuffs, [id]: lv } : s.activeBuffs
+          return { buffLevels: levels, activeBuffs: active }
         }),
       addBuff: (id) =>
         set((s) => {
@@ -226,6 +233,7 @@ export const useBuildStore = create<BuildState>()(
           activeBuffs: { ...(snap.activeBuffs ?? {}) },
           appliedBuffs: migrateApplied(snap),
           masteryLevels: { ...(snap.masteryLevels ?? {}) },
+          buffLevels: { ...(snap.activeBuffs ?? {}) },
         }),
     }),
     {
