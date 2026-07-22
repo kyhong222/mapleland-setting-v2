@@ -5,7 +5,8 @@ import CollapsiblePanel from '../common/CollapsiblePanel'
 import { useBuildStore } from '../../store/buildStore'
 import { useInventoryStore } from '../../store/inventoryStore'
 import { useMonsterStore } from '../../store/monsterStore'
-import { aggregateBuild, equippedBuilts, equippedWeaponType } from '../../store/aggregate'
+import { aggregateBuild, equippedWeaponType } from '../../store/aggregate'
+import { useActiveEquippedBuilts } from '../../store/activation'
 import { useBuffEffects } from '../../store/useBuffEffects'
 import {
   totalAttack, totalMagic, masteryRatio, calcPhysical, calcLuckySeven,
@@ -47,7 +48,7 @@ export default function AttackPanel() {
   // const [skillId, setSkillId] = useState<number | ''>('')
   // const [skillLevel, setSkillLevel] = useState(1)
 
-  const { finalStats, effects } = aggregateBuild(baseStats, equippedBuilts(equipped, invItems), useBuffEffects())
+  const { finalStats, effects } = aggregateBuild(baseStats, useActiveEquippedBuilts(), useBuffEffects())
   const job = jobId ? JOBS[jobId] : null
   const weaponType = equippedWeaponType(equipped, invItems)
 

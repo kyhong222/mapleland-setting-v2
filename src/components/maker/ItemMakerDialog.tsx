@@ -40,6 +40,7 @@ const EMPTY: Draft = { base: null, adjustments: {}, scrolls: [], gems: [], growt
 
 export default function ItemMakerDialog({ open, initial, onClose, onConfirm }: Props) {
   const [draft, setDraft] = useState<Draft>(EMPTY)
+  const [hover, setHover] = useState<ItemData | null>(null)
 
   useEffect(() => {
     if (!open) return
@@ -75,16 +76,50 @@ export default function ItemMakerDialog({ open, initial, onClose, onConfirm }: P
   }
 
   return (
-    <Dialog open={open} onClose={onClose} fullWidth maxWidth="sm">
+    <Dialog open={open} onClose={onClose} fullWidth maxWidth={!base || !result ? 'md' : 'sm'}>
       <DialogTitle>아이템 제작</DialogTitle>
       <DialogContent dividers>
         {!base || !result ? (
-          <CatalogSection
-            base={null}
-            adjustments={draft.adjustments}
-            onPickBase={(item) => setDraft({ base: item, adjustments: {}, scrolls: [], gems: [], growth: defaultGrowth(item) ?? {} })}
-            onChangeAdjust={(adjustments) => setDraft((d) => ({ ...d, adjustments }))}
-          />
+          <Box sx={{ display: 'flex', gap: 2, alignItems: 'flex-start' }}>
+            <Box sx={{ flex: 1, minWidth: 0 }}>
+              <CatalogSection
+                base={null}
+                adjustments={draft.adjustments}
+                onPickBase={(item) => setDraft({ base: item, adjustments: {}, scrolls: [], gems: [], growth: defaultGrowth(item) ?? {} })}
+                onChangeAdjust={(adjustments) => setDraft((d) => ({ ...d, adjustments }))}
+                onHoverItem={setHover}
+              />
+            </Box>
+            {/* 우측 미리보기 (정옵) — 공간 고정 */}
+            <Box sx={{ width: 264, flexShrink: 0, position: 'sticky', top: 0 }}>
+              <Typography variant="caption" color="text.secondary" sx={{ display: 'block', mb: 0.5 }}>
+                미리보기 (정옵)
+              </Typography>
+              {hover ? (
+                <ItemTooltip built={{ base: hover, adjustments: {}, scrolls: [], gems: [], growth: {} }} />
+              ) : (
+                <Box
+                  sx={{
+                    minHeight: 220,
+                    border: '1px dashed',
+                    borderColor: 'divider',
+                    borderRadius: 2,
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    p: 2,
+                    textAlign: 'center',
+                  }}
+                >
+                  <Typography variant="body2" color="text.disabled">
+                    아이템에 마우스를 올리면
+                    <br />
+                    정보가 표시됩니다
+                  </Typography>
+                </Box>
+              )}
+            </Box>
+          </Box>
         ) : (
           <Stack spacing={2} divider={<Divider flexItem />}>
             {/* 아이콘 · 이름(등급색) · 변경 */}

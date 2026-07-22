@@ -5,8 +5,8 @@ import Typography from '@mui/material/Typography'
 import Divider from '@mui/material/Divider'
 import CollapsiblePanel from '../common/CollapsiblePanel'
 import { useBuildStore } from '../../store/buildStore'
-import { useInventoryStore } from '../../store/inventoryStore'
-import { aggregateBuild, equippedBuilts } from '../../store/aggregate'
+import { aggregateBuild } from '../../store/aggregate'
+import { useActiveEquippedBuilts } from '../../store/activation'
 import { useBuffEffects } from '../../store/useBuffEffects'
 import { JOBS } from '../../domain/jobs'
 import { STAT_IDS, MAX_STAT, totalPureStats } from '../../domain/stats'
@@ -46,11 +46,10 @@ export default function StatPanel() {
   const setLevel = useBuildStore((s) => s.setLevel)
   const baseStats = useBuildStore((s) => s.baseStats)
   const setStat = useBuildStore((s) => s.setStat)
-  const equipped = useBuildStore((s) => s.equipped)
-  const invItems = useInventoryStore((s) => s.items)
   const buffEffects = useBuffEffects()
+  const builts = useActiveEquippedBuilts()
 
-  const { finalStats } = aggregateBuild(baseStats, equippedBuilts(equipped, invItems), buffEffects)
+  const { finalStats } = aggregateBuild(baseStats, builts, buffEffects)
 
   if (!jobId) {
     return <CollapsiblePanel id="stat" title="스탯" />
@@ -96,8 +95,9 @@ export default function StatPanel() {
               <Typography
                 variant="body2"
                 sx={{
-                  fontWeight: role ? 700 : 400,
-                  color: role === '주' ? 'primary.main' : role === '부' ? 'secondary.main' : 'text.primary',
+                  // 인게임 스탯창처럼 주/부스탯 초록, 주스탯만 bold
+                  fontWeight: role === '주' ? 700 : 400,
+                  color: role ? 'success.main' : 'text.primary',
                 }}
               >
                 {STAT_LABEL[stat]}

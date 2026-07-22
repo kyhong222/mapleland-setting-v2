@@ -10,7 +10,8 @@ import CollapsiblePanel from '../common/CollapsiblePanel'
 import { useBuildStore } from '../../store/buildStore'
 import { useInventoryStore } from '../../store/inventoryStore'
 import { useMonsterStore } from '../../store/monsterStore'
-import { aggregateBuild, equippedBuilts } from '../../store/aggregate'
+import { aggregateBuild } from '../../store/aggregate'
+import { useActiveEquippedBuilts } from '../../store/activation'
 import { useBuffEffects } from '../../store/useBuffEffects'
 import { JOBS } from '../../domain/jobs'
 import { getMonster } from '../../data/mobs'
@@ -72,6 +73,7 @@ export default function IncomingDamagePanel() {
   const invItems = useInventoryStore((s) => s.items)
   const selectedMobId = useMonsterStore((s) => s.selectedId)
   const buffEffects = useBuffEffects()
+  const builts = useActiveEquippedBuilts()
   const [powerUp, setPowerUp] = useState(false)
   const [magicUp, setMagicUp] = useState(false)
 
@@ -86,7 +88,7 @@ export default function IncomingDamagePanel() {
     )
   } else {
     const job = JOBS[jobId]
-    const { finalStats, effects } = aggregateBuild(baseStats, equippedBuilts(equipped, invItems), buffEffects)
+    const { finalStats, effects } = aggregateBuild(baseStats, builts, buffEffects)
     const isBoss = !!monster.isBoss
     const isWarrior = job.classId === 'warrior'
     const isMagician = job.attackType === 'magical'

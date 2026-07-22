@@ -17,7 +17,8 @@ import { useInventoryStore } from '../../store/inventoryStore'
 import type { InventoryItem } from '../../store/inventoryStore'
 import { useBuildStore } from '../../store/buildStore'
 import { targetInstancesForSlot, SECONDARY_SLOTS } from '../../store/equipInstance'
-import { aggregateBuild, equippedBuilts } from '../../store/aggregate'
+import { aggregateBuild } from '../../store/aggregate'
+import { useActiveEquippedBuilts } from '../../store/activation'
 import { resolveBuiltItem } from '../../domain/builtItem'
 import type { BuiltItem } from '../../domain/builtItem'
 import { checkWearable } from '../../domain/equip'
@@ -45,6 +46,8 @@ export default function InventoryPanel() {
   const unequip = useBuildStore((s) => s.unequip)
   const unequipByInvId = useBuildStore((s) => s.unequipByInvId)
 
+  const activeBuilts = useActiveEquippedBuilts()
+
   const [makerOpen, setMakerOpen] = useState(false)
   const [editId, setEditId] = useState<string | null>(null)
   const [filterAnchor, setFilterAnchor] = useState<HTMLElement | null>(null)
@@ -70,12 +73,35 @@ export default function InventoryPanel() {
     setMenu(null)
   }
 
+  const handleDuplicate = (inv: InventoryItem) => {
+    const b = inv.built
+    add({
+      base: b.base,
+      adjustments: b.adjustments ? { ...b.adjustments } : undefined,
+      scrolls: b.scrolls.map((s) => ({ ...s })),
+      gems: b.gems.map((g) => ({ ...g })),
+      growth: b.growth ? { ...b.growth } : undefined,
+    })
+    setMenu(null)
+    setMsg(`${b.base.name} 복제됨`)
+  }
+
+  /** 좌클릭: 장착 ↔ 해제 토글 */
+  const handleToggleEquip = (inv: InventoryItem) => {
+    if (Object.values(equipped).includes(inv.id)) {
+      unequipByInvId(inv.id)
+      setMsg(`${inv.built.base.name} 해제`)
+    } else {
+      handleEquip(inv)
+    }
+  }
+
   const handleEquip = (inv: InventoryItem) => {
     setMenu(null)
     if (!jobId) return
     const base = inv.built.base
-    // 장착가능여부 prehook: '장착' 시점의 현재(장착 직전) 총스탯/레벨로 착용조건 판정
-    const stats = aggregateBuild(baseStats, equippedBuilts(equipped, items)).finalStats
+    // 장착가능여부 prehook: '장착' 시점의 현재(장착 직전) 활성 장비 총스탯/레벨로 착용조건 판정
+    const stats = aggregateBuild(baseStats, activeBuilts).finalStats
     const check = checkWearable(base, { jobId, level, stats })
     if (!check.ok) {
       setMsg(`${base.name}: ${check.reasons.join(', ')}`)
@@ -214,12 +240,18 @@ export default function InventoryPanel() {
                 key={inv.id}
                 title={<ItemTooltip built={inv.built} />}
                 placement="right"
+                followCursor
+                disableInteractive
                 slotProps={{ tooltip: { sx: { bgcolor: 'transparent', p: 0, maxWidth: 'none' } } }}
               >
                 <Box
                   component="button"
                   type="button"
-                  onClick={(e) => setMenu({ anchor: e.currentTarget, id: inv.id })}
+                  onClick={() => handleToggleEquip(inv)}
+                  onContextMenu={(e) => {
+                    e.preventDefault()
+                    setMenu({ anchor: e.currentTarget, id: inv.id })
+                  }}
                   sx={{
                     p: 0.5,
                     lineHeight: 0,
@@ -239,6 +271,12 @@ export default function InventoryPanel() {
         </Box>
       )}
 
+      {items.length > 0 && (
+        <Typography variant="caption" color="text.disabled" sx={{ display: 'block', mt: 1 }}>
+          좌클릭: 장착/해제 · 우클릭: 메뉴(편집·복제·삭제)
+        </Typography>
+      )}
+
       <Menu anchorEl={menu?.anchor ?? null} open={!!menu} onClose={() => setMenu(null)}>
         <MenuItem onClick={() => menuItem && handleEquip(menuItem)}>장착</MenuItem>
         <MenuItem
@@ -252,6 +290,7 @@ export default function InventoryPanel() {
         >
           편집
         </MenuItem>
+        <MenuItem onClick={() => menuItem && handleDuplicate(menuItem)}>복제</MenuItem>
         <MenuItem onClick={() => menu && handleDelete(menu.id)} sx={{ color: 'error.main' }}>
           삭제
         </MenuItem>

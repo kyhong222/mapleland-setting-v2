@@ -7,7 +7,6 @@ import Divider from '@mui/material/Divider'
 import Typography from '@mui/material/Typography'
 import Checkbox from '@mui/material/Checkbox'
 import FormControlLabel from '@mui/material/FormControlLabel'
-import Tooltip from '@mui/material/Tooltip'
 import IconButton from '@mui/material/IconButton'
 import { CATALOG_ITEMS } from '../../data/catalog'
 import { SLOTS } from '../../domain/equipSlots'
@@ -27,6 +26,8 @@ interface Props {
   adjustments: EffectMap
   onPickBase: (item: ItemData) => void
   onChangeAdjust: (next: EffectMap) => void
+  /** 카탈로그 아이템 호버 시 콜백 (미리보기용). 벗어나면 null */
+  onHoverItem?: (item: ItemData | null) => void
 }
 
 /** 무기 종류 표시 순서 (한손검→…→건) */
@@ -74,6 +75,7 @@ export default function CatalogSection({
   adjustments,
   onPickBase,
   onChangeAdjust,
+  onHoverItem,
 }: Props) {
   const jobId = useBuildStore((s) => s.jobId)
   const [q, setQ] = useState('')
@@ -204,26 +206,27 @@ export default function CatalogSection({
               </Typography>
               <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
                 {items.map((item) => (
-                  <Tooltip key={item.id} title={`Lv.${item.reqLevel ?? 0} ${item.name}`} placement="top" arrow disableInteractive>
-                    <Box
-                      component="button"
-                      type="button"
-                      onClick={() => onPickBase(item)}
-                      sx={{
-                        p: 0.5,
-                        m: 0,
-                        lineHeight: 0,
-                        cursor: 'pointer',
-                        borderRadius: 1,
-                        border: 1,
-                        borderColor: 'divider',
-                        bgcolor: 'transparent',
-                        '&:hover': { borderColor: 'primary.main', bgcolor: 'action.hover' },
-                      }}
-                    >
-                      <ItemIcon src={item.iconUrl} alt={item.name} size={32} />
-                    </Box>
-                  </Tooltip>
+                  <Box
+                    key={item.id}
+                    component="button"
+                    type="button"
+                    onClick={() => onPickBase(item)}
+                    onMouseEnter={() => onHoverItem?.(item)}
+                    onMouseLeave={() => onHoverItem?.(null)}
+                    sx={{
+                      p: 0.5,
+                      m: 0,
+                      lineHeight: 0,
+                      cursor: 'pointer',
+                      borderRadius: 1,
+                      border: 1,
+                      borderColor: 'divider',
+                      bgcolor: 'transparent',
+                      '&:hover': { borderColor: 'primary.main', bgcolor: 'action.hover' },
+                    }}
+                  >
+                    <ItemIcon src={item.iconUrl} alt={item.name} size={32} />
+                  </Box>
                 ))}
               </Box>
             </Box>

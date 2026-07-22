@@ -10,7 +10,8 @@ import MonsterSelectDialog from '../monster/MonsterSelectDialog'
 import { useMonsterStore } from '../../store/monsterStore'
 import { useBuildStore } from '../../store/buildStore'
 import { useInventoryStore } from '../../store/inventoryStore'
-import { aggregateBuild, equippedBuilts } from '../../store/aggregate'
+import { aggregateBuild } from '../../store/aggregate'
+import { useActiveEquippedBuilts } from '../../store/activation'
 import { useBuffEffects } from '../../store/useBuffEffects'
 import { getMonster } from '../../data/mobs'
 import { monsterLabel, parseElemAttr } from '../../domain/monster'
@@ -102,13 +103,14 @@ export default function MonsterPanel() {
   const equipped = useBuildStore((s) => s.equipped)
   const invItems = useInventoryStore((s) => s.items)
   const buffEffects = useBuffEffects()
+  const builts = useActiveEquippedBuilts()
   const [open, setOpen] = useState(false)
 
   const selected = selectedId != null ? getMonster(selectedId) : undefined
 
   let vsResult: VsMonsterResult | null = null
   if (jobId && selected) {
-    const { finalStats, effects } = aggregateBuild(baseStats, equippedBuilts(equipped, invItems), buffEffects)
+    const { finalStats, effects } = aggregateBuild(baseStats, builts, buffEffects)
     vsResult = computeVsMonster(jobId, level, finalStats, effects, selected)
   }
 

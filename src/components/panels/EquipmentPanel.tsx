@@ -2,7 +2,6 @@ import { useMemo } from 'react'
 import Box from '@mui/material/Box'
 import Paper from '@mui/material/Paper'
 import Typography from '@mui/material/Typography'
-import IconButton from '@mui/material/IconButton'
 import Tooltip from '@mui/material/Tooltip'
 import CollapsiblePanel from '../common/CollapsiblePanel'
 import ItemTooltip from '../common/ItemTooltip'
@@ -44,6 +43,13 @@ function disabledInstances(
   return d
 }
 
+/** 차단 슬롯(한벌옷/두손무기로 막힌 칸) 사유 */
+function blockedReason(inst: EquipInstance): string {
+  if (inst === 'bottom') return '한벌옷 착용 중 — 하의 사용 불가'
+  if (inst === 'secondary') return '두손무기 착용 중 — 보조무기 사용 불가'
+  return instanceLabel(inst)
+}
+
 export default function EquipmentPanel() {
   const equipped = useBuildStore((s) => s.equipped)
   const unequip = useBuildStore((s) => s.unequip)
@@ -56,20 +62,34 @@ export default function EquipmentPanel() {
   const renderTile = (inst: EquipInstance, key: number) => {
     const invId = equipped[inst]
     const built = invId ? byId.get(invId) : undefined
-    const isDisabled = disabled.has(inst) && !built
-    const isInactive = !!built && activation[inst] === false
+    const isBlocked = disabled.has(inst) && !built // 한벌옷/두손무기로 막힌 빈 칸
+    const isInactive = !!built && activation[inst] === false // 요구조건 미달 비활성
     const grade = built ? resolveBuiltItem(built).grade : null
     const label = instanceLabel(inst)
+
+    const borderColor = isInactive || isBlocked ? 'error.main' : grade ? grade.info.color : 'divider'
+    const bordered = isInactive || isBlocked || !!grade
+
     return (
       <Tooltip
         key={key}
-        title={built ? <ItemTooltip built={built} note={isInactive ? '(비활성)' : undefined} /> : label}
+        title={
+          built ? (
+            <ItemTooltip built={built} note={isInactive ? '(비활성 — 요구조건 미달)' : undefined} />
+          ) : isBlocked ? (
+            blockedReason(inst)
+          ) : (
+            label
+          )
+        }
         placement="right"
         arrow={!built}
+        disableInteractive
         slotProps={built ? { tooltip: { sx: { bgcolor: 'transparent', p: 0, maxWidth: 'none' } } } : undefined}
       >
         <Paper
           variant="outlined"
+          onClick={built ? () => unequip(inst) : undefined}
           sx={{
             position: 'relative',
             width: TILE,
@@ -77,35 +97,34 @@ export default function EquipmentPanel() {
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            opacity: isDisabled ? 0.35 : isInactive ? 0.5 : 1,
-            border: grade ? `2px solid ${grade.info.color}` : undefined,
-            '&:hover .eq-del': { opacity: 1 },
+            cursor: built ? 'pointer' : 'default',
+            border: bordered ? 2 : 1,
+            borderStyle: 'solid',
+            borderColor,
+            bgcolor: isInactive || isBlocked ? 'rgba(211,47,47,0.14)' : undefined,
+            '&:hover': built
+              ? { bgcolor: isInactive ? 'rgba(211,47,47,0.24)' : 'action.hover' }
+              : undefined,
           }}
         >
           {built ? (
+            <ItemIcon
+              src={built.base.iconUrl}
+              alt={built.base.name}
+              size={ICON}
+              outlineColor={grade!.info.color}
+            />
+          ) : isBlocked ? (
             <>
-              <ItemIcon src={built.base.iconUrl} alt={built.base.name} size={ICON} outlineColor={grade!.info.color} />
-              <IconButton
-                className="eq-del"
-                size="small"
-                onClick={() => unequip(inst)}
-                sx={{
-                  position: 'absolute',
-                  top: -9,
-                  right: -9,
-                  opacity: 0,
-                  transition: 'opacity .12s',
-                  bgcolor: 'background.paper',
-                  border: 1,
-                  borderColor: 'divider',
-                  p: 0.05,
-                }}
-              >
-                ×
-              </IconButton>
+              <Typography sx={{ position: 'absolute', fontSize: 9, lineHeight: 1, color: 'error.main', opacity: 0.55, textAlign: 'center' }}>
+                {label}
+              </Typography>
+              <Box component="span" sx={{ fontSize: 28, fontWeight: 900, color: 'error.main', lineHeight: 1 }}>
+                ✕
+              </Box>
             </>
           ) : (
-            <Typography sx={{ fontSize: 10, lineHeight: 1.05, textAlign: 'center', px: 0.25, color: isDisabled ? 'text.disabled' : 'text.secondary' }}>
+            <Typography sx={{ fontSize: 10, lineHeight: 1.05, textAlign: 'center', px: 0.25, color: 'text.secondary' }}>
               {label}
             </Typography>
           )}

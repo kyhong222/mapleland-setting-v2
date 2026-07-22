@@ -3,7 +3,8 @@ import Typography from '@mui/material/Typography'
 import CollapsiblePanel from '../common/CollapsiblePanel'
 import { useBuildStore } from '../../store/buildStore'
 import { useInventoryStore } from '../../store/inventoryStore'
-import { aggregateBuild, equippedBuilts } from '../../store/aggregate'
+import { aggregateBuild } from '../../store/aggregate'
+import { useActiveEquippedBuilts } from '../../store/activation'
 import { useBuffEffects } from '../../store/useBuffEffects'
 import { computeDetailStats } from '../../domain/detailStats'
 import type { DetailStats } from '../../domain/detailStats'
@@ -25,7 +26,7 @@ export default function DetailStatPanel() {
   const baseStats = useBuildStore((s) => s.baseStats)
   const equipped = useBuildStore((s) => s.equipped)
   const invItems = useInventoryStore((s) => s.items)
-  const { finalStats, effects } = aggregateBuild(baseStats, equippedBuilts(equipped, invItems), useBuffEffects())
+  const { finalStats, effects } = aggregateBuild(baseStats, useActiveEquippedBuilts(), useBuffEffects())
 
   if (!jobId) {
     return <CollapsiblePanel id="detail" title="세부스탯" />
