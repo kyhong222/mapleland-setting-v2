@@ -241,9 +241,9 @@ export default function CatalogSection({
     )
   }
 
-  // 공격속도(step)는 수치조정 대상에서 제외
+  // 수치조정은 변동옵(flat)만 대상. 공속(step)·HP%/MP% 등 고정 %(percent)는 제외
   const keys = (Object.keys(base.effects) as EffectId[]).filter(
-    (id) => EFFECTS[id].unit !== 'step',
+    (id) => EFFECTS[id].unit === 'flat',
   )
   const setFinal = (id: EffectId, finalVal: number) => {
     const baseVal = base.effects[id] ?? 0
