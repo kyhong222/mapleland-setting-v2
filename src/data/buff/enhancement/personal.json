@@ -396,94 +396,94 @@
     "masterLevel": 30,
     "effectsByLevel": [
       {
-        "pad": 11
+        "addPad": 1
       },
       {
-        "pad": 12
+        "addPad": 2
       },
       {
-        "pad": 12
+        "addPad": 2
       },
       {
-        "pad": 13
+        "addPad": 3
       },
       {
-        "pad": 13
+        "addPad": 3
       },
       {
-        "pad": 14
+        "addPad": 4
       },
       {
-        "pad": 14
+        "addPad": 4
       },
       {
-        "pad": 15
+        "addPad": 5
       },
       {
-        "pad": 15
+        "addPad": 5
       },
       {
-        "pad": 16
+        "addPad": 6
       },
       {
-        "pad": 16
+        "addPad": 6
       },
       {
-        "pad": 17
+        "addPad": 7
       },
       {
-        "pad": 17
+        "addPad": 7
       },
       {
-        "pad": 18
+        "addPad": 8
       },
       {
-        "pad": 18
+        "addPad": 8
       },
       {
-        "pad": 19
+        "addPad": 9
       },
       {
-        "pad": 19
+        "addPad": 9
       },
       {
-        "pad": 20
+        "addPad": 10
       },
       {
-        "pad": 20
+        "addPad": 10
       },
       {
-        "pad": 21
+        "addPad": 11
       },
       {
-        "pad": 21
+        "addPad": 11
       },
       {
-        "pad": 22
+        "addPad": 12
       },
       {
-        "pad": 22
+        "addPad": 12
       },
       {
-        "pad": 23
+        "addPad": 13
       },
       {
-        "pad": 23
+        "addPad": 13
       },
       {
-        "pad": 24
+        "addPad": 14
       },
       {
-        "pad": 24
+        "addPad": 14
       },
       {
-        "pad": 25
+        "addPad": 15
       },
       {
-        "pad": 25
+        "addPad": 15
       },
       {
-        "pad": 26
+        "addPad": 16
       }
     ],
     "icon": "/buff-icons/1121010.png",

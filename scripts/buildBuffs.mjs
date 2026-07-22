@@ -93,8 +93,8 @@ const SKILL_MAP = {
   // ── 개인 패시브/버프(personal·jobSpecific) ────────
   // 전사
   1001003: pActive('아이언 바디', p => ({ pdef: n(p, 'pdd') })),
-  // 인레이지: 개인버프(향후 파티 전환 예정)
-  1121010: pActive('인레이지', p => ({ pad: n(p, 'pad') })),
+  // 인레이지: 개인버프(향후 파티 전환 예정). 스펙 변경 → 추가공격력(addPad), 전 구간 -10 (Lv1=1 ... 마스터=16)
+  1121010: pActive('인레이지', p => ({ addPad: n(p, 'pad') - 10 })),
   1120004: pPassive('아킬레스', achilles), 1220005: pPassive('아킬레스', achilles), 1320005: pPassive('아킬레스', achilles),
   1121002: pActive('스탠스', stance), 1221002: pActive('스탠스', stance), 1321002: pActive('스탠스', stance),
   // 블로킹: 마스터 시 15% (prop/10)
