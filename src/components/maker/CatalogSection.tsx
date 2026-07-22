@@ -259,6 +259,7 @@ export default function CatalogSection({
       <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1, mt: 0.5 }}>
         {keys.map((id) => {
           const finalVal = (base.effects[id] ?? 0) + (adjustments[id] ?? 0)
+          const step = id === 'hp' || id === 'mp' ? 10 : 1
           return (
             <Box
               key={id}
@@ -275,13 +276,13 @@ export default function CatalogSection({
                 {EFFECTS[id].label}
               </Typography>
               <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                <IconButton size="small" onClick={() => setFinal(id, finalVal - 1)}>
+                <IconButton size="small" onClick={() => setFinal(id, finalVal - step)}>
                   −
                 </IconButton>
                 <Typography variant="body2" sx={{ fontWeight: 700, minWidth: 28, textAlign: 'center' }}>
                   {finalVal}
                 </Typography>
-                <IconButton size="small" onClick={() => setFinal(id, finalVal + 1)}>
+                <IconButton size="small" onClick={() => setFinal(id, finalVal + step)}>
                   +
                 </IconButton>
               </Box>
