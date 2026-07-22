@@ -15,7 +15,7 @@ import { resolveBuiltItem } from '../../domain/builtItem'
 import type { BuiltItem, AppliedScroll } from '../../domain/builtItem'
 import type { GemSelection } from '../../domain/maker'
 import ItemIcon from '../common/ItemIcon'
-import EffectList from '../common/EffectList'
+import ItemTooltip from '../common/ItemTooltip'
 import CatalogSection from './CatalogSection'
 import ScrollSection from './ScrollSection'
 import GemSection from './GemSection'
@@ -105,12 +105,14 @@ export default function ItemMakerDialog({ open, initial, onClose, onConfirm }: P
               </Button>
             </Box>
 
-            {/* 미리보기 (효과) */}
+            {/* 미리보기 (아이템 툴팁 카드) */}
             <Box>
               <Typography variant="caption" color="text.secondary" sx={{ display: 'block', mb: 0.5 }}>
                 미리보기
               </Typography>
-              <EffectList effects={result.finalEffects} dense />
+              <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+                {built && <ItemTooltip built={built} />}
+              </Box>
             </Box>
 
             {/* 수치조정 */}
