@@ -192,5 +192,116 @@
     "reqJob": 8,
     "iconUrl": "https://maplestory.io/api/GMS/200/item/1142012/icon",
     "tuc": 0
+  },
+  {
+    "id": 1142107,
+    "name": "초보 모험가",
+    "slot": "medal",
+    "effects": {
+      "hp": 50,
+      "mp": 50
+    },
+    "reqLevel": 8,
+    "iconUrl": "https://maplestory.io/api/kms/300/item/1142107/icon"
+  },
+  {
+    "id": 1142108,
+    "name": "주니어 모험가",
+    "slot": "medal",
+    "effects": {
+      "hp": 100,
+      "mp": 100
+    },
+    "reqLevel": 30,
+    "iconUrl": "https://maplestory.io/api/gms/200/item/1142108/icon"
+  },
+  {
+    "id": 1142109,
+    "name": "베테랑 모험가",
+    "slot": "medal",
+    "effects": {
+      "STR": 1,
+      "DEX": 1,
+      "INT": 1,
+      "LUK": 1,
+      "hp": 150,
+      "mp": 150
+    },
+    "reqLevel": 60,
+    "iconUrl": "https://maplestory.io/api/gms/200/item/1142109/icon"
+  },
+  {
+    "id": 1142110,
+    "name": "마스터 모험가",
+    "slot": "medal",
+    "effects": {
+      "STR": 2,
+      "DEX": 2,
+      "INT": 2,
+      "LUK": 2,
+      "hp": 200,
+      "mp": 200
+    },
+    "reqLevel": 100,
+    "iconUrl": "https://maplestory.io/api/gms/200/item/1142110/icon"
+  },
+  {
+    "id": 1142065,
+    "name": "노블레스의 훈장",
+    "slot": "medal",
+    "effects": {},
+    "iconUrl": "https://maplestory.io/api/gms/200/item/1142065/icon"
+  },
+  {
+    "id": 1142066,
+    "name": "수련기사의 훈장",
+    "slot": "medal",
+    "effects": {
+      "hp": 50,
+      "mp": 50
+    },
+    "reqLevel": 10,
+    "iconUrl": "https://maplestory.io/api/gms/200/item/1142066/icon"
+  },
+  {
+    "id": 1142067,
+    "name": "정식기사의 훈장",
+    "slot": "medal",
+    "effects": {
+      "hp": 100,
+      "mp": 100
+    },
+    "reqLevel": 30,
+    "iconUrl": "https://maplestory.io/api/gms/200/item/1142067/icon"
+  },
+  {
+    "id": 1142068,
+    "name": "상급기사의 훈장",
+    "slot": "medal",
+    "effects": {
+      "STR": 1,
+      "DEX": 1,
+      "INT": 1,
+      "LUK": 1,
+      "hp": 150,
+      "mp": 150
+    },
+    "reqLevel": 60,
+    "iconUrl": "https://maplestory.io/api/gms/200/item/1142068/icon"
+  },
+  {
+    "id": 1142069,
+    "name": "기사단장의 훈장",
+    "slot": "medal",
+    "effects": {
+      "STR": 2,
+      "DEX": 2,
+      "INT": 2,
+      "LUK": 2,
+      "hp": 200,
+      "mp": 200
+    },
+    "reqLevel": 100,
+    "iconUrl": "https://maplestory.io/api/gms/200/item/1142069/icon"
   }
 ]

@@ -35,10 +35,21 @@ function buffIconUrl(buff: Buff): string | undefined {
 }
 
 /** 이름 앞 접두사: 변형='[변형명]' / 레벨스킬='[Lv. n]' / 그 외 없음 */
-function buffLabel(buff: Buff, level: number): string {
-  if (buff.type === 'skill' && buff.variants) return `[${buff.variants[level - 1] ?? '?'}]${buff.name}`
-  if (buff.type === 'skill' && buff.masterLevel > 1) return `[Lv. ${level}]${buff.name}`
-  return buff.name
+function buffPrefix(buff: Buff, level: number): string {
+  if (buff.type === 'skill' && buff.variants) return `[${buff.variants[level - 1] ?? '?'}]`
+  if (buff.type === 'skill' && buff.masterLevel > 1) return `[Lv. ${level}]`
+  return ''
+}
+
+/** 접두사(볼드) + 버프명 */
+function BuffName({ buff, level }: { buff: Buff; level: number }) {
+  const prefix = buffPrefix(buff, level)
+  return (
+    <Typography variant="body2" noWrap>
+      {prefix && <Box component="span" sx={{ fontWeight: 700 }}>{prefix}</Box>}
+      {buff.name}
+    </Typography>
+  )
 }
 
 /** 버프 툴팁 내용: 이름(+레벨) / 효과 */
@@ -212,7 +223,7 @@ function BuffRow({ buff, onOpen }: { buff: Buff; onOpen: (b: Buff) => void }) {
     <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5, py: 0.25 }}>
       <BuffIcon buff={buff} active={active} highlightActive onClick={() => onOpen(buff)} onContextMenu={(e) => { e.preventDefault(); toggleBuff(buff.id) }} />
       <Box sx={{ flex: 1, minWidth: 0 }}>
-        <Typography variant="body2" noWrap>{buffLabel(buff, shownLevel)}</Typography>
+        <BuffName buff={buff} level={shownLevel} />
         <Typography variant="caption" color={active ? 'success.main' : 'text.disabled'} noWrap sx={{ display: 'block' }}>
           {formatEffects(eff) || '—'}
         </Typography>
@@ -233,7 +244,7 @@ function MasteryRow({ buff, onOpen }: { buff: Buff; onOpen: (b: Buff) => void })
     <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5, py: 0.25 }}>
       <BuffIcon buff={buff} active={!off} highlightActive onClick={() => onOpen(buff)} onContextMenu={(e) => { e.preventDefault(); toggleMastery(buff.id) }} />
       <Box sx={{ flex: 1, minWidth: 0 }}>
-        <Typography variant="body2" noWrap>{buffLabel(buff, shownLevel)}</Typography>
+        <BuffName buff={buff} level={shownLevel} />
         <Typography variant="caption" color={off ? 'text.disabled' : 'success.main'} noWrap sx={{ display: 'block' }}>
           {formatEffects(eff) || '—'}
         </Typography>
