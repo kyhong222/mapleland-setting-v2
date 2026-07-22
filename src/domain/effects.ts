@@ -83,6 +83,9 @@ export type EffectId =
   | 'mad_burning'
   | 'speed_burning'
   | 'jump_burning'
+  // 기상효과 — 모든 버프와 중첩되는 독립 보너스
+  | 'pad_weather'
+  | 'mad_weather'
 
 export interface EffectDef {
   id: EffectId
@@ -171,6 +174,10 @@ export const EFFECTS: Record<EffectId, EffectDef> = {
   mad_burning: { id: 'mad_burning', label: '마력', category: 'offense', unit: 'flat', appliesToItem: false },
   speed_burning: { id: 'speed_burning', label: '이동속도', category: 'mobility', unit: 'flat', appliesToItem: false },
   jump_burning: { id: 'jump_burning', label: '점프력', category: 'mobility', unit: 'flat', appliesToItem: false },
+
+  // ── 기상효과 — 모든 버프와 중첩되는 독립 보너스 ──
+  pad_weather: { id: 'pad_weather', label: '공격력', category: 'offense', unit: 'flat', appliesToItem: false },
+  mad_weather: { id: 'mad_weather', label: '마력', category: 'offense', unit: 'flat', appliesToItem: false },
 }
 
 /** 마스터 효과 전체 목록 */

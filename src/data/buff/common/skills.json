@@ -146,6 +146,18 @@
     "icon": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAJNQTFRFAAAAAAAAADPdAETdAFXdAFX/AGbdAGb/AHfdAHf/AIjdAIj/AJndAKrMAKr/ALvMALv/AMy7AMz/ESK7IiK7MxG7RBG7RCLMVQC7VRG7VWaIVaruVbvuVczuVd3uZgC7iJmqiMz/iN3/iO7/maq7qrvMqt3/qu7/qv//u8zMu93uzMzMzMzd3d3d3e7/7u7u////yXHOmAAAAAF0Uk5TAEDm2GYAAAF+SURBVDjLfZOJcsIwDERjIFzlhgRIIMFAajcmVP//dZXkg6RTugyDtHpeezw4iqJIvFXEEo+3EnaeZZeMvlVWfVdcV866C5qjyaJpFSorJMSj4hWc4MUJ9GGgveKSdfVlAVphjAm2q6vMJ5BVlqUnuG441wNNWQKAIwzX2LwSzAFIBwdw9+TOAs2R58ewBffPY+MAk/J8nzYeSPdkfKbGAgnPe5CEhAQ7lEoMA2CBHHbuDDvILaB2L6Cf57B1wBbyvG+JNiAlEqQtSPknoBTwnwB9B8ALwB0kzqmskZB+jwD0TriDsMdFQspT71dCHKsWoOL4V8JgNBq1AOwGXWA4mUxaAHbDLjD+QDFR45yacReYLlAAoqY5UDMlWzOgsZqtViu+hZpvArsZzQOgYb4JR6CQzRx0AK4AV1jiHAecQcQSyLbADeAGStDxBTOUoYBsC5wBzpoihAPwZwmabX5aBe5WAKztHdSkNTu60PZxYl0QcfdaW6NY+Of93/P/ATZHdYLur37LAAAAAElFTkSuQmCC"
   },
   {
+    "id": "weather",
+    "type": "skill",
+    "name": "기상효과",
+    "scope": "party",
+    "mode": "active",
+    "masterLevel": 1,
+    "effectsByLevel": [
+      { "pad_weather": 10, "mad_weather": 20 }
+    ],
+    "icon": "https://maplestory.io/api/gms/62/item/5120004/icon"
+  },
+  {
     "id": "burning",
     "type": "skill",
     "name": "버닝",

@@ -227,7 +227,7 @@
       "hp": 150,
       "mp": 150
     },
-    "reqLevel": 60,
+    "reqLevel": 70,
     "iconUrl": "https://maplestory.io/api/gms/200/item/1142109/icon"
   },
   {
@@ -242,7 +242,7 @@
       "hp": 200,
       "mp": 200
     },
-    "reqLevel": 100,
+    "reqLevel": 120,
     "iconUrl": "https://maplestory.io/api/gms/200/item/1142110/icon"
   },
   {
@@ -286,7 +286,7 @@
       "hp": 150,
       "mp": 150
     },
-    "reqLevel": 60,
+    "reqLevel": 70,
     "iconUrl": "https://maplestory.io/api/gms/200/item/1142068/icon"
   },
   {
@@ -301,7 +301,7 @@
       "hp": 200,
       "mp": 200
     },
-    "reqLevel": 100,
+    "reqLevel": 120,
     "iconUrl": "https://maplestory.io/api/gms/200/item/1142069/icon"
   }
 ]
