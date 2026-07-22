@@ -23,6 +23,8 @@ const STAT_ROWS: { id: EffectId; label: string }[] = [
   { id: 'LUK', label: 'LUK' },
   { id: 'hp', label: '최대 HP' },
   { id: 'mp', label: '최대 MP' },
+  { id: 'hpP', label: 'HP' },
+  { id: 'mpP', label: 'MP' },
   { id: 'pad', label: '공격력' },
   { id: 'mad', label: '마력' },
   { id: 'pdef', label: '물리방어력' },
