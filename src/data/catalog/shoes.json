@@ -1868,7 +1868,8 @@
     },
     "reqLevel": 58,
     "tuc": 5,
-    "iconUrl": "https://maplestory.io/api/gms/200/item/1072375/icon"
+    "iconUrl": "https://maplestory.io/api/gms/200/item/1072375/icon",
+    "noGem": true
   },
   {
     "id": 1072136,
@@ -2090,7 +2091,8 @@
     },
     "reqLevel": 68,
     "tuc": 5,
-    "iconUrl": "https://maplestory.io/api/gms/200/item/1072376/icon"
+    "iconUrl": "https://maplestory.io/api/gms/200/item/1072376/icon",
+    "noGem": true
   },
   {
     "id": 1072154,

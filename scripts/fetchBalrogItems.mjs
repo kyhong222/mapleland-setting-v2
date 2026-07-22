@@ -43,8 +43,8 @@ const TARGETS = {
   '베인바이터': { reqDex: 90 },
   '베인슈터': { reqStr: 60 },
   '베인롱보우': { reqStr: 50 },
-  '발록의가죽신발': { tuc: 5 },
-  '발록의털가죽신발': { tuc: 5 },
+  '발록의가죽신발': { tuc: 5, noGem: true },
+  '발록의털가죽신발': { tuc: 5, noGem: true },
 }
 const SEARCH = ['카오스 자쿰', '돌고래', '베인', '발록']
 

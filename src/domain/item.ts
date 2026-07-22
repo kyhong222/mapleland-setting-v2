@@ -33,6 +33,8 @@ export interface ItemData {
   reqJob?: number
   /** slot === 'weapon'일 때만 의미 있음 */
   weaponType?: WeaponType
+  /** 강화보석 부여 불가 (메이플랜드 커스텀: 발록 신발 등) */
+  noGem?: boolean
   /** maplestory.io 아이콘 URL */
   iconUrl?: string
 }

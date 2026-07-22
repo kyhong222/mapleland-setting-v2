@@ -174,6 +174,7 @@ export default function ItemMakerDialog({ open, initial, onClose, onConfirm }: P
               slot={base.slot}
               gems={draft.gems}
               onChange={(gems) => setDraft((d) => ({ ...d, gems }))}
+              noGem={base.noGem}
             />
           </Stack>
         )}

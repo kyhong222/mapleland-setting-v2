@@ -18,6 +18,8 @@ interface Props {
   slot: SlotId
   gems: GemSelection[]
   onChange: (next: GemSelection[]) => void
+  /** 강화보석 부여 불가 아이템 */
+  noGem?: boolean
 }
 
 function IconBtn({
@@ -57,8 +59,16 @@ function IconBtn({
   )
 }
 
-export default function GemSection({ slot, gems, onChange }: Props) {
+export default function GemSection({ slot, gems, onChange, noGem }: Props) {
   const capacity = gemCapacity(slot)
+
+  if (noGem) {
+    return (
+      <Typography variant="body2" color="text.disabled">
+        강화보석을 부여할 수 없는 아이템입니다.
+      </Typography>
+    )
+  }
 
   if (capacity === 0) {
     return (

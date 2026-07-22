@@ -14,5 +14,20 @@
     "reqLevel": 45,
     "tuc": 3,
     "iconUrl": "https://maplestory.io/api/GMS/200/item/1022073/icon"
+  },
+  {
+    "id": 1022123,
+    "name": "돌고래의 물안경",
+    "slot": "eyeAccessory",
+    "effects": {
+      "STR": 1,
+      "DEX": 1,
+      "INT": 1,
+      "LUK": 1,
+      "hp": 50,
+      "pdef": 30,
+      "mdef": 30
+    },
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1022123/icon"
   }
 ]
