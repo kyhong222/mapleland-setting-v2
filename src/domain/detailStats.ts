@@ -82,7 +82,7 @@ export function computeDetailStats(jobId: JobId, finalStats: BaseStats, effects:
     eva: finalStats.DEX * eva.dex + finalStats.LUK * eva.luk + v('eva') + v('eva_botf'),
     pdef: v('pdef'),
     mdef: v('mdef') + finalStats.INT,
-    speed: Math.min(MAX_SPEED, BASE_SPEED + v('speed')),
-    jump: Math.min(MAX_JUMP, BASE_JUMP + v('jump')),
+    speed: Math.min(MAX_SPEED, BASE_SPEED + v('speed') + v('speed_burning')),
+    jump: Math.min(MAX_JUMP, BASE_JUMP + v('jump') + v('jump_burning')),
   }
 }

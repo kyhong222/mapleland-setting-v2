@@ -78,6 +78,11 @@ export type EffectId =
   | 'eva_botf'
   | 'hpP_botf'
   | 'mpP_botf'
+  // 버닝(버닝 서버 전용) — 항상 중첩되는 독립 보너스
+  | 'pad_burning'
+  | 'mad_burning'
+  | 'speed_burning'
+  | 'jump_burning'
 
 export interface EffectDef {
   id: EffectId
@@ -160,6 +165,12 @@ export const EFFECTS: Record<EffectId, EffectDef> = {
   eva_botf: { id: 'eva_botf', label: '회피율', category: 'defense', unit: 'flat', appliesToItem: false },
   hpP_botf: { id: 'hpP_botf', label: 'HP%', category: 'resource', unit: 'percent', appliesToItem: false },
   mpP_botf: { id: 'mpP_botf', label: 'MP%', category: 'resource', unit: 'percent', appliesToItem: false },
+
+  // ── 버닝(버닝 서버 전용) — 항상 중첩되는 독립 보너스 ──
+  pad_burning: { id: 'pad_burning', label: '공격력', category: 'offense', unit: 'flat', appliesToItem: false },
+  mad_burning: { id: 'mad_burning', label: '마력', category: 'offense', unit: 'flat', appliesToItem: false },
+  speed_burning: { id: 'speed_burning', label: '이동속도', category: 'mobility', unit: 'flat', appliesToItem: false },
+  jump_burning: { id: 'jump_burning', label: '점프력', category: 'mobility', unit: 'flat', appliesToItem: false },
 }
 
 /** 마스터 효과 전체 목록 */
