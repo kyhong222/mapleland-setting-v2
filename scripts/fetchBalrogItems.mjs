@@ -49,6 +49,12 @@ const TARGETS = {
 }
 const SEARCH = ['카오스 자쿰', '돌고래', '베인', '발록']
 
+// 이름 검색으로 안 잡히는 아이템은 id로 직접 지정 (값 = 커스텀 패치)
+const TARGET_IDS = {
+  1442078: {}, // 베인폴암
+  1402062: {}, // 베인스워드(두손검)
+}
+
 async function getJson(url) {
   const r = await fetch(url)
   if (!r.ok) return null
@@ -104,9 +110,21 @@ async function main() {
       if (key in TARGETS && !byId.has(it.id)) byId.set(it.id, { name: it.name, key })
     }
   }
-  console.log(`대상 매칭: ${byId.size}/${Object.keys(TARGETS).length}`)
+  console.log(`이름 매칭: ${byId.size}/${Object.keys(TARGETS).length}`)
   const foundKeys = new Set([...byId.values()].map((v) => v.key))
   for (const k of Object.keys(TARGETS)) if (!foundKeys.has(k)) console.log(`  ⚠ 미발견: ${k}`)
+
+  // id 직접 지정분 추가 (한글명은 KMS에서 조회)
+  for (const [idStr, patch] of Object.entries(TARGET_IDS)) {
+    const id = Number(idStr)
+    if (byId.has(id)) continue
+    const kms = await getJson(`${B}/${NAME_REGION}/${NAME_VERSION}/item/${id}`)
+    const name = kms?.description?.name ?? String(id)
+    const key = `#${id}`
+    TARGETS[key] = patch
+    byId.set(id, { name, key })
+    console.log(`  + id 지정: ${id} ${name}`)
+  }
 
   // 2) 스펙 조회 + 정규화 + 패치
   const items = []

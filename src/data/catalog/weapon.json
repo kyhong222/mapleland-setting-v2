@@ -3103,6 +3103,34 @@
     "reqLuk": 68
   },
   {
+    "id": 1402062,
+    "name": "베인스워드",
+    "slot": "weapon",
+    "effects": {
+      "pad": 83,
+      "attackSpeed": 5
+    },
+    "reqLevel": 58,
+    "tuc": 7,
+    "reqJob": 1,
+    "weaponType": "twoHandedSword",
+    "iconUrl": "https://maplestory.io/api/gms/200/item/1402062/icon"
+  },
+  {
+    "id": 1442078,
+    "name": "베인 폴암",
+    "slot": "weapon",
+    "effects": {
+      "pad": 86,
+      "attackSpeed": 6
+    },
+    "reqLevel": 58,
+    "tuc": 7,
+    "reqJob": 1,
+    "weaponType": "polearm",
+    "iconUrl": "https://maplestory.io/api/gms/200/item/1442078/icon"
+  },
+  {
     "id": 1452071,
     "name": "베인 롱보우",
     "slot": "weapon",
