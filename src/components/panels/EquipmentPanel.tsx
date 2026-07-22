@@ -67,8 +67,9 @@ export default function EquipmentPanel() {
     const grade = built ? resolveBuiltItem(built).grade : null
     const label = instanceLabel(inst)
 
-    const borderColor = isInactive || isBlocked ? 'error.main' : grade ? grade.info.color : 'divider'
-    const bordered = isInactive || isBlocked || !!grade
+    // 장착 아이템 칸 테두리는 등급색으로 칠하지 않음 (비활성/차단만 빨강 강조)
+    const borderColor = isInactive || isBlocked ? 'error.main' : 'divider'
+    const bordered = isInactive || isBlocked
 
     return (
       <Tooltip
@@ -101,9 +102,9 @@ export default function EquipmentPanel() {
             border: bordered ? 2 : 1,
             borderStyle: 'solid',
             borderColor,
-            bgcolor: isInactive || isBlocked ? 'rgba(211,47,47,0.14)' : undefined,
+            bgcolor: isInactive || isBlocked ? 'rgba(211,47,47,0.34)' : undefined,
             '&:hover': built
-              ? { bgcolor: isInactive ? 'rgba(211,47,47,0.24)' : 'action.hover' }
+              ? { bgcolor: isInactive ? 'rgba(211,47,47,0.46)' : 'action.hover' }
               : undefined,
           }}
         >
