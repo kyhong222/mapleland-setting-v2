@@ -54,6 +54,8 @@ export interface BuffContext {
   activeBuffs: Record<string, number>
   appliedBuffs: Record<string, number>
   masteryLevels: Record<string, number>
+  /** 비활성화한 무기 마스터리 (있으면 자동 적용에서 제외) */
+  masteryOff?: Record<string, boolean>
   jobId: JobId | null
   weaponType?: WeaponType
 }
@@ -66,17 +68,17 @@ export interface BuffContext {
  *  - 무기 마스터리/엑스퍼트: 장착 주무기 타입이 일치할 때만 자동 적용(레벨=masteryLevels[id] ?? 마스터)
  */
 export function activeBuffEffects(ctx: BuffContext): EffectMap {
-  const { activeBuffs, appliedBuffs, masteryLevels, jobId, weaponType } = ctx
+  const { activeBuffs, appliedBuffs, masteryLevels, masteryOff, jobId, weaponType } = ctx
   const sumMaps: EffectMap[] = []
   // 토글 버프 (무기 게이팅 버프는 여기서 제외 — 아래서 따로 처리)
   for (const [id, level] of Object.entries(activeBuffs)) {
     const b = getBuff(id)
     if (b && !(b.type === 'skill' && b.weaponTypes)) sumMaps.push(buffEffectsAtLevel(b, level))
   }
-  // 무기 마스터리/엑스퍼트 — 장착 주무기 일치 시 자동 적용
+  // 무기 마스터리/엑스퍼트 — 장착 주무기 일치 시 자동 적용 (off한 것은 제외)
   if (jobId && weaponType) {
     for (const b of JOB_BUFFS) {
-      if (b.type === 'skill' && b.weaponTypes?.includes(weaponType) && canUseBuff(b, jobId)) {
+      if (b.type === 'skill' && b.weaponTypes?.includes(weaponType) && canUseBuff(b, jobId) && !masteryOff?.[b.id]) {
         sumMaps.push(buffEffectsAtLevel(b, masteryLevels[b.id] ?? b.masterLevel))
       }
     }

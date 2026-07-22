@@ -9,8 +9,9 @@ export function useBuffEffects(): EffectMap {
   const activeBuffs = useBuildStore((s) => s.activeBuffs)
   const appliedBuffs = useBuildStore((s) => s.appliedBuffs)
   const masteryLevels = useBuildStore((s) => s.masteryLevels)
+  const masteryOff = useBuildStore((s) => s.masteryOff)
   const equipped = useBuildStore((s) => s.equipped)
   const invItems = useInventoryStore((s) => s.items)
   const weaponType = equippedWeaponType(equipped, invItems)
-  return activeBuffEffects({ activeBuffs, appliedBuffs, masteryLevels, jobId, weaponType })
+  return activeBuffEffects({ activeBuffs, appliedBuffs, masteryLevels, masteryOff, jobId, weaponType })
 }

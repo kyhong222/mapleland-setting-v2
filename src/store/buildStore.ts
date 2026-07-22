@@ -46,6 +46,8 @@ export interface BuildState {
   masteryLevels: Record<string, number>
   /** 토글 버프의 레벨 기억 (on/off와 무관하게 유지 — 껐다 켜도 레벨 보존) */
   buffLevels: Record<string, number>
+  /** 비활성화한 무기 마스터리 (기본은 무기 장착 시 자동 적용, 여기 있으면 제외) */
+  masteryOff: Record<string, boolean>
 
   selectJob: (id: JobId) => void
   reset: () => void
@@ -67,6 +69,8 @@ export interface BuildState {
   setAppliedLevel: (id: string, level: number) => void
   /** 무기 마스터리/엑스퍼트 레벨 조정 */
   setMasteryLevel: (id: string, level: number) => void
+  /** 무기 마스터리 on/off 토글 (off면 자동 적용에서 제외) */
+  toggleMastery: (id: string) => void
   snapshot: () => BuildSnapshot | null
   loadSnapshot: (snap: BuildSnapshot) => void
 }
@@ -122,6 +126,7 @@ export const useBuildStore = create<BuildState>()(
       appliedBuffs: {},
       masteryLevels: {},
       buffLevels: {},
+      masteryOff: {},
 
       selectJob: (id) =>
         set((s) => {
@@ -129,7 +134,7 @@ export const useBuildStore = create<BuildState>()(
           const level = minLevelForClass(JOBS[id].classId)
           return { jobId: id, level, baseStats: recomputeStats(id, level, baseFour()) }
         }),
-      reset: () => set({ jobId: null, level: 1, baseStats: baseFour(), equipped: {}, activeBuffs: {}, appliedBuffs: {}, masteryLevels: {}, buffLevels: {} }),
+      reset: () => set({ jobId: null, level: 1, baseStats: baseFour(), equipped: {}, activeBuffs: {}, appliedBuffs: {}, masteryLevels: {}, buffLevels: {}, masteryOff: {} }),
       setLevel: (n) =>
         set((s) => {
           const min = s.jobId ? minLevelForClass(JOBS[s.jobId].classId) : 1
@@ -220,6 +225,13 @@ export const useBuildStore = create<BuildState>()(
           const lv = Math.max(1, Math.min(max, Math.floor(level) || 1))
           return { masteryLevels: { ...s.masteryLevels, [id]: lv } }
         }),
+      toggleMastery: (id) =>
+        set((s) => {
+          const next = { ...s.masteryOff }
+          if (next[id]) delete next[id]
+          else next[id] = true
+          return { masteryOff: next }
+        }),
       snapshot: () => {
         const { jobId, level, baseStats, equipped, activeBuffs, appliedBuffs, masteryLevels } = get()
         return jobId === null ? null : { jobId, level, baseStats, equipped, activeBuffs, appliedBuffs, masteryLevels }
@@ -234,6 +246,7 @@ export const useBuildStore = create<BuildState>()(
           appliedBuffs: migrateApplied(snap),
           masteryLevels: { ...(snap.masteryLevels ?? {}) },
           buffLevels: { ...(snap.activeBuffs ?? {}) },
+          masteryOff: {},
         }),
     }),
     {

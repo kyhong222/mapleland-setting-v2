@@ -224,15 +224,17 @@ function BuffRow({ buff, onOpen }: { buff: Buff; onOpen: (b: Buff) => void }) {
 /** 무기 마스터리/엑스퍼트 행 (장착 무기 자동 적용 · 아이콘 클릭 시 레벨 모달) */
 function MasteryRow({ buff, onOpen }: { buff: Buff; onOpen: (b: Buff) => void }) {
   const level = useBuildStore((s) => s.masteryLevels[buff.id])
+  const off = useBuildStore((s) => !!s.masteryOff[buff.id])
+  const toggleMastery = useBuildStore((s) => s.toggleMastery)
   const isSkill = buff.type === 'skill'
   const shownLevel = level ?? (isSkill ? buff.masterLevel : 1)
   const eff = buffEffectsAtLevel(buff, shownLevel)
   return (
     <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5, py: 0.25 }}>
-      <BuffIcon buff={buff} highlightActive onClick={() => onOpen(buff)} onContextMenu={(e) => { e.preventDefault(); onOpen(buff) }} />
+      <BuffIcon buff={buff} active={!off} highlightActive onClick={() => onOpen(buff)} onContextMenu={(e) => { e.preventDefault(); toggleMastery(buff.id) }} />
       <Box sx={{ flex: 1, minWidth: 0 }}>
         <Typography variant="body2" noWrap>{buffLabel(buff, shownLevel)}</Typography>
-        <Typography variant="caption" color="success.main" noWrap sx={{ display: 'block' }}>
+        <Typography variant="caption" color={off ? 'text.disabled' : 'success.main'} noWrap sx={{ display: 'block' }}>
           {formatEffects(eff) || '—'}
         </Typography>
       </Box>
