@@ -95,6 +95,10 @@ export default function CatalogSection({
       if (arr) arr.push(it)
       else byBucket.set(b, [it])
     }
+    // 버킷은 레벨 오름차순, 버킷 내부는 reqLevel→이름 순(예: 리버스 < 타임리스)
+    for (const items of byBucket.values()) {
+      items.sort((x, y) => (x.reqLevel ?? 0) - (y.reqLevel ?? 0) || x.name.localeCompare(y.name, 'ko'))
+    }
     return {
       groups: [...byBucket.entries()].sort((a, b) => a[0] - b[0]),
       total: filtered.length,
