@@ -53,6 +53,11 @@ export interface SkillBuff extends BuffBase {
   jobs?: JobId[]
   /** 무기 숙련도/엑스퍼트: 적용되는 무기 타입. 장착 주무기가 일치할 때만 자동 적용 */
   weaponTypes?: WeaponType[]
+  /**
+   * 변형 선택(레벨 슬라이더 대신 라디오). 있으면 레벨 = 변형 인덱스+1,
+   * effectsByLevel[i]가 각 변형(예: 영웅의 메아리 모험가/시그너스)의 효과.
+   */
+  variants?: string[]
 }
 
 export type Buff = ItemBuff | SkillBuff
@@ -64,9 +69,11 @@ export function canUseBuff(buff: Buff, jobId: JobId): boolean {
   return buff.jobs?.includes(jobId) ?? false
 }
 
-/** UI 기본 선택 레벨 (스킬=마스터레벨, 아이템=1 의미 없음) */
+/** UI 기본 선택 레벨 (변형 버프=첫 변형, 스킬=마스터레벨, 아이템=1 의미 없음) */
 export function defaultBuffLevel(buff: Buff): number {
-  return buff.type === 'skill' ? buff.masterLevel : 1
+  if (buff.type !== 'skill') return 1
+  if (buff.variants) return 1
+  return buff.masterLevel
 }
 
 /**

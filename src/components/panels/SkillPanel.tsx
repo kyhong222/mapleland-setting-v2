@@ -9,6 +9,8 @@ import DialogTitle from '@mui/material/DialogTitle'
 import DialogContent from '@mui/material/DialogContent'
 import Slider from '@mui/material/Slider'
 import Switch from '@mui/material/Switch'
+import Radio from '@mui/material/Radio'
+import RadioGroup from '@mui/material/RadioGroup'
 import FormControlLabel from '@mui/material/FormControlLabel'
 import Tooltip from '@mui/material/Tooltip'
 import CollapsiblePanel from '../common/CollapsiblePanel'
@@ -29,6 +31,13 @@ function buffIconUrl(buff: Buff): string | undefined {
   if (buff.icon) return buff.icon
   if (buff.type === 'item') return `https://maplestory.io/api/gms/62/item/${buff.id}/icon`
   return undefined
+}
+
+/** 이름 앞 접두사: 변형='[변형명]' / 레벨스킬='[Lv. n]' / 그 외 없음 */
+function buffLabel(buff: Buff, level: number): string {
+  if (buff.type === 'skill' && buff.variants) return `[${buff.variants[level - 1] ?? '?'}]${buff.name}`
+  if (buff.type === 'skill' && buff.masterLevel > 1) return `[Lv. ${level}]${buff.name}`
+  return buff.name
 }
 
 /** 버프 툴팁 내용: 이름(+레벨) / 효과 */
@@ -112,8 +121,9 @@ function BuffDialog({ buff, kind, onClose }: { buff: Buff; kind: BuffKind; onClo
   const isSkill = buff.type === 'skill'
   const master = isSkill ? buff.masterLevel : 1
   const active = kind === 'toggle' ? buff.id in activeBuffs : true
+  const fallback = defaultBuffLevel(buff)
   const level =
-    kind === 'toggle' ? activeBuffs[buff.id] ?? master : kind === 'applied' ? appliedBuffs[buff.id] ?? master : masteryLevels[buff.id] ?? master
+    kind === 'toggle' ? activeBuffs[buff.id] ?? fallback : kind === 'applied' ? appliedBuffs[buff.id] ?? fallback : masteryLevels[buff.id] ?? fallback
 
   const setLevel = (n: number) => {
     if (kind === 'toggle') setBuffLevel(buff.id, n)
@@ -134,7 +144,22 @@ function BuffDialog({ buff, kind, onClose }: { buff: Buff; kind: BuffKind; onClo
         {kind === 'toggle' && (
           <FormControlLabel control={<Switch checked={active} onChange={() => toggleBuff(buff.id)} />} label="적용" />
         )}
-        {hasLevel ? (
+        {buff.type === 'skill' && buff.variants ? (
+          <Box sx={{ mt: 1, px: 1 }}>
+            <Typography variant="body2" gutterBottom>버전 선택</Typography>
+            <RadioGroup value={level} onChange={(_, v) => setLevel(Number(v))}>
+              {buff.variants.map((name, i) => (
+                <FormControlLabel
+                  key={name}
+                  value={i + 1}
+                  control={<Radio size="small" />}
+                  label={name}
+                  disabled={kind === 'toggle' && !active}
+                />
+              ))}
+            </RadioGroup>
+          </Box>
+        ) : hasLevel ? (
           <Box sx={{ mt: 1, px: 1 }}>
             <Typography variant="body2" gutterBottom>스킬 레벨: {level} / {master}</Typography>
             <Slider
@@ -161,14 +186,13 @@ function BuffDialog({ buff, kind, onClose }: { buff: Buff; kind: BuffKind; onClo
 function BuffRow({ buff, onOpen }: { buff: Buff; onOpen: (b: Buff) => void }) {
   const level = useBuildStore((s) => s.activeBuffs[buff.id])
   const active = level !== undefined
-  const isSkill = buff.type === 'skill'
-  const shownLevel = active ? level : isSkill ? buff.masterLevel : 1
+  const shownLevel = active ? level : defaultBuffLevel(buff)
   const eff = buffEffectsAtLevel(buff, shownLevel)
   return (
     <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5, py: 0.25 }}>
-      <BuffIcon buff={buff} active={active} highlightActive onClick={() => onOpen(buff)} />
+      <BuffIcon buff={buff} active={active} highlightActive onClick={() => onOpen(buff)} onContextMenu={(e) => { e.preventDefault(); onOpen(buff) }} />
       <Box sx={{ flex: 1, minWidth: 0 }}>
-        <Typography variant="body2" noWrap>{buff.name}</Typography>
+        <Typography variant="body2" noWrap>{buffLabel(buff, shownLevel)}</Typography>
         <Typography variant="caption" color={active ? 'success.main' : 'text.disabled'} noWrap sx={{ display: 'block' }}>
           {formatEffects(eff) || '—'}
         </Typography>
@@ -185,9 +209,9 @@ function MasteryRow({ buff, onOpen }: { buff: Buff; onOpen: (b: Buff) => void })
   const eff = buffEffectsAtLevel(buff, shownLevel)
   return (
     <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5, py: 0.25 }}>
-      <BuffIcon buff={buff} highlightActive onClick={() => onOpen(buff)} />
+      <BuffIcon buff={buff} highlightActive onClick={() => onOpen(buff)} onContextMenu={(e) => { e.preventDefault(); onOpen(buff) }} />
       <Box sx={{ flex: 1, minWidth: 0 }}>
-        <Typography variant="body2" noWrap>{buff.name}</Typography>
+        <Typography variant="body2" noWrap>{buffLabel(buff, shownLevel)}</Typography>
         <Typography variant="caption" color="success.main" noWrap sx={{ display: 'block' }}>
           {formatEffects(eff) || '—'}
         </Typography>
@@ -293,7 +317,7 @@ export default function SkillPanel() {
 
   return (
     <CollapsiblePanel id="skill" title="스킬 및 도핑">
-      <SectionTitle>영웅의 메아리 · 메이플 용사 · 정령의 축복</SectionTitle>
+      <SectionTitle>영웅의 메아리 · 메이플 용사 · 정령의 축복 · 버닝</SectionTitle>
       {COMMON_BUFFS.map((b) => (
         <BuffRow key={b.id} buff={b} onOpen={open('toggle')} />
       ))}

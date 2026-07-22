@@ -106,12 +106,11 @@
     "name": "영웅의 메아리",
     "scope": "party",
     "mode": "active",
-    "masterLevel": 1,
+    "masterLevel": 2,
+    "variants": ["모험가", "시그너스"],
     "effectsByLevel": [
-      {
-        "padP": 4,
-        "madP": 4
-      }
+      { "padP": 4, "madP": 4 },
+      { "padP": 2, "madP": 2 }
     ],
     "icon": "https://static.wikia.nocookie.net/maplestory/images/3/35/Skill_Hero%27s_Echo.png/revision/latest?cb=20100111124253"
   },
@@ -121,7 +120,7 @@
     "name": "정령의 축복",
     "scope": "party",
     "mode": "active",
-    "masterLevel": 12,
+    "masterLevel": 20,
     "effectsByLevel": [
       { "pad_botf": 1, "mad_botf": 2, "acc_botf": 1, "eva_botf": 1, "hpP_botf": 1, "mpP_botf": 1 },
       { "pad_botf": 2, "mad_botf": 4, "acc_botf": 2, "eva_botf": 2, "hpP_botf": 2, "mpP_botf": 2 },
@@ -134,7 +133,15 @@
       { "pad_botf": 9, "mad_botf": 18, "acc_botf": 9, "eva_botf": 9, "hpP_botf": 9, "mpP_botf": 9 },
       { "pad_botf": 10, "mad_botf": 20, "acc_botf": 10, "eva_botf": 10, "hpP_botf": 10, "mpP_botf": 10 },
       { "pad_botf": 11, "mad_botf": 22, "acc_botf": 11, "eva_botf": 11, "hpP_botf": 10, "mpP_botf": 10 },
-      { "pad_botf": 12, "mad_botf": 24, "acc_botf": 12, "eva_botf": 12, "hpP_botf": 10, "mpP_botf": 10 }
+      { "pad_botf": 12, "mad_botf": 24, "acc_botf": 12, "eva_botf": 12, "hpP_botf": 10, "mpP_botf": 10 },
+      { "pad_botf": 13, "mad_botf": 26, "acc_botf": 13, "eva_botf": 13, "hpP_botf": 10, "mpP_botf": 10 },
+      { "pad_botf": 14, "mad_botf": 28, "acc_botf": 14, "eva_botf": 14, "hpP_botf": 10, "mpP_botf": 10 },
+      { "pad_botf": 15, "mad_botf": 30, "acc_botf": 15, "eva_botf": 15, "hpP_botf": 10, "mpP_botf": 10 },
+      { "pad_botf": 16, "mad_botf": 32, "acc_botf": 16, "eva_botf": 16, "hpP_botf": 10, "mpP_botf": 10 },
+      { "pad_botf": 17, "mad_botf": 34, "acc_botf": 17, "eva_botf": 17, "hpP_botf": 10, "mpP_botf": 10 },
+      { "pad_botf": 18, "mad_botf": 36, "acc_botf": 18, "eva_botf": 18, "hpP_botf": 10, "mpP_botf": 10 },
+      { "pad_botf": 19, "mad_botf": 38, "acc_botf": 19, "eva_botf": 19, "hpP_botf": 10, "mpP_botf": 10 },
+      { "pad_botf": 20, "mad_botf": 40, "acc_botf": 20, "eva_botf": 20, "hpP_botf": 10, "mpP_botf": 10 }
     ],
     "icon": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAJNQTFRFAAAAAAAAADPdAETdAFXdAFX/AGbdAGb/AHfdAHf/AIjdAIj/AJndAKrMAKr/ALvMALv/AMy7AMz/ESK7IiK7MxG7RBG7RCLMVQC7VRG7VWaIVaruVbvuVczuVd3uZgC7iJmqiMz/iN3/iO7/maq7qrvMqt3/qu7/qv//u8zMu93uzMzMzMzd3d3d3e7/7u7u////yXHOmAAAAAF0Uk5TAEDm2GYAAAF+SURBVDjLfZOJcsIwDERjIFzlhgRIIMFAajcmVP//dZXkg6RTugyDtHpeezw4iqJIvFXEEo+3EnaeZZeMvlVWfVdcV866C5qjyaJpFSorJMSj4hWc4MUJ9GGgveKSdfVlAVphjAm2q6vMJ5BVlqUnuG441wNNWQKAIwzX2LwSzAFIBwdw9+TOAs2R58ewBffPY+MAk/J8nzYeSPdkfKbGAgnPe5CEhAQ7lEoMA2CBHHbuDDvILaB2L6Cf57B1wBbyvG+JNiAlEqQtSPknoBTwnwB9B8ALwB0kzqmskZB+jwD0TriDsMdFQspT71dCHKsWoOL4V8JgNBq1AOwGXWA4mUxaAHbDLjD+QDFR45yacReYLlAAoqY5UDMlWzOgsZqtViu+hZpvArsZzQOgYb4JR6CQzRx0AK4AV1jiHAecQcQSyLbADeAGStDxBTOUoYBsC5wBzpoihAPwZwmabX5aBe5WAKztHdSkNTu60PZxYl0QcfdaW6NY+Of93/P/ATZHdYLur37LAAAAAElFTkSuQmCC"
   },
