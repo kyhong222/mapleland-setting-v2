@@ -81,7 +81,10 @@ function VsPerformance({ result }: { result: VsMonsterResult | null }) {
       <Typography variant="caption" sx={{ fontWeight: 700, display: 'block', mb: 0.5 }}>vs 몬스터 성능</Typography>
       {result ? (
         <Box sx={{ display: 'grid', gridTemplateColumns: '1fr', rowGap: 0.25 }}>
-          <StatLine label="필요 명중률" value={result.requiredAcc === Infinity ? '불가' : result.requiredAcc} />
+          <StatLine
+            label={result.isMagician ? '필요 마법명중률' : '필요 명중률'}
+            value={result.requiredAcc === Infinity ? '불가' : result.requiredAcc}
+          />
           <StatLine label={result.isMagician ? '마법 명중확률' : '명중확률'} value={pct(result.hitRate)} />
           <StatLine label="물리회피확률" value={pct(result.physEvade)} />
           <StatLine label="마법회피확률" value={pct(result.magicEvade)} />
