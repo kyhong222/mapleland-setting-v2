@@ -15,6 +15,7 @@ import type { SlotId } from '../../domain/equipSlots'
 import { ALL_CLASSES, JOBS } from '../../domain/jobs'
 import type { ClassId } from '../../domain/jobs'
 import type { ItemData } from '../../domain/item'
+import type { WeaponType } from '../../domain/weapons'
 import type { EffectId, EffectMap } from '../../domain/effects'
 import { EFFECTS } from '../../domain/effects'
 import { useBuildStore } from '../../store/buildStore'
@@ -26,6 +27,15 @@ interface Props {
   onPickBase: (item: ItemData) => void
   onChangeAdjust: (next: EffectMap) => void
 }
+
+/** 무기 종류 표시 순서 (한손검→…→건) */
+const WEAPON_ORDER: Partial<Record<WeaponType, number>> = {
+  oneHandedSword: 0, oneHandedAxe: 1, oneHandedMace: 2,
+  twoHandedSword: 3, twoHandedAxe: 4, twoHandedMace: 5,
+  spear: 6, polearm: 7, bow: 8, crossbow: 9,
+  staff: 10, wand: 11, dagger: 12, claw: 13, knuckle: 14, gun: 15,
+}
+const weaponOrder = (it: ItemData) => (it.weaponType ? WEAPON_ORDER[it.weaponType] ?? 99 : 99)
 
 /** 클래스 → reqJob 비트마스크 */
 const CLASS_BIT: Record<ClassId, number> = {
@@ -95,9 +105,13 @@ export default function CatalogSection({
       if (arr) arr.push(it)
       else byBucket.set(b, [it])
     }
-    // 버킷은 레벨 오름차순, 버킷 내부는 reqLevel→이름 순(예: 리버스 < 타임리스)
+    // 버킷은 레벨 오름차순, 버킷 내부는 무기종류→reqLevel→이름 순(예: 리버스 < 타임리스)
     for (const items of byBucket.values()) {
-      items.sort((x, y) => (x.reqLevel ?? 0) - (y.reqLevel ?? 0) || x.name.localeCompare(y.name, 'ko'))
+      items.sort((x, y) =>
+        weaponOrder(x) - weaponOrder(y) ||
+        (x.reqLevel ?? 0) - (y.reqLevel ?? 0) ||
+        x.name.localeCompare(y.name, 'ko'),
+      )
     }
     return {
       groups: [...byBucket.entries()].sort((a, b) => a[0] - b[0]),
