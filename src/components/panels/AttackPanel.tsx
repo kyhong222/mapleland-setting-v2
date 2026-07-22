@@ -1,11 +1,6 @@
-import { useState } from 'react'
-import type { SyntheticEvent } from 'react'
 import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
 import Divider from '@mui/material/Divider'
-import Select from '@mui/material/Select'
-import MenuItem from '@mui/material/MenuItem'
-import TextField from '@mui/material/TextField'
 import CollapsiblePanel from '../common/CollapsiblePanel'
 import { useBuildStore } from '../../store/buildStore'
 import { useInventoryStore } from '../../store/inventoryStore'
@@ -13,27 +8,33 @@ import { useMonsterStore } from '../../store/monsterStore'
 import { aggregateBuild, equippedBuilts, equippedWeaponType } from '../../store/aggregate'
 import { useBuffEffects } from '../../store/useBuffEffects'
 import {
-  totalAttack, totalMagic, masteryRatio, calcPhysical, calcLuckySeven, calcMagic,
+  totalAttack, totalMagic, masteryRatio, calcPhysical, calcLuckySeven,
   calcPhysicalRatios, calcLuckyRatio,
   levelPenalty, physicalVsMonster,
-  magicAmpMultiplier, scaleDamage,
 } from '../../domain/attackPower'
 import type { AtkStatRatio, DamageRange } from '../../domain/attackPower'
-import { computeSkillDamage } from '../../domain/damage'
 import { WEAPON_CONSTANTS } from '../../domain/weapons'
 import { JOBS } from '../../domain/jobs'
 import type { StatId } from '../../domain/stats'
 import { getMonster } from '../../data/mobs'
-import { elementReaction } from '../../domain/monster'
-import { attackSkillsForJob, skillAttackAt } from '../../data/skills'
+
+// ── 스킬 데미지 섹션 (임시 비활성) — 복원 시 아래 import/상태/계산/렌더 주석 해제 ──
+// import { useState } from 'react'
+// import type { SyntheticEvent } from 'react'
+// import Select from '@mui/material/Select'
+// import MenuItem from '@mui/material/MenuItem'
+// import TextField from '@mui/material/TextField'
+// import { calcMagic, magicAmpMultiplier, scaleDamage } from '../../domain/attackPower'
+// import { computeSkillDamage } from '../../domain/damage'
+// import { elementReaction } from '../../domain/monster'
+// import { attackSkillsForJob, skillAttackAt } from '../../data/skills'
 
 const fmtRange = (r: DamageRange) => `${r.min.toLocaleString()} ~ ${r.max.toLocaleString()}`
 const STAT_SHORT: Record<StatId, string> = { STR: '힘', DEX: '덱', INT: '인', LUK: '럭' }
-const ELEM_KO: Record<string, string> = { F: '불', I: '얼음', L: '번개', S: '독', H: '성' }
-const REACTION_KO: Record<string, string> = { weak: '약점 1.5×', half: '반감 0.5×', immune: '무효 0×', none: '' }
-/** 분리 저장된 스킬 아이콘 경로 (public/skill-icons/<id>.png) */
-const skillIconSrc = (id: number) => `/skill-icons/${id}.png`
-const hideOnError = (e: SyntheticEvent<HTMLImageElement>) => { e.currentTarget.style.visibility = 'hidden' }
+// const ELEM_KO: Record<string, string> = { F: '불', I: '얼음', L: '번개', S: '독', H: '성' }
+// const REACTION_KO: Record<string, string> = { weak: '약점 1.5×', half: '반감 0.5×', immune: '무효 0×', none: '' }
+// const skillIconSrc = (id: number) => `/skill-icons/${id}.png`
+// const hideOnError = (e: SyntheticEvent<HTMLImageElement>) => { e.currentTarget.style.visibility = 'hidden' }
 
 export default function AttackPanel() {
   const jobId = useBuildStore((s) => s.jobId)
@@ -43,8 +44,8 @@ export default function AttackPanel() {
   const invItems = useInventoryStore((s) => s.items)
   const selectedMobId = useMonsterStore((s) => s.selectedId)
 
-  const [skillId, setSkillId] = useState<number | ''>('')
-  const [skillLevel, setSkillLevel] = useState(1)
+  // const [skillId, setSkillId] = useState<number | ''>('')
+  // const [skillLevel, setSkillLevel] = useState(1)
 
   const { finalStats, effects } = aggregateBuild(baseStats, equippedBuilts(equipped, invItems), useBuffEffects())
   const job = jobId ? JOBS[jobId] : null
@@ -64,16 +65,13 @@ export default function AttackPanel() {
   const lucky = weaponType === 'claw' ? calcLuckySeven(finalStats.LUK, watk) : null
   const luckyRatio = weaponType === 'claw' ? calcLuckyRatio(finalStats.LUK, watk) : null
 
-  // 마법 데미지 증폭(엘앰프 등) — 스킬 마법 데미지에 반영
-  const ampMult = magicAmpMultiplier(effects)
-
-  // vs 몬스터 물리 실질 데미지 (일반 공격 기준). 마법은 스킬 데미지 섹션에서 처리.
+  // vs 몬스터 물리 실질 데미지 (일반 공격 기준)
   const monster = selectedMobId != null ? getMonster(selectedMobId) : undefined
   const D = monster ? levelPenalty(monster.level, level) : 0
   const physVs = phys && monster ? physicalVsMonster(phys.display, monster.PDDamage ?? 0, D) : null
 
-  // ── 스킬 데미지 (10단계 파이프라인) ──
-  // 크리는 버프 적용 결과(합산 효과)로 결정: criticalP(확률) / criticalDamage(추가데미지)
+  /* ── 스킬 데미지 (10단계 파이프라인) — 임시 비활성 ──
+  const ampMult = magicAmpMultiplier(effects)
   const critRate = effects.criticalP ?? 0
   const critDamage = effects.criticalDamage ?? 0
   const attackSkills = jobId ? attackSkillsForJob(jobId) : []
@@ -90,10 +88,10 @@ export default function AttackPanel() {
     const defense = monster
       ? { kind: att.kind, def: att.kind === 'magic' ? monster.MDDamage ?? 0 : monster.PDDamage ?? 0, levelPenalty: D }
       : undefined
-    // 크리 순보너스 = 합산 criticalDamage (크리 가능 시에만)
     const critBonus = critRate > 0 ? critDamage : 0
     return { att, reaction, result: computeSkillDamage({ base, element: reaction, defense, skillPercent: att.skillPercent, critBonus }) }
   })()
+  */
 
   return (
     <CollapsiblePanel id="attack" title="공격력 계산">
@@ -142,16 +140,14 @@ export default function AttackPanel() {
         </>
       )}
 
-      {/* ── 스킬 데미지 ── */}
+      {/* ── 스킬 데미지 섹션 (임시 비활성) — 복원 시 위 계산/import와 함께 주석 해제 ──
       {attackSkills.length > 0 && (
         <>
           <Divider sx={{ my: 1 }} />
           <Typography variant="caption" sx={{ fontWeight: 700, display: 'block', mb: 0.5 }}>스킬 데미지</Typography>
           <Box sx={{ display: 'flex', gap: 0.5, mb: 0.5 }}>
             <Select<number | ''>
-              size="small"
-              displayEmpty
-              value={skillId}
+              size="small" displayEmpty value={skillId}
               onChange={(e) => {
                 const raw = e.target.value
                 const id = raw === '' ? '' : Number(raw)
@@ -171,14 +167,12 @@ export default function AttackPanel() {
             </Select>
             {selectedSkill && (
               <TextField
-                size="small" type="number" label="Lv"
-                value={skillLevel}
+                size="small" type="number" label="Lv" value={skillLevel}
                 onChange={(e) => setSkillLevel(Math.max(1, Math.min(selectedSkill.masterLevel, Number(e.target.value) || 1)))}
                 slotProps={{ htmlInput: { style: { width: 44, textAlign: 'center' }, min: 1, max: selectedSkill.masterLevel } }}
               />
             )}
           </Box>
-
           {skillResult && (
             <>
               <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', px: 1, py: 0.25, gap: 1 }}>
@@ -201,6 +195,7 @@ export default function AttackPanel() {
           )}
         </>
       )}
+      */}
     </CollapsiblePanel>
   )
 }
