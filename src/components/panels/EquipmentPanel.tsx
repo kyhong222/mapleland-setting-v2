@@ -5,6 +5,7 @@ import Typography from '@mui/material/Typography'
 import IconButton from '@mui/material/IconButton'
 import Tooltip from '@mui/material/Tooltip'
 import CollapsiblePanel from '../common/CollapsiblePanel'
+import ItemTooltip from '../common/ItemTooltip'
 import ItemIcon from '../common/ItemIcon'
 import { useBuildStore } from '../../store/buildStore'
 import { useInventoryStore } from '../../store/inventoryStore'
@@ -59,11 +60,14 @@ export default function EquipmentPanel() {
     const isInactive = !!built && activation[inst] === false
     const grade = built ? resolveBuiltItem(built).grade : null
     const label = instanceLabel(inst)
-    const tip = built
-      ? `${label} · ${built.base.name}${isInactive ? ' (비활성)' : ''}`
-      : label
     return (
-      <Tooltip key={key} title={tip} placement="top" arrow>
+      <Tooltip
+        key={key}
+        title={built ? <ItemTooltip built={built} note={isInactive ? '(비활성)' : undefined} /> : label}
+        placement="right"
+        arrow={!built}
+        slotProps={built ? { tooltip: { sx: { bgcolor: 'transparent', p: 0, maxWidth: 'none' } } } : undefined}
+      >
         <Paper
           variant="outlined"
           sx={{

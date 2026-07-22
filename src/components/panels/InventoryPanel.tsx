@@ -22,7 +22,7 @@ import { resolveBuiltItem } from '../../domain/builtItem'
 import type { BuiltItem } from '../../domain/builtItem'
 import { checkWearable } from '../../domain/equip'
 import { WEAPON_CONSTANTS } from '../../domain/weapons'
-import { formatEffects } from '../../lib/effectFormat'
+import ItemTooltip from '../common/ItemTooltip'
 import { ALL_CLASSES, JOBS } from '../../domain/jobs'
 import type { ClassId } from '../../domain/jobs'
 import { ALL_SLOTS } from '../../domain/equipSlots'
@@ -207,11 +207,15 @@ export default function InventoryPanel() {
       ) : (
         <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1 }}>
           {visible.map((inv) => {
-            const { finalEffects, grade } = resolveBuiltItem(inv.built)
-            const eff = formatEffects(finalEffects)
+            const { grade } = resolveBuiltItem(inv.built)
             const isEquipped = Object.values(equipped).includes(inv.id)
             return (
-              <Tooltip key={inv.id} title={eff ? `${inv.built.base.name} · ${eff}` : inv.built.base.name} placement="top" arrow>
+              <Tooltip
+                key={inv.id}
+                title={<ItemTooltip built={inv.built} />}
+                placement="right"
+                slotProps={{ tooltip: { sx: { bgcolor: 'transparent', p: 0, maxWidth: 'none' } } }}
+              >
                 <Box
                   component="button"
                   type="button"
