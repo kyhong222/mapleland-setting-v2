@@ -89,21 +89,6 @@
     "tuc": 3
   },
   {
-    "id": 4001094,
-    "name": "혼테일의 목걸이(알)",
-    "slot": "pendant",
-    "effects": {
-      "STR": 22,
-      "DEX": 22,
-      "INT": 22,
-      "LUK": 22,
-      "pdef": 248,
-      "mdef": 248,
-      "eva": 39
-    },
-    "iconUrl": "https://maplestory.io/api/kms/284/item/1122000/icon"
-  },
-  {
     "id": 1122012,
     "name": "타임리스 펜던트",
     "slot": "pendant",
