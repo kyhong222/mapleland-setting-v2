@@ -185,12 +185,13 @@ function BuffDialog({ buff, kind, onClose }: { buff: Buff; kind: BuffKind; onClo
 /** 토글형 버프 행 (영메·메용 / 직업 특화 패시브) — 아이콘 클릭 시 모달 */
 function BuffRow({ buff, onOpen }: { buff: Buff; onOpen: (b: Buff) => void }) {
   const level = useBuildStore((s) => s.activeBuffs[buff.id])
+  const toggleBuff = useBuildStore((s) => s.toggleBuff)
   const active = level !== undefined
   const shownLevel = active ? level : defaultBuffLevel(buff)
   const eff = buffEffectsAtLevel(buff, shownLevel)
   return (
     <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5, py: 0.25 }}>
-      <BuffIcon buff={buff} active={active} highlightActive onClick={() => onOpen(buff)} onContextMenu={(e) => { e.preventDefault(); onOpen(buff) }} />
+      <BuffIcon buff={buff} active={active} highlightActive onClick={() => onOpen(buff)} onContextMenu={(e) => { e.preventDefault(); toggleBuff(buff.id) }} />
       <Box sx={{ flex: 1, minWidth: 0 }}>
         <Typography variant="body2" noWrap>{buffLabel(buff, shownLevel)}</Typography>
         <Typography variant="caption" color={active ? 'success.main' : 'text.disabled'} noWrap sx={{ display: 'block' }}>
@@ -317,7 +318,10 @@ export default function SkillPanel() {
 
   return (
     <CollapsiblePanel id="skill" title="스킬 및 도핑">
-      <SectionTitle>영웅의 메아리 · 메이플 용사 · 정령의 축복 · 버닝</SectionTitle>
+      <SectionTitle>공통 버프</SectionTitle>
+      <Typography variant="caption" color="text.disabled" sx={{ display: 'block', mb: 0.25 }}>
+        좌클릭: 레벨 변경 · 우클릭: ON/OFF
+      </Typography>
       {COMMON_BUFFS.map((b) => (
         <BuffRow key={b.id} buff={b} onOpen={open('toggle')} />
       ))}
@@ -353,6 +357,9 @@ export default function SkillPanel() {
       <Divider sx={{ my: 1 }} />
 
       <SectionTitle>특화 버프 (패시브)</SectionTitle>
+      <Typography variant="caption" color="text.disabled" sx={{ display: 'block', mb: 0.25 }}>
+        좌클릭: 레벨 변경 · 우클릭: ON/OFF
+      </Typography>
       {masteries.length > 0 && (
         <>
           <Typography variant="caption" color="text.secondary" sx={{ display: 'block' }}>무기 마스터리 (장착 무기 자동)</Typography>
