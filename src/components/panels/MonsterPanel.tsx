@@ -5,8 +5,8 @@ import Typography from '@mui/material/Typography'
 import Divider from '@mui/material/Divider'
 import Button from '@mui/material/Button'
 import Chip from '@mui/material/Chip'
-import Tooltip from '@mui/material/Tooltip'
 import CollapsiblePanel from '../common/CollapsiblePanel'
+import InfoTip, { InfoTitle, Formula, InfoWarn } from '../common/InfoTip'
 import MonsterIcon from '../monster/MonsterIcon'
 import MonsterSelectDialog from '../monster/MonsterSelectDialog'
 import { useMonsterStore } from '../../store/monsterStore'
@@ -28,42 +28,6 @@ const ELEM_COLOR: Record<'무효' | '반감' | '약점', 'error' | 'warning' | '
   약점: 'success',
 }
 
-/** 라벨 옆 '?' 도움말 배지 (호버 시 설명) */
-function HelpDot({ title }: { title: ReactNode }) {
-  return (
-    <Tooltip
-      title={title}
-      placement="top"
-      arrow
-      disableInteractive
-      slotProps={{ tooltip: { sx: { maxWidth: 320 } } }}
-    >
-      <Box
-        component="span"
-        sx={{
-          ml: 0.5,
-          width: 13,
-          height: 13,
-          flexShrink: 0,
-          borderRadius: '50%',
-          display: 'inline-flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          border: 1,
-          borderColor: 'text.disabled',
-          color: 'text.secondary',
-          fontSize: 9,
-          fontWeight: 700,
-          lineHeight: 1,
-          cursor: 'help',
-        }}
-      >
-        ?
-      </Box>
-    </Tooltip>
-  )
-}
-
 function StatLine({
   label,
   value,
@@ -77,7 +41,7 @@ function StatLine({
     <Box sx={{ display: 'flex', justifyContent: 'space-between', px: 1 }}>
       <Typography variant="caption" color="text.secondary" sx={{ display: 'flex', alignItems: 'center' }}>
         {label}
-        {help && <HelpDot title={help} />}
+        {help && <InfoTip title={help} />}
       </Typography>
       <Typography variant="caption" sx={{ fontWeight: 600 }}>{value ?? '—'}</Typography>
     </Box>
@@ -86,20 +50,58 @@ function StatLine({
 
 /** 필요 마법명중률 설명 (공식 + 25레벨 차 불가 사유) */
 const REQ_MACC_HELP = (
-  <Box sx={{ fontSize: 11.5, lineHeight: 1.65, py: 0.25 }}>
-    <Box sx={{ fontWeight: 700, mb: 0.5 }}>필요 마법명중률 (100% 명중 기준)</Box>
-    <Box sx={{ fontFamily: 'monospace', mb: 0.75 }}>
-      ⌈(몬스터 회피 + 1) ÷ (1 + 0.0415 × (캐릭터레벨 − 몬스터레벨))⌉
-    </Box>
+  <>
+    <InfoTitle>필요 마법명중률 (100% 명중 기준)</InfoTitle>
+    <Formula>⌈(몬스터 회피 + 1) ÷ (1 + 0.0415 × (캐릭터레벨 − 몬스터레벨))⌉</Formula>
     <Box>
-      마법 명중확률 = 마법명중 ÷ (몬스터 회피 + 1) × (1 + 0.0415 × 레벨차) 를 100%로 만드는 데 필요한
-      마법명중치입니다.
+      마법 명중확률을 100%로 만드는 데 필요한 마법명중치입니다.
     </Box>
-    <Box sx={{ mt: 0.75, color: '#ffb74d' }}>
+    <InfoWarn>
       몬스터가 캐릭터보다 <b>25레벨 이상 높으면</b> 레벨 보정값(1 + 0.0415 × 레벨차)이 0 이하가 되어,
       마법명중을 아무리 올려도 100% 명중이 불가능합니다 → <b>불가</b>
-    </Box>
-  </Box>
+    </InfoWarn>
+  </>
+)
+
+/** 필요 명중률(물리) 설명 */
+const REQ_ACC_HELP = (
+  <>
+    <InfoTitle>필요 명중률 (100% 명중 기준)</InfoTitle>
+    <Formula>2 × (11/6 + 0.07 × D) × 몬스터 회피</Formula>
+    <Box>D = max(0, 몬스터레벨 − 캐릭터레벨). 몬스터가 높을수록 필요 명중치가 커집니다.</Box>
+  </>
+)
+
+const HIT_MAGIC_HELP = (
+  <>
+    <InfoTitle>마법 명중확률</InfoTitle>
+    <Formula>마법명중 ÷ (몬스터 회피 + 1) × (1 + 0.0415 × (캐릭터레벨 − 몬스터레벨))</Formula>
+    <Box>0~100%로 제한됩니다.</Box>
+  </>
+)
+
+const HIT_PHYS_HELP = (
+  <>
+    <InfoTitle>명중확률</InfoTitle>
+    <Formula>명중치 ÷ ((11/6 + 0.07 × D) × 몬스터 회피) − 1</Formula>
+    <Box>D = max(0, 몬스터레벨 − 캐릭터레벨). 0~100%로 제한됩니다.</Box>
+  </>
+)
+
+const PHYS_EVADE_HELP = (
+  <>
+    <InfoTitle>물리 회피확률</InfoTitle>
+    <Formula>회피율 ÷ (4.5 × 몬스터 명중)</Formula>
+    <Box>도적 5~95%, 그 외 2~80%로 제한됩니다. 페이크 등 추가회피는 독립 판정으로 합성됩니다.</Box>
+  </>
+)
+
+const MAGIC_EVADE_HELP = (
+  <>
+    <InfoTitle>마법 회피확률</InfoTitle>
+    <Formula>10/9 − 몬스터 명중 ÷ (0.9 × 회피율)</Formula>
+    <Box>도적 5~95%, 그 외 2~80%로 제한됩니다. 페이크 등 추가회피는 독립 판정으로 합성됩니다.</Box>
+  </>
 )
 
 /** 몬스터 기본 정보 카드 */
@@ -151,11 +153,15 @@ function VsPerformance({ result }: { result: VsMonsterResult | null }) {
           <StatLine
             label={result.isMagician ? '필요 마법명중률' : '필요 명중률'}
             value={result.requiredAcc === Infinity ? '불가' : result.requiredAcc}
-            help={result.isMagician ? REQ_MACC_HELP : undefined}
+            help={result.isMagician ? REQ_MACC_HELP : REQ_ACC_HELP}
           />
-          <StatLine label={result.isMagician ? '마법 명중확률' : '명중확률'} value={pct(result.hitRate)} />
-          <StatLine label="물리회피확률" value={pct(result.physEvade)} />
-          <StatLine label="마법회피확률" value={pct(result.magicEvade)} />
+          <StatLine
+            label={result.isMagician ? '마법 명중확률' : '명중확률'}
+            value={pct(result.hitRate)}
+            help={result.isMagician ? HIT_MAGIC_HELP : HIT_PHYS_HELP}
+          />
+          <StatLine label="물리회피확률" value={pct(result.physEvade)} help={PHYS_EVADE_HELP} />
+          <StatLine label="마법회피확률" value={pct(result.magicEvade)} help={MAGIC_EVADE_HELP} />
         </Box>
       ) : (
         <Typography variant="caption" color="text.disabled" sx={{ display: 'block', mt: 0.5 }}>
