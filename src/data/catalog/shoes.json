@@ -1855,6 +1855,22 @@
     "tuc": 5
   },
   {
+    "id": 1072375,
+    "name": "발록의 가죽 신발",
+    "slot": "shoes",
+    "effects": {
+      "STR": 3,
+      "DEX": 3,
+      "INT": 3,
+      "LUK": 3,
+      "pad": 1,
+      "mad": 1
+    },
+    "reqLevel": 58,
+    "tuc": 5,
+    "iconUrl": "https://maplestory.io/api/gms/200/item/1072375/icon"
+  },
+  {
     "id": 1072136,
     "name": "핑크 앵클부츠",
     "slot": "shoes",
@@ -2059,6 +2075,22 @@
     "tuc": 5,
     "reqDex": 100,
     "reqLuk": 170
+  },
+  {
+    "id": 1072376,
+    "name": "발록의 털가죽 신발",
+    "slot": "shoes",
+    "effects": {
+      "STR": 3,
+      "DEX": 3,
+      "INT": 3,
+      "LUK": 3,
+      "pad": 1,
+      "mad": 1
+    },
+    "reqLevel": 68,
+    "tuc": 5,
+    "iconUrl": "https://maplestory.io/api/gms/200/item/1072376/icon"
   },
   {
     "id": 1072154,

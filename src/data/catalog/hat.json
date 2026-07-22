@@ -4142,6 +4142,24 @@
     "reqDex": 310
   },
   {
+    "id": 1003112,
+    "name": "카오스 자쿰의 투구",
+    "slot": "hat",
+    "effects": {
+      "STR": 21,
+      "DEX": 21,
+      "INT": 21,
+      "LUK": 21,
+      "pdef": 180,
+      "mdef": 180,
+      "acc": 35,
+      "eva": 35
+    },
+    "reqLevel": 100,
+    "tuc": 10,
+    "iconUrl": "https://maplestory.io/api/gms/200/item/1003112/icon"
+  },
+  {
     "id": 1002776,
     "name": "타임리스 휀넬",
     "slot": "hat",
