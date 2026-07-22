@@ -8,11 +8,13 @@ import Chip from '@mui/material/Chip'
 import { JOBS } from '../domain/jobs'
 import { useBuildStore } from '../store/buildStore'
 import SlotManager from './SlotManager'
+import FeedbackDialog from './FeedbackDialog'
 
 export default function TopBar() {
   const jobId = useBuildStore((s) => s.jobId)
   const reset = useBuildStore((s) => s.reset)
   const [slotsOpen, setSlotsOpen] = useState(false)
+  const [feedbackOpen, setFeedbackOpen] = useState(false)
 
   const handleReset = () => {
     if (window.confirm('초기화하면 현재 작성 중인 내용이 사라집니다. 계속할까요?')) {
@@ -28,6 +30,9 @@ export default function TopBar() {
         </Typography>
         {jobId && <Chip size="small" color="primary" label={JOBS[jobId].label} />}
         <Box sx={{ flexGrow: 1 }} />
+        <Button variant="text" size="small" onClick={() => setFeedbackOpen(true)}>
+          문의하기
+        </Button>
         <Button variant="outlined" size="small" onClick={() => setSlotsOpen(true)}>
           저장 슬롯
         </Button>
@@ -38,6 +43,7 @@ export default function TopBar() {
         )}
       </Toolbar>
       <SlotManager open={slotsOpen} onClose={() => setSlotsOpen(false)} />
+      <FeedbackDialog open={feedbackOpen} onClose={() => setFeedbackOpen(false)} />
     </AppBar>
   )
 }

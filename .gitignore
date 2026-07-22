@@ -8,6 +8,14 @@ yarn.lock
 dist/
 dist-ssr/
 
+# env (시크릿) — .env.example만 커밋
+.env
+.env.*
+!.env.example
+
+# vercel
+.vercel/
+
 # logs
 *.log
 npm-debug.log*
