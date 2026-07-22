@@ -1859,12 +1859,10 @@
     "name": "발록의 가죽 신발",
     "slot": "shoes",
     "effects": {
-      "STR": 3,
-      "DEX": 3,
-      "INT": 3,
-      "LUK": 3,
-      "pad": 1,
-      "mad": 1
+      "STR": 2,
+      "DEX": 2,
+      "INT": 2,
+      "LUK": 2
     },
     "reqLevel": 58,
     "tuc": 5,
@@ -2082,12 +2080,10 @@
     "name": "발록의 털가죽 신발",
     "slot": "shoes",
     "effects": {
-      "STR": 3,
-      "DEX": 3,
-      "INT": 3,
-      "LUK": 3,
-      "pad": 1,
-      "mad": 1
+      "STR": 2,
+      "DEX": 2,
+      "INT": 2,
+      "LUK": 2
     },
     "reqLevel": 68,
     "tuc": 5,

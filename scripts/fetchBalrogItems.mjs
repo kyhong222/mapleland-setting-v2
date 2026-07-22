@@ -36,15 +36,16 @@ const EFFECT_BY_META = {
 const norm = (s) => (s ?? '').replace(/\s+/g, '')
 
 // 대상(공백 무시) → 커스텀 패치
+// addEffects: 기존 옵션에 병합 / setEffects: 옵션 전체 교체 / 그 외: 필드 오버라이드
 const TARGETS = {
-  '카오스자쿰의투구': {},
+  '카오스자쿰의투구': { addEffects: { hpP: 10, mpP: 10 } },
   '돌고래의물안경': {},
   '베인윙즈': { reqLuk: 68 },
   '베인바이터': { reqDex: 90 },
   '베인슈터': { reqStr: 60 },
   '베인롱보우': { reqStr: 50 },
-  '발록의가죽신발': { tuc: 5, noGem: true },
-  '발록의털가죽신발': { tuc: 5, noGem: true },
+  '발록의가죽신발': { tuc: 5, noGem: true, setEffects: { STR: 2, DEX: 2, INT: 2, LUK: 2 } },
+  '발록의털가죽신발': { tuc: 5, noGem: true, setEffects: { STR: 2, DEX: 2, INT: 2, LUK: 2 } },
 }
 const SEARCH = ['카오스 자쿰', '돌고래', '베인', '발록']
 
@@ -115,7 +116,10 @@ async function main() {
     const item = normalize(got.spec, got.region, got.version, name)
     if (!item) { console.log(`  ⚠ 비장비/정규화 실패: ${name} (${id})`); continue }
     const patch = TARGETS[key]
-    Object.assign(item, patch) // 커스텀 패치 오버라이드
+    const { addEffects, setEffects, ...fieldPatch } = patch
+    Object.assign(item, fieldPatch) // 필드 오버라이드
+    if (setEffects) item.effects = { ...setEffects } // 옵션 전체 교체
+    if (addEffects) item.effects = { ...item.effects, ...addEffects } // 옵션 병합
     item._patch = patch
     items.push(item)
   }
