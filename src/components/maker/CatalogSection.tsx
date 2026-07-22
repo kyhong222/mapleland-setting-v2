@@ -16,6 +16,7 @@ import { ALL_CLASSES, JOBS } from '../../domain/jobs'
 import type { ClassId } from '../../domain/jobs'
 import type { ItemData } from '../../domain/item'
 import type { WeaponType } from '../../domain/weapons'
+import { WEAPON_CONSTANTS } from '../../domain/weapons'
 import type { EffectId, EffectMap } from '../../domain/effects'
 import { EFFECTS } from '../../domain/effects'
 import { useBuildStore } from '../../store/buildStore'
@@ -36,6 +37,11 @@ const WEAPON_ORDER: Partial<Record<WeaponType, number>> = {
   staff: 10, wand: 11, dagger: 12, claw: 13, knuckle: 14, gun: 15,
 }
 const weaponOrder = (it: ItemData) => (it.weaponType ? WEAPON_ORDER[it.weaponType] ?? 99 : 99)
+
+/** 무기타입 필터 옵션 (표시 순서) */
+const WEAPON_TYPE_OPTIONS = (Object.keys(WEAPON_ORDER) as WeaponType[]).sort(
+  (a, b) => (WEAPON_ORDER[a] ?? 99) - (WEAPON_ORDER[b] ?? 99),
+)
 
 /** 클래스 → reqJob 비트마스크 */
 const CLASS_BIT: Record<ClassId, number> = {
@@ -72,6 +78,7 @@ export default function CatalogSection({
   const jobId = useBuildStore((s) => s.jobId)
   const [q, setQ] = useState('')
   const [slotFilter, setSlotFilter] = useState('')
+  const [weaponType, setWeaponType] = useState<WeaponType | ''>('')
   const [classes, setClasses] = useState<Set<ClassId>>(() => {
     const cls = jobId ? JOBS[jobId].classId : null
     return new Set(cls ? [cls] : ALL_CLASSES.map((c) => c.id))
@@ -92,6 +99,7 @@ export default function CatalogSection({
     const mask = [...classes].reduce((m, c) => m | CLASS_BIT[c], 0)
     const filtered = CATALOG_ITEMS.filter((i) => {
       if (!slots.includes(i.slot)) return false
+      if (slotFilter === 'weapon' && weaponType && i.weaponType !== weaponType) return false
       if (k && !i.name.includes(k)) return false
       const rj = i.reqJob ?? 0
       if (rj !== 0 && (rj & mask) === 0) return false // 공용(0)은 항상 통과
@@ -117,7 +125,7 @@ export default function CatalogSection({
       groups: [...byBucket.entries()].sort((a, b) => a[0] - b[0]),
       total: filtered.length,
     }
-  }, [q, slotFilter, classes])
+  }, [q, slotFilter, weaponType, classes])
 
   if (!base) {
     return (
@@ -127,7 +135,7 @@ export default function CatalogSection({
             size="small"
             displayEmpty
             value={slotFilter}
-            onChange={(e) => setSlotFilter(e.target.value)}
+            onChange={(e) => { setSlotFilter(e.target.value); setWeaponType('') }}
             sx={{ minWidth: 130 }}
           >
             <MenuItem value="" disabled>
@@ -145,6 +153,20 @@ export default function CatalogSection({
             <MenuItem value="throwingStar">표창</MenuItem>
             <MenuItem value="bullet">불릿</MenuItem>
           </Select>
+          {slotFilter === 'weapon' && (
+            <Select
+              size="small"
+              displayEmpty
+              value={weaponType}
+              onChange={(e) => setWeaponType(e.target.value as WeaponType | '')}
+              sx={{ minWidth: 110 }}
+            >
+              <MenuItem value="">전체 무기</MenuItem>
+              {WEAPON_TYPE_OPTIONS.map((t) => (
+                <MenuItem key={t} value={t}>{WEAPON_CONSTANTS[t].label}</MenuItem>
+              ))}
+            </Select>
+          )}
           <TextField
             autoFocus
             fullWidth
