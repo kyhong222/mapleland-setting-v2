@@ -95,7 +95,8 @@
       "attackSpeed": 5
     },
     "weaponType": "twoHandedSword",
-    "iconUrl": "https://maplestory.io/api/gms/62/item/1402009/icon"
+    "iconUrl": "https://maplestory.io/api/gms/62/item/1402009/icon",
+    "tuc": 7
   },
   {
     "id": 1442012,
@@ -1358,7 +1359,8 @@
     },
     "reqLevel": 30,
     "weaponType": "twoHandedSword",
-    "iconUrl": "https://maplestory.io/api/gms/62/item/1402010/icon"
+    "iconUrl": "https://maplestory.io/api/gms/62/item/1402010/icon",
+    "tuc": 7
   },
   {
     "id": 1402041,

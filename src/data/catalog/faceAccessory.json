@@ -4,7 +4,8 @@
     "name": "루돌프의 빨간코",
     "slot": "faceAccessory",
     "effects": {},
-    "iconUrl": "https://maplestory.io/api/gms/62/item/1012015/icon"
+    "iconUrl": "https://maplestory.io/api/gms/62/item/1012015/icon",
+    "tuc": 0
   },
   {
     "id": 1012102,
@@ -25,7 +26,8 @@
       "mad": 5
     },
     "reqLevel": 10,
-    "iconUrl": "https://maplestory.io/api/GMS/200/item/1012070/icon"
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1012070/icon",
+    "tuc": 0
   },
   {
     "id": 1012071,
@@ -38,7 +40,8 @@
       "LUK": 3
     },
     "reqLevel": 10,
-    "iconUrl": "https://maplestory.io/api/GMS/200/item/1012071/icon"
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1012071/icon",
+    "tuc": 0
   },
   {
     "id": 1012072,
@@ -48,7 +51,8 @@
       "speed": 10
     },
     "reqLevel": 10,
-    "iconUrl": "https://maplestory.io/api/GMS/200/item/1012072/icon"
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1012072/icon",
+    "tuc": 0
   },
   {
     "id": 1012073,
@@ -58,7 +62,8 @@
       "jump": 10
     },
     "reqLevel": 10,
-    "iconUrl": "https://maplestory.io/api/GMS/200/item/1012073/icon"
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1012073/icon",
+    "tuc": 0
   },
   {
     "id": 1012076,
@@ -68,7 +73,8 @@
       "speed": 7
     },
     "reqLevel": 10,
-    "iconUrl": "https://maplestory.io/api/GMS/200/item/1012076/icon"
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1012076/icon",
+    "tuc": 0
   },
   {
     "id": 1012077,
@@ -78,7 +84,8 @@
       "jump": 5
     },
     "reqLevel": 10,
-    "iconUrl": "https://maplestory.io/api/GMS/200/item/1012077/icon"
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1012077/icon",
+    "tuc": 0
   },
   {
     "id": 1012078,
@@ -89,7 +96,8 @@
       "mp": 20
     },
     "reqLevel": 10,
-    "iconUrl": "https://maplestory.io/api/GMS/200/item/1012078/icon"
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1012078/icon",
+    "tuc": 0
   },
   {
     "id": 1012079,
@@ -99,7 +107,8 @@
       "acc": 10
     },
     "reqLevel": 10,
-    "iconUrl": "https://maplestory.io/api/GMS/200/item/1012079/icon"
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1012079/icon",
+    "tuc": 0
   },
   {
     "id": 1012084,
@@ -109,6 +118,7 @@
       "speed": 7
     },
     "reqLevel": 10,
-    "iconUrl": "https://maplestory.io/api/GMS/200/item/1012084/icon"
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1012084/icon",
+    "tuc": 0
   }
 ]

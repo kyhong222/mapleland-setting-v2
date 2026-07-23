@@ -456,7 +456,8 @@
       "mad": 2
     },
     "reqLevel": 10,
-    "iconUrl": "https://maplestory.io/api/GMS/200/item/1002699/icon"
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1002699/icon",
+    "tuc": 0
   },
   {
     "id": 1002707,
@@ -469,7 +470,8 @@
       "LUK": 4
     },
     "reqLevel": 10,
-    "iconUrl": "https://maplestory.io/api/GMS/200/item/1002707/icon"
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1002707/icon",
+    "tuc": 0
   },
   {
     "id": 1002728,
@@ -494,7 +496,8 @@
       "mad": 2
     },
     "reqLevel": 10,
-    "iconUrl": "https://maplestory.io/api/GMS/200/item/1002737/icon"
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1002737/icon",
+    "tuc": 0
   },
   {
     "id": 1002003,

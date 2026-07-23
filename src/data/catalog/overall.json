@@ -67,7 +67,8 @@
       "pdef": 20
     },
     "reqLevel": 20,
-    "iconUrl": "https://maplestory.io/api/gms/62/item/1050100/icon"
+    "iconUrl": "https://maplestory.io/api/gms/62/item/1050100/icon",
+    "tuc": 0
   },
   {
     "id": 1051098,
@@ -77,7 +78,8 @@
       "pdef": 20
     },
     "reqLevel": 20,
-    "iconUrl": "https://maplestory.io/api/gms/62/item/1051098/icon"
+    "iconUrl": "https://maplestory.io/api/gms/62/item/1051098/icon",
+    "tuc": 0
   },
   {
     "id": 1050001,
