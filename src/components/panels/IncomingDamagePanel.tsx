@@ -10,6 +10,7 @@ import CollapsiblePanel from '../common/CollapsiblePanel'
 import { useBuildStore } from '../../store/buildStore'
 import { useInventoryStore } from '../../store/inventoryStore'
 import { useMonsterStore } from '../../store/monsterStore'
+import InfoTip, { InfoTitle, InfoWarn } from '../common/InfoTip'
 import { aggregateBuild } from '../../store/aggregate'
 import { useActiveEquippedBuilts } from '../../store/activation'
 import { useBuffEffects } from '../../store/useBuffEffects'
@@ -137,8 +138,23 @@ export default function IncomingDamagePanel() {
           </>
         )}
 
-        <Typography variant="caption" color="text.disabled" sx={{ display: 'block', mt: 1 }}>
-          ※ 메소가드·속성저항 등 특수스킬 감소는 추후 반영.
+        <Typography variant="caption" color="text.disabled" sx={{ display: 'flex', alignItems: 'center', mt: 1 }}>
+          ※ 파워가드·아킬레스·속성저항·메소가드 감소가 반영된 수치입니다.
+          <InfoTip
+            title={
+              <>
+                <InfoTitle>피격 감소 적용 규칙</InfoTitle>
+                <Box>· 파워가드: <b>물리 접촉에만</b> 적용, 보스는 효율 <b>50%</b></Box>
+                <Box>· 아킬레스(전사): 전 타입</Box>
+                <Box>· 엘리멘탈/파셜 레지스턴스: 해당 속성 타입</Box>
+                <Box>· 메소가드(도적): 감소 후 데미지의 50% 흡수</Box>
+                <InfoWarn>
+                  파워가드는 몬스터 <b>스킬</b> 피격에는 적용되지 않습니다(접촉 전용).
+                  보스는 스킬 피격 비중이 커서 감소가 없어 보일 수 있습니다.
+                </InfoWarn>
+              </>
+            }
+          />
         </Typography>
       </>
     )
