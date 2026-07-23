@@ -2358,6 +2358,21 @@
     "tuc": 10
   },
   {
+    "id": 1050099,
+    "name": "다크 카티나스",
+    "slot": "overall",
+    "effects": {
+      "DEX": 4,
+      "LUK": 7,
+      "pdef": 105,
+      "eva": 2
+    },
+    "reqLevel": 100,
+    "reqJob": 8,
+    "iconUrl": "https://maplestory.io/api/gms/62/item/1050099/icon",
+    "tuc": 10
+  },
+  {
     "id": 1050106,
     "name": "그린 아르주나",
     "slot": "overall",
@@ -2448,6 +2463,21 @@
     "reqLevel": 100,
     "reqJob": 8,
     "iconUrl": "https://maplestory.io/api/gms/62/item/1051092/icon",
+    "tuc": 10
+  },
+  {
+    "id": 1051093,
+    "name": "다크 카테",
+    "slot": "overall",
+    "effects": {
+      "DEX": 4,
+      "LUK": 7,
+      "pdef": 105,
+      "eva": 2
+    },
+    "reqLevel": 100,
+    "reqJob": 8,
+    "iconUrl": "https://maplestory.io/api/gms/62/item/1051093/icon",
     "tuc": 10
   },
   {
