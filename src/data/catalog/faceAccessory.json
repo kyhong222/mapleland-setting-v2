@@ -120,5 +120,21 @@
     "reqLevel": 10,
     "iconUrl": "https://maplestory.io/api/GMS/200/item/1012084/icon",
     "tuc": 0
+  },
+  {
+    "id": 1012328,
+    "name": "얼음결정 페이스페인팅",
+    "slot": "faceAccessory",
+    "effects": {
+      "STR": 3,
+      "DEX": 3,
+      "INT": 3,
+      "LUK": 3,
+      "hp": 30,
+      "mp": 30
+    },
+    "reqLevel": 90,
+    "iconUrl": "https://maplestory.io/api/kms/300/item/1012328/icon",
+    "tuc": 3
   }
 ]
