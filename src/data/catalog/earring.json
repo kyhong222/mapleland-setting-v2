@@ -217,6 +217,36 @@
     "tuc": 5
   },
   {
+    "id": 1032060,
+    "name": "알테어 이어링",
+    "slot": "earring",
+    "effects": {
+      "STR": 1,
+      "DEX": 1,
+      "INT": 1,
+      "LUK": 1,
+      "mdef": 25
+    },
+    "reqLevel": 50,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1032060/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1032061,
+    "name": "빛나는 알테어 이어링",
+    "slot": "earring",
+    "effects": {
+      "STR": 2,
+      "DEX": 2,
+      "INT": 2,
+      "LUK": 2,
+      "mdef": 25
+    },
+    "reqLevel": 50,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1032061/icon",
+    "tuc": 5
+  },
+  {
     "id": 1032019,
     "name": "크리스탈 플라워링",
     "slot": "earring",
