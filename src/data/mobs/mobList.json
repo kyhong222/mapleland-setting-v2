@@ -3814,6 +3814,16 @@
     ]
   },
   {
+    "id": 8200004,
+    "name": "",
+    "koreanName": "추억의 수호대장",
+    "level": 101,
+    "isBoss": false,
+    "foundAt": [
+      "시간의 신전"
+    ]
+  },
+  {
     "id": 8143000,
     "name": "Grim Phantom Watch",
     "koreanName": "G.팬텀워치",
@@ -4409,7 +4419,9 @@
     "koreanName": "혼테일의 왼쪽 머리(1페이즈)",
     "level": 160,
     "isBoss": true,
-    "foundAt": ["리프레"]
+    "foundAt": [
+      "리프레"
+    ]
   },
   {
     "id": 8810001,
@@ -4417,7 +4429,9 @@
     "koreanName": "혼테일의 오른쪽 머리(2페이즈)",
     "level": 160,
     "isBoss": true,
-    "foundAt": ["리프레"]
+    "foundAt": [
+      "리프레"
+    ]
   },
   {
     "id": 8810002,
@@ -4425,7 +4439,9 @@
     "koreanName": "혼테일의 머리A",
     "level": 160,
     "isBoss": true,
-    "foundAt": ["리프레"]
+    "foundAt": [
+      "리프레"
+    ]
   },
   {
     "id": 8810003,
@@ -4433,7 +4449,9 @@
     "koreanName": "혼테일의 머리B",
     "level": 160,
     "isBoss": true,
-    "foundAt": ["리프레"]
+    "foundAt": [
+      "리프레"
+    ]
   },
   {
     "id": 8810004,
@@ -4441,7 +4459,9 @@
     "koreanName": "혼테일의 머리C",
     "level": 160,
     "isBoss": true,
-    "foundAt": ["리프레"]
+    "foundAt": [
+      "리프레"
+    ]
   },
   {
     "id": 8810005,
@@ -4449,7 +4469,9 @@
     "koreanName": "혼테일의 왼손",
     "level": 160,
     "isBoss": true,
-    "foundAt": ["리프레"]
+    "foundAt": [
+      "리프레"
+    ]
   },
   {
     "id": 8810006,
@@ -4457,7 +4479,9 @@
     "koreanName": "혼테일의 오른손",
     "level": 160,
     "isBoss": true,
-    "foundAt": ["리프레"]
+    "foundAt": [
+      "리프레"
+    ]
   },
   {
     "id": 8810007,
@@ -4465,7 +4489,9 @@
     "koreanName": "혼테일의 날개",
     "level": 160,
     "isBoss": true,
-    "foundAt": ["리프레"]
+    "foundAt": [
+      "리프레"
+    ]
   },
   {
     "id": 8810008,
@@ -4473,7 +4499,9 @@
     "koreanName": "혼테일의 다리",
     "level": 160,
     "isBoss": true,
-    "foundAt": ["리프레"]
+    "foundAt": [
+      "리프레"
+    ]
   },
   {
     "id": 8810009,
@@ -4481,6 +4509,8 @@
     "koreanName": "혼테일의 꼬리",
     "level": 160,
     "isBoss": true,
-    "foundAt": ["리프레"]
+    "foundAt": [
+      "리프레"
+    ]
   }
 ]

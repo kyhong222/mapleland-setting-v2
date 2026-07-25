@@ -4939,6 +4939,19 @@
       }
     }
   },
+  "8200004": {
+    "id": 8200004,
+    "level": 101,
+    "PADamage": 500,
+    "MADamage": 545,
+    "PDDamage": 910,
+    "MDDamage": 540,
+    "acc": 205,
+    "eva": 37,
+    "exp": 3100,
+    "maxHP": 59000,
+    "elemAttr": "S2L2"
+  },
   "8200005": {
     "id": 8200005,
     "level": 106,
