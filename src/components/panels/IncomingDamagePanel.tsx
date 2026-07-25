@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useMemo } from 'react'
 import type { ReactNode } from 'react'
 import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
@@ -10,16 +10,39 @@ import CollapsiblePanel from '../common/CollapsiblePanel'
 import { useBuildStore } from '../../store/buildStore'
 import { useInventoryStore } from '../../store/inventoryStore'
 import { useMonsterStore } from '../../store/monsterStore'
-import InfoTip, { InfoTitle, InfoWarn } from '../common/InfoTip'
 import { aggregateBuild } from '../../store/aggregate'
 import { useActiveEquippedBuilts } from '../../store/activation'
 import { useBuffEffects } from '../../store/useBuffEffects'
+import { getBuff } from '../../data/buff'
+import { buffEffectsAtLevel } from '../../domain/buff'
+import type { EffectMap } from '../../domain/effects'
 import { JOBS } from '../../domain/jobs'
 import { getMonster } from '../../data/mobs'
 import { lookupStandardPDD } from '../../data/standardPDD'
 import { physicalIncoming, applyDefenses, monsterSkillIncoming } from '../../domain/incomingDamage'
-import type { IncomingRange } from '../../domain/incomingDamage'
+import type { IncomingRange, IncomingType } from '../../domain/incomingDamage'
 import { monsterRenderUrl } from '../../domain/monster'
+
+/** 피격 감소에 관여하는 스킬 배지 */
+interface DefBadge { id: string; name: string; icon?: string; types: Set<IncomingType> }
+
+const ELEM_TYPES: IncomingType[] = ['fire', 'ice', 'lightning', 'poison']
+const ALL_TYPES: IncomingType[] = ['touch', 'physical', 'magic', ...ELEM_TYPES]
+
+/** 버프 효과 → 감소가 적용되는 피격 타입 집합 (reductionMultiplier/mesoAbsorb와 일치) */
+function reducedTypes(eff: EffectMap): Set<IncomingType> {
+  const s = new Set<IncomingType>()
+  const v = (k: keyof EffectMap) => (eff[k] ?? 0) as number
+  if (v('damageReflectP') > 0) s.add('touch') // 파워가드
+  if (v('damageReduce') > 0) ALL_TYPES.forEach((t) => s.add(t)) // 아킬레스(전사)/메소가드(도적)
+  if (v('physicalRes') > 0) { s.add('touch'); s.add('physical') }
+  if (v('allRes') > 0) ELEM_TYPES.forEach((t) => s.add(t)) // 엘리멘탈 레지스턴스
+  if (v('fireRes') > 0) s.add('fire')
+  if (v('coldRes') > 0) s.add('ice')
+  if (v('lightningRes') > 0) s.add('lightning')
+  if (v('poisonRes') > 0) s.add('poison')
+  return s
+}
 
 const fmtRange = (r: IncomingRange) => `${r.min.toLocaleString()} ~ ${r.max.toLocaleString()}`
 
@@ -58,11 +81,33 @@ function SkillMotion({ mobId, skillKey, children }: { mobId: number; skillKey: s
   )
 }
 
-function DmgRow({ label, range }: { label: ReactNode; range: IncomingRange }) {
+/** 피격 행에 영향을 주는 스킬 아이콘들 */
+function DefIcons({ badges }: { badges: DefBadge[] }) {
+  if (!badges.length) return null
   return (
-    <Box sx={{ display: 'flex', justifyContent: 'space-between', px: 1, py: 0.25 }}>
-      <Typography variant="body2" color="text.secondary" component="div">{label}</Typography>
-      <Typography variant="body2" sx={{ fontWeight: 700, color: 'error.main' }}>{fmtRange(range)}</Typography>
+    <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.25 }}>
+      {badges.map((b) => (
+        <Tooltip key={b.id} title={b.name} placement="top" arrow disableInteractive>
+          <Box
+            component="img"
+            src={b.icon}
+            alt={b.name}
+            sx={{ width: 16, height: 16, imageRendering: 'pixelated', display: 'block' }}
+          />
+        </Tooltip>
+      ))}
+    </Box>
+  )
+}
+
+function DmgRow({ label, range, badges }: { label: ReactNode; range: IncomingRange; badges?: DefBadge[] }) {
+  return (
+    <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', px: 1, py: 0.25, gap: 1 }}>
+      <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5, minWidth: 0 }}>
+        <Typography variant="body2" color="text.secondary" component="div">{label}</Typography>
+        {badges && <DefIcons badges={badges} />}
+      </Box>
+      <Typography variant="body2" sx={{ fontWeight: 700, color: 'error.main', whiteSpace: 'nowrap' }}>{fmtRange(range)}</Typography>
     </Box>
   )
 }
@@ -74,12 +119,29 @@ export default function IncomingDamagePanel() {
   const equipped = useBuildStore((s) => s.equipped)
   const invItems = useInventoryStore((s) => s.items)
   const selectedMobId = useMonsterStore((s) => s.selectedId)
+  const activeBuffs = useBuildStore((s) => s.activeBuffs)
+  const appliedBuffs = useBuildStore((s) => s.appliedBuffs)
   const buffEffects = useBuffEffects()
   const builts = useActiveEquippedBuilts()
   const [powerUp, setPowerUp] = useState(false)
   const [magicUp, setMagicUp] = useState(false)
 
   const monster = selectedMobId != null ? getMonster(selectedMobId) : undefined
+
+  // 활성 버프 중 피격 감소에 관여하는 스킬 → 배지 목록
+  const defBadges = useMemo<DefBadge[]>(() => {
+    const out: DefBadge[] = []
+    const add = (id: string, lv: number) => {
+      const b = getBuff(id)
+      if (!b) return
+      const types = reducedTypes(buffEffectsAtLevel(b, lv))
+      if (types.size) out.push({ id, name: b.name, icon: b.icon, types })
+    }
+    for (const [id, lv] of Object.entries(activeBuffs)) add(id, lv)
+    for (const [id, lv] of Object.entries(appliedBuffs)) add(id, lv)
+    return out
+  }, [activeBuffs, appliedBuffs])
+  const badgesFor = (type: IncomingType) => defBadges.filter((b) => b.types.has(type))
 
   let content: ReactNode
   if (!jobId || !monster) {
@@ -123,7 +185,7 @@ export default function IncomingDamagePanel() {
           </Button>
         </Box>
         <Divider sx={{ mb: 0.5 }} />
-        <DmgRow label="물리 접촉" range={phys} />
+        <DmgRow label="물리 접촉" range={phys} badges={badgesFor('touch')} />
 
         {skills.length > 0 && (
           <>
@@ -134,29 +196,11 @@ export default function IncomingDamagePanel() {
                 key={e.key}
                 label={<SkillMotion mobId={monster.id} skillKey={e.key}>{e.label}</SkillMotion>}
                 range={e.range}
+                badges={badgesFor(e.type)}
               />
             ))}
           </>
         )}
-
-        <Typography variant="caption" color="text.disabled" sx={{ display: 'flex', alignItems: 'center', mt: 1 }}>
-          ※ 파워가드·아킬레스·속성저항·메소가드 감소가 반영된 수치입니다.
-          <InfoTip
-            title={
-              <>
-                <InfoTitle>피격 감소 적용 규칙</InfoTitle>
-                <Box>· 파워가드: <b>물리 접촉에만</b> 적용, 보스는 효율 <b>50%</b></Box>
-                <Box>· 아킬레스(전사): 전 타입</Box>
-                <Box>· 엘리멘탈/파셜 레지스턴스: 해당 속성 타입</Box>
-                <Box>· 메소가드(도적): 감소 후 데미지의 50% 흡수</Box>
-                <InfoWarn>
-                  파워가드는 몬스터 <b>스킬</b> 피격에는 적용되지 않습니다(접촉 전용).
-                  보스는 스킬 피격 비중이 커서 감소가 없어 보일 수 있습니다.
-                </InfoWarn>
-              </>
-            }
-          />
-        </Typography>
       </>
     )
   }
