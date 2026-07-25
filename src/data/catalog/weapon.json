@@ -5926,7 +5926,9 @@
     "tuc": 7,
     "reqJob": 9,
     "weaponType": "dagger",
-    "iconUrl": "https://maplestory.io/api/gms/200/item/1332073/icon"
+    "iconUrl": "https://maplestory.io/api/gms/200/item/1332073/icon",
+    "reqStr": 75,
+    "reqDex": 160
   },
   {
     "id": 1332074,
@@ -5955,7 +5957,9 @@
     "tuc": 7,
     "reqJob": 9,
     "weaponType": "dagger",
-    "iconUrl": "https://maplestory.io/api/gms/200/item/1332075/icon"
+    "iconUrl": "https://maplestory.io/api/gms/200/item/1332075/icon",
+    "reqStr": 75,
+    "reqDex": 160
   },
   {
     "id": 1332076,
@@ -6264,7 +6268,9 @@
     "tuc": 7,
     "reqJob": 16,
     "weaponType": "knuckle",
-    "iconUrl": "https://maplestory.io/api/gms/200/item/1482023/icon"
+    "iconUrl": "https://maplestory.io/api/gms/200/item/1482023/icon",
+    "reqStr": 330,
+    "reqDex": 120
   },
   {
     "id": 1482024,
@@ -6278,7 +6284,9 @@
     "tuc": 7,
     "reqJob": 16,
     "weaponType": "knuckle",
-    "iconUrl": "https://maplestory.io/api/gms/200/item/1482024/icon"
+    "iconUrl": "https://maplestory.io/api/gms/200/item/1482024/icon",
+    "reqStr": 330,
+    "reqDex": 120
   },
   {
     "id": 1492023,
@@ -6292,7 +6300,9 @@
     "tuc": 7,
     "reqJob": 16,
     "weaponType": "gun",
-    "iconUrl": "https://maplestory.io/api/gms/200/item/1492023/icon"
+    "iconUrl": "https://maplestory.io/api/gms/200/item/1492023/icon",
+    "reqStr": 120,
+    "reqDex": 335
   },
   {
     "id": 1492025,
@@ -6306,6 +6316,8 @@
     "tuc": 7,
     "reqJob": 16,
     "weaponType": "gun",
-    "iconUrl": "https://maplestory.io/api/gms/200/item/1492025/icon"
+    "iconUrl": "https://maplestory.io/api/gms/200/item/1492025/icon",
+    "reqStr": 120,
+    "reqDex": 335
   }
 ]

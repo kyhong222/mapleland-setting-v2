@@ -2622,7 +2622,9 @@
     "reqLevel": 120,
     "tuc": 10,
     "reqJob": 16,
-    "iconUrl": "https://maplestory.io/api/gms/200/item/1052159/icon"
+    "iconUrl": "https://maplestory.io/api/gms/200/item/1052159/icon",
+    "reqStr": 120,
+    "reqDex": 120
   },
   {
     "id": 1052160,
@@ -2702,6 +2704,8 @@
     "reqLevel": 120,
     "tuc": 10,
     "reqJob": 16,
-    "iconUrl": "https://maplestory.io/api/gms/200/item/1052164/icon"
+    "iconUrl": "https://maplestory.io/api/gms/200/item/1052164/icon",
+    "reqStr": 120,
+    "reqDex": 120
   }
 ]
