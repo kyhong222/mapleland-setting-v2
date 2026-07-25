@@ -19,6 +19,7 @@ import { getMonster } from '../../data/mobs'
 import { lookupStandardPDD } from '../../data/standardPDD'
 import { physicalIncoming, applyDefenses, monsterSkillIncoming } from '../../domain/incomingDamage'
 import type { IncomingRange } from '../../domain/incomingDamage'
+import { monsterRenderUrl } from '../../domain/monster'
 
 const fmtRange = (r: IncomingRange) => `${r.min.toLocaleString()} ~ ${r.max.toLocaleString()}`
 
@@ -27,7 +28,7 @@ function SkillMotion({ mobId, skillKey, children }: { mobId: number; skillKey: s
   const [loaded, setLoaded] = useState(false)
   const [error, setError] = useState(false)
   if (error) return <>{children}</>
-  const url = `https://maplestory.io/api/gms/62/mob/${mobId}/render/${skillKey}`
+  const url = monsterRenderUrl(mobId, skillKey)
   return (
     <Tooltip
       placement="left"
@@ -43,7 +44,7 @@ function SkillMotion({ mobId, skillKey, children }: { mobId: number; skillKey: s
             onLoad={() => setLoaded(true)}
             onError={(e) => {
               const img = e.currentTarget
-              if (img.src.includes('/gms/62/')) img.src = `https://maplestory.io/api/gms/200/mob/${mobId}/render/${skillKey}`
+              if (img.src.includes('/gms/82/')) img.src = `https://maplestory.io/api/gms/200/mob/${mobId}/render/${skillKey}`
               else setError(true)
             }}
           />

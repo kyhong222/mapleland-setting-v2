@@ -94,9 +94,21 @@ export interface Monster {
   skills?: Record<string, MobSkill>
 }
 
+/**
+ * maplestory.io mob API 베이스.
+ * gms/62에는 시간의 신전(8200xxx) 등 후기 몹 스프라이트가 없어 전부 gms/82를 사용한다.
+ * (gms/82는 구몹·후기몹 모두 아이콘/렌더 제공)
+ */
+export const MOB_API = 'https://maplestory.io/api/gms/82'
+
 /** 몬스터 아이콘 URL (maplestory.io mob 아이콘) */
 export function monsterIconUrl(id: number): string {
-  return `https://maplestory.io/api/gms/62/mob/${id}/icon`
+  return `${MOB_API}/mob/${id}/icon`
+}
+
+/** 몬스터 스킬 모션 렌더 URL (animation = attack1/move 등) */
+export function monsterRenderUrl(id: number, animation: string): string {
+  return `${MOB_API}/mob/${id}/render/${animation}`
 }
 
 /** 몬스터 표시명 (한글 우선, 없으면 영문) */
