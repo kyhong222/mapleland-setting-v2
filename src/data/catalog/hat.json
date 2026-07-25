@@ -3362,6 +3362,22 @@
     "tuc": 7
   },
   {
+    "id": 1003016,
+    "name": "와일드울프의 두건",
+    "slot": "hat",
+    "effects": {
+      "STR": 15,
+      "DEX": 15,
+      "INT": 15,
+      "LUK": 15,
+      "pdef": 180,
+      "mdef": 180
+    },
+    "reqLevel": 70,
+    "iconUrl": "https://maplestory.io/api/gms/83/item/1003016/icon",
+    "tuc": 10
+  },
+  {
     "id": 1002271,
     "name": "그린 크로스햇",
     "slot": "hat",
