@@ -4950,7 +4950,19 @@
     "eva": 37,
     "exp": 3100,
     "maxHP": 59000,
-    "elemAttr": "S2L2"
+    "elemAttr": "S2L2",
+    "skills": {
+      "attack1": {
+        "type": 1,
+        "magic": 1,
+        "conMP": 1
+      },
+      "attack2": {
+        "type": 0,
+        "PADamage": 540,
+        "conMP": 1
+      }
+    }
   },
   "8200005": {
     "id": 8200005,
