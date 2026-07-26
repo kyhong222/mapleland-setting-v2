@@ -13,6 +13,7 @@ import { instanceLabel } from '../../store/equipInstance'
 import type { EquipInstance } from '../../store/equipInstance'
 import { resolveBuiltItem } from '../../domain/builtItem'
 import type { BuiltItem } from '../../domain/builtItem'
+import { gemIconUrl } from '../../domain/maker'
 import { WEAPON_CONSTANTS } from '../../domain/weapons'
 import { formatEffects } from '../../lib/effectFormat'
 
@@ -109,12 +110,27 @@ export default function EquipmentPanel() {
           }}
         >
           {built ? (
-            <ItemIcon
-              src={built.base.iconUrl}
-              alt={built.base.name}
-              size={ICON}
-              outlineColor={grade!.info.color}
-            />
+            <>
+              <ItemIcon
+                src={built.base.iconUrl}
+                alt={built.base.name}
+                size={ICON}
+                outlineColor={grade!.info.color}
+              />
+              {built.gems.length > 0 && (
+                <Box sx={{ position: 'absolute', right: 1, bottom: 1, display: 'flex', gap: '1px' }}>
+                  {built.gems.map((g, gi) => (
+                    <Box
+                      key={gi}
+                      component="img"
+                      src={gemIconUrl(g.type, g.grade)}
+                      alt=""
+                      sx={{ width: 16, height: 16, imageRendering: 'pixelated', display: 'block' }}
+                    />
+                  ))}
+                </Box>
+              )}
+            </>
           ) : isBlocked ? (
             <>
               <Typography sx={{ position: 'absolute', fontSize: 9, lineHeight: 1, color: 'error.main', opacity: 0.55, textAlign: 'center' }}>
