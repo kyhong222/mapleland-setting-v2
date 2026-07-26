@@ -125,7 +125,7 @@ export default function EquipmentPanel() {
                       component="img"
                       src={gemIconUrl(g.type, g.grade)}
                       alt=""
-                      sx={{ width: 16, height: 16, imageRendering: 'pixelated', display: 'block' }}
+                      sx={{ width: 20, height: 20, imageRendering: 'pixelated', display: 'block' }}
                     />
                   ))}
                 </Box>
