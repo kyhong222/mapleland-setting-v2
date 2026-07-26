@@ -16,8 +16,8 @@ import type { BuiltItem } from '../../domain/builtItem'
 import { WEAPON_CONSTANTS } from '../../domain/weapons'
 import { formatEffects } from '../../lib/effectFormat'
 
-const TILE = 46
-const ICON = 30
+const TILE = 60
+const ICON = 42
 
 /** 5×7 슬롯 배치 (null = 빈칸/비활성 박스) */
 const LAYOUT: (EquipInstance | null)[][] = [
