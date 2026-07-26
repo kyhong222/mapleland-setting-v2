@@ -118,7 +118,7 @@ export default function EquipmentPanel() {
                 outlineColor={grade!.info.color}
               />
               {built.gems.length > 0 && (
-                <Box sx={{ position: 'absolute', right: 1, bottom: 1, display: 'flex', gap: 0, '& img:not(:first-of-type)': { ml: '-4px' } }}>
+                <Box sx={{ position: 'absolute', bottom: 0, left: '50%', transform: 'translateX(-50%)', display: 'flex', gap: 0, '& img:not(:first-of-type)': { ml: '-4px' } }}>
                   {built.gems.map((g, gi) => (
                     <Box
                       key={gi}
