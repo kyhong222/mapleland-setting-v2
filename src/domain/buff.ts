@@ -16,6 +16,7 @@
 
 import type { EffectMap } from './effects'
 import type { JobId } from './jobs'
+import { JOBS } from './jobs'
 import type { WeaponType } from './weapons'
 
 export type BuffType = 'item' | 'skill'
@@ -69,11 +70,21 @@ export function canUseBuff(buff: Buff, jobId: JobId): boolean {
   return buff.jobs?.includes(jobId) ?? false
 }
 
+/**
+ * 직업 조건부 마스터레벨.
+ *  - 정령의 축복(blessingOfFairy): 모험가 12 / 시그너스 20
+ *  - 그 외: 스킬=masterLevel, 아이템=1
+ */
+export function effectiveMasterLevel(buff: Buff, jobId: JobId | null): number {
+  if (buff.id === 'blessingOfFairy') return jobId && JOBS[jobId].order === 'cygnus' ? 20 : 12
+  return buff.type === 'skill' ? buff.masterLevel : 1
+}
+
 /** UI 기본 선택 레벨 (변형 버프=첫 변형, 스킬=마스터레벨, 아이템=1 의미 없음) */
-export function defaultBuffLevel(buff: Buff): number {
+export function defaultBuffLevel(buff: Buff, jobId: JobId | null = null): number {
   if (buff.type !== 'skill') return 1
   if (buff.variants) return 1
-  return buff.masterLevel
+  return effectiveMasterLevel(buff, jobId)
 }
 
 /**

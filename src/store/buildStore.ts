@@ -15,7 +15,7 @@ import { JOBS } from '../domain/jobs'
 import type { JobId } from '../domain/jobs'
 import type { BaseStats, StatId } from '../domain/stats'
 import { STAT_BASE, STAT_IDS, totalAP, minLevelForClass, maxLevelForOrder } from '../domain/stats'
-import { defaultBuffLevel } from '../domain/buff'
+import { defaultBuffLevel, effectiveMasterLevel } from '../domain/buff'
 import { getBuff } from '../data/buff'
 import type { EquipInstance } from './equipInstance'
 
@@ -182,14 +182,15 @@ export const useBuildStore = create<BuildState>()(
             delete active[id]
           } else {
             const b = getBuff(id)
-            active[id] = levels[id] ?? (b ? defaultBuffLevel(b) : 1) // 기억된 레벨 복원
+            const eff = b ? effectiveMasterLevel(b, s.jobId) : 1
+            active[id] = Math.min(levels[id] ?? (b ? defaultBuffLevel(b, s.jobId) : 1), eff) // 기억된 레벨 복원(직업 상한 클램프)
           }
           return { activeBuffs: active, buffLevels: levels }
         }),
       setBuffLevel: (id, level) =>
         set((s) => {
           const b = getBuff(id)
-          const max = b && b.type === 'skill' ? b.masterLevel : 1
+          const max = b ? effectiveMasterLevel(b, s.jobId) : 1
           const n = Math.floor(level)
           const lv = Math.max(0, Math.min(max, Number.isFinite(n) ? n : 0))
           const levels = { ...s.buffLevels, [id]: lv }
@@ -201,7 +202,7 @@ export const useBuildStore = create<BuildState>()(
           if (id in s.appliedBuffs) return s
           const b = getBuff(id)
           if (!b) return s
-          return { appliedBuffs: { ...s.appliedBuffs, [id]: defaultBuffLevel(b) } }
+          return { appliedBuffs: { ...s.appliedBuffs, [id]: defaultBuffLevel(b, s.jobId) } }
         }),
       removeBuff: (id) =>
         set((s) => {
@@ -214,14 +215,14 @@ export const useBuildStore = create<BuildState>()(
         set((s) => {
           if (!(id in s.appliedBuffs)) return s
           const b = getBuff(id)
-          const max = b && b.type === 'skill' ? b.masterLevel : 1
+          const max = b ? effectiveMasterLevel(b, s.jobId) : 1
           const lv = Math.max(1, Math.min(max, Math.floor(level) || 1))
           return { appliedBuffs: { ...s.appliedBuffs, [id]: lv } }
         }),
       setMasteryLevel: (id, level) =>
         set((s) => {
           const b = getBuff(id)
-          const max = b && b.type === 'skill' ? b.masterLevel : 1
+          const max = b ? effectiveMasterLevel(b, s.jobId) : 1
           const lv = Math.max(1, Math.min(max, Math.floor(level) || 1))
           return { masteryLevels: { ...s.masteryLevels, [id]: lv } }
         }),

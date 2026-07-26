@@ -19,7 +19,7 @@ import { useBuildStore } from '../../store/buildStore'
 import { useInventoryStore } from '../../store/inventoryStore'
 import { equippedWeaponType } from '../../store/aggregate'
 import { COMMON_BUFFS, PARTY_BUFFS, PERSONAL_BUFFS, DOPING_ITEMS, JOB_BUFFS } from '../../data/buff'
-import { canUseBuff, buffEffectsAtLevel, defaultBuffLevel } from '../../domain/buff'
+import { canUseBuff, buffEffectsAtLevel, defaultBuffLevel, effectiveMasterLevel } from '../../domain/buff'
 import type { Buff } from '../../domain/buff'
 import { maxEffects } from '../../domain/effects'
 import { formatEffects } from '../../lib/effectFormat'
@@ -130,11 +130,12 @@ function BuffDialog({ buff, kind, onClose }: { buff: Buff; kind: BuffKind; onClo
   const masteryLevels = useBuildStore((s) => s.masteryLevels)
   const setMasteryLevel = useBuildStore((s) => s.setMasteryLevel)
   const buffLevels = useBuildStore((s) => s.buffLevels)
+  const jobId = useBuildStore((s) => s.jobId)
 
   const isSkill = buff.type === 'skill'
-  const master = isSkill ? buff.masterLevel : 1
+  const master = effectiveMasterLevel(buff, jobId)
   const active = kind === 'toggle' ? buff.id in activeBuffs : true
-  const fallback = kind === 'toggle' ? buffLevels[buff.id] ?? defaultBuffLevel(buff) : defaultBuffLevel(buff)
+  const fallback = kind === 'toggle' ? buffLevels[buff.id] ?? defaultBuffLevel(buff, jobId) : defaultBuffLevel(buff, jobId)
   const level =
     kind === 'toggle' ? activeBuffs[buff.id] ?? fallback : kind === 'applied' ? appliedBuffs[buff.id] ?? fallback : masteryLevels[buff.id] ?? fallback
 
@@ -216,8 +217,9 @@ function BuffRow({ buff, onOpen }: { buff: Buff; onOpen: (b: Buff) => void }) {
   const level = useBuildStore((s) => s.activeBuffs[buff.id])
   const remembered = useBuildStore((s) => s.buffLevels[buff.id])
   const toggleBuff = useBuildStore((s) => s.toggleBuff)
+  const jobId = useBuildStore((s) => s.jobId)
   const active = level !== undefined
-  const shownLevel = active ? level : remembered ?? defaultBuffLevel(buff)
+  const shownLevel = Math.min(active ? level : remembered ?? defaultBuffLevel(buff, jobId), effectiveMasterLevel(buff, jobId))
   const eff = buffEffectsAtLevel(buff, shownLevel)
   return (
     <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5, py: 0.25 }}>

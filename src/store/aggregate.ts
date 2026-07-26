@@ -9,7 +9,7 @@ import { computeBaseStats } from '../domain/stats'
 import type { BaseStats } from '../domain/stats'
 import { resolveBuiltItem } from '../domain/builtItem'
 import type { BuiltItem } from '../domain/builtItem'
-import { buffEffectsAtLevel, canUseBuff } from '../domain/buff'
+import { buffEffectsAtLevel, canUseBuff, effectiveMasterLevel } from '../domain/buff'
 import { getBuff, JOB_BUFFS } from '../data/buff'
 import type { JobId } from '../domain/jobs'
 import type { WeaponType } from '../domain/weapons'
@@ -73,7 +73,10 @@ export function activeBuffEffects(ctx: BuffContext): EffectMap {
   // 토글 버프 (무기 게이팅 버프는 여기서 제외 — 아래서 따로 처리)
   for (const [id, level] of Object.entries(activeBuffs)) {
     const b = getBuff(id)
-    if (b && !(b.type === 'skill' && b.weaponTypes)) sumMaps.push(buffEffectsAtLevel(b, level))
+    if (b && !(b.type === 'skill' && b.weaponTypes)) {
+      // 직업 상한(정령의 축복: 모험가 12) 초과 저장분 클램프
+      sumMaps.push(buffEffectsAtLevel(b, Math.min(level, effectiveMasterLevel(b, jobId))))
+    }
   }
   // 무기 마스터리/엑스퍼트 — 장착 주무기 일치 시 자동 적용 (off한 것은 제외)
   if (jobId && weaponType) {
