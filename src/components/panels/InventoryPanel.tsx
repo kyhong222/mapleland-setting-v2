@@ -21,6 +21,7 @@ import { aggregateBuild } from '../../store/aggregate'
 import { useActiveEquippedBuilts } from '../../store/activation'
 import { resolveBuiltItem } from '../../domain/builtItem'
 import type { BuiltItem } from '../../domain/builtItem'
+import { gemIconUrl } from '../../domain/maker'
 import { checkWearable } from '../../domain/equip'
 import { WEAPON_CONSTANTS } from '../../domain/weapons'
 import ItemTooltip from '../common/ItemTooltip'
@@ -253,6 +254,7 @@ export default function InventoryPanel() {
                     setMenu({ anchor: e.currentTarget, id: inv.id })
                   }}
                   sx={{
+                    position: 'relative',
                     p: 0.5,
                     lineHeight: 0,
                     cursor: 'pointer',
@@ -264,6 +266,13 @@ export default function InventoryPanel() {
                   }}
                 >
                   <ItemIcon src={inv.built.base.iconUrl} alt={inv.built.base.name} size={36} outlineColor={grade.info.color} />
+                  {inv.built.gems.length > 0 && (
+                    <Box sx={{ position: 'absolute', bottom: 0, left: '50%', transform: 'translateX(-50%)', display: 'flex', gap: 0, '& img:not(:first-of-type)': { ml: '-4px' } }}>
+                      {inv.built.gems.map((g, gi) => (
+                        <Box key={gi} component="img" src={gemIconUrl(g.type, g.grade)} alt="" sx={{ width: 16, height: 16, imageRendering: 'pixelated', display: 'block' }} />
+                      ))}
+                    </Box>
+                  )}
                 </Box>
               </Tooltip>
             )
