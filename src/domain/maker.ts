@@ -67,6 +67,21 @@ export const GEMS: Record<GemType, GemDef> = {
 
 const GRADE_OFFSET: Record<GemGrade, number> = { low: 0, mid: 1, high: 2 }
 
+/** 보석 표시 정렬용 타입 순서 (GEMS 정의 순서) */
+const GEM_TYPE_ORDER = Object.keys(GEMS) as GemType[]
+
+/**
+ * 보석을 일정한 순서로 정렬(타입 정의 순 → 등급 상급 먼저).
+ * 표시용 — 원본 배열은 건드리지 않는다.
+ */
+export function sortedGems(gems: GemSelection[]): GemSelection[] {
+  return [...gems].sort(
+    (a, b) =>
+      GEM_TYPE_ORDER.indexOf(a.type) - GEM_TYPE_ORDER.indexOf(b.type) ||
+      GRADE_OFFSET[b.grade] - GRADE_OFFSET[a.grade],
+  )
+}
+
 /** 보석 아이콘 URL (GMS 82 maker 아이템) */
 export function gemIconUrl(type: GemType, grade: GemGrade): string {
   return `https://maplestory.io/api/gms/82/item/${GEMS[type].iconBaseId + GRADE_OFFSET[grade]}/icon`

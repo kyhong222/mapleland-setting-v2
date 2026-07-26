@@ -13,7 +13,7 @@ import { instanceLabel } from '../../store/equipInstance'
 import type { EquipInstance } from '../../store/equipInstance'
 import { resolveBuiltItem } from '../../domain/builtItem'
 import type { BuiltItem } from '../../domain/builtItem'
-import { gemIconUrl } from '../../domain/maker'
+import { gemIconUrl, sortedGems } from '../../domain/maker'
 import { WEAPON_CONSTANTS } from '../../domain/weapons'
 import { formatEffects } from '../../lib/effectFormat'
 
@@ -119,7 +119,7 @@ export default function EquipmentPanel() {
               />
               {built.gems.length > 0 && (
                 <Box sx={{ position: 'absolute', bottom: 0, left: '50%', transform: 'translateX(-50%)', display: 'flex', gap: 0, '& img:not(:first-of-type)': { ml: '-4px' } }}>
-                  {built.gems.map((g, gi) => (
+                  {sortedGems(built.gems).map((g, gi) => (
                     <Box
                       key={gi}
                       component="img"
