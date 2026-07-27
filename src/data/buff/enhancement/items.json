@@ -228,5 +228,23 @@
       "mad": 30
     },
     "icon": "/buff-icons/2022042.png"
+  },
+  {
+    "id": "2022148",
+    "type": "item",
+    "name": "상명환",
+    "effects": {
+      "acc": 12
+    },
+    "icon": "/buff-icons/2022148.png"
+  },
+  {
+    "id": "2022150",
+    "type": "item",
+    "name": "초명고",
+    "effects": {
+      "eva": 12
+    },
+    "icon": "/buff-icons/2022150.png"
   }
 ]
