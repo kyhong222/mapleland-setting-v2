@@ -126,11 +126,11 @@ export default function NhitPanel() {
     const counterMult = COMA_PANIC.has(selectedSkill.id) && comboBonus > 0 ? MAX_COUNTER_MULT : 1
     // 쉐도우 파트너: 그림자가 스킬 데미지의 y% 추가타 → ×(1 + y/100) (마스터 ×1.5)
     const shadowMult = 1 + (effects.shadowPartnerP ?? 0) / 100
-    // 팔라딘 차지: 데미지 계수(파이어 lv30 140% → ×1.4)를 곱연산. 보조 썬더는 계수도 중첩 합산. 속성배율과 별개
+    // 팔라딘 차지 데미지 계수(파이어 lv30 140% → ×1.4, 썬더 보너스 중첩). 원소성 modifier → 방어 차감 전 적용
     const chargeCoefMult = charge ? chargeCombinedCoef(charge.main, charge.mainLevel, charge.thunderLevel) / 100 : 1
     // 방컷·DPM 미제공 스킬(패닉/코마/돌진)
     const noDpm = NO_DPM.has(selectedSkill.id)
-    const damageMult = (isMagic ? magicAmpMultiplier(effects) : 1) * finalMult * threatenMult * counterMult * shadowMult * chargeCoefMult
+    const damageMult = (isMagic ? magicAmpMultiplier(effects) : 1) * finalMult * threatenMult * counterMult * shadowMult
 
     const cast = computeCast({
       weaponType: weaponType ?? 'oneHandedSword',
@@ -148,6 +148,7 @@ export default function NhitPanel() {
       defense,
       skillPercent: effSkillPercent,
       damageMult,
+      preDefenseMult: chargeCoefMult,
       critProb,
       critMult,
     })

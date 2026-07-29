@@ -109,6 +109,8 @@ export interface LineDamageInput {
   skillPercent: number
   /** 자기버프×위협 등 최종 데미지 배율 (기본 1) */
   damageMult: number
+  /** 방어 차감 전(2단계 Modifiers) 적용 배율 — 원소성(차지 계수 등). 기본 1 */
+  preDefenseMult?: number
   /** 크리 기대배율 f = 1 + 크리확률×크리추뎀/100 (기본 1) */
   critFactor: number
 }
@@ -116,7 +118,8 @@ export interface LineDamageInput {
 /** 한 라인의 최종 데미지 범위 (clamp 포함) */
 export function lineFinalRange(p: LineDamageInput): DamageRange {
   const apply = (d: number, defCoef: number): number => {
-    let v = d * p.elementMult
+    // 2단계 Modifiers(원소 반응 · 차지 계수)를 방어 차감 전에 적용
+    let v = d * p.elementMult * (p.preDefenseMult ?? 1)
     if (p.defense && !p.defense.ignore) {
       if (p.defense.kind === 'physical') v = v * (1 - 0.01 * p.defense.levelPenalty) - p.defense.def * defCoef
       else v = v - p.defense.def * defCoef * (1 + 0.01 * p.defense.levelPenalty)
@@ -147,6 +150,8 @@ export interface CastDamageParams {
   defense?: LineDamageInput['defense']
   skillPercent: number
   damageMult: number
+  /** 방어 차감 전 적용 배율(원소성 차지 계수 등). 기본 1 */
+  preDefenseMult?: number
   /** 크리 확률 (0~1). 크리는 평균배율이 아니라 확률 혼합으로 분포에 반영 */
   critProb: number
   /** 크리 시 데미지 배율 (예: 1.4). critProb>0일 때만 사용 */
@@ -166,7 +171,7 @@ export function computeCast(p: CastDamageParams): CastResult | null {
   const finalOf = (base: DamageRange, critFactor: number) =>
     lineFinalRange({
       base, elementMult: p.elementMult, defense: p.defense, skillPercent: p.skillPercent,
-      damageMult: p.damageMult, critFactor,
+      damageMult: p.damageMult, preDefenseMult: p.preDefenseMult, critFactor,
     })
   const critProb = Math.max(0, Math.min(1, p.critProb))
 
