@@ -270,6 +270,9 @@ export default function NhitPanel() {
           )}
         </>
       )}
+      <Typography variant="caption" color="text.disabled" sx={{ display: 'block', mt: 1 }}>
+        * 오류 발견 시 문의하기로 남겨주세요
+      </Typography>
     </CollapsiblePanel>
   )
 }
