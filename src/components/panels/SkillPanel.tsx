@@ -465,7 +465,7 @@ function ChargeSection() {
         active={charge.subOn && !mainIsThunder}
         disabled={mainIsThunder}
         title="보조 차지 [썬더]"
-        caption={mainIsThunder ? '메인이 썬더 → 비활성' : charge.subOn ? `Lv.${charge.subLevel} · 썬더 중첩` : '꺼짐'}
+        caption={mainIsThunder ? '비활성' : charge.subOn ? `Lv.${charge.subLevel} · 썬더 중첩` : '꺼짐'}
         onToggle={() => setCharge({ subOn: !charge.subOn })}
         onOpen={() => setDlg('sub')}
       />
