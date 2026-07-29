@@ -260,5 +260,109 @@
       {}
     ],
     "icon": "/skill-icons/11110005.png"
+  },
+  {
+    "id": "4111002",
+    "type": "skill",
+    "name": "쉐도우 파트너",
+    "scope": "personal",
+    "mode": "passive",
+    "masterLevel": 30,
+    "jobs": [
+      "nightLord"
+    ],
+    "effectsByLevel": [
+      {
+        "shadowPartnerP": 21
+      },
+      {
+        "shadowPartnerP": 21
+      },
+      {
+        "shadowPartnerP": 21
+      },
+      {
+        "shadowPartnerP": 21
+      },
+      {
+        "shadowPartnerP": 21
+      },
+      {
+        "shadowPartnerP": 21
+      },
+      {
+        "shadowPartnerP": 21
+      },
+      {
+        "shadowPartnerP": 22
+      },
+      {
+        "shadowPartnerP": 23
+      },
+      {
+        "shadowPartnerP": 24
+      },
+      {
+        "shadowPartnerP": 25
+      },
+      {
+        "shadowPartnerP": 26
+      },
+      {
+        "shadowPartnerP": 27
+      },
+      {
+        "shadowPartnerP": 28
+      },
+      {
+        "shadowPartnerP": 29
+      },
+      {
+        "shadowPartnerP": 30
+      },
+      {
+        "shadowPartnerP": 31
+      },
+      {
+        "shadowPartnerP": 32
+      },
+      {
+        "shadowPartnerP": 33
+      },
+      {
+        "shadowPartnerP": 34
+      },
+      {
+        "shadowPartnerP": 35
+      },
+      {
+        "shadowPartnerP": 36
+      },
+      {
+        "shadowPartnerP": 37
+      },
+      {
+        "shadowPartnerP": 38
+      },
+      {
+        "shadowPartnerP": 40
+      },
+      {
+        "shadowPartnerP": 42
+      },
+      {
+        "shadowPartnerP": 44
+      },
+      {
+        "shadowPartnerP": 46
+      },
+      {
+        "shadowPartnerP": 48
+      },
+      {
+        "shadowPartnerP": 50
+      }
+    ],
+    "icon": "/buff-icons/4111002.png"
   }
 ]

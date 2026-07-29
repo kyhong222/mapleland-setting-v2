@@ -117,9 +117,11 @@ export default function NhitPanel() {
     const threatenMult = 1 + (effects.monsterDamageTakenP ?? 0) / 100
     // 패닉/코마: 최대 콤보 카운터(5~10) 전량 소모 → 카운터 뎀증 ×2.5 (콤보 활성 시)
     const counterMult = COMA_PANIC.has(selectedSkill.id) && comboBonus > 0 ? MAX_COUNTER_MULT : 1
+    // 쉐도우 파트너: 그림자가 스킬 데미지의 y% 추가타 → ×(1 + y/100) (마스터 ×1.5)
+    const shadowMult = 1 + (effects.shadowPartnerP ?? 0) / 100
     // 방컷·DPM 미제공 스킬(패닉/코마/돌진)
     const noDpm = NO_DPM.has(selectedSkill.id)
-    const damageMult = (isMagic ? magicAmpMultiplier(effects) : 1) * finalMult * threatenMult * counterMult
+    const damageMult = (isMagic ? magicAmpMultiplier(effects) : 1) * finalMult * threatenMult * counterMult * shadowMult
 
     const cast = computeCast({
       weaponType: weaponType ?? 'oneHandedSword',
@@ -271,7 +273,7 @@ export default function NhitPanel() {
                     {result.nhit.exact.map((p, i) => (p >= 0.0005 ? <Row key={i} label={`${i + 1}방`} value={pct(p)} /> : null))}
                     {result.nhit.over >= 0.0005 && <Row label="11방+" value={pct(result.nhit.over)} />}
                   </Box>
-                  <Row label="기대 처치 타수" value={`${result.nhit.meanHits.toFixed(2)}방`} strong />
+                  <Row label="기대 처치 타수" value={result.nhit.over >= 0.9995 ? '알 수 없음' : `${result.nhit.meanHits.toFixed(2)}방`} strong />
                 </>
               )}
 
