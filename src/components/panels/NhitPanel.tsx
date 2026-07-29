@@ -170,6 +170,7 @@ export default function NhitPanel() {
         max: Math.max(...cast.lineRanges.map((r) => r.max)),
       },
       totalRange: cast.totalRange,
+      coef: Math.round(effSkillPercent),
       // 패닉/코마/돌진은 방컷·DPM 미제공(데미지 범위만)
       nhit: isBoss || noDpm ? null : computeNhit(cast.dist, hp, 10),
       apm, dpm, killSec, isMagic, effStep, boosterActive: magicBooster, noDpm,
@@ -223,8 +224,8 @@ export default function NhitPanel() {
             <>
               {/* 데미지 범위 */}
               <Typography variant="caption" sx={{ fontWeight: 700, display: 'block' }}>데미지 범위</Typography>
-              {result.lines > 1 && <Row label={`1회 타격 (${result.lines}타)`} value={rng(result.lineRange)} />}
-              <Row label={result.lines > 1 ? '총 데미지' : '데미지'} value={rng(result.totalRange)} strong />
+              {result.lines > 1 && <Row label={`1회 타격 (${result.lines}타, ${result.coef}%)`} value={rng(result.lineRange)} />}
+              <Row label={result.lines > 1 ? '총 데미지' : `데미지 (${result.coef}%)`} value={rng(result.totalRange)} strong />
 
               {/* 방컷 확률 (비보스) */}
               {result.nhit && (
