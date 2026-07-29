@@ -3208,5 +3208,79 @@
       }
     ],
     "icon": "/buff-icons/15101002.png"
+  },
+  {
+    "id": "2301003",
+    "type": "skill",
+    "name": "인빈서블",
+    "scope": "personal",
+    "mode": "active",
+    "masterLevel": 20,
+    "jobs": [
+      "bishop"
+    ],
+    "effectsByLevel": [
+      {
+        "physicalRes": 11
+      },
+      {
+        "physicalRes": 12
+      },
+      {
+        "physicalRes": 13
+      },
+      {
+        "physicalRes": 14
+      },
+      {
+        "physicalRes": 15
+      },
+      {
+        "physicalRes": 16
+      },
+      {
+        "physicalRes": 17
+      },
+      {
+        "physicalRes": 18
+      },
+      {
+        "physicalRes": 19
+      },
+      {
+        "physicalRes": 20
+      },
+      {
+        "physicalRes": 21
+      },
+      {
+        "physicalRes": 22
+      },
+      {
+        "physicalRes": 23
+      },
+      {
+        "physicalRes": 24
+      },
+      {
+        "physicalRes": 25
+      },
+      {
+        "physicalRes": 26
+      },
+      {
+        "physicalRes": 27
+      },
+      {
+        "physicalRes": 28
+      },
+      {
+        "physicalRes": 29
+      },
+      {
+        "physicalRes": 30
+      }
+    ],
+    "icon": "/buff-icons/2301003.png"
   }
 ]
