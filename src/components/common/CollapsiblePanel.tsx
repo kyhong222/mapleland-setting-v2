@@ -8,7 +8,7 @@ import type { PanelId } from '../../store/uiStore'
 
 interface Props {
   id: PanelId
-  title: string
+  title: ReactNode
   /** 헤더 우측, 토글 버튼 왼쪽에 표시할 액션 (클릭이 토글로 전파되지 않음) */
   headerAction?: ReactNode
   children?: ReactNode

@@ -181,7 +181,17 @@ export default function NhitPanel() {
   })()
 
   return (
-    <CollapsiblePanel id="nhit" title="데미지 계산">
+    <CollapsiblePanel
+      id="nhit"
+      title={
+        <>
+          데미지 계산
+          <Box component="span" sx={{ fontSize: 11, fontWeight: 400, color: 'text.disabled', ml: 0.75 }}>
+            * 오류 발견 시 문의하기로 남겨주세요
+          </Box>
+        </>
+      }
+    >
       {!jobId ? (
         <Typography variant="body2" color="text.disabled">직업을 선택하세요.</Typography>
       ) : !monster ? (
@@ -270,9 +280,6 @@ export default function NhitPanel() {
           )}
         </>
       )}
-      <Typography variant="caption" color="text.disabled" sx={{ display: 'block', mt: 1 }}>
-        * 오류 발견 시 문의하기로 남겨주세요
-      </Typography>
     </CollapsiblePanel>
   )
 }
