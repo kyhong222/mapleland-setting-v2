@@ -141,7 +141,7 @@ export const EFFECTS: Record<EffectId, EffectDef> = {
   criticalP: { id: 'criticalP', label: '크리티컬%', category: 'offense', unit: 'percent', appliesToItem: false },
   criticalDamage: { id: 'criticalDamage', label: '크리티컬데미지', category: 'offense', unit: 'percent', appliesToItem: false },
   amplifiedMagicDamageP: { id: 'amplifiedMagicDamageP', label: '마법데미지증가%', category: 'offense', unit: 'percent', appliesToItem: false },
-  finalDamageP: { id: 'finalDamageP', label: '최종데미지증가%', category: 'offense', unit: 'percent', appliesToItem: false },
+  finalDamageP: { id: 'finalDamageP', label: '데미지 증가%', category: 'offense', unit: 'percent', appliesToItem: false },
   shadowPartnerP: { id: 'shadowPartnerP', label: '쉐도우파트너 데미지%', category: 'offense', unit: 'percent', appliesToItem: false },
   monsterDamageTakenP: { id: 'monsterDamageTakenP', label: '몬스터 받는 데미지%', category: 'offense', unit: 'percent', appliesToItem: false },
   monsterAttackReduceP: { id: 'monsterAttackReduceP', label: '몬스터 공격력 감소%', category: 'defense', unit: 'percent', appliesToItem: false },
