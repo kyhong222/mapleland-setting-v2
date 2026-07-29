@@ -165,11 +165,19 @@ export const COMBO_SKILLS: Partial<Record<string, { combo: number; adv: number }
   soulMaster: { combo: 11111001, adv: 11110005 },
 }
 
-/** 단일 대상 시전당 라인 수 (attackCount, 없으면 1). docs §2.4 */
+/**
+ * 단일 대상 시전당 라인(타) 수. docs §2.4
+ *  - attackCount(브랜디쉬·버스터 등) 우선
+ *  - 없으면 bulletCount(표창/화살 다발: 트스3·럭세2·스트레이프4·더블샷2 등)
+ *  - 둘 다 없으면 1
+ */
 export function skillLineCount(skill: IJobSkill, level: number): number {
   const props = skillPropsAtLevel(skill, level)
-  const c = props ? skillNum(props, 'attackCount') : 0
-  return c > 0 ? c : 1
+  if (!props) return 1
+  const a = skillNum(props, 'attackCount')
+  if (a > 0) return a
+  const b = skillNum(props, 'bulletCount')
+  return b > 0 ? b : 1
 }
 
 /** 특정 레벨에서 스킬의 공격 파라미터(물리 damage% / 마법 mad) */
