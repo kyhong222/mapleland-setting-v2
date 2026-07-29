@@ -34,8 +34,12 @@ const pct = (n: number) => `${(n * 100).toFixed(1)}%`
 const speedLabel = (step: number): string =>
   step <= 3 ? '매우 빠름' : step <= 5 ? '빠름' : step === 6 ? '보통' : step <= 8 ? '느림' : '매우 느림'
 
-/** 패닉/코마(검·도끼/둔기, 히어로·소마) — 콤보 카운터 전량 소모형. 방컷·DPM 미제공 */
+/** 패닉/코마(검·도끼/둔기, 히어로·소마) — 콤보 카운터 전량 소모형 */
 const COMA_PANIC = new Set([1111003, 1111004, 1111005, 1111006, 11111002, 11111003])
+/** 돌진(히어로·팔라딘·다크나이트) — 후딜레이가 커 방컷/DPM이 무의미 */
+const RUSH = new Set([1121006, 1221007, 1321003])
+/** 방컷·DPM 미제공(데미지 범위만): 패닉/코마 + 돌진 */
+const NO_DPM = new Set([...COMA_PANIC, ...RUSH])
 /** 최대 콤보 카운터(5~10) 소모 시 카운터 뎀증 배율 (docs §4) */
 const MAX_COUNTER_MULT = 2.5
 const rng = (r: { min: number; max: number }) => `${Math.round(r.min).toLocaleString()} ~ ${Math.round(r.max).toLocaleString()}`
@@ -79,10 +83,12 @@ export default function NhitPanel() {
     const isMagic = att.kind === 'magic'
     if (!isMagic && !weaponType) return null
 
-    // 크리는 기대값으로 스킬%에 합성(= skillPercent + 크리확률×크리추뎀)
+    // 크리 기대배율 (docs §6): f = 1 + 크리확률 × (크리데미지−100)/100
+    // 샤프아이즈 criticalDamage=140 → 크리 시 ×1.4(추가 40%). 곱연산으로 분리 적용
     const critP = effects.criticalP ?? 0
     const critDmg = effects.criticalDamage ?? 0
-    const effSkillPercent = att.skillPercent + (critP / 100) * critDmg
+    const critFactor = critP > 0 && critDmg > 100 ? 1 + (critP / 100) * ((critDmg - 100) / 100) : 1
+    const effSkillPercent = att.skillPercent
 
     // 속성 반응 — 팔라딘 차지 활성 시 차지 속성/레벨 배율로 대체(물리 한정)
     const chargeActive = jobId === 'paladin' && chargeMain !== '' && !isMagic
@@ -109,8 +115,9 @@ export default function NhitPanel() {
     // 위협(파티 디버프: 몬스터 받는 데미지 +%) — 곱연산 중첩
     const threatenMult = 1 + (effects.monsterDamageTakenP ?? 0) / 100
     // 패닉/코마: 최대 콤보 카운터(5~10) 전량 소모 → 카운터 뎀증 ×2.5 (콤보 활성 시)
-    const comaPanic = COMA_PANIC.has(selectedSkill.id)
-    const counterMult = comaPanic && comboBonus > 0 ? MAX_COUNTER_MULT : 1
+    const counterMult = COMA_PANIC.has(selectedSkill.id) && comboBonus > 0 ? MAX_COUNTER_MULT : 1
+    // 방컷·DPM 미제공 스킬(패닉/코마/돌진)
+    const noDpm = NO_DPM.has(selectedSkill.id)
     const damageMult = (isMagic ? magicAmpMultiplier(effects) : 1) * finalMult * threatenMult * counterMult
 
     const cast = computeCast({
@@ -129,7 +136,7 @@ export default function NhitPanel() {
       defense,
       skillPercent: effSkillPercent,
       damageMult,
-      critFactor: 1,
+      critFactor,
     })
     if (!cast) return { unsupported: true as const }
 
@@ -152,9 +159,9 @@ export default function NhitPanel() {
         max: Math.max(...cast.lineRanges.map((r) => r.max)),
       },
       totalRange: cast.totalRange,
-      // 패닉/코마는 카운터 소모형 → 방컷·DPM 미제공(데미지 범위만)
-      nhit: isBoss || comaPanic ? null : computeNhit(cast.dist, hp, 10),
-      apm, dpm, killSec, isMagic, effStep, boosterActive: magicBooster, comaPanic,
+      // 패닉/코마/돌진은 방컷·DPM 미제공(데미지 범위만)
+      nhit: isBoss || noDpm ? null : computeNhit(cast.dist, hp, 10),
+      apm, dpm, killSec, isMagic, effStep, boosterActive: magicBooster, noDpm,
     }
   })()
 
@@ -266,8 +273,8 @@ export default function NhitPanel() {
                 </>
               )}
 
-              {/* DPM (패닉/코마는 카운터 소모형이라 미제공) */}
-              {!result.comaPanic && (
+              {/* DPM (패닉/코마/돌진은 미제공) */}
+              {!result.noDpm && (
                 <>
                   <Divider sx={{ my: 0.75 }} />
                   <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
