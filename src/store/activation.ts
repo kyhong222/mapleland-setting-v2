@@ -18,6 +18,8 @@ import type { JobId } from '../domain/jobs'
 import type { BaseStats } from '../domain/stats'
 import { computeBaseStats } from '../domain/stats'
 import { sumEffects } from '../domain/effects'
+import type { EffectMap } from '../domain/effects'
+import { useBuffEffects } from './useBuffEffects'
 import { resolveBuiltItem } from '../domain/builtItem'
 import type { BuiltItem } from '../domain/builtItem'
 import { checkWearable } from '../domain/equip'
@@ -32,6 +34,8 @@ export interface ActivationInput {
   baseStats: BaseStats
   /** 장착 후 인스턴스별 장비 (활성 판정 대상) */
   equippedItems: Partial<Record<EquipInstance, BuiltItem>>
+  /** 버프(메이플용사 등) 합산 효과 — 요구스탯 충족 판정에 포함 */
+  buffEffects?: EffectMap
 }
 
 export type ActivationMap = Partial<Record<EquipInstance, boolean>>
@@ -53,7 +57,8 @@ export function evaluateActivation(input: ActivationInput): ActivationMap {
     for (const inst of insts) {
       if (!active.has(inst)) continue
       const others = [...active].filter((i) => i !== inst).map(effOf)
-      const stats = computeBaseStats(input.baseStats, sumEffects(...others))
+      // 요구스탯 판정: 다른 활성 장비 + 버프(메이플용사 등). 자기 장비 효과는 제외
+      const stats = computeBaseStats(input.baseStats, sumEffects(...others, input.buffEffects ?? {}))
       const check = checkWearable(input.equippedItems[inst]!.base, {
         jobId: input.jobId,
         level: input.level,
@@ -78,6 +83,7 @@ export function useActivation(): ActivationMap {
   const baseStats = useBuildStore((s) => s.baseStats)
   const equipped = useBuildStore((s) => s.equipped)
   const invItems = useInventoryStore((s) => s.items)
+  const buffEffects = useBuffEffects()
 
   return useMemo(() => {
     if (!jobId) return {}
@@ -86,8 +92,9 @@ export function useActivation(): ActivationMap {
       level,
       baseStats,
       equippedItems: equippedBuiltMap(equipped, invItems),
+      buffEffects,
     })
-  }, [jobId, level, baseStats, equipped, invItems])
+  }, [jobId, level, baseStats, equipped, invItems, buffEffects])
 }
 
 /** 활성 장비만 추린 BuiltItem 목록 (비활성=요구조건 미달 장비 제외 → 스탯 계산용) */

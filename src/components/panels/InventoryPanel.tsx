@@ -19,6 +19,7 @@ import { useBuildStore } from '../../store/buildStore'
 import { targetInstancesForSlot, SECONDARY_SLOTS } from '../../store/equipInstance'
 import { aggregateBuild } from '../../store/aggregate'
 import { useActiveEquippedBuilts } from '../../store/activation'
+import { useBuffEffects } from '../../store/useBuffEffects'
 import { resolveBuiltItem } from '../../domain/builtItem'
 import type { BuiltItem } from '../../domain/builtItem'
 import { gemIconUrl, sortedGems } from '../../domain/maker'
@@ -48,6 +49,7 @@ export default function InventoryPanel() {
   const unequipByInvId = useBuildStore((s) => s.unequipByInvId)
 
   const activeBuilts = useActiveEquippedBuilts()
+  const buffEffects = useBuffEffects()
 
   const [makerOpen, setMakerOpen] = useState(false)
   const [editId, setEditId] = useState<string | null>(null)
@@ -101,8 +103,8 @@ export default function InventoryPanel() {
     setMenu(null)
     if (!jobId) return
     const base = inv.built.base
-    // 장착가능여부 prehook: '장착' 시점의 현재(장착 직전) 활성 장비 총스탯/레벨로 착용조건 판정
-    const stats = aggregateBuild(baseStats, activeBuilts).finalStats
+    // 장착가능여부 prehook: '장착' 시점의 현재(장착 직전) 활성 장비 + 버프 총스탯/레벨로 착용조건 판정
+    const stats = aggregateBuild(baseStats, activeBuilts, buffEffects).finalStats
     const check = checkWearable(base, { jobId, level, stats })
     if (!check.ok) {
       setMsg(`${base.name}: ${check.reasons.join(', ')}`)
