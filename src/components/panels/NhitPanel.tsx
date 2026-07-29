@@ -168,13 +168,13 @@ export default function NhitPanel() {
                 const sk = attackSkills.find((s) => s.id === id)
                 if (sk) setSkillLevel(sk.masterLevel)
               }}
-              sx={{ flexGrow: 1, fontSize: 13 }}
+              sx={{ flexGrow: 1, fontSize: 13, '& .MuiSelect-select': { display: 'flex', alignItems: 'center', gap: 1.25, py: 0.5 } }}
             >
               <MenuItem value=""><em>스킬 선택</em></MenuItem>
               {attackSkills.map((s) => (
-                <MenuItem key={s.id} value={s.id} sx={{ fontSize: 13, gap: 1 }}>
-                  <Box component="img" src={skillIconSrc(s.id)} alt="" onError={hideOnError} sx={{ width: 24, height: 24, imageRendering: 'pixelated' }} />
-                  {s.description?.name ?? s.id}
+                <MenuItem key={s.id} value={s.id} sx={{ fontSize: 13, gap: 1.25, alignItems: 'center' }}>
+                  <Box component="img" src={skillIconSrc(s.id)} alt="" onError={hideOnError} sx={{ width: 32, height: 32, imageRendering: 'pixelated', display: 'block', flexShrink: 0 }} />
+                  <Box component="span" sx={{ lineHeight: 1.2 }}>{s.description?.name ?? s.id}</Box>
                   {SKILL_MOTION[s.id] && <Box component="span" sx={{ fontSize: 10, color: 'text.disabled' }}>*</Box>}
                 </MenuItem>
               ))}
