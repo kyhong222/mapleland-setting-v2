@@ -61,6 +61,8 @@ export interface SkillBuff extends BuffBase {
   variants?: string[]
   /** 선행 버프 id — 이 버프가 off면 본 버프도 off로 취급(표시/효과). 예: 어드밴스드콤보 → 콤보어택 */
   requires?: string
+  /** 방패 착용 필요 — 보조무기 슬롯에 방패가 없으면 off로 취급(표시/효과). 예: 블로킹 */
+  requiresShield?: boolean
 }
 
 export type Buff = ItemBuff | SkillBuff

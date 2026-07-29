@@ -2,7 +2,7 @@
 import type { EffectMap } from '../domain/effects'
 import { useBuildStore } from './buildStore'
 import { useInventoryStore } from './inventoryStore'
-import { activeBuffEffects, equippedWeaponType } from './aggregate'
+import { activeBuffEffects, equippedWeaponType, equippedHasShield } from './aggregate'
 
 export function useBuffEffects(): EffectMap {
   const jobId = useBuildStore((s) => s.jobId)
@@ -13,5 +13,6 @@ export function useBuffEffects(): EffectMap {
   const equipped = useBuildStore((s) => s.equipped)
   const invItems = useInventoryStore((s) => s.items)
   const weaponType = equippedWeaponType(equipped, invItems)
-  return activeBuffEffects({ activeBuffs, appliedBuffs, masteryLevels, masteryOff, jobId, weaponType })
+  const hasShield = equippedHasShield(equipped, invItems)
+  return activeBuffEffects({ activeBuffs, appliedBuffs, masteryLevels, masteryOff, jobId, weaponType, hasShield })
 }

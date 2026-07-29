@@ -50,6 +50,16 @@ export function equippedWeaponType(
   return invItems.find((it) => it.id === id)?.built.base.weaponType
 }
 
+/** 보조무기 슬롯에 방패가 장착돼 있는지 (블로킹 조건) */
+export function equippedHasShield(
+  equipped: Partial<Record<EquipInstance, string>>,
+  invItems: InventoryItem[],
+): boolean {
+  const id = equipped.secondary
+  if (!id) return false
+  return invItems.find((it) => it.id === id)?.built.base.slot === 'shield'
+}
+
 export interface BuffContext {
   activeBuffs: Record<string, number>
   appliedBuffs: Record<string, number>
@@ -58,6 +68,8 @@ export interface BuffContext {
   masteryOff?: Record<string, boolean>
   jobId: JobId | null
   weaponType?: WeaponType
+  /** 방패 착용 여부 (requiresShield 버프 게이팅) */
+  hasShield?: boolean
 }
 
 /**
@@ -68,15 +80,16 @@ export interface BuffContext {
  *  - 무기 마스터리/엑스퍼트: 장착 주무기 타입이 일치할 때만 자동 적용(레벨=masteryLevels[id] ?? 마스터)
  */
 export function activeBuffEffects(ctx: BuffContext): EffectMap {
-  const { activeBuffs, appliedBuffs, masteryLevels, masteryOff, jobId, weaponType } = ctx
+  const { activeBuffs, appliedBuffs, masteryLevels, masteryOff, jobId, weaponType, hasShield } = ctx
   const sumMaps: EffectMap[] = []
   // 토글 버프 (무기 게이팅 버프는 여기서 제외 — 아래서 따로 처리)
   for (const [id, level] of Object.entries(activeBuffs)) {
     const b = getBuff(id)
-    if (b && !(b.type === 'skill' && b.weaponTypes)) {
-      // 직업 상한(정령의 축복: 모험가 12) 초과 저장분 클램프
-      sumMaps.push(buffEffectsAtLevel(b, Math.min(level, effectiveMasterLevel(b, jobId))))
-    }
+    if (!b || (b.type === 'skill' && b.weaponTypes)) continue
+    // 방패 필요 버프(블로킹)는 방패 미착용 시 제외
+    if (b.type === 'skill' && b.requiresShield && !hasShield) continue
+    // 직업 상한(정령의 축복: 모험가 12) 초과 저장분 클램프
+    sumMaps.push(buffEffectsAtLevel(b, Math.min(level, effectiveMasterLevel(b, jobId))))
   }
   // 무기 마스터리/엑스퍼트 — 장착 주무기 일치 시 자동 적용 (off한 것은 제외)
   if (jobId && weaponType) {

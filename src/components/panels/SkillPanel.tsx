@@ -17,7 +17,7 @@ import Tooltip from '@mui/material/Tooltip'
 import CollapsiblePanel from '../common/CollapsiblePanel'
 import { useBuildStore } from '../../store/buildStore'
 import { useInventoryStore } from '../../store/inventoryStore'
-import { equippedWeaponType } from '../../store/aggregate'
+import { equippedWeaponType, equippedHasShield } from '../../store/aggregate'
 import { COMMON_BUFFS, PARTY_BUFFS, PERSONAL_BUFFS, DOPING_ITEMS, JOB_BUFFS } from '../../data/buff'
 import { canUseBuff, buffEffectsAtLevel, defaultBuffLevel, effectiveMasterLevel } from '../../domain/buff'
 import type { Buff } from '../../domain/buff'
@@ -221,20 +221,26 @@ function BuffRow({ buff, onOpen }: { buff: Buff; onOpen: (b: Buff) => void }) {
   const toggleBuff = useBuildStore((s) => s.toggleBuff)
   const jobId = useBuildStore((s) => s.jobId)
   const activeBuffs = useBuildStore((s) => s.activeBuffs)
+  const equipped = useBuildStore((s) => s.equipped)
+  const invItems = useInventoryStore((s) => s.items)
   // 선행 버프(requires)가 off면 이 버프도 off로 취급(표시)
   const requires = buff.type === 'skill' ? buff.requires : undefined
   const reqActive = requires ? activeBuffs[requires] !== undefined : true
-  const active = level !== undefined && reqActive
+  // 방패 필요(블로킹): 보조무기에 방패가 없으면 off로 취급
+  const requiresShield = buff.type === 'skill' && !!buff.requiresShield
+  const shieldOk = !requiresShield || equippedHasShield(equipped, invItems)
+  const active = level !== undefined && reqActive && shieldOk
   const shownLevel = Math.min(active ? (level as number) : remembered ?? defaultBuffLevel(buff, jobId), effectiveMasterLevel(buff, jobId))
   const eff = buffEffectsAtLevel(buff, shownLevel)
   const comboText = comboEffectText(buff, activeBuffs, jobId)
+  const caption = requiresShield && !shieldOk ? '방패 착용 필요' : (comboText ?? (formatEffects(eff) || '—'))
   return (
     <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5, py: 0.25 }}>
       <BuffIcon buff={buff} active={active} highlightActive onClick={() => toggleBuff(buff.id)} onContextMenu={(e) => { e.preventDefault(); onOpen(buff) }} />
       <Box sx={{ flex: 1, minWidth: 0 }}>
         <BuffName buff={buff} level={shownLevel} />
         <Typography variant="caption" color={active ? 'success.main' : 'text.disabled'} noWrap sx={{ display: 'block' }}>
-          {comboText ?? (formatEffects(eff) || '—')}
+          {caption}
         </Typography>
       </Box>
     </Box>

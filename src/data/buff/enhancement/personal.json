@@ -248,40 +248,41 @@
         "blockRate": 10
       },
       {
-        "blockRate": 10.5
-      },
-      {
         "blockRate": 11
-      },
-      {
-        "blockRate": 11.5
       },
       {
         "blockRate": 12
       },
       {
-        "blockRate": 12.5
-      },
-      {
         "blockRate": 13
-      },
-      {
-        "blockRate": 13.5
       },
       {
         "blockRate": 14
       },
       {
-        "blockRate": 14.5
+        "blockRate": 15
       },
       {
-        "blockRate": 15
+        "blockRate": 16
+      },
+      {
+        "blockRate": 17
+      },
+      {
+        "blockRate": 18
+      },
+      {
+        "blockRate": 19
+      },
+      {
+        "blockRate": 20
       }
     ],
     "icon": "/buff-icons/1120005.png",
     "jobs": [
       "hero"
-    ]
+    ],
+    "requiresShield": true
   },
   {
     "id": "1121002",
@@ -560,40 +561,41 @@
         "blockRate": 10
       },
       {
-        "blockRate": 10.5
-      },
-      {
         "blockRate": 11
-      },
-      {
-        "blockRate": 11.5
       },
       {
         "blockRate": 12
       },
       {
-        "blockRate": 12.5
-      },
-      {
         "blockRate": 13
-      },
-      {
-        "blockRate": 13.5
       },
       {
         "blockRate": 14
       },
       {
-        "blockRate": 14.5
+        "blockRate": 15
       },
       {
-        "blockRate": 15
+        "blockRate": 16
+      },
+      {
+        "blockRate": 17
+      },
+      {
+        "blockRate": 18
+      },
+      {
+        "blockRate": 19
+      },
+      {
+        "blockRate": 20
       }
     ],
     "icon": "/buff-icons/1220006.png",
     "jobs": [
       "paladin"
-    ]
+    ],
+    "requiresShield": true
   },
   {
     "id": "1221002",
