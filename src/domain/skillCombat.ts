@@ -105,12 +105,13 @@ export interface LineDamageInput {
   elementMult: number
   /** 방어: 물리/마법, def, 렙차 D. 없으면 미적용 */
   defense?: { kind: 'physical' | 'magic'; def: number; levelPenalty: number; ignore?: boolean }
-  /** 스킬 퍼뎀 % */
+  /** 스킬 퍼뎀 % (5단계, 방어 뒤) */
   skillPercent: number
-  /** 자기버프×위협 등 최종 데미지 배율 (기본 1) */
+  /**
+   * 데미지 증가 배수(2단계 Modifiers) — 콤보·버서크·차지 계수·위협·쉐파·엘앰프 등 전부.
+   * 원소와 함께 방어 차감 전에 적용한다. (기본 1)
+   */
   damageMult: number
-  /** 방어 차감 전(2단계 Modifiers) 적용 배율 — 원소성(차지 계수 등). 기본 1 */
-  preDefenseMult?: number
   /** 크리 기대배율 f = 1 + 크리확률×크리추뎀/100 (기본 1) */
   critFactor: number
 }
@@ -118,14 +119,15 @@ export interface LineDamageInput {
 /** 한 라인의 최종 데미지 범위 (clamp 포함) */
 export function lineFinalRange(p: LineDamageInput): DamageRange {
   const apply = (d: number, defCoef: number): number => {
-    // 2단계 Modifiers(원소 반응 · 차지 계수)를 방어 차감 전에 적용
-    let v = d * p.elementMult * (p.preDefenseMult ?? 1)
+    // 2단계 Modifiers(원소 반응 + 모든 데미지증가 배수)를 방어 차감 전에 적용
+    let v = d * p.elementMult * p.damageMult
     if (p.defense && !p.defense.ignore) {
       if (p.defense.kind === 'physical') v = v * (1 - 0.01 * p.defense.levelPenalty) - p.defense.def * defCoef
       else v = v - p.defense.def * defCoef * (1 + 0.01 * p.defense.levelPenalty)
     }
+    // 5·6단계: 스킬 계수 + 크리 (방어 뒤)
     v = (v * p.skillPercent) / 100
-    v = v * p.damageMult * p.critFactor
+    v = v * p.critFactor
     return clampFloor(v)
   }
   // max는 0.5, min은 0.6 계수 (기존 physicalVsMonster 규칙)
@@ -149,9 +151,8 @@ export interface CastDamageParams {
   elementMult: number
   defense?: LineDamageInput['defense']
   skillPercent: number
+  /** 데미지 증가 배수(콤보·버서크·차지 계수·위협·쉐파·엘앰프 등). 방어 앞 적용 */
   damageMult: number
-  /** 방어 차감 전 적용 배율(원소성 차지 계수 등). 기본 1 */
-  preDefenseMult?: number
   /** 크리 확률 (0~1). 크리는 평균배율이 아니라 확률 혼합으로 분포에 반영 */
   critProb: number
   /** 크리 시 데미지 배율 (예: 1.4). critProb>0일 때만 사용 */
@@ -171,7 +172,7 @@ export function computeCast(p: CastDamageParams): CastResult | null {
   const finalOf = (base: DamageRange, critFactor: number) =>
     lineFinalRange({
       base, elementMult: p.elementMult, defense: p.defense, skillPercent: p.skillPercent,
-      damageMult: p.damageMult, preDefenseMult: p.preDefenseMult, critFactor,
+      damageMult: p.damageMult, critFactor,
     })
   const critProb = Math.max(0, Math.min(1, p.critProb))
 
