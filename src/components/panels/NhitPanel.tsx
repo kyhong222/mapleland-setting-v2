@@ -21,7 +21,7 @@ import {
 import { JOBS } from '../../domain/jobs'
 import { getMonster } from '../../data/mobs'
 import { elementReaction } from '../../domain/monster'
-import { attackSkillsForJob, skillAttackAt, skillLineCount, comboFinalDamageP, COMBO_SKILLS } from '../../data/skills'
+import { attackSkillsForJob, skillAttackAt, skillLineCount, comboFinalDamageP, COMBO_SKILLS, findSkillById } from '../../data/skills'
 import { computeCast, computeNhit, computeDpm, baseElementMult, SKILL_MOTION } from '../../domain/skillCombat'
 import { attacksPerMinute } from '../../data/attackSpeed'
 import { chargeElementMult, chargeFromUi } from '../../domain/paladinCharge'
@@ -78,7 +78,14 @@ export default function NhitPanel() {
     const isMagic = att.kind === 'magic'
     if (!isMagic && !weaponType) return null
 
-    const effSkillPercent = att.skillPercent
+    // 차지 블로우(1211002): 어드밴스드 차지(1220010) 학습 시 계수를 어차 값(260~350%)으로 대체
+    let effSkillPercent = att.skillPercent
+    if (selectedSkill.id === 1211002) {
+      const advLv = activeBuffs['1220010'] ?? 0
+      const adv = advLv > 0 ? findSkillById(1220010) : undefined
+      const advAtt = adv ? skillAttackAt(adv, advLv) : null
+      if (advAtt) effSkillPercent = advAtt.skillPercent
+    }
     // 크리: 확률 혼합으로 분포에 반영(데미지범위·방컷 정확, DPM은 기대값으로 자동).
     // 확률·데미지는 특화버프(크리티컬 스로우/샷/펀치) + 샤프아이즈의 합연산 = effects.criticalP/criticalDamage.
     //  - 물리: 옛메 합연산 → 크리 시 타격당 +criticalDamage%p
