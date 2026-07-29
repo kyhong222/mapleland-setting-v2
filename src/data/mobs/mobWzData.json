@@ -4975,7 +4975,7 @@
     "eva": 37,
     "exp": 3350,
     "maxHP": 71000,
-    "elemAttr": "I2F3L3",
+    "elemAttr": "F3L3",
     "skills": {
       "attack1": {
         "type": 0,
@@ -4995,7 +4995,7 @@
     "eva": 38,
     "exp": 3600,
     "maxHP": 79000,
-    "elemAttr": "I2F3L3",
+    "elemAttr": "F3L3",
     "skills": {
       "attack1": {
         "type": 0,
@@ -5026,7 +5026,7 @@
     "eva": 39,
     "exp": 4500,
     "maxHP": 90000,
-    "elemAttr": "I2F3L3",
+    "elemAttr": "F3L3S3",
     "skills": {
       "attack1": {
         "type": 1,
@@ -5051,7 +5051,7 @@
     "eva": 40,
     "exp": 4960,
     "maxHP": 99000,
-    "elemAttr": "I2F3L3",
+    "elemAttr": "F3L3S3",
     "skills": {
       "attack1": {
         "type": 1,
@@ -5081,7 +5081,7 @@
     "eva": 41,
     "exp": 5750,
     "maxHP": 115000,
-    "elemAttr": "F2S3",
+    "elemAttr": "S3I3L3",
     "skills": {
       "attack1": {
         "type": 0,
@@ -5101,7 +5101,7 @@
     "eva": 43,
     "exp": 6150,
     "maxHP": 123000,
-    "elemAttr": "F2S3",
+    "elemAttr": "S3I3L3",
     "skills": {
       "attack1": {
         "type": 0,
@@ -5131,7 +5131,7 @@
     "eva": 45,
     "exp": 6670,
     "maxHP": 133000,
-    "elemAttr": "F2S3",
+    "elemAttr": "S3I3L3",
     "skills": {
       "attack1": {
         "type": 1,
@@ -5156,7 +5156,7 @@
     "eva": 47,
     "exp": 7060,
     "maxHP": 141000,
-    "elemAttr": "F2S3",
+    "elemAttr": "S3I3L3",
     "skills": {
       "attack1": {
         "type": 1,
