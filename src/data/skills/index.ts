@@ -87,10 +87,10 @@ const SUMMON_SKILLS = new Set(['이프리트', '엘퀴네스', '바하뮤트', '
  */
 const DAMAGE_BUFF_SKILLS = new Set([1111002, 1120003, 11111001, 11110005, 1320006])
 
-/** 공격 스킬 여부 (물리 damage 또는 마법 mad 보유; 차지/메디테이션/소환수/데미지버프 제외) */
+/** 공격 스킬 여부 (물리 damage 또는 마법 mad 보유; 차지/메디테이션/소환수/파이널어택/데미지버프 제외) */
 export function isAttackSkill(skill: IJobSkill): boolean {
   const name = skill.description?.name ?? ''
-  if (name.includes('차지') || name === '메디테이션' || SUMMON_SKILLS.has(name)) return false
+  if (name.includes('차지') || name.includes('파이널 어택') || name === '메디테이션' || SUMMON_SKILLS.has(name)) return false
   if (DAMAGE_BUFF_SKILLS.has(skill.id)) return false
   return skill.levelProperties.some((p) => p.mad !== undefined || p.damage !== undefined)
 }
