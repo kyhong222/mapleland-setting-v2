@@ -40,7 +40,9 @@ export function listScrollsForItem(item: ItemData): ScrollDef[] {
   const exclusive = SCROLLS.filter((s) => s.itemIds?.includes(item.id))
   if (exclusive.length > 0) return exclusive
   if (item.slot === 'weapon') {
-    return SCROLLS.filter((s) => item.weaponType != null && s.weaponType === item.weaponType)
+    // 메이플 무기 전용 주문서는 메이플 무기에만 노출(기본 무기 주문서와 함께)
+    const isMaple = (item.name ?? '').includes('메이플')
+    return SCROLLS.filter((s) => item.weaponType != null && s.weaponType === item.weaponType && (!s.maple || isMaple))
   }
   return SCROLLS.filter((s) => s.slot === item.slot)
 }

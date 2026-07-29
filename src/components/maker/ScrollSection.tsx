@@ -18,6 +18,7 @@ interface Props {
 /** 확률별 고정 주문서 아이콘 */
 const RATE_ICON: Record<ScrollRate, string> = {
   100: 'https://maplestory.io/api/gms/62/item/2044500/icon',
+  70: 'https://maplestory.io/api/gms/62/item/2044708/icon', // 메이플 무기 주문서(전용 아이콘 폴백)
   60: 'https://maplestory.io/api/gms/62/item/2044501/icon',
   10: 'https://maplestory.io/api/gms/62/item/2044502/icon',
 }

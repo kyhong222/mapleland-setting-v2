@@ -2097,5 +2097,213 @@
         }
       }
     ]
+  },
+  {
+    "key": "weapon:oneHandedSword::메이플 한손검 주문서",
+    "name": "메이플 한손검 주문서",
+    "weaponType": "oneHandedSword",
+    "maple": true,
+    "options": [
+      {
+        "rate": 70,
+        "effects": {
+          "pad": 2,
+          "STR": 1
+        },
+        "itemId": 2044708
+      }
+    ]
+  },
+  {
+    "key": "weapon:twoHandedSword::메이플 두손검 주문서",
+    "name": "메이플 두손검 주문서",
+    "weaponType": "twoHandedSword",
+    "maple": true,
+    "options": [
+      {
+        "rate": 70,
+        "effects": {
+          "pad": 2,
+          "STR": 1
+        },
+        "itemId": 2044708
+      }
+    ]
+  },
+  {
+    "key": "weapon:oneHandedAxe::메이플 한손도끼 주문서",
+    "name": "메이플 한손도끼 주문서",
+    "weaponType": "oneHandedAxe",
+    "maple": true,
+    "options": [
+      {
+        "rate": 70,
+        "effects": {
+          "pad": 2,
+          "STR": 1
+        },
+        "itemId": 2044708
+      }
+    ]
+  },
+  {
+    "key": "weapon:twoHandedAxe::메이플 두손도끼 주문서",
+    "name": "메이플 두손도끼 주문서",
+    "weaponType": "twoHandedAxe",
+    "maple": true,
+    "options": [
+      {
+        "rate": 70,
+        "effects": {
+          "pad": 2,
+          "STR": 1
+        },
+        "itemId": 2044708
+      }
+    ]
+  },
+  {
+    "key": "weapon:oneHandedMace::메이플 한손둔기 주문서",
+    "name": "메이플 한손둔기 주문서",
+    "weaponType": "oneHandedMace",
+    "maple": true,
+    "options": [
+      {
+        "rate": 70,
+        "effects": {
+          "pad": 2,
+          "STR": 1
+        },
+        "itemId": 2044708
+      }
+    ]
+  },
+  {
+    "key": "weapon:twoHandedMace::메이플 두손둔기 주문서",
+    "name": "메이플 두손둔기 주문서",
+    "weaponType": "twoHandedMace",
+    "maple": true,
+    "options": [
+      {
+        "rate": 70,
+        "effects": {
+          "pad": 2,
+          "STR": 1
+        },
+        "itemId": 2044708
+      }
+    ]
+  },
+  {
+    "key": "weapon:spear::메이플 창 주문서",
+    "name": "메이플 창 주문서",
+    "weaponType": "spear",
+    "maple": true,
+    "options": [
+      {
+        "rate": 70,
+        "effects": {
+          "pad": 2,
+          "STR": 1
+        },
+        "itemId": 2044708
+      }
+    ]
+  },
+  {
+    "key": "weapon:polearm::메이플 폴암 주문서",
+    "name": "메이플 폴암 주문서",
+    "weaponType": "polearm",
+    "maple": true,
+    "options": [
+      {
+        "rate": 70,
+        "effects": {
+          "pad": 2,
+          "STR": 1
+        },
+        "itemId": 2044708
+      }
+    ]
+  },
+  {
+    "key": "weapon:bow::메이플 활 주문서",
+    "name": "메이플 활 주문서",
+    "weaponType": "bow",
+    "maple": true,
+    "options": [
+      {
+        "rate": 70,
+        "effects": {
+          "pad": 2,
+          "DEX": 1
+        },
+        "itemId": 2044708
+      }
+    ]
+  },
+  {
+    "key": "weapon:crossbow::메이플 석궁 주문서",
+    "name": "메이플 석궁 주문서",
+    "weaponType": "crossbow",
+    "maple": true,
+    "options": [
+      {
+        "rate": 70,
+        "effects": {
+          "pad": 2,
+          "DEX": 1
+        },
+        "itemId": 2044708
+      }
+    ]
+  },
+  {
+    "key": "weapon:staff::메이플 스태프 주문서",
+    "name": "메이플 스태프 주문서",
+    "weaponType": "staff",
+    "maple": true,
+    "options": [
+      {
+        "rate": 70,
+        "effects": {
+          "mad": 2,
+          "INT": 1
+        },
+        "itemId": 2044708
+      }
+    ]
+  },
+  {
+    "key": "weapon:dagger::메이플 단검 주문서",
+    "name": "메이플 단검 주문서",
+    "weaponType": "dagger",
+    "maple": true,
+    "options": [
+      {
+        "rate": 70,
+        "effects": {
+          "pad": 2,
+          "LUK": 1
+        },
+        "itemId": 2044708
+      }
+    ]
+  },
+  {
+    "key": "weapon:claw::메이플 아대 주문서",
+    "name": "메이플 아대 주문서",
+    "weaponType": "claw",
+    "maple": true,
+    "options": [
+      {
+        "rate": 70,
+        "effects": {
+          "pad": 2,
+          "LUK": 1
+        },
+        "itemId": 2044708
+      }
+    ]
   }
 ]

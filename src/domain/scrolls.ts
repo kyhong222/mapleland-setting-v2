@@ -14,8 +14,8 @@ import { sumEffects } from './effects'
 import type { SlotId } from './equipSlots'
 import type { WeaponType } from './weapons'
 
-/** 표준 주문서 성공률 등급 */
-export type ScrollRate = 100 | 60 | 10
+/** 표준 주문서 성공률 등급 (70 = 메이플 무기 전용 주문서) */
+export type ScrollRate = 100 | 70 | 60 | 10
 
 export interface ScrollOption {
   rate: ScrollRate
@@ -36,7 +36,9 @@ export interface ScrollDef {
   weaponType?: WeaponType
   /** 특정 아이템 전용(예: 드래곤의 돌 → 혼테일의 목걸이). 커스텀 확장용 */
   itemIds?: number[]
-  /** 등급별 옵션 (rate 내림차순: 100, 60, 10 중 존재하는 것) */
+  /** 메이플 무기 전용 주문서 — 해당 weaponType 중 메이플 무기에만 노출(기본 주문서와 병행) */
+  maple?: boolean
+  /** 등급별 옵션 (rate 내림차순: 100, 70, 60, 10 중 존재하는 것) */
   options: ScrollOption[]
 }
 
