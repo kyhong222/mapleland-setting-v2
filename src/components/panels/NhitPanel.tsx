@@ -21,7 +21,7 @@ import {
 import { JOBS } from '../../domain/jobs'
 import { getMonster } from '../../data/mobs'
 import { elementReaction } from '../../domain/monster'
-import { attackSkillsForJob, skillAttackAt, skillLineCount, comboFinalDamageP, COMBO_SKILLS, findSkillById, chargeDamagePercent } from '../../data/skills'
+import { attackSkillsForJob, skillAttackAt, skillLineCount, comboFinalDamageP, COMBO_SKILLS, findSkillById, chargeCombinedCoef } from '../../data/skills'
 import { computeCast, computeNhit, computeDpm, baseElementMult, SKILL_MOTION } from '../../domain/skillCombat'
 import { attacksPerMinute } from '../../data/attackSpeed'
 import { chargeElementMult, chargeFromUi } from '../../domain/paladinCharge'
@@ -126,8 +126,8 @@ export default function NhitPanel() {
     const counterMult = COMA_PANIC.has(selectedSkill.id) && comboBonus > 0 ? MAX_COUNTER_MULT : 1
     // 쉐도우 파트너: 그림자가 스킬 데미지의 y% 추가타 → ×(1 + y/100) (마스터 ×1.5)
     const shadowMult = 1 + (effects.shadowPartnerP ?? 0) / 100
-    // 팔라딘 차지: 메인 차지의 데미지 계수(파이어 lv30 140% → ×1.4)를 곱연산. 속성배율과 별개
-    const chargeCoefMult = charge ? chargeDamagePercent(charge.main, charge.mainLevel) / 100 : 1
+    // 팔라딘 차지: 데미지 계수(파이어 lv30 140% → ×1.4)를 곱연산. 보조 썬더는 계수도 중첩 합산. 속성배율과 별개
+    const chargeCoefMult = charge ? chargeCombinedCoef(charge.main, charge.mainLevel, charge.thunderLevel) / 100 : 1
     // 방컷·DPM 미제공 스킬(패닉/코마/돌진)
     const noDpm = NO_DPM.has(selectedSkill.id)
     const damageMult = (isMagic ? magicAmpMultiplier(effects) : 1) * finalMult * threatenMult * counterMult * shadowMult * chargeCoefMult

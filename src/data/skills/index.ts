@@ -174,6 +174,17 @@ export function chargeDamagePercent(element: string, level: number): number {
   return sk ? skillNum(skillPropsAtLevel(sk, level), 'damage') : 0
 }
 
+/**
+ * 적용 차지 데미지 계수%(중첩 포함). 속성배율과 동일 구조로 보조 썬더를 합산.
+ *  단독: mainCoef / 중첩: mainCoef + (썬더Coef − 100) × 0.5
+ */
+export function chargeCombinedCoef(mainElement: string, mainLevel: number, thunderLevel: number | null): number {
+  const mc = chargeDamagePercent(mainElement, mainLevel)
+  if (thunderLevel == null) return mc
+  const tc = chargeDamagePercent('lightning', thunderLevel)
+  return mc + (tc - 100) * 0.5
+}
+
 /** 직업별 콤보/어드밴스드 콤보 skill id */
 export const COMBO_SKILLS: Partial<Record<string, { combo: number; adv: number }>> = {
   hero: { combo: 1111002, adv: 1120003 },
