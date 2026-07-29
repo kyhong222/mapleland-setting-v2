@@ -24,7 +24,7 @@ import { canUseBuff, buffEffectsAtLevel, defaultBuffLevel, effectiveMasterLevel 
 import type { Buff } from '../../domain/buff'
 import { maxEffects } from '../../domain/effects'
 import type { JobId } from '../../domain/jobs'
-import { comboFinalDamageP, COMBO_SKILLS, findSkillById, skillAttackAt } from '../../data/skills'
+import { comboFinalDamageP, COMBO_SKILLS, findSkillById, skillAttackAt, chargeDamagePercent } from '../../data/skills'
 import { CHARGE_LABEL, CHARGE_MASTER, CHARGE_ELEMENTS, chargeElementMult, chargeFromUi } from '../../domain/paladinCharge'
 import type { ChargeElement } from '../../domain/paladinCharge'
 import { DEFAULT_CHARGE } from '../../store/buildStore'
@@ -465,19 +465,24 @@ function ChargeSection() {
   const state = charge.mainOn ? chargeFromUi(charge) : null
   const monster = selectedMobId != null ? getMonster(selectedMobId) : undefined
   const appliedMult = state && monster ? chargeElementMult(state, monster.elemAttr) : null
+  // 각 차지의 데미지 계수%(damage). 적용 계수 = 메인 차지 계수(데미지에 곱연산)
+  const mainCoef = chargeDamagePercent(charge.mainElement, charge.mainLevel)
+  const subCoef = chargeDamagePercent('lightning', charge.subLevel)
   return (
     <>
       <Typography variant="caption" color="text.secondary" sx={{ display: 'block', mt: 0.5 }}>
         차지 (좌클릭 ON/OFF · 우클릭 편집)
-        {appliedMult != null && (
-          <Box component="span" sx={{ color: 'success.main', fontWeight: 700, ml: 0.5 }}>· 적용 속성배율 ×{appliedMult.toFixed(2)}</Box>
+        {charge.mainOn && (
+          <Box component="span" sx={{ color: 'success.main', fontWeight: 700, ml: 0.5 }}>
+            · 적용 계수 {mainCoef}%{appliedMult != null && ` · 속성배율 ×${appliedMult.toFixed(2)}`}
+          </Box>
         )}
       </Typography>
       <ChargeRow
         icon={CHARGE_ICON[charge.mainElement]}
         active={charge.mainOn}
         title={`메인 차지 [${CHARGE_LABEL[charge.mainElement]}]`}
-        caption={charge.mainOn ? `Lv.${charge.mainLevel} · 속성 부여` : '꺼짐'}
+        caption={charge.mainOn ? `Lv.${charge.mainLevel} · 계수 ${mainCoef}%` : '꺼짐'}
         onToggle={() => setCharge({ mainOn: !charge.mainOn })}
         onOpen={() => setDlg('main')}
       />
@@ -486,7 +491,7 @@ function ChargeSection() {
         active={charge.subOn && !mainIsThunder}
         disabled={mainIsThunder}
         title="보조 차지 [썬더]"
-        caption={mainIsThunder ? '비활성' : charge.subOn ? `Lv.${charge.subLevel} · 썬더 중첩` : '꺼짐'}
+        caption={mainIsThunder ? '비활성' : charge.subOn ? `Lv.${charge.subLevel} · 계수 ${subCoef}%` : '꺼짐'}
         onToggle={() => setCharge({ subOn: !charge.subOn })}
         onOpen={() => setDlg('sub')}
       />

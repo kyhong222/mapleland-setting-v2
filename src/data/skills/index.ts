@@ -164,6 +164,16 @@ export function comboFinalDamageP(comboId: number, comboLevel: number, advId: nu
   return Math.max(0, pct - 100)
 }
 
+/** 팔라딘 차지 원소 → 차지 스킬 id(검 대표) */
+const CHARGE_SKILL_ID: Record<string, number> = { fire: 1211003, ice: 1211005, lightning: 1211007, holy: 1221003 }
+
+/** 차지의 레벨별 데미지 계수%(damage 필드). 파이어 lv30=140, 아이스=110, 썬더=125, 홀리 lv20=150 */
+export function chargeDamagePercent(element: string, level: number): number {
+  const id = CHARGE_SKILL_ID[element]
+  const sk = id ? findSkillById(id) : undefined
+  return sk ? skillNum(skillPropsAtLevel(sk, level), 'damage') : 0
+}
+
 /** 직업별 콤보/어드밴스드 콤보 skill id */
 export const COMBO_SKILLS: Partial<Record<string, { combo: number; adv: number }>> = {
   hero: { combo: 1111002, adv: 1120003 },
