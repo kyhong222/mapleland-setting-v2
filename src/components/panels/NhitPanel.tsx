@@ -24,6 +24,8 @@ import { elementReaction } from '../../domain/monster'
 import { attackSkillsForJob, skillAttackAt, skillLineCount, comboFinalDamageP, COMBO_SKILLS } from '../../data/skills'
 import { computeCast, computeNhit, computeDpm, baseElementMult, SKILL_MOTION } from '../../domain/skillCombat'
 import { attacksPerMinute } from '../../data/attackSpeed'
+import { chargeElementMult, CHARGE_MASTER, CHARGE_LABEL, CHARGE_ELEMENTS } from '../../domain/paladinCharge'
+import type { ChargeElement } from '../../domain/paladinCharge'
 
 const skillIconSrc = (id: number) => `/skill-icons/${id}.png`
 const hideOnError = (e: SyntheticEvent<HTMLImageElement>) => { e.currentTarget.style.visibility = 'hidden' }
@@ -45,6 +47,11 @@ export default function NhitPanel() {
   const [skillLevel, setSkillLevel] = useState(1)
   const [booster, setBooster] = useState(false)
   const [magicBooster, setMagicBooster] = useState(false)
+  // 팔라딘 차지 (속성 부여)
+  const [chargeMain, setChargeMain] = useState<ChargeElement | ''>('')
+  const [chargeLevel, setChargeLevel] = useState(30)
+  const [thunderStack, setThunderStack] = useState(false)
+  const [thunderLevel, setThunderLevel] = useState(30)
 
   const { finalStats, effects } = aggregateBuild(baseStats, builts, buffEffects)
   const job = jobId ? JOBS[jobId] : null
@@ -71,9 +78,14 @@ export default function NhitPanel() {
     const critDmg = effects.criticalDamage ?? 0
     const effSkillPercent = att.skillPercent + (critP / 100) * critDmg
 
-    // 속성 반응
-    const reaction = elementReaction(monster.elemAttr, att.element)
-    const elementMult = baseElementMult(reaction)
+    // 속성 반응 — 팔라딘 차지 활성 시 차지 속성/레벨 배율로 대체(물리 한정)
+    const chargeActive = jobId === 'paladin' && chargeMain !== '' && !isMagic
+    const elementMult = chargeActive
+      ? chargeElementMult(
+          { main: chargeMain, mainLevel: chargeLevel, thunderLevel: thunderStack && chargeMain !== 'lightning' ? thunderLevel : null },
+          monster.elemAttr,
+        )
+      : baseElementMult(elementReaction(monster.elemAttr, att.element))
 
     // 방어
     const D = levelPenalty(monster.level, level)
@@ -171,6 +183,49 @@ export default function NhitPanel() {
             )}
           </Box>
 
+          {jobId === 'paladin' && (
+            <Box sx={{ display: 'flex', gap: 0.5, mb: 1, alignItems: 'center', flexWrap: 'wrap' }}>
+              <Typography variant="caption" color="text.secondary">차지</Typography>
+              <Select<ChargeElement | ''>
+                size="small" displayEmpty value={chargeMain}
+                onChange={(e) => {
+                  const v = e.target.value as ChargeElement | ''
+                  setChargeMain(v)
+                  if (v) setChargeLevel(CHARGE_MASTER[v])
+                }}
+                sx={{ fontSize: 12, minWidth: 88 }}
+              >
+                <MenuItem value=""><em>없음</em></MenuItem>
+                {CHARGE_ELEMENTS.map((el) => (
+                  <MenuItem key={el} value={el} sx={{ fontSize: 12 }}>{CHARGE_LABEL[el]}</MenuItem>
+                ))}
+              </Select>
+              {chargeMain && (
+                <TextField
+                  size="small" type="number" label="Lv" value={chargeLevel}
+                  onChange={(e) => setChargeLevel(Math.max(1, Math.min(CHARGE_MASTER[chargeMain], Number(e.target.value) || 1)))}
+                  slotProps={{ htmlInput: { style: { width: 40, textAlign: 'center' }, min: 1, max: CHARGE_MASTER[chargeMain] } }}
+                />
+              )}
+              {chargeMain && chargeMain !== 'lightning' && (
+                <>
+                  <FormControlLabel
+                    sx={{ m: 0 }}
+                    control={<Switch size="small" checked={thunderStack} onChange={(e) => setThunderStack(e.target.checked)} />}
+                    label={<Typography variant="caption">썬더중첩</Typography>}
+                  />
+                  {thunderStack && (
+                    <TextField
+                      size="small" type="number" label="썬더Lv" value={thunderLevel}
+                      onChange={(e) => setThunderLevel(Math.max(1, Math.min(30, Number(e.target.value) || 1)))}
+                      slotProps={{ htmlInput: { style: { width: 40, textAlign: 'center' }, min: 1, max: 30 } }}
+                    />
+                  )}
+                </>
+              )}
+            </Box>
+          )}
+
           {result === null ? (
             <Typography variant="body2" color="text.disabled">스킬을 선택하세요.</Typography>
           ) : result.unsupported ? (
@@ -215,7 +270,7 @@ export default function NhitPanel() {
             </>
           )}
           <Typography variant="caption" color="text.disabled" sx={{ display: 'block', mt: 1 }}>
-            ※ 크리·속성·방어·특화버프(콤보/버서크)·위협 반영. 팔라딘 차지는 추후. (* = 고유 모션)
+            ※ 크리·속성·방어·특화버프(콤보/버서크)·위협·팔라딘 차지 반영. (* = 고유 모션)
           </Typography>
         </>
       )}
