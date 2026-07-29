@@ -4271,5 +4271,73 @@
       {}
     ],
     "icon": "/buff-icons/1220010.png"
+  },
+  {
+    "id": "11111007",
+    "type": "skill",
+    "name": "소울 차지",
+    "scope": "personal",
+    "mode": "passive",
+    "masterLevel": 20,
+    "jobs": [
+      "soulMaster"
+    ],
+    "effectsByLevel": [
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {}
+    ],
+    "icon": "/buff-icons/11111007.png"
+  },
+  {
+    "id": "12101005",
+    "type": "skill",
+    "name": "엘리멘탈 리셋",
+    "scope": "personal",
+    "mode": "passive",
+    "masterLevel": 20,
+    "jobs": [
+      "flameWizard"
+    ],
+    "effectsByLevel": [
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {}
+    ],
+    "icon": "/buff-icons/12101005.png"
   }
 ]

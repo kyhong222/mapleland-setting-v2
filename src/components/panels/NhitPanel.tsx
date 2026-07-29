@@ -156,9 +156,10 @@ export default function NhitPanel() {
 
     const hp = monster.maxHP ?? 0
     const isBoss = !!monster.isBoss
-    // 부스터(개인) + 윈드부스터(파티)는 중첩되는 추가 공속상승. 마법은 부스터 활성 여부만 사용
+    // 물리: 무기 부스터(attackSpeedBoost) + 윈드부스터(windBoostStep) 중첩 공속상승
     const boosterSteps = (effects.attackSpeedBoost ?? 0) + (effects.windBoostStep ?? 0)
-    const magicBooster = boosterSteps > 0
+    // 마법: 매직부스터(castSpeedBoost) 또는 윈드부스터 활성 여부만 사용
+    const magicBooster = ((effects.castSpeedBoost ?? 0) + (effects.windBoostStep ?? 0)) > 0
     const effStep = Math.max(2, Math.min(9, weaponSpeedStep - boosterSteps))
     const apm = attacksPerMinute(selectedSkill.id, weaponSpeedStep, boosterSteps, att.kind, magicBooster)
     const dpm = apm != null ? computeDpm(cast.dist, apm) : null

@@ -19,7 +19,6 @@ const MACC_HELP = (
   <>
     <InfoTitle>마법명중률</InfoTitle>
     <Formula>⌊총 INT ÷ 10⌋ + ⌊총 LUK ÷ 10⌋</Formula>
-    <InfoWarn>현재 장비의 마법명중 옵션은 반영되지 않습니다(미모델).</InfoWarn>
   </>
 )
 

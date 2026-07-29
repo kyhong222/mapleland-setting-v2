@@ -2703,64 +2703,64 @@
     ],
     "effectsByLevel": [
       {
-        "attackSpeedBoost": 1
+        "castSpeedBoost": 1
       },
       {
-        "attackSpeedBoost": 1
+        "castSpeedBoost": 1
       },
       {
-        "attackSpeedBoost": 1
+        "castSpeedBoost": 1
       },
       {
-        "attackSpeedBoost": 1
+        "castSpeedBoost": 1
       },
       {
-        "attackSpeedBoost": 1
+        "castSpeedBoost": 1
       },
       {
-        "attackSpeedBoost": 1
+        "castSpeedBoost": 1
       },
       {
-        "attackSpeedBoost": 1
+        "castSpeedBoost": 1
       },
       {
-        "attackSpeedBoost": 1
+        "castSpeedBoost": 1
       },
       {
-        "attackSpeedBoost": 1
+        "castSpeedBoost": 1
       },
       {
-        "attackSpeedBoost": 1
+        "castSpeedBoost": 1
       },
       {
-        "attackSpeedBoost": 2
+        "castSpeedBoost": 2
       },
       {
-        "attackSpeedBoost": 2
+        "castSpeedBoost": 2
       },
       {
-        "attackSpeedBoost": 2
+        "castSpeedBoost": 2
       },
       {
-        "attackSpeedBoost": 2
+        "castSpeedBoost": 2
       },
       {
-        "attackSpeedBoost": 2
+        "castSpeedBoost": 2
       },
       {
-        "attackSpeedBoost": 2
+        "castSpeedBoost": 2
       },
       {
-        "attackSpeedBoost": 2
+        "castSpeedBoost": 2
       },
       {
-        "attackSpeedBoost": 2
+        "castSpeedBoost": 2
       },
       {
-        "attackSpeedBoost": 2
+        "castSpeedBoost": 2
       },
       {
-        "attackSpeedBoost": 2
+        "castSpeedBoost": 2
       }
     ],
     "icon": "/buff-icons/2111005.png"
@@ -2777,64 +2777,64 @@
     ],
     "effectsByLevel": [
       {
-        "attackSpeedBoost": 1
+        "castSpeedBoost": 1
       },
       {
-        "attackSpeedBoost": 1
+        "castSpeedBoost": 1
       },
       {
-        "attackSpeedBoost": 1
+        "castSpeedBoost": 1
       },
       {
-        "attackSpeedBoost": 1
+        "castSpeedBoost": 1
       },
       {
-        "attackSpeedBoost": 1
+        "castSpeedBoost": 1
       },
       {
-        "attackSpeedBoost": 1
+        "castSpeedBoost": 1
       },
       {
-        "attackSpeedBoost": 1
+        "castSpeedBoost": 1
       },
       {
-        "attackSpeedBoost": 1
+        "castSpeedBoost": 1
       },
       {
-        "attackSpeedBoost": 1
+        "castSpeedBoost": 1
       },
       {
-        "attackSpeedBoost": 1
+        "castSpeedBoost": 1
       },
       {
-        "attackSpeedBoost": 2
+        "castSpeedBoost": 2
       },
       {
-        "attackSpeedBoost": 2
+        "castSpeedBoost": 2
       },
       {
-        "attackSpeedBoost": 2
+        "castSpeedBoost": 2
       },
       {
-        "attackSpeedBoost": 2
+        "castSpeedBoost": 2
       },
       {
-        "attackSpeedBoost": 2
+        "castSpeedBoost": 2
       },
       {
-        "attackSpeedBoost": 2
+        "castSpeedBoost": 2
       },
       {
-        "attackSpeedBoost": 2
+        "castSpeedBoost": 2
       },
       {
-        "attackSpeedBoost": 2
+        "castSpeedBoost": 2
       },
       {
-        "attackSpeedBoost": 2
+        "castSpeedBoost": 2
       },
       {
-        "attackSpeedBoost": 2
+        "castSpeedBoost": 2
       }
     ],
     "icon": "/buff-icons/2211005.png"
@@ -2925,64 +2925,64 @@
     ],
     "effectsByLevel": [
       {
-        "attackSpeedBoost": 1
+        "castSpeedBoost": 1
       },
       {
-        "attackSpeedBoost": 1
+        "castSpeedBoost": 1
       },
       {
-        "attackSpeedBoost": 1
+        "castSpeedBoost": 1
       },
       {
-        "attackSpeedBoost": 1
+        "castSpeedBoost": 1
       },
       {
-        "attackSpeedBoost": 1
+        "castSpeedBoost": 1
       },
       {
-        "attackSpeedBoost": 1
+        "castSpeedBoost": 1
       },
       {
-        "attackSpeedBoost": 1
+        "castSpeedBoost": 1
       },
       {
-        "attackSpeedBoost": 1
+        "castSpeedBoost": 1
       },
       {
-        "attackSpeedBoost": 1
+        "castSpeedBoost": 1
       },
       {
-        "attackSpeedBoost": 1
+        "castSpeedBoost": 1
       },
       {
-        "attackSpeedBoost": 2
+        "castSpeedBoost": 2
       },
       {
-        "attackSpeedBoost": 2
+        "castSpeedBoost": 2
       },
       {
-        "attackSpeedBoost": 2
+        "castSpeedBoost": 2
       },
       {
-        "attackSpeedBoost": 2
+        "castSpeedBoost": 2
       },
       {
-        "attackSpeedBoost": 2
+        "castSpeedBoost": 2
       },
       {
-        "attackSpeedBoost": 2
+        "castSpeedBoost": 2
       },
       {
-        "attackSpeedBoost": 2
+        "castSpeedBoost": 2
       },
       {
-        "attackSpeedBoost": 2
+        "castSpeedBoost": 2
       },
       {
-        "attackSpeedBoost": 2
+        "castSpeedBoost": 2
       },
       {
-        "attackSpeedBoost": 2
+        "castSpeedBoost": 2
       }
     ],
     "icon": "/buff-icons/12101004.png"
@@ -3214,7 +3214,7 @@
     "type": "skill",
     "name": "인빈서블",
     "scope": "personal",
-    "mode": "active",
+    "mode": "passive",
     "masterLevel": 20,
     "jobs": [
       "bishop"
