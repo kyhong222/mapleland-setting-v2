@@ -79,8 +79,9 @@ export default function NhitPanel() {
       ? { kind: 'magic' as const, def: monster.MDDamage ?? 0, levelPenalty: D }
       : { kind: 'physical' as const, def: monster.PDDamage ?? 0, levelPenalty: D }
 
-    // 배율: 마법은 엘앰프, 물리는 1(자기버프 추후)
-    const damageMult = isMagic ? magicAmpMultiplier(effects) : 1
+    // 배율: 최종데미지증가%(콤보/버서크 등 특화버프) × 마법 엘앰프
+    const finalMult = 1 + (effects.finalDamageP ?? 0) / 100
+    const damageMult = (isMagic ? magicAmpMultiplier(effects) : 1) * finalMult
 
     const dist = computeCastDist({
       weaponType: weaponType ?? 'oneHandedSword',
@@ -186,7 +187,7 @@ export default function NhitPanel() {
             </Box>
           )}
           <Typography variant="caption" color="text.disabled" sx={{ display: 'block', mt: 1 }}>
-            ※ 크리·속성·방어 반영. 콤보/차지/위협 등 자기버프 배율은 추가 예정. (* = 고유 모션)
+            ※ 크리·속성·방어·특화버프(콤보/버서크 등) 반영. 차지·위협은 추후. (* = 고유 모션)
           </Typography>
         </>
       )}

@@ -45,6 +45,7 @@ export type EffectId =
   | 'criticalP'
   | 'criticalDamage'
   | 'amplifiedMagicDamageP'
+  | 'finalDamageP'
   | 'coldDamageP'
   | 'fireDamageP'
   | 'lightningDamageP'
@@ -132,6 +133,7 @@ export const EFFECTS: Record<EffectId, EffectDef> = {
   criticalP: { id: 'criticalP', label: '크리티컬%', category: 'offense', unit: 'percent', appliesToItem: false },
   criticalDamage: { id: 'criticalDamage', label: '크리티컬데미지', category: 'offense', unit: 'percent', appliesToItem: false },
   amplifiedMagicDamageP: { id: 'amplifiedMagicDamageP', label: '마법데미지증가%', category: 'offense', unit: 'percent', appliesToItem: false },
+  finalDamageP: { id: 'finalDamageP', label: '최종데미지증가%', category: 'offense', unit: 'percent', appliesToItem: false },
   coldDamageP: { id: 'coldDamageP', label: '냉기속성추가피해%', category: 'offense', unit: 'percent', appliesToItem: true },
   fireDamageP: { id: 'fireDamageP', label: '화염속성추가피해%', category: 'offense', unit: 'percent', appliesToItem: true },
   lightningDamageP: { id: 'lightningDamageP', label: '번개속성추가피해%', category: 'offense', unit: 'percent', appliesToItem: true },

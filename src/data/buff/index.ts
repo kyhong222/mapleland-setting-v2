@@ -19,6 +19,7 @@ import enhancementParty from './enhancement/party.json'
 import enhancementPersonal from './enhancement/personal.json'
 import commonSkills from './common/skills.json'
 import jobSkills from './jobSpecific/skills.json'
+import damageBuffs from './jobSpecific/damageBuffs.json'
 
 /** 도핑(아이템 타입) */
 export const DOPING_ITEMS = enhancementItems as unknown as Buff[]
@@ -28,8 +29,8 @@ export const COMMON_BUFFS = commonSkills as unknown as Buff[]
 export const PARTY_BUFFS = enhancementParty as unknown as Buff[]
 /** 개인특화 액티브 버프 (아이언바디/포커스/인레이지 등) */
 export const PERSONAL_BUFFS = enhancementPersonal as unknown as Buff[]
-/** 직업 특화 패시브 */
-export const JOB_BUFFS = jobSkills as unknown as Buff[]
+/** 직업 특화 패시브 (+ 자가 데미지증가 버프: 콤보/버서크) */
+export const JOB_BUFFS = [...jobSkills, ...damageBuffs] as unknown as Buff[]
 
 /** 전체 버프 목록 */
 export const ALL_BUFFS: Buff[] = [...COMMON_BUFFS, ...PARTY_BUFFS, ...PERSONAL_BUFFS, ...DOPING_ITEMS, ...JOB_BUFFS]

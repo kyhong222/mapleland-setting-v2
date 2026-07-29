@@ -1,0 +1,143 @@
+[
+  {
+    "id": "1320006",
+    "type": "skill",
+    "name": "버서크",
+    "scope": "personal",
+    "mode": "passive",
+    "masterLevel": 30,
+    "jobs": [
+      "darkKnight"
+    ],
+    "effectsByLevel": [
+      {
+        "finalDamageP": 32
+      },
+      {
+        "finalDamageP": 34
+      },
+      {
+        "finalDamageP": 36
+      },
+      {
+        "finalDamageP": 38
+      },
+      {
+        "finalDamageP": 40
+      },
+      {
+        "finalDamageP": 42
+      },
+      {
+        "finalDamageP": 44
+      },
+      {
+        "finalDamageP": 46
+      },
+      {
+        "finalDamageP": 48
+      },
+      {
+        "finalDamageP": 50
+      },
+      {
+        "finalDamageP": 52
+      },
+      {
+        "finalDamageP": 54
+      },
+      {
+        "finalDamageP": 56
+      },
+      {
+        "finalDamageP": 58
+      },
+      {
+        "finalDamageP": 60
+      },
+      {
+        "finalDamageP": 62
+      },
+      {
+        "finalDamageP": 64
+      },
+      {
+        "finalDamageP": 66
+      },
+      {
+        "finalDamageP": 68
+      },
+      {
+        "finalDamageP": 70
+      },
+      {
+        "finalDamageP": 73
+      },
+      {
+        "finalDamageP": 76
+      },
+      {
+        "finalDamageP": 79
+      },
+      {
+        "finalDamageP": 82
+      },
+      {
+        "finalDamageP": 85
+      },
+      {
+        "finalDamageP": 88
+      },
+      {
+        "finalDamageP": 91
+      },
+      {
+        "finalDamageP": 94
+      },
+      {
+        "finalDamageP": 97
+      },
+      {
+        "finalDamageP": 100
+      }
+    ],
+    "icon": "/skill-icons/1320006.png",
+    "note": "HP 조건 무시, 데미지 배율만 (docs §4)"
+  },
+  {
+    "id": "1111002",
+    "type": "skill",
+    "name": "콤보 어택(풀콤보)",
+    "scope": "personal",
+    "mode": "passive",
+    "masterLevel": 1,
+    "jobs": [
+      "hero"
+    ],
+    "effectsByLevel": [
+      {
+        "finalDamageP": 90
+      }
+    ],
+    "icon": "/skill-icons/1111002.png",
+    "note": "어드밴스드 콤보 마스터·최대카운터 가정 ×1.9 (docs §4)"
+  },
+  {
+    "id": "11111001",
+    "type": "skill",
+    "name": "콤보 어택(풀콤보)",
+    "scope": "personal",
+    "mode": "passive",
+    "masterLevel": 1,
+    "jobs": [
+      "soulMaster"
+    ],
+    "effectsByLevel": [
+      {
+        "finalDamageP": 80
+      }
+    ],
+    "icon": "/skill-icons/11111001.png",
+    "note": "어드밴스드 콤보 마스터·최대카운터 가정 ×1.8 (docs §4)"
+  }
+]
