@@ -227,7 +227,7 @@ function BuffDialog({ buff, kind, onClose }: { buff: Buff; kind: BuffKind; onClo
           <Typography variant="caption" color="text.disabled">레벨 조정 없음</Typography>
         )}
         <Typography variant="body2" color="success.main" sx={{ mt: 1 }}>
-          {formatEffects(eff) || '—'}
+          {buff.id === '1220010' ? advChargeCaption(draftLevel) : (formatEffects(eff) || '—')}
         </Typography>
       </DialogContent>
       <DialogActions>
