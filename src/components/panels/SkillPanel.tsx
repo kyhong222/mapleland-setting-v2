@@ -25,9 +25,11 @@ import type { Buff } from '../../domain/buff'
 import { maxEffects } from '../../domain/effects'
 import type { JobId } from '../../domain/jobs'
 import { comboFinalDamageP, COMBO_SKILLS, findSkillById, skillAttackAt } from '../../data/skills'
-import { CHARGE_LABEL, CHARGE_MASTER, CHARGE_ELEMENTS } from '../../domain/paladinCharge'
+import { CHARGE_LABEL, CHARGE_MASTER, CHARGE_ELEMENTS, chargeElementMult, chargeFromUi } from '../../domain/paladinCharge'
 import type { ChargeElement } from '../../domain/paladinCharge'
 import { DEFAULT_CHARGE } from '../../store/buildStore'
+import { useMonsterStore } from '../../store/monsterStore'
+import { getMonster } from '../../data/mobs'
 import { formatEffects } from '../../lib/effectFormat'
 
 /** 레벨 조정 대상: 토글버프(영메·메용/직업패시브) / 적용버프(도핑·개인·파티) / 마스터리 */
@@ -456,11 +458,21 @@ function ChargeSubDialog({ level, onApply, onClose }: { level: number; onApply: 
 function ChargeSection() {
   const charge = useBuildStore((s) => s.charge) ?? DEFAULT_CHARGE
   const setCharge = useBuildStore((s) => s.setCharge)
+  const selectedMobId = useMonsterStore((s) => s.selectedId)
   const [dlg, setDlg] = useState<'main' | 'sub' | null>(null)
   const mainIsThunder = charge.mainElement === 'lightning'
+  // 선택 몬스터 기준 현재 적용 속성배율(계수)
+  const state = charge.mainOn ? chargeFromUi(charge) : null
+  const monster = selectedMobId != null ? getMonster(selectedMobId) : undefined
+  const appliedMult = state && monster ? chargeElementMult(state, monster.elemAttr) : null
   return (
     <>
-      <Typography variant="caption" color="text.secondary" sx={{ display: 'block', mt: 0.5 }}>차지 (좌클릭 ON/OFF · 우클릭 편집)</Typography>
+      <Typography variant="caption" color="text.secondary" sx={{ display: 'block', mt: 0.5 }}>
+        차지 (좌클릭 ON/OFF · 우클릭 편집)
+        {appliedMult != null && (
+          <Box component="span" sx={{ color: 'success.main', fontWeight: 700, ml: 0.5 }}>· 적용 속성배율 ×{appliedMult.toFixed(2)}</Box>
+        )}
+      </Typography>
       <ChargeRow
         icon={CHARGE_ICON[charge.mainElement]}
         active={charge.mainOn}
