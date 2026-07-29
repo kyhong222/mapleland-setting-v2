@@ -3188,5 +3188,1064 @@
     "weaponTypes": [
       "gun"
     ]
+  },
+  {
+    "id": "11100000",
+    "type": "skill",
+    "name": "소드 마스터리",
+    "scope": "personal",
+    "mode": "passive",
+    "masterLevel": 20,
+    "jobs": [
+      "soulMaster"
+    ],
+    "effectsByLevel": [
+      {
+        "mastery": 5,
+        "acc": 1
+      },
+      {
+        "mastery": 5,
+        "acc": 2
+      },
+      {
+        "mastery": 10,
+        "acc": 3
+      },
+      {
+        "mastery": 10,
+        "acc": 4
+      },
+      {
+        "mastery": 15,
+        "acc": 5
+      },
+      {
+        "mastery": 15,
+        "acc": 6
+      },
+      {
+        "mastery": 20,
+        "acc": 7
+      },
+      {
+        "mastery": 20,
+        "acc": 8
+      },
+      {
+        "mastery": 25,
+        "acc": 9
+      },
+      {
+        "mastery": 25,
+        "acc": 10
+      },
+      {
+        "mastery": 30,
+        "acc": 11
+      },
+      {
+        "mastery": 30,
+        "acc": 12
+      },
+      {
+        "mastery": 35,
+        "acc": 13
+      },
+      {
+        "mastery": 35,
+        "acc": 14
+      },
+      {
+        "mastery": 40,
+        "acc": 15
+      },
+      {
+        "mastery": 40,
+        "acc": 16
+      },
+      {
+        "mastery": 45,
+        "acc": 17
+      },
+      {
+        "mastery": 45,
+        "acc": 18
+      },
+      {
+        "mastery": 50,
+        "acc": 19
+      },
+      {
+        "mastery": 50,
+        "acc": 20
+      }
+    ],
+    "icon": "/buff-icons/11100000.png",
+    "weaponTypes": [
+      "oneHandedSword"
+    ]
+  },
+  {
+    "id": "12110001",
+    "type": "skill",
+    "name": "엘리먼트 엠플리피케이션",
+    "scope": "personal",
+    "mode": "passive",
+    "masterLevel": 20,
+    "jobs": [
+      "flameWizard"
+    ],
+    "effectsByLevel": [
+      {
+        "amplifiedMagicDamageP": 2
+      },
+      {
+        "amplifiedMagicDamageP": 4
+      },
+      {
+        "amplifiedMagicDamageP": 6
+      },
+      {
+        "amplifiedMagicDamageP": 8
+      },
+      {
+        "amplifiedMagicDamageP": 10
+      },
+      {
+        "amplifiedMagicDamageP": 12
+      },
+      {
+        "amplifiedMagicDamageP": 14
+      },
+      {
+        "amplifiedMagicDamageP": 16
+      },
+      {
+        "amplifiedMagicDamageP": 18
+      },
+      {
+        "amplifiedMagicDamageP": 20
+      },
+      {
+        "amplifiedMagicDamageP": 21
+      },
+      {
+        "amplifiedMagicDamageP": 22
+      },
+      {
+        "amplifiedMagicDamageP": 23
+      },
+      {
+        "amplifiedMagicDamageP": 24
+      },
+      {
+        "amplifiedMagicDamageP": 25
+      },
+      {
+        "amplifiedMagicDamageP": 26
+      },
+      {
+        "amplifiedMagicDamageP": 27
+      },
+      {
+        "amplifiedMagicDamageP": 28
+      },
+      {
+        "amplifiedMagicDamageP": 29
+      },
+      {
+        "amplifiedMagicDamageP": 30
+      }
+    ],
+    "icon": "/buff-icons/12110001.png"
+  },
+  {
+    "id": "12110000",
+    "type": "skill",
+    "name": "엘리먼트 레지스턴스",
+    "scope": "personal",
+    "mode": "passive",
+    "masterLevel": 20,
+    "jobs": [
+      "flameWizard"
+    ],
+    "effectsByLevel": [
+      {
+        "allRes": 12
+      },
+      {
+        "allRes": 14
+      },
+      {
+        "allRes": 16
+      },
+      {
+        "allRes": 18
+      },
+      {
+        "allRes": 20
+      },
+      {
+        "allRes": 22
+      },
+      {
+        "allRes": 24
+      },
+      {
+        "allRes": 26
+      },
+      {
+        "allRes": 28
+      },
+      {
+        "allRes": 30
+      },
+      {
+        "allRes": 31
+      },
+      {
+        "allRes": 32
+      },
+      {
+        "allRes": 33
+      },
+      {
+        "allRes": 34
+      },
+      {
+        "allRes": 35
+      },
+      {
+        "allRes": 36
+      },
+      {
+        "allRes": 37
+      },
+      {
+        "allRes": 38
+      },
+      {
+        "allRes": 39
+      },
+      {
+        "allRes": 40
+      }
+    ],
+    "icon": "/buff-icons/12110000.png"
+  },
+  {
+    "id": "13000000",
+    "type": "skill",
+    "name": "크리티컬 샷",
+    "scope": "personal",
+    "mode": "passive",
+    "masterLevel": 20,
+    "jobs": [
+      "windBreaker"
+    ],
+    "effectsByLevel": [
+      {
+        "criticalP": 12,
+        "criticalDamage": 5
+      },
+      {
+        "criticalP": 14,
+        "criticalDamage": 10
+      },
+      {
+        "criticalP": 16,
+        "criticalDamage": 15
+      },
+      {
+        "criticalP": 18,
+        "criticalDamage": 20
+      },
+      {
+        "criticalP": 20,
+        "criticalDamage": 25
+      },
+      {
+        "criticalP": 22,
+        "criticalDamage": 30
+      },
+      {
+        "criticalP": 24,
+        "criticalDamage": 35
+      },
+      {
+        "criticalP": 26,
+        "criticalDamage": 40
+      },
+      {
+        "criticalP": 28,
+        "criticalDamage": 45
+      },
+      {
+        "criticalP": 30,
+        "criticalDamage": 50
+      },
+      {
+        "criticalP": 31,
+        "criticalDamage": 55
+      },
+      {
+        "criticalP": 32,
+        "criticalDamage": 60
+      },
+      {
+        "criticalP": 33,
+        "criticalDamage": 65
+      },
+      {
+        "criticalP": 34,
+        "criticalDamage": 70
+      },
+      {
+        "criticalP": 35,
+        "criticalDamage": 75
+      },
+      {
+        "criticalP": 36,
+        "criticalDamage": 80
+      },
+      {
+        "criticalP": 37,
+        "criticalDamage": 85
+      },
+      {
+        "criticalP": 38,
+        "criticalDamage": 90
+      },
+      {
+        "criticalP": 39,
+        "criticalDamage": 95
+      },
+      {
+        "criticalP": 40,
+        "criticalDamage": 100
+      }
+    ],
+    "icon": "/buff-icons/13000000.png"
+  },
+  {
+    "id": "13100000",
+    "type": "skill",
+    "name": "보우 마스터리",
+    "scope": "personal",
+    "mode": "passive",
+    "masterLevel": 20,
+    "jobs": [
+      "windBreaker"
+    ],
+    "effectsByLevel": [
+      {
+        "mastery": 5,
+        "acc": 1
+      },
+      {
+        "mastery": 5,
+        "acc": 2
+      },
+      {
+        "mastery": 10,
+        "acc": 3
+      },
+      {
+        "mastery": 10,
+        "acc": 4
+      },
+      {
+        "mastery": 15,
+        "acc": 5
+      },
+      {
+        "mastery": 15,
+        "acc": 6
+      },
+      {
+        "mastery": 20,
+        "acc": 7
+      },
+      {
+        "mastery": 20,
+        "acc": 8
+      },
+      {
+        "mastery": 25,
+        "acc": 9
+      },
+      {
+        "mastery": 25,
+        "acc": 10
+      },
+      {
+        "mastery": 30,
+        "acc": 11
+      },
+      {
+        "mastery": 30,
+        "acc": 12
+      },
+      {
+        "mastery": 35,
+        "acc": 13
+      },
+      {
+        "mastery": 35,
+        "acc": 14
+      },
+      {
+        "mastery": 40,
+        "acc": 15
+      },
+      {
+        "mastery": 40,
+        "acc": 16
+      },
+      {
+        "mastery": 45,
+        "acc": 17
+      },
+      {
+        "mastery": 45,
+        "acc": 18
+      },
+      {
+        "mastery": 50,
+        "acc": 19
+      },
+      {
+        "mastery": 50,
+        "acc": 20
+      }
+    ],
+    "icon": "/buff-icons/13100000.png",
+    "weaponTypes": [
+      "bow"
+    ]
+  },
+  {
+    "id": "13110003",
+    "type": "skill",
+    "name": "보우 엑스퍼트",
+    "scope": "personal",
+    "mode": "passive",
+    "masterLevel": 20,
+    "jobs": [
+      "windBreaker"
+    ],
+    "effectsByLevel": [
+      {
+        "mastery": 5,
+        "pad": 0
+      },
+      {
+        "mastery": 5,
+        "pad": 1
+      },
+      {
+        "mastery": 5,
+        "pad": 1
+      },
+      {
+        "mastery": 5,
+        "pad": 1
+      },
+      {
+        "mastery": 5,
+        "pad": 2
+      },
+      {
+        "mastery": 10,
+        "pad": 2
+      },
+      {
+        "mastery": 10,
+        "pad": 2
+      },
+      {
+        "mastery": 10,
+        "pad": 3
+      },
+      {
+        "mastery": 10,
+        "pad": 3
+      },
+      {
+        "mastery": 10,
+        "pad": 3
+      },
+      {
+        "mastery": 15,
+        "pad": 4
+      },
+      {
+        "mastery": 15,
+        "pad": 4
+      },
+      {
+        "mastery": 15,
+        "pad": 4
+      },
+      {
+        "mastery": 15,
+        "pad": 5
+      },
+      {
+        "mastery": 15,
+        "pad": 5
+      },
+      {
+        "mastery": 20,
+        "pad": 5
+      },
+      {
+        "mastery": 20,
+        "pad": 6
+      },
+      {
+        "mastery": 20,
+        "pad": 6
+      },
+      {
+        "mastery": 20,
+        "pad": 6
+      },
+      {
+        "mastery": 20,
+        "pad": 7
+      }
+    ],
+    "icon": "/buff-icons/13110003.png",
+    "weaponTypes": [
+      "bow"
+    ]
+  },
+  {
+    "id": "14100000",
+    "type": "skill",
+    "name": "자벨린 마스터리",
+    "scope": "personal",
+    "mode": "passive",
+    "masterLevel": 20,
+    "jobs": [
+      "nightWalker"
+    ],
+    "effectsByLevel": [
+      {
+        "mastery": 5,
+        "acc": 1
+      },
+      {
+        "mastery": 5,
+        "acc": 2
+      },
+      {
+        "mastery": 10,
+        "acc": 3
+      },
+      {
+        "mastery": 10,
+        "acc": 4
+      },
+      {
+        "mastery": 15,
+        "acc": 5
+      },
+      {
+        "mastery": 15,
+        "acc": 6
+      },
+      {
+        "mastery": 20,
+        "acc": 7
+      },
+      {
+        "mastery": 20,
+        "acc": 8
+      },
+      {
+        "mastery": 25,
+        "acc": 9
+      },
+      {
+        "mastery": 25,
+        "acc": 10
+      },
+      {
+        "mastery": 30,
+        "acc": 11
+      },
+      {
+        "mastery": 30,
+        "acc": 12
+      },
+      {
+        "mastery": 35,
+        "acc": 13
+      },
+      {
+        "mastery": 35,
+        "acc": 14
+      },
+      {
+        "mastery": 40,
+        "acc": 15
+      },
+      {
+        "mastery": 40,
+        "acc": 16
+      },
+      {
+        "mastery": 45,
+        "acc": 17
+      },
+      {
+        "mastery": 45,
+        "acc": 18
+      },
+      {
+        "mastery": 50,
+        "acc": 19
+      },
+      {
+        "mastery": 50,
+        "acc": 20
+      }
+    ],
+    "icon": "/buff-icons/14100000.png",
+    "weaponTypes": [
+      "claw"
+    ]
+  },
+  {
+    "id": "14100001",
+    "type": "skill",
+    "name": "크리티컬 스로우",
+    "scope": "personal",
+    "mode": "passive",
+    "masterLevel": 30,
+    "jobs": [
+      "nightWalker"
+    ],
+    "effectsByLevel": [
+      {
+        "criticalP": 21,
+        "criticalDamage": 13
+      },
+      {
+        "criticalP": 22,
+        "criticalDamage": 16
+      },
+      {
+        "criticalP": 23,
+        "criticalDamage": 19
+      },
+      {
+        "criticalP": 24,
+        "criticalDamage": 22
+      },
+      {
+        "criticalP": 25,
+        "criticalDamage": 25
+      },
+      {
+        "criticalP": 26,
+        "criticalDamage": 28
+      },
+      {
+        "criticalP": 27,
+        "criticalDamage": 31
+      },
+      {
+        "criticalP": 28,
+        "criticalDamage": 34
+      },
+      {
+        "criticalP": 29,
+        "criticalDamage": 37
+      },
+      {
+        "criticalP": 30,
+        "criticalDamage": 40
+      },
+      {
+        "criticalP": 31,
+        "criticalDamage": 43
+      },
+      {
+        "criticalP": 32,
+        "criticalDamage": 46
+      },
+      {
+        "criticalP": 33,
+        "criticalDamage": 49
+      },
+      {
+        "criticalP": 34,
+        "criticalDamage": 52
+      },
+      {
+        "criticalP": 35,
+        "criticalDamage": 55
+      },
+      {
+        "criticalP": 36,
+        "criticalDamage": 58
+      },
+      {
+        "criticalP": 37,
+        "criticalDamage": 61
+      },
+      {
+        "criticalP": 38,
+        "criticalDamage": 64
+      },
+      {
+        "criticalP": 39,
+        "criticalDamage": 67
+      },
+      {
+        "criticalP": 40,
+        "criticalDamage": 70
+      },
+      {
+        "criticalP": 41,
+        "criticalDamage": 73
+      },
+      {
+        "criticalP": 42,
+        "criticalDamage": 76
+      },
+      {
+        "criticalP": 43,
+        "criticalDamage": 79
+      },
+      {
+        "criticalP": 44,
+        "criticalDamage": 82
+      },
+      {
+        "criticalP": 45,
+        "criticalDamage": 85
+      },
+      {
+        "criticalP": 46,
+        "criticalDamage": 88
+      },
+      {
+        "criticalP": 47,
+        "criticalDamage": 91
+      },
+      {
+        "criticalP": 48,
+        "criticalDamage": 94
+      },
+      {
+        "criticalP": 49,
+        "criticalDamage": 97
+      },
+      {
+        "criticalP": 50,
+        "criticalDamage": 100
+      }
+    ],
+    "icon": "/buff-icons/14100001.png"
+  },
+  {
+    "id": "14111000",
+    "type": "skill",
+    "name": "쉐도우 파트너",
+    "scope": "personal",
+    "mode": "passive",
+    "masterLevel": 30,
+    "jobs": [
+      "nightWalker"
+    ],
+    "effectsByLevel": [
+      {
+        "shadowPartnerP": 21
+      },
+      {
+        "shadowPartnerP": 21
+      },
+      {
+        "shadowPartnerP": 21
+      },
+      {
+        "shadowPartnerP": 21
+      },
+      {
+        "shadowPartnerP": 21
+      },
+      {
+        "shadowPartnerP": 21
+      },
+      {
+        "shadowPartnerP": 21
+      },
+      {
+        "shadowPartnerP": 22
+      },
+      {
+        "shadowPartnerP": 23
+      },
+      {
+        "shadowPartnerP": 24
+      },
+      {
+        "shadowPartnerP": 25
+      },
+      {
+        "shadowPartnerP": 26
+      },
+      {
+        "shadowPartnerP": 27
+      },
+      {
+        "shadowPartnerP": 28
+      },
+      {
+        "shadowPartnerP": 29
+      },
+      {
+        "shadowPartnerP": 30
+      },
+      {
+        "shadowPartnerP": 31
+      },
+      {
+        "shadowPartnerP": 32
+      },
+      {
+        "shadowPartnerP": 33
+      },
+      {
+        "shadowPartnerP": 34
+      },
+      {
+        "shadowPartnerP": 35
+      },
+      {
+        "shadowPartnerP": 36
+      },
+      {
+        "shadowPartnerP": 37
+      },
+      {
+        "shadowPartnerP": 38
+      },
+      {
+        "shadowPartnerP": 40
+      },
+      {
+        "shadowPartnerP": 42
+      },
+      {
+        "shadowPartnerP": 44
+      },
+      {
+        "shadowPartnerP": 46
+      },
+      {
+        "shadowPartnerP": 48
+      },
+      {
+        "shadowPartnerP": 50
+      }
+    ],
+    "icon": "/buff-icons/14111000.png"
+  },
+  {
+    "id": "15100001",
+    "type": "skill",
+    "name": "너클 마스터리",
+    "scope": "personal",
+    "mode": "passive",
+    "masterLevel": 20,
+    "jobs": [
+      "striker"
+    ],
+    "effectsByLevel": [
+      {
+        "mastery": 5,
+        "acc": 1
+      },
+      {
+        "mastery": 5,
+        "acc": 2
+      },
+      {
+        "mastery": 10,
+        "acc": 3
+      },
+      {
+        "mastery": 10,
+        "acc": 4
+      },
+      {
+        "mastery": 15,
+        "acc": 5
+      },
+      {
+        "mastery": 15,
+        "acc": 6
+      },
+      {
+        "mastery": 20,
+        "acc": 7
+      },
+      {
+        "mastery": 20,
+        "acc": 8
+      },
+      {
+        "mastery": 25,
+        "acc": 9
+      },
+      {
+        "mastery": 25,
+        "acc": 10
+      },
+      {
+        "mastery": 30,
+        "acc": 11
+      },
+      {
+        "mastery": 30,
+        "acc": 12
+      },
+      {
+        "mastery": 35,
+        "acc": 13
+      },
+      {
+        "mastery": 35,
+        "acc": 14
+      },
+      {
+        "mastery": 40,
+        "acc": 15
+      },
+      {
+        "mastery": 40,
+        "acc": 16
+      },
+      {
+        "mastery": 45,
+        "acc": 17
+      },
+      {
+        "mastery": 45,
+        "acc": 18
+      },
+      {
+        "mastery": 50,
+        "acc": 19
+      },
+      {
+        "mastery": 50,
+        "acc": 20
+      }
+    ],
+    "icon": "/buff-icons/15100001.png",
+    "weaponTypes": [
+      "knuckle"
+    ]
+  },
+  {
+    "id": "15110000",
+    "type": "skill",
+    "name": "크리티컬 펀치",
+    "scope": "personal",
+    "mode": "passive",
+    "masterLevel": 20,
+    "jobs": [
+      "striker"
+    ],
+    "effectsByLevel": [
+      {
+        "criticalP": 12,
+        "criticalDamage": 5
+      },
+      {
+        "criticalP": 14,
+        "criticalDamage": 10
+      },
+      {
+        "criticalP": 16,
+        "criticalDamage": 15
+      },
+      {
+        "criticalP": 18,
+        "criticalDamage": 20
+      },
+      {
+        "criticalP": 20,
+        "criticalDamage": 25
+      },
+      {
+        "criticalP": 22,
+        "criticalDamage": 30
+      },
+      {
+        "criticalP": 24,
+        "criticalDamage": 35
+      },
+      {
+        "criticalP": 26,
+        "criticalDamage": 40
+      },
+      {
+        "criticalP": 28,
+        "criticalDamage": 45
+      },
+      {
+        "criticalP": 30,
+        "criticalDamage": 50
+      },
+      {
+        "criticalP": 31,
+        "criticalDamage": 55
+      },
+      {
+        "criticalP": 32,
+        "criticalDamage": 60
+      },
+      {
+        "criticalP": 33,
+        "criticalDamage": 65
+      },
+      {
+        "criticalP": 34,
+        "criticalDamage": 70
+      },
+      {
+        "criticalP": 35,
+        "criticalDamage": 75
+      },
+      {
+        "criticalP": 36,
+        "criticalDamage": 80
+      },
+      {
+        "criticalP": 37,
+        "criticalDamage": 85
+      },
+      {
+        "criticalP": 38,
+        "criticalDamage": 90
+      },
+      {
+        "criticalP": 39,
+        "criticalDamage": 95
+      },
+      {
+        "criticalP": 40,
+        "criticalDamage": 100
+      }
+    ],
+    "icon": "/buff-icons/15110000.png"
   }
 ]

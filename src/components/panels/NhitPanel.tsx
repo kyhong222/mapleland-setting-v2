@@ -42,17 +42,6 @@ const RUSH = new Set([1121006, 1221007, 1321003])
 const NO_DPM = new Set([...COMA_PANIC, ...RUSH])
 /** 최대 콤보 카운터(5~10) 소모 시 카운터 뎀증 배율 (docs §4) */
 const MAX_COUNTER_MULT = 2.5
-
-/**
- * 내재 크리티컬 (옛메 합연산: 타격당 +bonus%p, 확률만큼). 샤프아이즈와 확률·데미지 합연산.
- *  - 궁수(보마/신궁): 40% / +100%p, 표도(나이트로드): 50% / +100%p
- *  - 그 외 물리직업: 내재크리 없음(샤프아이즈만)
- */
-const INNATE_CRIT: Record<string, { chance: number; bonus: number }> = {
-  nightLord: { chance: 50, bonus: 100 },
-  bowmaster: { chance: 40, bonus: 100 },
-  marksman: { chance: 40, bonus: 100 },
-}
 const rng = (r: { min: number; max: number }) => `${Math.round(r.min).toLocaleString()} ~ ${Math.round(r.max).toLocaleString()}`
 
 export default function NhitPanel() {
@@ -95,19 +84,17 @@ export default function NhitPanel() {
     if (!isMagic && !weaponType) return null
 
     const effSkillPercent = att.skillPercent
-    // 크리: 확률 혼합으로 분포에 반영(데미지범위·방컷 정확, DPM은 기대값으로 자동)
-    //  - 물리: 옛메 합연산 → 크리 시 타격당 +critBonus%p (내재크리 100 + 샤프아이즈 criticalDamage)
-    //  - 마법: 곱연산 → ×(1 + (criticalDamage−100)/100)  (내재크리 없음, 샤프아이즈만)
-    const innate = !isMagic && jobId ? INNATE_CRIT[jobId] : undefined
-    const seCritP = effects.criticalP ?? 0
-    const seCritDmg = effects.criticalDamage ?? 0
-    const critChance = (innate?.chance ?? 0) + seCritP
+    // 크리: 확률 혼합으로 분포에 반영(데미지범위·방컷 정확, DPM은 기대값으로 자동).
+    // 확률·데미지는 특화버프(크리티컬 스로우/샷/펀치) + 샤프아이즈의 합연산 = effects.criticalP/criticalDamage.
+    //  - 물리: 옛메 합연산 → 크리 시 타격당 +criticalDamage%p
+    //  - 마법: 곱연산 → ×(1 + (criticalDamage−100)/100)  (마법사는 내재크리 없이 샤프아이즈만)
+    const critChance = effects.criticalP ?? 0
+    const critDmgTotal = effects.criticalDamage ?? 0
     let critMult = 1
     if (isMagic) {
-      critMult = seCritDmg > 100 ? 1 + (seCritDmg - 100) / 100 : 1
+      critMult = critDmgTotal > 100 ? 1 + (critDmgTotal - 100) / 100 : 1
     } else {
-      const critBonus = (innate?.bonus ?? 0) + seCritDmg // %p
-      critMult = critBonus > 0 && effSkillPercent > 0 ? (effSkillPercent + critBonus) / effSkillPercent : 1
+      critMult = critDmgTotal > 0 && effSkillPercent > 0 ? (effSkillPercent + critDmgTotal) / effSkillPercent : 1
     }
     const critProb = critChance > 0 && critMult > 1 ? critChance / 100 : 0
 
