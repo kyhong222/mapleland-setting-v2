@@ -83,11 +83,12 @@ export default function NhitPanel() {
     const isMagic = att.kind === 'magic'
     if (!isMagic && !weaponType) return null
 
-    // 크리 기대배율 (docs §6): f = 1 + 크리확률 × (크리데미지−100)/100
-    // 샤프아이즈 criticalDamage=140 → 크리 시 ×1.4(추가 40%). 곱연산으로 분리 적용
+    // 크리: 평균배율이 아니라 확률 혼합으로 분포에 반영(데미지범위·방컷 정확, DPM은 기대값으로 자동)
+    // 샤프아이즈 criticalDamage=140 → 크리 시 ×1.4. 크리데미지 없으면(≤100) 크리 무효
     const critP = effects.criticalP ?? 0
     const critDmg = effects.criticalDamage ?? 0
-    const critFactor = critP > 0 && critDmg > 100 ? 1 + (critP / 100) * ((critDmg - 100) / 100) : 1
+    const critProb = critDmg > 100 ? critP / 100 : 0
+    const critMult = critDmg > 100 ? critDmg / 100 : 1
     const effSkillPercent = att.skillPercent
 
     // 속성 반응 — 팔라딘 차지 활성 시 차지 속성/레벨 배율로 대체(물리 한정)
@@ -136,7 +137,8 @@ export default function NhitPanel() {
       defense,
       skillPercent: effSkillPercent,
       damageMult,
-      critFactor,
+      critProb,
+      critMult,
     })
     if (!cast) return { unsupported: true as const }
 

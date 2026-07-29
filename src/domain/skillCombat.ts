@@ -147,7 +147,10 @@ export interface CastDamageParams {
   defense?: LineDamageInput['defense']
   skillPercent: number
   damageMult: number
-  critFactor: number
+  /** 크리 확률 (0~1). 크리는 평균배율이 아니라 확률 혼합으로 분포에 반영 */
+  critProb: number
+  /** 크리 시 데미지 배율 (예: 1.4). critProb>0일 때만 사용 */
+  critMult: number
 }
 
 export interface CastResult {
@@ -160,16 +163,37 @@ export interface CastResult {
 
 /** 시전(1회) 데미지 분포 + 범위. 미지원 스킬이면 null */
 export function computeCast(p: CastDamageParams): CastResult | null {
-  const finalOf = (base: DamageRange) =>
+  const finalOf = (base: DamageRange, critFactor: number) =>
     lineFinalRange({
       base, elementMult: p.elementMult, defense: p.defense, skillPercent: p.skillPercent,
-      damageMult: p.damageMult, critFactor: p.critFactor,
+      damageMult: p.damageMult, critFactor,
     })
+  const critProb = Math.max(0, Math.min(1, p.critProb))
+
+  /**
+   * 한 성분(base 범위)을 크리 확률 혼합으로 전개.
+   * 논크리(×1)와 크리(×critMult)를 각각 파이프라인에 통과시켜 분포 성분으로 만든다.
+   * (평균배율로 뭉개지 않으므로 데미지 범위=논크리최소~크리최대, 방컷=혼합분포)
+   */
+  const critParts = (base: DamageRange, weight: number) => {
+    const nc = finalOf(base, 1)
+    const parts = [{ weight: weight * (1 - critProb), dist: uniformDist(nc.min, nc.max, stepFor(nc.min, nc.max)) }]
+    let min = nc.min
+    let max = nc.max
+    if (critProb > 0) {
+      const cr = finalOf(base, p.critMult)
+      parts.push({ weight: weight * critProb, dist: uniformDist(cr.min, cr.max, stepFor(cr.min, cr.max)) })
+      min = Math.min(min, cr.min)
+      max = Math.max(max, cr.max)
+    }
+    return { parts: parts.filter((x) => x.weight > 0), min, max }
+  }
 
   // 마법: 모션 무관 단일 라인
   if (p.kind === 'magic') {
-    const fr = finalOf(calcMagic(p.magic ?? 0, p.int ?? 0, p.spellAtk ?? 0, p.mastery ?? 1))
-    return { dist: uniformDist(fr.min, fr.max, stepFor(fr.min, fr.max)), totalRange: fr, lineRanges: [fr] }
+    const mix = critParts(calcMagic(p.magic ?? 0, p.int ?? 0, p.spellAtk ?? 0, p.mastery ?? 1), 1)
+    const fr = { min: mix.min, max: mix.max }
+    return { dist: mixtureDist(mix.parts), totalRange: fr, lineRanges: [fr] }
   }
 
   const lines = skillMotionLines(p.skillId, p.weaponType, p.attackCount)
@@ -177,12 +201,17 @@ export function computeCast(p: CastDamageParams): CastResult | null {
 
   const lineRanges: DamageRange[] = []
   const lineDists: Dist[] = lines.map((comps) => {
-    const frs = comps.map(({ weight, mult }) => ({
-      weight,
-      fr: finalOf(physRange(p.primary ?? 0, p.secondary ?? 0, mult, p.watk ?? 0, p.mastery ?? 1)),
-    }))
-    lineRanges.push({ min: Math.min(...frs.map((x) => x.fr.min)), max: Math.max(...frs.map((x) => x.fr.max)) })
-    return mixtureDist(frs.map((x) => ({ weight: x.weight, dist: uniformDist(x.fr.min, x.fr.max, stepFor(x.fr.min, x.fr.max)) })))
+    const parts: { weight: number; dist: Dist }[] = []
+    let lmin = Infinity
+    let lmax = -Infinity
+    for (const { weight, mult } of comps) {
+      const mix = critParts(physRange(p.primary ?? 0, p.secondary ?? 0, mult, p.watk ?? 0, p.mastery ?? 1), weight)
+      parts.push(...mix.parts)
+      lmin = Math.min(lmin, mix.min)
+      lmax = Math.max(lmax, mix.max)
+    }
+    lineRanges.push({ min: lmin, max: lmax })
+    return mixtureDist(parts)
   })
 
   const dist = lineDists.reduce((acc, d) => convolve(acc, d))
