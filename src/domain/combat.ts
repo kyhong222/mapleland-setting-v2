@@ -7,7 +7,8 @@
  *  - 회피치: 모든 직업 computeDetailStats().eva
  *  - 명중치: 마법사=마법명중(floor(INT/10)+floor(LUK/10)), 그 외=물리명중(detail.acc)
  *
- * 페이크 등 추가 회피확률(effects.addEvadeP)은 독립 판정으로 회피확률에 합성한다.
+ * 페이크 등 추가 회피확률(effects.addEvadeP)·블로킹(effects.blockRate)은
+ * 각각 독립 판정으로 회피확률에 합성한다.
  */
 
 import type { EffectMap } from './effects'
@@ -107,7 +108,8 @@ export function computeVsMonster(
   const detail = computeDetailStats(jobId, finalStats, effects)
   const acc = isMagician ? magicAccuracy(finalStats) : detail.acc
   const eva = detail.eva
-  const addEvadeP = effects.addEvadeP ?? 0
+  // 페이크(addEvadeP)·블로킹(blockRate)을 독립 회피확률로 합성
+  const addEvadeP = (1 - (1 - (effects.addEvadeP ?? 0) / 100) * (1 - (effects.blockRate ?? 0) / 100)) * 100
   const monEva = monster.eva ?? 0
   const monAcc = monster.acc ?? 0
   return {
