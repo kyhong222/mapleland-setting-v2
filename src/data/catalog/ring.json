@@ -1,0 +1,11 @@
+[
+  {
+    "id": 1112670,
+    "name": "메이플 링",
+    "slot": "ring",
+    "effects": { "STR": 1, "DEX": 1, "INT": 1, "LUK": 1 },
+    "reqLevel": 10,
+    "iconUrl": "https://maplestory.io/api/KMS/384/item/1112670/icon",
+    "tuc": 0
+  }
+]

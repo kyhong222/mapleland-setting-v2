@@ -23,6 +23,7 @@ import gloves from './catalog/gloves.json'
 import cape from './catalog/cape.json'
 import shield from './catalog/shield.json'
 import pendant from './catalog/pendant.json'
+import ring from './catalog/ring.json'
 import medal from './catalog/medal.json'
 import belt from './catalog/belt.json'
 import petAcc from './catalog/petAcc.json'
@@ -45,6 +46,7 @@ const CATALOG_FILES = [
   cape,
   shield,
   pendant,
+  ring,
   medal,
   belt,
   petAcc,
