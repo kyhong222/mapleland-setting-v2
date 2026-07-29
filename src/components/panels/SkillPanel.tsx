@@ -22,6 +22,8 @@ import { COMMON_BUFFS, PARTY_BUFFS, PERSONAL_BUFFS, DOPING_ITEMS, JOB_BUFFS } fr
 import { canUseBuff, buffEffectsAtLevel, defaultBuffLevel, effectiveMasterLevel } from '../../domain/buff'
 import type { Buff } from '../../domain/buff'
 import { maxEffects } from '../../domain/effects'
+import type { JobId } from '../../domain/jobs'
+import { comboFinalDamageP, COMBO_SKILLS } from '../../data/skills'
 import { formatEffects } from '../../lib/effectFormat'
 
 /** 레벨 조정 대상: 토글버프(영메·메용/직업패시브) / 적용버프(도핑·개인·파티) / 마스터리 */
@@ -218,20 +220,39 @@ function BuffRow({ buff, onOpen }: { buff: Buff; onOpen: (b: Buff) => void }) {
   const remembered = useBuildStore((s) => s.buffLevels[buff.id])
   const toggleBuff = useBuildStore((s) => s.toggleBuff)
   const jobId = useBuildStore((s) => s.jobId)
-  const active = level !== undefined
-  const shownLevel = Math.min(active ? level : remembered ?? defaultBuffLevel(buff, jobId), effectiveMasterLevel(buff, jobId))
+  const activeBuffs = useBuildStore((s) => s.activeBuffs)
+  // 선행 버프(requires)가 off면 이 버프도 off로 취급(표시)
+  const requires = buff.type === 'skill' ? buff.requires : undefined
+  const reqActive = requires ? activeBuffs[requires] !== undefined : true
+  const active = level !== undefined && reqActive
+  const shownLevel = Math.min(active ? (level as number) : remembered ?? defaultBuffLevel(buff, jobId), effectiveMasterLevel(buff, jobId))
   const eff = buffEffectsAtLevel(buff, shownLevel)
+  const comboText = comboEffectText(buff, activeBuffs, jobId)
   return (
     <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5, py: 0.25 }}>
       <BuffIcon buff={buff} active={active} highlightActive onClick={() => toggleBuff(buff.id)} onContextMenu={(e) => { e.preventDefault(); onOpen(buff) }} />
       <Box sx={{ flex: 1, minWidth: 0 }}>
         <BuffName buff={buff} level={shownLevel} />
         <Typography variant="caption" color={active ? 'success.main' : 'text.disabled'} noWrap sx={{ display: 'block' }}>
-          {formatEffects(eff) || '—'}
+          {comboText ?? (formatEffects(eff) || '—')}
         </Typography>
       </Box>
     </Box>
   )
+}
+
+/** 콤보 어택 계열 버프의 효과 표기 ("데미지 ×n배 증가"). 그 외 null */
+function comboEffectText(buff: Buff, activeBuffs: Record<string, number>, jobId: JobId | null): string | null {
+  const cs = jobId ? COMBO_SKILLS[jobId] : undefined
+  if (!cs) return null
+  const cl = activeBuffs[String(cs.combo)] ?? 0
+  const al = activeBuffs[String(cs.adv)] ?? 0
+  if (buff.id === String(cs.combo)) {
+    const mult = 1 + comboFinalDamageP(cs.combo, cl, cs.adv, al) / 100
+    return `데미지 ×${mult.toFixed(2)} 증가`
+  }
+  if (buff.id === String(cs.adv)) return '최대 콤보 10 카운터'
+  return null
 }
 
 /** 무기 마스터리/엑스퍼트 행 (장착 무기 자동 적용 · 아이콘 클릭 시 레벨 모달) */

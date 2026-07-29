@@ -59,6 +59,8 @@ export interface SkillBuff extends BuffBase {
    * effectsByLevel[i]가 각 변형(예: 영웅의 메아리 모험가/시그너스)의 효과.
    */
   variants?: string[]
+  /** 선행 버프 id — 이 버프가 off면 본 버프도 off로 취급(표시/효과). 예: 어드밴스드콤보 → 콤보어택 */
+  requires?: string
 }
 
 export type Buff = ItemBuff | SkillBuff

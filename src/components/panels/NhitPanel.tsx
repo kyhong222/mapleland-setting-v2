@@ -22,12 +22,13 @@ import { JOBS } from '../../domain/jobs'
 import { getMonster } from '../../data/mobs'
 import { elementReaction } from '../../domain/monster'
 import { attackSkillsForJob, skillAttackAt, skillLineCount, comboFinalDamageP, COMBO_SKILLS } from '../../data/skills'
-import { computeCastDist, computeNhit, computeDpm, baseElementMult, SKILL_MOTION } from '../../domain/skillCombat'
+import { computeCast, computeNhit, computeDpm, baseElementMult, SKILL_MOTION } from '../../domain/skillCombat'
 import { attacksPerMinute } from '../../data/attackSpeed'
 
 const skillIconSrc = (id: number) => `/skill-icons/${id}.png`
 const hideOnError = (e: SyntheticEvent<HTMLImageElement>) => { e.currentTarget.style.visibility = 'hidden' }
 const pct = (n: number) => `${(n * 100).toFixed(1)}%`
+const rng = (r: { min: number; max: number }) => `${Math.round(r.min).toLocaleString()} ~ ${Math.round(r.max).toLocaleString()}`
 
 export default function NhitPanel() {
   const jobId = useBuildStore((s) => s.jobId)
@@ -89,7 +90,7 @@ export default function NhitPanel() {
     const finalMult = 1 + ((effects.finalDamageP ?? 0) + comboBonus) / 100
     const damageMult = (isMagic ? magicAmpMultiplier(effects) : 1) * finalMult
 
-    const dist = computeCastDist({
+    const cast = computeCast({
       weaponType: weaponType ?? 'oneHandedSword',
       skillId: selectedSkill.id,
       attackCount: skillLineCount(selectedSkill, skillLevel),
@@ -107,21 +108,30 @@ export default function NhitPanel() {
       damageMult,
       critFactor: 1,
     })
-    if (!dist) return { unsupported: true as const }
+    if (!cast) return { unsupported: true as const }
 
     const hp = monster.maxHP ?? 0
     const isBoss = !!monster.isBoss
-    if (isBoss) {
-      const apm = attacksPerMinute(selectedSkill.id, weaponSpeedStep, booster ? 2 : 0, att.kind, magicBooster)
-      const dpm = apm != null ? computeDpm(dist, apm) : null
-      const killSec = dpm && dpm > 0 && hp > 0 ? hp / (dpm / 60) : null
-      return { isBoss: true as const, apm, dpm, killSec, hp }
+    const apm = attacksPerMinute(selectedSkill.id, weaponSpeedStep, booster ? 2 : 0, att.kind, magicBooster)
+    const dpm = apm != null ? computeDpm(cast.dist, apm) : null
+    const killSec = dpm && dpm > 0 && hp > 0 ? hp / (dpm / 60) : null
+    return {
+      unsupported: false as const,
+      isBoss,
+      hp,
+      lines: cast.lineRanges.length,
+      lineRange: {
+        min: Math.min(...cast.lineRanges.map((r) => r.min)),
+        max: Math.max(...cast.lineRanges.map((r) => r.max)),
+      },
+      totalRange: cast.totalRange,
+      nhit: isBoss ? null : computeNhit(cast.dist, hp, 10),
+      apm, dpm, killSec, isMagic,
     }
-    return { isBoss: false as const, nhit: computeNhit(dist, hp, 10), hp }
   })()
 
   return (
-    <CollapsiblePanel id="nhit" title="N방컷 / DPM">
+    <CollapsiblePanel id="nhit" title="데미지 계산">
       {!jobId ? (
         <Typography variant="body2" color="text.disabled">직업을 선택하세요.</Typography>
       ) : !monster ? (
@@ -161,36 +171,46 @@ export default function NhitPanel() {
 
           {result === null ? (
             <Typography variant="body2" color="text.disabled">스킬을 선택하세요.</Typography>
-          ) : 'unsupported' in result ? (
+          ) : result.unsupported ? (
             <Typography variant="body2" color="warning.main">이 스킬은 아직 지원하지 않습니다.</Typography>
-          ) : result.isBoss ? (
-            <Box>
-              <Typography variant="caption" sx={{ fontWeight: 700, display: 'block', mb: 0.5 }}>보스 — DPM</Typography>
-              <FormControlLabel control={<Switch size="small" checked={booster} onChange={(e) => setBooster(e.target.checked)} />} label={<Typography variant="body2">부스터(공속+2)</Typography>} />
+          ) : (
+            <>
+              {/* 데미지 범위 */}
+              <Typography variant="caption" sx={{ fontWeight: 700, display: 'block' }}>데미지 범위</Typography>
+              {result.lines > 1 && <Row label={`1회 타격 (${result.lines}타)`} value={rng(result.lineRange)} />}
+              <Row label={result.lines > 1 ? '총 데미지' : '데미지'} value={rng(result.totalRange)} strong />
+
+              {/* 방컷 확률 (비보스) */}
+              {result.nhit && (
+                <>
+                  <Divider sx={{ my: 0.75 }} />
+                  <Typography variant="caption" sx={{ fontWeight: 700, display: 'block', mb: 0.25 }}>
+                    방컷 확률 (HP {result.hp.toLocaleString()})
+                  </Typography>
+                  <Box sx={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 0.25 }}>
+                    {result.nhit.exact.map((p, i) => (p >= 0.0005 ? <Row key={i} label={`${i + 1}방`} value={pct(p)} /> : null))}
+                    {result.nhit.over >= 0.0005 && <Row label="11방+" value={pct(result.nhit.over)} />}
+                  </Box>
+                  <Row label="기대 처치 타수" value={`${result.nhit.meanHits.toFixed(2)}방`} strong />
+                </>
+              )}
+
+              {/* DPM */}
+              <Divider sx={{ my: 0.75 }} />
+              <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                <Typography variant="caption" sx={{ fontWeight: 700 }}>DPM</Typography>
+                <FormControlLabel sx={{ m: 0 }} control={<Switch size="small" checked={result.isMagic ? magicBooster : booster} onChange={(e) => (result.isMagic ? setMagicBooster : setBooster)(e.target.checked)} />} label={<Typography variant="caption">{result.isMagic ? '매직부스터' : '부스터(+2)'}</Typography>} />
+              </Box>
               {result.dpm != null ? (
                 <>
                   <Row label="DPM" value={Math.round(result.dpm).toLocaleString()} strong />
                   <Row label="분당 공격횟수" value={`${result.apm}회`} />
-                  {result.killSec != null && <Row label="처치 소요(참고)" value={`${result.killSec.toFixed(1)}초`} />}
+                  {result.isBoss && result.killSec != null && <Row label="처치 소요(참고)" value={`${result.killSec.toFixed(1)}초`} />}
                 </>
               ) : (
-                <Typography variant="body2" color="text.disabled" sx={{ mt: 0.5 }}>이 스킬의 공속 데이터가 없습니다.</Typography>
+                <Typography variant="body2" color="text.disabled">공속 데이터가 없습니다.</Typography>
               )}
-            </Box>
-          ) : (
-            <Box>
-              <Typography variant="caption" sx={{ fontWeight: 700, display: 'block', mb: 0.5 }}>
-                방컷 확률 (HP {result.hp.toLocaleString()})
-              </Typography>
-              <Box sx={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 0.25 }}>
-                {result.nhit.exact.map((p, i) =>
-                  p >= 0.0005 ? <Row key={i} label={`${i + 1}방`} value={pct(p)} /> : null,
-                )}
-                {result.nhit.over >= 0.0005 && <Row label="11방+" value={pct(result.nhit.over)} />}
-              </Box>
-              <Divider sx={{ my: 0.5 }} />
-              <Row label="기대 처치 타수" value={`${result.nhit.meanHits.toFixed(2)}방`} strong />
-            </Box>
+            </>
           )}
           <Typography variant="caption" color="text.disabled" sx={{ display: 'block', mt: 1 }}>
             ※ 크리·속성·방어·특화버프(콤보/버서크 등) 반영. 차지·위협은 추후. (* = 고유 모션)

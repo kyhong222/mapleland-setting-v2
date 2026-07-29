@@ -150,34 +150,48 @@ export interface CastDamageParams {
   critFactor: number
 }
 
-/** 시전(1회) 데미지 분포. 미지원 스킬이면 null */
-export function computeCastDist(p: CastDamageParams): Dist | null {
-  // 마법: 모션 무관 단일 라인
-  if (p.kind === 'magic') {
-    const base = calcMagic(p.magic ?? 0, p.int ?? 0, p.spellAtk ?? 0, p.mastery ?? 1)
-    const fr = lineFinalRange({
+export interface CastResult {
+  dist: Dist
+  /** 시전 전체(모든 라인 합) 데미지 범위 */
+  totalRange: DamageRange
+  /** 라인별 데미지 범위 */
+  lineRanges: DamageRange[]
+}
+
+/** 시전(1회) 데미지 분포 + 범위. 미지원 스킬이면 null */
+export function computeCast(p: CastDamageParams): CastResult | null {
+  const finalOf = (base: DamageRange) =>
+    lineFinalRange({
       base, elementMult: p.elementMult, defense: p.defense, skillPercent: p.skillPercent,
       damageMult: p.damageMult, critFactor: p.critFactor,
     })
-    return uniformDist(fr.min, fr.max, stepFor(fr.min, fr.max))
+
+  // 마법: 모션 무관 단일 라인
+  if (p.kind === 'magic') {
+    const fr = finalOf(calcMagic(p.magic ?? 0, p.int ?? 0, p.spellAtk ?? 0, p.mastery ?? 1))
+    return { dist: uniformDist(fr.min, fr.max, stepFor(fr.min, fr.max)), totalRange: fr, lineRanges: [fr] }
   }
 
   const lines = skillMotionLines(p.skillId, p.weaponType, p.attackCount)
   if (!lines) return null
 
+  const lineRanges: DamageRange[] = []
   const lineDists: Dist[] = lines.map((comps) => {
-    const parts = comps.map(({ weight, mult }) => {
-      const base = physRange(p.primary ?? 0, p.secondary ?? 0, mult, p.watk ?? 0, p.mastery ?? 1)
-      const fr = lineFinalRange({
-        base, elementMult: p.elementMult, defense: p.defense, skillPercent: p.skillPercent,
-        damageMult: p.damageMult, critFactor: p.critFactor,
-      })
-      return { weight, dist: uniformDist(fr.min, fr.max, stepFor(fr.min, fr.max)) }
-    })
-    return mixtureDist(parts)
+    const frs = comps.map(({ weight, mult }) => ({
+      weight,
+      fr: finalOf(physRange(p.primary ?? 0, p.secondary ?? 0, mult, p.watk ?? 0, p.mastery ?? 1)),
+    }))
+    lineRanges.push({ min: Math.min(...frs.map((x) => x.fr.min)), max: Math.max(...frs.map((x) => x.fr.max)) })
+    return mixtureDist(frs.map((x) => ({ weight: x.weight, dist: uniformDist(x.fr.min, x.fr.max, stepFor(x.fr.min, x.fr.max)) })))
   })
 
-  return lineDists.reduce((acc, d) => convolve(acc, d))
+  const dist = lineDists.reduce((acc, d) => convolve(acc, d))
+  return { dist, totalRange: { min: dist.base, max: dist.base + (dist.p.length - 1) * dist.step }, lineRanges }
+}
+
+/** @deprecated computeCast 사용 */
+export function computeCastDist(p: CastDamageParams): Dist | null {
+  return computeCast(p)?.dist ?? null
 }
 
 // ── N방컷 / DPM ─────────────────────────────────────────
