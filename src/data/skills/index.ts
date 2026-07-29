@@ -87,10 +87,15 @@ const SUMMON_SKILLS = new Set(['이프리트', '엘퀴네스', '바하뮤트', '
  */
 const DAMAGE_BUFF_SKILLS = new Set([1111002, 1120003, 11111001, 11110005, 1320006])
 
+/** 공격 스킬에서 제외할 비공격/디버프 스킬명 */
+const NON_ATTACK_NAMES = new Set(['메디테이션', '매직 크래쉬'])
+
 /** 공격 스킬 여부 (물리 damage 또는 마법 mad 보유; 차지/메디테이션/소환수/파이널어택/데미지버프 제외) */
 export function isAttackSkill(skill: IJobSkill): boolean {
   const name = skill.description?.name ?? ''
-  if (name.includes('차지') || name.includes('파이널 어택') || name === '메디테이션' || SUMMON_SKILLS.has(name)) return false
+  // 속성 차지·어드밴스드 차지는 특화버프로 관리 → 제외. 단 '차지 블로우'는 공격 스킬로 유지
+  const isCharge = name.includes('차지') && !name.includes('블로우')
+  if (isCharge || name.includes('파이널 어택') || NON_ATTACK_NAMES.has(name) || SUMMON_SKILLS.has(name)) return false
   if (DAMAGE_BUFF_SKILLS.has(skill.id)) return false
   return skill.levelProperties.some((p) => p.mad !== undefined || p.damage !== undefined)
 }
