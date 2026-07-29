@@ -21,7 +21,8 @@ import {
 import { JOBS } from '../../domain/jobs'
 import { getMonster } from '../../data/mobs'
 import { elementReaction } from '../../domain/monster'
-import { attackSkillsForJob, skillAttackAt, skillLineCount, comboFinalDamageP, COMBO_SKILLS, findSkillById, chargeCombinedCoef } from '../../data/skills'
+import { attackSkillsForJob, skillAttackAt, skillLineCount, comboFinalDamageP, COMBO_SKILLS, findSkillById, chargeCombinedCoef, skillNumAt } from '../../data/skills'
+import type { ChargeState } from '../../domain/paladinCharge'
 import { computeCast, computeNhit, computeDpm, baseElementMult, SKILL_MOTION } from '../../domain/skillCombat'
 import { attacksPerMinute } from '../../data/attackSpeed'
 import { chargeElementMult, chargeFromUi } from '../../domain/paladinCharge'
@@ -100,12 +101,33 @@ export default function NhitPanel() {
     }
     const critProb = critChance > 0 && critMult > 1 ? critChance / 100 : 0
 
-    // 속성 반응 — 팔라딘 차지 활성 시 차지 속성/레벨 배율로 대체(물리 한정)
-    // 팔라딘 차지: 특화버프에서 켜진 차지 버프를 읽어 속성배율 대체(물리 한정)
-    const charge = !isMagic && jobId === 'paladin' ? chargeFromUi(chargeState) : null
-    const elementMult = charge
+    // 차지(속성 부여) — 팔라딘(메인/보조) / 소울마스터 소울차지(성속성 단일)
+    let charge: ChargeState | null = null
+    let chargeCoefMult = 1
+    if (!isMagic) {
+      if (jobId === 'paladin') {
+        charge = chargeFromUi(chargeState)
+        if (charge) chargeCoefMult = chargeCombinedCoef(charge.main, charge.mainLevel, charge.thunderLevel) / 100
+      } else if (jobId === 'soulMaster') {
+        const lv = activeBuffs['11111007'] // 소울 차지(성속성)
+        if (lv) {
+          charge = { main: 'holy', mainLevel: lv, thunderLevel: null }
+          chargeCoefMult = skillNumAt(11111007, lv, 'damage') / 100
+        }
+      }
+    }
+    // 속성배율 — 차지 활성 시 차지 속성/레벨 배율로 대체
+    let elementMult = charge
       ? chargeElementMult(charge, monster.elemAttr)
       : baseElementMult(elementReaction(monster.elemAttr, att.element))
+    // 엘리멘탈 리셋(플위): 무속성화 blend — elementMult × (1−r) + 1.0 × r (마스터 r=1 → 항상 ×1.0)
+    if (jobId === 'flameWizard') {
+      const rLv = activeBuffs['12101005']
+      if (rLv) {
+        const r = Math.min(1, skillNumAt(12101005, rLv, 'x') / 100)
+        elementMult = elementMult * (1 - r) + r
+      }
+    }
 
     // 방어
     const D = levelPenalty(monster.level, level)
@@ -126,8 +148,6 @@ export default function NhitPanel() {
     const counterMult = COMA_PANIC.has(selectedSkill.id) && comboBonus > 0 ? MAX_COUNTER_MULT : 1
     // 쉐도우 파트너: 그림자가 스킬 데미지의 y% 추가타 → ×(1 + y/100) (마스터 ×1.5)
     const shadowMult = 1 + (effects.shadowPartnerP ?? 0) / 100
-    // 팔라딘 차지 데미지 계수(파이어 lv30 140% → ×1.4, 썬더 보너스 중첩)
-    const chargeCoefMult = charge ? chargeCombinedCoef(charge.main, charge.mainLevel, charge.thunderLevel) / 100 : 1
     // 방컷·DPM 미제공 스킬(패닉/코마/돌진)
     const noDpm = NO_DPM.has(selectedSkill.id)
     // 모든 데미지 증가 배수를 하나로 통일(콤보·버서크·위협·카운터·쉐파·차지 계수·마법엘앰프) → 방어 앞(2단계) 적용

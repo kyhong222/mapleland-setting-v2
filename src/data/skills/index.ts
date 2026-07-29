@@ -164,6 +164,12 @@ export function comboFinalDamageP(comboId: number, comboLevel: number, advId: nu
   return Math.max(0, pct - 100)
 }
 
+/** 특정 스킬의 레벨별 임의 필드 숫자값 (없으면 0). 소울차지 계수·엘리멘탈리셋 무속성화% 등 */
+export function skillNumAt(id: number, level: number, key: string): number {
+  const sk = findSkillById(id)
+  return sk ? skillNum(skillPropsAtLevel(sk, level), key) : 0
+}
+
 /** 팔라딘 차지 원소 → 차지 스킬 id(검 대표) */
 const CHARGE_SKILL_ID: Record<string, number> = { fire: 1211003, ice: 1211005, lightning: 1211007, holy: 1221003 }
 
