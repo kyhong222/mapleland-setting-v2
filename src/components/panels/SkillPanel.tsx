@@ -7,6 +7,7 @@ import MenuItem from '@mui/material/MenuItem'
 import Dialog from '@mui/material/Dialog'
 import DialogTitle from '@mui/material/DialogTitle'
 import DialogContent from '@mui/material/DialogContent'
+import DialogActions from '@mui/material/DialogActions'
 import Slider from '@mui/material/Slider'
 import Switch from '@mui/material/Switch'
 import Button from '@mui/material/Button'
@@ -122,71 +123,87 @@ function BuffIcon({
   )
 }
 
-/** 아이콘 클릭 시 열리는 레벨(+토글) 조정 모달 */
+/**
+ * 아이콘 우클릭 시 열리는 레벨(+토글) 조정 모달.
+ * 슬라이더/스위치는 로컬 draft에만 반영하고, [적용]을 눌러야 스토어에 커밋된다
+ * (드래그마다 전역 재계산되는 문제 방지).
+ */
 function BuffDialog({ buff, kind, onClose }: { buff: Buff; kind: BuffKind; onClose: () => void }) {
-  const activeBuffs = useBuildStore((s) => s.activeBuffs)
   const toggleBuff = useBuildStore((s) => s.toggleBuff)
   const setBuffLevel = useBuildStore((s) => s.setBuffLevel)
-  const appliedBuffs = useBuildStore((s) => s.appliedBuffs)
   const setAppliedLevel = useBuildStore((s) => s.setAppliedLevel)
-  const masteryLevels = useBuildStore((s) => s.masteryLevels)
   const setMasteryLevel = useBuildStore((s) => s.setMasteryLevel)
-  const buffLevels = useBuildStore((s) => s.buffLevels)
   const jobId = useBuildStore((s) => s.jobId)
 
   const isSkill = buff.type === 'skill'
   const master = effectiveMasterLevel(buff, jobId)
-  const active = kind === 'toggle' ? buff.id in activeBuffs : true
-  const fallback = kind === 'toggle' ? buffLevels[buff.id] ?? defaultBuffLevel(buff, jobId) : defaultBuffLevel(buff, jobId)
-  const level =
-    kind === 'toggle' ? activeBuffs[buff.id] ?? fallback : kind === 'applied' ? appliedBuffs[buff.id] ?? fallback : masteryLevels[buff.id] ?? fallback
 
-  const setLevel = (n: number) => {
-    if (kind === 'toggle') setBuffLevel(buff.id, n)
-    else if (kind === 'applied') setAppliedLevel(buff.id, n)
-    else setMasteryLevel(buff.id, n)
-  }
+  // 스토어의 현재값(초기 draft) — 열릴 때 한 번만 캡처
+  const [storeActive, storeLevel] = useState(() => {
+    const s = useBuildStore.getState()
+    const active = kind === 'toggle' ? buff.id in s.activeBuffs : true
+    const fb = kind === 'toggle' ? s.buffLevels[buff.id] ?? defaultBuffLevel(buff, jobId) : defaultBuffLevel(buff, jobId)
+    const lv = kind === 'toggle' ? s.activeBuffs[buff.id] ?? fb : kind === 'applied' ? s.appliedBuffs[buff.id] ?? fb : s.masteryLevels[buff.id] ?? fb
+    return [active, lv] as const
+  })[0]
+
+  const [draftLevel, setDraftLevel] = useState(storeLevel)
+  const [draftActive, setDraftActive] = useState(storeActive)
 
   const hasLevel = isSkill && master > 1
-  const eff = buffEffectsAtLevel(buff, level)
+  const eff = buffEffectsAtLevel(buff, draftLevel)
+
+  const apply = () => {
+    if (kind === 'toggle') {
+      setBuffLevel(buff.id, draftLevel) // 메모리(+활성 시 레벨) 갱신
+      if (draftActive !== storeActive) toggleBuff(buff.id) // 활성 상태 반영(켤 때 방금 저장한 레벨 사용)
+    } else if (kind === 'applied') {
+      setAppliedLevel(buff.id, draftLevel)
+    } else {
+      setMasteryLevel(buff.id, draftLevel)
+    }
+    onClose()
+  }
+
+  const levelDisabled = kind === 'toggle' && !draftActive
 
   return (
     <Dialog open onClose={onClose} maxWidth="xs" fullWidth>
       <DialogTitle sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-        <BuffIcon buff={buff} active={active} size={36} />
+        <BuffIcon buff={buff} active={draftActive} size={36} />
         {buff.name}
       </DialogTitle>
       <DialogContent>
         {kind === 'toggle' && (
-          <FormControlLabel control={<Switch checked={active} onChange={() => toggleBuff(buff.id)} />} label="적용" />
+          <FormControlLabel control={<Switch checked={draftActive} onChange={(e) => setDraftActive(e.target.checked)} />} label="적용" />
         )}
         {buff.type === 'skill' && buff.variants ? (
           <Box sx={{ mt: 1, px: 1 }}>
             <Typography variant="body2" gutterBottom>버전 선택</Typography>
-            <RadioGroup value={level} onChange={(_, v) => setLevel(Number(v))}>
+            <RadioGroup value={draftLevel} onChange={(_, v) => setDraftLevel(Number(v))}>
               {buff.variants.map((name, i) => (
                 <FormControlLabel
                   key={name}
                   value={i + 1}
                   control={<Radio size="small" />}
                   label={name}
-                  disabled={kind === 'toggle' && !active}
+                  disabled={levelDisabled}
                 />
               ))}
             </RadioGroup>
           </Box>
         ) : hasLevel ? (
           <Box sx={{ mt: 1, px: 1 }}>
-            <Typography variant="body2" gutterBottom>스킬 레벨: {level} / {master}</Typography>
+            <Typography variant="body2" gutterBottom>스킬 레벨: {draftLevel} / {master}</Typography>
             {buff.id === '1121000' && (
               <Box sx={{ display: 'flex', gap: 0.5, mb: 1 }}>
                 {[0, 10, 20, 30].map((v) => (
                   <Button
                     key={v}
                     size="small"
-                    variant={level === v ? 'contained' : 'outlined'}
-                    disabled={kind === 'toggle' && !active}
-                    onClick={() => setLevel(v)}
+                    variant={draftLevel === v ? 'contained' : 'outlined'}
+                    disabled={levelDisabled}
+                    onClick={() => setDraftLevel(v)}
                     sx={{ minWidth: 0, flex: 1, py: 0.25 }}
                   >
                     {v}
@@ -197,9 +214,9 @@ function BuffDialog({ buff, kind, onClose }: { buff: Buff; kind: BuffKind; onClo
             <Slider
               min={buff.id === '1121000' ? 0 : 1}
               max={master}
-              value={level}
-              disabled={kind === 'toggle' && !active}
-              onChange={(_, v) => setLevel(v as number)}
+              value={draftLevel}
+              disabled={levelDisabled}
+              onChange={(_, v) => setDraftLevel(v as number)}
               valueLabelDisplay="auto"
             />
           </Box>
@@ -210,6 +227,10 @@ function BuffDialog({ buff, kind, onClose }: { buff: Buff; kind: BuffKind; onClo
           {formatEffects(eff) || '—'}
         </Typography>
       </DialogContent>
+      <DialogActions>
+        <Button onClick={onClose} color="inherit">취소</Button>
+        <Button onClick={apply} variant="contained">적용</Button>
+      </DialogActions>
     </Dialog>
   )
 }
