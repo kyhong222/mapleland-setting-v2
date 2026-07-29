@@ -126,7 +126,10 @@ export default function NhitPanel() {
 
     const hp = monster.maxHP ?? 0
     const isBoss = !!monster.isBoss
-    const apm = attacksPerMinute(selectedSkill.id, weaponSpeedStep, booster ? 2 : 0, att.kind, magicBooster)
+    // 부스터 단계감소 = max(수동 부스터 토글, 윈드부스터 등 버프 공속단계)
+    const buffBoosterSteps = effects.attackSpeedBoost ?? 0
+    const boosterSteps = Math.max(booster ? 2 : 0, buffBoosterSteps)
+    const apm = attacksPerMinute(selectedSkill.id, weaponSpeedStep, boosterSteps, att.kind, magicBooster)
     const dpm = apm != null ? computeDpm(cast.dist, apm) : null
     const killSec = dpm && dpm > 0 && hp > 0 ? hp / (dpm / 60) : null
     return {
@@ -141,6 +144,8 @@ export default function NhitPanel() {
       totalRange: cast.totalRange,
       nhit: isBoss ? null : computeNhit(cast.dist, hp, 10),
       apm, dpm, killSec, isMagic,
+      // 윈드부스터를 마법사에게 적용 시 시전속도 데이터 없음 → 미반영 안내
+      windOnMagic: isMagic && buffBoosterSteps > 0,
     }
   })()
 
@@ -266,6 +271,11 @@ export default function NhitPanel() {
                 </>
               ) : (
                 <Typography variant="body2" color="text.disabled">공속 데이터가 없습니다.</Typography>
+              )}
+              {result.windOnMagic && (
+                <Typography variant="caption" color="warning.main" sx={{ display: 'block' }}>
+                  ※ 윈드부스터의 마법사 시전속도 데이터가 없어 DPM에 미반영됩니다.
+                </Typography>
               )}
             </>
           )}

@@ -947,5 +947,76 @@
       }
     ],
     "icon": "/buff-icons/1201006.png"
+  },
+  {
+    "id": "5121009",
+    "type": "skill",
+    "name": "윈드 부스터",
+    "scope": "party",
+    "mode": "active",
+    "masterLevel": 20,
+    "effectsByLevel": [
+      {
+        "attackSpeedBoost": 1
+      },
+      {
+        "attackSpeedBoost": 1
+      },
+      {
+        "attackSpeedBoost": 1
+      },
+      {
+        "attackSpeedBoost": 1
+      },
+      {
+        "attackSpeedBoost": 1
+      },
+      {
+        "attackSpeedBoost": 1
+      },
+      {
+        "attackSpeedBoost": 1
+      },
+      {
+        "attackSpeedBoost": 1
+      },
+      {
+        "attackSpeedBoost": 1
+      },
+      {
+        "attackSpeedBoost": 1
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      }
+    ],
+    "icon": "/buff-icons/5121009.png"
   }
 ]

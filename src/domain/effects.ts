@@ -42,6 +42,7 @@ export type EffectId =
   | 'acc'
   | 'mastery'
   | 'attackSpeed'
+  | 'attackSpeedBoost'
   | 'criticalP'
   | 'criticalDamage'
   | 'amplifiedMagicDamageP'
@@ -133,6 +134,7 @@ export const EFFECTS: Record<EffectId, EffectDef> = {
   acc: { id: 'acc', label: '명중률', category: 'offense', unit: 'flat', appliesToItem: true },
   mastery: { id: 'mastery', label: '숙련도', category: 'offense', unit: 'percent', appliesToItem: false },
   attackSpeed: { id: 'attackSpeed', label: '공격속도', category: 'offense', unit: 'step', appliesToItem: true },
+  attackSpeedBoost: { id: 'attackSpeedBoost', label: '공격속도 상승단계', category: 'offense', unit: 'step', appliesToItem: false },
   criticalP: { id: 'criticalP', label: '크리티컬%', category: 'offense', unit: 'percent', appliesToItem: false },
   criticalDamage: { id: 'criticalDamage', label: '크리티컬데미지', category: 'offense', unit: 'percent', appliesToItem: false },
   amplifiedMagicDamageP: { id: 'amplifiedMagicDamageP', label: '마법데미지증가%', category: 'offense', unit: 'percent', appliesToItem: false },
