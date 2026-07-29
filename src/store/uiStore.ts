@@ -14,6 +14,7 @@ export type PanelId =
   | 'attack'
   | 'detail'
   | 'incoming'
+  | 'nhit'
 
 interface UiState {
   /** 접힌 패널 (없거나 false = 펼침) */

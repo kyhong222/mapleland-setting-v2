@@ -73,8 +73,8 @@ export function masteryRatio(effects: EffectMap): number {
   return Math.min(1, (10 + (effects.mastery ?? 0)) / 100)
 }
 
-/** 무기배수 mult 기준 한 모션의 MIN~MAX */
-function physRange(primary: number, secondary: number, mult: number, watk: number, mastery: number): DamageRange {
+/** 무기배수 mult 기준 한 모션의 MIN~MAX (모션별 데미지 계산용으로 공개) */
+export function physRange(primary: number, secondary: number, mult: number, watk: number, mastery: number): DamageRange {
   const max = Math.floor((primary * mult + secondary) * watk / 100)
   const min = Math.floor((primary * mult * 0.9 * mastery + secondary) * watk / 100)
   return { min, max }

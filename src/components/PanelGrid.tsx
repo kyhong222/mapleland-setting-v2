@@ -8,6 +8,7 @@ import SkillPanel from './panels/SkillPanel'
 import AttackPanel from './panels/AttackPanel'
 import DetailStatPanel from './panels/DetailStatPanel'
 import IncomingDamagePanel from './panels/IncomingDamagePanel'
+import NhitPanel from './panels/NhitPanel'
 
 /**
  * 3열 세로 스택. 같은 열에서 위 패널을 접으면 아래 패널이 올라온다.
@@ -35,6 +36,7 @@ export default function PanelGrid() {
       <Stack spacing={2}>
         <MonsterPanel />
         <AttackPanel />
+        <NhitPanel />
         <IncomingDamagePanel />
       </Stack>
     </Box>

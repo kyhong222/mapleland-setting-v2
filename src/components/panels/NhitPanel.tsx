@@ -1,0 +1,204 @@
+import { useState } from 'react'
+import type { SyntheticEvent } from 'react'
+import Box from '@mui/material/Box'
+import Typography from '@mui/material/Typography'
+import Divider from '@mui/material/Divider'
+import Select from '@mui/material/Select'
+import MenuItem from '@mui/material/MenuItem'
+import TextField from '@mui/material/TextField'
+import FormControlLabel from '@mui/material/FormControlLabel'
+import Switch from '@mui/material/Switch'
+import CollapsiblePanel from '../common/CollapsiblePanel'
+import { useBuildStore } from '../../store/buildStore'
+import { useInventoryStore } from '../../store/inventoryStore'
+import { useMonsterStore } from '../../store/monsterStore'
+import { aggregateBuild, equippedWeaponType } from '../../store/aggregate'
+import { useActiveEquippedBuilts } from '../../store/activation'
+import { useBuffEffects } from '../../store/useBuffEffects'
+import {
+  totalAttack, totalMagic, masteryRatio, magicAmpMultiplier, levelPenalty,
+} from '../../domain/attackPower'
+import { JOBS } from '../../domain/jobs'
+import { getMonster } from '../../data/mobs'
+import { elementReaction } from '../../domain/monster'
+import { attackSkillsForJob, skillAttackAt, skillLineCount } from '../../data/skills'
+import { computeCastDist, computeNhit, computeDpm, baseElementMult, SKILL_MOTION } from '../../domain/skillCombat'
+import { attacksPerMinute } from '../../data/attackSpeed'
+
+const skillIconSrc = (id: number) => `/skill-icons/${id}.png`
+const hideOnError = (e: SyntheticEvent<HTMLImageElement>) => { e.currentTarget.style.visibility = 'hidden' }
+const pct = (n: number) => `${(n * 100).toFixed(1)}%`
+
+export default function NhitPanel() {
+  const jobId = useBuildStore((s) => s.jobId)
+  const level = useBuildStore((s) => s.level)
+  const baseStats = useBuildStore((s) => s.baseStats)
+  const equipped = useBuildStore((s) => s.equipped)
+  const invItems = useInventoryStore((s) => s.items)
+  const selectedMobId = useMonsterStore((s) => s.selectedId)
+  const buffEffects = useBuffEffects()
+  const builts = useActiveEquippedBuilts()
+
+  const [skillId, setSkillId] = useState<number | ''>('')
+  const [skillLevel, setSkillLevel] = useState(1)
+  const [booster, setBooster] = useState(false)
+  const [magicBooster, setMagicBooster] = useState(false)
+
+  const { finalStats, effects } = aggregateBuild(baseStats, builts, buffEffects)
+  const job = jobId ? JOBS[jobId] : null
+  const monster = selectedMobId != null ? getMonster(selectedMobId) : undefined
+  const weaponType = equippedWeaponType(equipped, invItems)
+  const attackSkills = jobId ? attackSkillsForJob(jobId) : []
+  const selectedSkill = attackSkills.find((s) => s.id === skillId)
+
+  const weaponSpeedStep = (() => {
+    const id = equipped.weapon
+    const w = id ? invItems.find((i) => i.id === id)?.built : undefined
+    return w?.base.effects.attackSpeed ?? 6
+  })()
+
+  const result = (() => {
+    if (!job || !monster || !selectedSkill) return null
+    const att = skillAttackAt(selectedSkill, skillLevel)
+    if (!att) return null
+    const isMagic = att.kind === 'magic'
+    if (!isMagic && !weaponType) return null
+
+    // 크리는 기대값으로 스킬%에 합성(= skillPercent + 크리확률×크리추뎀)
+    const critP = effects.criticalP ?? 0
+    const critDmg = effects.criticalDamage ?? 0
+    const effSkillPercent = att.skillPercent + (critP / 100) * critDmg
+
+    // 속성 반응
+    const reaction = elementReaction(monster.elemAttr, att.element)
+    const elementMult = baseElementMult(reaction)
+
+    // 방어
+    const D = levelPenalty(monster.level, level)
+    const defense = isMagic
+      ? { kind: 'magic' as const, def: monster.MDDamage ?? 0, levelPenalty: D }
+      : { kind: 'physical' as const, def: monster.PDDamage ?? 0, levelPenalty: D }
+
+    // 배율: 마법은 엘앰프, 물리는 1(자기버프 추후)
+    const damageMult = isMagic ? magicAmpMultiplier(effects) : 1
+
+    const dist = computeCastDist({
+      weaponType: weaponType ?? 'oneHandedSword',
+      skillId: selectedSkill.id,
+      attackCount: skillLineCount(selectedSkill, skillLevel),
+      kind: att.kind,
+      primary: job ? finalStats[job.primaryStat] : 0,
+      secondary: job ? job.secondaryStats.reduce((a, s) => a + finalStats[s], 0) : 0,
+      watk: totalAttack(effects),
+      mastery: masteryRatio(effects),
+      magic: totalMagic(effects, finalStats.INT),
+      int: finalStats.INT,
+      spellAtk: att.spellAtk,
+      elementMult,
+      defense,
+      skillPercent: effSkillPercent,
+      damageMult,
+      critFactor: 1,
+    })
+    if (!dist) return { unsupported: true as const }
+
+    const hp = monster.maxHP ?? 0
+    const isBoss = !!monster.isBoss
+    if (isBoss) {
+      const apm = attacksPerMinute(selectedSkill.id, weaponSpeedStep, booster ? 2 : 0, att.kind, magicBooster)
+      const dpm = apm != null ? computeDpm(dist, apm) : null
+      const killSec = dpm && dpm > 0 && hp > 0 ? hp / (dpm / 60) : null
+      return { isBoss: true as const, apm, dpm, killSec, hp }
+    }
+    return { isBoss: false as const, nhit: computeNhit(dist, hp, 10), hp }
+  })()
+
+  return (
+    <CollapsiblePanel id="nhit" title="N방컷 / DPM">
+      {!jobId ? (
+        <Typography variant="body2" color="text.disabled">직업을 선택하세요.</Typography>
+      ) : !monster ? (
+        <Typography variant="body2" color="text.disabled">대상 몬스터를 선택하세요.</Typography>
+      ) : attackSkills.length === 0 ? (
+        <Typography variant="body2" color="text.disabled">공격 스킬이 없습니다.</Typography>
+      ) : (
+        <>
+          <Box sx={{ display: 'flex', gap: 0.5, mb: 1 }}>
+            <Select<number | ''>
+              size="small" displayEmpty value={skillId}
+              onChange={(e) => {
+                const id = e.target.value === '' ? '' : Number(e.target.value)
+                setSkillId(id)
+                const sk = attackSkills.find((s) => s.id === id)
+                if (sk) setSkillLevel(sk.masterLevel)
+              }}
+              sx={{ flexGrow: 1, fontSize: 13 }}
+            >
+              <MenuItem value=""><em>스킬 선택</em></MenuItem>
+              {attackSkills.map((s) => (
+                <MenuItem key={s.id} value={s.id} sx={{ fontSize: 13, gap: 1 }}>
+                  <Box component="img" src={skillIconSrc(s.id)} alt="" onError={hideOnError} sx={{ width: 24, height: 24, imageRendering: 'pixelated' }} />
+                  {s.description?.name ?? s.id}
+                  {SKILL_MOTION[s.id] && <Box component="span" sx={{ fontSize: 10, color: 'text.disabled' }}>*</Box>}
+                </MenuItem>
+              ))}
+            </Select>
+            {selectedSkill && (
+              <TextField
+                size="small" type="number" label="Lv" value={skillLevel}
+                onChange={(e) => setSkillLevel(Math.max(1, Math.min(selectedSkill.masterLevel, Number(e.target.value) || 1)))}
+                slotProps={{ htmlInput: { style: { width: 44, textAlign: 'center' }, min: 1, max: selectedSkill.masterLevel } }}
+              />
+            )}
+          </Box>
+
+          {result === null ? (
+            <Typography variant="body2" color="text.disabled">스킬을 선택하세요.</Typography>
+          ) : 'unsupported' in result ? (
+            <Typography variant="body2" color="warning.main">이 스킬은 아직 지원하지 않습니다.</Typography>
+          ) : result.isBoss ? (
+            <Box>
+              <Typography variant="caption" sx={{ fontWeight: 700, display: 'block', mb: 0.5 }}>보스 — DPM</Typography>
+              <FormControlLabel control={<Switch size="small" checked={booster} onChange={(e) => setBooster(e.target.checked)} />} label={<Typography variant="body2">부스터(공속+2)</Typography>} />
+              {result.dpm != null ? (
+                <>
+                  <Row label="DPM" value={Math.round(result.dpm).toLocaleString()} strong />
+                  <Row label="분당 공격횟수" value={`${result.apm}회`} />
+                  {result.killSec != null && <Row label="처치 소요(참고)" value={`${result.killSec.toFixed(1)}초`} />}
+                </>
+              ) : (
+                <Typography variant="body2" color="text.disabled" sx={{ mt: 0.5 }}>이 스킬의 공속 데이터가 없습니다.</Typography>
+              )}
+            </Box>
+          ) : (
+            <Box>
+              <Typography variant="caption" sx={{ fontWeight: 700, display: 'block', mb: 0.5 }}>
+                방컷 확률 (HP {result.hp.toLocaleString()})
+              </Typography>
+              <Box sx={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 0.25 }}>
+                {result.nhit.exact.map((p, i) =>
+                  p >= 0.0005 ? <Row key={i} label={`${i + 1}방`} value={pct(p)} /> : null,
+                )}
+                {result.nhit.over >= 0.0005 && <Row label="11방+" value={pct(result.nhit.over)} />}
+              </Box>
+              <Divider sx={{ my: 0.5 }} />
+              <Row label="기대 처치 타수" value={`${result.nhit.meanHits.toFixed(2)}방`} strong />
+            </Box>
+          )}
+          <Typography variant="caption" color="text.disabled" sx={{ display: 'block', mt: 1 }}>
+            ※ 크리·속성·방어 반영. 콤보/차지/위협 등 자기버프 배율은 추가 예정. (* = 고유 모션)
+          </Typography>
+        </>
+      )}
+    </CollapsiblePanel>
+  )
+}
+
+function Row({ label, value, strong = false }: { label: string; value: string; strong?: boolean }) {
+  return (
+    <Box sx={{ display: 'flex', justifyContent: 'space-between', px: 1, py: 0.1 }}>
+      <Typography variant="body2" color="text.secondary">{label}</Typography>
+      <Typography variant="body2" sx={{ fontWeight: strong ? 700 : 500, color: strong ? 'error.main' : 'text.primary' }}>{value}</Typography>
+    </Box>
+  )
+}

@@ -116,6 +116,13 @@ const SKILL_ELEMENT_OVERRIDE: Record<string, string> = {
   '메테오': 'F',
 }
 
+/** 단일 대상 시전당 라인 수 (attackCount, 없으면 1). docs §2.4 */
+export function skillLineCount(skill: IJobSkill, level: number): number {
+  const props = skillPropsAtLevel(skill, level)
+  const c = props ? skillNum(props, 'attackCount') : 0
+  return c > 0 ? c : 1
+}
+
 /** 특정 레벨에서 스킬의 공격 파라미터(물리 damage% / 마법 mad) */
 export function skillAttackAt(skill: IJobSkill, level: number): SkillAttack | null {
   const props = skillPropsAtLevel(skill, level)
