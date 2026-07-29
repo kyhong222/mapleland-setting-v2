@@ -47,6 +47,8 @@ export type EffectId =
   | 'amplifiedMagicDamageP'
   | 'finalDamageP'
   | 'monsterDamageTakenP'
+  | 'monsterAttackReduceP'
+  | 'monsterAccReduceP'
   | 'coldDamageP'
   | 'fireDamageP'
   | 'lightningDamageP'
@@ -136,6 +138,8 @@ export const EFFECTS: Record<EffectId, EffectDef> = {
   amplifiedMagicDamageP: { id: 'amplifiedMagicDamageP', label: '마법데미지증가%', category: 'offense', unit: 'percent', appliesToItem: false },
   finalDamageP: { id: 'finalDamageP', label: '최종데미지증가%', category: 'offense', unit: 'percent', appliesToItem: false },
   monsterDamageTakenP: { id: 'monsterDamageTakenP', label: '몬스터 받는 데미지%', category: 'offense', unit: 'percent', appliesToItem: false },
+  monsterAttackReduceP: { id: 'monsterAttackReduceP', label: '몬스터 공격력 감소%', category: 'defense', unit: 'percent', appliesToItem: false },
+  monsterAccReduceP: { id: 'monsterAccReduceP', label: '몬스터 명중 감소%', category: 'defense', unit: 'percent', appliesToItem: false },
   coldDamageP: { id: 'coldDamageP', label: '냉기속성추가피해%', category: 'offense', unit: 'percent', appliesToItem: true },
   fireDamageP: { id: 'fireDamageP', label: '화염속성추가피해%', category: 'offense', unit: 'percent', appliesToItem: true },
   lightningDamageP: { id: 'lightningDamageP', label: '번개속성추가피해%', category: 'offense', unit: 'percent', appliesToItem: true },

@@ -111,7 +111,8 @@ export function computeVsMonster(
   // 페이크(addEvadeP)·블로킹(blockRate)을 독립 회피확률로 합성
   const addEvadeP = (1 - (1 - (effects.addEvadeP ?? 0) / 100) * (1 - (effects.blockRate ?? 0) / 100)) * 100
   const monEva = monster.eva ?? 0
-  const monAcc = monster.acc ?? 0
+  // 위협 등: 몬스터 명중 감소 → 회피확률 상승
+  const monAcc = (monster.acc ?? 0) * (1 - (effects.monsterAccReduceP ?? 0) / 100)
   return {
     hitRate: hitRate(acc, playerLevel, monster.level, monEva, isMagician),
     requiredAcc: requiredAcc(playerLevel, monster.level, monEva, isMagician),

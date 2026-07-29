@@ -35,6 +35,7 @@ function reducedTypes(eff: EffectMap): Set<IncomingType> {
   const v = (k: keyof EffectMap) => (eff[k] ?? 0) as number
   if (v('damageReflectP') > 0) s.add('touch') // 파워가드
   if (v('damageReduce') > 0) ALL_TYPES.forEach((t) => s.add(t)) // 아킬레스(전사)/메소가드(도적)
+  if (v('monsterAttackReduceP') > 0) ALL_TYPES.forEach((t) => s.add(t)) // 위협(몬스터 공격력↓)
   if (v('physicalRes') > 0) { s.add('touch'); s.add('physical') }
   if (v('allRes') > 0) ELEM_TYPES.forEach((t) => s.add(t)) // 엘리멘탈 레지스턴스
   if (v('fireRes') > 0) s.add('fire')
@@ -161,8 +162,10 @@ export default function IncomingDamagePanel() {
     const stdPdd = lookupStandardPDD(job.classId, level)
 
     const def = { effects, jobClass: job.classId, isBoss, powerUp, magicUp }
+    // 위협 등: 몬스터 공격력 감소 배율
+    const attackMult = 1 - (effects.monsterAttackReduceP ?? 0) / 100
     const phys = applyDefenses(
-      physicalIncoming({ monsterAtt: monster.PADamage ?? 0, charLevel: level, monLevel: monster.level, pdd, stdPdd, isWarrior, stats: finalStats }),
+      physicalIncoming({ monsterAtt: monster.PADamage ?? 0, charLevel: level, monLevel: monster.level, pdd, stdPdd, isWarrior, stats: finalStats, attackMult }),
       { ...def, type: 'touch' },
     )
 
@@ -170,7 +173,7 @@ export default function IncomingDamagePanel() {
       ? monsterSkillIncoming({
           skills: monster.skills,
           monsterMatt: monster.MADamage ?? 0,
-          charLevel: level, monLevel: monster.level, pdd, stdPdd, mdd, isWarrior, isMagician, stats: finalStats,
+          charLevel: level, monLevel: monster.level, pdd, stdPdd, mdd, isWarrior, isMagician, stats: finalStats, attackMult,
         }).map((e) => ({ ...e, range: applyDefenses(e.range, { ...def, type: e.type }) }))
       : []
 

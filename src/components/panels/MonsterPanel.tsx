@@ -219,7 +219,7 @@ export default function MonsterPanel() {
       if (!b) return
       if (b.type === 'skill' && b.requiresShield && !hasShield) return
       const eff = buffEffectsAtLevel(b, lv)
-      if ((eff.addEvadeP ?? 0) > 0 || (eff.blockRate ?? 0) > 0) out.push({ id, name: b.name, icon: b.icon })
+      if ((eff.addEvadeP ?? 0) > 0 || (eff.blockRate ?? 0) > 0 || (eff.monsterAccReduceP ?? 0) > 0) out.push({ id, name: b.name, icon: b.icon })
     }
     for (const [id, lv] of Object.entries(activeBuffs)) add(id, lv)
     for (const [id, lv] of Object.entries(appliedBuffs)) add(id, lv)

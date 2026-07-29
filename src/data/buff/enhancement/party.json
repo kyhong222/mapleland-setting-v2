@@ -845,26 +845,106 @@
     "mode": "active",
     "masterLevel": 20,
     "effectsByLevel": [
-      { "monsterDamageTakenP": 1 },
-      { "monsterDamageTakenP": 1 },
-      { "monsterDamageTakenP": 1 },
-      { "monsterDamageTakenP": 1 },
-      { "monsterDamageTakenP": 2 },
-      { "monsterDamageTakenP": 2 },
-      { "monsterDamageTakenP": 2 },
-      { "monsterDamageTakenP": 2 },
-      { "monsterDamageTakenP": 3 },
-      { "monsterDamageTakenP": 3 },
-      { "monsterDamageTakenP": 3 },
-      { "monsterDamageTakenP": 4 },
-      { "monsterDamageTakenP": 4 },
-      { "monsterDamageTakenP": 4 },
-      { "monsterDamageTakenP": 5 },
-      { "monsterDamageTakenP": 5 },
-      { "monsterDamageTakenP": 6 },
-      { "monsterDamageTakenP": 6 },
-      { "monsterDamageTakenP": 7 },
-      { "monsterDamageTakenP": 7 }
+      {
+        "monsterDamageTakenP": 1,
+        "monsterAttackReduceP": 1,
+        "monsterAccReduceP": 1
+      },
+      {
+        "monsterDamageTakenP": 1,
+        "monsterAttackReduceP": 2,
+        "monsterAccReduceP": 2
+      },
+      {
+        "monsterDamageTakenP": 1,
+        "monsterAttackReduceP": 3,
+        "monsterAccReduceP": 3
+      },
+      {
+        "monsterDamageTakenP": 1,
+        "monsterAttackReduceP": 4,
+        "monsterAccReduceP": 4
+      },
+      {
+        "monsterDamageTakenP": 2,
+        "monsterAttackReduceP": 5,
+        "monsterAccReduceP": 5
+      },
+      {
+        "monsterDamageTakenP": 2,
+        "monsterAttackReduceP": 6,
+        "monsterAccReduceP": 6
+      },
+      {
+        "monsterDamageTakenP": 2,
+        "monsterAttackReduceP": 7,
+        "monsterAccReduceP": 7
+      },
+      {
+        "monsterDamageTakenP": 2,
+        "monsterAttackReduceP": 8,
+        "monsterAccReduceP": 8
+      },
+      {
+        "monsterDamageTakenP": 3,
+        "monsterAttackReduceP": 9,
+        "monsterAccReduceP": 9
+      },
+      {
+        "monsterDamageTakenP": 3,
+        "monsterAttackReduceP": 10,
+        "monsterAccReduceP": 10
+      },
+      {
+        "monsterDamageTakenP": 3,
+        "monsterAttackReduceP": 11,
+        "monsterAccReduceP": 11
+      },
+      {
+        "monsterDamageTakenP": 4,
+        "monsterAttackReduceP": 12,
+        "monsterAccReduceP": 12
+      },
+      {
+        "monsterDamageTakenP": 4,
+        "monsterAttackReduceP": 13,
+        "monsterAccReduceP": 13
+      },
+      {
+        "monsterDamageTakenP": 4,
+        "monsterAttackReduceP": 14,
+        "monsterAccReduceP": 14
+      },
+      {
+        "monsterDamageTakenP": 5,
+        "monsterAttackReduceP": 15,
+        "monsterAccReduceP": 15
+      },
+      {
+        "monsterDamageTakenP": 5,
+        "monsterAttackReduceP": 16,
+        "monsterAccReduceP": 16
+      },
+      {
+        "monsterDamageTakenP": 6,
+        "monsterAttackReduceP": 17,
+        "monsterAccReduceP": 17
+      },
+      {
+        "monsterDamageTakenP": 6,
+        "monsterAttackReduceP": 18,
+        "monsterAccReduceP": 18
+      },
+      {
+        "monsterDamageTakenP": 7,
+        "monsterAttackReduceP": 19,
+        "monsterAccReduceP": 19
+      },
+      {
+        "monsterDamageTakenP": 7,
+        "monsterAttackReduceP": 20,
+        "monsterAccReduceP": 20
+      }
     ],
     "icon": "/buff-icons/1201006.png"
   }

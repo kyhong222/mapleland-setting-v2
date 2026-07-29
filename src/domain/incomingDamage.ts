@@ -42,8 +42,11 @@ export function physicalIncoming(p: {
   isWarrior: boolean
   /** 최종 능력치 */
   stats: BaseStats
+  /** 몬스터 공격력 배율 (위협 등, 기본 1) */
+  attackMult?: number
 }): IncomingRange {
-  const { monsterAtt, charLevel, monLevel, pdd, stdPdd, isWarrior, stats } = p
+  const { charLevel, monLevel, pdd, stdPdd, isWarrior, stats } = p
+  const monsterAtt = p.monsterAtt * (p.attackMult ?? 1)
   const C = isWarrior
     ? stats.STR / 2800 + stats.DEX / 3200 + stats.INT / 7200 + stats.LUK / 3200
     : stats.STR / 2000 + stats.DEX / 2800 + stats.INT / 7200 + stats.LUK / 3200
@@ -78,8 +81,11 @@ export function magicIncoming(p: {
   mdd: number
   isMagician: boolean
   stats: BaseStats
+  /** 몬스터 공격력 배율 (위협 등, 기본 1) */
+  attackMult?: number
 }): IncomingRange {
-  const { monsterMatt, mdd, isMagician, stats } = p
+  const { mdd, isMagician, stats } = p
+  const monsterMatt = p.monsterMatt * (p.attackMult ?? 1)
   const K = isMagician ? 1.2 : 1.0
   const defense = (mdd / 4 + stats.STR / 28 + stats.DEX / 24 + stats.LUK / 20) * K
   const tMin = monsterMatt * monsterMatt * 0.0075
@@ -207,6 +213,8 @@ export function monsterSkillIncoming(p: {
   isWarrior: boolean
   isMagician: boolean
   stats: BaseStats
+  /** 몬스터 공격력 배율 (위협 등, 기본 1) */
+  attackMult?: number
 }): SkillIncoming[] {
   const out: SkillIncoming[] = []
   for (const [key, sk] of Object.entries(p.skills)) {
@@ -216,7 +224,7 @@ export function monsterSkillIncoming(p: {
         label: skillLabel(sk),
         isMagic: true,
         type: skillDamageType(sk),
-        range: magicIncoming({ monsterMatt: p.monsterMatt, mdd: p.mdd, isMagician: p.isMagician, stats: p.stats }),
+        range: magicIncoming({ monsterMatt: p.monsterMatt, mdd: p.mdd, isMagician: p.isMagician, stats: p.stats, attackMult: p.attackMult }),
       })
     } else if (sk.PADamage) {
       out.push({
@@ -232,6 +240,7 @@ export function monsterSkillIncoming(p: {
           stdPdd: p.stdPdd,
           isWarrior: p.isWarrior,
           stats: p.stats,
+          attackMult: p.attackMult,
         }),
       })
     }
