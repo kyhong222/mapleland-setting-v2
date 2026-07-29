@@ -25,6 +25,9 @@ import type { Buff } from '../../domain/buff'
 import { maxEffects } from '../../domain/effects'
 import type { JobId } from '../../domain/jobs'
 import { comboFinalDamageP, COMBO_SKILLS } from '../../data/skills'
+import { CHARGE_LABEL, CHARGE_MASTER, CHARGE_ELEMENTS } from '../../domain/paladinCharge'
+import type { ChargeElement } from '../../domain/paladinCharge'
+import { DEFAULT_CHARGE } from '../../store/buildStore'
 import { formatEffects } from '../../lib/effectFormat'
 
 /** 레벨 조정 대상: 토글버프(영메·메용/직업패시브) / 적용버프(도핑·개인·파티) / 마스터리 */
@@ -360,6 +363,123 @@ function AppliedBuffList({ entries, levels, onOpen, onRemove }: { entries: Buff[
   )
 }
 
+/** 차지 원소 → 버프 아이콘(검 대표) */
+const CHARGE_ICON: Record<ChargeElement, string> = {
+  fire: '/buff-icons/1211003.png',
+  ice: '/buff-icons/1211005.png',
+  lightning: '/buff-icons/1211007.png',
+  holy: '/buff-icons/1221003.png',
+}
+
+/** 차지 행 (메인/보조) — 좌클릭 토글, 우클릭 편집 */
+function ChargeRow({
+  icon, active, disabled = false, title, caption, onToggle, onOpen,
+}: {
+  icon: string; active: boolean; disabled?: boolean; title: string; caption: string
+  onToggle: () => void; onOpen?: () => void
+}) {
+  return (
+    <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5, py: 0.25, opacity: disabled ? 0.5 : 1 }}>
+      <Box
+        onClick={disabled ? undefined : onToggle}
+        onContextMenu={disabled || !onOpen ? undefined : (e) => { e.preventDefault(); onOpen() }}
+        sx={{
+          width: 46, height: 46, flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center',
+          bgcolor: 'action.hover', borderRadius: 0.5, border: '2.5px solid transparent',
+          boxShadow: active ? 'inset 0 0 0 5px #ffc53d' : 'none', cursor: disabled ? 'default' : 'pointer',
+        }}
+      >
+        <Box component="img" src={icon} alt="" sx={{ width: 38, height: 38, imageRendering: 'pixelated', filter: active ? 'none' : 'grayscale(1)' }} />
+      </Box>
+      <Box sx={{ flex: 1, minWidth: 0 }}>
+        <Typography variant="body2" noWrap>{title}</Typography>
+        <Typography variant="caption" color={active ? 'success.main' : 'text.disabled'} noWrap sx={{ display: 'block' }}>{caption}</Typography>
+      </Box>
+    </Box>
+  )
+}
+
+/** 메인 차지 편집 모달: 원소 라디오 + 레벨 슬라이더 (적용/취소) */
+function ChargeMainDialog({ element, level, onApply, onClose }: { element: ChargeElement; level: number; onApply: (el: ChargeElement, lv: number) => void; onClose: () => void }) {
+  const [el, setEl] = useState<ChargeElement>(element)
+  const [lv, setLv] = useState(level)
+  const max = CHARGE_MASTER[el]
+  const shown = Math.min(lv, max)
+  return (
+    <Dialog open onClose={onClose} maxWidth="xs" fullWidth>
+      <DialogTitle>메인 차지 선택</DialogTitle>
+      <DialogContent>
+        <RadioGroup value={el} onChange={(_, v) => setEl(v as ChargeElement)} sx={{ mb: 1 }}>
+          {CHARGE_ELEMENTS.map((e) => (
+            <FormControlLabel key={e} value={e} control={<Radio size="small" />} label={`${CHARGE_LABEL[e]} 차지`} />
+          ))}
+        </RadioGroup>
+        <Typography variant="body2" gutterBottom>스킬 레벨: {shown} / {max}</Typography>
+        <Slider min={1} max={max} value={shown} onChange={(_, v) => setLv(v as number)} valueLabelDisplay="auto" />
+      </DialogContent>
+      <DialogActions>
+        <Button onClick={onClose} color="inherit">취소</Button>
+        <Button onClick={() => onApply(el, Math.min(lv, max))} variant="contained">적용</Button>
+      </DialogActions>
+    </Dialog>
+  )
+}
+
+/** 보조(썬더) 차지 레벨 편집 모달 */
+function ChargeSubDialog({ level, onApply, onClose }: { level: number; onApply: (lv: number) => void; onClose: () => void }) {
+  const [lv, setLv] = useState(level)
+  return (
+    <Dialog open onClose={onClose} maxWidth="xs" fullWidth>
+      <DialogTitle>보조 차지 (썬더)</DialogTitle>
+      <DialogContent>
+        <Typography variant="body2" gutterBottom>스킬 레벨: {lv} / 30</Typography>
+        <Slider min={1} max={30} value={lv} onChange={(_, v) => setLv(v as number)} valueLabelDisplay="auto" />
+      </DialogContent>
+      <DialogActions>
+        <Button onClick={onClose} color="inherit">취소</Button>
+        <Button onClick={() => onApply(lv)} variant="contained">적용</Button>
+      </DialogActions>
+    </Dialog>
+  )
+}
+
+/** 팔라딘 차지 섹션 (메인 + 보조) */
+function ChargeSection() {
+  const charge = useBuildStore((s) => s.charge) ?? DEFAULT_CHARGE
+  const setCharge = useBuildStore((s) => s.setCharge)
+  const [dlg, setDlg] = useState<'main' | 'sub' | null>(null)
+  const mainIsThunder = charge.mainElement === 'lightning'
+  return (
+    <>
+      <Typography variant="caption" color="text.secondary" sx={{ display: 'block', mt: 0.5 }}>차지 (좌클릭 ON/OFF · 우클릭 편집)</Typography>
+      <ChargeRow
+        icon={CHARGE_ICON[charge.mainElement]}
+        active={charge.mainOn}
+        title={`메인 차지 [${CHARGE_LABEL[charge.mainElement]}]`}
+        caption={charge.mainOn ? `Lv.${charge.mainLevel} · 속성 부여` : '꺼짐'}
+        onToggle={() => setCharge({ mainOn: !charge.mainOn })}
+        onOpen={() => setDlg('main')}
+      />
+      <ChargeRow
+        icon={CHARGE_ICON.lightning}
+        active={charge.subOn && !mainIsThunder}
+        disabled={mainIsThunder}
+        title="보조 차지 [썬더]"
+        caption={mainIsThunder ? '메인이 썬더 → 비활성' : charge.subOn ? `Lv.${charge.subLevel} · 썬더 중첩` : '꺼짐'}
+        onToggle={() => setCharge({ subOn: !charge.subOn })}
+        onOpen={() => setDlg('sub')}
+      />
+      {dlg === 'main' && (
+        <ChargeMainDialog element={charge.mainElement} level={charge.mainLevel}
+          onApply={(el, lv) => { setCharge({ mainElement: el, mainLevel: lv }); setDlg(null) }} onClose={() => setDlg(null)} />
+      )}
+      {dlg === 'sub' && (
+        <ChargeSubDialog level={charge.subLevel} onApply={(lv) => { setCharge({ subLevel: lv }); setDlg(null) }} onClose={() => setDlg(null)} />
+      )}
+    </>
+  )
+}
+
 function SectionTitle({ children, sx }: { children: React.ReactNode; sx?: object }) {
   return (
     <Typography variant="subtitle2" sx={{ fontWeight: 700, mb: 0.25, ...sx }}>
@@ -455,7 +575,8 @@ export default function SkillPanel() {
         </>
       )}
       {otherPassives.map((b) => <BuffRow key={b.id} buff={b} onOpen={open('toggle')} />)}
-      {masteries.length === 0 && otherPassives.length === 0 && (
+      {jobId === 'paladin' && <ChargeSection />}
+      {masteries.length === 0 && otherPassives.length === 0 && jobId !== 'paladin' && (
         <Typography variant="caption" color="text.disabled">사용 가능한 특화 버프 없음</Typography>
       )}
 

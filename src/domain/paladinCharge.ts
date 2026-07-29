@@ -28,37 +28,24 @@ export const CHARGE_LABEL: Record<ChargeElement, string> = { fire: '파이어', 
 /** 선택 가능한 주차지 목록(표시 순) */
 export const CHARGE_ELEMENTS: ChargeElement[] = ['fire', 'ice', 'lightning', 'holy']
 
-/** 차지 버프 skill id(검 대표) → 원소. 특화버프 토글에서 활성 차지 판정 */
-export const CHARGE_ELEMENT_BY_ID: Record<string, ChargeElement> = {
-  '1211003': 'fire',
-  '1211005': 'ice',
-  '1211007': 'lightning',
-  '1221003': 'holy',
+/** 차지 UI 상태(메인/보조) — buildStore와 공유 */
+export interface ChargeUiState {
+  mainOn: boolean
+  mainElement: ChargeElement
+  mainLevel: number
+  subOn: boolean
+  subLevel: number
 }
 
 /**
- * 활성 차지 버프(activeBuffs)에서 ChargeState 해석.
- *  - 주차지(파이어/블리자드/홀리) 활성 시 그 원소 + 레벨
- *  - 썬더 차지도 활성이면 중첩(thunderLevel)
- *  - 썬더만 활성이면 썬더 단독
- *  - 아무 차지도 없으면 null
+ * 차지 UI 상태 → 계산용 ChargeState (꺼져있거나 미해당이면 null).
+ *  - 메인차지 off → null
+ *  - 메인이 썬더가 아니고 보조(썬더) on → 중첩(thunderLevel)
  */
-export function resolveCharge(activeBuffs: Record<string, number>): ChargeState | null {
-  let main: ChargeElement | null = null
-  let mainLevel = 0
-  let thunderLevel: number | null = null
-  for (const [id, el] of Object.entries(CHARGE_ELEMENT_BY_ID)) {
-    const lv = activeBuffs[id]
-    if (lv === undefined || lv <= 0) continue
-    if (el === 'lightning') thunderLevel = lv
-    else {
-      main = el
-      mainLevel = lv
-    }
-  }
-  if (main) return { main, mainLevel, thunderLevel }
-  if (thunderLevel != null) return { main: 'lightning', mainLevel: thunderLevel, thunderLevel: null }
-  return null
+export function chargeFromUi(c: ChargeUiState): ChargeState | null {
+  if (!c.mainOn) return null
+  const thunderLevel = c.mainElement !== 'lightning' && c.subOn ? c.subLevel : null
+  return { main: c.mainElement, mainLevel: c.mainLevel, thunderLevel }
 }
 
 type Reaction = ReturnType<typeof elementReaction>

@@ -18,6 +18,18 @@ import { STAT_BASE, STAT_IDS, totalAP, minLevelForClass, maxLevelForOrder } from
 import { defaultBuffLevel, effectiveMasterLevel } from '../domain/buff'
 import { getBuff } from '../data/buff'
 import type { EquipInstance } from './equipInstance'
+import type { ChargeElement } from '../domain/paladinCharge'
+
+/** 팔라딘 차지 UI 상태: 메인차지(원소+레벨) + 보조차지(썬더, 레벨) */
+export interface ChargeUiState {
+  mainOn: boolean
+  mainElement: ChargeElement
+  mainLevel: number
+  subOn: boolean
+  subLevel: number
+}
+
+export const DEFAULT_CHARGE: ChargeUiState = { mainOn: false, mainElement: 'fire', mainLevel: 30, subOn: false, subLevel: 30 }
 
 export interface BuildSnapshot {
   jobId: JobId
@@ -48,6 +60,8 @@ export interface BuildState {
   buffLevels: Record<string, number>
   /** 비활성화한 무기 마스터리 (기본은 무기 장착 시 자동 적용, 여기 있으면 제외) */
   masteryOff: Record<string, boolean>
+  /** 팔라딘 차지 (메인/보조) */
+  charge: ChargeUiState
 
   selectJob: (id: JobId) => void
   reset: () => void
@@ -71,6 +85,8 @@ export interface BuildState {
   setMasteryLevel: (id: string, level: number) => void
   /** 무기 마스터리 on/off 토글 (off면 자동 적용에서 제외) */
   toggleMastery: (id: string) => void
+  /** 팔라딘 차지 상태 부분 갱신 */
+  setCharge: (patch: Partial<ChargeUiState>) => void
   snapshot: () => BuildSnapshot | null
   loadSnapshot: (snap: BuildSnapshot) => void
 }
@@ -127,6 +143,7 @@ export const useBuildStore = create<BuildState>()(
       masteryLevels: {},
       buffLevels: {},
       masteryOff: {},
+      charge: DEFAULT_CHARGE,
 
       selectJob: (id) =>
         set((s) => {
@@ -134,7 +151,7 @@ export const useBuildStore = create<BuildState>()(
           const level = minLevelForClass(JOBS[id].classId)
           return { jobId: id, level, baseStats: recomputeStats(id, level, baseFour()) }
         }),
-      reset: () => set({ jobId: null, level: 1, baseStats: baseFour(), equipped: {}, activeBuffs: {}, appliedBuffs: {}, masteryLevels: {}, buffLevels: {}, masteryOff: {} }),
+      reset: () => set({ jobId: null, level: 1, baseStats: baseFour(), equipped: {}, activeBuffs: {}, appliedBuffs: {}, masteryLevels: {}, buffLevels: {}, masteryOff: {}, charge: DEFAULT_CHARGE }),
       setLevel: (n) =>
         set((s) => {
           const min = s.jobId ? minLevelForClass(JOBS[s.jobId].classId) : 1
@@ -233,6 +250,7 @@ export const useBuildStore = create<BuildState>()(
           else next[id] = true
           return { masteryOff: next }
         }),
+      setCharge: (patch) => set((s) => ({ charge: { ...(s.charge ?? DEFAULT_CHARGE), ...patch } })),
       snapshot: () => {
         const { jobId, level, baseStats, equipped, activeBuffs, appliedBuffs, masteryLevels } = get()
         return jobId === null ? null : { jobId, level, baseStats, equipped, activeBuffs, appliedBuffs, masteryLevels }

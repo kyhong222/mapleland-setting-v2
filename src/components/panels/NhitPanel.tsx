@@ -24,7 +24,7 @@ import { elementReaction } from '../../domain/monster'
 import { attackSkillsForJob, skillAttackAt, skillLineCount, comboFinalDamageP, COMBO_SKILLS } from '../../data/skills'
 import { computeCast, computeNhit, computeDpm, baseElementMult, SKILL_MOTION } from '../../domain/skillCombat'
 import { attacksPerMinute } from '../../data/attackSpeed'
-import { chargeElementMult, resolveCharge } from '../../domain/paladinCharge'
+import { chargeElementMult, chargeFromUi } from '../../domain/paladinCharge'
 
 const skillIconSrc = (id: number) => `/skill-icons/${id}.png`
 const hideOnError = (e: SyntheticEvent<HTMLImageElement>) => { e.currentTarget.style.visibility = 'hidden' }
@@ -51,6 +51,7 @@ export default function NhitPanel() {
   const invItems = useInventoryStore((s) => s.items)
   const selectedMobId = useMonsterStore((s) => s.selectedId)
   const activeBuffs = useBuildStore((s) => s.activeBuffs)
+  const chargeState = useBuildStore((s) => s.charge)
   const buffEffects = useBuffEffects()
   const builts = useActiveEquippedBuilts()
 
@@ -94,7 +95,7 @@ export default function NhitPanel() {
 
     // 속성 반응 — 팔라딘 차지 활성 시 차지 속성/레벨 배율로 대체(물리 한정)
     // 팔라딘 차지: 특화버프에서 켜진 차지 버프를 읽어 속성배율 대체(물리 한정)
-    const charge = !isMagic ? resolveCharge(activeBuffs) : null
+    const charge = !isMagic && jobId === 'paladin' ? chargeFromUi(chargeState) : null
     const elementMult = charge
       ? chargeElementMult(charge, monster.elemAttr)
       : baseElementMult(elementReaction(monster.elemAttr, att.element))
