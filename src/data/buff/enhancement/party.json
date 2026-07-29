@@ -957,64 +957,64 @@
     "masterLevel": 20,
     "effectsByLevel": [
       {
-        "attackSpeedBoost": 1
+        "windBoostStep": 1
       },
       {
-        "attackSpeedBoost": 1
+        "windBoostStep": 1
       },
       {
-        "attackSpeedBoost": 1
+        "windBoostStep": 1
       },
       {
-        "attackSpeedBoost": 1
+        "windBoostStep": 1
       },
       {
-        "attackSpeedBoost": 1
+        "windBoostStep": 1
       },
       {
-        "attackSpeedBoost": 1
+        "windBoostStep": 1
       },
       {
-        "attackSpeedBoost": 1
+        "windBoostStep": 1
       },
       {
-        "attackSpeedBoost": 1
+        "windBoostStep": 1
       },
       {
-        "attackSpeedBoost": 1
+        "windBoostStep": 1
       },
       {
-        "attackSpeedBoost": 1
+        "windBoostStep": 1
       },
       {
-        "attackSpeedBoost": 2
+        "windBoostStep": 2
       },
       {
-        "attackSpeedBoost": 2
+        "windBoostStep": 2
       },
       {
-        "attackSpeedBoost": 2
+        "windBoostStep": 2
       },
       {
-        "attackSpeedBoost": 2
+        "windBoostStep": 2
       },
       {
-        "attackSpeedBoost": 2
+        "windBoostStep": 2
       },
       {
-        "attackSpeedBoost": 2
+        "windBoostStep": 2
       },
       {
-        "attackSpeedBoost": 2
+        "windBoostStep": 2
       },
       {
-        "attackSpeedBoost": 2
+        "windBoostStep": 2
       },
       {
-        "attackSpeedBoost": 2
+        "windBoostStep": 2
       },
       {
-        "attackSpeedBoost": 2
+        "windBoostStep": 2
       }
     ],
     "icon": "/buff-icons/5121009.png"

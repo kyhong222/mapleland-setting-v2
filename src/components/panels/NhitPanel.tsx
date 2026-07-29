@@ -33,6 +33,11 @@ const pct = (n: number) => `${(n * 100).toFixed(1)}%`
 /** 공속 단계(2~9) → 한글 라벨 (docs §12.0) */
 const speedLabel = (step: number): string =>
   step <= 3 ? '매우 빠름' : step <= 5 ? '빠름' : step === 6 ? '보통' : step <= 8 ? '느림' : '매우 느림'
+
+/** 패닉/코마(검·도끼/둔기, 히어로·소마) — 콤보 카운터 전량 소모형. 방컷·DPM 미제공 */
+const COMA_PANIC = new Set([1111003, 1111004, 1111005, 1111006, 11111002, 11111003])
+/** 최대 콤보 카운터(5~10) 소모 시 카운터 뎀증 배율 (docs §4) */
+const MAX_COUNTER_MULT = 2.5
 const rng = (r: { min: number; max: number }) => `${Math.round(r.min).toLocaleString()} ~ ${Math.round(r.max).toLocaleString()}`
 
 export default function NhitPanel() {
@@ -103,7 +108,10 @@ export default function NhitPanel() {
     const finalMult = 1 + ((effects.finalDamageP ?? 0) + comboBonus) / 100
     // 위협(파티 디버프: 몬스터 받는 데미지 +%) — 곱연산 중첩
     const threatenMult = 1 + (effects.monsterDamageTakenP ?? 0) / 100
-    const damageMult = (isMagic ? magicAmpMultiplier(effects) : 1) * finalMult * threatenMult
+    // 패닉/코마: 최대 콤보 카운터(5~10) 전량 소모 → 카운터 뎀증 ×2.5 (콤보 활성 시)
+    const comaPanic = COMA_PANIC.has(selectedSkill.id)
+    const counterMult = comaPanic && comboBonus > 0 ? MAX_COUNTER_MULT : 1
+    const damageMult = (isMagic ? magicAmpMultiplier(effects) : 1) * finalMult * threatenMult * counterMult
 
     const cast = computeCast({
       weaponType: weaponType ?? 'oneHandedSword',
@@ -127,8 +135,8 @@ export default function NhitPanel() {
 
     const hp = monster.maxHP ?? 0
     const isBoss = !!monster.isBoss
-    // 부스터 = 개인/파티 버프의 공속상승단계(attackSpeedBoost). 마법은 부스터 활성 여부만 사용
-    const boosterSteps = effects.attackSpeedBoost ?? 0
+    // 부스터(개인) + 윈드부스터(파티)는 중첩되는 추가 공속상승. 마법은 부스터 활성 여부만 사용
+    const boosterSteps = (effects.attackSpeedBoost ?? 0) + (effects.windBoostStep ?? 0)
     const magicBooster = boosterSteps > 0
     const effStep = Math.max(2, Math.min(9, weaponSpeedStep - boosterSteps))
     const apm = attacksPerMinute(selectedSkill.id, weaponSpeedStep, boosterSteps, att.kind, magicBooster)
@@ -144,8 +152,9 @@ export default function NhitPanel() {
         max: Math.max(...cast.lineRanges.map((r) => r.max)),
       },
       totalRange: cast.totalRange,
-      nhit: isBoss ? null : computeNhit(cast.dist, hp, 10),
-      apm, dpm, killSec, isMagic, effStep, boosterActive: magicBooster,
+      // 패닉/코마는 카운터 소모형 → 방컷·DPM 미제공(데미지 범위만)
+      nhit: isBoss || comaPanic ? null : computeNhit(cast.dist, hp, 10),
+      apm, dpm, killSec, isMagic, effStep, boosterActive: magicBooster, comaPanic,
     }
   })()
 
@@ -257,28 +266,29 @@ export default function NhitPanel() {
                 </>
               )}
 
-              {/* DPM */}
-              <Divider sx={{ my: 0.75 }} />
-              <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                <Typography variant="caption" sx={{ fontWeight: 700 }}>DPM</Typography>
-                <Typography variant="caption" color="text.secondary">
-                  공격속도 {result.isMagic ? (result.boosterActive ? '매직부스터' : '노말') : `${result.effStep}단계 (${speedLabel(result.effStep)})`}
-                </Typography>
-              </Box>
-              {result.dpm != null ? (
+              {/* DPM (패닉/코마는 카운터 소모형이라 미제공) */}
+              {!result.comaPanic && (
                 <>
-                  <Row label="DPM" value={Math.round(result.dpm).toLocaleString()} strong />
-                  <Row label="분당 공격횟수" value={`${result.apm}회`} />
-                  {result.isBoss && result.killSec != null && <Row label="처치 소요(참고)" value={`${result.killSec.toFixed(1)}초`} />}
+                  <Divider sx={{ my: 0.75 }} />
+                  <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                    <Typography variant="caption" sx={{ fontWeight: 700 }}>DPM</Typography>
+                    <Typography variant="caption" color="text.secondary">
+                      공격속도 {result.isMagic ? (result.boosterActive ? '매직부스터' : '노말') : `${result.effStep}단계 (${speedLabel(result.effStep)})`}
+                    </Typography>
+                  </Box>
+                  {result.dpm != null ? (
+                    <>
+                      <Row label="DPM" value={Math.round(result.dpm).toLocaleString()} strong />
+                      <Row label="분당 공격횟수" value={`${result.apm}회`} />
+                      {result.isBoss && result.killSec != null && <Row label="처치 소요(참고)" value={`${result.killSec.toFixed(1)}초`} />}
+                    </>
+                  ) : (
+                    <Typography variant="body2" color="text.disabled">공속 데이터가 없습니다.</Typography>
+                  )}
                 </>
-              ) : (
-                <Typography variant="body2" color="text.disabled">공속 데이터가 없습니다.</Typography>
               )}
             </>
           )}
-          <Typography variant="caption" color="text.disabled" sx={{ display: 'block', mt: 1 }}>
-            ※ 크리·속성·방어·특화버프(콤보/버서크)·위협·팔라딘 차지 반영. (* = 고유 모션)
-          </Typography>
         </>
       )}
     </CollapsiblePanel>
