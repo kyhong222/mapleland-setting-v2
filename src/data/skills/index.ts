@@ -81,10 +81,17 @@ export function skillNum(props: ILevelProperties | undefined, key: string): numb
 /** 소환수 스킬 — 데미지 지원 대상에서 제외 (물리 소환수는 mad/damage가 없어 자동 제외됨) */
 const SUMMON_SKILLS = new Set(['이프리트', '엘퀴네스', '바하뮤트', '서먼 드래곤'])
 
-/** 공격 스킬 여부 (물리 damage 또는 마법 mad 보유; 차지/메디테이션/소환수 제외) */
+/**
+ * 데미지 증가 버프(콤보/어드밴스드콤보/버서크) — damage 필드를 갖지만 공격 스킬이 아님.
+ * (특화/파티 버프로 관리되므로 데미지 계산 스킬 목록에서 제외)
+ */
+const DAMAGE_BUFF_SKILLS = new Set([1111002, 1120003, 11111001, 11110005, 1320006])
+
+/** 공격 스킬 여부 (물리 damage 또는 마법 mad 보유; 차지/메디테이션/소환수/데미지버프 제외) */
 export function isAttackSkill(skill: IJobSkill): boolean {
   const name = skill.description?.name ?? ''
   if (name.includes('차지') || name === '메디테이션' || SUMMON_SKILLS.has(name)) return false
+  if (DAMAGE_BUFF_SKILLS.has(skill.id)) return false
   return skill.levelProperties.some((p) => p.mad !== undefined || p.damage !== undefined)
 }
 

@@ -30,6 +30,9 @@ import type { ChargeElement } from '../../domain/paladinCharge'
 const skillIconSrc = (id: number) => `/skill-icons/${id}.png`
 const hideOnError = (e: SyntheticEvent<HTMLImageElement>) => { e.currentTarget.style.visibility = 'hidden' }
 const pct = (n: number) => `${(n * 100).toFixed(1)}%`
+/** 공속 단계(2~9) → 한글 라벨 (docs §12.0) */
+const speedLabel = (step: number): string =>
+  step <= 3 ? '매우 빠름' : step <= 5 ? '빠름' : step === 6 ? '보통' : step <= 8 ? '느림' : '매우 느림'
 const rng = (r: { min: number; max: number }) => `${Math.round(r.min).toLocaleString()} ~ ${Math.round(r.max).toLocaleString()}`
 
 export default function NhitPanel() {
@@ -45,8 +48,6 @@ export default function NhitPanel() {
 
   const [skillId, setSkillId] = useState<number | ''>('')
   const [skillLevel, setSkillLevel] = useState(1)
-  const [booster, setBooster] = useState(false)
-  const [magicBooster, setMagicBooster] = useState(false)
   // 팔라딘 차지 (속성 부여)
   const [chargeMain, setChargeMain] = useState<ChargeElement | ''>('')
   const [chargeLevel, setChargeLevel] = useState(30)
@@ -126,9 +127,10 @@ export default function NhitPanel() {
 
     const hp = monster.maxHP ?? 0
     const isBoss = !!monster.isBoss
-    // 부스터 단계감소 = max(수동 부스터 토글, 윈드부스터 등 버프 공속단계)
-    const buffBoosterSteps = effects.attackSpeedBoost ?? 0
-    const boosterSteps = Math.max(booster ? 2 : 0, buffBoosterSteps)
+    // 부스터 = 개인/파티 버프의 공속상승단계(attackSpeedBoost). 마법은 부스터 활성 여부만 사용
+    const boosterSteps = effects.attackSpeedBoost ?? 0
+    const magicBooster = boosterSteps > 0
+    const effStep = Math.max(2, Math.min(9, weaponSpeedStep - boosterSteps))
     const apm = attacksPerMinute(selectedSkill.id, weaponSpeedStep, boosterSteps, att.kind, magicBooster)
     const dpm = apm != null ? computeDpm(cast.dist, apm) : null
     const killSec = dpm && dpm > 0 && hp > 0 ? hp / (dpm / 60) : null
@@ -143,9 +145,7 @@ export default function NhitPanel() {
       },
       totalRange: cast.totalRange,
       nhit: isBoss ? null : computeNhit(cast.dist, hp, 10),
-      apm, dpm, killSec, isMagic,
-      // 윈드부스터를 마법사에게 적용 시 시전속도 데이터 없음 → 미반영 안내
-      windOnMagic: isMagic && buffBoosterSteps > 0,
+      apm, dpm, killSec, isMagic, effStep, boosterActive: magicBooster,
     }
   })()
 
@@ -261,7 +261,9 @@ export default function NhitPanel() {
               <Divider sx={{ my: 0.75 }} />
               <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
                 <Typography variant="caption" sx={{ fontWeight: 700 }}>DPM</Typography>
-                <FormControlLabel sx={{ m: 0 }} control={<Switch size="small" checked={result.isMagic ? magicBooster : booster} onChange={(e) => (result.isMagic ? setMagicBooster : setBooster)(e.target.checked)} />} label={<Typography variant="caption">{result.isMagic ? '매직부스터' : '부스터(+2)'}</Typography>} />
+                <Typography variant="caption" color="text.secondary">
+                  공격속도 {result.isMagic ? (result.boosterActive ? '매직부스터' : '노말') : `${result.effStep}단계 (${speedLabel(result.effStep)})`}
+                </Typography>
               </Box>
               {result.dpm != null ? (
                 <>
@@ -271,11 +273,6 @@ export default function NhitPanel() {
                 </>
               ) : (
                 <Typography variant="body2" color="text.disabled">공속 데이터가 없습니다.</Typography>
-              )}
-              {result.windOnMagic && (
-                <Typography variant="caption" color="warning.main" sx={{ display: 'block' }}>
-                  ※ 윈드부스터의 마법사 시전속도 데이터가 없어 DPM에 미반영됩니다.
-                </Typography>
               )}
             </>
           )}

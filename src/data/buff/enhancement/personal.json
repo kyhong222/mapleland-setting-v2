@@ -1802,5 +1802,1411 @@
     "jobs": [
       "viper"
     ]
+  },
+  {
+    "id": "1101004",
+    "type": "skill",
+    "name": "소드 부스터",
+    "scope": "personal",
+    "mode": "active",
+    "masterLevel": 20,
+    "jobs": [
+      "hero"
+    ],
+    "effectsByLevel": [
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      }
+    ],
+    "icon": "/buff-icons/1101004.png"
+  },
+  {
+    "id": "1101005",
+    "type": "skill",
+    "name": "엑스 부스터",
+    "scope": "personal",
+    "mode": "active",
+    "masterLevel": 20,
+    "jobs": [
+      "hero"
+    ],
+    "effectsByLevel": [
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      }
+    ],
+    "icon": "/buff-icons/1101005.png"
+  },
+  {
+    "id": "1201004",
+    "type": "skill",
+    "name": "소드 부스터",
+    "scope": "personal",
+    "mode": "active",
+    "masterLevel": 20,
+    "jobs": [
+      "paladin"
+    ],
+    "effectsByLevel": [
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      }
+    ],
+    "icon": "/buff-icons/1201004.png"
+  },
+  {
+    "id": "1201005",
+    "type": "skill",
+    "name": "메이스 부스터",
+    "scope": "personal",
+    "mode": "active",
+    "masterLevel": 20,
+    "jobs": [
+      "paladin"
+    ],
+    "effectsByLevel": [
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      }
+    ],
+    "icon": "/buff-icons/1201005.png"
+  },
+  {
+    "id": "1301004",
+    "type": "skill",
+    "name": "스피어 부스터",
+    "scope": "personal",
+    "mode": "active",
+    "masterLevel": 20,
+    "jobs": [
+      "darkKnight"
+    ],
+    "effectsByLevel": [
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      }
+    ],
+    "icon": "/buff-icons/1301004.png"
+  },
+  {
+    "id": "1301005",
+    "type": "skill",
+    "name": "폴암 부스터",
+    "scope": "personal",
+    "mode": "active",
+    "masterLevel": 20,
+    "jobs": [
+      "darkKnight"
+    ],
+    "effectsByLevel": [
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      }
+    ],
+    "icon": "/buff-icons/1301005.png"
+  },
+  {
+    "id": "3101002",
+    "type": "skill",
+    "name": "보우 부스터",
+    "scope": "personal",
+    "mode": "active",
+    "masterLevel": 20,
+    "jobs": [
+      "bowmaster"
+    ],
+    "effectsByLevel": [
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      }
+    ],
+    "icon": "/buff-icons/3101002.png"
+  },
+  {
+    "id": "3201002",
+    "type": "skill",
+    "name": "크로스보우 부스터",
+    "scope": "personal",
+    "mode": "active",
+    "masterLevel": 20,
+    "jobs": [
+      "marksman"
+    ],
+    "effectsByLevel": [
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      }
+    ],
+    "icon": "/buff-icons/3201002.png"
+  },
+  {
+    "id": "4101003",
+    "type": "skill",
+    "name": "자벨린 부스터",
+    "scope": "personal",
+    "mode": "active",
+    "masterLevel": 20,
+    "jobs": [
+      "nightLord"
+    ],
+    "effectsByLevel": [
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      }
+    ],
+    "icon": "/buff-icons/4101003.png"
+  },
+  {
+    "id": "4201002",
+    "type": "skill",
+    "name": "대거 부스터",
+    "scope": "personal",
+    "mode": "active",
+    "masterLevel": 20,
+    "jobs": [
+      "shadower"
+    ],
+    "effectsByLevel": [
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      }
+    ],
+    "icon": "/buff-icons/4201002.png"
+  },
+  {
+    "id": "5101006",
+    "type": "skill",
+    "name": "너클 부스터",
+    "scope": "personal",
+    "mode": "active",
+    "masterLevel": 20,
+    "jobs": [
+      "viper"
+    ],
+    "effectsByLevel": [
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      }
+    ],
+    "icon": "/buff-icons/5101006.png"
+  },
+  {
+    "id": "5201003",
+    "type": "skill",
+    "name": "건 부스터",
+    "scope": "personal",
+    "mode": "active",
+    "masterLevel": 20,
+    "jobs": [
+      "captain"
+    ],
+    "effectsByLevel": [
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      }
+    ],
+    "icon": "/buff-icons/5201003.png"
+  },
+  {
+    "id": "2111005",
+    "type": "skill",
+    "name": "매직 부스터",
+    "scope": "personal",
+    "mode": "active",
+    "masterLevel": 20,
+    "jobs": [
+      "archMageFP"
+    ],
+    "effectsByLevel": [
+      {
+        "attackSpeedBoost": 1
+      },
+      {
+        "attackSpeedBoost": 1
+      },
+      {
+        "attackSpeedBoost": 1
+      },
+      {
+        "attackSpeedBoost": 1
+      },
+      {
+        "attackSpeedBoost": 1
+      },
+      {
+        "attackSpeedBoost": 1
+      },
+      {
+        "attackSpeedBoost": 1
+      },
+      {
+        "attackSpeedBoost": 1
+      },
+      {
+        "attackSpeedBoost": 1
+      },
+      {
+        "attackSpeedBoost": 1
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      }
+    ],
+    "icon": "/buff-icons/2111005.png"
+  },
+  {
+    "id": "2211005",
+    "type": "skill",
+    "name": "매직 부스터",
+    "scope": "personal",
+    "mode": "active",
+    "masterLevel": 20,
+    "jobs": [
+      "archMageIL"
+    ],
+    "effectsByLevel": [
+      {
+        "attackSpeedBoost": 1
+      },
+      {
+        "attackSpeedBoost": 1
+      },
+      {
+        "attackSpeedBoost": 1
+      },
+      {
+        "attackSpeedBoost": 1
+      },
+      {
+        "attackSpeedBoost": 1
+      },
+      {
+        "attackSpeedBoost": 1
+      },
+      {
+        "attackSpeedBoost": 1
+      },
+      {
+        "attackSpeedBoost": 1
+      },
+      {
+        "attackSpeedBoost": 1
+      },
+      {
+        "attackSpeedBoost": 1
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      }
+    ],
+    "icon": "/buff-icons/2211005.png"
+  },
+  {
+    "id": "11101001",
+    "type": "skill",
+    "name": "소드 부스터",
+    "scope": "personal",
+    "mode": "active",
+    "masterLevel": 20,
+    "jobs": [
+      "soulMaster"
+    ],
+    "effectsByLevel": [
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      }
+    ],
+    "icon": "/buff-icons/11101001.png"
+  },
+  {
+    "id": "12101004",
+    "type": "skill",
+    "name": "매직 부스터",
+    "scope": "personal",
+    "mode": "active",
+    "masterLevel": 20,
+    "jobs": [
+      "flameWizard"
+    ],
+    "effectsByLevel": [
+      {
+        "attackSpeedBoost": 1
+      },
+      {
+        "attackSpeedBoost": 1
+      },
+      {
+        "attackSpeedBoost": 1
+      },
+      {
+        "attackSpeedBoost": 1
+      },
+      {
+        "attackSpeedBoost": 1
+      },
+      {
+        "attackSpeedBoost": 1
+      },
+      {
+        "attackSpeedBoost": 1
+      },
+      {
+        "attackSpeedBoost": 1
+      },
+      {
+        "attackSpeedBoost": 1
+      },
+      {
+        "attackSpeedBoost": 1
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      }
+    ],
+    "icon": "/buff-icons/12101004.png"
+  },
+  {
+    "id": "13101001",
+    "type": "skill",
+    "name": "보우 부스터",
+    "scope": "personal",
+    "mode": "active",
+    "masterLevel": 20,
+    "jobs": [
+      "windBreaker"
+    ],
+    "effectsByLevel": [
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      }
+    ],
+    "icon": "/buff-icons/13101001.png"
+  },
+  {
+    "id": "14101002",
+    "type": "skill",
+    "name": "자벨린 부스터",
+    "scope": "personal",
+    "mode": "active",
+    "masterLevel": 20,
+    "jobs": [
+      "nightWalker"
+    ],
+    "effectsByLevel": [
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      }
+    ],
+    "icon": "/buff-icons/14101002.png"
+  },
+  {
+    "id": "15101002",
+    "type": "skill",
+    "name": "너클 부스터",
+    "scope": "personal",
+    "mode": "active",
+    "masterLevel": 20,
+    "jobs": [
+      "striker"
+    ],
+    "effectsByLevel": [
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      },
+      {
+        "attackSpeedBoost": 2
+      }
+    ],
+    "icon": "/buff-icons/15101002.png"
   }
 ]
