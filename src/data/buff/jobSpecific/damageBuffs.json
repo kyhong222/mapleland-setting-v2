@@ -101,43 +101,162 @@
         "finalDamageP": 100
       }
     ],
-    "icon": "/skill-icons/1320006.png",
-    "note": "HP 조건 무시, 데미지 배율만 (docs §4)"
+    "icon": "/skill-icons/1320006.png"
   },
   {
     "id": "1111002",
     "type": "skill",
-    "name": "콤보 어택(풀콤보)",
+    "name": "콤보 어택",
     "scope": "personal",
     "mode": "passive",
-    "masterLevel": 1,
+    "masterLevel": 30,
     "jobs": [
       "hero"
     ],
     "effectsByLevel": [
-      {
-        "finalDamageP": 90
-      }
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {}
     ],
-    "icon": "/skill-icons/1111002.png",
-    "note": "어드밴스드 콤보 마스터·최대카운터 가정 ×1.9 (docs §4)"
+    "icon": "/skill-icons/1111002.png"
+  },
+  {
+    "id": "1120003",
+    "type": "skill",
+    "name": "어드밴스드 콤보",
+    "scope": "personal",
+    "mode": "passive",
+    "masterLevel": 30,
+    "jobs": [
+      "hero"
+    ],
+    "effectsByLevel": [
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {}
+    ],
+    "icon": "/skill-icons/1120003.png"
   },
   {
     "id": "11111001",
     "type": "skill",
-    "name": "콤보 어택(풀콤보)",
+    "name": "콤보 어택",
     "scope": "personal",
     "mode": "passive",
-    "masterLevel": 1,
+    "masterLevel": 20,
     "jobs": [
       "soulMaster"
     ],
     "effectsByLevel": [
-      {
-        "finalDamageP": 80
-      }
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {}
     ],
-    "icon": "/skill-icons/11111001.png",
-    "note": "어드밴스드 콤보 마스터·최대카운터 가정 ×1.8 (docs §4)"
+    "icon": "/skill-icons/11111001.png"
+  },
+  {
+    "id": "11110005",
+    "type": "skill",
+    "name": "어드밴스드 콤보",
+    "scope": "personal",
+    "mode": "passive",
+    "masterLevel": 20,
+    "jobs": [
+      "soulMaster"
+    ],
+    "effectsByLevel": [
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {}
+    ],
+    "icon": "/skill-icons/11110005.png"
   }
 ]

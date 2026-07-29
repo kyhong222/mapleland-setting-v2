@@ -116,6 +116,48 @@ const SKILL_ELEMENT_OVERRIDE: Record<string, string> = {
   '메테오': 'F',
 }
 
+/** id로 스킬 검색 (전 스킬북) */
+export function findSkillById(id: number): IJobSkill | undefined {
+  for (const book of Object.values(SKILLBOOKS) as IJobSkillBook[]) {
+    const s = book.skills.find((sk) => sk.id === id)
+    if (s) return s
+  }
+  return undefined
+}
+
+/**
+ * 콤보 어택 최종데미지증가%(finalDamageP). docs §4.
+ *  maxCounter = 어드밴스드 학습 ? advCombo.x : combo.x
+ *  c≤5: combo.damage + (c−1)×(comboLv/6)   /  c≥6: advCombo.damage + 20 + (c−5)×4
+ *  finalDamageP = 뎀증% − 100
+ */
+export function comboFinalDamageP(comboId: number, comboLevel: number, advId: number, advLevel: number): number {
+  const combo = findSkillById(comboId)
+  if (!combo || comboLevel <= 0) return 0
+  const cProps = skillPropsAtLevel(combo, comboLevel)
+  const comboDmg = skillNum(cProps, 'damage')
+  const comboX = skillNum(cProps, 'x')
+
+  const adv = advLevel > 0 ? findSkillById(advId) : undefined
+  let pct: number
+  if (adv) {
+    const aProps = skillPropsAtLevel(adv, advLevel)
+    const advDmg = skillNum(aProps, 'damage')
+    const maxCounter = skillNum(aProps, 'x')
+    pct = advDmg + 20 + Math.max(0, maxCounter - 5) * 4
+  } else {
+    const maxCounter = comboX
+    pct = comboDmg + (maxCounter - 1) * (comboLevel / 6)
+  }
+  return Math.max(0, pct - 100)
+}
+
+/** 직업별 콤보/어드밴스드 콤보 skill id */
+export const COMBO_SKILLS: Partial<Record<string, { combo: number; adv: number }>> = {
+  hero: { combo: 1111002, adv: 1120003 },
+  soulMaster: { combo: 11111001, adv: 11110005 },
+}
+
 /** 단일 대상 시전당 라인 수 (attackCount, 없으면 1). docs §2.4 */
 export function skillLineCount(skill: IJobSkill, level: number): number {
   const props = skillPropsAtLevel(skill, level)

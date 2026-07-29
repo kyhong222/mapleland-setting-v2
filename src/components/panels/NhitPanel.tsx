@@ -21,7 +21,7 @@ import {
 import { JOBS } from '../../domain/jobs'
 import { getMonster } from '../../data/mobs'
 import { elementReaction } from '../../domain/monster'
-import { attackSkillsForJob, skillAttackAt, skillLineCount } from '../../data/skills'
+import { attackSkillsForJob, skillAttackAt, skillLineCount, comboFinalDamageP, COMBO_SKILLS } from '../../data/skills'
 import { computeCastDist, computeNhit, computeDpm, baseElementMult, SKILL_MOTION } from '../../domain/skillCombat'
 import { attacksPerMinute } from '../../data/attackSpeed'
 
@@ -36,6 +36,7 @@ export default function NhitPanel() {
   const equipped = useBuildStore((s) => s.equipped)
   const invItems = useInventoryStore((s) => s.items)
   const selectedMobId = useMonsterStore((s) => s.selectedId)
+  const activeBuffs = useBuildStore((s) => s.activeBuffs)
   const buffEffects = useBuffEffects()
   const builts = useActiveEquippedBuilts()
 
@@ -79,8 +80,13 @@ export default function NhitPanel() {
       ? { kind: 'magic' as const, def: monster.MDDamage ?? 0, levelPenalty: D }
       : { kind: 'physical' as const, def: monster.PDDamage ?? 0, levelPenalty: D }
 
-    // 배율: 최종데미지증가%(콤보/버서크 등 특화버프) × 마법 엘앰프
-    const finalMult = 1 + (effects.finalDamageP ?? 0) / 100
+    // 콤보 어택: 콤보+어드밴스드 레벨의 결합공식(별도 합산)
+    const cs = jobId ? COMBO_SKILLS[jobId] : undefined
+    const comboBonus = cs
+      ? comboFinalDamageP(cs.combo, activeBuffs[String(cs.combo)] ?? 0, cs.adv, activeBuffs[String(cs.adv)] ?? 0)
+      : 0
+    // 최종데미지증가%(버서크 등 finalDamageP + 콤보) × 마법 엘앰프
+    const finalMult = 1 + ((effects.finalDamageP ?? 0) + comboBonus) / 100
     const damageMult = (isMagic ? magicAmpMultiplier(effects) : 1) * finalMult
 
     const dist = computeCastDist({
