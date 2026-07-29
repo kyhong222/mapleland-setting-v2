@@ -24,7 +24,7 @@ import { canUseBuff, buffEffectsAtLevel, defaultBuffLevel, effectiveMasterLevel 
 import type { Buff } from '../../domain/buff'
 import { maxEffects } from '../../domain/effects'
 import type { JobId } from '../../domain/jobs'
-import { comboFinalDamageP, COMBO_SKILLS } from '../../data/skills'
+import { comboFinalDamageP, COMBO_SKILLS, findSkillById, skillAttackAt } from '../../data/skills'
 import { CHARGE_LABEL, CHARGE_MASTER, CHARGE_ELEMENTS } from '../../domain/paladinCharge'
 import type { ChargeElement } from '../../domain/paladinCharge'
 import { DEFAULT_CHARGE } from '../../store/buildStore'
@@ -257,7 +257,9 @@ function BuffRow({ buff, onOpen }: { buff: Buff; onOpen: (b: Buff) => void }) {
   const shownLevel = Math.min(active ? (level as number) : remembered ?? defaultBuffLevel(buff, jobId), effectiveMasterLevel(buff, jobId))
   const eff = buffEffectsAtLevel(buff, shownLevel)
   const comboText = comboEffectText(buff, activeBuffs, jobId)
-  const caption = requiresShield && !shieldOk ? '방패 착용 필요' : (comboText ?? (formatEffects(eff) || '—'))
+  // 어드밴스드 차지: 차지 블로우 계수 강화 설명
+  const advText = buff.id === '1220010' ? advChargeCaption(shownLevel) : null
+  const caption = requiresShield && !shieldOk ? '방패 착용 필요' : (advText ?? comboText ?? (formatEffects(eff) || '—'))
   return (
     <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5, py: 0.25 }}>
       <BuffIcon buff={buff} active={active} highlightActive onClick={() => toggleBuff(buff.id)} onContextMenu={(e) => { e.preventDefault(); onOpen(buff) }} />
@@ -269,6 +271,13 @@ function BuffRow({ buff, onOpen }: { buff: Buff; onOpen: (b: Buff) => void }) {
       </Box>
     </Box>
   )
+}
+
+/** 어드밴스드 차지 설명: 차지 블로우 계수를 레벨별 값으로 강화 */
+function advChargeCaption(level: number): string {
+  const sk = findSkillById(1220010)
+  const att = sk ? skillAttackAt(sk, level) : null
+  return `차지 블로우 데미지 계수 ${att?.skillPercent ?? 350}%`
 }
 
 /** 콤보 어택 계열 버프의 효과 표기 ("데미지 ×n배 증가"). 그 외 null */
