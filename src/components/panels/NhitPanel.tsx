@@ -86,9 +86,11 @@ export default function NhitPanel() {
     const comboBonus = cs
       ? comboFinalDamageP(cs.combo, activeBuffs[String(cs.combo)] ?? 0, cs.adv, activeBuffs[String(cs.adv)] ?? 0)
       : 0
-    // 최종데미지증가%(버서크 등 finalDamageP + 콤보) × 마법 엘앰프
+    // 자기 데미지증가버프(버서크 등 finalDamageP + 콤보) — 합연산
     const finalMult = 1 + ((effects.finalDamageP ?? 0) + comboBonus) / 100
-    const damageMult = (isMagic ? magicAmpMultiplier(effects) : 1) * finalMult
+    // 위협(파티 디버프: 몬스터 받는 데미지 +%) — 곱연산 중첩
+    const threatenMult = 1 + (effects.monsterDamageTakenP ?? 0) / 100
+    const damageMult = (isMagic ? magicAmpMultiplier(effects) : 1) * finalMult * threatenMult
 
     const cast = computeCast({
       weaponType: weaponType ?? 'oneHandedSword',
@@ -213,7 +215,7 @@ export default function NhitPanel() {
             </>
           )}
           <Typography variant="caption" color="text.disabled" sx={{ display: 'block', mt: 1 }}>
-            ※ 크리·속성·방어·특화버프(콤보/버서크 등) 반영. 차지·위협은 추후. (* = 고유 모션)
+            ※ 크리·속성·방어·특화버프(콤보/버서크)·위협 반영. 팔라딘 차지는 추후. (* = 고유 모션)
           </Typography>
         </>
       )}
