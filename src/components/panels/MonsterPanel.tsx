@@ -1,10 +1,11 @@
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
 import type { ReactNode } from 'react'
 import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
 import Divider from '@mui/material/Divider'
 import Button from '@mui/material/Button'
 import Chip from '@mui/material/Chip'
+import Tooltip from '@mui/material/Tooltip'
 import CollapsiblePanel from '../common/CollapsiblePanel'
 import InfoTip, { InfoTitle, Formula, InfoWarn } from '../common/InfoTip'
 import MonsterIcon from '../monster/MonsterIcon'
@@ -12,14 +13,19 @@ import MonsterSelectDialog from '../monster/MonsterSelectDialog'
 import { useMonsterStore } from '../../store/monsterStore'
 import { useBuildStore } from '../../store/buildStore'
 import { useInventoryStore } from '../../store/inventoryStore'
-import { aggregateBuild } from '../../store/aggregate'
+import { aggregateBuild, equippedHasShield } from '../../store/aggregate'
 import { useActiveEquippedBuilts } from '../../store/activation'
 import { useBuffEffects } from '../../store/useBuffEffects'
+import { getBuff } from '../../data/buff'
+import { buffEffectsAtLevel } from '../../domain/buff'
 import { getMonster } from '../../data/mobs'
 import { monsterLabel, parseElemAttr } from '../../domain/monster'
 import type { Monster } from '../../domain/monster'
 import { computeVsMonster } from '../../domain/combat'
 import type { VsMonsterResult } from '../../domain/combat'
+
+/** 회피확률에 기여하는 스킬 배지 (페이크·블로킹) */
+interface EvadeBadge { id: string; name: string; icon?: string }
 
 /** 속성 효과별 칩 색상 (공격자 관점: 약점=이득, 무효=불리) */
 const ELEM_COLOR: Record<'무효' | '반감' | '약점', 'error' | 'warning' | 'success'> = {
@@ -28,20 +34,37 @@ const ELEM_COLOR: Record<'무효' | '반감' | '약점', 'error' | 'warning' | '
   약점: 'success',
 }
 
+/** 회피확률 행에 영향을 주는 스킬 아이콘들 */
+function EvadeIcons({ badges }: { badges?: EvadeBadge[] }) {
+  if (!badges?.length) return null
+  return (
+    <Box sx={{ display: 'inline-flex', alignItems: 'center', gap: 0.25, ml: 0.5 }}>
+      {badges.map((b) => (
+        <Tooltip key={b.id} title={b.name} placement="top" arrow disableInteractive>
+          <Box component="img" src={b.icon} alt={b.name} sx={{ width: 14, height: 14, imageRendering: 'pixelated', display: 'block' }} />
+        </Tooltip>
+      ))}
+    </Box>
+  )
+}
+
 function StatLine({
   label,
   value,
   help,
+  badges,
 }: {
   label: string
   value: number | string | undefined
   help?: ReactNode
+  badges?: EvadeBadge[]
 }) {
   return (
     <Box sx={{ display: 'flex', justifyContent: 'space-between', px: 1 }}>
       <Typography variant="caption" color="text.secondary" sx={{ display: 'flex', alignItems: 'center' }}>
         {label}
         {help && <InfoTip title={help} />}
+        <EvadeIcons badges={badges} />
       </Typography>
       <Typography variant="caption" sx={{ fontWeight: 600 }}>{value ?? '—'}</Typography>
     </Box>
@@ -144,7 +167,7 @@ function MonsterInfo({ m }: { m: Monster }) {
 const pct = (n: number): string => `${n.toFixed(1)}%`
 
 /** vs 몬스터 성능 — 필요 명중률 · 명중확률 · 물리/마법 회피확률 */
-function VsPerformance({ result }: { result: VsMonsterResult | null }) {
+function VsPerformance({ result, evadeBadges }: { result: VsMonsterResult | null; evadeBadges: EvadeBadge[] }) {
   return (
     <Box>
       <Typography variant="caption" sx={{ fontWeight: 700, display: 'block', mb: 0.5 }}>vs 몬스터 성능</Typography>
@@ -160,8 +183,8 @@ function VsPerformance({ result }: { result: VsMonsterResult | null }) {
             value={pct(result.hitRate)}
             help={result.isMagician ? HIT_MAGIC_HELP : HIT_PHYS_HELP}
           />
-          <StatLine label="물리회피확률" value={pct(result.physEvade)} help={PHYS_EVADE_HELP} />
-          <StatLine label="마법회피확률" value={pct(result.magicEvade)} help={MAGIC_EVADE_HELP} />
+          <StatLine label="물리회피확률" value={pct(result.physEvade)} help={PHYS_EVADE_HELP} badges={evadeBadges} />
+          <StatLine label="마법회피확률" value={pct(result.magicEvade)} help={MAGIC_EVADE_HELP} badges={evadeBadges} />
         </Box>
       ) : (
         <Typography variant="caption" color="text.disabled" sx={{ display: 'block', mt: 0.5 }}>
@@ -179,11 +202,29 @@ export default function MonsterPanel() {
   const baseStats = useBuildStore((s) => s.baseStats)
   const equipped = useBuildStore((s) => s.equipped)
   const invItems = useInventoryStore((s) => s.items)
+  const activeBuffs = useBuildStore((s) => s.activeBuffs)
+  const appliedBuffs = useBuildStore((s) => s.appliedBuffs)
   const buffEffects = useBuffEffects()
   const builts = useActiveEquippedBuilts()
   const [open, setOpen] = useState(false)
 
   const selected = selectedId != null ? getMonster(selectedId) : undefined
+
+  // 회피확률에 기여하는 스킬(페이크 addEvadeP / 블로킹 blockRate) 배지
+  const hasShield = equippedHasShield(equipped, invItems)
+  const evadeBadges = useMemo<EvadeBadge[]>(() => {
+    const out: EvadeBadge[] = []
+    const add = (id: string, lv: number) => {
+      const b = getBuff(id)
+      if (!b) return
+      if (b.type === 'skill' && b.requiresShield && !hasShield) return
+      const eff = buffEffectsAtLevel(b, lv)
+      if ((eff.addEvadeP ?? 0) > 0 || (eff.blockRate ?? 0) > 0) out.push({ id, name: b.name, icon: b.icon })
+    }
+    for (const [id, lv] of Object.entries(activeBuffs)) add(id, lv)
+    for (const [id, lv] of Object.entries(appliedBuffs)) add(id, lv)
+    return out
+  }, [activeBuffs, appliedBuffs, hasShield])
 
   let vsResult: VsMonsterResult | null = null
   if (jobId && selected) {
@@ -205,7 +246,7 @@ export default function MonsterPanel() {
         <>
           <MonsterInfo m={selected} />
           <Divider sx={{ my: 1 }} />
-          <VsPerformance result={vsResult} />
+          <VsPerformance result={vsResult} evadeBadges={evadeBadges} />
         </>
       ) : (
         <Box sx={{ py: 3, textAlign: 'center' }}>
