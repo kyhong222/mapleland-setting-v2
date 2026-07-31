@@ -6458,7 +6458,9 @@
     "reqJob": 16,
     "weaponType": "knuckle",
     "iconUrl": "https://maplestory.io/api/GMS/200/item/1482008/icon",
-    "tuc": 7
+    "tuc": 7,
+    "reqStr": 150,
+    "reqDex": 60
   },
   {
     "id": 1482009,
