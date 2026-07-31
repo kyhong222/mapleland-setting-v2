@@ -2364,22 +2364,5 @@
     "tuc": 5,
     "reqStr": 100,
     "reqDex": 100
-  },
-  {
-    "id": 1082216,
-    "name": "카노푸스 글로브",
-    "slot": "gloves",
-    "effects": {
-      "STR": 5,
-      "DEX": 5,
-      "pdef": 44,
-      "hp": 15
-    },
-    "reqLevel": 110,
-    "reqJob": 16,
-    "iconUrl": "https://maplestory.io/api/GMS/200/item/1082216/icon",
-    "tuc": 5,
-    "reqStr": 110,
-    "reqDex": 110
   }
 ]

@@ -3358,22 +3358,6 @@
     "reqDex": 100
   },
   {
-    "id": 1072321,
-    "name": "카노푸스 부츠",
-    "slot": "shoes",
-    "effects": {
-      "STR": 4,
-      "DEX": 4,
-      "pdef": 64
-    },
-    "reqLevel": 110,
-    "reqJob": 16,
-    "iconUrl": "https://maplestory.io/api/GMS/200/item/1072321/icon",
-    "tuc": 5,
-    "reqStr": 110,
-    "reqDex": 110
-  },
-  {
     "id": 1072338,
     "name": "퍼플 아이젠",
     "slot": "shoes",
