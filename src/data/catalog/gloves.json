@@ -2320,5 +2320,66 @@
     "iconUrl": "https://maplestory.io/api/gms/200/item/1082243/icon",
     "reqStr": 120,
     "reqDex": 120
+  },
+  {
+    "id": 1082183,
+    "name": "브라운 레더 아머글로브",
+    "slot": "gloves",
+    "effects": {
+      "pdef": 6
+    },
+    "reqLevel": 20,
+    "reqJob": 16,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1082183/icon",
+    "tuc": 5,
+    "reqStr": 20,
+    "reqDex": 20
+  },
+  {
+    "id": 1082192,
+    "name": "브라운 쥬얼드",
+    "slot": "gloves",
+    "effects": {
+      "pdef": 12
+    },
+    "reqLevel": 35,
+    "reqJob": 16,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1082192/icon",
+    "tuc": 5,
+    "reqStr": 35,
+    "reqDex": 35
+  },
+  {
+    "id": 1082213,
+    "name": "블랙 스켈듀크",
+    "slot": "gloves",
+    "effects": {
+      "STR": 3,
+      "DEX": 4,
+      "pdef": 40
+    },
+    "reqLevel": 100,
+    "reqJob": 16,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1082213/icon",
+    "tuc": 5,
+    "reqStr": 100,
+    "reqDex": 100
+  },
+  {
+    "id": 1082216,
+    "name": "카노푸스 글로브",
+    "slot": "gloves",
+    "effects": {
+      "STR": 5,
+      "DEX": 5,
+      "pdef": 44,
+      "hp": 15
+    },
+    "reqLevel": 110,
+    "reqJob": 16,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1082216/icon",
+    "tuc": 5,
+    "reqStr": 110,
+    "reqDex": 110
   }
 ]

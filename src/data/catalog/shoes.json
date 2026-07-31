@@ -3169,5 +3169,221 @@
     "iconUrl": "https://maplestory.io/api/gms/200/item/1072365/icon",
     "reqStr": 120,
     "reqDex": 120
+  },
+  {
+    "id": 1072285,
+    "name": "브라운 래거 슬리퍼",
+    "slot": "shoes",
+    "effects": {
+      "pdef": 7
+    },
+    "reqLevel": 15,
+    "reqJob": 16,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1072285/icon",
+    "tuc": 5,
+    "reqStr": 15,
+    "reqDex": 15
+  },
+  {
+    "id": 1072288,
+    "name": "브라운 스키디 샌들",
+    "slot": "shoes",
+    "effects": {
+      "pdef": 10
+    },
+    "reqLevel": 20,
+    "reqJob": 16,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1072288/icon",
+    "tuc": 5,
+    "reqStr": 20,
+    "reqDex": 20
+  },
+  {
+    "id": 1072291,
+    "name": "브라운 우든크라그",
+    "slot": "shoes",
+    "effects": {
+      "DEX": 1,
+      "pdef": 13
+    },
+    "reqLevel": 25,
+    "reqJob": 16,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1072291/icon",
+    "tuc": 5,
+    "reqStr": 25,
+    "reqDex": 25
+  },
+  {
+    "id": 1072294,
+    "name": "브라운 폴티 부츠",
+    "slot": "shoes",
+    "effects": {
+      "DEX": 1,
+      "pdef": 16
+    },
+    "reqLevel": 30,
+    "reqJob": 16,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1072294/icon",
+    "tuc": 5,
+    "reqStr": 30,
+    "reqDex": 30
+  },
+  {
+    "id": 1072297,
+    "name": "브라운 로코트 슈즈",
+    "slot": "shoes",
+    "effects": {
+      "STR": 1,
+      "DEX": 1,
+      "pdef": 19
+    },
+    "reqLevel": 35,
+    "reqJob": 16,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1072297/icon",
+    "tuc": 5,
+    "reqStr": 35,
+    "reqDex": 35
+  },
+  {
+    "id": 1072300,
+    "name": "브라운 레더크라그",
+    "slot": "shoes",
+    "effects": {
+      "STR": 1,
+      "DEX": 1,
+      "pdef": 22,
+      "eva": 1
+    },
+    "reqLevel": 40,
+    "reqJob": 16,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1072300/icon",
+    "tuc": 5,
+    "reqStr": 40,
+    "reqDex": 40
+  },
+  {
+    "id": 1072303,
+    "name": "브라운 더블트 부츠",
+    "slot": "shoes",
+    "effects": {
+      "STR": 2,
+      "DEX": 1,
+      "pdef": 28
+    },
+    "reqLevel": 50,
+    "reqJob": 16,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1072303/icon",
+    "tuc": 5,
+    "reqStr": 50,
+    "reqDex": 50
+  },
+  {
+    "id": 1072306,
+    "name": "블랙 바실즈 부츠",
+    "slot": "shoes",
+    "effects": {
+      "STR": 1,
+      "DEX": 3,
+      "pdef": 34
+    },
+    "reqLevel": 60,
+    "reqJob": 16,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1072306/icon",
+    "tuc": 5,
+    "reqStr": 60,
+    "reqDex": 60
+  },
+  {
+    "id": 1072309,
+    "name": "블랙 보이슨 슈즈",
+    "slot": "shoes",
+    "effects": {
+      "STR": 3,
+      "DEX": 1,
+      "pdef": 40,
+      "eva": 1
+    },
+    "reqLevel": 70,
+    "reqJob": 16,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1072309/icon",
+    "tuc": 5,
+    "reqStr": 70,
+    "reqDex": 70
+  },
+  {
+    "id": 1072312,
+    "name": "블루얼 페긴트",
+    "slot": "shoes",
+    "effects": {
+      "STR": 3,
+      "DEX": 2,
+      "pdef": 46
+    },
+    "reqLevel": 80,
+    "reqJob": 16,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1072312/icon",
+    "tuc": 5,
+    "reqStr": 80,
+    "reqDex": 80
+  },
+  {
+    "id": 1072315,
+    "name": "블랙 마르킨츠",
+    "slot": "shoes",
+    "effects": {
+      "STR": 5,
+      "pdef": 52,
+      "eva": 1
+    },
+    "reqLevel": 90,
+    "reqJob": 16,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1072315/icon",
+    "tuc": 5,
+    "reqStr": 90,
+    "reqDex": 90
+  },
+  {
+    "id": 1072318,
+    "name": "블랙 듀크바킨 슈즈",
+    "slot": "shoes",
+    "effects": {
+      "STR": 6,
+      "pdef": 58
+    },
+    "reqLevel": 100,
+    "reqJob": 16,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1072318/icon",
+    "tuc": 5,
+    "reqStr": 100,
+    "reqDex": 100
+  },
+  {
+    "id": 1072321,
+    "name": "카노푸스 부츠",
+    "slot": "shoes",
+    "effects": {
+      "STR": 4,
+      "DEX": 4,
+      "pdef": 64
+    },
+    "reqLevel": 110,
+    "reqJob": 16,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1072321/icon",
+    "tuc": 5,
+    "reqStr": 110,
+    "reqDex": 110
+  },
+  {
+    "id": 1072338,
+    "name": "퍼플 아이젠",
+    "slot": "shoes",
+    "effects": {
+      "pdef": 18,
+      "mdef": 5
+    },
+    "reqLevel": 30,
+    "reqJob": 16,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1072338/icon",
+    "tuc": 7
   }
 ]

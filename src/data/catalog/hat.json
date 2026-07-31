@@ -4321,5 +4321,205 @@
     "tuc": 7,
     "reqJob": 8,
     "iconUrl": "https://maplestory.io/api/gms/200/item/1002793/icon"
+  },
+  {
+    "id": 1002610,
+    "name": "브라운 로키 반다나",
+    "slot": "hat",
+    "effects": {
+      "pdef": 9
+    },
+    "reqLevel": 10,
+    "reqJob": 16,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1002610/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1002613,
+    "name": "브라운 래거 캡",
+    "slot": "hat",
+    "effects": {
+      "pdef": 12
+    },
+    "reqLevel": 15,
+    "reqJob": 16,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1002613/icon",
+    "tuc": 7,
+    "reqStr": 15,
+    "reqDex": 15
+  },
+  {
+    "id": 1002616,
+    "name": "브라운 더블마린",
+    "slot": "hat",
+    "effects": {
+      "pdef": 15,
+      "hp": 5
+    },
+    "reqLevel": 20,
+    "reqJob": 16,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1002616/icon",
+    "tuc": 7,
+    "reqStr": 20,
+    "reqDex": 20
+  },
+  {
+    "id": 1002619,
+    "name": "브라운 피츠 반다나",
+    "slot": "hat",
+    "effects": {
+      "pdef": 18,
+      "hp": 5
+    },
+    "reqLevel": 25,
+    "reqJob": 16,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1002619/icon",
+    "tuc": 7,
+    "reqStr": 25,
+    "reqDex": 25
+  },
+  {
+    "id": 1002622,
+    "name": "화이트 오시니아 캡",
+    "slot": "hat",
+    "effects": {
+      "STR": 1,
+      "pdef": 21
+    },
+    "reqLevel": 30,
+    "reqJob": 16,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1002622/icon",
+    "tuc": 7,
+    "reqStr": 30,
+    "reqDex": 30
+  },
+  {
+    "id": 1002625,
+    "name": "블루 데네마린",
+    "slot": "hat",
+    "effects": {
+      "STR": 1,
+      "pdef": 24
+    },
+    "reqLevel": 35,
+    "reqJob": 16,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1002625/icon",
+    "tuc": 7,
+    "reqStr": 35,
+    "reqDex": 35
+  },
+  {
+    "id": 1002628,
+    "name": "레드 로얄미스티",
+    "slot": "hat",
+    "effects": {
+      "pdef": 27,
+      "hp": 20
+    },
+    "reqLevel": 40,
+    "reqJob": 16,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1002628/icon",
+    "tuc": 7,
+    "reqStr": 40,
+    "reqDex": 40
+  },
+  {
+    "id": 1002634,
+    "name": "퍼플 카스트 린넨",
+    "slot": "hat",
+    "effects": {
+      "STR": 3,
+      "DEX": 1,
+      "pdef": 39
+    },
+    "reqLevel": 60,
+    "reqJob": 16,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1002634/icon",
+    "tuc": 7,
+    "reqStr": 60,
+    "reqDex": 60
+  },
+  {
+    "id": 1002637,
+    "name": "블랙 파이렛츠 반다나",
+    "slot": "hat",
+    "effects": {
+      "STR": 3,
+      "DEX": 1,
+      "pdef": 45,
+      "eva": 1
+    },
+    "reqLevel": 70,
+    "reqJob": 16,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1002637/icon",
+    "tuc": 7,
+    "reqStr": 70,
+    "reqDex": 70
+  },
+  {
+    "id": 1002640,
+    "name": "블루 샌프 보우트햇",
+    "slot": "hat",
+    "effects": {
+      "STR": 3,
+      "DEX": 2,
+      "pdef": 51
+    },
+    "reqLevel": 80,
+    "reqJob": 16,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1002640/icon",
+    "tuc": 7,
+    "reqStr": 80,
+    "reqDex": 80
+  },
+  {
+    "id": 1002643,
+    "name": "레드 브레브하말",
+    "slot": "hat",
+    "effects": {
+      "STR": 3,
+      "DEX": 2,
+      "pdef": 57,
+      "eva": 1
+    },
+    "reqLevel": 90,
+    "reqJob": 16,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1002643/icon",
+    "tuc": 7,
+    "reqStr": 90,
+    "reqDex": 90
+  },
+  {
+    "id": 1002646,
+    "name": "블랙 폴락스 햇",
+    "slot": "hat",
+    "effects": {
+      "STR": 4,
+      "DEX": 2,
+      "pdef": 63,
+      "eva": 1
+    },
+    "reqLevel": 100,
+    "reqJob": 16,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1002646/icon",
+    "tuc": 7,
+    "reqStr": 100,
+    "reqDex": 100
+  },
+  {
+    "id": 1002649,
+    "name": "카노푸스 햇",
+    "slot": "hat",
+    "effects": {
+      "STR": 4,
+      "DEX": 4,
+      "pdef": 69
+    },
+    "reqLevel": 110,
+    "reqJob": 16,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1002649/icon",
+    "tuc": 7,
+    "reqStr": 110,
+    "reqDex": 115
   }
 ]
