@@ -23,27 +23,32 @@ export default function TopBar() {
   }
 
   return (
-    <AppBar position="sticky" color="default" enableColorOnDark elevation={0} sx={{ borderBottom: 1, borderColor: 'divider' }}>
-      <Toolbar sx={{ gap: 2 }}>
-        <Typography variant="h6" sx={{ fontWeight: 800 }}>
-          메이플랜드 세팅
-        </Typography>
-        {jobId && <Chip size="small" color="primary" label={JOBS[jobId].label} />}
-        <Box sx={{ flexGrow: 1 }} />
-        <Button variant="text" size="small" onClick={() => setFeedbackOpen(true)}>
-          문의하기
-        </Button>
-        <Button variant="outlined" size="small" onClick={() => setSlotsOpen(true)}>
-          저장 슬롯
-        </Button>
-        {jobId && (
-          <Button variant="text" size="small" color="error" onClick={handleReset}>
-            초기화
+    <>
+      {/* fixed: 모바일에서 sticky가 스크롤을 따라 흔들리는 문제 방지(확실히 상단 고정) */}
+      <AppBar position="fixed" color="default" enableColorOnDark elevation={0} sx={{ borderBottom: 1, borderColor: 'divider' }}>
+        <Toolbar sx={{ gap: 2 }}>
+          <Typography variant="h6" sx={{ fontWeight: 800 }}>
+            메이플랜드 세팅
+          </Typography>
+          {jobId && <Chip size="small" color="primary" label={JOBS[jobId].label} />}
+          <Box sx={{ flexGrow: 1 }} />
+          <Button variant="text" size="small" onClick={() => setFeedbackOpen(true)}>
+            문의하기
           </Button>
-        )}
-      </Toolbar>
-      <SlotManager open={slotsOpen} onClose={() => setSlotsOpen(false)} />
-      <FeedbackDialog open={feedbackOpen} onClose={() => setFeedbackOpen(false)} />
-    </AppBar>
+          <Button variant="outlined" size="small" onClick={() => setSlotsOpen(true)}>
+            저장 슬롯
+          </Button>
+          {jobId && (
+            <Button variant="text" size="small" color="error" onClick={handleReset}>
+              초기화
+            </Button>
+          )}
+        </Toolbar>
+        <SlotManager open={slotsOpen} onClose={() => setSlotsOpen(false)} />
+        <FeedbackDialog open={feedbackOpen} onClose={() => setFeedbackOpen(false)} />
+      </AppBar>
+      {/* fixed AppBar 높이만큼 콘텐츠를 밀어내는 스페이서 */}
+      <Toolbar aria-hidden />
+    </>
   )
 }
