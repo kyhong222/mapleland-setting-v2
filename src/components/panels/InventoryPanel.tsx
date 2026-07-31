@@ -34,6 +34,11 @@ import type { SlotId } from '../../domain/equipSlots'
 const CLASS_BIT: Record<ClassId, number> = { warrior: 1, magician: 2, bowman: 4, thief: 8, pirate: 16 }
 const ALL_SLOT_IDS = ALL_SLOTS.map((s) => s.id)
 
+/** 인벤토리 정렬 순서: 무기 → 모자 → …(나머지는 슬롯 정의 순서) */
+const SLOT_ORDER: SlotId[] = ['weapon', ...ALL_SLOT_IDS.filter((id) => id !== 'weapon')]
+const SLOT_RANK = new Map(SLOT_ORDER.map((id, i) => [id, i]))
+const slotRank = (id: SlotId) => SLOT_RANK.get(id) ?? SLOT_ORDER.length
+
 export default function InventoryPanel() {
   const items = useInventoryStore((s) => s.items)
   const add = useInventoryStore((s) => s.add)
@@ -160,6 +165,8 @@ export default function InventoryPanel() {
       const rj = inv.built.base.reqJob ?? 0
       return rj === 0 || (rj & mask) !== 0
     })
+    // 카테고리(슬롯) 순 정렬 — 무기→모자→…, 같은 슬롯 내에서는 제작 순서 유지(안정 정렬)
+    .sort((a, b) => slotRank(a.built.base.slot) - slotRank(b.built.base.slot))
 
   const menuItem = menu ? items.find((i) => i.id === menu.id) : undefined
 
