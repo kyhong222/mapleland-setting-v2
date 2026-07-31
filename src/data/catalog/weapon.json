@@ -6335,5 +6335,431 @@
     "iconUrl": "https://maplestory.io/api/gms/200/item/1492025/icon",
     "reqStr": 120,
     "reqDex": 335
+  },
+  {
+    "id": 1482000,
+    "name": "스틸 너클",
+    "slot": "weapon",
+    "effects": {
+      "pad": 18,
+      "attackSpeed": 5
+    },
+    "reqLevel": 10,
+    "reqJob": 16,
+    "weaponType": "knuckle",
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1482000/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1482001,
+    "name": "레더 암즈",
+    "slot": "weapon",
+    "effects": {
+      "pad": 22,
+      "attackSpeed": 6
+    },
+    "reqLevel": 15,
+    "reqJob": 16,
+    "weaponType": "knuckle",
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1482001/icon",
+    "tuc": 7,
+    "reqStr": 20,
+    "reqDex": 15
+  },
+  {
+    "id": 1482002,
+    "name": "더블테일 너클",
+    "slot": "weapon",
+    "effects": {
+      "pad": 26,
+      "attackSpeed": 5
+    },
+    "reqLevel": 20,
+    "reqJob": 16,
+    "weaponType": "knuckle",
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1482002/icon",
+    "tuc": 7,
+    "reqStr": 30,
+    "reqDex": 20
+  },
+  {
+    "id": 1482003,
+    "name": "노만 그립",
+    "slot": "weapon",
+    "effects": {
+      "pad": 30,
+      "attackSpeed": 6
+    },
+    "reqLevel": 25,
+    "reqJob": 16,
+    "weaponType": "knuckle",
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1482003/icon",
+    "tuc": 7,
+    "reqStr": 45,
+    "reqDex": 25
+  },
+  {
+    "id": 1482004,
+    "name": "프라임 핸즈",
+    "slot": "weapon",
+    "effects": {
+      "pad": 34,
+      "attackSpeed": 5
+    },
+    "reqLevel": 30,
+    "reqJob": 16,
+    "weaponType": "knuckle",
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1482004/icon",
+    "tuc": 7,
+    "reqStr": 60,
+    "reqDex": 30
+  },
+  {
+    "id": 1482006,
+    "name": "네오자드",
+    "slot": "weapon",
+    "effects": {
+      "pad": 42,
+      "attackSpeed": 6
+    },
+    "reqLevel": 40,
+    "reqJob": 16,
+    "weaponType": "knuckle",
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1482006/icon",
+    "tuc": 7,
+    "reqStr": 90,
+    "reqDex": 40
+  },
+  {
+    "id": 1482007,
+    "name": "데빌클로",
+    "slot": "weapon",
+    "effects": {
+      "pad": 50,
+      "attackSpeed": 5
+    },
+    "reqLevel": 50,
+    "reqJob": 16,
+    "weaponType": "knuckle",
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1482007/icon",
+    "tuc": 7,
+    "reqStr": 120,
+    "reqDex": 50
+  },
+  {
+    "id": 1482008,
+    "name": "세라핌즈",
+    "slot": "weapon",
+    "effects": {
+      "pad": 58,
+      "attackSpeed": 5
+    },
+    "reqLevel": 60,
+    "reqJob": 16,
+    "weaponType": "knuckle",
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1482008/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1482009,
+    "name": "베이아 크래쉬",
+    "slot": "weapon",
+    "effects": {
+      "pad": 62,
+      "attackSpeed": 5
+    },
+    "reqLevel": 70,
+    "reqJob": 16,
+    "weaponType": "knuckle",
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1482009/icon",
+    "tuc": 7,
+    "reqStr": 180,
+    "reqDex": 70
+  },
+  {
+    "id": 1482010,
+    "name": "스틸르노",
+    "slot": "weapon",
+    "effects": {
+      "pad": 66,
+      "attackSpeed": 5
+    },
+    "reqLevel": 80,
+    "reqJob": 16,
+    "weaponType": "knuckle",
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1482010/icon",
+    "tuc": 7,
+    "reqStr": 210,
+    "reqDex": 80
+  },
+  {
+    "id": 1482011,
+    "name": "백혈귀",
+    "slot": "weapon",
+    "effects": {
+      "pad": 70,
+      "attackSpeed": 5
+    },
+    "reqLevel": 90,
+    "reqJob": 16,
+    "weaponType": "knuckle",
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1482011/icon",
+    "tuc": 7,
+    "reqStr": 240,
+    "reqDex": 90
+  },
+  {
+    "id": 1482012,
+    "name": "킹 센트",
+    "slot": "weapon",
+    "effects": {
+      "pad": 74,
+      "attackSpeed": 5
+    },
+    "reqLevel": 100,
+    "reqJob": 16,
+    "weaponType": "knuckle",
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1482012/icon",
+    "tuc": 7,
+    "reqStr": 270,
+    "reqDex": 100
+  },
+  {
+    "id": 1482013,
+    "name": "용아주조",
+    "slot": "weapon",
+    "effects": {
+      "pad": 78,
+      "attackSpeed": 5
+    },
+    "reqLevel": 110,
+    "reqJob": 16,
+    "weaponType": "knuckle",
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1482013/icon",
+    "tuc": 7,
+    "reqStr": 300,
+    "reqDex": 110
+  },
+  {
+    "id": 1492000,
+    "name": "피스톨",
+    "slot": "weapon",
+    "effects": {
+      "pad": 13,
+      "attackSpeed": 5
+    },
+    "reqLevel": 10,
+    "reqJob": 16,
+    "weaponType": "gun",
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1492000/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1492001,
+    "name": "델린져",
+    "slot": "weapon",
+    "effects": {
+      "pad": 18,
+      "attackSpeed": 6
+    },
+    "reqLevel": 15,
+    "reqJob": 16,
+    "weaponType": "gun",
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1492001/icon",
+    "tuc": 7,
+    "reqStr": 15,
+    "reqDex": 25
+  },
+  {
+    "id": 1492002,
+    "name": "개런드 피스톨",
+    "slot": "weapon",
+    "effects": {
+      "pad": 22,
+      "attackSpeed": 5
+    },
+    "reqLevel": 20,
+    "reqJob": 16,
+    "weaponType": "gun",
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1492002/icon",
+    "tuc": 7,
+    "reqStr": 20,
+    "reqDex": 35
+  },
+  {
+    "id": 1492003,
+    "name": "골든훅",
+    "slot": "weapon",
+    "effects": {
+      "pad": 27,
+      "attackSpeed": 6
+    },
+    "reqLevel": 25,
+    "reqJob": 16,
+    "weaponType": "gun",
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1492003/icon",
+    "tuc": 7,
+    "reqStr": 25,
+    "reqDex": 50
+  },
+  {
+    "id": 1492004,
+    "name": "콜드마인드",
+    "slot": "weapon",
+    "effects": {
+      "pad": 31,
+      "attackSpeed": 5
+    },
+    "reqLevel": 30,
+    "reqJob": 16,
+    "weaponType": "gun",
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1492004/icon",
+    "tuc": 7,
+    "reqStr": 30,
+    "reqDex": 70
+  },
+  {
+    "id": 1492005,
+    "name": "슈팅 스타",
+    "slot": "weapon",
+    "effects": {
+      "pad": 36,
+      "attackSpeed": 6
+    },
+    "reqLevel": 35,
+    "reqJob": 16,
+    "weaponType": "gun",
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1492005/icon",
+    "tuc": 7,
+    "reqStr": 35,
+    "reqDex": 90
+  },
+  {
+    "id": 1492006,
+    "name": "루나 슈터",
+    "slot": "weapon",
+    "effects": {
+      "pad": 40,
+      "attackSpeed": 5
+    },
+    "reqLevel": 40,
+    "reqJob": 16,
+    "weaponType": "gun",
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1492006/icon",
+    "tuc": 7,
+    "reqStr": 40,
+    "reqDex": 105
+  },
+  {
+    "id": 1492007,
+    "name": "라스펠트건",
+    "slot": "weapon",
+    "effects": {
+      "pad": 49,
+      "attackSpeed": 5
+    },
+    "reqLevel": 50,
+    "reqJob": 16,
+    "weaponType": "gun",
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1492007/icon",
+    "tuc": 7,
+    "reqStr": 50,
+    "reqDex": 140
+  },
+  {
+    "id": 1492008,
+    "name": "버닝헬",
+    "slot": "weapon",
+    "effects": {
+      "pad": 58,
+      "attackSpeed": 5
+    },
+    "reqLevel": 60,
+    "reqJob": 16,
+    "weaponType": "gun",
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1492008/icon",
+    "tuc": 7,
+    "reqStr": 60,
+    "reqDex": 175
+  },
+  {
+    "id": 1492009,
+    "name": "어비스 슈터",
+    "slot": "weapon",
+    "effects": {
+      "pad": 62,
+      "attackSpeed": 5
+    },
+    "reqLevel": 70,
+    "reqJob": 16,
+    "weaponType": "gun",
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1492009/icon",
+    "tuc": 7,
+    "reqStr": 70,
+    "reqDex": 210
+  },
+  {
+    "id": 1492010,
+    "name": "인피니티",
+    "slot": "weapon",
+    "effects": {
+      "pad": 66,
+      "attackSpeed": 5
+    },
+    "reqLevel": 80,
+    "reqJob": 16,
+    "weaponType": "gun",
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1492010/icon",
+    "tuc": 7,
+    "reqStr": 80,
+    "reqDex": 245
+  },
+  {
+    "id": 1492011,
+    "name": "피스메이커",
+    "slot": "weapon",
+    "effects": {
+      "pad": 70,
+      "attackSpeed": 5
+    },
+    "reqLevel": 90,
+    "reqJob": 16,
+    "weaponType": "gun",
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1492011/icon",
+    "tuc": 7,
+    "reqStr": 90,
+    "reqDex": 275
+  },
+  {
+    "id": 1492012,
+    "name": "콘체르토",
+    "slot": "weapon",
+    "effects": {
+      "pad": 74,
+      "attackSpeed": 5
+    },
+    "reqLevel": 100,
+    "reqJob": 16,
+    "weaponType": "gun",
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1492012/icon",
+    "tuc": 7,
+    "reqStr": 100,
+    "reqDex": 295
+  },
+  {
+    "id": 1492013,
+    "name": "드래곤 세인트",
+    "slot": "weapon",
+    "effects": {
+      "pad": 78,
+      "attackSpeed": 5
+    },
+    "reqLevel": 110,
+    "reqJob": 16,
+    "weaponType": "gun",
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1492013/icon",
+    "tuc": 7,
+    "reqStr": 110,
+    "reqDex": 315
   }
 ]
