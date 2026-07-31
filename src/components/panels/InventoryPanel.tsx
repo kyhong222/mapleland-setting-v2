@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
 import Typography from '@mui/material/Typography'
@@ -63,6 +63,17 @@ export default function InventoryPanel() {
   const [msg, setMsg] = useState('')
   const [classes, setClasses] = useState<Set<ClassId>>(new Set())
   const [slots, setSlots] = useState<Set<SlotId>>(new Set(ALL_SLOT_IDS))
+
+  // 모바일 롱프레스 = 우클릭(메뉴). 아이템 타일은 map 내부라 컴포넌트 단위 공유 ref 사용(동시 롱프레스 없음)
+  const pressTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
+  const pressFired = useRef(false)
+  const pressStart = useRef<{ x: number; y: number } | null>(null)
+  const clearPress = () => {
+    if (pressTimer.current) {
+      clearTimeout(pressTimer.current)
+      pressTimer.current = null
+    }
+  }
 
   useEffect(() => {
     const cls = jobId ? JOBS[jobId].classId : null
@@ -257,11 +268,32 @@ export default function InventoryPanel() {
                 <Box
                   component="button"
                   type="button"
-                  onClick={() => handleToggleEquip(inv)}
+                  onClick={() => {
+                    if (pressFired.current) { pressFired.current = false; return }
+                    handleToggleEquip(inv)
+                  }}
                   onContextMenu={(e) => {
                     e.preventDefault()
                     setMenu({ anchor: e.currentTarget, id: inv.id })
                   }}
+                  onTouchStart={(e) => {
+                    const el = e.currentTarget
+                    const t = e.touches[0]
+                    pressStart.current = t ? { x: t.clientX, y: t.clientY } : null
+                    pressFired.current = false
+                    clearPress()
+                    pressTimer.current = setTimeout(() => {
+                      pressFired.current = true
+                      setMenu({ anchor: el, id: inv.id })
+                    }, 450)
+                  }}
+                  onTouchEnd={clearPress}
+                  onTouchMove={(e) => {
+                    const s = pressStart.current
+                    const t = e.touches[0]
+                    if (s && t && Math.hypot(t.clientX - s.x, t.clientY - s.y) > 10) clearPress()
+                  }}
+                  onTouchCancel={clearPress}
                   sx={{
                     position: 'relative',
                     p: 0.5,
@@ -271,6 +303,8 @@ export default function InventoryPanel() {
                     border: isEquipped ? 2 : 1,
                     borderColor: isEquipped ? 'primary.main' : 'divider',
                     bgcolor: 'transparent',
+                    WebkitTouchCallout: 'none',
+                    userSelect: 'none',
                     '&:hover': { bgcolor: 'action.hover' },
                   }}
                 >
@@ -291,7 +325,7 @@ export default function InventoryPanel() {
 
       {items.length > 0 && (
         <Typography variant="caption" color="text.disabled" sx={{ display: 'block', mt: 1 }}>
-          좌클릭: 장착/해제 · 우클릭: 메뉴(편집·복제·삭제)
+          좌클릭: 장착/해제 · 우클릭(모바일: 길게): 메뉴(편집·복제·삭제)
         </Typography>
       )}
 

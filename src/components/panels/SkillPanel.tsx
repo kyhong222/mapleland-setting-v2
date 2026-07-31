@@ -31,6 +31,7 @@ import { DEFAULT_CHARGE } from '../../store/buildStore'
 import { useMonsterStore } from '../../store/monsterStore'
 import { getMonster } from '../../data/mobs'
 import { formatEffects } from '../../lib/effectFormat'
+import { useTouchLongPress } from '../../lib/useLongPress'
 
 /** 레벨 조정 대상: 토글버프(영메·메용/직업패시브) / 적용버프(도핑·개인·파티) / 마스터리 */
 type BuffKind = 'toggle' | 'applied' | 'mastery'
@@ -80,7 +81,7 @@ function BuffIcon({
   buff,
   active = true,
   onClick,
-  onContextMenu,
+  onLongPress,
   size = 46,
   tooltip,
   highlightActive = false,
@@ -88,19 +89,22 @@ function BuffIcon({
   buff: Buff
   active?: boolean
   onClick?: () => void
-  onContextMenu?: (e: React.MouseEvent) => void
+  /** 우클릭(데스크톱) / 롱프레스(모바일) 동작 — 레벨 조정 등 */
+  onLongPress?: () => void
   size?: number
   tooltip?: React.ReactNode
   /** 적용(active) 시 밝은 황금빛 테두리로 강조할지 여부 */
   highlightActive?: boolean
 }) {
+  const lp = useTouchLongPress(() => onLongPress?.())
   const icon = buffIconUrl(buff)
   const img = Math.round(size * 0.82)
   const highlighted = highlightActive && active
   const box = (
     <Box
-      onClick={onClick}
-      onContextMenu={onContextMenu}
+      onClick={onClick ? () => { if (lp.fired.current) { lp.fired.current = false; return } onClick() } : undefined}
+      onContextMenu={onLongPress ? (e) => { e.preventDefault(); onLongPress() } : undefined}
+      {...lp.touchProps}
       sx={{
         width: size,
         height: size,
@@ -114,7 +118,9 @@ function BuffIcon({
         // 활성 시 안쪽 황금빛 링(inset). 투명 테두리로 링을 가장자리보다 안쪽에 배치
         border: '2.5px solid transparent',
         boxShadow: highlighted ? 'inset 0 0 0 5px #ffc53d' : 'none',
-        cursor: onClick || onContextMenu ? 'pointer' : 'default',
+        cursor: onClick || onLongPress ? 'pointer' : 'default',
+        WebkitTouchCallout: 'none',
+        userSelect: 'none',
       }}
     >
       {icon && <Box component="img" src={icon} alt="" sx={{ width: img, height: img, imageRendering: 'pixelated', filter: active ? 'none' : 'grayscale(1)' }} />}
@@ -264,7 +270,7 @@ function BuffRow({ buff, onOpen }: { buff: Buff; onOpen: (b: Buff) => void }) {
   const caption = requiresShield && !shieldOk ? '방패 착용 필요' : (advText ?? comboText ?? (formatEffects(eff) || '—'))
   return (
     <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5, py: 0.25 }}>
-      <BuffIcon buff={buff} active={active} highlightActive onClick={() => toggleBuff(buff.id)} onContextMenu={(e) => { e.preventDefault(); onOpen(buff) }} />
+      <BuffIcon buff={buff} active={active} highlightActive onClick={() => toggleBuff(buff.id)} onLongPress={() => onOpen(buff)} />
       <Box sx={{ flex: 1, minWidth: 0 }}>
         <BuffName buff={buff} level={shownLevel} />
         <Typography variant="caption" color={active ? 'success.main' : 'text.disabled'} noWrap sx={{ display: 'block' }}>
@@ -306,7 +312,7 @@ function MasteryRow({ buff, onOpen }: { buff: Buff; onOpen: (b: Buff) => void })
   const eff = buffEffectsAtLevel(buff, shownLevel)
   return (
     <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5, py: 0.25 }}>
-      <BuffIcon buff={buff} active={!off} highlightActive onClick={() => toggleMastery(buff.id)} onContextMenu={(e) => { e.preventDefault(); onOpen(buff) }} />
+      <BuffIcon buff={buff} active={!off} highlightActive onClick={() => toggleMastery(buff.id)} onLongPress={() => onOpen(buff)} />
       <Box sx={{ flex: 1, minWidth: 0 }}>
         <BuffName buff={buff} level={shownLevel} />
         <Typography variant="caption" color={off ? 'text.disabled' : 'success.main'} noWrap sx={{ display: 'block' }}>
@@ -363,10 +369,7 @@ function AppliedBuffList({ entries, levels, onOpen, onRemove }: { entries: Buff[
             size={44}
             tooltip={buffTooltip(b, lv)}
             onClick={() => onRemove(b.id)}
-            onContextMenu={hasLevel ? (e) => {
-              e.preventDefault()
-              onOpen(b)
-            } : undefined}
+            onLongPress={hasLevel ? () => onOpen(b) : undefined}
           />
         )
       })}
@@ -389,15 +392,18 @@ function ChargeRow({
   icon: string; active: boolean; disabled?: boolean; title: string; caption: string
   onToggle: () => void; onOpen?: () => void
 }) {
+  const lp = useTouchLongPress(() => onOpen?.())
   return (
     <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5, py: 0.25, opacity: disabled ? 0.5 : 1 }}>
       <Box
-        onClick={disabled ? undefined : onToggle}
+        onClick={disabled ? undefined : () => { if (lp.fired.current) { lp.fired.current = false; return } onToggle() }}
         onContextMenu={disabled || !onOpen ? undefined : (e) => { e.preventDefault(); onOpen() }}
+        {...(disabled ? {} : lp.touchProps)}
         sx={{
           width: 46, height: 46, flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center',
           bgcolor: 'action.hover', borderRadius: 0.5, border: '2.5px solid transparent',
           boxShadow: active ? 'inset 0 0 0 5px #ffc53d' : 'none', cursor: disabled ? 'default' : 'pointer',
+          WebkitTouchCallout: 'none', userSelect: 'none',
         }}
       >
         <Box component="img" src={icon} alt="" sx={{ width: 38, height: 38, imageRendering: 'pixelated', filter: active ? 'none' : 'grayscale(1)' }} />
@@ -472,7 +478,7 @@ function ChargeSection() {
   return (
     <>
       <Typography variant="caption" color="text.secondary" sx={{ display: 'block', mt: 0.5 }}>
-        차지 (좌클릭 ON/OFF · 우클릭 편집)
+        차지 (좌클릭 ON/OFF · 우클릭/모바일 길게: 편집)
         {charge.mainOn && (
           <Box component="span" sx={{ color: 'success.main', fontWeight: 700, ml: 0.5 }}>
             · 적용 계수 {appliedCoef}%{appliedMult != null && ` · 속성배율 ×${appliedMult.toFixed(2)}`}
@@ -549,7 +555,7 @@ export default function SkillPanel() {
     <CollapsiblePanel id="skill" title="스킬 및 도핑">
       <SectionTitle>공통 버프</SectionTitle>
       <Typography variant="caption" color="text.disabled" sx={{ display: 'block', mb: 0.25 }}>
-        좌클릭: ON/OFF · 우클릭: 레벨 변경
+        좌클릭: ON/OFF · 우클릭(모바일: 길게): 레벨 변경
       </Typography>
       {COMMON_BUFFS.map((b) => (
         <BuffRow key={b.id} buff={b} onOpen={open('toggle')} />
@@ -574,7 +580,7 @@ export default function SkillPanel() {
 
       <SectionTitle>적용된 버프</SectionTitle>
       <Typography variant="caption" color="text.disabled" sx={{ display: 'block', mb: 0.5 }}>
-        좌클릭: 제거 · 우클릭: 레벨 변경 · 호버: 효과
+        좌클릭: 제거 · 우클릭(모바일: 길게): 레벨 변경 · 호버: 효과
       </Typography>
       <AppliedBuffList entries={appliedEntries} levels={appliedBuffs} onOpen={open('applied')} onRemove={removeBuff} />
 
@@ -587,7 +593,7 @@ export default function SkillPanel() {
 
       <SectionTitle>특화 버프 (패시브)</SectionTitle>
       <Typography variant="caption" color="text.disabled" sx={{ display: 'block', mb: 0.25 }}>
-        좌클릭: ON/OFF · 우클릭: 레벨 변경
+        좌클릭: ON/OFF · 우클릭(모바일: 길게): 레벨 변경
       </Typography>
       {masteries.length > 0 && (
         <>
