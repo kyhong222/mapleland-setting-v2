@@ -8,6 +8,8 @@ import Divider from '@mui/material/Divider'
 import Stack from '@mui/material/Stack'
 import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
+import useMediaQuery from '@mui/material/useMediaQuery'
+import { useTheme } from '@mui/material/styles'
 import type { ItemData } from '../../domain/item'
 import type { EffectMap } from '../../domain/effects'
 import { SLOTS } from '../../domain/equipSlots'
@@ -44,6 +46,9 @@ const PREVIEW_HEIGHT = 470
 export default function ItemMakerDialog({ open, initial, onClose, onConfirm }: Props) {
   const [draft, setDraft] = useState<Draft>(EMPTY)
   const [hover, setHover] = useState<ItemData | null>(null)
+  const theme = useTheme()
+  // 모바일: 호버 미리보기 제거 → 카탈로그가 전체 폭 사용
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'))
 
   useEffect(() => {
     if (!open) return
@@ -79,7 +84,7 @@ export default function ItemMakerDialog({ open, initial, onClose, onConfirm }: P
   }
 
   return (
-    <Dialog open={open} onClose={onClose} fullWidth maxWidth={!base || !result ? 'md' : 'sm'}>
+    <Dialog open={open} onClose={onClose} fullWidth maxWidth={!base || !result ? (isMobile ? 'sm' : 'md') : 'sm'}>
       <DialogTitle>아이템 제작</DialogTitle>
       <DialogContent dividers>
         {!base || !result ? (
@@ -90,40 +95,42 @@ export default function ItemMakerDialog({ open, initial, onClose, onConfirm }: P
                 adjustments={draft.adjustments}
                 onPickBase={(item) => setDraft({ base: item, adjustments: {}, scrolls: [], gems: [], growth: defaultGrowth(item) ?? {} })}
                 onChangeAdjust={(adjustments) => setDraft((d) => ({ ...d, adjustments }))}
-                onHoverItem={setHover}
+                onHoverItem={isMobile ? undefined : setHover}
               />
             </Box>
-            {/* 우측 미리보기 (정옵) — 높이 고정: 호버로 다이얼로그가 흔들리지 않게 */}
-            <Box sx={{ width: 264, flexShrink: 0, position: 'sticky', top: 0 }}>
-              <Typography variant="caption" color="text.secondary" sx={{ display: 'block', mb: 0.5 }}>
-                미리보기 (정옵)
-              </Typography>
-              <Box sx={{ height: PREVIEW_HEIGHT, overflow: 'auto' }}>
-                {hover ? (
-                  <ItemTooltip built={{ base: hover, adjustments: {}, scrolls: [], gems: [], growth: {} }} />
-                ) : (
-                  <Box
-                    sx={{
-                      height: '100%',
-                      border: '1px dashed',
-                      borderColor: 'divider',
-                      borderRadius: 2,
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      p: 2,
-                      textAlign: 'center',
-                    }}
-                  >
-                    <Typography variant="body2" color="text.disabled">
-                      아이템에 마우스를 올리면
-                      <br />
-                      정보가 표시됩니다
-                    </Typography>
-                  </Box>
-                )}
+            {/* 우측 미리보기 (정옵) — 높이 고정: 호버로 다이얼로그가 흔들리지 않게. 모바일에선 숨김 */}
+            {!isMobile && (
+              <Box sx={{ width: 264, flexShrink: 0, position: 'sticky', top: 0 }}>
+                <Typography variant="caption" color="text.secondary" sx={{ display: 'block', mb: 0.5 }}>
+                  미리보기 (정옵)
+                </Typography>
+                <Box sx={{ height: PREVIEW_HEIGHT, overflow: 'auto' }}>
+                  {hover ? (
+                    <ItemTooltip built={{ base: hover, adjustments: {}, scrolls: [], gems: [], growth: {} }} />
+                  ) : (
+                    <Box
+                      sx={{
+                        height: '100%',
+                        border: '1px dashed',
+                        borderColor: 'divider',
+                        borderRadius: 2,
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        p: 2,
+                        textAlign: 'center',
+                      }}
+                    >
+                      <Typography variant="body2" color="text.disabled">
+                        아이템에 마우스를 올리면
+                        <br />
+                        정보가 표시됩니다
+                      </Typography>
+                    </Box>
+                  )}
+                </Box>
               </Box>
-            </Box>
+            )}
           </Box>
         ) : (
           <Stack spacing={2} divider={<Divider flexItem />}>
