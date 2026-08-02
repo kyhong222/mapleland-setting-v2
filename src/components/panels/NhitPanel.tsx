@@ -16,7 +16,7 @@ import { aggregateBuild, equippedWeaponType } from '../../store/aggregate'
 import { useActiveEquippedBuilts } from '../../store/activation'
 import { useBuffEffects } from '../../store/useBuffEffects'
 import {
-  totalAttack, totalMagic, masteryRatio, magicAmpMultiplier, levelPenalty,
+  totalAttack, totalMagic, masteryRatio, magicAmpMultiplier, levelPenalty, calcLuckyBase,
 } from '../../domain/attackPower'
 import { JOBS } from '../../domain/jobs'
 import { getMonster } from '../../data/mobs'
@@ -40,6 +40,8 @@ const COMA_PANIC = new Set([1111003, 1111004, 1111005, 1111006, 11111002, 111110
 const RUSH = new Set([1121006, 1221007, 1321003])
 /** 방컷·DPM 미제공(데미지 범위만): 패닉/코마 + 돌진 */
 const NO_DPM = new Set([...COMA_PANIC, ...RUSH])
+/** 럭키세븐/트리플스로우(나로·나워) — LUK 전용 예외식(부스탯·숙련 없음) */
+const LUCKY_SKILLS = new Set([4001344, 14001004, 4121007, 14111005])
 /** 최대 콤보 카운터(5~10) 소모 시 카운터 뎀증 배율 (docs §4) */
 const MAX_COUNTER_MULT = 2.5
 const rng = (r: { min: number; max: number }) => `${Math.round(r.min).toLocaleString()} ~ ${Math.round(r.max).toLocaleString()}`
@@ -160,6 +162,10 @@ export default function NhitPanel() {
     // 모든 데미지 증가 배수를 하나로 통일(콤보·버서크·위협·카운터·쉐파·차지 계수·마법엘앰프) → 방어 앞(2단계) 적용
     const damageMult = (isMagic ? magicAmpMultiplier(effects) : 1) * finalMult * threatenMult * counterMult * shadowMult * chargeCoefMult
 
+    const watk = totalAttack(effects)
+    // 럭세/트스: LUK 전용 예외식 base(모션·부스탯·숙련 무시). 스킬%는 그대로 적용
+    const lineBase = !isMagic && LUCKY_SKILLS.has(selectedSkill.id) ? calcLuckyBase(finalStats.LUK, watk) : undefined
+
     const cast = computeCast({
       weaponType: weaponType ?? 'oneHandedSword',
       skillId: selectedSkill.id,
@@ -167,7 +173,7 @@ export default function NhitPanel() {
       kind: att.kind,
       primary: job ? finalStats[job.primaryStat] : 0,
       secondary: job ? job.secondaryStats.reduce((a, s) => a + finalStats[s], 0) : 0,
-      watk: totalAttack(effects),
+      watk,
       mastery: masteryRatio(effects),
       magic: totalMagic(effects, finalStats.INT),
       int: finalStats.INT,
@@ -178,6 +184,7 @@ export default function NhitPanel() {
       damageMult,
       critProb,
       critMult,
+      lineBase,
     })
     if (!cast) return { unsupported: true as const }
 

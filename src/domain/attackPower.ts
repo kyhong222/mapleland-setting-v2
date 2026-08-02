@@ -97,11 +97,24 @@ export function calcPhysical(primary: number, secondary: number, weaponType: Wea
   return { display, swing, stab }
 }
 
-/** 럭키세븐 / 트리플 스로우 (도적 표창 전용 별도식) — 부스탯 없음 */
+/** 럭키세븐 / 트리플 스로우 (도적 표창 전용 별도식) — 부스탯·숙련 없음. 최대렙(스킬%150) 기준 표기값 */
 export function calcLuckySeven(luk: number, watk: number): DamageRange {
   return {
     max: Math.floor((luk * 5.0) * watk / 100),
     min: Math.floor((luk * 2.5) * watk / 100),
+  }
+}
+
+/**
+ * 럭세/트스 데미지 엔진용 base(스킬% 적용 전, 타당 1발).
+ *  base × (스킬damage%/100)이 최대렙(150%)에서 LUK×5.0/2.5×watk/100이 되도록 정규화.
+ *  → base_max = LUK×watk/30, base_min = LUK×watk/60  (부스탯·숙련 없음, min=max/2 고정)
+ *  이후 파이프라인은 일반 스킬과 동일(속성/방어/스킬%/크리/클램프).
+ */
+export function calcLuckyBase(luk: number, watk: number): DamageRange {
+  return {
+    max: Math.floor(luk * watk / 30),
+    min: Math.floor(luk * watk / 60),
   }
 }
 

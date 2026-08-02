@@ -157,6 +157,11 @@ export interface CastDamageParams {
   critProb: number
   /** 크리 시 데미지 배율 (예: 1.4). critProb>0일 때만 사용 */
   critMult: number
+  /**
+   * 타당 고정 base(모션 무관) — 럭세/트스 등 예외식 스킬용.
+   * 지정 시 무기 모션식(physRange) 대신 이 범위를 attackCount만큼의 라인으로 사용한다.
+   */
+  lineBase?: DamageRange
 }
 
 export interface CastResult {
@@ -202,10 +207,23 @@ export function computeCast(p: CastDamageParams): CastResult | null {
     return { dist: mixtureDist(mix.parts), totalRange: fr, lineRanges: [fr] }
   }
 
+  const lineRanges: DamageRange[] = []
+
+  // 예외식(럭세/트스): 모션 무관 고정 base를 attackCount 라인으로
+  if (p.lineBase) {
+    const n = Math.max(1, p.attackCount || 1)
+    const dists = Array.from({ length: n }, () => {
+      const mix = critParts(p.lineBase!, 1)
+      lineRanges.push({ min: mix.min, max: mix.max })
+      return mixtureDist(mix.parts)
+    })
+    const dist = dists.reduce((acc, d) => convolve(acc, d))
+    return { dist, totalRange: { min: dist.base, max: dist.base + (dist.p.length - 1) * dist.step }, lineRanges }
+  }
+
   const lines = skillMotionLines(p.skillId, p.weaponType, p.attackCount)
   if (!lines) return null
 
-  const lineRanges: DamageRange[] = []
   const lineDists: Dist[] = lines.map((comps) => {
     const parts: { weight: number; dist: Dist }[] = []
     let lmin = Infinity
