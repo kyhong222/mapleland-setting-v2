@@ -80,3 +80,56 @@ export function chargeElementMult(state: ChargeState, monsterElemAttr: string | 
   if (pMult === 'immune' || tMult === 'immune') return 0
   return pMult + (tMult - 1) * 0.5
 }
+
+// ── ORIGINAL_V86 통합 차지 모델 (팔라딘) ───────────────────────────────
+// 원작 고증(GMS v86/v95). 속성반응과 데미지 계수를 하나의 배율로 통합한다.
+
+export type ChargeStackRule = 'ORIGINAL_V86' | 'MAPLELAND_CURRENT'
+
+/** 현재 사용 규칙 (실측 확보 시 교체 가능) */
+export const CHARGE_STACK_RULE: ChargeStackRule = 'ORIGINAL_V86'
+
+/** 보조(썬더) 차지 기여 계수 — ORIGINAL_V86: (1.25−1)×0.5=0.125, MAPLELAND_CURRENT: 0.625 */
+const ASSIST_COEF: Record<ChargeStackRule, number> = { ORIGINAL_V86: 0.125, MAPLELAND_CURRENT: 0.625 }
+
+/**
+ * 차지 스킬 내부 수치 → 기본 배수.
+ *  불/얼음/전기: 1레벨 13, 레벨당 +3 → 30레벨 100
+ *  홀리/디바인: 1레벨 43, 레벨당 +3 → 20레벨 100
+ *  기본배수 = 1 + 내부수치/100  (예: 파이어 30레벨 = 1 + 100/100 = 2.0)
+ */
+export function chargeBaseMult(el: ChargeElement, level: number): number {
+  const internal = (el === 'holy' ? 43 : 13) + (level - 1) * 3
+  return 1 + internal / 100
+}
+
+/** 속성배수: 면역 0, 약점 1.05+L×0.015, 반감 0.95−L×0.015, 무반응 1.0 */
+function attrMult(reaction: Reaction, level: number): number {
+  if (reaction === 'immune') return 0
+  if (reaction === 'weak') return 1.05 + level * 0.015
+  if (reaction === 'half') return 0.95 - level * 0.015
+  return 1.0
+}
+
+/**
+ * 팔라딘 차지 통합 배율(속성반응 + 계수) — 2단계(PRE_DEFENSE).
+ *  차지배율 = 1 + 기본차지_기여 + 보조차지_기여
+ *  기본_기여 = (기본배수 − 1) × 속성배수(주차지)
+ *  보조_기여 = ASSIST_COEF × 속성배수(썬더)      ← 썬더 중첩 시에만
+ * 각 차지는 자기 속성/레벨로 따로 판정한다. 면역인 차지의 기여만 0이 되며,
+ * 배율 자체는 1 미만으로 내려가지 않는 물리 데미지를 유지한다.
+ */
+export function chargeMultiplier(
+  state: ChargeState,
+  monsterElemAttr: string | undefined,
+  rule: ChargeStackRule = CHARGE_STACK_RULE,
+): number {
+  const pReact = elementReaction(monsterElemAttr, ELEM_CODE[state.main])
+  const primary = (chargeBaseMult(state.main, state.mainLevel) - 1) * attrMult(pReact, state.mainLevel)
+  let assist = 0
+  if (state.thunderLevel != null && state.main !== 'lightning') {
+    const aReact = elementReaction(monsterElemAttr, 'L')
+    assist = ASSIST_COEF[rule] * attrMult(aReact, state.thunderLevel)
+  }
+  return 1 + primary + assist
+}

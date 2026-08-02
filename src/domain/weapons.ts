@@ -45,9 +45,9 @@ export interface WeaponConst {
   type: WeaponType
   /** 한글 표기 */
   label: string
-  /** MIN 데미지용 무기상수 */
+  /** 찌르기(stab) 모션 무기상수 (대부분 무기에서 낮은 값이나, 창은 5.0으로 더 높음) */
   constMin: number
-  /** MAX 데미지용 무기상수 */
+  /** 베기(swing) 모션 무기상수 */
   constMax: number
   /** 함께 착용 가능한 보조무기(없으면 빈 배열, 건은 불릿+캡슐 둘 다) */
   secondary: SecondaryWeapon[]
@@ -60,7 +60,8 @@ export const WEAPON_CONSTANTS: Record<WeaponType, WeaponConst> = {
   twoHandedSword: { type: 'twoHandedSword', label: '두손검', constMin: 4.6, constMax: 4.6, secondary: [] },
   twoHandedAxe: { type: 'twoHandedAxe', label: '두손도끼', constMin: 3.4, constMax: 4.8, secondary: [] },
   twoHandedMace: { type: 'twoHandedMace', label: '두손둔기', constMin: 3.4, constMax: 4.8, secondary: [] },
-  spear: { type: 'spear', label: '창', constMin: 3, constMax: 5, secondary: [] },
+  // 창: 찌르기(stab=constMin) 5.0 특화, 베기(swing=constMax) 3.0 / 폴암은 반대
+  spear: { type: 'spear', label: '창', constMin: 5, constMax: 3, secondary: [] },
   polearm: { type: 'polearm', label: '폴암', constMin: 3, constMax: 5, secondary: [] },
   dagger: { type: 'dagger', label: '단검', constMin: 3.6, constMax: 3.6, secondary: ['shield'] },
   claw: { type: 'claw', label: '아대', constMin: 3.6, constMax: 3.6, secondary: ['throwingStar'] },

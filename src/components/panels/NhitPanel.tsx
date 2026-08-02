@@ -21,11 +21,11 @@ import {
 import { JOBS } from '../../domain/jobs'
 import { getMonster } from '../../data/mobs'
 import { elementReaction } from '../../domain/monster'
-import { attackSkillsForJob, skillAttackAt, skillLineCount, comboFinalDamageP, COMBO_SKILLS, findSkillById, chargeCombinedCoef, skillNumAt } from '../../data/skills'
+import { attackSkillsForJob, skillAttackAt, skillLineCount, comboFinalDamageP, COMBO_SKILLS, findSkillById, skillNumAt } from '../../data/skills'
 import type { ChargeState } from '../../domain/paladinCharge'
 import { computeCast, computeNhit, computeDpm, baseElementMult, SKILL_MOTION } from '../../domain/skillCombat'
 import { attacksPerMinute } from '../../data/attackSpeed'
-import { chargeElementMult, chargeFromUi } from '../../domain/paladinCharge'
+import { chargeElementMult, chargeMultiplier, chargeFromUi } from '../../domain/paladinCharge'
 
 const skillIconSrc = (id: number) => `/skill-icons/${id}.png`
 const hideOnError = (e: SyntheticEvent<HTMLImageElement>) => { e.currentTarget.style.visibility = 'hidden' }
@@ -104,10 +104,11 @@ export default function NhitPanel() {
     // 차지(속성 부여) — 팔라딘(메인/보조) / 소울마스터 소울차지(성속성 단일)
     let charge: ChargeState | null = null
     let chargeCoefMult = 1
+    let paladinCharge = false
     if (!isMagic) {
       if (jobId === 'paladin') {
         charge = chargeFromUi(chargeState)
-        if (charge) chargeCoefMult = chargeCombinedCoef(charge.main, charge.mainLevel, charge.thunderLevel) / 100
+        paladinCharge = !!charge
       } else if (jobId === 'soulMaster') {
         const lv = activeBuffs['11111007'] // 소울 차지(성속성)
         if (lv) {
@@ -117,9 +118,15 @@ export default function NhitPanel() {
       }
     }
     // 속성배율 — 차지 활성 시 차지 속성/레벨 배율로 대체
-    let elementMult = charge
-      ? chargeElementMult(charge, monster.elemAttr)
-      : baseElementMult(elementReaction(monster.elemAttr, att.element))
+    // 팔라딘: ORIGINAL_V86 통합 차지배율(속성+계수). 소울마스터: 홀리 단일 반응(계수는 chargeCoefMult 별도)
+    let elementMult: number
+    if (paladinCharge && charge) {
+      elementMult = chargeMultiplier(charge, monster.elemAttr)
+    } else if (charge) {
+      elementMult = chargeElementMult(charge, monster.elemAttr)
+    } else {
+      elementMult = baseElementMult(elementReaction(monster.elemAttr, att.element))
+    }
     // 엘리멘탈 리셋(플위): 무속성화 blend — elementMult × (1−r) + 1.0 × r (마스터 r=1 → 항상 ×1.0)
     if (jobId === 'flameWizard') {
       const rLv = activeBuffs['12101005']

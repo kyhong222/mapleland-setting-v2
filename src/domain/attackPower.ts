@@ -92,14 +92,40 @@ export function calcPhysical(primary: number, secondary: number, weaponType: Wea
   const wc = WEAPON_CONSTANTS[weaponType]
   const swing = physRange(primary, secondary, wc.constMax, watk, mastery)
   const stab = physRange(primary, secondary, wc.constMin, watk, mastery)
-  return { display: { min: stab.min, max: swing.max }, swing, stab }
+  // 표기 범위는 두 모션을 아우르는 실제 min/max (창은 stab>swing이라 단순 [stab.min, swing.max]가 역전됨)
+  const display = { min: Math.min(stab.min, swing.min), max: Math.max(stab.max, swing.max) }
+  return { display, swing, stab }
 }
 
-/** 럭키세븐 / 트리플 스로우 (도적 표창 전용 별도식) */
+/** 럭키세븐 / 트리플 스로우 (도적 표창 전용 별도식) — 부스탯 없음 */
 export function calcLuckySeven(luk: number, watk: number): DamageRange {
   return {
     max: Math.floor((luk * 5.0) * watk / 100),
     min: Math.floor((luk * 2.5) * watk / 100),
+  }
+}
+
+/** 파워 넉백(활/석궁) — 나눗수 150, MIN 숙련 고정 0.1 */
+export function calcPowerKnockback(dex: number, str: number, watk: number): DamageRange {
+  return {
+    max: Math.floor((dex * 3.4 + str) * watk / 150),
+    min: Math.floor((dex * 3.4 * 0.1 * 0.9 + str) * watk / 150),
+  }
+}
+
+/** 아대 없는 맨손(클로 타격) — 나눗수 150 */
+export function calcBareHand(luk: number, str: number, dex: number, watk: number): DamageRange {
+  return {
+    max: Math.floor((luk * 1.0 + str + dex) * watk / 150),
+    min: Math.floor((luk * 0.1 + str + dex) * watk / 150),
+  }
+}
+
+/** 소환수 계열(매의 눈 등) — 3단계 방어 감산 건너뜀 (DEX×2.5 + STR) */
+export function calcSummon(dex: number, str: number, watk: number): DamageRange {
+  return {
+    max: Math.floor((dex * 2.5 + str) * watk / 100),
+    min: Math.floor((dex * 2.5 * 0.7 + str) * watk / 100),
   }
 }
 
