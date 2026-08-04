@@ -33,6 +33,8 @@ interface BuffBase {
   name: string
   /** 아이콘 (스킬=base64 data URI, 아이템=미지정 시 id로 URL 유도) */
   icon?: string
+  /** 효과 대신 표기할 안내문(예: 미구현 스킬). 있으면 캡션에 우선 표시 */
+  note?: string
 }
 
 /** 아이템 타입: 전 직업 공용, 고정 효과 */
@@ -63,6 +65,11 @@ export interface SkillBuff extends BuffBase {
   requires?: string
   /** 방패 착용 필요 — 보조무기 슬롯에 방패가 없으면 off로 취급(표시/효과). 예: 블로킹 */
   requiresShield?: boolean
+  /**
+   * 배타 그룹 — 같은 그룹의 버프는 동시에 하나만 켤 수 있다(라디오처럼).
+   * 예: 해적 에너지차지/트랜스폼/슈퍼트랜스폼.
+   */
+  exclusiveGroup?: string
 }
 
 export type Buff = ItemBuff | SkillBuff

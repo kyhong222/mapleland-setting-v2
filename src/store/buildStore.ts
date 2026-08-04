@@ -199,6 +199,17 @@ export const useBuildStore = create<BuildState>()(
             delete active[id]
           } else {
             const b = getBuff(id)
+            // 배타 그룹(에너지차지/트랜스폼/슈퍼트랜스폼): 같은 그룹의 다른 활성 버프를 끈다
+            const group = b && b.type === 'skill' ? b.exclusiveGroup : undefined
+            if (group) {
+              for (const other of Object.keys(active)) {
+                const ob = getBuff(other)
+                if (ob && ob.type === 'skill' && ob.exclusiveGroup === group) {
+                  levels[other] = active[other]
+                  delete active[other]
+                }
+              }
+            }
             const eff = b ? effectiveMasterLevel(b, s.jobId) : 1
             active[id] = Math.min(levels[id] ?? (b ? defaultBuffLevel(b, s.jobId) : 1), eff) // 기억된 레벨 복원(직업 상한 클램프)
           }

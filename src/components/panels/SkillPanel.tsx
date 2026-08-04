@@ -267,7 +267,7 @@ function BuffRow({ buff, onOpen }: { buff: Buff; onOpen: (b: Buff) => void }) {
   const comboText = comboEffectText(buff, activeBuffs, jobId)
   // 어드밴스드 차지: 차지 블로우 계수 강화 설명
   const advText = buff.id === '1220010' ? advChargeCaption(shownLevel) : null
-  const caption = requiresShield && !shieldOk ? '방패 착용 필요' : (advText ?? comboText ?? (formatEffects(eff) || '—'))
+  const caption = requiresShield && !shieldOk ? '방패 착용 필요' : (buff.note ?? advText ?? comboText ?? (formatEffects(eff) || '—'))
   return (
     <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5, py: 0.25 }}>
       <BuffIcon buff={buff} active={active} highlightActive onClick={() => toggleBuff(buff.id)} onLongPress={() => onOpen(buff)} />
