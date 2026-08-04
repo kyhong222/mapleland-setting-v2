@@ -4339,5 +4339,59 @@
       {}
     ],
     "icon": "/buff-icons/12101005.png"
+  },
+  {
+    "id": "15000000",
+    "type": "skill",
+    "name": "퀵 모션",
+    "scope": "personal",
+    "mode": "passive",
+    "masterLevel": 10,
+    "jobs": [
+      "striker"
+    ],
+    "effectsByLevel": [
+      {
+        "acc": 2,
+        "eva": 2
+      },
+      {
+        "acc": 4,
+        "eva": 4
+      },
+      {
+        "acc": 6,
+        "eva": 6
+      },
+      {
+        "acc": 8,
+        "eva": 8
+      },
+      {
+        "acc": 10,
+        "eva": 10
+      },
+      {
+        "acc": 12,
+        "eva": 12
+      },
+      {
+        "acc": 14,
+        "eva": 14
+      },
+      {
+        "acc": 16,
+        "eva": 16
+      },
+      {
+        "acc": 18,
+        "eva": 18
+      },
+      {
+        "acc": 20,
+        "eva": 20
+      }
+    ],
+    "icon": "/skill-icons/15000000.png"
   }
 ]

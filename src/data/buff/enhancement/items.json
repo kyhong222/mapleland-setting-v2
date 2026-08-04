@@ -246,5 +246,13 @@
       "eva": 12
     },
     "icon": "/buff-icons/2022150.png"
+  },
+  {
+    "id": "2022089",
+    "type": "item",
+    "name": "아기 용의 이유식",
+    "effects": {
+      "pad": 7
+    }
   }
 ]
