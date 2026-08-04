@@ -4393,5 +4393,119 @@
       }
     ],
     "icon": "/skill-icons/15000000.png"
+  },
+  {
+    "id": "15100004",
+    "type": "skill",
+    "name": "에너지 차지",
+    "scope": "personal",
+    "mode": "passive",
+    "masterLevel": 20,
+    "jobs": [
+      "striker"
+    ],
+    "effectsByLevel": [
+      {
+        "pad": 0,
+        "acc": 1,
+        "eva": 1
+      },
+      {
+        "pad": 11,
+        "acc": 2,
+        "eva": 2
+      },
+      {
+        "pad": 11,
+        "acc": 3,
+        "eva": 3
+      },
+      {
+        "pad": 12,
+        "acc": 4,
+        "eva": 4
+      },
+      {
+        "pad": 12,
+        "acc": 5,
+        "eva": 5
+      },
+      {
+        "pad": 13,
+        "acc": 6,
+        "eva": 6
+      },
+      {
+        "pad": 13,
+        "acc": 7,
+        "eva": 7
+      },
+      {
+        "pad": 14,
+        "acc": 8,
+        "eva": 8
+      },
+      {
+        "pad": 14,
+        "acc": 9,
+        "eva": 9
+      },
+      {
+        "pad": 15,
+        "acc": 10,
+        "eva": 10
+      },
+      {
+        "pad": 15,
+        "acc": 11,
+        "eva": 11
+      },
+      {
+        "pad": 16,
+        "acc": 12,
+        "eva": 12
+      },
+      {
+        "pad": 16,
+        "acc": 13,
+        "eva": 13
+      },
+      {
+        "pad": 17,
+        "acc": 14,
+        "eva": 14
+      },
+      {
+        "pad": 17,
+        "acc": 15,
+        "eva": 15
+      },
+      {
+        "pad": 18,
+        "acc": 16,
+        "eva": 16
+      },
+      {
+        "pad": 18,
+        "acc": 17,
+        "eva": 17
+      },
+      {
+        "pad": 19,
+        "acc": 18,
+        "eva": 18
+      },
+      {
+        "pad": 19,
+        "acc": 19,
+        "eva": 19
+      },
+      {
+        "pad": 20,
+        "acc": 20,
+        "eva": 20
+      }
+    ],
+    "icon": "/skill-icons/15100004.png"
   }
 ]
