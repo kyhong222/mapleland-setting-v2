@@ -42,6 +42,9 @@ const RUSH = new Set([1121006, 1221007, 1321003])
 const NO_DPM = new Set([...COMA_PANIC, ...RUSH])
 /** 럭키세븐/트리플스로우(나로·나워) — LUK 전용 예외식(부스탯·숙련 없음) */
 const LUCKY_SKILLS = new Set([4001344, 14001004, 4121007, 14111005])
+/** 피스트(바이퍼 5121007·스트라이커 15111004) — 6타 중 5타 ×2, 6타 ×4 (7단계 타수배율) */
+const FIST_SKILLS = new Set([5121007, 15111004])
+const FIST_HIT_MULT = [1, 1, 1, 1, 2, 4]
 /** 최대 콤보 카운터(5~10) 소모 시 카운터 뎀증 배율 (docs §4) */
 const MAX_COUNTER_MULT = 2.5
 const rng = (r: { min: number; max: number }) => `${Math.round(r.min).toLocaleString()} ~ ${Math.round(r.max).toLocaleString()}`
@@ -165,6 +168,8 @@ export default function NhitPanel() {
     const watk = totalAttack(effects)
     // 럭세/트스: LUK 전용 예외식 base(모션·부스탯·숙련 무시). 스킬%는 그대로 적용
     const lineBase = !isMagic && LUCKY_SKILLS.has(selectedSkill.id) ? calcLuckyBase(finalStats.LUK, watk) : undefined
+    // 피스트: 타수별 배율(5타×2·6타×4)
+    const hitMultipliers = FIST_SKILLS.has(selectedSkill.id) ? FIST_HIT_MULT : undefined
 
     const cast = computeCast({
       weaponType: weaponType ?? 'oneHandedSword',
@@ -185,6 +190,7 @@ export default function NhitPanel() {
       critProb,
       critMult,
       lineBase,
+      hitMultipliers,
     })
     if (!cast) return { unsupported: true as const }
 

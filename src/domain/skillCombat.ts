@@ -114,6 +114,11 @@ export interface LineDamageInput {
   damageMult: number
   /** 크리 기대배율 f = 1 + 크리확률×크리추뎀/100 (기본 1) */
   critFactor: number
+  /**
+   * 7단계 애프터 모디파이어 — 타수별 배율. 클램프(199999) **이후** 곱하므로 상한 초과 가능.
+   * 예: 피스트 5타 ×2, 6타 ×4. 기본 1.
+   */
+  postClampMult?: number
 }
 
 /** 한 라인의 최종 데미지 범위 (clamp 포함) */
@@ -128,7 +133,10 @@ export function lineFinalRange(p: LineDamageInput): DamageRange {
     // 5·6단계: 스킬 계수 + 크리 (방어 뒤)
     v = (v * p.skillPercent) / 100
     v = v * p.critFactor
-    return clampFloor(v)
+    // 7단계 애프터 모디파이어: 클램프 후 타수배율(상한 초과 가능) → 8단계 floor
+    const clamped = clampFloor(v)
+    const pm = p.postClampMult ?? 1
+    return pm === 1 ? clamped : Math.floor(clamped * pm)
   }
   // max는 0.5, min은 0.6 계수 (기존 physicalVsMonster 규칙)
   return { min: apply(p.base.min, 0.6), max: apply(p.base.max, 0.5) }
@@ -162,6 +170,11 @@ export interface CastDamageParams {
    * 지정 시 무기 모션식(physRange) 대신 이 범위를 attackCount만큼의 라인으로 사용한다.
    */
   lineBase?: DamageRange
+  /**
+   * 7단계 타수별 배율(라인 인덱스별). 예: 피스트 [1,1,1,1,2,4].
+   * 지정한 인덱스만 클램프 후 배율 적용, 없으면 1.
+   */
+  hitMultipliers?: number[]
 }
 
 export interface CastResult {
@@ -174,10 +187,10 @@ export interface CastResult {
 
 /** 시전(1회) 데미지 분포 + 범위. 미지원 스킬이면 null */
 export function computeCast(p: CastDamageParams): CastResult | null {
-  const finalOf = (base: DamageRange, critFactor: number) =>
+  const finalOf = (base: DamageRange, critFactor: number, postClampMult = 1) =>
     lineFinalRange({
       base, elementMult: p.elementMult, defense: p.defense, skillPercent: p.skillPercent,
-      damageMult: p.damageMult, critFactor,
+      damageMult: p.damageMult, critFactor, postClampMult,
     })
   const critProb = Math.max(0, Math.min(1, p.critProb))
 
@@ -186,13 +199,13 @@ export function computeCast(p: CastDamageParams): CastResult | null {
    * 논크리(×1)와 크리(×critMult)를 각각 파이프라인에 통과시켜 분포 성분으로 만든다.
    * (평균배율로 뭉개지 않으므로 데미지 범위=논크리최소~크리최대, 방컷=혼합분포)
    */
-  const critParts = (base: DamageRange, weight: number) => {
-    const nc = finalOf(base, 1)
+  const critParts = (base: DamageRange, weight: number, postClampMult = 1) => {
+    const nc = finalOf(base, 1, postClampMult)
     const parts = [{ weight: weight * (1 - critProb), dist: uniformDist(nc.min, nc.max, stepFor(nc.min, nc.max)) }]
     let min = nc.min
     let max = nc.max
     if (critProb > 0) {
-      const cr = finalOf(base, p.critMult)
+      const cr = finalOf(base, p.critMult, postClampMult)
       parts.push({ weight: weight * critProb, dist: uniformDist(cr.min, cr.max, stepFor(cr.min, cr.max)) })
       min = Math.min(min, cr.min)
       max = Math.max(max, cr.max)
@@ -224,12 +237,13 @@ export function computeCast(p: CastDamageParams): CastResult | null {
   const lines = skillMotionLines(p.skillId, p.weaponType, p.attackCount)
   if (!lines) return null
 
-  const lineDists: Dist[] = lines.map((comps) => {
+  const lineDists: Dist[] = lines.map((comps, lineIdx) => {
+    const postMult = p.hitMultipliers?.[lineIdx] ?? 1 // 7단계 타수배율(피스트 5타×2·6타×4)
     const parts: { weight: number; dist: Dist }[] = []
     let lmin = Infinity
     let lmax = -Infinity
     for (const { weight, mult } of comps) {
-      const mix = critParts(physRange(p.primary ?? 0, p.secondary ?? 0, mult, p.watk ?? 0, p.mastery ?? 1), weight)
+      const mix = critParts(physRange(p.primary ?? 0, p.secondary ?? 0, mult, p.watk ?? 0, p.mastery ?? 1), weight, postMult)
       parts.push(...mix.parts)
       lmin = Math.min(lmin, mix.min)
       lmax = Math.max(lmax, mix.max)
