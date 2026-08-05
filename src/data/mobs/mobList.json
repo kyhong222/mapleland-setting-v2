@@ -4512,5 +4512,105 @@
     "foundAt": [
       "리프레"
     ]
+  },
+  {
+    "id": 9300127,
+    "name": "[카니발] 브라운테니",
+    "koreanName": "[카니발] 브라운테니",
+    "level": 30,
+    "isBoss": false,
+    "foundAt": [
+      "몬스터 카니발"
+    ]
+  },
+  {
+    "id": 9300128,
+    "name": "[카니발] 블록퍼스",
+    "koreanName": "[카니발] 블록퍼스",
+    "level": 30,
+    "isBoss": false,
+    "foundAt": [
+      "몬스터 카니발"
+    ]
+  },
+  {
+    "id": 9300129,
+    "name": "[카니발] 레츠",
+    "koreanName": "[카니발] 레츠",
+    "level": 30,
+    "isBoss": false,
+    "foundAt": [
+      "몬스터 카니발"
+    ]
+  },
+  {
+    "id": 9300130,
+    "name": "[카니발] 크로노스",
+    "koreanName": "[카니발] 크로노스",
+    "level": 30,
+    "isBoss": false,
+    "foundAt": [
+      "몬스터 카니발"
+    ]
+  },
+  {
+    "id": 9300131,
+    "name": "[카니발] 장난감 목마",
+    "koreanName": "[카니발] 장난감 목마",
+    "level": 39,
+    "isBoss": false,
+    "foundAt": [
+      "몬스터 카니발"
+    ]
+  },
+  {
+    "id": 9300132,
+    "name": "[카니발] 틱톡",
+    "koreanName": "[카니발] 틱톡",
+    "level": 30,
+    "isBoss": false,
+    "foundAt": [
+      "몬스터 카니발"
+    ]
+  },
+  {
+    "id": 9300133,
+    "name": "[카니발] 로보토이",
+    "koreanName": "[카니발] 로보토이",
+    "level": 30,
+    "isBoss": false,
+    "foundAt": [
+      "몬스터 카니발"
+    ]
+  },
+  {
+    "id": 9300134,
+    "name": "[카니발] 킹 블록골렘",
+    "koreanName": "[카니발] 킹 블록골렘",
+    "level": 30,
+    "isBoss": false,
+    "foundAt": [
+      "몬스터 카니발"
+    ]
+  },
+  {
+    "id": 9300135,
+    "name": "[카니발] 마스터 크로노스",
+    "koreanName": "[카니발] 마스터 크로노스",
+    "level": 30,
+    "isBoss": false,
+    "foundAt": [
+      "몬스터 카니발"
+    ]
+  },
+  {
+    "id": 9300136,
+    "name": "[카니발] 롬바드",
+    "koreanName": "[카니발] 롬바드",
+    "level": 30,
+    "isBoss": true,
+    "foundAt": [
+      "몬스터 카니발"
+    ]
   }
 ]
