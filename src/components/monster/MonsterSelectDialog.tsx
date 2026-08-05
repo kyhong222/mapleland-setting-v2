@@ -12,13 +12,13 @@ import Chip from '@mui/material/Chip'
 import MonsterIcon from './MonsterIcon'
 import { useMonsterStore } from '../../store/monsterStore'
 import { MONSTERS, LEVEL_RANGE } from '../../data/mobs'
-import { REGION_CATEGORIES } from '../../data/mobs/regionCategory'
+import { REGION_CATEGORIES, REGION_ICON } from '../../data/mobs/regionCategory'
 import { monsterLabel } from '../../domain/monster'
 
 const ALL_REGION = '__all__'
-/** 카테고리명 → 소속 지역 Set (빠른 필터) */
+/** 카테고리명 → 소속 지역명 Set (빠른 필터) */
 const CATEGORY_REGIONS: Record<string, Set<string>> = Object.fromEntries(
-  REGION_CATEGORIES.map((c) => [c.name, new Set(c.regions)]),
+  REGION_CATEGORIES.map((c) => [c.name, new Set(c.regions.map((r) => r.name))]),
 )
 /** 선택값 라벨(전체/카테고리/지역) */
 function selLabel(sel: string): string {
@@ -85,7 +85,16 @@ export default function MonsterSelectDialog({ open, onClose }: { open: boolean; 
               size="small"
               value={sel}
               onChange={(e) => setSel(e.target.value)}
-              renderValue={selLabel}
+              renderValue={(v) =>
+                v.startsWith('r:') ? (
+                  <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.75 }}>
+                    <Box component="img" src={REGION_ICON[v.slice(2)]} alt="" sx={{ width: 18, height: 18, imageRendering: 'pixelated' }} />
+                    {v.slice(2)}
+                  </Box>
+                ) : (
+                  selLabel(v)
+                )
+              }
               MenuProps={{ PaperProps: { sx: { maxHeight: 440 } } }}
               sx={{ flex: 1, '& .MuiSelect-select': { py: 0.75, fontSize: 13 } }}
             >
@@ -95,10 +104,11 @@ export default function MonsterSelectDialog({ open, onClose }: { open: boolean; 
                 <MenuItem key={`c:${c.name}`} value={`c:${c.name}`} sx={{ fontSize: 14, fontWeight: 700, mt: 0.25 }}>
                   {c.name}
                 </MenuItem>,
-                // 하위 지역(들여쓰기)
+                // 하위 지역(들여쓰기 + 맵 아이콘)
                 ...c.regions.map((r) => (
-                  <MenuItem key={`r:${r}`} value={`r:${r}`} sx={{ fontSize: 12.5, pl: 3, color: 'text.secondary' }}>
-                    {r}
+                  <MenuItem key={`r:${r.name}`} value={`r:${r.name}`} sx={{ fontSize: 12.5, pl: 2, gap: 0.75, color: 'text.secondary' }}>
+                    <Box component="img" src={r.icon} alt="" sx={{ width: 20, height: 20, imageRendering: 'pixelated' }} />
+                    {r.name}
                   </MenuItem>
                 )),
               ])}

@@ -1,35 +1,73 @@
 /**
  * 몬스터 출현 지역(foundAt) → 대표 카테고리 분류.
  *
- * 몬스터 선택 UI의 "지역" 필터를 세부 지역 24종 대신 10개 카테고리로 묶는다.
- * 아이콘은 maplestory.io 맵 아이콘을 받아 public/region-icons/에 저장한 정적 에셋.
+ * 몬스터 선택 UI의 "지역" 필터를 상위 카테고리(아이콘 없음) > 하위 지역(맵 아이콘)
+ * 2단계 계층으로 묶는다. 지역 아이콘은 maplestory.io 맵 아이콘을 받아
+ * public/region-icons/map-{mapId}.png 로 저장한 정적 에셋.
  */
 
-export interface RegionCategory {
-  /** 카테고리 표시명 */
+export interface RegionEntry {
+  /** foundAt 지역명 */
   name: string
-  /** 아이콘 경로 (public/region-icons/*.png) */
+  /** 지역 대표 맵 아이콘 경로 */
   icon: string
-  /** 이 카테고리에 속하는 foundAt 지역명 */
-  regions: string[]
 }
 
+export interface RegionCategory {
+  /** 카테고리 표시명 (아이콘 없음) */
+  name: string
+  /** 소속 지역(각자 맵 아이콘 보유) */
+  regions: RegionEntry[]
+}
+
+const ic = (mapId: number) => `/region-icons/map-${mapId}.png`
+
 export const REGION_CATEGORIES: RegionCategory[] = [
-  { name: '빅토리아 아일랜드', icon: '/region-icons/victoria.png', regions: ['빅토리아 아일랜드'] },
-  { name: '세계여행', icon: '/region-icons/worldtour.png', regions: ['해외여행: 일본', '해외여행: 대만', '해외여행: 중국', '해외여행: 태국'] },
-  { name: '루더스 호수', icon: '/region-icons/ludus.png', regions: ['루디브리엄', '시계탑 최하층', '루디브리엄 파퀘', '지구방위본부', '샤레니안', '아랫마을', '엘린숲'] },
-  { name: '니할 사막', icon: '/region-icons/nihal.png', regions: ['아리안트', '마가티아'] },
-  { name: '엘나스 산맥', icon: '/region-icons/elnath.png', regions: ['엘나스', '오르비스', '아쿠아리움', '폐광'] },
-  { name: '무릉도원', icon: '/region-icons/mulung.png', regions: ['무릉도원', '백초마을'] },
-  { name: '미나르숲', icon: '/region-icons/minar.png', regions: ['리프레'] },
-  { name: '시간의 신전', icon: '/region-icons/temple.png', regions: ['시간의 신전'] },
-  { name: '마스테리아', icon: '/region-icons/masteria.png', regions: ['뉴 리프 시티'] },
-  { name: '몬스터 카니발', icon: '/region-icons/carnival.png', regions: ['몬스터 카니발'] },
+  { name: '빅토리아 아일랜드', regions: [{ name: '빅토리아 아일랜드', icon: ic(104010000) }] },
+  { name: '세계여행', regions: [
+    { name: '해외여행: 일본', icon: ic(993000400) },
+    { name: '해외여행: 대만', icon: ic(993000400) },
+    { name: '해외여행: 중국', icon: ic(993000400) },
+    { name: '해외여행: 태국', icon: ic(993000400) },
+  ] },
+  { name: '루더스 호수', regions: [
+    { name: '루디브리엄', icon: ic(221022600) },
+    { name: '시계탑 최하층', icon: ic(220060000) },
+    { name: '지구방위본부', icon: ic(221030000) },
+    { name: '아랫마을', icon: ic(922200000) },
+    { name: '엘린숲', icon: ic(300020200) },
+  ] },
+  { name: '니할 사막', regions: [
+    { name: '아리안트', icon: ic(260010700) },
+    { name: '마가티아', icon: ic(261010001) },
+  ] },
+  { name: '엘나스 산맥', regions: [
+    { name: '엘나스', icon: ic(200081600) },
+    { name: '오르비스', icon: ic(200080200) },
+    { name: '아쿠아리움', icon: ic(230030100) },
+    { name: '폐광', icon: ic(211041100) },
+  ] },
+  { name: '무릉도원', regions: [
+    { name: '무릉도원', icon: ic(250010000) },
+    { name: '백초마을', icon: ic(251010000) },
+  ] },
+  { name: '미나르숲', regions: [{ name: '리프레', icon: ic(240010000) }] },
+  { name: '시간의 신전', regions: [{ name: '시간의 신전', icon: ic(270010100) }] },
+  { name: '마스테리아', regions: [{ name: '뉴 리프 시티', icon: ic(600000000) }] },
+  { name: '파티퀘스트', regions: [
+    { name: '샤레니안', icon: ic(308000001) },
+    { name: '몬스터 카니발', icon: ic(980000101) },
+    { name: '루디브리엄 파퀘', icon: ic(922010100) },
+  ] },
 ]
 
 /** foundAt 지역명 → 카테고리명 */
 const REGION_TO_CATEGORY: Record<string, string> = {}
-for (const c of REGION_CATEGORIES) for (const r of c.regions) REGION_TO_CATEGORY[r] = c.name
+for (const c of REGION_CATEGORIES) for (const r of c.regions) REGION_TO_CATEGORY[r.name] = c.name
+
+/** foundAt 지역명 → 대표 아이콘 경로 */
+export const REGION_ICON: Record<string, string> = {}
+for (const c of REGION_CATEGORIES) for (const r of c.regions) REGION_ICON[r.name] = r.icon
 
 /** 몬스터의 foundAt 지역들이 속한 카테고리명 집합 */
 export function categoriesOf(foundAt: string[] | undefined): string[] {
