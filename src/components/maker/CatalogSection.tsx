@@ -37,7 +37,6 @@ const WEAPON_ORDER: Partial<Record<WeaponType, number>> = {
   spear: 6, polearm: 7, bow: 8, crossbow: 9,
   staff: 10, wand: 11, dagger: 12, claw: 13, knuckle: 14, gun: 15,
 }
-const weaponOrder = (it: ItemData) => (it.weaponType ? WEAPON_ORDER[it.weaponType] ?? 99 : 99)
 
 /** 무기타입 필터 옵션 (표시 순서) */
 const WEAPON_TYPE_OPTIONS = (Object.keys(WEAPON_ORDER) as WeaponType[]).sort(
@@ -115,12 +114,11 @@ export default function CatalogSection({
       if (arr) arr.push(it)
       else byBucket.set(b, [it])
     }
-    // 버킷은 레벨 오름차순, 버킷 내부는 무기종류→reqLevel→이름 순(예: 리버스 < 타임리스)
+    // 버킷은 레벨 오름차순, 버킷 내부는 렙제 → 아이템 id 순
     for (const items of byBucket.values()) {
       items.sort((x, y) =>
-        weaponOrder(x) - weaponOrder(y) ||
         (x.reqLevel ?? 0) - (y.reqLevel ?? 0) ||
-        x.name.localeCompare(y.name, 'ko'),
+        x.id - y.id,
       )
     }
     return {

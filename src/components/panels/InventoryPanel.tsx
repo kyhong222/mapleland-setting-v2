@@ -178,8 +178,8 @@ export default function InventoryPanel() {
       const rj = inv.built.base.reqJob ?? 0
       return rj === 0 || (rj & mask) !== 0
     })
-    // 카테고리(슬롯) 순 정렬 — 무기→모자→…, 같은 슬롯 내에서는 제작 순서 유지(안정 정렬)
-    .sort((a, b) => slotRank(a.built.base.slot) - slotRank(b.built.base.slot))
+    // 부위(슬롯) → 아이템 id 순 정렬
+    .sort((a, b) => slotRank(a.built.base.slot) - slotRank(b.built.base.slot) || a.built.base.id - b.built.base.id)
 
   const menuItem = menu ? items.find((i) => i.id === menu.id) : undefined
 
