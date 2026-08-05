@@ -16,6 +16,7 @@ import ItemMakerDialog from '../maker/ItemMakerDialog'
 import { useInventoryStore } from '../../store/inventoryStore'
 import type { InventoryItem } from '../../store/inventoryStore'
 import { useBuildStore } from '../../store/buildStore'
+import { useUiStore } from '../../store/uiStore'
 import { targetInstancesForSlot, SECONDARY_SLOTS } from '../../store/equipInstance'
 import { aggregateBuild } from '../../store/aggregate'
 import { useActiveEquippedBuilts } from '../../store/activation'
@@ -44,6 +45,7 @@ export default function InventoryPanel() {
   const add = useInventoryStore((s) => s.add)
   const update = useInventoryStore((s) => s.update)
   const remove = useInventoryStore((s) => s.remove)
+  const hoveredEquipInvId = useUiStore((s) => s.hoveredEquipInvId)
 
   const jobId = useBuildStore((s) => s.jobId)
   const level = useBuildStore((s) => s.level)
@@ -256,6 +258,7 @@ export default function InventoryPanel() {
           {visible.map((inv) => {
             const { grade } = resolveBuiltItem(inv.built)
             const isEquipped = Object.values(equipped).includes(inv.id)
+            const isHovered = inv.id === hoveredEquipInvId // 장비창에서 호버 중인 아이템
             return (
               <Tooltip
                 key={inv.id}
@@ -300,9 +303,10 @@ export default function InventoryPanel() {
                     lineHeight: 0,
                     cursor: 'pointer',
                     borderRadius: 1,
-                    border: isEquipped ? 2 : 1,
-                    borderColor: isEquipped ? 'primary.main' : 'divider',
-                    bgcolor: 'transparent',
+                    border: isHovered || isEquipped ? 2 : 1,
+                    borderColor: isHovered ? 'secondary.main' : isEquipped ? 'primary.main' : 'divider',
+                    boxShadow: isHovered ? (t) => `0 0 0 2px ${t.palette.secondary.main}` : 'none',
+                    bgcolor: isHovered ? 'action.selected' : 'transparent',
                     WebkitTouchCallout: 'none',
                     userSelect: 'none',
                     '&:hover': { bgcolor: 'action.hover' },

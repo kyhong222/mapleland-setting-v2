@@ -1,13 +1,17 @@
-import { useMemo } from 'react'
+import { useMemo, useRef, useState } from 'react'
 import Box from '@mui/material/Box'
 import Paper from '@mui/material/Paper'
 import Typography from '@mui/material/Typography'
 import Tooltip from '@mui/material/Tooltip'
+import Menu from '@mui/material/Menu'
+import MenuItem from '@mui/material/MenuItem'
 import CollapsiblePanel from '../common/CollapsiblePanel'
 import ItemTooltip from '../common/ItemTooltip'
 import ItemIcon from '../common/ItemIcon'
+import ItemMakerDialog from '../maker/ItemMakerDialog'
 import { useBuildStore } from '../../store/buildStore'
 import { useInventoryStore } from '../../store/inventoryStore'
+import { useUiStore } from '../../store/uiStore'
 import { useActivation } from '../../store/activation'
 import { instanceLabel } from '../../store/equipInstance'
 import type { EquipInstance } from '../../store/equipInstance'
@@ -55,10 +59,23 @@ export default function EquipmentPanel() {
   const equipped = useBuildStore((s) => s.equipped)
   const unequip = useBuildStore((s) => s.unequip)
   const invItems = useInventoryStore((s) => s.items)
+  const updateItem = useInventoryStore((s) => s.update)
+  const setHovered = useUiStore((s) => s.setHoveredEquipInvId)
   const activation = useActivation()
 
   const byId = useMemo(() => new Map(invItems.map((it) => [it.id, it.built])), [invItems])
   const disabled = disabledInstances(equipped, byId)
+
+  // 우클릭/롱프레스 컨텍스트 메뉴(해제·편집) + 편집 다이얼로그
+  const [menu, setMenu] = useState<{ anchor: HTMLElement; inst: EquipInstance; invId: string } | null>(null)
+  const [editId, setEditId] = useState<string | null>(null)
+  const pressTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
+  const pressFired = useRef(false)
+  const pressStart = useRef<{ x: number; y: number } | null>(null)
+  const clearPress = () => {
+    if (pressTimer.current) { clearTimeout(pressTimer.current); pressTimer.current = null }
+  }
+  const editBuilt = editId ? byId.get(editId) : undefined
 
   const renderTile = (inst: EquipInstance, key: number) => {
     const invId = equipped[inst]
@@ -91,7 +108,25 @@ export default function EquipmentPanel() {
       >
         <Paper
           variant="outlined"
-          onClick={built ? () => unequip(inst) : undefined}
+          onClick={built ? () => { if (pressFired.current) { pressFired.current = false; return } unequip(inst) } : undefined}
+          onContextMenu={built && invId ? (e) => { e.preventDefault(); setMenu({ anchor: e.currentTarget, inst, invId }) } : undefined}
+          onMouseEnter={built && invId ? () => setHovered(invId) : undefined}
+          onMouseLeave={built ? () => setHovered(null) : undefined}
+          onTouchStart={built && invId ? (e) => {
+            const el = e.currentTarget
+            const t = e.touches[0]
+            pressStart.current = t ? { x: t.clientX, y: t.clientY } : null
+            pressFired.current = false
+            clearPress()
+            pressTimer.current = setTimeout(() => { pressFired.current = true; setMenu({ anchor: el, inst, invId }) }, 450)
+          } : undefined}
+          onTouchEnd={clearPress}
+          onTouchMove={(e) => {
+            const s = pressStart.current
+            const t = e.touches[0]
+            if (s && t && Math.hypot(t.clientX - s.x, t.clientY - s.y) > 10) clearPress()
+          }}
+          onTouchCancel={clearPress}
           sx={{
             position: 'relative',
             width: TILE,
@@ -104,6 +139,8 @@ export default function EquipmentPanel() {
             borderStyle: 'solid',
             borderColor,
             bgcolor: isInactive || isBlocked ? 'rgba(211,47,47,0.34)' : undefined,
+            WebkitTouchCallout: 'none',
+            userSelect: 'none',
             '&:hover': built
               ? { bgcolor: isInactive ? 'rgba(211,47,47,0.46)' : 'action.hover' }
               : undefined,
@@ -177,6 +214,18 @@ export default function EquipmentPanel() {
           ),
         )}
       </Box>
+
+      <Menu anchorEl={menu?.anchor ?? null} open={!!menu} onClose={() => setMenu(null)}>
+        <MenuItem onClick={() => { if (menu) unequip(menu.inst); setMenu(null) }}>해제</MenuItem>
+        <MenuItem onClick={() => { if (menu) setEditId(menu.invId); setMenu(null) }}>편집</MenuItem>
+      </Menu>
+
+      <ItemMakerDialog
+        open={editId !== null}
+        initial={editBuilt}
+        onClose={() => setEditId(null)}
+        onConfirm={(built) => { if (editId) updateItem(editId, built) }}
+      />
     </CollapsiblePanel>
   )
 }
