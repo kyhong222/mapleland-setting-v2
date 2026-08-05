@@ -11,17 +11,23 @@ import MenuItem from '@mui/material/MenuItem'
 import Chip from '@mui/material/Chip'
 import MonsterIcon from './MonsterIcon'
 import { useMonsterStore } from '../../store/monsterStore'
-import { MONSTERS, REGIONS, LEVEL_RANGE } from '../../data/mobs'
+import { MONSTERS, LEVEL_RANGE } from '../../data/mobs'
+import { REGION_CATEGORIES } from '../../data/mobs/regionCategory'
 import { monsterLabel } from '../../domain/monster'
 
 const ALL_REGION = '__all__'
+/** 카테고리명 → 소속 지역 Set (빠른 필터) */
+const CATEGORY_REGIONS: Record<string, Set<string>> = Object.fromEntries(
+  REGION_CATEGORIES.map((c) => [c.name, new Set(c.regions)]),
+)
+const CATEGORY_ICON: Record<string, string> = Object.fromEntries(REGION_CATEGORIES.map((c) => [c.name, c.icon]))
 
 /** 몬스터 검색/필터/선택 모달 */
 export default function MonsterSelectDialog({ open, onClose }: { open: boolean; onClose: () => void }) {
   const selectedId = useMonsterStore((s) => s.selectedId)
   const select = useMonsterStore((s) => s.select)
 
-  const [region, setRegion] = useState<string>(ALL_REGION)
+  const [category, setCategory] = useState<string>(ALL_REGION)
   const [query, setQuery] = useState('')
   const [minLv, setMinLv] = useState('')
   const [maxLv, setMaxLv] = useState('')
@@ -31,8 +37,9 @@ export default function MonsterSelectDialog({ open, onClose }: { open: boolean; 
     const q = query.trim().toLowerCase()
     const lo = minLv.trim() === '' ? -Infinity : Number(minLv)
     const hi = maxLv.trim() === '' ? Infinity : Number(maxLv)
+    const catRegions = category === ALL_REGION ? null : CATEGORY_REGIONS[category]
     return MONSTERS.filter((m) => {
-      if (region !== ALL_REGION && !(m.foundAt ?? []).includes(region)) return false
+      if (catRegions && !(m.foundAt ?? []).some((r) => catRegions.has(r))) return false
       if (bossOnly && !m.isBoss) return false
       if (m.level < lo || m.level > hi) return false
       if (q) {
@@ -41,7 +48,7 @@ export default function MonsterSelectDialog({ open, onClose }: { open: boolean; 
       }
       return true
     }).sort((a, b) => a.level - b.level)
-  }, [region, query, minLv, maxLv, bossOnly])
+  }, [category, query, minLv, maxLv, bossOnly])
 
   const pick = (id: number) => {
     select(id)
@@ -49,7 +56,7 @@ export default function MonsterSelectDialog({ open, onClose }: { open: boolean; 
   }
 
   return (
-    <Dialog open={open} onClose={onClose} maxWidth="xs" fullWidth>
+    <Dialog open={open} onClose={onClose} maxWidth="sm" fullWidth>
       <DialogTitle sx={{ pb: 1 }}>몬스터 선택</DialogTitle>
       <DialogContent>
         {/* 필터 */}
@@ -68,13 +75,26 @@ export default function MonsterSelectDialog({ open, onClose }: { open: boolean; 
           <Box sx={{ display: 'flex', gap: 0.75 }}>
             <Select
               size="small"
-              value={region}
-              onChange={(e) => setRegion(e.target.value)}
-              sx={{ flex: 1, '& .MuiSelect-select': { py: 0.75, fontSize: 13 } }}
+              value={category}
+              onChange={(e) => setCategory(e.target.value)}
+              renderValue={(v) =>
+                v === ALL_REGION ? (
+                  '전체 지역'
+                ) : (
+                  <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.75 }}>
+                    <Box component="img" src={CATEGORY_ICON[v]} alt="" sx={{ width: 20, height: 20, imageRendering: 'pixelated' }} />
+                    {v}
+                  </Box>
+                )
+              }
+              sx={{ flex: 1, '& .MuiSelect-select': { py: 0.75, fontSize: 13, display: 'flex', alignItems: 'center' } }}
             >
               <MenuItem value={ALL_REGION} sx={{ fontSize: 13 }}>전체 지역</MenuItem>
-              {REGIONS.map((r) => (
-                <MenuItem key={r} value={r} sx={{ fontSize: 13 }}>{r}</MenuItem>
+              {REGION_CATEGORIES.map((c) => (
+                <MenuItem key={c.name} value={c.name} sx={{ fontSize: 13, gap: 0.75 }}>
+                  <Box component="img" src={c.icon} alt="" sx={{ width: 20, height: 20, imageRendering: 'pixelated' }} />
+                  {c.name}
+                </MenuItem>
               ))}
             </Select>
             <Chip
@@ -99,7 +119,7 @@ export default function MonsterSelectDialog({ open, onClose }: { open: boolean; 
         </Typography>
 
         {/* 목록 */}
-        <Box sx={{ maxHeight: 360, overflowY: 'auto', display: 'flex', flexDirection: 'column' }}>
+        <Box sx={{ maxHeight: 480, overflowY: 'auto', display: 'flex', flexDirection: 'column', gap: 0.25 }}>
           {filtered.length === 0 ? (
             <Typography variant="caption" color="text.disabled" sx={{ py: 2, textAlign: 'center' }}>조건에 맞는 몬스터 없음</Typography>
           ) : (
@@ -112,21 +132,23 @@ export default function MonsterSelectDialog({ open, onClose }: { open: boolean; 
                   sx={{
                     display: 'flex',
                     alignItems: 'center',
-                    gap: 0.75,
-                    px: 0.5,
-                    py: 0.25,
-                    borderRadius: 0.5,
+                    gap: 1,
+                    px: 0.75,
+                    py: 0.75,
+                    borderRadius: 1,
                     cursor: 'pointer',
+                    border: 1,
+                    borderColor: active ? 'primary.main' : 'transparent',
                     bgcolor: active ? 'action.selected' : 'transparent',
                     '&:hover': { bgcolor: 'action.hover' },
                   }}
                 >
-                  <MonsterIcon id={m.id} size={36} />
+                  <MonsterIcon id={m.id} size={52} />
                   <Box sx={{ flex: 1, minWidth: 0 }}>
-                    <Typography variant="body2" noWrap>{monsterLabel(m)}</Typography>
-                    <Typography variant="caption" color="text.secondary">Lv.{m.level}</Typography>
+                    <Typography variant="body1" noWrap sx={{ fontWeight: 600 }}>{monsterLabel(m)}</Typography>
+                    <Typography variant="body2" color="text.secondary">Lv.{m.level}</Typography>
                   </Box>
-                  {m.isBoss && <Chip label="보스" size="small" color="error" variant="outlined" sx={{ height: 18, fontSize: 10 }} />}
+                  {m.isBoss && <Chip label="보스" size="small" color="error" variant="outlined" sx={{ height: 20, fontSize: 11 }} />}
                 </Box>
               )
             })
