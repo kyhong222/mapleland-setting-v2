@@ -9,5 +9,95 @@
     },
     "iconUrl": "https://maplestory.io/api/GMS/200/item/1132010/icon",
     "tuc": 1
+  },
+  {
+    "id": 1132000,
+    "name": "흰색 허리띠",
+    "slot": "belt",
+    "effects": {
+      "STR": 1,
+      "DEX": 1,
+      "INT": 1,
+      "LUK": 1,
+      "pdef": 10,
+      "mdef": 10,
+      "eva": 3
+    },
+    "reqLevel": 25,
+    "reqJob": 0,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1132000/icon",
+    "tuc": 3
+  },
+  {
+    "id": 1132001,
+    "name": "노란색 허리띠",
+    "slot": "belt",
+    "effects": {
+      "STR": 2,
+      "DEX": 2,
+      "INT": 2,
+      "LUK": 2,
+      "pdef": 20,
+      "mdef": 20,
+      "eva": 6
+    },
+    "reqLevel": 35,
+    "reqJob": 0,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1132001/icon",
+    "tuc": 3
+  },
+  {
+    "id": 1132002,
+    "name": "파란색 허리띠",
+    "slot": "belt",
+    "effects": {
+      "STR": 3,
+      "DEX": 3,
+      "INT": 3,
+      "LUK": 3,
+      "pdef": 30,
+      "mdef": 30,
+      "eva": 9
+    },
+    "reqLevel": 45,
+    "reqJob": 0,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1132002/icon",
+    "tuc": 3
+  },
+  {
+    "id": 1132003,
+    "name": "빨간색 허리띠",
+    "slot": "belt",
+    "effects": {
+      "STR": 4,
+      "DEX": 4,
+      "INT": 4,
+      "LUK": 4,
+      "pdef": 40,
+      "mdef": 40,
+      "eva": 12
+    },
+    "reqLevel": 60,
+    "reqJob": 0,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1132003/icon",
+    "tuc": 3
+  },
+  {
+    "id": 1132004,
+    "name": "검은색 허리띠",
+    "slot": "belt",
+    "effects": {
+      "STR": 5,
+      "DEX": 5,
+      "INT": 5,
+      "LUK": 5,
+      "pdef": 50,
+      "mdef": 50,
+      "eva": 15
+    },
+    "reqLevel": 75,
+    "reqJob": 0,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1132004/icon",
+    "tuc": 3
   }
 ]
