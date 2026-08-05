@@ -23,7 +23,7 @@ export const REGION_CATEGORIES: RegionCategory[] = [
   { name: '무릉도원', icon: '/region-icons/mulung.png', regions: ['무릉도원', '백초마을'] },
   { name: '미나르숲', icon: '/region-icons/minar.png', regions: ['리프레'] },
   { name: '시간의 신전', icon: '/region-icons/temple.png', regions: ['시간의 신전'] },
-  { name: '마스터리아', icon: '/region-icons/masteria.png', regions: ['뉴 리프 시티'] },
+  { name: '마스테리아', icon: '/region-icons/masteria.png', regions: ['뉴 리프 시티'] },
   { name: '몬스터 카니발', icon: '/region-icons/carnival.png', regions: ['몬스터 카니발'] },
 ]
 
