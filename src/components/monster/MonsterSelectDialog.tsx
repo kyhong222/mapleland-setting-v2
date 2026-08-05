@@ -87,27 +87,27 @@ export default function MonsterSelectDialog({ open, onClose }: { open: boolean; 
               onChange={(e) => setSel(e.target.value)}
               renderValue={(v) =>
                 v.startsWith('r:') ? (
-                  <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.75 }}>
-                    <Box component="img" src={REGION_ICON[v.slice(2)]} alt="" sx={{ width: 18, height: 18, imageRendering: 'pixelated' }} />
+                  <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                    <Box component="img" src={REGION_ICON[v.slice(2)]} alt="" sx={{ width: 28, height: 28, imageRendering: 'pixelated' }} />
                     {v.slice(2)}
                   </Box>
                 ) : (
                   selLabel(v)
                 )
               }
-              MenuProps={{ PaperProps: { sx: { maxHeight: 440 } } }}
-              sx={{ flex: 1, '& .MuiSelect-select': { py: 0.75, fontSize: 13 } }}
+              MenuProps={{ PaperProps: { sx: { maxHeight: 500 } } }}
+              sx={{ flex: 1, '& .MuiSelect-select': { py: 1, fontSize: 15, display: 'flex', alignItems: 'center' } }}
             >
-              <MenuItem value={ALL_REGION} sx={{ fontSize: 14, fontWeight: 700 }}>전체 지역</MenuItem>
+              <MenuItem value={ALL_REGION} sx={{ fontSize: 16, fontWeight: 700, py: 1 }}>전체 지역</MenuItem>
               {REGION_CATEGORIES.flatMap((c) => [
                 // 상위 카테고리(아이콘 없이, 살짝 크게) — 선택 시 카테고리 전체
-                <MenuItem key={`c:${c.name}`} value={`c:${c.name}`} sx={{ fontSize: 14, fontWeight: 700, mt: 0.25 }}>
+                <MenuItem key={`c:${c.name}`} value={`c:${c.name}`} sx={{ fontSize: 16, fontWeight: 700, py: 1, mt: 0.25 }}>
                   {c.name}
                 </MenuItem>,
                 // 하위 지역(들여쓰기 + 맵 아이콘)
                 ...c.regions.map((r) => (
-                  <MenuItem key={`r:${r.name}`} value={`r:${r.name}`} sx={{ fontSize: 12.5, pl: 2, gap: 0.75, color: 'text.secondary' }}>
-                    <Box component="img" src={r.icon} alt="" sx={{ width: 20, height: 20, imageRendering: 'pixelated' }} />
+                  <MenuItem key={`r:${r.name}`} value={`r:${r.name}`} sx={{ fontSize: 14, pl: 2.5, py: 0.75, gap: 1, color: 'text.secondary' }}>
+                    <Box component="img" src={r.icon} alt="" sx={{ width: 30, height: 30, imageRendering: 'pixelated' }} />
                     {r.name}
                   </MenuItem>
                 )),
