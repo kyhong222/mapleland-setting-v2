@@ -64,7 +64,8 @@
     "name": "남자 목욕 타월",
     "slot": "overall",
     "effects": {
-      "pdef": 20
+      "pdef": 20,
+      "speed": 10
     },
     "reqLevel": 20,
     "iconUrl": "https://maplestory.io/api/gms/62/item/1050100/icon",
@@ -75,7 +76,8 @@
     "name": "여자 목욕 타월",
     "slot": "overall",
     "effects": {
-      "pdef": 20
+      "pdef": 20,
+      "speed": 10
     },
     "reqLevel": 20,
     "iconUrl": "https://maplestory.io/api/gms/62/item/1051098/icon",
