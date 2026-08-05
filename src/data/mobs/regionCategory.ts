@@ -15,9 +15,9 @@ export interface RegionCategory {
 }
 
 export const REGION_CATEGORIES: RegionCategory[] = [
-  { name: '빅토리아 아일랜드', icon: '/region-icons/victoria.png', regions: ['빅토리아 아일랜드', '아랫마을', '엘린숲'] },
+  { name: '빅토리아 아일랜드', icon: '/region-icons/victoria.png', regions: ['빅토리아 아일랜드'] },
   { name: '세계여행', icon: '/region-icons/worldtour.png', regions: ['해외여행: 일본', '해외여행: 대만', '해외여행: 중국', '해외여행: 태국'] },
-  { name: '루더스 호수', icon: '/region-icons/ludus.png', regions: ['루디브리엄', '시계탑 최하층', '루디브리엄 파퀘', '지구방위본부', '샤레니안'] },
+  { name: '루더스 호수', icon: '/region-icons/ludus.png', regions: ['루디브리엄', '시계탑 최하층', '루디브리엄 파퀘', '지구방위본부', '샤레니안', '아랫마을', '엘린숲'] },
   { name: '니할 사막', icon: '/region-icons/nihal.png', regions: ['아리안트', '마가티아'] },
   { name: '엘나스 산맥', icon: '/region-icons/elnath.png', regions: ['엘나스', '오르비스', '아쿠아리움', '폐광'] },
   { name: '무릉도원', icon: '/region-icons/mulung.png', regions: ['무릉도원', '백초마을'] },
