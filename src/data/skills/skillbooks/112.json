@@ -2050,7 +2050,7 @@
         },
         {
           "attackCount": "2",
-          "damage": "224",
+          "damage": "225",
           "hs": "h21",
           "lt": "Point [ X=-150, Y=-110 ]",
           "mobCount": "3",
@@ -2059,7 +2059,7 @@
         },
         {
           "attackCount": "2",
-          "damage": "228",
+          "damage": "230",
           "hs": "h22",
           "lt": "Point [ X=-150, Y=-110 ]",
           "mobCount": "3",
@@ -2068,7 +2068,7 @@
         },
         {
           "attackCount": "2",
-          "damage": "232",
+          "damage": "235",
           "hs": "h23",
           "lt": "Point [ X=-150, Y=-110 ]",
           "mobCount": "3",
@@ -2077,7 +2077,7 @@
         },
         {
           "attackCount": "2",
-          "damage": "236",
+          "damage": "240",
           "hs": "h24",
           "lt": "Point [ X=-150, Y=-110 ]",
           "mobCount": "3",
@@ -2086,7 +2086,7 @@
         },
         {
           "attackCount": "2",
-          "damage": "240",
+          "damage": "245",
           "hs": "h25",
           "lt": "Point [ X=-150, Y=-110 ]",
           "mobCount": "3",
@@ -2095,7 +2095,7 @@
         },
         {
           "attackCount": "2",
-          "damage": "244",
+          "damage": "250",
           "hs": "h26",
           "lt": "Point [ X=-150, Y=-110 ]",
           "mobCount": "3",
@@ -2104,7 +2104,7 @@
         },
         {
           "attackCount": "2",
-          "damage": "248",
+          "damage": "255",
           "hs": "h27",
           "lt": "Point [ X=-150, Y=-110 ]",
           "mobCount": "3",
@@ -2113,7 +2113,7 @@
         },
         {
           "attackCount": "2",
-          "damage": "252",
+          "damage": "260",
           "hs": "h28",
           "lt": "Point [ X=-150, Y=-110 ]",
           "mobCount": "3",
@@ -2122,7 +2122,7 @@
         },
         {
           "attackCount": "2",
-          "damage": "256",
+          "damage": "265",
           "hs": "h29",
           "lt": "Point [ X=-150, Y=-110 ]",
           "mobCount": "3",
@@ -2140,7 +2140,7 @@
         },
         {
           "attackCount": "2",
-          "damage": "260",
+          "damage": "270",
           "hs": "h30",
           "lt": "Point [ X=-150, Y=-110 ]",
           "mobCount": "3",
