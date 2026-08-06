@@ -4735,74 +4735,44 @@
     "exclusiveGroup": "pirateForm",
     "effectsByLevel": [
       {
-        "STR": 1,
         "pdef": 4,
-        "mdef": 4,
-        "speed": 40,
-        "jump": 20
+        "mdef": 4
       },
       {
-        "STR": 2,
         "pdef": 8,
-        "mdef": 8,
-        "speed": 40,
-        "jump": 20
+        "mdef": 8
       },
       {
-        "STR": 3,
         "pdef": 12,
-        "mdef": 12,
-        "speed": 40,
-        "jump": 20
+        "mdef": 12
       },
       {
-        "STR": 4,
         "pdef": 16,
-        "mdef": 16,
-        "speed": 40,
-        "jump": 20
+        "mdef": 16
       },
       {
-        "STR": 5,
         "pdef": 20,
-        "mdef": 20,
-        "speed": 40,
-        "jump": 20
+        "mdef": 20
       },
       {
-        "STR": 6,
         "pdef": 24,
-        "mdef": 24,
-        "speed": 40,
-        "jump": 20
+        "mdef": 24
       },
       {
-        "STR": 7,
         "pdef": 28,
-        "mdef": 28,
-        "speed": 40,
-        "jump": 20
+        "mdef": 28
       },
       {
-        "STR": 8,
         "pdef": 32,
-        "mdef": 32,
-        "speed": 40,
-        "jump": 20
+        "mdef": 32
       },
       {
-        "STR": 9,
         "pdef": 36,
-        "mdef": 36,
-        "speed": 40,
-        "jump": 20
+        "mdef": 36
       },
       {
-        "STR": 10,
         "pdef": 40,
-        "mdef": 40,
-        "speed": 40,
-        "jump": 20
+        "mdef": 40
       }
     ]
   },
@@ -4820,144 +4790,84 @@
     "exclusiveGroup": "pirateForm",
     "effectsByLevel": [
       {
-        "STR": 1,
         "pdef": 2,
-        "mdef": 2,
-        "speed": 40,
-        "jump": 20
+        "mdef": 2
       },
       {
-        "STR": 2,
         "pdef": 4,
-        "mdef": 4,
-        "speed": 40,
-        "jump": 20
+        "mdef": 4
       },
       {
-        "STR": 3,
         "pdef": 6,
-        "mdef": 6,
-        "speed": 40,
-        "jump": 20
+        "mdef": 6
       },
       {
-        "STR": 4,
         "pdef": 8,
-        "mdef": 8,
-        "speed": 40,
-        "jump": 20
+        "mdef": 8
       },
       {
-        "STR": 5,
         "pdef": 10,
-        "mdef": 10,
-        "speed": 40,
-        "jump": 20
+        "mdef": 10
       },
       {
-        "STR": 6,
         "pdef": 12,
-        "mdef": 12,
-        "speed": 40,
-        "jump": 20
+        "mdef": 12
       },
       {
-        "STR": 7,
         "pdef": 14,
-        "mdef": 14,
-        "speed": 40,
-        "jump": 20
+        "mdef": 14
       },
       {
-        "STR": 8,
         "pdef": 16,
-        "mdef": 16,
-        "speed": 40,
-        "jump": 20
+        "mdef": 16
       },
       {
-        "STR": 9,
         "pdef": 18,
-        "mdef": 18,
-        "speed": 40,
-        "jump": 20
+        "mdef": 18
       },
       {
-        "STR": 10,
         "pdef": 20,
-        "mdef": 20,
-        "speed": 40,
-        "jump": 20
+        "mdef": 20
       },
       {
-        "STR": 11,
         "pdef": 22,
-        "mdef": 22,
-        "speed": 40,
-        "jump": 20
+        "mdef": 22
       },
       {
-        "STR": 12,
         "pdef": 24,
-        "mdef": 24,
-        "speed": 40,
-        "jump": 20
+        "mdef": 24
       },
       {
-        "STR": 13,
         "pdef": 26,
-        "mdef": 26,
-        "speed": 40,
-        "jump": 20
+        "mdef": 26
       },
       {
-        "STR": 14,
         "pdef": 28,
-        "mdef": 28,
-        "speed": 40,
-        "jump": 20
+        "mdef": 28
       },
       {
-        "STR": 15,
         "pdef": 30,
-        "mdef": 30,
-        "speed": 40,
-        "jump": 20
+        "mdef": 30
       },
       {
-        "STR": 16,
         "pdef": 32,
-        "mdef": 32,
-        "speed": 40,
-        "jump": 20
+        "mdef": 32
       },
       {
-        "STR": 17,
         "pdef": 34,
-        "mdef": 34,
-        "speed": 40,
-        "jump": 20
+        "mdef": 34
       },
       {
-        "STR": 18,
         "pdef": 36,
-        "mdef": 36,
-        "speed": 40,
-        "jump": 20
+        "mdef": 36
       },
       {
-        "STR": 19,
         "pdef": 38,
-        "mdef": 38,
-        "speed": 40,
-        "jump": 20
+        "mdef": 38
       },
       {
-        "STR": 20,
         "pdef": 40,
-        "mdef": 40,
-        "speed": 40,
-        "jump": 20
+        "mdef": 40
       }
     ]
   },
@@ -4975,144 +4885,84 @@
     "exclusiveGroup": "pirateForm",
     "effectsByLevel": [
       {
-        "STR": 21,
         "pdef": 41,
-        "mdef": 41,
-        "speed": 40,
-        "jump": 20
+        "mdef": 41
       },
       {
-        "STR": 21,
         "pdef": 42,
-        "mdef": 42,
-        "speed": 40,
-        "jump": 20
+        "mdef": 42
       },
       {
-        "STR": 22,
         "pdef": 43,
-        "mdef": 43,
-        "speed": 40,
-        "jump": 20
+        "mdef": 43
       },
       {
-        "STR": 22,
         "pdef": 44,
-        "mdef": 44,
-        "speed": 40,
-        "jump": 20
+        "mdef": 44
       },
       {
-        "STR": 23,
         "pdef": 45,
-        "mdef": 45,
-        "speed": 40,
-        "jump": 20
+        "mdef": 45
       },
       {
-        "STR": 23,
         "pdef": 46,
-        "mdef": 46,
-        "speed": 40,
-        "jump": 20
+        "mdef": 46
       },
       {
-        "STR": 24,
         "pdef": 47,
-        "mdef": 47,
-        "speed": 40,
-        "jump": 20
+        "mdef": 47
       },
       {
-        "STR": 24,
         "pdef": 48,
-        "mdef": 48,
-        "speed": 40,
-        "jump": 20
+        "mdef": 48
       },
       {
-        "STR": 25,
         "pdef": 49,
-        "mdef": 49,
-        "speed": 40,
-        "jump": 20
+        "mdef": 49
       },
       {
-        "STR": 25,
         "pdef": 50,
-        "mdef": 50,
-        "speed": 40,
-        "jump": 20
+        "mdef": 50
       },
       {
-        "STR": 26,
         "pdef": 51,
-        "mdef": 51,
-        "speed": 40,
-        "jump": 20
+        "mdef": 51
       },
       {
-        "STR": 26,
         "pdef": 52,
-        "mdef": 52,
-        "speed": 40,
-        "jump": 20
+        "mdef": 52
       },
       {
-        "STR": 27,
         "pdef": 53,
-        "mdef": 53,
-        "speed": 40,
-        "jump": 20
+        "mdef": 53
       },
       {
-        "STR": 27,
         "pdef": 54,
-        "mdef": 54,
-        "speed": 40,
-        "jump": 20
+        "mdef": 54
       },
       {
-        "STR": 28,
         "pdef": 55,
-        "mdef": 55,
-        "speed": 40,
-        "jump": 20
+        "mdef": 55
       },
       {
-        "STR": 28,
         "pdef": 56,
-        "mdef": 56,
-        "speed": 40,
-        "jump": 20
+        "mdef": 56
       },
       {
-        "STR": 29,
         "pdef": 57,
-        "mdef": 57,
-        "speed": 40,
-        "jump": 20
+        "mdef": 57
       },
       {
-        "STR": 29,
         "pdef": 58,
-        "mdef": 58,
-        "speed": 40,
-        "jump": 20
+        "mdef": 58
       },
       {
-        "STR": 30,
         "pdef": 59,
-        "mdef": 59,
-        "speed": 40,
-        "jump": 20
+        "mdef": 59
       },
       {
-        "STR": 30,
         "pdef": 60,
-        "mdef": 60,
-        "speed": 40,
-        "jump": 20
+        "mdef": 60
       }
     ]
   },
