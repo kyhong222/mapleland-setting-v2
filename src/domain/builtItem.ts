@@ -39,9 +39,9 @@ export interface BuiltItem {
 export interface BuiltItemResult {
   /** 정옵 대비 가감분 (수치조정 + 주문서 + 보석) */
   delta: EffectMap
-  /** base.effects + delta */
+  /** base.effects + delta + growth */
   finalEffects: EffectMap
-  /** delta + 주문서 사용 여부로 산출한 등급 */
+  /** delta + 성장치 + 주문서 사용 여부로 산출한 등급 */
   grade: GradeResult
 }
 
@@ -56,9 +56,10 @@ export function builtItemDelta(b: BuiltItem): EffectMap {
 
 export function resolveBuiltItem(b: BuiltItem): BuiltItemResult {
   const delta = builtItemDelta(b)
-  // 성장치는 등급(정옵 대비 delta)에는 넣지 않고 최종 효과에만 가산한다.
-  const finalEffects = sumEffects(b.base.effects, delta, b.growth ?? {})
-  const grade = computeGrade(delta, b.scrolls.length > 0)
+  const growth = b.growth ?? {}
+  const finalEffects = sumEffects(b.base.effects, delta, growth)
+  // 성장치(리버스/타임리스 레벨업)도 정옵 대비 향상분이므로 등급 점수에 포함한다.
+  const grade = computeGrade(sumEffects(delta, growth), b.scrolls.length > 0)
   return { delta, finalEffects, grade }
 }
 
