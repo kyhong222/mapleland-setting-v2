@@ -87,10 +87,12 @@
     "name": "검은색 허리띠",
     "slot": "belt",
     "effects": {
-      "STR": 5,
-      "DEX": 5,
-      "INT": 5,
-      "LUK": 5,
+      "STR": 3,
+      "DEX": 3,
+      "INT": 3,
+      "LUK": 3,
+      "pad": 1,
+      "mad": 4,
       "pdef": 50,
       "mdef": 50,
       "eva": 15
