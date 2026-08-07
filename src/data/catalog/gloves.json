@@ -2364,5 +2364,31 @@
     "tuc": 5,
     "reqStr": 100,
     "reqDex": 100
+  },
+  {
+    "id": 1082245,
+    "name": "요원O의 레더 글로브",
+    "slot": "gloves",
+    "effects": {
+      "hp": 30,
+      "pad": 4
+    },
+    "reqLevel": 10,
+    "reqJob": 0,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1082245/icon",
+    "tuc": 0
+  },
+  {
+    "id": 1082244,
+    "name": "요원O의 나일론 글로브",
+    "slot": "gloves",
+    "effects": {
+      "hp": 15,
+      "pad": 2
+    },
+    "reqLevel": 10,
+    "reqJob": 0,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1082244/icon",
+    "tuc": 0
   }
 ]
