@@ -7,5 +7,32 @@
     "reqLevel": 10,
     "iconUrl": "https://maplestory.io/api/KMS/384/item/1112670/icon",
     "tuc": 0
+  },
+  {
+    "id": 1112585,
+    "name": "엔젤릭 블레스",
+    "slot": "ring",
+    "effects": { "pad": 5, "mad": 10 },
+    "reqLevel": 30,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1112585/icon",
+    "tuc": 0
+  },
+  {
+    "id": 1112586,
+    "name": "다크 엔젤릭 블레스",
+    "slot": "ring",
+    "effects": { "pad": 10, "mad": 20 },
+    "reqLevel": 70,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1112586/icon",
+    "tuc": 0
+  },
+  {
+    "id": 1112663,
+    "name": "화이트 엔젤릭 블레스",
+    "slot": "ring",
+    "effects": { "pad": 15, "mad": 30 },
+    "reqLevel": 90,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1112663/icon",
+    "tuc": 0
   }
 ]
