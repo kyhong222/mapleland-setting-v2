@@ -3369,5 +3369,23 @@
     "reqJob": 16,
     "iconUrl": "https://maplestory.io/api/GMS/200/item/1072338/icon",
     "tuc": 7
+  },
+  {
+    "id": 1072366,
+    "name": "낙하산 요원 신발",
+    "slot": "shoes",
+    "effects": {
+      "STR": 3,
+      "DEX": 3,
+      "INT": 3,
+      "LUK": 3,
+      "pdef": 12,
+      "mdef": 5,
+      "jump": 3
+    },
+    "reqLevel": 10,
+    "reqJob": 0,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1072366/icon",
+    "tuc": 0
   }
 ]
