@@ -180,31 +180,31 @@ export default function MonsterSelectDialog({ open, onClose }: { open: boolean; 
               상세 필터{advCount > 0 ? ` (${advCount})` : ''} {filterOpen ? '▲' : '▼'}
             </Button>
             <Collapse in={filterOpen}>
-              <Box sx={{ pt: 0.5, pl: 0.5 }}>
+              <Box sx={{ pt: 1, pl: 0.5, display: 'flex', flexDirection: 'column', rowGap: 1 }}>
                 {REACTIONS.map(({ label, effect }) => (
-                  <Box key={effect} sx={{ display: 'flex', alignItems: 'center', gap: 0.25, flexWrap: 'wrap' }}>
-                    <Typography variant="caption" color="text.secondary" sx={{ width: 32, flexShrink: 0 }}>{label}</Typography>
+                  <Box key={effect} sx={{ display: 'flex', alignItems: 'center', gap: 1.5, flexWrap: 'wrap' }}>
+                    <Typography variant="body2" color="text.secondary" sx={{ width: 40, flexShrink: 0, fontWeight: 600 }}>{label}</Typography>
                     {ELEMS.map(({ code, name }) => (
                       <FormControlLabel
                         key={code}
-                        sx={{ mr: 0.5, '& .MuiFormControlLabel-label': { fontSize: 12 } }}
-                        control={<Checkbox size="small" sx={{ p: 0.25, color: ELEM_HEX[code], '&.Mui-checked': { color: ELEM_HEX[code] } }} checked={reactFilters.has(`${code}:${effect}`)} onChange={() => toggleReact(`${code}:${effect}`)} />}
+                        sx={{ mr: 0, '& .MuiFormControlLabel-label': { fontSize: 13 } }}
+                        control={<Checkbox size="small" sx={{ p: 0.5, color: ELEM_HEX[code], '&.Mui-checked': { color: ELEM_HEX[code] } }} checked={reactFilters.has(`${code}:${effect}`)} onChange={() => toggleReact(`${code}:${effect}`)} />}
                         label={name}
                       />
                     ))}
                   </Box>
                 ))}
-                <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.25, mt: 0.25 }}>
-                  <Typography variant="caption" color="text.secondary" sx={{ width: 32, flexShrink: 0 }}>기타</Typography>
+                <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5, mt: 0.5, flexWrap: 'wrap' }}>
+                  <Typography variant="body2" color="text.secondary" sx={{ width: 40, flexShrink: 0, fontWeight: 600 }}>기타</Typography>
                   <FormControlLabel
-                    sx={{ mr: 0.5, '& .MuiFormControlLabel-label': { fontSize: 12 } }}
-                    control={<Checkbox size="small" sx={{ p: 0.25 }} checked={undeadOnly} onChange={() => setUndeadOnly((v) => !v)} />}
+                    sx={{ mr: 0, '& .MuiFormControlLabel-label': { fontSize: 13 } }}
+                    control={<Checkbox size="small" sx={{ p: 0.5 }} checked={undeadOnly} onChange={() => setUndeadOnly((v) => !v)} />}
                     label="언데드"
                   />
                   <Tooltip title={LEVEL_RANGE_HELP} placement="top" arrow>
                     <FormControlLabel
-                      sx={{ mr: 0.5, '& .MuiFormControlLabel-label': { fontSize: 12 } }}
-                      control={<Checkbox size="small" sx={{ p: 0.25 }} checked={levelRangeOnly} onChange={() => setLevelRangeOnly((v) => !v)} />}
+                      sx={{ mr: 0, '& .MuiFormControlLabel-label': { fontSize: 13 } }}
+                      control={<Checkbox size="small" sx={{ p: 0.5 }} checked={levelRangeOnly} onChange={() => setLevelRangeOnly((v) => !v)} />}
                       label="레범몬"
                     />
                   </Tooltip>
