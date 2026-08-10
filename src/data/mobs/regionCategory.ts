@@ -54,6 +54,7 @@ export const REGION_CATEGORIES: RegionCategory[] = [
   { name: '미나르숲', regions: [{ name: '리프레', icon: ic(240010000) }] },
   { name: '시간의 신전', regions: [{ name: '시간의 신전', icon: ic(270010100) }] },
   { name: '마스테리아', regions: [{ name: '뉴 리프 시티', icon: ic(600000000) }] },
+  { name: '무릉도장', regions: [{ name: '무릉도장', icon: ic(925020000) }] },
   { name: '파티퀘스트', regions: [
     { name: '샤레니안', icon: ic(308000001) },
     { name: '몬스터 카니발', icon: ic(980000101) },

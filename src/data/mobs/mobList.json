@@ -4612,5 +4612,325 @@
     "foundAt": [
       "몬스터 카니발"
     ]
+  },
+  {
+    "id": 9300184,
+    "name": "[무릉도장] 마노",
+    "koreanName": "[무릉도장] 마노",
+    "level": 25,
+    "isBoss": true,
+    "foundAt": [
+      "무릉도장"
+    ]
+  },
+  {
+    "id": 9300185,
+    "name": "[무릉도장] 스텀피",
+    "koreanName": "[무릉도장] 스텀피",
+    "level": 30,
+    "isBoss": true,
+    "foundAt": [
+      "무릉도장"
+    ]
+  },
+  {
+    "id": 9300186,
+    "name": "[무릉도장] 데우",
+    "koreanName": "[무릉도장] 데우",
+    "level": 64,
+    "isBoss": true,
+    "foundAt": [
+      "무릉도장"
+    ]
+  },
+  {
+    "id": 9300187,
+    "name": "[무릉도장] 킹슬라임",
+    "koreanName": "[무릉도장] 킹슬라임",
+    "level": 35,
+    "isBoss": true,
+    "foundAt": [
+      "무릉도장"
+    ]
+  },
+  {
+    "id": 9300188,
+    "name": "[무릉도장] 대왕지네",
+    "koreanName": "[무릉도장] 대왕지네",
+    "level": 98,
+    "isBoss": true,
+    "foundAt": [
+      "무릉도장"
+    ]
+  },
+  {
+    "id": 9300189,
+    "name": "[무릉도장] 파우스트",
+    "koreanName": "[무릉도장] 파우스트",
+    "level": 45,
+    "isBoss": true,
+    "foundAt": [
+      "무릉도장"
+    ]
+  },
+  {
+    "id": 9300190,
+    "name": "[무릉도장] 킹크랑",
+    "koreanName": "[무릉도장] 킹크랑",
+    "level": 40,
+    "isBoss": true,
+    "foundAt": [
+      "무릉도장"
+    ]
+  },
+  {
+    "id": 9300191,
+    "name": "[무릉도장] 머쉬맘",
+    "koreanName": "[무릉도장] 머쉬맘",
+    "level": 28,
+    "isBoss": true,
+    "foundAt": [
+      "무릉도장"
+    ]
+  },
+  {
+    "id": 9300192,
+    "name": "[무릉도장] 알리샤르",
+    "koreanName": "[무릉도장] 알리샤르",
+    "level": 82,
+    "isBoss": true,
+    "foundAt": [
+      "무릉도장"
+    ]
+  },
+  {
+    "id": 9300193,
+    "name": "[무릉도장] 타이머",
+    "koreanName": "[무릉도장] 타이머",
+    "level": 70,
+    "isBoss": true,
+    "foundAt": [
+      "무릉도장"
+    ]
+  },
+  {
+    "id": 9300194,
+    "name": "[무릉도장] 다일",
+    "koreanName": "[무릉도장] 다일",
+    "level": 38,
+    "isBoss": true,
+    "foundAt": [
+      "무릉도장"
+    ]
+  },
+  {
+    "id": 9300195,
+    "name": "[무릉도장] 파파픽시",
+    "koreanName": "[무릉도장] 파파픽시",
+    "level": 79,
+    "isBoss": true,
+    "foundAt": [
+      "무릉도장"
+    ]
+  },
+  {
+    "id": 9300196,
+    "name": "[무릉도장] 좀비머쉬맘",
+    "koreanName": "[무릉도장] 좀비머쉬맘",
+    "level": 35,
+    "isBoss": true,
+    "foundAt": [
+      "무릉도장"
+    ]
+  },
+  {
+    "id": 9300197,
+    "name": "[무릉도장] 제노",
+    "koreanName": "[무릉도장] 제노",
+    "level": 67,
+    "isBoss": true,
+    "foundAt": [
+      "무릉도장"
+    ]
+  },
+  {
+    "id": 9300198,
+    "name": "[무릉도장] 데비존",
+    "koreanName": "[무릉도장] 데비존",
+    "level": 85,
+    "isBoss": true,
+    "foundAt": [
+      "무릉도장"
+    ]
+  },
+  {
+    "id": 9300199,
+    "name": "[무릉도장] 구미호",
+    "koreanName": "[무릉도장] 구미호",
+    "level": 58,
+    "isBoss": true,
+    "foundAt": [
+      "무릉도장"
+    ]
+  },
+  {
+    "id": 9300200,
+    "name": "[무릉도장] 태륜",
+    "koreanName": "[무릉도장] 태륜",
+    "level": 76,
+    "isBoss": true,
+    "foundAt": [
+      "무릉도장"
+    ]
+  },
+  {
+    "id": 9300201,
+    "name": "[무릉도장] 포이즌 골렘",
+    "koreanName": "[무릉도장] 포이즌 골렘",
+    "level": 92,
+    "isBoss": true,
+    "foundAt": [
+      "무릉도장"
+    ]
+  },
+  {
+    "id": 9300202,
+    "name": "[무릉도장] 요괴선사",
+    "koreanName": "[무릉도장] 요괴선사",
+    "level": 95,
+    "isBoss": true,
+    "foundAt": [
+      "무릉도장"
+    ]
+  },
+  {
+    "id": 9300203,
+    "name": "[무릉도장] 주니어발록",
+    "koreanName": "[무릉도장] 주니어발록",
+    "level": 55,
+    "isBoss": true,
+    "foundAt": [
+      "무릉도장"
+    ]
+  },
+  {
+    "id": 9300204,
+    "name": "[무릉도장] 엘리쟈",
+    "koreanName": "[무릉도장] 엘리쟈",
+    "level": 52,
+    "isBoss": true,
+    "foundAt": [
+      "무릉도장"
+    ]
+  },
+  {
+    "id": 9300205,
+    "name": "[무릉도장] 프랑켄로이드",
+    "koreanName": "[무릉도장] 프랑켄로이드",
+    "level": 91,
+    "isBoss": true,
+    "foundAt": [
+      "무릉도장"
+    ]
+  },
+  {
+    "id": 9300206,
+    "name": "[무릉도장] 키메라",
+    "koreanName": "[무릉도장] 키메라",
+    "level": 93,
+    "isBoss": true,
+    "foundAt": [
+      "무릉도장"
+    ]
+  },
+  {
+    "id": 9300207,
+    "name": "[무릉도장] 포장마차",
+    "koreanName": "[무릉도장] 포장마차",
+    "level": 73,
+    "isBoss": true,
+    "foundAt": [
+      "무릉도장"
+    ]
+  },
+  {
+    "id": 9300208,
+    "name": "[무릉도장] 스노우맨",
+    "koreanName": "[무릉도장] 스노우맨",
+    "level": 115,
+    "isBoss": true,
+    "foundAt": [
+      "무릉도장"
+    ]
+  },
+  {
+    "id": 9300209,
+    "name": "[무릉도장] 블루머쉬맘",
+    "koreanName": "[무릉도장] 블루머쉬맘",
+    "level": 33,
+    "isBoss": true,
+    "foundAt": [
+      "무릉도장"
+    ]
+  },
+  {
+    "id": 9300210,
+    "name": "[무릉도장] 크림슨 발록",
+    "koreanName": "[무릉도장] 크림슨 발록",
+    "level": 100,
+    "isBoss": true,
+    "foundAt": [
+      "무릉도장"
+    ]
+  },
+  {
+    "id": 9300211,
+    "name": "[무릉도장] 마뇽",
+    "koreanName": "[무릉도장] 마뇽",
+    "level": 105,
+    "isBoss": true,
+    "foundAt": [
+      "무릉도장"
+    ]
+  },
+  {
+    "id": 9300212,
+    "name": "[무릉도장] 그리프",
+    "koreanName": "[무릉도장] 그리프",
+    "level": 110,
+    "isBoss": true,
+    "foundAt": [
+      "무릉도장"
+    ]
+  },
+  {
+    "id": 9300213,
+    "name": "[무릉도장] 레비아탄",
+    "koreanName": "[무릉도장] 레비아탄",
+    "level": 130,
+    "isBoss": true,
+    "foundAt": [
+      "무릉도장"
+    ]
+  },
+  {
+    "id": 9300214,
+    "name": "[무릉도장] 파풀라투스",
+    "koreanName": "[무릉도장] 파풀라투스",
+    "level": 120,
+    "isBoss": true,
+    "foundAt": [
+      "무릉도장"
+    ]
+  },
+  {
+    "id": 9300215,
+    "name": "[무릉도장] 무공",
+    "koreanName": "[무릉도장] 무공",
+    "level": 95,
+    "isBoss": true,
+    "foundAt": [
+      "무릉도장"
+    ]
   }
 ]
