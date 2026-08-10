@@ -170,9 +170,12 @@ export default function MonsterSelectDialog({ open, onClose }: { open: boolean; 
                     <Typography variant="body2" color="text.secondary">Lv.{m.level}</Typography>
                     {(() => {
                       const els = parseElemAttr(m.elemAttr)
-                      if (els.length === 0) return null
+                      if (els.length === 0 && !m.undead) return null
                       return (
                         <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.25, mt: 0.25 }}>
+                          {m.undead && (
+                            <Chip label="언데드" size="small" variant="outlined" sx={{ height: 18, fontSize: 10, color: '#6d4c41', borderColor: '#6d4c41' }} />
+                          )}
                           {els.map((e) => {
                             const c = ELEM_HEX[e.code] ?? '#9e9e9e'
                             const weak = e.effect === '약점'

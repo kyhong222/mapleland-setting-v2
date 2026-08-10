@@ -90,6 +90,8 @@ export interface Monster {
   eva?: number
   exp?: number
   elemAttr?: ElementAttribute
+  /** 언데드 여부 (힐 피격·성속성 상호작용) */
+  undead?: boolean
   /** 공격 스킬 (attack1~4 등) */
   skills?: Record<string, MobSkill>
 }
