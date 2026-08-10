@@ -183,7 +183,7 @@ export default function MonsterSelectDialog({ open, onClose }: { open: boolean; 
                               return (
                                 <Chip
                                   key={e.code}
-                                  label={e.element}
+                                  label={`${e.element} ${e.effect}`}
                                   size="small"
                                   variant={weak ? 'filled' : 'outlined'}
                                   sx={{
