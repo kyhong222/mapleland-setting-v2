@@ -15,8 +15,12 @@ import { MONSTERS, LEVEL_RANGE } from '../../data/mobs'
 import { REGION_CATEGORIES, REGION_ICON } from '../../data/mobs/regionCategory'
 import { monsterLabel, parseElemAttr } from '../../domain/monster'
 
-/** 속성 반응별 칩 색상 */
-const ELEM_COLOR = { 약점: 'success', 반감: 'warning', 무효: 'error' } as const
+/** 속성별 색상 (불=빨강·얼음=파랑·번개=노랑·독=초록·성=회색) */
+const ELEM_HEX: Record<string, string> = { F: '#e53935', I: '#1e88e5', L: '#fbc02d', S: '#43a047', H: '#9e9e9e' }
+/** 무속성 칩 색상 (검정) */
+const NONE_HEX = '#212121'
+/** 밝은 배경 → 어두운 글자(채움 칩) */
+const ELEM_DARK_TEXT = new Set(['L'])
 
 const ALL_REGION = '__all__'
 /** 카테고리명 → 소속 지역명 Set (빠른 필터) */
@@ -168,20 +172,33 @@ export default function MonsterSelectDialog({ open, onClose }: { open: boolean; 
                     <Typography variant="body2" color="text.secondary">Lv.{m.level}</Typography>
                     {(() => {
                       const els = parseElemAttr(m.elemAttr)
-                      return els.length ? (
+                      return (
                         <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.25, mt: 0.25 }}>
-                          {els.map((e) => (
-                            <Chip
-                              key={e.code}
-                              label={e.element}
-                              size="small"
-                              color={ELEM_COLOR[e.effect]}
-                              variant={e.effect === '약점' ? 'filled' : 'outlined'}
-                              sx={{ height: 18, fontSize: 10 }}
-                            />
-                          ))}
+                          {els.length === 0 ? (
+                            <Chip label="무속성" size="small" variant="outlined" sx={{ height: 18, fontSize: 10, color: NONE_HEX, borderColor: NONE_HEX }} />
+                          ) : (
+                            els.map((e) => {
+                              const c = ELEM_HEX[e.code] ?? '#9e9e9e'
+                              const weak = e.effect === '약점'
+                              return (
+                                <Chip
+                                  key={e.code}
+                                  label={e.element}
+                                  size="small"
+                                  variant={weak ? 'filled' : 'outlined'}
+                                  sx={{
+                                    height: 18,
+                                    fontSize: 10,
+                                    borderColor: c,
+                                    bgcolor: weak ? c : 'transparent',
+                                    color: weak ? (ELEM_DARK_TEXT.has(e.code) ? '#212121' : '#fff') : c,
+                                  }}
+                                />
+                              )
+                            })
+                          )}
                         </Box>
-                      ) : null
+                      )
                     })()}
                   </Box>
                   {m.isBoss && <Chip label="보스" size="small" color="error" variant="outlined" sx={{ height: 20, fontSize: 11 }} />}
