@@ -55,7 +55,7 @@ export default function MonsterSelectDialog({ open, onClose }: { open: boolean; 
         if (!hay.includes(q)) return false
       }
       return true
-    }).sort((a, b) => a.level - b.level)
+    }).sort((a, b) => a.id - b.id)
   }, [sel, query, minLv, maxLv, bossOnly])
 
   const pick = (id: number) => {
