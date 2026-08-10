@@ -6618,7 +6618,17 @@
     "eva": 3,
     "exp": 105,
     "maxHP": 31500,
-    "elemAttr": ""
+    "elemAttr": "",
+    "skills": {
+      "attack1": {
+        "type": 0,
+        "PADamage": 135
+      },
+      "attack2": {
+        "type": 2,
+        "PADamage": 135
+      }
+    }
   },
   "9300186": {
     "id": 9300186,
@@ -6631,7 +6641,13 @@
     "eva": 29,
     "exp": 373,
     "maxHP": 220500,
-    "elemAttr": ""
+    "elemAttr": "",
+    "skills": {
+      "attack1": {
+        "type": 0,
+        "PADamage": 145
+      }
+    }
   },
   "9300187": {
     "id": 9300187,
@@ -6670,7 +6686,13 @@
     "eva": 13,
     "exp": 196,
     "maxHP": 84000,
-    "elemAttr": ""
+    "elemAttr": "",
+    "skills": {
+      "attack1": {
+        "type": 2,
+        "PADamage": 190
+      }
+    }
   },
   "9300190": {
     "id": 9300190,
@@ -6683,7 +6705,13 @@
     "eva": 6,
     "exp": 168,
     "maxHP": 66500,
-    "elemAttr": ""
+    "elemAttr": "",
+    "skills": {
+      "attack1": {
+        "type": 0,
+        "PADamage": 180
+      }
+    }
   },
   "9300191": {
     "id": 9300191,
@@ -6696,7 +6724,13 @@
     "eva": 3,
     "exp": 93,
     "maxHP": 25200,
-    "elemAttr": ""
+    "elemAttr": "",
+    "skills": {
+      "attack1": {
+        "type": 0,
+        "PADamage": 300
+      }
+    }
   },
   "9300192": {
     "id": 9300192,
@@ -6722,7 +6756,13 @@
     "eva": 29,
     "exp": 480,
     "maxHP": 315000,
-    "elemAttr": ""
+    "elemAttr": "",
+    "skills": {
+      "attack1": {
+        "type": 1,
+        "magic": 1
+      }
+    }
   },
   "9300194": {
     "id": 9300194,
@@ -6761,7 +6801,13 @@
     "eva": 6,
     "exp": 138,
     "maxHP": 49000,
-    "elemAttr": ""
+    "elemAttr": "",
+    "skills": {
+      "attack1": {
+        "type": 0,
+        "PADamage": 300
+      }
+    }
   },
   "9300197": {
     "id": 9300197,
@@ -6774,7 +6820,13 @@
     "eva": 29,
     "exp": 422,
     "maxHP": 262500,
-    "elemAttr": ""
+    "elemAttr": "",
+    "skills": {
+      "attack1": {
+        "type": 0,
+        "PADamage": 230
+      }
+    }
   },
   "9300198": {
     "id": 9300198,
@@ -6800,7 +6852,13 @@
     "eva": 20,
     "exp": 313,
     "maxHP": 171500,
-    "elemAttr": ""
+    "elemAttr": "",
+    "skills": {
+      "attack1": {
+        "type": 0,
+        "PADamage": 280
+      }
+    }
   },
   "9300200": {
     "id": 9300200,
@@ -6813,7 +6871,18 @@
     "eva": 39,
     "exp": 2674,
     "maxHP": 490000,
-    "elemAttr": ""
+    "elemAttr": "",
+    "skills": {
+      "attack1": {
+        "type": 1,
+        "magic": 1
+      },
+      "attack2": {
+        "type": 2,
+        "magic": 1,
+        "conMP": 2
+      }
+    }
   },
   "9300201": {
     "id": 9300201,
@@ -6839,7 +6908,14 @@
     "eva": 65,
     "exp": 5830,
     "maxHP": 2750000,
-    "elemAttr": ""
+    "elemAttr": "",
+    "skills": {
+      "attack1": {
+        "type": 0,
+        "magic": 1,
+        "conMP": 2
+      }
+    }
   },
   "9300203": {
     "id": 9300203,
@@ -6852,7 +6928,26 @@
     "eva": 20,
     "exp": 273,
     "maxHP": 140000,
-    "elemAttr": "S1H3D2"
+    "elemAttr": "S1H3D2",
+    "skills": {
+      "attack1": {
+        "type": 1,
+        "magic": 1,
+        "elemAttr": "F",
+        "conMP": 2
+      },
+      "attack2": {
+        "type": 2,
+        "magic": 1,
+        "elemAttr": "F",
+        "conMP": 2
+      },
+      "attack3": {
+        "type": 0,
+        "magic": 1,
+        "conMP": 2
+      }
+    }
   },
   "9300204": {
     "id": 9300204,
@@ -6865,7 +6960,14 @@
     "eva": 20,
     "exp": 247,
     "maxHP": 119000,
-    "elemAttr": ""
+    "elemAttr": "",
+    "skills": {
+      "attack1": {
+        "type": 3,
+        "magic": 1,
+        "conMP": 3
+      }
+    }
   },
   "9300205": {
     "id": 9300205,
@@ -6891,7 +6993,12 @@
     "eva": 65,
     "exp": 34650,
     "maxHP": 1575000,
-    "elemAttr": ""
+    "elemAttr": "",
+    "skills": {
+      "attack1": {
+        "type": 2
+      }
+    }
   },
   "9300207": {
     "id": 9300207,
@@ -6917,7 +7024,12 @@
     "eva": 97,
     "exp": 8985,
     "maxHP": 4750000,
-    "elemAttr": ""
+    "elemAttr": "",
+    "skills": {
+      "attack1": {
+        "type": 2
+      }
+    }
   },
   "9300209": {
     "id": 9300209,
@@ -6943,7 +7055,19 @@
     "eva": 65,
     "exp": 6670,
     "maxHP": 3250000,
-    "elemAttr": "S1H3D2"
+    "elemAttr": "S1H3D2",
+    "skills": {
+      "attack1": {
+        "type": 2,
+        "magic": 1,
+        "conMP": 2
+      },
+      "attack2": {
+        "type": 0,
+        "magic": 1,
+        "conMP": 2
+      }
+    }
   },
   "9300211": {
     "id": 9300211,
@@ -6956,7 +7080,25 @@
     "eva": 80,
     "exp": 7475,
     "maxHP": 3750000,
-    "elemAttr": "F2I3"
+    "elemAttr": "F2I3",
+    "skills": {
+      "attack1": {
+        "type": 0,
+        "magic": 1,
+        "elemAttr": "F",
+        "conMP": 1
+      },
+      "attack2": {
+        "type": 0,
+        "magic": 1,
+        "conMP": 1
+      },
+      "attack3": {
+        "type": 0,
+        "magic": 1,
+        "conMP": 1
+      }
+    }
   },
   "9300212": {
     "id": 9300212,
@@ -6969,7 +7111,25 @@
     "eva": 80,
     "exp": 8245,
     "maxHP": 4250000,
-    "elemAttr": "L2S3"
+    "elemAttr": "L2S3",
+    "skills": {
+      "attack1": {
+        "type": 0,
+        "magic": 1,
+        "conMP": 3
+      },
+      "attack2": {
+        "type": 0,
+        "magic": 1,
+        "conMP": 2
+      },
+      "attack3": {
+        "type": 0,
+        "magic": 1,
+        "elemAttr": "L",
+        "conMP": 2
+      }
+    }
   },
   "9300213": {
     "id": 9300213,
@@ -6982,7 +7142,21 @@
     "eva": 115,
     "exp": 11895,
     "maxHP": 6750000,
-    "elemAttr": "F2I2"
+    "elemAttr": "F2I2",
+    "skills": {
+      "attack1": {
+        "type": 0,
+        "magic": 1,
+        "elemAttr": "I",
+        "conMP": 1
+      },
+      "attack2": {
+        "type": 0,
+        "magic": 1,
+        "elemAttr": "F",
+        "conMP": 1
+      }
+    }
   },
   "9300214": {
     "id": 9300214,
