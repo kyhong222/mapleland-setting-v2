@@ -9,8 +9,14 @@ import InputAdornment from '@mui/material/InputAdornment'
 import Select from '@mui/material/Select'
 import MenuItem from '@mui/material/MenuItem'
 import Chip from '@mui/material/Chip'
+import Button from '@mui/material/Button'
+import Collapse from '@mui/material/Collapse'
+import Checkbox from '@mui/material/Checkbox'
+import FormControlLabel from '@mui/material/FormControlLabel'
+import Tooltip from '@mui/material/Tooltip'
 import MonsterIcon from './MonsterIcon'
 import { useMonsterStore } from '../../store/monsterStore'
+import { useBuildStore } from '../../store/buildStore'
 import { MONSTERS, LEVEL_RANGE } from '../../data/mobs'
 import { REGION_CATEGORIES, REGION_ICON } from '../../data/mobs/regionCategory'
 import { monsterLabel, parseElemAttr } from '../../domain/monster'
@@ -19,10 +25,14 @@ import { monsterLabel, parseElemAttr } from '../../domain/monster'
 const ELEM_HEX: Record<string, string> = { F: '#e53935', I: '#1e88e5', L: '#fbc02d', S: '#43a047', H: '#fb8c00' }
 /** 언데드 칩 색상 (회색) */
 const UNDEAD_HEX = '#757575'
-/** 약점 필터용 속성 목록 */
-const ELEM_FILTERS: { code: string; name: string }[] = [
+/** 필터용 속성/반응 목록 */
+const ELEMS: { code: string; name: string }[] = [
   { code: 'F', name: '불' }, { code: 'I', name: '얼음' }, { code: 'L', name: '번개' }, { code: 'S', name: '독' }, { code: 'H', name: '성' },
 ]
+const REACTIONS: { label: string; effect: '약점' | '반감' | '무효' }[] = [
+  { label: '약점', effect: '약점' }, { label: '반감', effect: '반감' }, { label: '면역', effect: '무효' },
+]
+const LEVEL_RANGE_HELP = '레범몬: 현재 레벨 ±10 이내 (캐릭터 80레벨 이상이면 70레벨 이상 전부)'
 /** 밝은 배경 → 어두운 글자(채움 칩) */
 const ELEM_DARK_TEXT = new Set(['L'])
 
@@ -47,16 +57,20 @@ export default function MonsterSelectDialog({ open, onClose }: { open: boolean; 
   const [minLv, setMinLv] = useState('')
   const [maxLv, setMaxLv] = useState('')
   const [bossOnly, setBossOnly] = useState(false)
-  const [weakEls, setWeakEls] = useState<Set<string>>(new Set()) // 선택 속성에 약점인 몬스터만
+  const [filterOpen, setFilterOpen] = useState(false)
+  const [reactFilters, setReactFilters] = useState<Set<string>>(new Set()) // 'F:약점' 등
   const [undeadOnly, setUndeadOnly] = useState(false)
+  const [levelRangeOnly, setLevelRangeOnly] = useState(false)
+  const charLevel = useBuildStore((s) => s.level)
 
-  const toggleWeak = (code: string) =>
-    setWeakEls((p) => {
+  const toggleReact = (key: string) =>
+    setReactFilters((p) => {
       const n = new Set(p)
-      if (n.has(code)) n.delete(code)
-      else n.add(code)
+      if (n.has(key)) n.delete(key)
+      else n.add(key)
       return n
     })
+  const advCount = reactFilters.size + (undeadOnly ? 1 : 0) + (levelRangeOnly ? 1 : 0)
 
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase()
@@ -71,9 +85,15 @@ export default function MonsterSelectDialog({ open, onClose }: { open: boolean; 
       if (region && !found.includes(region)) return false
       if (bossOnly && !m.isBoss) return false
       if (undeadOnly && !m.undead) return false
-      if (weakEls.size > 0) {
-        const weakTo = new Set(parseElemAttr(m.elemAttr).filter((e) => e.effect === '약점').map((e) => e.code))
-        if (![...weakEls].some((c) => weakTo.has(c))) return false
+      // 레범몬: 80레벨 이상이면 70레벨↑ 전부, 아니면 현재±10
+      if (levelRangeOnly && !(charLevel >= 80 ? m.level >= 70 : Math.abs(m.level - charLevel) <= 10)) return false
+      // 속성 반응 필터 (AND)
+      if (reactFilters.size > 0) {
+        const els = parseElemAttr(m.elemAttr)
+        for (const key of reactFilters) {
+          const [code, effect] = key.split(':')
+          if (!els.some((e) => e.code === code && e.effect === effect)) return false
+        }
       }
       if (m.level < lo || m.level > hi) return false
       if (q) {
@@ -82,7 +102,7 @@ export default function MonsterSelectDialog({ open, onClose }: { open: boolean; 
       }
       return true
     }).sort((a, b) => a.id - b.id)
-  }, [sel, query, minLv, maxLv, bossOnly, weakEls, undeadOnly])
+  }, [sel, query, minLv, maxLv, bossOnly, reactFilters, undeadOnly, levelRangeOnly, charLevel])
 
   const pick = (id: number) => {
     select(id)
@@ -154,30 +174,43 @@ export default function MonsterSelectDialog({ open, onClose }: { open: boolean; 
             <Typography variant="caption" color="text.secondary">~</Typography>
             <TextField size="small" type="number" placeholder={String(LEVEL_RANGE.max)} value={maxLv} onChange={(e) => setMaxLv(e.target.value)} sx={{ width: 80 }} />
           </Box>
-          {/* 속성 약점 · 언데드 필터 */}
-          <Box sx={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', gap: 0.5 }}>
-            <Typography variant="caption" color="text.secondary">약점</Typography>
-            {ELEM_FILTERS.map(({ code, name }) => {
-              const on = weakEls.has(code)
-              const c = ELEM_HEX[code]
-              return (
-                <Chip
-                  key={code}
-                  label={name}
-                  size="small"
-                  onClick={() => toggleWeak(code)}
-                  variant={on ? 'filled' : 'outlined'}
-                  sx={{ borderColor: c, bgcolor: on ? c : 'transparent', color: on ? (ELEM_DARK_TEXT.has(code) ? '#212121' : '#fff') : c }}
-                />
-              )
-            })}
-            <Chip
-              label="언데드"
-              size="small"
-              onClick={() => setUndeadOnly((v) => !v)}
-              variant={undeadOnly ? 'filled' : 'outlined'}
-              sx={{ ml: 0.5, borderColor: UNDEAD_HEX, bgcolor: undeadOnly ? UNDEAD_HEX : 'transparent', color: undeadOnly ? '#fff' : UNDEAD_HEX }}
-            />
+          {/* 상세 필터 (폴딩) — 속성 약점/반감/면역 · 언데드 · 레범몬 (AND) */}
+          <Box>
+            <Button size="small" onClick={() => setFilterOpen((v) => !v)} sx={{ py: 0, minWidth: 0, textTransform: 'none' }}>
+              상세 필터{advCount > 0 ? ` (${advCount})` : ''} {filterOpen ? '▲' : '▼'}
+            </Button>
+            <Collapse in={filterOpen}>
+              <Box sx={{ pt: 0.5, pl: 0.5 }}>
+                {REACTIONS.map(({ label, effect }) => (
+                  <Box key={effect} sx={{ display: 'flex', alignItems: 'center', gap: 0.25, flexWrap: 'wrap' }}>
+                    <Typography variant="caption" color="text.secondary" sx={{ width: 32, flexShrink: 0 }}>{label}</Typography>
+                    {ELEMS.map(({ code, name }) => (
+                      <FormControlLabel
+                        key={code}
+                        sx={{ mr: 0.5, '& .MuiFormControlLabel-label': { fontSize: 12 } }}
+                        control={<Checkbox size="small" sx={{ p: 0.25, color: ELEM_HEX[code], '&.Mui-checked': { color: ELEM_HEX[code] } }} checked={reactFilters.has(`${code}:${effect}`)} onChange={() => toggleReact(`${code}:${effect}`)} />}
+                        label={name}
+                      />
+                    ))}
+                  </Box>
+                ))}
+                <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.25, mt: 0.25 }}>
+                  <Typography variant="caption" color="text.secondary" sx={{ width: 32, flexShrink: 0 }}>기타</Typography>
+                  <FormControlLabel
+                    sx={{ mr: 0.5, '& .MuiFormControlLabel-label': { fontSize: 12 } }}
+                    control={<Checkbox size="small" sx={{ p: 0.25 }} checked={undeadOnly} onChange={() => setUndeadOnly((v) => !v)} />}
+                    label="언데드"
+                  />
+                  <Tooltip title={LEVEL_RANGE_HELP} placement="top" arrow>
+                    <FormControlLabel
+                      sx={{ mr: 0.5, '& .MuiFormControlLabel-label': { fontSize: 12 } }}
+                      control={<Checkbox size="small" sx={{ p: 0.25 }} checked={levelRangeOnly} onChange={() => setLevelRangeOnly((v) => !v)} />}
+                      label="레범몬"
+                    />
+                  </Tooltip>
+                </Box>
+              </Box>
+            </Collapse>
           </Box>
         </Box>
 
