@@ -176,8 +176,15 @@ export default function MonsterSelectDialog({ open, onClose }: { open: boolean; 
           </Box>
           {/* 상세 필터 (폴딩) — 속성 약점/반감/면역 · 언데드 · 레범몬 (AND) */}
           <Box>
-            <Button size="small" onClick={() => setFilterOpen((v) => !v)} sx={{ py: 0, minWidth: 0, textTransform: 'none' }}>
-              상세 필터{advCount > 0 ? ` (${advCount})` : ''} {filterOpen ? '▲' : '▼'}
+            <Button
+              onClick={() => setFilterOpen((v) => !v)}
+              variant="outlined"
+              fullWidth
+              color={advCount > 0 ? 'primary' : 'inherit'}
+              sx={{ textTransform: 'none', justifyContent: 'space-between', py: 0.75, fontSize: 14, fontWeight: 600 }}
+            >
+              <span>상세 필터{advCount > 0 ? ` (${advCount})` : ''}</span>
+              <span>{filterOpen ? '▲' : '▼'}</span>
             </Button>
             <Collapse in={filterOpen}>
               <Box sx={{ pt: 1, pl: 0.5, display: 'flex', flexDirection: 'column', rowGap: 1 }}>
