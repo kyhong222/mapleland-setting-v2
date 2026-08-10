@@ -13,7 +13,10 @@ import MonsterIcon from './MonsterIcon'
 import { useMonsterStore } from '../../store/monsterStore'
 import { MONSTERS, LEVEL_RANGE } from '../../data/mobs'
 import { REGION_CATEGORIES, REGION_ICON } from '../../data/mobs/regionCategory'
-import { monsterLabel } from '../../domain/monster'
+import { monsterLabel, parseElemAttr } from '../../domain/monster'
+
+/** 속성 반응별 칩 색상 */
+const ELEM_COLOR = { 약점: 'success', 반감: 'warning', 무효: 'error' } as const
 
 const ALL_REGION = '__all__'
 /** 카테고리명 → 소속 지역명 Set (빠른 필터) */
@@ -163,6 +166,23 @@ export default function MonsterSelectDialog({ open, onClose }: { open: boolean; 
                   <Box sx={{ flex: 1, minWidth: 0 }}>
                     <Typography variant="body1" noWrap sx={{ fontWeight: 700 }}>{monsterLabel(m)}</Typography>
                     <Typography variant="body2" color="text.secondary">Lv.{m.level}</Typography>
+                    {(() => {
+                      const els = parseElemAttr(m.elemAttr)
+                      return els.length ? (
+                        <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.25, mt: 0.25 }}>
+                          {els.map((e) => (
+                            <Chip
+                              key={e.code}
+                              label={e.element}
+                              size="small"
+                              color={ELEM_COLOR[e.effect]}
+                              variant={e.effect === '약점' ? 'filled' : 'outlined'}
+                              sx={{ height: 18, fontSize: 10 }}
+                            />
+                          ))}
+                        </Box>
+                      ) : null
+                    })()}
                   </Box>
                   {m.isBoss && <Chip label="보스" size="small" color="error" variant="outlined" sx={{ height: 20, fontSize: 11 }} />}
                 </Box>
