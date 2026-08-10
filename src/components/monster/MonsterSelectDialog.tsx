@@ -19,6 +19,10 @@ import { monsterLabel, parseElemAttr } from '../../domain/monster'
 const ELEM_HEX: Record<string, string> = { F: '#e53935', I: '#1e88e5', L: '#fbc02d', S: '#43a047', H: '#fb8c00' }
 /** 언데드 칩 색상 (회색) */
 const UNDEAD_HEX = '#757575'
+/** 약점 필터용 속성 목록 */
+const ELEM_FILTERS: { code: string; name: string }[] = [
+  { code: 'F', name: '불' }, { code: 'I', name: '얼음' }, { code: 'L', name: '번개' }, { code: 'S', name: '독' }, { code: 'H', name: '성' },
+]
 /** 밝은 배경 → 어두운 글자(채움 칩) */
 const ELEM_DARK_TEXT = new Set(['L'])
 
@@ -43,6 +47,16 @@ export default function MonsterSelectDialog({ open, onClose }: { open: boolean; 
   const [minLv, setMinLv] = useState('')
   const [maxLv, setMaxLv] = useState('')
   const [bossOnly, setBossOnly] = useState(false)
+  const [weakEls, setWeakEls] = useState<Set<string>>(new Set()) // 선택 속성에 약점인 몬스터만
+  const [undeadOnly, setUndeadOnly] = useState(false)
+
+  const toggleWeak = (code: string) =>
+    setWeakEls((p) => {
+      const n = new Set(p)
+      if (n.has(code)) n.delete(code)
+      else n.add(code)
+      return n
+    })
 
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase()
@@ -56,6 +70,11 @@ export default function MonsterSelectDialog({ open, onClose }: { open: boolean; 
       if (catRegions && !found.some((r) => catRegions.has(r))) return false
       if (region && !found.includes(region)) return false
       if (bossOnly && !m.isBoss) return false
+      if (undeadOnly && !m.undead) return false
+      if (weakEls.size > 0) {
+        const weakTo = new Set(parseElemAttr(m.elemAttr).filter((e) => e.effect === '약점').map((e) => e.code))
+        if (![...weakEls].some((c) => weakTo.has(c))) return false
+      }
       if (m.level < lo || m.level > hi) return false
       if (q) {
         const hay = `${m.koreanName ?? ''} ${m.name}`.toLowerCase()
@@ -63,7 +82,7 @@ export default function MonsterSelectDialog({ open, onClose }: { open: boolean; 
       }
       return true
     }).sort((a, b) => a.id - b.id)
-  }, [sel, query, minLv, maxLv, bossOnly])
+  }, [sel, query, minLv, maxLv, bossOnly, weakEls, undeadOnly])
 
   const pick = (id: number) => {
     select(id)
@@ -134,6 +153,31 @@ export default function MonsterSelectDialog({ open, onClose }: { open: boolean; 
             <TextField size="small" type="number" placeholder={String(LEVEL_RANGE.min)} value={minLv} onChange={(e) => setMinLv(e.target.value)} sx={{ width: 80 }} />
             <Typography variant="caption" color="text.secondary">~</Typography>
             <TextField size="small" type="number" placeholder={String(LEVEL_RANGE.max)} value={maxLv} onChange={(e) => setMaxLv(e.target.value)} sx={{ width: 80 }} />
+          </Box>
+          {/* 속성 약점 · 언데드 필터 */}
+          <Box sx={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', gap: 0.5 }}>
+            <Typography variant="caption" color="text.secondary">약점</Typography>
+            {ELEM_FILTERS.map(({ code, name }) => {
+              const on = weakEls.has(code)
+              const c = ELEM_HEX[code]
+              return (
+                <Chip
+                  key={code}
+                  label={name}
+                  size="small"
+                  onClick={() => toggleWeak(code)}
+                  variant={on ? 'filled' : 'outlined'}
+                  sx={{ borderColor: c, bgcolor: on ? c : 'transparent', color: on ? (ELEM_DARK_TEXT.has(code) ? '#212121' : '#fff') : c }}
+                />
+              )
+            })}
+            <Chip
+              label="언데드"
+              size="small"
+              onClick={() => setUndeadOnly((v) => !v)}
+              variant={undeadOnly ? 'filled' : 'outlined'}
+              sx={{ ml: 0.5, borderColor: UNDEAD_HEX, bgcolor: undeadOnly ? UNDEAD_HEX : 'transparent', color: undeadOnly ? '#fff' : UNDEAD_HEX }}
+            />
           </Box>
         </Box>
 
