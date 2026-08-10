@@ -43,16 +43,16 @@ export function minLevelForClass(_classId: ClassId): number {
 }
 
 /**
- * 레벨에 따른 분배 가능 AP.
+ * 레벨에 따른 분배 가능 AP (기본 4×4 위에 얹는 값. 순수스탯합 = 16 + AP).
  *  - 모험가: 4 + 레벨×5 + (≥70:+5) + (≥120:+5)
- *  - 시그너스: 19 + 레벨×5 + (10~70 구간 레벨업 +1, 최대 61) + (≥70:+5) + (≥120:+5)
- *    (검증: L62→382, L120→690)
+ *  - 시그너스: 3 + 레벨×5 + (10~70 구간 레벨업 +1, 최대 61) + (≥70:+5) + (≥120:+5)
+ *    (실측검증: L120→스탯합 690[STR602/DEX80/4/4], L92→545[52/485/4/4])
  */
 export function totalAP(level: number, order: JobOrder = 'explorer'): number {
   const jobBonus = (level >= 70 ? 5 : 0) + (level >= 120 ? 5 : 0)
   if (order === 'cygnus') {
     const cygnusBonus = Math.max(0, Math.min(level, 70) - 9)
-    return 19 + level * 5 + cygnusBonus + jobBonus
+    return 3 + level * 5 + cygnusBonus + jobBonus
   }
   return 4 + level * 5 + jobBonus
 }
