@@ -3387,5 +3387,23 @@
     "reqJob": 0,
     "iconUrl": "https://maplestory.io/api/GMS/200/item/1072366/icon",
     "tuc": 0
+  },
+  {
+    "id": 1072368,
+    "name": "최강 요원 신발",
+    "slot": "shoes",
+    "effects": {
+      "STR": 3,
+      "DEX": 3,
+      "INT": 3,
+      "LUK": 3,
+      "pdef": 13,
+      "mdef": 7,
+      "jump": 3
+    },
+    "reqLevel": 10,
+    "reqJob": 0,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1072368/icon",
+    "tuc": 0
   }
 ]
