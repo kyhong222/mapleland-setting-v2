@@ -137,7 +137,7 @@ function MonsterInfo({ m }: { m: Monster }) {
           <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
             <Typography variant="body2" sx={{ fontWeight: 700 }} noWrap>{monsterLabel(m)}</Typography>
             {m.isBoss && <Chip label="보스" size="small" color="error" sx={{ height: 16, fontSize: 10 }} />}
-            {m.undead && <Chip label="언데드" size="small" variant="outlined" sx={{ height: 16, fontSize: 10, color: '#6d4c41', borderColor: '#6d4c41' }} />}
+            {m.undead && <Chip label="언데드" size="small" sx={{ height: 16, fontSize: 10, bgcolor: '#757575', color: '#fff' }} />}
           </Box>
           <Typography variant="caption" color="text.secondary">Lv.{m.level}</Typography>
         </Box>

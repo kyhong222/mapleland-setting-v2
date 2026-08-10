@@ -15,8 +15,10 @@ import { MONSTERS, LEVEL_RANGE } from '../../data/mobs'
 import { REGION_CATEGORIES, REGION_ICON } from '../../data/mobs/regionCategory'
 import { monsterLabel, parseElemAttr } from '../../domain/monster'
 
-/** 속성별 색상 (불=빨강·얼음=파랑·번개=노랑·독=초록·성=회색) */
-const ELEM_HEX: Record<string, string> = { F: '#e53935', I: '#1e88e5', L: '#fbc02d', S: '#43a047', H: '#9e9e9e' }
+/** 속성별 색상 (불=빨강·얼음=파랑·번개=노랑·독=초록·성=주황) */
+const ELEM_HEX: Record<string, string> = { F: '#e53935', I: '#1e88e5', L: '#fbc02d', S: '#43a047', H: '#fb8c00' }
+/** 언데드 칩 색상 (회색) */
+const UNDEAD_HEX = '#757575'
 /** 밝은 배경 → 어두운 글자(채움 칩) */
 const ELEM_DARK_TEXT = new Set(['L'])
 
@@ -174,7 +176,7 @@ export default function MonsterSelectDialog({ open, onClose }: { open: boolean; 
                       return (
                         <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.25, mt: 0.25 }}>
                           {m.undead && (
-                            <Chip label="언데드" size="small" variant="outlined" sx={{ height: 18, fontSize: 10, color: '#6d4c41', borderColor: '#6d4c41' }} />
+                            <Chip label="언데드" size="small" sx={{ height: 18, fontSize: 10, bgcolor: UNDEAD_HEX, color: '#fff' }} />
                           )}
                           {els.map((e) => {
                             const c = ELEM_HEX[e.code] ?? '#9e9e9e'
