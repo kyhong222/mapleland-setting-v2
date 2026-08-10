@@ -9,8 +9,6 @@ import InputAdornment from '@mui/material/InputAdornment'
 import Select from '@mui/material/Select'
 import MenuItem from '@mui/material/MenuItem'
 import Chip from '@mui/material/Chip'
-import Button from '@mui/material/Button'
-import Collapse from '@mui/material/Collapse'
 import Checkbox from '@mui/material/Checkbox'
 import FormControlLabel from '@mui/material/FormControlLabel'
 import Tooltip from '@mui/material/Tooltip'
@@ -57,7 +55,6 @@ export default function MonsterSelectDialog({ open, onClose }: { open: boolean; 
   const [minLv, setMinLv] = useState('')
   const [maxLv, setMaxLv] = useState('')
   const [bossOnly, setBossOnly] = useState(false)
-  const [filterOpen, setFilterOpen] = useState(false)
   const [reactFilters, setReactFilters] = useState<Set<string>>(new Set()) // 'F:약점' 등
   const [undeadOnly, setUndeadOnly] = useState(false)
   const [levelRangeOnly, setLevelRangeOnly] = useState(false)
@@ -70,7 +67,6 @@ export default function MonsterSelectDialog({ open, onClose }: { open: boolean; 
       else n.add(key)
       return n
     })
-  const advCount = reactFilters.size + (undeadOnly ? 1 : 0) + (levelRangeOnly ? 1 : 0)
 
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase()
@@ -174,20 +170,8 @@ export default function MonsterSelectDialog({ open, onClose }: { open: boolean; 
             <Typography variant="caption" color="text.secondary">~</Typography>
             <TextField size="small" type="number" placeholder={String(LEVEL_RANGE.max)} value={maxLv} onChange={(e) => setMaxLv(e.target.value)} sx={{ width: 80 }} />
           </Box>
-          {/* 상세 필터 (폴딩) — 속성 약점/반감/면역 · 언데드 · 레범몬 (AND) */}
-          <Box>
-            <Button
-              onClick={() => setFilterOpen((v) => !v)}
-              variant="outlined"
-              fullWidth
-              color={advCount > 0 ? 'primary' : 'inherit'}
-              sx={{ textTransform: 'none', justifyContent: 'space-between', py: 0.75, fontSize: 14, fontWeight: 600 }}
-            >
-              <span>상세 필터{advCount > 0 ? ` (${advCount})` : ''}</span>
-              <span>{filterOpen ? '▲' : '▼'}</span>
-            </Button>
-            <Collapse in={filterOpen}>
-              <Box sx={{ pt: 1, pl: 0.5, display: 'flex', flexDirection: 'column', rowGap: 1 }}>
+          {/* 속성 약점/반감/면역 · 언데드 · 레범몬 필터 (AND) */}
+          <Box sx={{ pt: 0.5, pl: 0.5, display: 'flex', flexDirection: 'column', rowGap: 1 }}>
                 {REACTIONS.map(({ label, effect }) => (
                   <Box key={effect} sx={{ display: 'flex', alignItems: 'center', gap: 1.5, flexWrap: 'wrap' }}>
                     <Typography variant="body2" color="text.secondary" sx={{ width: 40, flexShrink: 0, fontWeight: 600 }}>{label}</Typography>
@@ -216,8 +200,6 @@ export default function MonsterSelectDialog({ open, onClose }: { open: boolean; 
                     />
                   </Tooltip>
                 </Box>
-              </Box>
-            </Collapse>
           </Box>
         </Box>
 
