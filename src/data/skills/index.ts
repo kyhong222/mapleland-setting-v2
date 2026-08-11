@@ -87,8 +87,8 @@ const SUMMON_SKILLS = new Set(['이프리트', '엘퀴네스', '바하뮤트', '
  */
 const DAMAGE_BUFF_SKILLS = new Set([1111002, 1120003, 11111001, 11110005, 1320006])
 
-/** 공격 스킬에서 제외할 비공격/디버프 스킬명 */
-const NON_ATTACK_NAMES = new Set(['메디테이션', '매직 크래쉬'])
+/** 공격 스킬에서 제외할 비공격/디버프/패시브 스킬명 (크리티컬 스로우/샷/펀치 = 크리 패시브) */
+const NON_ATTACK_NAMES = new Set(['메디테이션', '매직 크래쉬', '크리티컬 스로우', '크리티컬 샷', '크리티컬 펀치'])
 
 /** 공격 스킬 여부 (물리 damage 또는 마법 mad 보유; 차지/메디테이션/소환수/파이널어택/데미지버프 제외) */
 export function isAttackSkill(skill: IJobSkill): boolean {

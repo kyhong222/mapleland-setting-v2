@@ -20,7 +20,7 @@ import {
 import { JOBS } from '../../domain/jobs'
 import { getMonster } from '../../data/mobs'
 import { elementReaction } from '../../domain/monster'
-import { attackSkillsForJob, skillsForJob, skillAttackAt, skillLineCount, comboFinalDamageP, COMBO_SKILLS, findSkillById, skillNumAt } from '../../data/skills'
+import { attackSkillsForJob, skillAttackAt, skillLineCount, comboFinalDamageP, COMBO_SKILLS, findSkillById, skillNumAt } from '../../data/skills'
 import type { IJobSkill } from '../../data/skills'
 import type { ChargeState } from '../../domain/paladinCharge'
 import { computeCast, computeNhit, computeDpm, baseElementMult, SKILL_MOTION } from '../../domain/skillCombat'
@@ -73,8 +73,8 @@ export default function NhitPanel() {
   const weaponType = equippedWeaponType(equipped, invItems)
   const attackSkills = jobId ? attackSkillsForJob(jobId) : []
   const selectedSkill = attackSkills.find((s) => s.id === skillId)
-  // 추가스킬 후보: 데미지 산출 가능한 모든 직업 스킬(소환수·돌진·베놈 등 포함, 종류 무관)
-  const precastCandidates = jobId ? skillsForJob(jobId).filter((s) => skillAttackAt(s, s.masterLevel) !== null) : []
+  // 추가스킬 후보: 공격 스킬(돌진·베놈 등 포함). 패시브(크리티컬 스로우)·콤보·소환수 등은 제외.
+  const precastCandidates = attackSkills
 
   const weaponSpeedStep = (() => {
     const id = equipped.weapon
