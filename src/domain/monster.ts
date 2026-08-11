@@ -142,6 +142,7 @@ const MOB_SKILL_LABELS: Record<number, { label: string; kind: MobPatternKind; cu
   124: { label: '저주', kind: 'status', cure: true }, // 경험치↓ (삼미호)
   126: { label: '슬로우', kind: 'status' }, // 이속↓ (마노·콜드샤크)
   127: { label: '버프해제', kind: 'status' }, // (샤크)
+  128: { label: '유혹', kind: 'status' }, // 자동 이동 (라이카)
   131: { label: '중독', kind: 'status', cure: true }, // elemAttr=S
   132: { label: '키반전', kind: 'status' }, // 상하좌우 반전 (눈돌아가는 해골, 레비아탄)
   133: { label: '언데드화', kind: 'status' }, // 힐 반전
