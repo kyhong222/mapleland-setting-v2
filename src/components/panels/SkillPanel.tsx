@@ -545,10 +545,11 @@ export default function SkillPanel() {
   const masteries = jobPassives.filter((b) => b.type === 'skill' && b.weaponTypes)
   const activeMasteries = weaponType ? masteries.filter((b) => b.type === 'skill' && b.weaponTypes?.includes(weaponType)) : []
   // 특화 패시브: 직업 패시브(무기 마스터리 제외) + 개인 패시브 스킬(블로킹 등)
+  // 매직가드는 맨 위로 (안정 정렬로 나머지 순서 유지)
   const otherPassives = [
     ...jobPassives.filter((b) => !(b.type === 'skill' && b.weaponTypes)),
     ...(jobId ? PERSONAL_BUFFS.filter((b) => canUseBuff(b, jobId) && b.type === 'skill' && b.mode === 'passive') : []),
-  ]
+  ].sort((a, b) => (MAGIC_GUARD_IDS.has(b.id) ? 1 : 0) - (MAGIC_GUARD_IDS.has(a.id) ? 1 : 0))
 
   // 개인 버프 드롭다운 풀 (액티브만 — 패시브는 특화 섹션으로) · 파티 버프는 전 직업(샤프아이즈/하이퍼바디 포함)
   const personalPool = jobId ? PERSONAL_BUFFS.filter((b) => canUseBuff(b, jobId) && !(b.type === 'skill' && b.mode === 'passive')) : []
