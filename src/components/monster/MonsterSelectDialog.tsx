@@ -17,12 +17,16 @@ import { useMonsterStore } from '../../store/monsterStore'
 import { useBuildStore } from '../../store/buildStore'
 import { MONSTERS, LEVEL_RANGE } from '../../data/mobs'
 import { REGION_CATEGORIES, REGION_ICON } from '../../data/mobs/regionCategory'
-import { monsterLabel, parseElemAttr } from '../../domain/monster'
+import { monsterLabel, parseElemAttr, monsterPatterns } from '../../domain/monster'
 
 /** 속성별 색상 (불=빨강·얼음=파랑·번개=노랑·독=초록·성=주황) */
 const ELEM_HEX: Record<string, string> = { F: '#e53935', I: '#1e88e5', L: '#fbc02d', S: '#43a047', H: '#fb8c00' }
 /** 언데드 칩 색상 (회색) */
 const UNDEAD_HEX = '#757575'
+/** 특수 패턴 종류별 배지 색 */
+const PATTERN_COLOR: Record<string, string> = {
+  oneone: '#d32f2f', status: '#7b1fa2', immune: '#455a64', reflect: '#c2185b', summon: '#1565c0', heal: '#2e7d32',
+}
 /** 필터용 속성/반응 목록 */
 const ELEMS: { code: string; name: string }[] = [
   { code: 'F', name: '불' }, { code: 'I', name: '얼음' }, { code: 'L', name: '번개' }, { code: 'S', name: '독' }, { code: 'H', name: '성' },
@@ -266,6 +270,13 @@ export default function MonsterSelectDialog({ open, onClose }: { open: boolean; 
                         </Box>
                       )
                     })()}
+                    {monsterPatterns(m).length > 0 && (
+                      <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.25, mt: 0.25 }}>
+                        {monsterPatterns(m).map((p) => (
+                          <Chip key={p.label} label={p.label} size="small" sx={{ height: 18, fontSize: 10, bgcolor: PATTERN_COLOR[p.kind], color: '#fff' }} />
+                        ))}
+                      </Box>
+                    )}
                   </Box>
                   {m.isBoss && <Chip label="보스" size="small" color="error" variant="outlined" sx={{ height: 20, fontSize: 11 }} />}
                 </Box>
