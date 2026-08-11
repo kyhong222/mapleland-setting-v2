@@ -34,6 +34,14 @@ const ELEMS: { code: string; name: string }[] = [
 const REACTIONS: { label: string; effect: '약점' | '반감' | '무효' }[] = [
   { label: '약점', effect: '약점' }, { label: '반감', effect: '반감' }, { label: '면역', effect: '무효' },
 ]
+/** 패턴 필터 그룹 (라벨은 monsterPatterns 라벨과 일치) */
+const PATTERN_GROUPS: { title: string; items: { label: string; color: string }[] }[] = [
+  { title: '특수', items: [
+    { label: '1/1', color: '#d32f2f' }, { label: '물리무효', color: '#455a64' }, { label: '마법무효', color: '#455a64' },
+    { label: '물리반사', color: '#c2185b' }, { label: '마법반사', color: '#c2185b' }, { label: '소환', color: '#1565c0' },
+  ] },
+  { title: '상이', items: ['봉인', '암흑', '허약', '저주', '중독', '스턴', '슬로우', '유혹', '키반전', '버프해제', '언데드화'].map((label) => ({ label, color: '#7b1fa2' })) },
+]
 const LEVEL_RANGE_HELP = '레범몬: 현재 레벨 ±10 이내 (캐릭터 80레벨 이상이면 70레벨 이상 전부)'
 /** 밝은 배경 → 어두운 글자(채움 칩) */
 const ELEM_DARK_TEXT = new Set(['L'])
@@ -60,17 +68,20 @@ export default function MonsterSelectDialog({ open, onClose }: { open: boolean; 
   const [maxLv, setMaxLv] = useState('')
   const [bossOnly, setBossOnly] = useState(false)
   const [reactFilters, setReactFilters] = useState<Set<string>>(new Set()) // 'F:약점' 등
+  const [patternFilters, setPatternFilters] = useState<Set<string>>(new Set()) // '봉인' 등 패턴 라벨
   const [undeadOnly, setUndeadOnly] = useState(false)
   const [levelRangeOnly, setLevelRangeOnly] = useState(false)
   const charLevel = useBuildStore((s) => s.level)
 
-  const toggleReact = (key: string) =>
-    setReactFilters((p) => {
+  const toggleSet = (set: React.Dispatch<React.SetStateAction<Set<string>>>, key: string) =>
+    set((p) => {
       const n = new Set(p)
       if (n.has(key)) n.delete(key)
       else n.add(key)
       return n
     })
+  const toggleReact = (key: string) => toggleSet(setReactFilters, key)
+  const togglePattern = (key: string) => toggleSet(setPatternFilters, key)
 
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase()
@@ -95,6 +106,11 @@ export default function MonsterSelectDialog({ open, onClose }: { open: boolean; 
           if (!els.some((e) => e.code === code && e.effect === effect)) return false
         }
       }
+      // 특수 패턴/상태이상 필터 (AND)
+      if (patternFilters.size > 0) {
+        const labels = new Set(monsterPatterns(m).map((p) => p.label))
+        for (const pl of patternFilters) if (!labels.has(pl)) return false
+      }
       if (m.level < lo || m.level > hi) return false
       if (q) {
         const hay = `${m.koreanName ?? ''} ${m.name}`.toLowerCase()
@@ -102,7 +118,7 @@ export default function MonsterSelectDialog({ open, onClose }: { open: boolean; 
       }
       return true
     }).sort((a, b) => a.id - b.id)
-  }, [sel, query, minLv, maxLv, bossOnly, reactFilters, undeadOnly, levelRangeOnly, charLevel])
+  }, [sel, query, minLv, maxLv, bossOnly, reactFilters, patternFilters, undeadOnly, levelRangeOnly, charLevel])
 
   const pick = (id: number) => {
     select(id)
@@ -204,6 +220,19 @@ export default function MonsterSelectDialog({ open, onClose }: { open: boolean; 
                     />
                   </Tooltip>
                 </Box>
+                {PATTERN_GROUPS.map((g) => (
+                  <Box key={g.title} sx={{ display: 'flex', alignItems: 'center', gap: 1.5, flexWrap: 'wrap' }}>
+                    <Typography variant="body2" color="text.secondary" sx={{ width: 40, flexShrink: 0, fontWeight: 600 }}>{g.title}</Typography>
+                    {g.items.map(({ label, color }) => (
+                      <FormControlLabel
+                        key={label}
+                        sx={{ mr: 0, '& .MuiFormControlLabel-label': { fontSize: 13 } }}
+                        control={<Checkbox size="small" sx={{ p: 0.5, color, '&.Mui-checked': { color } }} checked={patternFilters.has(label)} onChange={() => togglePattern(label)} />}
+                        label={label}
+                      />
+                    ))}
+                  </Box>
+                ))}
           </Box>
         </Box>
 
