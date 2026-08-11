@@ -317,8 +317,8 @@ export default function NhitPanel() {
                   }}
                   slotProps={{ htmlInput: { style: { width: 38, textAlign: 'center' }, min: 1, max: p.masterLevel } }}
                 />
-                <Box component="span" sx={{ fontSize: 11, color: p.ok ? 'text.secondary' : 'warning.main', minWidth: 80, textAlign: 'right' }}>
-                  {p.ok ? `-${Math.round(p.expected).toLocaleString()}` : '미지원'}
+                <Box component="span" sx={{ fontSize: 11, color: p.ok ? 'text.secondary' : 'warning.main', minWidth: 88, textAlign: 'right' }}>
+                  {p.ok ? `평균 ${Math.round(p.expected).toLocaleString()}` : '미지원'}
                 </Box>
                 <Button size="small" color="inherit" onClick={() => setPreCast((arr) => arr.filter((_, i) => i !== idx))} sx={{ minWidth: 24, px: 0.5, lineHeight: 1 }}>×</Button>
               </Box>
