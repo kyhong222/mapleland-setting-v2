@@ -40,7 +40,7 @@ const PATTERN_GROUPS: { title: string; items: { label: string; color: string }[]
     { label: '1/1', color: '#d32f2f' }, { label: '물리무효', color: '#455a64' }, { label: '마법무효', color: '#455a64' },
     { label: '물리반사', color: '#c2185b' }, { label: '마법반사', color: '#c2185b' }, { label: '소환', color: '#1565c0' },
   ] },
-  { title: '상이', items: ['봉인', '암흑', '허약', '저주', '중독', '스턴', '슬로우', '유혹', '키반전', '버프해제', '언데드화'].map((label) => ({ label, color: '#7b1fa2' })) },
+  { title: '디버프', items: ['봉인', '암흑', '허약', '저주', '중독', '스턴', '슬로우', '유혹', '키반전', '버프해제', '언데드화'].map((label) => ({ label, color: '#7b1fa2' })) },
 ]
 const LEVEL_RANGE_HELP = '레범몬: 현재 레벨 ±10 이내 (캐릭터 80레벨 이상이면 70레벨 이상 전부)'
 /** 밝은 배경 → 어두운 글자(채움 칩) */
