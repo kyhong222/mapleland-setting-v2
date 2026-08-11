@@ -158,9 +158,14 @@ function MonsterInfo({ m }: { m: Monster }) {
       </Box>
       {monsterPatterns(m).length > 0 && (
         <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5, mb: 0.75 }}>
-          {monsterPatterns(m).map((p) => (
-            <Chip key={p.label} label={p.label} size="small" sx={{ height: 18, fontSize: 10, bgcolor: PATTERN_COLOR[p.kind], color: '#fff' }} />
-          ))}
+          {monsterPatterns(m).map((p) => {
+            const c = PATTERN_COLOR[p.kind]
+            const outlined = p.kind === 'status' && !p.cure // 만병통치약 불가 = outlined
+            return (
+              <Chip key={p.label} label={p.label} size="small" variant={outlined ? 'outlined' : 'filled'}
+                sx={{ height: 18, fontSize: 10, borderColor: c, bgcolor: outlined ? 'transparent' : c, color: outlined ? c : '#fff' }} />
+            )
+          })}
         </Box>
       )}
       <Box sx={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 0.25 }}>

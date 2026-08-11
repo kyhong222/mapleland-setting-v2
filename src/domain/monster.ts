@@ -132,16 +132,17 @@ export type MobPatternKind = 'oneone' | 'status' | 'immune' | 'reflect' | 'summo
  * Skill.wz의 MobSkill에서 한글명(info) 또는 속성으로 **확정 가능한 것만** 매핑.
  * (120~129 등은 WZ에 이름이 없어 클라이언트 하드코딩 → 임의 매핑하지 않음)
  */
-const MOB_SKILL_LABELS: Record<number, { label: string; kind: MobPatternKind }> = {
+// cure: 만병통치약으로 해제 가능(봉인·암흑·허약·저주·중독)
+const MOB_SKILL_LABELS: Record<number, { label: string; kind: MobPatternKind; cure?: boolean }> = {
   // 상태이상 (예시몹 역추적으로 확정)
-  120: { label: '봉인', kind: 'status' }, // 스킬 사용 불가 (주니어부기)
-  121: { label: '암흑', kind: 'status' }, // 명중↓ (프랑켄로이드)
-  122: { label: '허약', kind: 'status' }, // 점프 불가 (레쉬)
+  120: { label: '봉인', kind: 'status', cure: true }, // 스킬 사용 불가 (주니어부기)
+  121: { label: '암흑', kind: 'status', cure: true }, // 명중↓ (프랑켄로이드)
+  122: { label: '허약', kind: 'status', cure: true }, // 점프 불가 (레쉬)
   123: { label: '스턴', kind: 'status' }, // (무릉도장 스노우맨)
-  124: { label: '저주', kind: 'status' }, // 경험치↓ (삼미호)
+  124: { label: '저주', kind: 'status', cure: true }, // 경험치↓ (삼미호)
   126: { label: '슬로우', kind: 'status' }, // 이속↓ (마노·콜드샤크)
   127: { label: '버프해제', kind: 'status' }, // (샤크)
-  131: { label: '중독', kind: 'status' }, // elemAttr=S
+  131: { label: '중독', kind: 'status', cure: true }, // elemAttr=S
   132: { label: '유혹', kind: 'status' }, // 눈돌아가는 해골
   133: { label: '언데드화', kind: 'status' }, // 힐 반전
   // 무효/반사 (예시몹 역추적: 폭렬망둥이집140·본피쉬140/141·무공143/144)
@@ -162,6 +163,8 @@ const MOB_SKILL_LABELS: Record<number, { label: string; kind: MobPatternKind }> 
 export interface MonsterPattern {
   label: string
   kind: MobPatternKind
+  /** 만병통치약으로 해제 가능한 상태이상 여부 */
+  cure?: boolean
 }
 
 /** 몬스터 특수 패턴 배지 목록 — 1/1·상태이상·면역·반사·소환·회복 (중복 제거) */
@@ -172,7 +175,7 @@ export function monsterPatterns(m: Monster): MonsterPattern[] {
   if (m.deadly) add({ label: '1/1', kind: 'oneone' })
   for (const id of [...(m.disease ?? []), ...(m.castSkills ?? [])]) {
     const info = MOB_SKILL_LABELS[id]
-    if (info) add(info)
+    if (info) add({ label: info.label, kind: info.kind, cure: info.cure })
   }
   return out
 }
