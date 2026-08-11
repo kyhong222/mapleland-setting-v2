@@ -34,7 +34,7 @@ export const REGION_CATEGORIES: RegionCategory[] = [
     { name: '루디브리엄', icon: ic(221022600) },
     { name: '시계탑 최하층', icon: ic(220060000) },
     { name: '지구방위본부', icon: ic(221030000) },
-    { name: '아랫마을', icon: ic(922200000) },
+    { name: '아랫마을', icon: ic(224000000) },
     { name: '엘린숲', icon: ic(300020200) },
   ] },
   { name: '니할 사막', regions: [
