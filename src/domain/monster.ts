@@ -127,24 +127,22 @@ export function monsterLabel(m: Monster): string {
 /** 몹 특수 패턴 종류 (배지 색 구분용) */
 export type MobPatternKind = 'oneone' | 'status' | 'immune' | 'reflect' | 'summon' | 'heal'
 
-/** 몹 스킬/상태이상 id → 표시 라벨 (Mob.wz 기준, 플레이어 관점 주요 패턴만) */
+/**
+ * 몹 스킬/상태이상 id → 표시 라벨.
+ * Skill.wz의 MobSkill에서 한글명(info) 또는 속성으로 **확정 가능한 것만** 매핑.
+ * (120~129 등은 WZ에 이름이 없어 클라이언트 하드코딩 → 임의 매핑하지 않음)
+ */
 const MOB_SKILL_LABELS: Record<number, { label: string; kind: MobPatternKind }> = {
-  110: { label: '물리면역', kind: 'immune' },
-  111: { label: '마법면역', kind: 'immune' },
-  112: { label: '물리반사', kind: 'reflect' },
-  113: { label: '마법반사', kind: 'reflect' },
-  120: { label: '봉인', kind: 'status' },
-  121: { label: '암흑', kind: 'status' },
-  122: { label: '약화', kind: 'status' },
-  123: { label: '저주', kind: 'status' },
-  124: { label: '중독', kind: 'status' },
-  125: { label: '슬로우', kind: 'status' },
-  126: { label: '유혹', kind: 'status' },
-  127: { label: '좀비화', kind: 'status' },
-  128: { label: '혼란', kind: 'status' },
-  145: { label: '회복', kind: 'heal' },
+  131: { label: '독', kind: 'status' }, // elemAttr=S
+  132: { label: '유혹', kind: 'status' }, // 눈돌아가는 해골
+  133: { label: '언데드화', kind: 'status' }, // 힐 반전
   150: { label: '소환', kind: 'summon' },
-  200: { label: '소환', kind: 'summon' },
+  151: { label: '소환', kind: 'summon' },
+  152: { label: '소환', kind: 'summon' },
+  153: { label: '소환', kind: 'summon' },
+  154: { label: '소환', kind: 'summon' },
+  156: { label: '소환', kind: 'summon' },
+  157: { label: '소환', kind: 'summon' },
 }
 
 export interface MonsterPattern {
