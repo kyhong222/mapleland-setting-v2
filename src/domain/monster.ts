@@ -141,7 +141,7 @@ const MOB_SKILL_LABELS: Record<number, { label: string; kind: MobPatternKind }> 
   124: { label: '저주', kind: 'status' }, // 경험치↓ (삼미호)
   126: { label: '슬로우', kind: 'status' }, // 이속↓ (마노·콜드샤크)
   127: { label: '버프해제', kind: 'status' }, // (샤크)
-  131: { label: '독', kind: 'status' }, // elemAttr=S
+  131: { label: '중독', kind: 'status' }, // elemAttr=S
   132: { label: '유혹', kind: 'status' }, // 눈돌아가는 해골
   133: { label: '언데드화', kind: 'status' }, // 힐 반전
   // 무효/반사 (예시몹 역추적: 폭렬망둥이집140·본피쉬140/141·무공143/144)
