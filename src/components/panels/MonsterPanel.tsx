@@ -19,7 +19,7 @@ import { useBuffEffects } from '../../store/useBuffEffects'
 import { getBuff } from '../../data/buff'
 import { buffEffectsAtLevel } from '../../domain/buff'
 import { getMonster } from '../../data/mobs'
-import { monsterLabel, parseElemAttr } from '../../domain/monster'
+import { monsterLabel, parseElemAttr, monsterPatterns } from '../../domain/monster'
 import type { Monster } from '../../domain/monster'
 import { computeVsMonster } from '../../domain/combat'
 import type { VsMonsterResult } from '../../domain/combat'
@@ -32,6 +32,11 @@ const ELEM_COLOR: Record<'무효' | '반감' | '약점', 'error' | 'warning' | '
   무효: 'error',
   반감: 'warning',
   약점: 'success',
+}
+
+/** 특수 패턴 종류별 배지 색 */
+const PATTERN_COLOR: Record<string, string> = {
+  oneone: '#d32f2f', status: '#7b1fa2', immune: '#455a64', reflect: '#c2185b', summon: '#1565c0', heal: '#2e7d32',
 }
 
 /** 회피확률 행에 영향을 주는 스킬 아이콘들 */
@@ -151,6 +156,13 @@ function MonsterInfo({ m }: { m: Monster }) {
           ))
         )}
       </Box>
+      {monsterPatterns(m).length > 0 && (
+        <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5, mb: 0.75 }}>
+          {monsterPatterns(m).map((p) => (
+            <Chip key={p.label} label={p.label} size="small" sx={{ height: 18, fontSize: 10, bgcolor: PATTERN_COLOR[p.kind], color: '#fff' }} />
+          ))}
+        </Box>
+      )}
       <Box sx={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 0.25 }}>
         <StatLine label="HP" value={m.maxHP?.toLocaleString()} />
         <StatLine label="EXP" value={m.exp?.toLocaleString()} />

@@ -43,6 +43,9 @@ export const MONSTERS: Monster[] = (mobList as MobListEntry[]).map((m) => {
     exp: wz.exp,
     elemAttr: wz.elemAttr,
     undead: wz.undead,
+    deadly: wz.deadly,
+    disease: wz.disease,
+    castSkills: wz.castSkills,
     skills: wz.skills,
   }
 })

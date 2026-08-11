@@ -92,6 +92,12 @@ export interface Monster {
   elemAttr?: ElementAttribute
   /** 언데드 여부 (힐 피격·성속성 상호작용) */
   undead?: boolean
+  /** 1/1 공격 보유 (deadlyAttack — HP·MP를 1로) */
+  deadly?: boolean
+  /** 공격이 거는 상태이상 스킬 id (attack/info.disease) */
+  disease?: number[]
+  /** 몹이 시전하는 스킬 id (info/skill — 암흑·봉인·면역·소환 등) */
+  castSkills?: number[]
   /** 공격 스킬 (attack1~4 등) */
   skills?: Record<string, MobSkill>
 }
@@ -116,6 +122,47 @@ export function monsterRenderUrl(id: number, animation: string): string {
 /** 몬스터 표시명 (한글 우선, 없으면 영문) */
 export function monsterLabel(m: Monster): string {
   return m.koreanName || m.name
+}
+
+/** 몹 특수 패턴 종류 (배지 색 구분용) */
+export type MobPatternKind = 'oneone' | 'status' | 'immune' | 'reflect' | 'summon' | 'heal'
+
+/** 몹 스킬/상태이상 id → 표시 라벨 (Mob.wz 기준, 플레이어 관점 주요 패턴만) */
+const MOB_SKILL_LABELS: Record<number, { label: string; kind: MobPatternKind }> = {
+  110: { label: '물리면역', kind: 'immune' },
+  111: { label: '마법면역', kind: 'immune' },
+  112: { label: '물리반사', kind: 'reflect' },
+  113: { label: '마법반사', kind: 'reflect' },
+  120: { label: '봉인', kind: 'status' },
+  121: { label: '암흑', kind: 'status' },
+  122: { label: '약화', kind: 'status' },
+  123: { label: '저주', kind: 'status' },
+  124: { label: '중독', kind: 'status' },
+  125: { label: '슬로우', kind: 'status' },
+  126: { label: '유혹', kind: 'status' },
+  127: { label: '좀비화', kind: 'status' },
+  128: { label: '혼란', kind: 'status' },
+  145: { label: '회복', kind: 'heal' },
+  150: { label: '소환', kind: 'summon' },
+  200: { label: '소환', kind: 'summon' },
+}
+
+export interface MonsterPattern {
+  label: string
+  kind: MobPatternKind
+}
+
+/** 몬스터 특수 패턴 배지 목록 — 1/1·상태이상·면역·반사·소환·회복 (중복 제거) */
+export function monsterPatterns(m: Monster): MonsterPattern[] {
+  const out: MonsterPattern[] = []
+  const seen = new Set<string>()
+  const add = (p: MonsterPattern) => { if (!seen.has(p.label)) { seen.add(p.label); out.push(p) } }
+  if (m.deadly) add({ label: '1/1', kind: 'oneone' })
+  for (const id of [...(m.disease ?? []), ...(m.castSkills ?? [])]) {
+    const info = MOB_SKILL_LABELS[id]
+    if (info) add(info)
+  }
+  return out
 }
 
 /** 스킬 속성(F/I/L/S/H) 대비 몬스터 반응 (약점/반감/무효/무관) */
