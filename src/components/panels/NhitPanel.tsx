@@ -6,8 +6,7 @@ import Divider from '@mui/material/Divider'
 import Select from '@mui/material/Select'
 import MenuItem from '@mui/material/MenuItem'
 import TextField from '@mui/material/TextField'
-import FormControlLabel from '@mui/material/FormControlLabel'
-import Switch from '@mui/material/Switch'
+import Button from '@mui/material/Button'
 import CollapsiblePanel from '../common/CollapsiblePanel'
 import { useBuildStore } from '../../store/buildStore'
 import { useInventoryStore } from '../../store/inventoryStore'
@@ -21,9 +20,11 @@ import {
 import { JOBS } from '../../domain/jobs'
 import { getMonster } from '../../data/mobs'
 import { elementReaction } from '../../domain/monster'
-import { attackSkillsForJob, skillAttackAt, skillLineCount, comboFinalDamageP, COMBO_SKILLS, findSkillById, skillNumAt } from '../../data/skills'
+import { attackSkillsForJob, skillsForJob, skillAttackAt, skillLineCount, comboFinalDamageP, COMBO_SKILLS, findSkillById, skillNumAt } from '../../data/skills'
+import type { IJobSkill } from '../../data/skills'
 import type { ChargeState } from '../../domain/paladinCharge'
 import { computeCast, computeNhit, computeDpm, baseElementMult, SKILL_MOTION } from '../../domain/skillCombat'
+import { expectedValue } from '../../domain/nhitProb'
 import { attacksPerMinute } from '../../data/attackSpeed'
 import { chargeElementMult, chargeMultiplier, chargeFromUi } from '../../domain/paladinCharge'
 
@@ -63,6 +64,8 @@ export default function NhitPanel() {
 
   const [skillId, setSkillId] = useState<number | ''>('')
   const [skillLevel, setSkillLevel] = useState(1)
+  // 추가스킬(1회 시전 후 잔여 HP 기준으로 방컷 계산)
+  const [preCast, setPreCast] = useState<{ id: number; level: number }[]>([])
 
   const { finalStats, effects } = aggregateBuild(baseStats, builts, buffEffects)
   const job = jobId ? JOBS[jobId] : null
@@ -70,6 +73,8 @@ export default function NhitPanel() {
   const weaponType = equippedWeaponType(equipped, invItems)
   const attackSkills = jobId ? attackSkillsForJob(jobId) : []
   const selectedSkill = attackSkills.find((s) => s.id === skillId)
+  // 추가스킬 후보: 데미지 산출 가능한 모든 직업 스킬(소환수·돌진·베놈 등 포함, 종류 무관)
+  const precastCandidates = jobId ? skillsForJob(jobId).filter((s) => skillAttackAt(s, s.masterLevel) !== null) : []
 
   const weaponSpeedStep = (() => {
     const id = equipped.weapon
@@ -77,25 +82,26 @@ export default function NhitPanel() {
     return w?.base.effects.attackSpeed ?? 6
   })()
 
-  const result = (() => {
-    if (!job || !monster || !selectedSkill) return null
-    const att = skillAttackAt(selectedSkill, skillLevel)
+  /**
+   * 임의 스킬(sk, lv)의 1회 시전 데미지 분포 계산 — 메인/추가스킬 공용.
+   * 캐릭터 스탯·버프·차지·크리·몬스터 방어를 모두 반영. 데미지 산출 불가 시 null.
+   */
+  const buildCast = (sk: IJobSkill, lv: number) => {
+    if (!job || !monster) return null
+    const att = skillAttackAt(sk, lv)
     if (!att) return null
     const isMagic = att.kind === 'magic'
     if (!isMagic && !weaponType) return null
 
     // 차지 블로우(1211002): 어드밴스드 차지(1220010) 학습 시 계수를 어차 값(260~350%)으로 대체
     let effSkillPercent = att.skillPercent
-    if (selectedSkill.id === 1211002) {
+    if (sk.id === 1211002) {
       const advLv = activeBuffs['1220010'] ?? 0
       const adv = advLv > 0 ? findSkillById(1220010) : undefined
       const advAtt = adv ? skillAttackAt(adv, advLv) : null
       if (advAtt) effSkillPercent = advAtt.skillPercent
     }
-    // 크리: 확률 혼합으로 분포에 반영(데미지범위·방컷 정확, DPM은 기대값으로 자동).
-    // 확률·데미지는 특화버프(크리티컬 스로우/샷/펀치) + 샤프아이즈의 합연산 = effects.criticalP/criticalDamage.
-    //  - 물리: 옛메 합연산 → 크리 시 타격당 +criticalDamage%p
-    //  - 마법: 곱연산 → ×(1 + (criticalDamage−100)/100)  (마법사는 내재크리 없이 샤프아이즈만)
+    // 크리: 확률 혼합으로 분포에 반영. 물리=합연산 / 마법=곱연산(샤프아이즈만)
     const critChance = effects.criticalP ?? 0
     const critDmgTotal = effects.criticalDamage ?? 0
     let critMult = 1
@@ -115,15 +121,14 @@ export default function NhitPanel() {
         charge = chargeFromUi(chargeState)
         paladinCharge = !!charge
       } else if (jobId === 'soulMaster') {
-        const lv = activeBuffs['11111007'] // 소울 차지(성속성)
-        if (lv) {
-          charge = { main: 'holy', mainLevel: lv, thunderLevel: null }
-          chargeCoefMult = skillNumAt(11111007, lv, 'damage') / 100
+        const clv = activeBuffs['11111007'] // 소울 차지(성속성)
+        if (clv) {
+          charge = { main: 'holy', mainLevel: clv, thunderLevel: null }
+          chargeCoefMult = skillNumAt(11111007, clv, 'damage') / 100
         }
       }
     }
     // 속성배율 — 차지 활성 시 차지 속성/레벨 배율로 대체
-    // 팔라딘: ORIGINAL_V86 통합 차지배율(속성+계수). 소울마스터: 홀리 단일 반응(계수는 chargeCoefMult 별도)
     let elementMult: number
     if (paladinCharge && charge) {
       elementMult = chargeMultiplier(charge, monster.elemAttr)
@@ -132,7 +137,7 @@ export default function NhitPanel() {
     } else {
       elementMult = baseElementMult(elementReaction(monster.elemAttr, att.element))
     }
-    // 엘리멘탈 리셋(플위): 무속성화 blend — elementMult × (1−r) + 1.0 × r (마스터 r=1 → 항상 ×1.0)
+    // 엘리멘탈 리셋(플위): 무속성화 blend
     if (jobId === 'flameWizard') {
       const rLv = activeBuffs['12101005']
       if (rLv) {
@@ -152,32 +157,25 @@ export default function NhitPanel() {
     const comboBonus = cs
       ? comboFinalDamageP(cs.combo, activeBuffs[String(cs.combo)] ?? 0, cs.adv, activeBuffs[String(cs.adv)] ?? 0)
       : 0
-    // 자기 데미지증가버프(버서크 등 finalDamageP + 콤보) — 합연산
     const finalMult = 1 + ((effects.finalDamageP ?? 0) + comboBonus) / 100
-    // 위협(파티 디버프: 몬스터 받는 데미지 +%) — 곱연산 중첩
     const threatenMult = 1 + (effects.monsterDamageTakenP ?? 0) / 100
-    // 패닉/코마: 최대 콤보 카운터(5~10) 전량 소모 → 카운터 뎀증 ×2.5 (콤보 활성 시)
-    const counterMult = COMA_PANIC.has(selectedSkill.id) && comboBonus > 0 ? MAX_COUNTER_MULT : 1
-    // 쉐도우 파트너: 그림자가 스킬 데미지의 y% 추가타 → ×(1 + y/100) (마스터 ×1.5)
+    const counterMult = COMA_PANIC.has(sk.id) && comboBonus > 0 ? MAX_COUNTER_MULT : 1
     const shadowMult = 1 + (effects.shadowPartnerP ?? 0) / 100
-    // 방컷·DPM 미제공 스킬(패닉/코마/돌진)
-    const noDpm = NO_DPM.has(selectedSkill.id)
-    // 모든 데미지 증가 배수를 하나로 통일(콤보·버서크·위협·카운터·쉐파·차지 계수·마법엘앰프) → 방어 앞(2단계) 적용
     const damageMult = (isMagic ? magicAmpMultiplier(effects) : 1) * finalMult * threatenMult * counterMult * shadowMult * chargeCoefMult
 
     const watk = totalAttack(effects)
     // 럭세/트스: LUK 전용 예외식 base(모션·부스탯·숙련 무시). 스킬%는 그대로 적용
-    const lineBase = !isMagic && LUCKY_SKILLS.has(selectedSkill.id) ? calcLuckyBase(finalStats.LUK, watk) : undefined
+    const lineBase = !isMagic && LUCKY_SKILLS.has(sk.id) ? calcLuckyBase(finalStats.LUK, watk) : undefined
     // 피스트: 타수별 배율(5타×2·6타×4)
-    const hitMultipliers = FIST_SKILLS.has(selectedSkill.id) ? FIST_HIT_MULT : undefined
+    const hitMultipliers = FIST_SKILLS.has(sk.id) ? FIST_HIT_MULT : undefined
 
     const cast = computeCast({
       weaponType: weaponType ?? 'oneHandedSword',
-      skillId: selectedSkill.id,
-      attackCount: skillLineCount(selectedSkill, skillLevel),
+      skillId: sk.id,
+      attackCount: skillLineCount(sk, lv),
       kind: att.kind,
-      primary: job ? finalStats[job.primaryStat] : 0,
-      secondary: job ? job.secondaryStats.reduce((a, s) => a + finalStats[s], 0) : 0,
+      primary: finalStats[job.primaryStat],
+      secondary: job.secondaryStats.reduce((a, s) => a + finalStats[s], 0),
       watk,
       mastery: masteryRatio(effects),
       magic: totalMagic(effects, finalStats.INT),
@@ -192,9 +190,36 @@ export default function NhitPanel() {
       lineBase,
       hitMultipliers,
     })
+    return { cast, att, effSkillPercent, isMagic }
+  }
+
+  // 추가스킬 목록의 1회 시전 기대 데미지 → HP에서 차감
+  const preCastInfos = preCast.map((pc) => {
+    const sk = precastCandidates.find((s) => s.id === pc.id)
+    const built = sk ? buildCast(sk, pc.level) : null
+    const dist = built?.cast?.dist
+    return {
+      id: pc.id,
+      level: pc.level,
+      name: sk?.description?.name ?? String(pc.id),
+      masterLevel: sk?.masterLevel ?? 1,
+      expected: dist ? expectedValue(dist) : 0,
+      ok: !!dist,
+    }
+  })
+  const preCastTotal = preCastInfos.reduce((a, p) => a + p.expected, 0)
+
+  const result = (() => {
+    if (!job || !monster || !selectedSkill) return null
+    const built = buildCast(selectedSkill, skillLevel)
+    if (!built) return null
+    const { cast, att, effSkillPercent, isMagic } = built
     if (!cast) return { unsupported: true as const }
 
+    const noDpm = NO_DPM.has(selectedSkill.id)
     const hp = monster.maxHP ?? 0
+    // 추가스킬 1회 시전 후 잔여 HP (방컷 기준)
+    const remainingHp = Math.max(1, Math.round(hp - preCastTotal))
     const isBoss = !!monster.isBoss
     // 물리: 무기 부스터(attackSpeedBoost) + 윈드부스터(windBoostStep) 중첩 공속상승
     const boosterSteps = (effects.attackSpeedBoost ?? 0) + (effects.windBoostStep ?? 0)
@@ -208,6 +233,8 @@ export default function NhitPanel() {
       unsupported: false as const,
       isBoss,
       hp,
+      remainingHp,
+      hasPreCast: preCastTotal > 0,
       lines: cast.lineRanges.length,
       lineRange: {
         min: Math.min(...cast.lineRanges.map((r) => r.min)),
@@ -216,7 +243,7 @@ export default function NhitPanel() {
       totalRange: cast.totalRange,
       coef: Math.round(effSkillPercent),
       // 패닉/코마/돌진은 방컷·DPM 미제공(데미지 범위만)
-      nhit: isBoss || noDpm ? null : computeNhit(cast.dist, hp, 10),
+      nhit: isBoss || noDpm ? null : computeNhit(cast.dist, remainingHp, 10),
       apm, dpm, killSec, isMagic, effStep, boosterActive: magicBooster, noDpm,
     }
   })()
@@ -270,6 +297,49 @@ export default function NhitPanel() {
             )}
           </Box>
 
+          {/* 추가스킬 (1회 시전 후 잔여 HP 기준으로 방컷 계산) */}
+          <Box sx={{ mb: 1 }}>
+            <Typography variant="caption" sx={{ fontWeight: 700, display: 'block', mb: 0.25 }}>
+              추가 스킬 <Box component="span" sx={{ fontWeight: 400, color: 'text.disabled' }}>· 1회 시전 후 잔여 HP 기준</Box>
+            </Typography>
+            {preCastInfos.map((p, idx) => (
+              <Box key={p.id} sx={{ display: 'flex', alignItems: 'center', gap: 0.5, mb: 0.25 }}>
+                <Box component="img" src={skillIconSrc(p.id)} alt="" onError={hideOnError} sx={{ width: 24, height: 24, imageRendering: 'pixelated', flexShrink: 0 }} />
+                <Box component="span" sx={{ fontSize: 12, flex: 1, minWidth: 0, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{p.name}</Box>
+                <TextField
+                  size="small" type="number" value={p.level}
+                  onChange={(e) => {
+                    const v = Math.max(1, Math.min(p.masterLevel, Number(e.target.value) || 1))
+                    setPreCast((arr) => arr.map((x, i) => (i === idx ? { ...x, level: v } : x)))
+                  }}
+                  slotProps={{ htmlInput: { style: { width: 38, textAlign: 'center' }, min: 1, max: p.masterLevel } }}
+                />
+                <Box component="span" sx={{ fontSize: 11, color: p.ok ? 'text.secondary' : 'warning.main', minWidth: 80, textAlign: 'right' }}>
+                  {p.ok ? `-${Math.round(p.expected).toLocaleString()}` : '미지원'}
+                </Box>
+                <Button size="small" color="inherit" onClick={() => setPreCast((arr) => arr.filter((_, i) => i !== idx))} sx={{ minWidth: 24, px: 0.5, lineHeight: 1 }}>×</Button>
+              </Box>
+            ))}
+            <Select<number | ''>
+              size="small" displayEmpty value={''}
+              onChange={(e) => {
+                const id = e.target.value === '' ? '' : Number(e.target.value)
+                if (!id) return
+                const sk = precastCandidates.find((s) => s.id === id)
+                setPreCast((arr) => [...arr, { id, level: sk?.masterLevel ?? 1 }])
+              }}
+              sx={{ width: '100%', fontSize: 12, '& .MuiSelect-select': { display: 'flex', alignItems: 'center', gap: 1, py: 0.4 } }}
+            >
+              <MenuItem value=""><em>＋ 스킬 추가</em></MenuItem>
+              {precastCandidates.filter((s) => !preCast.some((p) => p.id === s.id)).map((s) => (
+                <MenuItem key={s.id} value={s.id} sx={{ fontSize: 12, gap: 1, alignItems: 'center' }}>
+                  <Box component="img" src={skillIconSrc(s.id)} alt="" onError={hideOnError} sx={{ width: 24, height: 24, imageRendering: 'pixelated', flexShrink: 0 }} />
+                  <Box component="span">{s.description?.name ?? s.id}</Box>
+                </MenuItem>
+              ))}
+            </Select>
+          </Box>
+
           {result === null ? (
             <Typography variant="body2" color="text.disabled">스킬을 선택하세요.</Typography>
           ) : result.unsupported ? (
@@ -286,7 +356,9 @@ export default function NhitPanel() {
                 <>
                   <Divider sx={{ my: 0.75 }} />
                   <Typography variant="caption" sx={{ fontWeight: 700, display: 'block', mb: 0.25 }}>
-                    방컷 확률 (HP {result.hp.toLocaleString()})
+                    {result.hasPreCast
+                      ? `방컷 확률 (잔여 HP ${result.remainingHp.toLocaleString()} / ${result.hp.toLocaleString()})`
+                      : `방컷 확률 (HP ${result.hp.toLocaleString()})`}
                   </Typography>
                   <Box sx={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 0.25 }}>
                     {result.nhit.exact.map((p, i) => (p >= 0.0005 ? <Row key={i} label={`${i + 1}방`} value={pct(p)} /> : null))}
