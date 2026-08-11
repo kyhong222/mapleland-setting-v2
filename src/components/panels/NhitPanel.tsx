@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import type { SyntheticEvent } from 'react'
 import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
@@ -65,8 +65,9 @@ export default function NhitPanel() {
 
   const [skillId, setSkillId] = useState<number | ''>('')
   const [skillLevel, setSkillLevel] = useState(1)
-  // 추가스킬(1회 시전 후 잔여 HP 기준으로 방컷 계산)
-  const [preCast, setPreCast] = useState<{ id: number; level: number }[]>([])
+  // 추가스킬(1회 시전 분포를 방컷 prior로 반영). 같은 스킬 중복 추가 가능 → uid로 구분.
+  const uidRef = useRef(0)
+  const [preCast, setPreCast] = useState<{ uid: number; id: number; level: number }[]>([])
 
   const { finalStats, effects } = aggregateBuild(baseStats, builts, buffEffects)
   const job = jobId ? JOBS[jobId] : null
@@ -200,6 +201,7 @@ export default function NhitPanel() {
     const built = sk ? buildCast(sk, pc.level) : null
     const dist = built?.cast?.dist ?? null
     return {
+      uid: pc.uid,
       id: pc.id,
       level: pc.level,
       name: sk?.description?.name ?? String(pc.id),
@@ -305,7 +307,7 @@ export default function NhitPanel() {
               추가 스킬 <Box component="span" sx={{ fontWeight: 400, color: 'text.disabled' }}>· 1회 시전 후 잔여 HP 기준</Box>
             </Typography>
             {preCastInfos.map((p, idx) => (
-              <Box key={p.id} sx={{ display: 'flex', alignItems: 'center', gap: 0.5, mb: 0.25 }}>
+              <Box key={p.uid} sx={{ display: 'flex', alignItems: 'center', gap: 0.5, mb: 0.25 }}>
                 <Box component="img" src={skillIconSrc(p.id)} alt="" onError={hideOnError} sx={{ width: 24, height: 24, imageRendering: 'pixelated', flexShrink: 0 }} />
                 <Box component="span" sx={{ fontSize: 12, flex: 1, minWidth: 0, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', color: p.ok ? 'text.primary' : 'warning.main' }}>
                   {p.name}{!p.ok && ' (미지원)'}
@@ -327,12 +329,13 @@ export default function NhitPanel() {
                 const id = e.target.value === '' ? '' : Number(e.target.value)
                 if (!id) return
                 const sk = precastCandidates.find((s) => s.id === id)
-                setPreCast((arr) => [...arr, { id, level: sk?.masterLevel ?? 1 }])
+                const uid = ++uidRef.current
+                setPreCast((arr) => [...arr, { uid, id, level: sk?.masterLevel ?? 1 }])
               }}
               sx={{ width: '100%', fontSize: 12, '& .MuiSelect-select': { display: 'flex', alignItems: 'center', gap: 1, py: 0.4 } }}
             >
               <MenuItem value=""><em>＋ 스킬 추가</em></MenuItem>
-              {precastCandidates.filter((s) => !preCast.some((p) => p.id === s.id)).map((s) => (
+              {precastCandidates.map((s) => (
                 <MenuItem key={s.id} value={s.id} sx={{ fontSize: 12, gap: 1, alignItems: 'center' }}>
                   <Box component="img" src={skillIconSrc(s.id)} alt="" onError={hideOnError} sx={{ width: 24, height: 24, imageRendering: 'pixelated', flexShrink: 0 }} />
                   <Box component="span">{s.description?.name ?? s.id}</Box>
