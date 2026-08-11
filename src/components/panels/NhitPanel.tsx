@@ -24,7 +24,7 @@ import { attackSkillsForJob, skillAttackAt, skillLineCount, comboFinalDamageP, C
 import type { IJobSkill } from '../../data/skills'
 import type { ChargeState } from '../../domain/paladinCharge'
 import { computeCast, computeNhit, computeDpm, baseElementMult, SKILL_MOTION } from '../../domain/skillCombat'
-import { expectedValue, convolve } from '../../domain/nhitProb'
+import { convolve } from '../../domain/nhitProb'
 import type { Dist } from '../../domain/nhitProb'
 import { attacksPerMinute } from '../../data/attackSpeed'
 import { chargeElementMult, chargeMultiplier, chargeFromUi } from '../../domain/paladinCharge'
@@ -204,7 +204,6 @@ export default function NhitPanel() {
       level: pc.level,
       name: sk?.description?.name ?? String(pc.id),
       masterLevel: sk?.masterLevel ?? 1,
-      expected: dist ? expectedValue(dist) : 0,
       ok: !!dist,
       dist,
     }
@@ -308,7 +307,9 @@ export default function NhitPanel() {
             {preCastInfos.map((p, idx) => (
               <Box key={p.id} sx={{ display: 'flex', alignItems: 'center', gap: 0.5, mb: 0.25 }}>
                 <Box component="img" src={skillIconSrc(p.id)} alt="" onError={hideOnError} sx={{ width: 24, height: 24, imageRendering: 'pixelated', flexShrink: 0 }} />
-                <Box component="span" sx={{ fontSize: 12, flex: 1, minWidth: 0, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{p.name}</Box>
+                <Box component="span" sx={{ fontSize: 12, flex: 1, minWidth: 0, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', color: p.ok ? 'text.primary' : 'warning.main' }}>
+                  {p.name}{!p.ok && ' (미지원)'}
+                </Box>
                 <TextField
                   size="small" type="number" value={p.level}
                   onChange={(e) => {
@@ -317,9 +318,6 @@ export default function NhitPanel() {
                   }}
                   slotProps={{ htmlInput: { style: { width: 38, textAlign: 'center' }, min: 1, max: p.masterLevel } }}
                 />
-                <Box component="span" sx={{ fontSize: 11, color: p.ok ? 'text.secondary' : 'warning.main', minWidth: 88, textAlign: 'right' }}>
-                  {p.ok ? `평균 ${Math.round(p.expected).toLocaleString()}` : '미지원'}
-                </Box>
                 <Button size="small" color="inherit" onClick={() => setPreCast((arr) => arr.filter((_, i) => i !== idx))} sx={{ minWidth: 24, px: 0.5, lineHeight: 1 }}>×</Button>
               </Box>
             ))}
