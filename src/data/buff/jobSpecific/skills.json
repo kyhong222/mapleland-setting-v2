@@ -5014,7 +5014,6 @@
       "bishop"
     ],
     "icon": "/skill-icons/2001002.png",
-    "note": "데미지를 MP로 대신 받아 HP 기준 피격 데미지 n% 감소",
     "effectsByLevel": [
       {
         "incomingDamageReduceP": 11
@@ -5089,7 +5088,6 @@
       "flameWizard"
     ],
     "icon": "/skill-icons/12001001.png",
-    "note": "데미지를 MP로 대신 받아 HP 기준 피격 데미지 n% 감소",
     "effectsByLevel": [
       {
         "incomingDamageReduceP": 8

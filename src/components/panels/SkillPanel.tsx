@@ -235,7 +235,7 @@ function BuffDialog({ buff, kind, onClose }: { buff: Buff; kind: BuffKind; onClo
           <Typography variant="caption" color="text.disabled">레벨 조정 없음</Typography>
         )}
         <Typography variant="body2" color="success.main" sx={{ mt: 1 }}>
-          {buff.id === '1220010' ? advChargeCaption(draftLevel) : (formatEffects(eff) || '—')}
+          {buff.id === '1220010' ? advChargeCaption(draftLevel) : (magicGuardCaption(buff, draftLevel) ?? (formatEffects(eff) || '—'))}
         </Typography>
       </DialogContent>
       <DialogActions>
@@ -267,7 +267,8 @@ function BuffRow({ buff, onOpen }: { buff: Buff; onOpen: (b: Buff) => void }) {
   const comboText = comboEffectText(buff, activeBuffs, jobId)
   // 어드밴스드 차지: 차지 블로우 계수 강화 설명
   const advText = buff.id === '1220010' ? advChargeCaption(shownLevel) : null
-  const caption = requiresShield && !shieldOk ? '방패 착용 필요' : (buff.note ?? advText ?? comboText ?? (formatEffects(eff) || '—'))
+  const mgText = magicGuardCaption(buff, shownLevel)
+  const caption = requiresShield && !shieldOk ? '방패 착용 필요' : (mgText ?? buff.note ?? advText ?? comboText ?? (formatEffects(eff) || '—'))
   return (
     <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5, py: 0.25 }}>
       <BuffIcon buff={buff} active={active} highlightActive onClick={() => toggleBuff(buff.id)} onLongPress={() => onOpen(buff)} />
@@ -286,6 +287,14 @@ function advChargeCaption(level: number): string {
   const sk = findSkillById(1220010)
   const att = sk ? skillAttackAt(sk, level) : null
   return `차지 블로우 데미지 계수 ${att?.skillPercent ?? 350}%`
+}
+
+/** 매직가드(2001002·12001001) 설명: 레벨별 MP 전환 비율. 그 외 null */
+const MAGIC_GUARD_IDS = new Set(['2001002', '12001001'])
+function magicGuardCaption(buff: Buff, level: number): string | null {
+  if (!MAGIC_GUARD_IDS.has(buff.id)) return null
+  const n = buffEffectsAtLevel(buff, level).incomingDamageReduceP ?? 0
+  return `데미지의 ${n}%를 MP로 전환`
 }
 
 /** 콤보 어택 계열 버프의 효과 표기 ("데미지 ×n배 증가"). 그 외 null */
