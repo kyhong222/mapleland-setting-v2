@@ -12,7 +12,7 @@ import { CATALOG_ITEMS } from '../../data/catalog'
 import { SLOTS } from '../../domain/equipSlots'
 import type { SlotId } from '../../domain/equipSlots'
 import { ALL_CLASSES, JOBS } from '../../domain/jobs'
-import type { ClassId } from '../../domain/jobs'
+import type { ClassId, JobId } from '../../domain/jobs'
 import type { ItemData } from '../../domain/item'
 import type { WeaponType } from '../../domain/weapons'
 import { WEAPON_CONSTANTS } from '../../domain/weapons'
@@ -42,6 +42,31 @@ const WEAPON_ORDER: Partial<Record<WeaponType, number>> = {
 const WEAPON_TYPE_OPTIONS = (Object.keys(WEAPON_ORDER) as WeaponType[]).sort(
   (a, b) => (WEAPON_ORDER[a] ?? 99) - (WEAPON_ORDER[b] ?? 99),
 )
+
+/**
+ * 직업군별 우선 무기타입 — 무기 서브카테고리 드롭다운에서 맨 위로 노출.
+ * (방패/화살/표창/불릿은 이 드롭다운이 아닌 별도 부위라 제외)
+ */
+const JOB_PRIORITY_WEAPONS: Partial<Record<JobId, WeaponType[]>> = {
+  hero: ['oneHandedSword', 'twoHandedSword', 'oneHandedAxe', 'twoHandedAxe'],
+  paladin: ['oneHandedSword', 'twoHandedSword', 'oneHandedMace', 'twoHandedMace'],
+  darkKnight: ['spear', 'polearm'],
+  bowmaster: ['bow'],
+  marksman: ['crossbow'],
+  archMageIL: ['staff', 'wand'],
+  archMageFP: ['staff', 'wand'],
+  bishop: ['staff', 'wand'],
+  shadower: ['dagger'],
+  nightLord: ['claw'],
+  viper: ['knuckle'],
+  captain: ['gun'],
+  // 시그너스
+  soulMaster: ['oneHandedSword', 'twoHandedSword'],
+  flameWizard: ['staff', 'wand'],
+  windBreaker: ['bow'],
+  nightWalker: ['claw'],
+  striker: ['knuckle'],
+}
 
 /** 클래스 → reqJob 비트마스크 */
 const CLASS_BIT: Record<ClassId, number> = {
@@ -84,6 +109,14 @@ export default function CatalogSection({
     const cls = jobId ? JOBS[jobId].classId : null
     return new Set(cls ? [cls] : ALL_CLASSES.map((c) => c.id))
   })
+
+  // 무기 서브카테고리: 선택 직업군의 무기를 맨 위로(우선), 나머지는 기본 순서
+  const weaponOptions = useMemo(() => {
+    const prio = (jobId && JOB_PRIORITY_WEAPONS[jobId]) || []
+    const prioSet = new Set(prio)
+    const rest = WEAPON_TYPE_OPTIONS.filter((t) => !prioSet.has(t))
+    return { prio, rest }
+  }, [jobId])
 
   const toggleClass = (id: ClassId) =>
     setClasses((prev) => {
@@ -162,7 +195,11 @@ export default function CatalogSection({
               sx={{ minWidth: 110 }}
             >
               <MenuItem value="">전체 무기</MenuItem>
-              {WEAPON_TYPE_OPTIONS.map((t) => (
+              {weaponOptions.prio.map((t) => (
+                <MenuItem key={t} value={t}>{WEAPON_CONSTANTS[t].label}</MenuItem>
+              ))}
+              {weaponOptions.prio.length > 0 && <Divider />}
+              {weaponOptions.rest.map((t) => (
                 <MenuItem key={t} value={t}>{WEAPON_CONSTANTS[t].label}</MenuItem>
               ))}
             </Select>
