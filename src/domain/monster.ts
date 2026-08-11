@@ -133,11 +133,11 @@ export type MobPatternKind = 'oneone' | 'status' | 'immune' | 'reflect' | 'summo
  * (120~129 등은 WZ에 이름이 없어 클라이언트 하드코딩 → 임의 매핑하지 않음)
  */
 const MOB_SKILL_LABELS: Record<number, { label: string; kind: MobPatternKind }> = {
-  // 상태이상 (120봉인·121암흑 확정[프랑켄로이드], 순차 배치)
-  120: { label: '봉인', kind: 'status' }, // 스킬 사용 불가
-  121: { label: '암흑', kind: 'status' }, // 명중률 하락
-  122: { label: '허약', kind: 'status' }, // 점프 불가
-  123: { label: '저주', kind: 'status' }, // 경험치 획득 감소
+  // 상태이상 (예시몹 역추적으로 확정)
+  121: { label: '암흑', kind: 'status' }, // 명중↓ (프랑켄로이드)
+  123: { label: '스턴', kind: 'status' }, // (무릉도장 스노우맨)
+  126: { label: '슬로우', kind: 'status' }, // 이속↓ (마노·콜드샤크)
+  127: { label: '버프해제', kind: 'status' }, // (샤크)
   131: { label: '독', kind: 'status' }, // elemAttr=S
   132: { label: '유혹', kind: 'status' }, // 눈돌아가는 해골
   133: { label: '언데드화', kind: 'status' }, // 힐 반전
