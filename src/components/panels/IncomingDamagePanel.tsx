@@ -34,6 +34,7 @@ function reducedTypes(eff: EffectMap): Set<IncomingType> {
   const s = new Set<IncomingType>()
   const v = (k: keyof EffectMap) => (eff[k] ?? 0) as number
   if (v('damageReflectP') > 0) s.add('touch') // 파워가드
+  if (v('incomingDamageReduceP') > 0) ALL_TYPES.forEach((t) => s.add(t)) // 매직가드
   if (v('damageReduce') > 0) ALL_TYPES.forEach((t) => s.add(t)) // 아킬레스(전사)/메소가드(도적)
   if (v('monsterAttackReduceP') > 0) ALL_TYPES.forEach((t) => s.add(t)) // 위협(몬스터 공격력↓)
   if (v('physicalRes') > 0) { s.add('touch'); s.add('physical') }

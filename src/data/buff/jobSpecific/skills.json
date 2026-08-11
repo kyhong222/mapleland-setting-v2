@@ -5000,5 +5000,127 @@
       {},
       {}
     ]
+  },
+  {
+    "id": "2001002",
+    "type": "skill",
+    "name": "매직 가드",
+    "scope": "personal",
+    "mode": "passive",
+    "masterLevel": 20,
+    "jobs": [
+      "archMageFP",
+      "archMageIL",
+      "bishop"
+    ],
+    "icon": "/skill-icons/2001002.png",
+    "note": "데미지를 MP로 대신 받아 HP 기준 피격 데미지 n% 감소",
+    "effectsByLevel": [
+      {
+        "incomingDamageReduceP": 11
+      },
+      {
+        "incomingDamageReduceP": 14
+      },
+      {
+        "incomingDamageReduceP": 17
+      },
+      {
+        "incomingDamageReduceP": 20
+      },
+      {
+        "incomingDamageReduceP": 23
+      },
+      {
+        "incomingDamageReduceP": 30
+      },
+      {
+        "incomingDamageReduceP": 33
+      },
+      {
+        "incomingDamageReduceP": 36
+      },
+      {
+        "incomingDamageReduceP": 39
+      },
+      {
+        "incomingDamageReduceP": 42
+      },
+      {
+        "incomingDamageReduceP": 49
+      },
+      {
+        "incomingDamageReduceP": 52
+      },
+      {
+        "incomingDamageReduceP": 55
+      },
+      {
+        "incomingDamageReduceP": 58
+      },
+      {
+        "incomingDamageReduceP": 61
+      },
+      {
+        "incomingDamageReduceP": 68
+      },
+      {
+        "incomingDamageReduceP": 71
+      },
+      {
+        "incomingDamageReduceP": 74
+      },
+      {
+        "incomingDamageReduceP": 77
+      },
+      {
+        "incomingDamageReduceP": 80
+      }
+    ]
+  },
+  {
+    "id": "12001001",
+    "type": "skill",
+    "name": "매직 가드",
+    "scope": "personal",
+    "mode": "passive",
+    "masterLevel": 10,
+    "jobs": [
+      "flameWizard"
+    ],
+    "icon": "/skill-icons/12001001.png",
+    "note": "데미지를 MP로 대신 받아 HP 기준 피격 데미지 n% 감소",
+    "effectsByLevel": [
+      {
+        "incomingDamageReduceP": 8
+      },
+      {
+        "incomingDamageReduceP": 16
+      },
+      {
+        "incomingDamageReduceP": 24
+      },
+      {
+        "incomingDamageReduceP": 32
+      },
+      {
+        "incomingDamageReduceP": 40
+      },
+      {
+        "incomingDamageReduceP": 48
+      },
+      {
+        "incomingDamageReduceP": 56
+      },
+      {
+        "incomingDamageReduceP": 64
+      },
+      {
+        "incomingDamageReduceP": 72
+      },
+      {
+        "incomingDamageReduceP": 80
+      }
+    ]
   }
 ]

@@ -118,6 +118,7 @@ export function skillDamageType(skill: MobSkill): IncomingType {
  *  - 아킬레스(damageReduce, 전사): 전 타입
  *  - 엘리먼트/파셜 레지스턴스(allRes / *Res): 속성 타입
  *  - physicalRes: 물리/접촉
+ *  - 매직가드(incomingDamageReduceP): 전 타입 (데미지를 MP로 대신 받아 HP 관점 n% 감경)
  * (메소가드는 별도 흡수 — mesoAbsorbRate 참고)
  */
 export function reductionMultiplier(type: IncomingType, effects: EffectMap, jobClass: ClassId, isBoss: boolean): number {
@@ -127,6 +128,7 @@ export function reductionMultiplier(type: IncomingType, effects: EffectMap, jobC
     const pg = isBoss ? v('damageReflectP') / 2 : v('damageReflectP')
     m *= 1 - pg / 100
   }
+  m *= 1 - v('incomingDamageReduceP') / 100 // 매직가드 (전 타입 감경)
   if (jobClass === 'warrior') m *= 1 - v('damageReduce') / 100 // 아킬레스
   if (ELEM_TYPES.includes(type)) {
     m *= 1 - v('allRes') / 100

@@ -76,6 +76,7 @@ export type EffectId =
   | 'poisonRes'
   | 'allRes'
   | 'physicalRes'
+  | 'incomingDamageReduceP'
   // mobility
   | 'speed'
   | 'jump'
@@ -172,6 +173,7 @@ export const EFFECTS: Record<EffectId, EffectDef> = {
   poisonRes: { id: 'poisonRes', label: '독속성저항', category: 'defense', unit: 'percent', appliesToItem: false },
   allRes: { id: 'allRes', label: '모든속성저항', category: 'defense', unit: 'percent', appliesToItem: false },
   physicalRes: { id: 'physicalRes', label: '물리속성저항', category: 'defense', unit: 'percent', appliesToItem: false },
+  incomingDamageReduceP: { id: 'incomingDamageReduceP', label: '피격 데미지 감소', category: 'defense', unit: 'percent', appliesToItem: false },
 
   // ── mobility ──
   speed: { id: 'speed', label: '이동속도', category: 'mobility', unit: 'flat', appliesToItem: true },
