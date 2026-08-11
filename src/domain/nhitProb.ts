@@ -102,15 +102,20 @@ export function tailProb(d: Dist, threshold: number): number {
  *  - maxN 이후 잔여확률은 result에 포함되지 않음(초과 = "maxN+ 방").
  * cumulativeAbove: maxN 초과로 남은 확률(= 1 − CDF(maxN)).
  */
-export function exactNProbabilities(castDist: Dist, hp: number, maxN: number): {
+export function exactNProbabilities(castDist: Dist, hp: number, maxN: number, prior?: Dist): {
   exact: number[]
   cumulative: number[]
   over: number
+  /** 추가타 0회(= prior만)로 처치될 확률 */
+  zero: number
 } {
   const exact: number[] = []
   const cumulative: number[] = []
-  let acc: Dist = { base: 0, step: castDist.step, p: [1] } // 0타 = delta at 0
-  let prevCdf = 0
+  // 시작 누적 = 추가스킬(prior) 분포 또는 0타(delta at 0). prior는 매 타격마다 랜덤이므로 분포째 반영.
+  const acc0: Dist = prior ? reStep(prior, castDist.step) : { base: 0, step: castDist.step, p: [1] }
+  let acc = acc0
+  const zero = tailProb(acc0, hp)
+  let prevCdf = zero
   for (let k = 1; k <= maxN; k++) {
     acc = convolve(acc, castDist)
     const cdf = tailProb(acc, hp)
@@ -118,7 +123,7 @@ export function exactNProbabilities(castDist: Dist, hp: number, maxN: number): {
     cumulative.push(cdf)
     prevCdf = cdf
   }
-  return { exact, cumulative, over: Math.max(0, 1 - prevCdf) }
+  return { exact, cumulative, over: Math.max(0, 1 - prevCdf), zero }
 }
 
 /** [min,max]에서 bin 수를 TARGET_BINS 근처로 맞추는 step */

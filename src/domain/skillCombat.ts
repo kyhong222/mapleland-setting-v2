@@ -269,12 +269,18 @@ export interface NhitResult {
   over: number
   /** 기대 처치 타수(가중평균, over는 maxN+1로 근사) */
   meanHits: number
+  /** 추가스킬(prior)만으로 처치될 확률 (0타). prior 없으면 0 */
+  zero: number
 }
 
-export function computeNhit(castDist: Dist, hp: number, maxN = 10): NhitResult {
-  const { exact, cumulative, over } = exactNProbabilities(castDist, hp, maxN)
+/**
+ * N방컷. prior가 주어지면 추가스킬 1회 시전 분포를 시작 누적으로 두고,
+ * 그 위에 메인 시전을 N회 더한다(추가스킬 데미지도 분포째 반영).
+ */
+export function computeNhit(castDist: Dist, hp: number, maxN = 10, prior?: Dist): NhitResult {
+  const { exact, cumulative, over, zero } = exactNProbabilities(castDist, hp, maxN, prior)
   const meanHits = exact.reduce((a, x, i) => a + x * (i + 1), 0) + over * (maxN + 1)
-  return { exact, cumulative, over, meanHits }
+  return { exact, cumulative, over, meanHits, zero }
 }
 
 /** DPM = 기대 시전 데미지 × 분당 시전수 */

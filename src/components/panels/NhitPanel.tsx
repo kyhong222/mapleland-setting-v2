@@ -24,7 +24,8 @@ import { attackSkillsForJob, skillAttackAt, skillLineCount, comboFinalDamageP, C
 import type { IJobSkill } from '../../data/skills'
 import type { ChargeState } from '../../domain/paladinCharge'
 import { computeCast, computeNhit, computeDpm, baseElementMult, SKILL_MOTION } from '../../domain/skillCombat'
-import { expectedValue } from '../../domain/nhitProb'
+import { expectedValue, convolve } from '../../domain/nhitProb'
+import type { Dist } from '../../domain/nhitProb'
 import { attacksPerMinute } from '../../data/attackSpeed'
 import { chargeElementMult, chargeMultiplier, chargeFromUi } from '../../domain/paladinCharge'
 
@@ -193,11 +194,11 @@ export default function NhitPanel() {
     return { cast, att, effSkillPercent, isMagic }
   }
 
-  // 추가스킬 목록의 1회 시전 기대 데미지 → HP에서 차감
+  // 추가스킬 목록: 각 스킬 1회 시전 분포. 방컷 누적곱의 시작값(prior)으로 합성 → 데미지도 분포째 반영.
   const preCastInfos = preCast.map((pc) => {
     const sk = precastCandidates.find((s) => s.id === pc.id)
     const built = sk ? buildCast(sk, pc.level) : null
-    const dist = built?.cast?.dist
+    const dist = built?.cast?.dist ?? null
     return {
       id: pc.id,
       level: pc.level,
@@ -205,9 +206,14 @@ export default function NhitPanel() {
       masterLevel: sk?.masterLevel ?? 1,
       expected: dist ? expectedValue(dist) : 0,
       ok: !!dist,
+      dist,
     }
   })
-  const preCastTotal = preCastInfos.reduce((a, p) => a + p.expected, 0)
+  // 추가스킬 분포들의 합(컨볼루션) = 방컷 prior
+  const preCastPrior = preCastInfos.reduce<Dist | undefined>(
+    (acc, p) => (p.dist ? (acc ? convolve(acc, p.dist) : p.dist) : acc),
+    undefined,
+  )
 
   const result = (() => {
     if (!job || !monster || !selectedSkill) return null
@@ -218,8 +224,6 @@ export default function NhitPanel() {
 
     const noDpm = NO_DPM.has(selectedSkill.id)
     const hp = monster.maxHP ?? 0
-    // 추가스킬 1회 시전 후 잔여 HP (방컷 기준)
-    const remainingHp = Math.max(1, Math.round(hp - preCastTotal))
     const isBoss = !!monster.isBoss
     // 물리: 무기 부스터(attackSpeedBoost) + 윈드부스터(windBoostStep) 중첩 공속상승
     const boosterSteps = (effects.attackSpeedBoost ?? 0) + (effects.windBoostStep ?? 0)
@@ -233,8 +237,7 @@ export default function NhitPanel() {
       unsupported: false as const,
       isBoss,
       hp,
-      remainingHp,
-      hasPreCast: preCastTotal > 0,
+      hasPreCast: !!preCastPrior,
       lines: cast.lineRanges.length,
       lineRange: {
         min: Math.min(...cast.lineRanges.map((r) => r.min)),
@@ -242,8 +245,8 @@ export default function NhitPanel() {
       },
       totalRange: cast.totalRange,
       coef: Math.round(effSkillPercent),
-      // 패닉/코마/돌진은 방컷·DPM 미제공(데미지 범위만)
-      nhit: isBoss || noDpm ? null : computeNhit(cast.dist, remainingHp, 10),
+      // 패닉/코마/돌진은 방컷·DPM 미제공(데미지 범위만). 추가스킬은 prior 분포로 반영.
+      nhit: isBoss || noDpm ? null : computeNhit(cast.dist, hp, 10, preCastPrior),
       apm, dpm, killSec, isMagic, effStep, boosterActive: magicBooster, noDpm,
     }
   })()
@@ -356,15 +359,15 @@ export default function NhitPanel() {
                 <>
                   <Divider sx={{ my: 0.75 }} />
                   <Typography variant="caption" sx={{ fontWeight: 700, display: 'block', mb: 0.25 }}>
-                    {result.hasPreCast
-                      ? `방컷 확률 (잔여 HP ${result.remainingHp.toLocaleString()} / ${result.hp.toLocaleString()})`
-                      : `방컷 확률 (HP ${result.hp.toLocaleString()})`}
+                    방컷 확률 (HP {result.hp.toLocaleString()})
+                    {result.hasPreCast && <Box component="span" sx={{ fontWeight: 400, color: 'text.disabled', ml: 0.5 }}>· 추가스킬 후 메인 타수</Box>}
                   </Typography>
                   <Box sx={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 0.25 }}>
+                    {result.hasPreCast && result.nhit.zero >= 0.0005 && <Row label="0방 (추가스킬만)" value={pct(result.nhit.zero)} />}
                     {result.nhit.exact.map((p, i) => (p >= 0.0005 ? <Row key={i} label={`${i + 1}방`} value={pct(p)} /> : null))}
                     {result.nhit.over >= 0.0005 && <Row label="11방+" value={pct(result.nhit.over)} />}
                   </Box>
-                  <Row label="기대 처치 타수" value={result.nhit.over >= 0.9995 ? '알 수 없음' : `${result.nhit.meanHits.toFixed(2)}방`} strong />
+                  <Row label={result.hasPreCast ? '기대 처치 타수(추가스킬 후)' : '기대 처치 타수'} value={result.nhit.over >= 0.9995 ? '알 수 없음' : `${result.nhit.meanHits.toFixed(2)}방`} strong />
                 </>
               )}
 
