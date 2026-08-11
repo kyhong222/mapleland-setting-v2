@@ -133,9 +133,20 @@ export type MobPatternKind = 'oneone' | 'status' | 'immune' | 'reflect' | 'summo
  * (120~129 등은 WZ에 이름이 없어 클라이언트 하드코딩 → 임의 매핑하지 않음)
  */
 const MOB_SKILL_LABELS: Record<number, { label: string; kind: MobPatternKind }> = {
+  // 상태이상 (120봉인·121암흑 확정[프랑켄로이드], 순차 배치)
+  120: { label: '봉인', kind: 'status' }, // 스킬 사용 불가
+  121: { label: '암흑', kind: 'status' }, // 명중률 하락
+  122: { label: '허약', kind: 'status' }, // 점프 불가
+  123: { label: '저주', kind: 'status' }, // 경험치 획득 감소
   131: { label: '독', kind: 'status' }, // elemAttr=S
   132: { label: '유혹', kind: 'status' }, // 눈돌아가는 해골
   133: { label: '언데드화', kind: 'status' }, // 힐 반전
+  // 무효/반사 (예시몹 역추적: 폭렬망둥이집140·본피쉬140/141·무공143/144)
+  140: { label: '물리무효', kind: 'immune' },
+  141: { label: '마법무효', kind: 'immune' },
+  143: { label: '물리반사', kind: 'reflect' },
+  144: { label: '마법반사', kind: 'reflect' },
+  // 소환
   150: { label: '소환', kind: 'summon' },
   151: { label: '소환', kind: 'summon' },
   152: { label: '소환', kind: 'summon' },
