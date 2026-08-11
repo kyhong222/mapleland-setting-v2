@@ -134,8 +134,11 @@ export type MobPatternKind = 'oneone' | 'status' | 'immune' | 'reflect' | 'summo
  */
 const MOB_SKILL_LABELS: Record<number, { label: string; kind: MobPatternKind }> = {
   // 상태이상 (예시몹 역추적으로 확정)
+  120: { label: '봉인', kind: 'status' }, // 스킬 사용 불가 (주니어부기)
   121: { label: '암흑', kind: 'status' }, // 명중↓ (프랑켄로이드)
+  122: { label: '허약', kind: 'status' }, // 점프 불가 (레쉬)
   123: { label: '스턴', kind: 'status' }, // (무릉도장 스노우맨)
+  124: { label: '저주', kind: 'status' }, // 경험치↓ (삼미호)
   126: { label: '슬로우', kind: 'status' }, // 이속↓ (마노·콜드샤크)
   127: { label: '버프해제', kind: 'status' }, // (샤크)
   131: { label: '독', kind: 'status' }, // elemAttr=S
