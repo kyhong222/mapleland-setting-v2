@@ -143,7 +143,7 @@ const MOB_SKILL_LABELS: Record<number, { label: string; kind: MobPatternKind; cu
   126: { label: '슬로우', kind: 'status' }, // 이속↓ (마노·콜드샤크)
   127: { label: '버프해제', kind: 'status' }, // (샤크)
   131: { label: '중독', kind: 'status', cure: true }, // elemAttr=S
-  132: { label: '유혹', kind: 'status' }, // 눈돌아가는 해골
+  132: { label: '키반전', kind: 'status' }, // 상하좌우 반전 (눈돌아가는 해골, 레비아탄)
   133: { label: '언데드화', kind: 'status' }, // 힐 반전
   // 무효/반사 (예시몹 역추적: 폭렬망둥이집140·본피쉬140/141·무공143/144)
   140: { label: '물리무효', kind: 'immune' },
