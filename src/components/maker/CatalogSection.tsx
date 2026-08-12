@@ -147,12 +147,11 @@ export default function CatalogSection({
       if (arr) arr.push(it)
       else byBucket.set(b, [it])
     }
-    // 버킷은 레벨 오름차순, 버킷 내부는 렙제 오름차순 → 같은 렙제면 id 내림차순
-    // (id 내림차순이라 리버스가 타임리스보다 앞에 온다)
+    // 버킷은 레벨 오름차순, 버킷 내부는 렙제 → 아이템 id 오름차순
     for (const items of byBucket.values()) {
       items.sort((x, y) =>
         (x.reqLevel ?? 0) - (y.reqLevel ?? 0) ||
-        y.id - x.id,
+        x.id - y.id,
       )
     }
     return {
