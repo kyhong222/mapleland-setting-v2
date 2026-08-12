@@ -4207,6 +4207,7 @@
     },
     "reqLevel": 120,
     "reqInt": 368,
+    "reqLuk": 123,
     "tuc": 7,
     "reqJob": 2,
     "iconUrl": "https://maplestory.io/api/gms/200/item/1002777/icon"
@@ -4238,6 +4239,7 @@
       "pdef": 75
     },
     "reqLevel": 120,
+    "reqDex": 160,
     "reqLuk": 300,
     "tuc": 7,
     "reqJob": 8,
@@ -4248,15 +4250,15 @@
     "name": "타임리스 콘라드 헨켈",
     "slot": "hat",
     "effects": {
-      "STR": 3,
-      "DEX": 7,
-      "hp": 30,
+      "STR": 6,
+      "DEX": 6,
       "pdef": 75
     },
     "reqLevel": 120,
-    "reqDex": 370,
+    "reqStr": 120,
+    "reqDex": 120,
     "tuc": 7,
-    "reqJob": 4,
+    "reqJob": 16,
     "iconUrl": "https://maplestory.io/api/gms/62/item/1002780/icon"
   },
   {
@@ -4286,6 +4288,7 @@
     },
     "reqLevel": 120,
     "reqInt": 368,
+    "reqLuk": 123,
     "tuc": 7,
     "reqJob": 2,
     "iconUrl": "https://maplestory.io/api/gms/200/item/1002791/icon"
@@ -4317,10 +4320,27 @@
       "pdef": 75
     },
     "reqLevel": 120,
+    "reqDex": 160,
     "reqLuk": 300,
     "tuc": 7,
     "reqJob": 8,
     "iconUrl": "https://maplestory.io/api/gms/200/item/1002793/icon"
+  },
+  {
+    "id": 1002794,
+    "name": "리버스 콘라드 헨켈",
+    "slot": "hat",
+    "effects": {
+      "STR": 5,
+      "DEX": 5,
+      "pdef": 75
+    },
+    "reqLevel": 120,
+    "reqStr": 120,
+    "reqDex": 120,
+    "tuc": 7,
+    "reqJob": 16,
+    "iconUrl": "https://maplestory.io/api/gms/200/item/1002794/icon"
   },
   {
     "id": 1002610,

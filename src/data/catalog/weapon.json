@@ -5803,6 +5803,7 @@
     },
     "reqLevel": 118,
     "reqInt": 355,
+    "reqLuk": 120,
     "tuc": 7,
     "reqJob": 2,
     "weaponType": "wand",
@@ -5819,6 +5820,7 @@
     },
     "reqLevel": 118,
     "reqInt": 355,
+    "reqLuk": 120,
     "tuc": 7,
     "reqJob": 2,
     "weaponType": "wand",
@@ -5955,6 +5957,7 @@
       "attackSpeed": 4
     },
     "reqLevel": 120,
+    "reqDex": 160,
     "reqLuk": 290,
     "tuc": 7,
     "reqJob": 8,
@@ -5986,6 +5989,7 @@
       "attackSpeed": 4
     },
     "reqLevel": 120,
+    "reqDex": 160,
     "reqLuk": 290,
     "tuc": 7,
     "reqJob": 8,
@@ -6003,6 +6007,7 @@
     },
     "reqLevel": 120,
     "reqInt": 363,
+    "reqLuk": 123,
     "tuc": 7,
     "reqJob": 2,
     "weaponType": "staff",
@@ -6019,6 +6024,7 @@
     },
     "reqLevel": 120,
     "reqInt": 363,
+    "reqLuk": 123,
     "tuc": 7,
     "reqJob": 2,
     "weaponType": "staff",
@@ -6184,6 +6190,7 @@
       "attackSpeed": 6
     },
     "reqLevel": 120,
+    "reqStr": 125,
     "reqDex": 305,
     "tuc": 7,
     "reqJob": 4,
@@ -6200,6 +6207,7 @@
       "attackSpeed": 6
     },
     "reqLevel": 120,
+    "reqStr": 125,
     "reqDex": 305,
     "tuc": 7,
     "reqJob": 4,
@@ -6216,6 +6224,7 @@
       "attackSpeed": 6
     },
     "reqLevel": 120,
+    "reqStr": 120,
     "reqDex": 330,
     "tuc": 7,
     "reqJob": 4,
@@ -6232,6 +6241,7 @@
       "attackSpeed": 6
     },
     "reqLevel": 120,
+    "reqStr": 120,
     "reqDex": 330,
     "tuc": 7,
     "reqJob": 4,
@@ -6249,6 +6259,7 @@
       "attackSpeed": 4
     },
     "reqLevel": 120,
+    "reqDex": 160,
     "reqLuk": 350,
     "tuc": 7,
     "reqJob": 8,
@@ -6266,6 +6277,7 @@
       "attackSpeed": 4
     },
     "reqLevel": 120,
+    "reqDex": 160,
     "reqLuk": 350,
     "tuc": 7,
     "reqJob": 8,

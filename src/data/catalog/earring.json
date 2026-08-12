@@ -375,10 +375,11 @@
     "name": "타임리스 이어링",
     "slot": "earring",
     "effects": {
-      "mdef": 80,
-      "acc": 1
+      "mp": 30,
+      "mdef": 100,
+      "acc": 3
     },
-    "reqLevel": 100,
+    "reqLevel": 120,
     "iconUrl": "https://maplestory.io/api/GMS/200/item/1032031/icon",
     "tuc": 5
   },

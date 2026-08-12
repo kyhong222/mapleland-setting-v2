@@ -503,6 +503,7 @@
     },
     "reqLevel": 120,
     "reqInt": 368,
+    "reqLuk": 120,
     "tuc": 7,
     "reqJob": 2,
     "iconUrl": "https://maplestory.io/api/gms/200/item/1092057/icon"
@@ -533,6 +534,7 @@
       "pdef": 84
     },
     "reqLevel": 120,
+    "reqDex": 160,
     "reqLuk": 300,
     "tuc": 7,
     "reqJob": 8,

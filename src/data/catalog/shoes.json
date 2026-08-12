@@ -3035,6 +3035,7 @@
     },
     "reqLevel": 120,
     "reqInt": 368,
+    "reqLuk": 123,
     "tuc": 5,
     "reqJob": 2,
     "iconUrl": "https://maplestory.io/api/gms/200/item/1072356/icon"
@@ -3066,6 +3067,7 @@
       "eva": 1
     },
     "reqLevel": 120,
+    "reqDex": 160,
     "reqLuk": 300,
     "tuc": 5,
     "reqJob": 8,
@@ -3117,6 +3119,7 @@
     },
     "reqLevel": 120,
     "reqInt": 368,
+    "reqLuk": 123,
     "tuc": 5,
     "reqJob": 2,
     "iconUrl": "https://maplestory.io/api/gms/200/item/1072362/icon"
@@ -3148,6 +3151,7 @@
       "eva": 1
     },
     "reqLevel": 120,
+    "reqDex": 160,
     "reqLuk": 300,
     "tuc": 5,
     "reqJob": 8,
