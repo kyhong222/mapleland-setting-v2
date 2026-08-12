@@ -34,5 +34,107 @@
     "reqLevel": 90,
     "iconUrl": "https://maplestory.io/api/GMS/200/item/1112663/icon",
     "tuc": 0
+  },
+  {
+    "id": 1112300,
+    "name": "문스톤링 1캐럿",
+    "slot": "ring",
+    "effects": { "STR": 1, "DEX": 1, "INT": 1, "LUK": 1, "speed": 5 },
+    "reqLevel": 10,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1112300/icon",
+    "tuc": 0
+  },
+  {
+    "id": 1112301,
+    "name": "문스톤링 2캐럿",
+    "slot": "ring",
+    "effects": { "STR": 2, "DEX": 2, "INT": 2, "LUK": 2, "speed": 5 },
+    "reqLevel": 10,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1112301/icon",
+    "tuc": 0
+  },
+  {
+    "id": 1112302,
+    "name": "문스톤링 3캐럿",
+    "slot": "ring",
+    "effects": { "STR": 3, "DEX": 3, "INT": 3, "LUK": 3, "speed": 5 },
+    "reqLevel": 10,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1112302/icon",
+    "tuc": 0
+  },
+  {
+    "id": 1112303,
+    "name": "샤이닝스타링 1캐럿",
+    "slot": "ring",
+    "effects": { "STR": 1, "DEX": 1, "INT": 1, "LUK": 1, "jump": 2 },
+    "reqLevel": 10,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1112303/icon",
+    "tuc": 0
+  },
+  {
+    "id": 1112304,
+    "name": "샤이닝스타링 2캐럿",
+    "slot": "ring",
+    "effects": { "STR": 2, "DEX": 2, "INT": 2, "LUK": 2, "jump": 2 },
+    "reqLevel": 10,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1112304/icon",
+    "tuc": 0
+  },
+  {
+    "id": 1112305,
+    "name": "샤이닝스타링 3캐럿",
+    "slot": "ring",
+    "effects": { "STR": 3, "DEX": 3, "INT": 3, "LUK": 3, "jump": 2 },
+    "reqLevel": 10,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1112305/icon",
+    "tuc": 0
+  },
+  {
+    "id": 1112306,
+    "name": "골드하트링 1캐럿",
+    "slot": "ring",
+    "effects": { "STR": 1, "DEX": 1, "INT": 1, "LUK": 1, "hp": 60 },
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1112306/icon",
+    "tuc": 0
+  },
+  {
+    "id": 1112307,
+    "name": "골드하트링 2캐럿",
+    "slot": "ring",
+    "effects": { "STR": 2, "DEX": 2, "INT": 2, "LUK": 2, "hp": 60 },
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1112307/icon",
+    "tuc": 0
+  },
+  {
+    "id": 1112308,
+    "name": "골드하트링 3캐럿",
+    "slot": "ring",
+    "effects": { "STR": 3, "DEX": 3, "INT": 3, "LUK": 3, "hp": 60 },
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1112308/icon",
+    "tuc": 0
+  },
+  {
+    "id": 1112309,
+    "name": "실버윙링 1캐럿",
+    "slot": "ring",
+    "effects": { "STR": 1, "DEX": 1, "INT": 1, "LUK": 1, "mp": 60 },
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1112309/icon",
+    "tuc": 0
+  },
+  {
+    "id": 1112310,
+    "name": "실버윙링 2캐럿",
+    "slot": "ring",
+    "effects": { "STR": 2, "DEX": 2, "INT": 2, "LUK": 2, "mp": 60 },
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1112310/icon",
+    "tuc": 0
+  },
+  {
+    "id": 1112311,
+    "name": "실버윙링 3캐럿",
+    "slot": "ring",
+    "effects": { "STR": 3, "DEX": 3, "INT": 3, "LUK": 3, "mp": 60 },
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1112311/icon",
+    "tuc": 0
   }
 ]
