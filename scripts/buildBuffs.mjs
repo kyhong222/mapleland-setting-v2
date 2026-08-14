@@ -20,10 +20,10 @@
  *
  * ⚠ 이 생성기는 최초 부트스트랩 이후 손으로 관리해온 JSON을 따라오지 못한다.
  * 2026-08-14 기준 그대로 --write 하면 아래가 유실된다:
- *   - SKILL_MAP에 정의 없는 48건 (부스터 전종, 시그너스 5직업 전부,
+ *   - SKILL_MAP에 정의 없는 45건 (부스터 전종, 시그너스 5직업 전부,
  *     어드밴스드 차지, 매직 가드, 에너지 차지, 스턴 마스터리 등)
  *   - SUB_JOBS에 시그너스(1100~1511)가 없어 해당 스킬북을 읽지도 않음
- *   - note / requires / requiresShield / variants 필드 (buildSkill 미출력)
+ *   - requires / requiresShield / variants 필드 (buildSkill 미출력)
  *   - 아이콘 108개: 현재 JSON은 /skill-icons/*.png 로컬 경로인데 여기선 base64를 넣음
  *   - jobSpecific/damageBuffs.json(콤보·버서크)은 생성 대상 자체가 아님
  * 그래서 기본 동작을 드라이런으로 두고, 무엇이 사라지는지 먼저 출력한다.
@@ -153,6 +153,9 @@ const SKILL_MAP = {
 
   // 해적
   5000000: pPassive('퀵모션', p => ({ acc: n(p, 'x'), eva: n(p, 'y') })),
+  // 스턴 마스터리: 스턴 상태 적 공격 시 크리 발동 — 유도식은 크리티컬 샷/스로우와 동일.
+  // 상황 의존이라 켤 때 스턴 상태를 가정한다는 뜻으로 note를 단다.
+  5110000: { ...pPassive('스턴 마스터리', crit), note: '스턴 상황 가정' },
   // 변신은 특화 버프 토글(passive)로 둬야 exclusiveGroup 배타가 걸린다.
   // 트폼↔슈트폼만 상호배타 — 에너지 차지는 변신과 완전히 독립이라 그룹에 넣지 않는다.
   5111005: { ...pPassive('트랜스폼', transform), exclusiveGroup: 'pirateForm' },
@@ -244,6 +247,7 @@ function buildSkill(skill, def, code) {
   if (def.scope === 'personal') out.jobs = jobsForBook(code)
   if (def.weaponTypes) out.weaponTypes = def.weaponTypes
   if (def.exclusiveGroup) out.exclusiveGroup = def.exclusiveGroup
+  if (def.note) out.note = def.note
   return out
 }
 
@@ -294,7 +298,7 @@ const main = async () => {
   write('jobSpecific', 'skills.json', jobSpecific)
   if (lost) {
     console.log(`\n총 ${lost}건이 유실된다. SKILL_MAP에 정의를 채우기 전에는 --write 하지 말 것.`)
-    console.log('(note/requires/requiresShield/variants 필드와 /skill-icons 경로도 함께 사라진다)')
+    console.log('(requires/requiresShield/variants 필드와 /skill-icons 경로도 함께 사라진다)')
   }
   if (!WRITE) console.log('\n덮어쓰려면: node scripts/buildBuffs.mjs --write')
 }

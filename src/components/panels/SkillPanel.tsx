@@ -269,7 +269,11 @@ function BuffRow({ buff, onOpen }: { buff: Buff; onOpen: (b: Buff) => void }) {
   // 어드밴스드 차지: 차지 블로우 계수 강화 설명
   const advText = buff.id === '1220010' ? advChargeCaption(shownLevel) : null
   const mgText = magicGuardCaption(buff, shownLevel)
-  const caption = requiresShield && !shieldOk ? '방패 착용 필요' : (mgText ?? buff.note ?? advText ?? comboText ?? (formatEffects(eff) || '—'))
+  const effText = formatEffects(eff)
+  // note는 보조 안내문 — 효과가 있으면 뒤에 덧붙이고(스턴 마스터리 '스턴 상황 가정'),
+  // 효과가 없으면 단독 표시(미구현 스킬 표기)
+  const noteText = buff.note ? (effText ? `${effText} · ${buff.note}` : buff.note) : null
+  const caption = requiresShield && !shieldOk ? '방패 착용 필요' : (mgText ?? noteText ?? advText ?? comboText ?? (effText || '—'))
   return (
     <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5, py: 0.25 }}>
       <BuffIcon buff={buff} active={active} highlightActive onClick={() => toggleBuff(buff.id)} onLongPress={() => onOpen(buff)} />

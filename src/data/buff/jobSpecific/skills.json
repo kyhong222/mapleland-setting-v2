@@ -4975,28 +4975,88 @@
     ],
     "icon": "/skill-icons/5110000.png",
     "masterLevel": 20,
-    "note": "*스턴 상태에서만 크리티컬 (미구현)",
+    "note": "스턴 상황 가정",
     "effectsByLevel": [
-      {},
-      {},
-      {},
-      {},
-      {},
-      {},
-      {},
-      {},
-      {},
-      {},
-      {},
-      {},
-      {},
-      {},
-      {},
-      {},
-      {},
-      {},
-      {},
-      {}
+      {
+        "criticalP": 22,
+        "criticalDamage": 3
+      },
+      {
+        "criticalP": 24,
+        "criticalDamage": 6
+      },
+      {
+        "criticalP": 26,
+        "criticalDamage": 9
+      },
+      {
+        "criticalP": 28,
+        "criticalDamage": 12
+      },
+      {
+        "criticalP": 30,
+        "criticalDamage": 15
+      },
+      {
+        "criticalP": 32,
+        "criticalDamage": 18
+      },
+      {
+        "criticalP": 34,
+        "criticalDamage": 21
+      },
+      {
+        "criticalP": 36,
+        "criticalDamage": 24
+      },
+      {
+        "criticalP": 38,
+        "criticalDamage": 27
+      },
+      {
+        "criticalP": 40,
+        "criticalDamage": 30
+      },
+      {
+        "criticalP": 42,
+        "criticalDamage": 33
+      },
+      {
+        "criticalP": 44,
+        "criticalDamage": 36
+      },
+      {
+        "criticalP": 46,
+        "criticalDamage": 39
+      },
+      {
+        "criticalP": 48,
+        "criticalDamage": 42
+      },
+      {
+        "criticalP": 50,
+        "criticalDamage": 45
+      },
+      {
+        "criticalP": 52,
+        "criticalDamage": 48
+      },
+      {
+        "criticalP": 54,
+        "criticalDamage": 51
+      },
+      {
+        "criticalP": 56,
+        "criticalDamage": 54
+      },
+      {
+        "criticalP": 58,
+        "criticalDamage": 57
+      },
+      {
+        "criticalP": 60,
+        "criticalDamage": 60
+      }
     ]
   },
   {
