@@ -10,6 +10,7 @@ import type { BaseStats } from '../domain/stats'
 import { resolveBuiltItem } from '../domain/builtItem'
 import type { BuiltItem } from '../domain/builtItem'
 import { buffEffectsAtLevel, canUseBuff, effectiveMasterLevel } from '../domain/buff'
+import type { SkillBuff } from '../domain/buff'
 import { getBuff, JOB_BUFFS } from '../data/buff'
 import type { JobId } from '../domain/jobs'
 import type { WeaponType } from '../domain/weapons'
@@ -60,6 +61,45 @@ export function equippedHasShield(
   return invItems.find((it) => it.id === id)?.built.base.slot === 'shield'
 }
 
+/**
+ * 무기 마스터리가 여러 개인 직업의 기본 무기 — 주무기 미장착(또는 마스터리가
+ * 없는 무기 장착) 시 UI에 어떤 마스터리를 보여줄지 고르는 기준.
+ * 마스터리가 한 종류뿐인 직업은 여기 없어도 그 마스터리로 자동 폴백된다.
+ */
+const DEFAULT_MASTERY_WEAPON: Partial<Record<JobId, WeaponType>> = {
+  hero: 'oneHandedSword',
+  paladin: 'oneHandedSword',
+  darkKnight: 'spear',
+}
+
+/** 해당 직업이 가진 무기 마스터리/엑스퍼트 전부 */
+export function jobMasteries(jobId: JobId | null): SkillBuff[] {
+  if (!jobId) return []
+  return JOB_BUFFS.filter(
+    (b): b is SkillBuff => b.type === 'skill' && !!b.weaponTypes && canUseBuff(b, jobId),
+  )
+}
+
+/** 장착 주무기에 실제로 적용되는 마스터리 (효과 합산 대상) */
+export function appliedMasteries(jobId: JobId | null, weaponType?: WeaponType): SkillBuff[] {
+  if (!weaponType) return []
+  return jobMasteries(jobId).filter((b) => b.weaponTypes?.includes(weaponType))
+}
+
+/**
+ * UI에 표시할 마스터리. 장착 주무기에 해당하는 것이 있으면 그것,
+ * 없으면(무기 미장착 등) 직업 기본 무기의 마스터리를 보여준다.
+ * 표시용일 뿐이라 효과 합산은 appliedMasteries만 따른다.
+ */
+export function displayedMasteries(jobId: JobId | null, weaponType?: WeaponType): SkillBuff[] {
+  const applied = appliedMasteries(jobId, weaponType)
+  if (applied.length > 0) return applied
+  const all = jobMasteries(jobId)
+  const fallback = (jobId ? DEFAULT_MASTERY_WEAPON[jobId] : undefined) ?? all[0]?.weaponTypes?.[0]
+  if (!fallback) return all
+  return all.filter((b) => b.weaponTypes?.includes(fallback))
+}
+
 export interface BuffContext {
   activeBuffs: Record<string, number>
   appliedBuffs: Record<string, number>
@@ -92,12 +132,8 @@ export function activeBuffEffects(ctx: BuffContext): EffectMap {
     sumMaps.push(buffEffectsAtLevel(b, Math.min(level, effectiveMasterLevel(b, jobId))))
   }
   // 무기 마스터리/엑스퍼트 — 장착 주무기 일치 시 자동 적용 (off한 것은 제외)
-  if (jobId && weaponType) {
-    for (const b of JOB_BUFFS) {
-      if (b.type === 'skill' && b.weaponTypes?.includes(weaponType) && canUseBuff(b, jobId) && !masteryOff?.[b.id]) {
-        sumMaps.push(buffEffectsAtLevel(b, masteryLevels[b.id] ?? b.masterLevel))
-      }
-    }
+  for (const b of appliedMasteries(jobId, weaponType)) {
+    if (!masteryOff?.[b.id]) sumMaps.push(buffEffectsAtLevel(b, masteryLevels[b.id] ?? b.masterLevel))
   }
   // 적용 버프(도핑/개인/파티) — 능력치별 최댓값 적용
   const appliedMaps: EffectMap[] = []

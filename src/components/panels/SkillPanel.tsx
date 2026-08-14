@@ -18,12 +18,13 @@ import Tooltip from '@mui/material/Tooltip'
 import CollapsiblePanel from '../common/CollapsiblePanel'
 import { useBuildStore } from '../../store/buildStore'
 import { useInventoryStore } from '../../store/inventoryStore'
-import { equippedWeaponType, equippedHasShield } from '../../store/aggregate'
+import { equippedWeaponType, equippedHasShield, jobMasteries, displayedMasteries, appliedMasteries } from '../../store/aggregate'
 import { COMMON_BUFFS, PARTY_BUFFS, PERSONAL_BUFFS, DOPING_ITEMS, JOB_BUFFS } from '../../data/buff'
 import { canUseBuff, buffEffectsAtLevel, defaultBuffLevel, effectiveMasterLevel } from '../../domain/buff'
 import type { Buff } from '../../domain/buff'
 import { maxEffects } from '../../domain/effects'
 import type { JobId } from '../../domain/jobs'
+import { WEAPON_CONSTANTS } from '../../domain/weapons'
 import { comboFinalDamageP, COMBO_SKILLS, findSkillById, skillAttackAt } from '../../data/skills'
 import { CHARGE_LABEL, CHARGE_MASTER, CHARGE_ELEMENTS, chargeBaseMult, chargeMultiplier, chargeFromUi } from '../../domain/paladinCharge'
 import type { ChargeElement } from '../../domain/paladinCharge'
@@ -311,21 +312,33 @@ function comboEffectText(buff: Buff, activeBuffs: Record<string, number>, jobId:
   return null
 }
 
-/** 무기 마스터리/엑스퍼트 행 (장착 무기 자동 적용 · 아이콘 클릭 시 레벨 모달) */
-function MasteryRow({ buff, onOpen }: { buff: Buff; onOpen: (b: Buff) => void }) {
+/**
+ * 무기 마스터리/엑스퍼트 행 (장착 무기 자동 적용 · 아이콘 클릭 시 레벨 모달).
+ * applied=false면 장착 무기가 맞지 않아 효과가 안 들어가는 상태 — 회색으로 표시한다.
+ */
+function MasteryRow({ buff, applied, unappliedNote, onOpen }: {
+  buff: Buff
+  applied: boolean
+  /** 미적용 사유 캡션 (applied=false일 때만 사용) */
+  unappliedNote?: string
+  onOpen: (b: Buff) => void
+}) {
   const level = useBuildStore((s) => s.masteryLevels[buff.id])
   const off = useBuildStore((s) => !!s.masteryOff[buff.id])
   const toggleMastery = useBuildStore((s) => s.toggleMastery)
   const isSkill = buff.type === 'skill'
   const shownLevel = level ?? (isSkill ? buff.masterLevel : 1)
   const eff = buffEffectsAtLevel(buff, shownLevel)
+  const active = applied && !off
+  const effText = formatEffects(eff) || '—'
+  const caption = applied ? effText : unappliedNote ?? effText
   return (
     <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5, py: 0.25 }}>
-      <BuffIcon buff={buff} active={!off} highlightActive onClick={() => toggleMastery(buff.id)} onLongPress={() => onOpen(buff)} />
+      <BuffIcon buff={buff} active={active} highlightActive onClick={() => toggleMastery(buff.id)} onLongPress={() => onOpen(buff)} />
       <Box sx={{ flex: 1, minWidth: 0 }}>
         <BuffName buff={buff} level={shownLevel} />
-        <Typography variant="caption" color={off ? 'text.disabled' : 'success.main'} noWrap sx={{ display: 'block' }}>
-          {formatEffects(eff) || '—'}
+        <Typography variant="caption" color={active ? 'success.main' : 'text.disabled'} noWrap sx={{ display: 'block' }}>
+          {caption}
         </Typography>
       </Box>
     </Box>
@@ -542,8 +555,15 @@ export default function SkillPanel() {
   const open = (kind: BuffKind) => (buff: Buff) => setDlg({ buff, kind })
 
   const jobPassives = jobId ? JOB_BUFFS.filter((b) => canUseBuff(b, jobId)) : []
-  const masteries = jobPassives.filter((b) => b.type === 'skill' && b.weaponTypes)
-  const activeMasteries = weaponType ? masteries.filter((b) => b.type === 'skill' && b.weaponTypes?.includes(weaponType)) : []
+  // 무기 마스터리는 장착 여부와 무관하게 노출한다. 장착 무기에 맞는 게 없으면
+  // 직업 기본 무기의 마스터리를 회색(미적용)으로 보여줘, 스킬 자체가 없는 것처럼
+  // 보이지 않게 한다. 효과 합산은 종전대로 장착 무기가 맞을 때만 들어간다.
+  const masteries = jobMasteries(jobId)
+  const shownMasteries = displayedMasteries(jobId, weaponType)
+  const masteryApplied = appliedMasteries(jobId, weaponType).length > 0
+  const unappliedNote = weaponType
+    ? `${WEAPON_CONSTANTS[weaponType]?.label ?? '장착 무기'} 마스터리 없음 — 미적용`
+    : '무기 미장착 — 미적용'
   // 특화 패시브: 직업 패시브(무기 마스터리 제외) + 개인 패시브 스킬(블로킹 등)
   // 매직가드는 맨 위로 (안정 정렬로 나머지 순서 유지)
   const otherPassives = [
@@ -607,13 +627,9 @@ export default function SkillPanel() {
       {masteries.length > 0 && (
         <>
           <Typography variant="caption" color="text.secondary" sx={{ display: 'block' }}>무기 마스터리 (장착 무기 자동)</Typography>
-          {activeMasteries.length === 0 ? (
-            <Typography variant="caption" color="text.disabled" sx={{ display: 'block', mb: 0.5 }}>
-              {weaponType ? '장착 무기에 해당하는 마스터리 없음' : '무기 장착 시 자동 적용'}
-            </Typography>
-          ) : (
-            activeMasteries.map((b) => <MasteryRow key={b.id} buff={b} onOpen={open('mastery')} />)
-          )}
+          {shownMasteries.map((b) => (
+            <MasteryRow key={b.id} buff={b} applied={masteryApplied} unappliedNote={unappliedNote} onOpen={open('mastery')} />
+          ))}
         </>
       )}
       {otherPassives.map((b) => <BuffRow key={b.id} buff={b} onOpen={open('toggle')} />)}
