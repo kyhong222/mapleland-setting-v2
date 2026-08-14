@@ -9,11 +9,25 @@
  * SKILL_MAP에 없는 스킬은 제외(공격스킬·유틸·의미불명 등).
  *
  * 출력:
- *   src/data/buff/common/skills.json       (메이플 용사 등 공용)
- *   src/data/buff/enhancement/party.json   (파티 버프)
+ *   src/data/buff/common/skills.json        (메이플 용사 등 공용)
+ *   src/data/buff/enhancement/party.json    (파티 버프)
+ *   src/data/buff/enhancement/personal.json (개인특화 액티브)
  *   src/data/buff/jobSpecific/skills.json   (개인 패시브/버프, jobs[] 포함)
  *
- * 실행: node scripts/buildBuffs.mjs
+ * 실행:
+ *   node scripts/buildBuffs.mjs           → 드라이런(비교만, 파일 안 씀)
+ *   node scripts/buildBuffs.mjs --write   → 실제 덮어쓰기
+ *
+ * ⚠ 이 생성기는 최초 부트스트랩 이후 손으로 관리해온 JSON을 따라오지 못한다.
+ * 2026-08-14 기준 그대로 --write 하면 아래가 유실된다:
+ *   - SKILL_MAP에 정의 없는 48건 (부스터 전종, 시그너스 5직업 전부,
+ *     어드밴스드 차지, 매직 가드, 에너지 차지, 스턴 마스터리 등)
+ *   - SUB_JOBS에 시그너스(1100~1511)가 없어 해당 스킬북을 읽지도 않음
+ *   - note / requires / requiresShield / variants 필드 (buildSkill 미출력)
+ *   - 아이콘 108개: 현재 JSON은 /skill-icons/*.png 로컬 경로인데 여기선 base64를 넣음
+ *   - jobSpecific/damageBuffs.json(콤보·버서크)은 생성 대상 자체가 아님
+ * 그래서 기본 동작을 드라이런으로 두고, 무엇이 사라지는지 먼저 출력한다.
+ * 다시 생성기 기반으로 돌리려면 위 항목부터 SKILL_MAP에 채워야 한다.
  */
 
 import fs from 'node:fs'
@@ -23,6 +37,7 @@ import { fileURLToPath } from 'node:url'
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const OUT = path.join(__dirname, '..', 'src', 'data', 'buff')
 const RAW = 'https://raw.githubusercontent.com/kyhong222/ms-skill-simulator/main/src/data/skillbooks'
+const WRITE = process.argv.includes('--write')
 
 // 레포 4차(최종) 직업코드 → 우리 JobId
 const FINAL_TO_JOBID = {
@@ -257,18 +272,31 @@ const main = async () => {
     }
   }
 
+  // 기존 파일과 비교해 유실될 항목을 먼저 보고한다. --write 없으면 쓰지 않는다.
+  let lost = 0
   const write = (dir, file, data) => {
-    const d = path.join(OUT, dir)
-    fs.mkdirSync(d, { recursive: true })
-    fs.writeFileSync(path.join(d, file), JSON.stringify(data, null, 2) + '\n')
-    console.log(`  ${dir}/${file}: ${data.length}`)
+    const p = path.join(OUT, dir, file)
+    const prev = fs.existsSync(p) ? JSON.parse(fs.readFileSync(p, 'utf8')) : []
+    const nextIds = new Set(data.map((b) => b.id))
+    const dropped = prev.filter((b) => !nextIds.has(b.id))
+    lost += dropped.length
+    console.log(`  ${dir}/${file}: ${prev.length} → ${data.length}${dropped.length ? `  유실 ${dropped.length}건` : ''}`)
+    for (const b of dropped) console.log(`      - ${b.id} ${b.name}`)
+    if (!WRITE) return
+    fs.mkdirSync(path.join(OUT, dir), { recursive: true })
+    fs.writeFileSync(p, JSON.stringify(data, null, 2) + '\n')
   }
   common.push(...MANUAL_COMMON)
-  console.log('generated:')
+  console.log(WRITE ? 'writing:' : 'dry-run (파일 안 씀 — 반영하려면 --write):')
   write('common', 'skills.json', common)
   write('enhancement', 'party.json', party)
   write('enhancement', 'personal.json', personal)
   write('jobSpecific', 'skills.json', jobSpecific)
+  if (lost) {
+    console.log(`\n총 ${lost}건이 유실된다. SKILL_MAP에 정의를 채우기 전에는 --write 하지 말 것.`)
+    console.log('(note/requires/requiresShield/variants 필드와 /skill-icons 경로도 함께 사라진다)')
+  }
+  if (!WRITE) console.log('\n덮어쓰려면: node scripts/buildBuffs.mjs --write')
 }
 
 main().catch((e) => { console.error(e); process.exit(1) })
