@@ -4506,8 +4506,7 @@
         "eva": 20
       }
     ],
-    "icon": "/skill-icons/15100004.png",
-    "exclusiveGroup": "pirateForm"
+    "icon": "/skill-icons/15100004.png"
   },
   {
     "id": "5110001",
@@ -4520,7 +4519,6 @@
     ],
     "icon": "/skill-icons/5110001.png",
     "masterLevel": 40,
-    "exclusiveGroup": "pirateForm",
     "effectsByLevel": [
       {
         "acc": 1,

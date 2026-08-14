@@ -8,6 +8,11 @@
  *
  * 스킬 데이터는 scripts/buildBuffs.mjs가 외부 레포에서 생성한다.
  * 각 JSON은 도메인 Buff(아이템/스킬) 형태(domain/buff.ts).
+ *
+ * 주의 — id 중복: ALL_BUFFS 순서상 PERSONAL_BUFFS가 JOB_BUFFS보다 앞이라,
+ * 같은 id가 양쪽에 있으면 getBuff()는 personal 쪽을 돌려준다. 과거 바이퍼
+ * 트랜스폼/슈퍼트랜스폼이 중복 정의돼 exclusiveGroup이 조용히 무력화된 적 있다.
+ * 변신류는 jobSpecific/skills.json에 passive로 두어야 토글 + 배타가 동작한다.
  */
 
 import type { Buff } from '../../domain/buff'

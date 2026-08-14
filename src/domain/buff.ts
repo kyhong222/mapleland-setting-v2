@@ -67,7 +67,7 @@ export interface SkillBuff extends BuffBase {
   requiresShield?: boolean
   /**
    * 배타 그룹 — 같은 그룹의 버프는 동시에 하나만 켤 수 있다(라디오처럼).
-   * 예: 해적 에너지차지/트랜스폼/슈퍼트랜스폼.
+   * 예: 해적 트랜스폼/슈퍼트랜스폼. (에너지 차지는 변신과 독립이라 그룹에 없다)
    */
   exclusiveGroup?: string
 }

@@ -138,8 +138,10 @@ const SKILL_MAP = {
 
   // 해적
   5000000: pPassive('퀵모션', p => ({ acc: n(p, 'x'), eva: n(p, 'y') })),
-  5111005: pActive('트랜스폼', transform),
-  5121003: pActive('슈퍼 트랜스폼', transform),
+  // 변신은 특화 버프 토글(passive)로 둬야 exclusiveGroup 배타가 걸린다.
+  // 트폼↔슈트폼만 상호배타 — 에너지 차지는 변신과 완전히 독립이라 그룹에 넣지 않는다.
+  5111005: { ...pPassive('트랜스폼', transform), exclusiveGroup: 'pirateForm' },
+  5121003: { ...pPassive('슈퍼 트랜스폼', transform), exclusiveGroup: 'pirateForm' },
 
   // 쉴드 마스터리: 방패 방어력 보너스%(히어로/팔라딘/섀도어). x=105~200 → (x−100)%
   1110001: pPassive('쉴드 마스터리', shieldM),
@@ -174,8 +176,11 @@ function block(p) { return { blockRate: n(p, 'prop') / 10 } }
 function shieldM(p) { return { shieldBonusPdef: n(p, 'x') - 100 } }
 // 크리티컬 샷/스로우: 크리티컬 확률 = prop, 크리티컬 데미지 = damage − 100
 function crit(p) { return { criticalP: n(p, 'prop'), criticalDamage: n(p, 'damage') - 100 } }
-// 트랜스폼: STR/물·마방만(speed40·jump20은 변신폼 고정값이라 제외)
-function transform(p) { return { STR: n(p, 'str'), pdef: n(p, 'pdd'), mdef: n(p, 'mdd') } }
+// 트랜스폼: 물·마방만.
+//  - WZ 레벨속성에 str(20렙 기준 트폼 20/슈트폼 30)이 있지만 인게임에는 반영되지 않는다
+//    (2026-08-14 실측 확인). 데이터에 있다고 다시 넣지 말 것.
+//  - speed 40 / jump 20은 전 레벨 고정값이라 증가치가 아닌 변신폼 고정 수치 → 제외.
+function transform(p) { return { pdef: n(p, 'pdd'), mdef: n(p, 'mdd') } }
 function pPassive(name, derive) { return { name, scope: 'personal', dir: 'jobSpecific', mode: 'passive', derive } }
 function pActive(name, derive) { return { name, scope: 'personal', dir: 'jobSpecific', mode: 'active', derive } }
 // 2차 무기 마스터리: 숙련도% = mastery×5, 명중 = x (자벨린/건의 y=표창·불릿수는 제외)
@@ -223,6 +228,7 @@ function buildSkill(skill, def, code) {
   if (skill.icon) out.icon = `data:image/png;base64,${skill.icon}`
   if (def.scope === 'personal') out.jobs = jobsForBook(code)
   if (def.weaponTypes) out.weaponTypes = def.weaponTypes
+  if (def.exclusiveGroup) out.exclusiveGroup = def.exclusiveGroup
   return out
 }
 
