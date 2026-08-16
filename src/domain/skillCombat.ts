@@ -13,7 +13,8 @@ import type { WeaponType } from './weapons'
 import type { ElementReaction } from './damage'
 import { ELEMENT_MULT, DAMAGE_CAP } from './damage'
 import type { Dist } from './nhitProb'
-import { uniformDist, mixtureDist, convolve, expectedValue, exactNProbabilities, stepFor } from './nhitProb'
+import { uniformDist, mixtureDist, convolve, expectedValue, exactNProbabilities } from './nhitProb'
+import { lineSlots, critSlots } from './rngCycle'
 
 // ── 모션 규칙 ────────────────────────────────────────────
 export type MotionRule =
@@ -185,6 +186,119 @@ export interface CastResult {
   lineRanges: DamageRange[]
 }
 
+// ── 라인 스펙 ──────────────────────────────────────────
+/**
+ * 라인 하나의 최종 스펙. 난수 순환에서는 크리 판정 난수가 다른 라인과 공유될 수 있어
+ * 크리를 미리 섞어 버리면 안 된다. 모션 성분별로 논크리·크리 범위를 모두 보존한다.
+ */
+interface LineSpec {
+  motions: { weight: number; normal: DamageRange; crit: DamageRange }[]
+}
+
+/** 시전 분포의 목표 bin 수. 모든 성분이 같은 격자를 쓰도록 한 번만 정한다. */
+const TARGET_CAST_BINS = 600
+
+/** 라인의 전체 범위 (모션·크리 전부 포함) */
+function specRange(s: LineSpec): DamageRange {
+  let min = Infinity
+  let max = -Infinity
+  for (const m of s.motions) {
+    min = Math.min(min, m.normal.min, m.crit.min)
+    max = Math.max(max, m.normal.max, m.crit.max)
+  }
+  return { min, max }
+}
+
+/**
+ * 같은 데미지 슬롯을 읽는 라인들의 합 분포.
+ * 같은 슬롯 = 같은 난수이므로 이 라인들의 데미지는 완전상관이고,
+ * 합은 범위를 더한 단일 균등분포가 된다(모션 조합마다 하나씩).
+ *
+ * @param lowHalf 이 슬롯이 크리 판정에도 쓰이면 u가 [0,p) 또는 [p,1)로 잘린다. undefined면 제한 없음.
+ */
+function groupDist(
+  lineIdx: number[],
+  specs: LineSpec[],
+  isCrit: (line: number) => boolean,
+  lowHalf: boolean | undefined,
+  critProb: number,
+  step: number,
+): Dist {
+  let combos: { weight: number; min: number; max: number }[] = [{ weight: 1, min: 0, max: 0 }]
+  for (const i of lineIdx) {
+    const useCrit = isCrit(i)
+    const next: typeof combos = []
+    for (const c of combos) {
+      for (const m of specs[i].motions) {
+        const r = useCrit ? m.crit : m.normal
+        next.push({ weight: c.weight * m.weight, min: c.min + r.min, max: c.max + r.max })
+      }
+    }
+    combos = next
+  }
+  const parts = combos
+    .filter((c) => c.weight > 0)
+    .map(({ weight, min, max }) => {
+      const cut = min + critProb * (max - min)
+      const lo = lowHalf === false ? cut : min
+      const hi = lowHalf === true ? cut : max
+      return { weight, dist: uniformDist(lo, hi, step) }
+    })
+  return mixtureDist(parts)
+}
+
+/**
+ * 라인 스펙들을 난수 순환에 따라 합성해 시전 1회 분포를 만든다.
+ *
+ * 크리 판정에 쓰이는 슬롯마다 u < critProb(크리) / u ≥ critProb(논크리)로 갈래를 나눈다.
+ * 갈래 하나를 고정하면 모든 라인의 크리 여부가 정해지고, 남은 자유도는 데미지 슬롯별로만
+ * 묶이므로 그룹끼리는 다시 독립이다 → 기존 컨볼루션을 그대로 쓴다.
+ * 전체 = 갈래별 분포의 가중합. 근사가 아니라 정확 계산이다.
+ */
+function assembleCast(specs: LineSpec[], critProb: number): Dist {
+  const slots = lineSlots(specs.length)
+  const cs = critSlots(slots)
+  const p = Math.max(0, Math.min(1, critProb))
+
+  let tmin = 0
+  let tmax = 0
+  for (const s of specs) {
+    const r = specRange(s)
+    tmin += r.min
+    tmax += r.max
+  }
+  const step = Math.max(1, Math.ceil((tmax - tmin) / TARGET_CAST_BINS))
+
+  // 데미지 슬롯 → 그 슬롯을 읽는 라인들 (같은 슬롯이면 데미지가 완전상관)
+  const groups = new Map<number, number[]>()
+  slots.forEach((s, i) => {
+    const g = groups.get(s.dmg)
+    if (g) g.push(i)
+    else groups.set(s.dmg, [i])
+  })
+
+  const parts: { weight: number; dist: Dist }[] = []
+  for (let mask = 0; mask < 1 << cs.length; mask++) {
+    let weight = 1
+    const low = new Map<number, boolean>()
+    cs.forEach((slot, k) => {
+      const isLow = ((mask >> k) & 1) === 1
+      low.set(slot, isLow)
+      weight *= isLow ? p : 1 - p
+    })
+    if (weight <= 0) continue
+
+    const isCrit = (line: number) => low.get(slots[line].crit) === true
+    let acc: Dist | null = null
+    for (const [dmgSlot, idx] of groups) {
+      const g = groupDist(idx, specs, isCrit, low.get(dmgSlot), p, step)
+      acc = acc ? convolve(acc, g) : g
+    }
+    if (acc) parts.push({ weight, dist: acc })
+  }
+  return mixtureDist(parts)
+}
+
 /** 시전(1회) 데미지 분포 + 범위. 미지원 스킬이면 null */
 export function computeCast(p: CastDamageParams): CastResult | null {
   const finalOf = (base: DamageRange, critFactor: number, postClampMult = 1) =>
@@ -193,67 +307,48 @@ export function computeCast(p: CastDamageParams): CastResult | null {
       damageMult: p.damageMult, critFactor, postClampMult,
     })
   const critProb = Math.max(0, Math.min(1, p.critProb))
+  // 크리 배율이 1이면 크리와 논크리가 같으므로 갈래를 나눌 필요가 없다
+  const hasCrit = critProb > 0 && p.critMult > 1
 
-  /**
-   * 한 성분(base 범위)을 크리 확률 혼합으로 전개.
-   * 논크리(×1)와 크리(×critMult)를 각각 파이프라인에 통과시켜 분포 성분으로 만든다.
-   * (평균배율로 뭉개지 않으므로 데미지 범위=논크리최소~크리최대, 방컷=혼합분포)
-   */
-  const critParts = (base: DamageRange, weight: number, postClampMult = 1) => {
-    const nc = finalOf(base, 1, postClampMult)
-    const parts = [{ weight: weight * (1 - critProb), dist: uniformDist(nc.min, nc.max, stepFor(nc.min, nc.max)) }]
-    let min = nc.min
-    let max = nc.max
-    if (critProb > 0) {
-      const cr = finalOf(base, p.critMult, postClampMult)
-      parts.push({ weight: weight * critProb, dist: uniformDist(cr.min, cr.max, stepFor(cr.min, cr.max)) })
-      min = Math.min(min, cr.min)
-      max = Math.max(max, cr.max)
-    }
-    return { parts: parts.filter((x) => x.weight > 0), min, max }
+  /** base 범위 하나를 모션 성분(논크리·크리 범위 쌍)으로 */
+  const motionOf = (base: DamageRange, weight: number, postClampMult = 1) => {
+    const normal = finalOf(base, 1, postClampMult)
+    return { weight, normal, crit: hasCrit ? finalOf(base, p.critMult, postClampMult) : normal }
   }
 
-  // 마법: 모션 무관 단일 라인
-  if (p.kind === 'magic') {
-    const mix = critParts(calcMagic(p.magic ?? 0, p.int ?? 0, p.spellAtk ?? 0, p.mastery ?? 1), 1)
-    const fr = { min: mix.min, max: mix.max }
-    return { dist: mixtureDist(mix.parts), totalRange: fr, lineRanges: [fr] }
-  }
-
+  const specs: LineSpec[] = []
   const lineRanges: DamageRange[] = []
-
-  // 예외식(럭세/트스): 모션 무관 고정 base를 attackCount 라인으로
-  if (p.lineBase) {
-    const n = Math.max(1, p.attackCount || 1)
-    const dists = Array.from({ length: n }, () => {
-      const mix = critParts(p.lineBase!, 1)
-      lineRanges.push({ min: mix.min, max: mix.max })
-      return mixtureDist(mix.parts)
-    })
-    const dist = dists.reduce((acc, d) => convolve(acc, d))
-    return { dist, totalRange: { min: dist.base, max: dist.base + (dist.p.length - 1) * dist.step }, lineRanges }
+  const push = (motions: LineSpec['motions']) => {
+    const spec: LineSpec = { motions }
+    specs.push(spec)
+    lineRanges.push(specRange(spec))
   }
 
-  const lines = skillMotionLines(p.skillId, p.weaponType, p.attackCount)
-  if (!lines) return null
+  if (p.kind === 'magic') {
+    // 마법: 모션 무관 단일 라인
+    push([motionOf(calcMagic(p.magic ?? 0, p.int ?? 0, p.spellAtk ?? 0, p.mastery ?? 1), 1)])
+  } else if (p.lineBase) {
+    // 예외식(럭세/트스): 모션 무관 고정 base를 attackCount 라인으로
+    const n = Math.max(1, p.attackCount || 1)
+    for (let i = 0; i < n; i++) push([motionOf(p.lineBase, 1, p.hitMultipliers?.[i] ?? 1)])
+  } else {
+    const lines = skillMotionLines(p.skillId, p.weaponType, p.attackCount)
+    if (!lines) return null
+    lines.forEach((comps, lineIdx) => {
+      const postMult = p.hitMultipliers?.[lineIdx] ?? 1 // 7단계 타수배율(피스트 5타×2·6타×4)
+      push(comps.map(({ weight, mult }) => motionOf(
+        physRange(p.primary ?? 0, p.secondary ?? 0, mult, p.watk ?? 0, p.mastery ?? 1),
+        weight, postMult,
+      )))
+    })
+  }
 
-  const lineDists: Dist[] = lines.map((comps, lineIdx) => {
-    const postMult = p.hitMultipliers?.[lineIdx] ?? 1 // 7단계 타수배율(피스트 5타×2·6타×4)
-    const parts: { weight: number; dist: Dist }[] = []
-    let lmin = Infinity
-    let lmax = -Infinity
-    for (const { weight, mult } of comps) {
-      const mix = critParts(physRange(p.primary ?? 0, p.secondary ?? 0, mult, p.watk ?? 0, p.mastery ?? 1), weight, postMult)
-      parts.push(...mix.parts)
-      lmin = Math.min(lmin, mix.min)
-      lmax = Math.max(lmax, mix.max)
-    }
-    lineRanges.push({ min: lmin, max: lmax })
-    return mixtureDist(parts)
-  })
-
-  const dist = lineDists.reduce((acc, d) => convolve(acc, d))
-  return { dist, totalRange: { min: dist.base, max: dist.base + (dist.p.length - 1) * dist.step }, lineRanges }
+  const dist = assembleCast(specs, hasCrit ? critProb : 0)
+  return {
+    dist,
+    totalRange: { min: dist.base, max: dist.base + (dist.p.length - 1) * dist.step },
+    lineRanges,
+  }
 }
 
 /** @deprecated computeCast 사용 */
