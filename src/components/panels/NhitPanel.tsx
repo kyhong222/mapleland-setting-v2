@@ -114,14 +114,26 @@ export default function NhitPanel() {
     }
     const critProb = critChance > 0 && critMult > 1 ? critChance / 100 : 0
 
-    // 차지(속성 부여) — 팔라딘(메인/보조) / 소울마스터 소울차지(성속성 단일)
+    // 차지(속성 부여) — 팔라딘(메인/보조) / 스트라이커 라이트닝 차지 / 소울마스터 소울차지
     let charge: ChargeState | null = null
     let chargeCoefMult = 1
-    let paladinCharge = false
+    // 통합 배율(속성반응+계수) 사용 여부. false면 속성반응만 쓰고 계수는 따로 곱한다.
+    let unifiedCharge = false
     if (!isMagic) {
       if (jobId === 'paladin') {
         charge = chargeFromUi(chargeState)
-        paladinCharge = !!charge
+        unifiedCharge = !!charge
+      } else if (jobId === 'striker') {
+        const clv = activeBuffs['15101006'] // 라이트닝 차지(번개) — 기본배수는 스킬 damage%
+        if (clv) {
+          charge = {
+            main: 'lightning',
+            mainLevel: clv,
+            thunderLevel: null,
+            baseMult: skillNumAt(15101006, clv, 'damage') / 100,
+          }
+          unifiedCharge = true
+        }
       } else if (jobId === 'soulMaster') {
         const clv = activeBuffs['11111007'] // 소울 차지(성속성)
         if (clv) {
@@ -132,7 +144,7 @@ export default function NhitPanel() {
     }
     // 속성배율 — 차지 활성 시 차지 속성/레벨 배율로 대체
     let elementMult: number
-    if (paladinCharge && charge) {
+    if (unifiedCharge && charge) {
       elementMult = chargeMultiplier(charge, monster.elemAttr)
     } else if (charge) {
       elementMult = chargeElementMult(charge, monster.elemAttr)

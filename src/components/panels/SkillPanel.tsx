@@ -305,7 +305,8 @@ function advChargeCaption(level: number): string {
 /**
  * 라이트닝 차지(15101006) 설명: 속성 부여 + 데미지 계수 + 마력.
  * 데미지%는 스킬 원본의 damage(101~120)에서 100을 뺀 값.
- * ※ 속성 부여와 데미지%는 표기만 — 현재 데미지 계산에는 마력만 들어간다.
+ * 셋 다 실제로 반영된다 — 속성/계수는 NhitPanel이 팔라딘과 같은 통합
+ * 차지배율(chargeMultiplier, baseMult=damage/100)로 처리한다.
  */
 function lightningChargeCaption(buff: Buff, level: number, eff: EffectMap): string | null {
   if (buff.id !== '15101006') return null

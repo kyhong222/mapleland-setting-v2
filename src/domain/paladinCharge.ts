@@ -64,6 +64,12 @@ export interface ChargeState {
   mainLevel: number
   /** 보조 썬더 중첩 레벨 (없으면 null) */
   thunderLevel: number | null
+  /**
+   * 기본배수 직접 지정. 팔라딘 차지는 계수표(chargeBaseMult)를 쓰지만,
+   * 스킬 원본의 damage%가 곧 기본배수인 차지(스트라이커 라이트닝 차지 등)는
+   * damage/100을 여기에 넣는다. 없으면 계수표를 쓴다.
+   */
+  baseMult?: number
 }
 
 /**
@@ -112,12 +118,15 @@ function attrMult(reaction: Reaction, level: number): number {
 }
 
 /**
- * 팔라딘 차지 통합 배율(속성반응 + 계수) — 2단계(PRE_DEFENSE).
+ * 차지 통합 배율(속성반응 + 계수) — 2단계(PRE_DEFENSE).
  *  차지배율 = 1 + 기본차지_기여 + 보조차지_기여
  *  기본_기여 = (기본배수 − 1) × 속성배수(주차지)
  *  보조_기여 = ASSIST_COEF × 속성배수(썬더)      ← 썬더 중첩 시에만
  * 각 차지는 자기 속성/레벨로 따로 판정한다. 면역인 차지의 기여만 0이 되며,
  * 배율 자체는 1 미만으로 내려가지 않는 물리 데미지를 유지한다.
+ *
+ * 팔라딘 외에도 같은 모델을 쓰는 차지가 있다(스트라이커 라이트닝 차지 —
+ * state.baseMult로 스킬 원본 damage%를 넘긴다).
  */
 export function chargeMultiplier(
   state: ChargeState,
@@ -125,7 +134,8 @@ export function chargeMultiplier(
   rule: ChargeStackRule = CHARGE_STACK_RULE,
 ): number {
   const pReact = elementReaction(monsterElemAttr, ELEM_CODE[state.main])
-  const primary = (chargeBaseMult(state.main, state.mainLevel) - 1) * attrMult(pReact, state.mainLevel)
+  const base = state.baseMult ?? chargeBaseMult(state.main, state.mainLevel)
+  const primary = (base - 1) * attrMult(pReact, state.mainLevel)
   let assist = 0
   if (state.thunderLevel != null && state.main !== 'lightning') {
     const aReact = elementReaction(monsterElemAttr, 'L')
