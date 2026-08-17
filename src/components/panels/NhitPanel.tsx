@@ -8,7 +8,7 @@ import MenuItem from '@mui/material/MenuItem'
 import TextField from '@mui/material/TextField'
 import Button from '@mui/material/Button'
 import CollapsiblePanel from '../common/CollapsiblePanel'
-import { useBuildStore } from '../../store/buildStore'
+import { useBuildStore, DEFAULT_CHARGE } from '../../store/buildStore'
 import { useInventoryStore } from '../../store/inventoryStore'
 import { useMonsterStore } from '../../store/monsterStore'
 import { aggregateBuild, equippedWeaponType } from '../../store/aggregate'
@@ -75,7 +75,8 @@ export default function NhitPanel() {
   const invItems = useInventoryStore((s) => s.items)
   const selectedMobId = useMonsterStore((s) => s.selectedId)
   const activeBuffs = useBuildStore((s) => s.activeBuffs)
-  const chargeState = useBuildStore((s) => s.charge)
+  // 구버전 영속 상태엔 charge가 없을 수 있다 (없으면 chargeFromUi에서 터진다)
+  const chargeState = useBuildStore((s) => s.charge) ?? DEFAULT_CHARGE
   const buffEffects = useBuffEffects()
   const builts = useActiveEquippedBuilts()
 
