@@ -3128,40 +3128,5 @@
     "jobs": [
       "striker"
     ]
-  },
-  {
-    "id": "15111006",
-    "type": "skill",
-    "name": "스파크",
-    "scope": "personal",
-    "mode": "active",
-    "masterLevel": 20,
-    "effectsByLevel": [
-      {},
-      {},
-      {},
-      {},
-      {},
-      {},
-      {},
-      {},
-      {},
-      {},
-      {},
-      {},
-      {},
-      {},
-      {},
-      {},
-      {},
-      {},
-      {},
-      {}
-    ],
-    "icon": "/skill-icons/15111006.png",
-    "jobs": [
-      "striker"
-    ],
-    "note": "추가타 — n타 계산의 \"추가 스킬\"로 반영"
   }
 ]
