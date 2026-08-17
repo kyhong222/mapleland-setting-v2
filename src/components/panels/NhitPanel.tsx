@@ -33,9 +33,9 @@ import type { ChargeElement } from '../../domain/paladinCharge'
 /**
  * 시그너스 차지 — 직업당 하나이며, 특화 버프 토글 레벨이 그대로 차지 레벨이 된다.
  *
- * 기본배수는 WZ `z` 필드에서 온다(`1 + z/100`). z = 12 + (L−1)×2 → 마스터(20) 50,
- * 즉 기본배수 1.50. 팔라딘 차지의 z(13 or 43 + (L−1)×3 → 마스터 100, 배수 2.00)와
- * 같은 자리다. `damage` 필드는 차지 스킬 자체가 시전 시 때리는 공격 데미지%라 무관.
+ * 기본배수 = `damage`/100 → 마스터 120 → ×1.20.
+ * ⚠ `z`는 데미지 계수가 아니라 **속성반응 강도**다(약점 = 1 + z/200, 반감 = 1 − z/200).
+ *   팔라딘 5종 전 레벨에서 문서의 속성반응 공식과 완전히 일치한다.
  *
  * 속성 근거는 스킬 설명("검에 성속성 부여" / "너클에 번개 속성 부여").
  * 차지류는 무기 속성을 바꾸는 방식이라 스킬 자체에 elemAttr가 붙지 않고(팔라딘도 동일),
@@ -140,7 +140,7 @@ export default function NhitPanel() {
       if (jobId === 'paladin') {
         charge = chargeFromUi(chargeState)
       } else {
-        // 시그너스 차지 — 켠 레벨의 z로 기본배수를 만든다 (1 + z/100)
+        // 시그너스 차지 — 켠 레벨의 damage%가 기본배수 (마스터 120 → ×1.20)
         const sc = SKILL_CHARGES[jobId ?? '']
         const clv = sc ? activeBuffs[String(sc.id)] : undefined
         if (sc && clv) {
@@ -148,7 +148,7 @@ export default function NhitPanel() {
             main: sc.element,
             mainLevel: clv,
             thunderLevel: null,
-            baseMult: 1 + skillNumAt(sc.id, clv, 'z') / 100,
+            baseMult: skillNumAt(sc.id, clv, 'damage') / 100,
           }
         }
       }

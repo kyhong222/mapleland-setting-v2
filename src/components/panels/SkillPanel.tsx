@@ -310,15 +310,15 @@ const SKILL_CHARGE_ELEMENT: Record<string, string> = {
 
 /**
  * 차지 버프 설명: 속성 부여 + 데미지 계수 + 마력.
- * 데미지%는 WZ `z` 필드(차지 기본계수) — 마스터 50 → 기본배수 1.50.
- * `damage` 필드는 차지 스킬이 시전 시 때리는 공격 데미지%라 여기선 쓰지 않는다.
+ * 데미지%는 WZ `damage` 필드 − 100 (마스터 120 → +20%).
+ * (`z`는 데미지가 아니라 속성반응 강도 — 약점 1 + z/200, 반감 1 − z/200)
  * 셋 다 실제로 반영된다 — 속성/계수는 NhitPanel이 팔라딘과 같은 통합
- * 차지배율(chargeMultiplier, baseMult = 1 + z/100)로 처리한다.
+ * 차지배율(chargeMultiplier, baseMult = damage/100)로 처리한다.
  */
 function skillChargeCaption(buff: Buff, level: number, eff: EffectMap): string | null {
   const el = SKILL_CHARGE_ELEMENT[buff.id]
   if (!el) return null
-  const dmg = skillNumAt(Number(buff.id), level, 'z')
+  const dmg = Math.max(0, skillNumAt(Number(buff.id), level, 'damage') - 100)
   const parts = [`${el} 속성 부여`]
   if (dmg > 0) parts.push(`데미지 +${dmg}%`)
   if (eff.mad) parts.push(`마력 +${eff.mad}`)

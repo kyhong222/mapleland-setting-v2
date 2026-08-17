@@ -76,13 +76,16 @@ export const CHARGE_STACK_RULE: ChargeStackRule = 'ORIGINAL_V86'
 const ASSIST_COEF: Record<ChargeStackRule, number> = { ORIGINAL_V86: 0.125, MAPLELAND_CURRENT: 0.625 }
 
 /**
- * 팔라딘 차지 기본배수. 내부 수치는 WZ 레벨속성의 `z` 필드다(스킬북 8종 전 레벨 대조 확인).
+ * 팔라딘 차지 기본배수.
  *  불/얼음/전기: 1레벨 13, 레벨당 +3 → 30레벨 100
  *  홀리/디바인: 1레벨 43, 레벨당 +3 → 20레벨 100
- *  기본배수 = 1 + z/100  (예: 파이어 30레벨 = 1 + 100/100 = 2.0)
- * ※ `damage` 필드는 차지 스킬이 시전 시 때리는 자체 공격 데미지%(플레임 105~140 등)라
- *   기본배수와 무관하다. 시그너스 차지(z = 12+(L−1)×2 → 마스터 50)는 이 표를 쓰지 않고
- *   ChargeState.baseMult로 직접 넘긴다.
+ *  기본배수 = 1 + 내부수치/100  (예: 파이어 30레벨 = 1 + 100/100 = 2.0)
+ *
+ * ❓ 이 "내부 수치"는 WZ `z` 필드와 전 레벨 일치하는데, z는 아래 attrMult가 쓰는
+ *   속성반응 강도이기도 하다(약점 = 1 + z/200). 즉 z를 기본배수와 속성반응에
+ *   중복으로 쓰고 있을 가능성이 있다. 데미지 계수라면 `damage` 필드(플레임 140 /
+ *   블리자드 110 / 선더 125 / 홀리 150)를 써야 한다. 실측 전까지 종전 동작 유지.
+ *   docs/nhit-dpm.md "차지 모델 미해결 사항" 참조.
  */
 export function chargeBaseMult(el: ChargeElement, level: number): number {
   const internal = (el === 'holy' ? 43 : 13) + (level - 1) * 3
