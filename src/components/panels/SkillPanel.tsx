@@ -23,9 +23,10 @@ import { COMMON_BUFFS, PARTY_BUFFS, PERSONAL_BUFFS, DOPING_ITEMS, JOB_BUFFS } fr
 import { canUseBuff, buffEffectsAtLevel, defaultBuffLevel, effectiveMasterLevel } from '../../domain/buff'
 import type { Buff } from '../../domain/buff'
 import { maxEffects } from '../../domain/effects'
+import type { EffectMap } from '../../domain/effects'
 import type { JobId } from '../../domain/jobs'
 import { WEAPON_CONSTANTS } from '../../domain/weapons'
-import { comboFinalDamageP, COMBO_SKILLS, findSkillById, skillAttackAt } from '../../data/skills'
+import { comboFinalDamageP, COMBO_SKILLS, findSkillById, skillAttackAt, skillNumAt } from '../../data/skills'
 import { CHARGE_LABEL, CHARGE_MASTER, CHARGE_ELEMENTS, chargeBaseMult, chargeMultiplier, chargeFromUi } from '../../domain/paladinCharge'
 import type { ChargeElement } from '../../domain/paladinCharge'
 import { DEFAULT_CHARGE } from '../../store/buildStore'
@@ -275,11 +276,12 @@ function BuffRow({ buff, onOpen }: { buff: Buff; onOpen: (b: Buff) => void }) {
   // 어드밴스드 차지: 차지 블로우 계수 강화 설명
   const advText = buff.id === '1220010' ? advChargeCaption(shownLevel) : null
   const mgText = magicGuardCaption(buff, shownLevel)
+  const lcText = lightningChargeCaption(buff, shownLevel, eff)
   const effText = formatEffects(eff)
   // note는 보조 안내문 — 효과가 있으면 뒤에 덧붙이고(스턴 마스터리 '스턴 상황 가정'),
   // 효과가 없으면 단독 표시(미구현 스킬 표기)
   const noteText = buff.note ? (effText ? `${effText} · ${buff.note}` : buff.note) : null
-  const caption = requiresShield && !shieldOk ? '방패 착용 필요' : (mgText ?? noteText ?? advText ?? comboText ?? (effText || '—'))
+  const caption = requiresShield && !shieldOk ? '방패 착용 필요' : (mgText ?? lcText ?? noteText ?? advText ?? comboText ?? (effText || '—'))
   return (
     <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5, py: 0.25 }}>
       <BuffIcon buff={buff} active={active} highlightActive onClick={() => toggleBuff(buff.id)} onLongPress={() => onOpen(buff)} />
@@ -298,6 +300,20 @@ function advChargeCaption(level: number): string {
   const sk = findSkillById(1220010)
   const att = sk ? skillAttackAt(sk, level) : null
   return `차지 블로우 데미지 계수 ${att?.skillPercent ?? 350}%`
+}
+
+/**
+ * 라이트닝 차지(15101006) 설명: 속성 부여 + 데미지 계수 + 마력.
+ * 데미지%는 스킬 원본의 damage(101~120)에서 100을 뺀 값.
+ * ※ 속성 부여와 데미지%는 표기만 — 현재 데미지 계산에는 마력만 들어간다.
+ */
+function lightningChargeCaption(buff: Buff, level: number, eff: EffectMap): string | null {
+  if (buff.id !== '15101006') return null
+  const dmg = Math.max(0, skillNumAt(15101006, level, 'damage') - 100)
+  const parts = ['번개 속성 부여']
+  if (dmg > 0) parts.push(`데미지 +${dmg}%`)
+  if (eff.mad) parts.push(`마력 +${eff.mad}`)
+  return parts.join(', ')
 }
 
 /** 매직가드(2001002·12001001) 설명: 레벨별 MP 전환 비율. 그 외 null */
