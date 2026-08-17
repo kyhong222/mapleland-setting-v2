@@ -276,7 +276,7 @@ function BuffRow({ buff, onOpen }: { buff: Buff; onOpen: (b: Buff) => void }) {
   // 어드밴스드 차지: 차지 블로우 계수 강화 설명
   const advText = buff.id === '1220010' ? advChargeCaption(shownLevel) : null
   const mgText = magicGuardCaption(buff, shownLevel)
-  const lcText = lightningChargeCaption(buff, shownLevel, eff)
+  const lcText = skillChargeCaption(buff, shownLevel, eff)
   const effText = formatEffects(eff)
   // note는 보조 안내문 — 효과가 있으면 뒤에 덧붙이고(스턴 마스터리 '스턴 상황 가정'),
   // 효과가 없으면 단독 표시(미구현 스킬 표기)
@@ -302,16 +302,23 @@ function advChargeCaption(level: number): string {
   return `차지 블로우 데미지 계수 ${att?.skillPercent ?? 350}%`
 }
 
+/** 스킬 damage%가 곧 차지 기본배수인 차지 — 버프 id → 속성 표시명 */
+const SKILL_CHARGE_ELEMENT: Record<string, string> = {
+  '15101006': '번개', // 라이트닝 차지 (스트라이커)
+  '11111007': '성',   // 소울 차지 (소울마스터)
+}
+
 /**
- * 라이트닝 차지(15101006) 설명: 속성 부여 + 데미지 계수 + 마력.
+ * 차지 버프 설명: 속성 부여 + 데미지 계수 + 마력.
  * 데미지%는 스킬 원본의 damage(101~120)에서 100을 뺀 값.
  * 셋 다 실제로 반영된다 — 속성/계수는 NhitPanel이 팔라딘과 같은 통합
  * 차지배율(chargeMultiplier, baseMult=damage/100)로 처리한다.
  */
-function lightningChargeCaption(buff: Buff, level: number, eff: EffectMap): string | null {
-  if (buff.id !== '15101006') return null
-  const dmg = Math.max(0, skillNumAt(15101006, level, 'damage') - 100)
-  const parts = ['번개 속성 부여']
+function skillChargeCaption(buff: Buff, level: number, eff: EffectMap): string | null {
+  const el = SKILL_CHARGE_ELEMENT[buff.id]
+  if (!el) return null
+  const dmg = Math.max(0, skillNumAt(Number(buff.id), level, 'damage') - 100)
+  const parts = [`${el} 속성 부여`]
   if (dmg > 0) parts.push(`데미지 +${dmg}%`)
   if (eff.mad) parts.push(`마력 +${eff.mad}`)
   return parts.join(', ')

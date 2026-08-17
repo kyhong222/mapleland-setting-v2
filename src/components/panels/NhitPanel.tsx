@@ -27,7 +27,17 @@ import { computeCast, computeNhit, computeDpm, baseElementMult, SKILL_MOTION } f
 import { convolve } from '../../domain/nhitProb'
 import type { Dist } from '../../domain/nhitProb'
 import { attacksPerMinute } from '../../data/attackSpeed'
-import { chargeElementMult, chargeMultiplier, chargeFromUi } from '../../domain/paladinCharge'
+import { chargeMultiplier, chargeFromUi } from '../../domain/paladinCharge'
+import type { ChargeElement } from '../../domain/paladinCharge'
+
+/**
+ * 스킬 원본 damage%가 곧 차지 기본배수인 차지 (팔라딘 차지는 별도 계수표 사용).
+ * 직업당 하나이며, 특화 버프 토글 레벨이 그대로 차지 레벨이 된다.
+ */
+const SKILL_CHARGES: Record<string, { id: number; element: ChargeElement }> = {
+  striker: { id: 15101006, element: 'lightning' }, // 라이트닝 차지
+  soulMaster: { id: 11111007, element: 'holy' },   // 소울 차지
+}
 
 const skillIconSrc = (id: number) => `/skill-icons/${id}.png`
 const hideOnError = (e: SyntheticEvent<HTMLImageElement>) => { e.currentTarget.style.visibility = 'hidden' }
@@ -114,43 +124,31 @@ export default function NhitPanel() {
     }
     const critProb = critChance > 0 && critMult > 1 ? critChance / 100 : 0
 
-    // 차지(속성 부여) — 팔라딘(메인/보조) / 스트라이커 라이트닝 차지 / 소울마스터 소울차지
+    // 차지(속성 부여) — 팔라딘(메인/보조) / 스트라이커 라이트닝 차지 / 소울마스터 소울차지.
+    // 셋 다 속성반응과 데미지 계수를 하나로 합친 통합 배율(chargeMultiplier)을 쓴다.
     let charge: ChargeState | null = null
-    let chargeCoefMult = 1
-    // 통합 배율(속성반응+계수) 사용 여부. false면 속성반응만 쓰고 계수는 따로 곱한다.
-    let unifiedCharge = false
     if (!isMagic) {
       if (jobId === 'paladin') {
         charge = chargeFromUi(chargeState)
-        unifiedCharge = !!charge
-      } else if (jobId === 'striker') {
-        const clv = activeBuffs['15101006'] // 라이트닝 차지(번개) — 기본배수는 스킬 damage%
-        if (clv) {
+      } else {
+        // 스킬 damage%가 곧 기본배수인 차지 — 켠 레벨로 baseMult를 만든다
+        const sc = SKILL_CHARGES[jobId ?? '']
+        const clv = sc ? activeBuffs[String(sc.id)] : undefined
+        if (sc && clv) {
           charge = {
-            main: 'lightning',
+            main: sc.element,
             mainLevel: clv,
             thunderLevel: null,
-            baseMult: skillNumAt(15101006, clv, 'damage') / 100,
+            baseMult: skillNumAt(sc.id, clv, 'damage') / 100,
           }
-          unifiedCharge = true
-        }
-      } else if (jobId === 'soulMaster') {
-        const clv = activeBuffs['11111007'] // 소울 차지(성속성)
-        if (clv) {
-          charge = { main: 'holy', mainLevel: clv, thunderLevel: null }
-          chargeCoefMult = skillNumAt(11111007, clv, 'damage') / 100
         }
       }
     }
-    // 속성배율 — 차지 활성 시 차지 속성/레벨 배율로 대체
-    let elementMult: number
-    if (unifiedCharge && charge) {
-      elementMult = chargeMultiplier(charge, monster.elemAttr)
-    } else if (charge) {
-      elementMult = chargeElementMult(charge, monster.elemAttr)
-    } else {
-      elementMult = baseElementMult(elementReaction(monster.elemAttr, att.element))
-    }
+    // 속성배율 — 차지 활성 시 차지 속성/레벨 통합 배율로 대체
+    const elementMultRaw = charge
+      ? chargeMultiplier(charge, monster.elemAttr)
+      : baseElementMult(elementReaction(monster.elemAttr, att.element))
+    let elementMult: number = elementMultRaw
     // 엘리멘탈 리셋(플위): 무속성화 blend
     if (jobId === 'flameWizard') {
       const rLv = activeBuffs['12101005']
@@ -175,7 +173,7 @@ export default function NhitPanel() {
     const threatenMult = 1 + (effects.monsterDamageTakenP ?? 0) / 100
     const counterMult = COMA_PANIC.has(sk.id) && comboBonus > 0 ? MAX_COUNTER_MULT : 1
     const shadowMult = 1 + (effects.shadowPartnerP ?? 0) / 100
-    const damageMult = (isMagic ? magicAmpMultiplier(effects) : 1) * finalMult * threatenMult * counterMult * shadowMult * chargeCoefMult
+    const damageMult = (isMagic ? magicAmpMultiplier(effects) : 1) * finalMult * threatenMult * counterMult * shadowMult
 
     const watk = totalAttack(effects)
     // 럭세/트스: LUK 전용 예외식 base(모션·부스탯·숙련 무시). 스킬%는 그대로 적용

@@ -50,14 +50,6 @@ export function chargeFromUi(c: ChargeUiState): ChargeState | null {
 
 type Reaction = ReturnType<typeof elementReaction>
 
-/** 단일 차지의 반응배율 (무효는 'immune') */
-function reactionMult(reaction: Reaction, level: number, holy: boolean): number | 'immune' {
-  if (reaction === 'immune') return 'immune'
-  if (reaction === 'weak') return (holy ? 1.2 : 1.05) + level * 0.015
-  if (reaction === 'half') return (holy ? 0.8 : 0.95) - level * 0.015
-  return 1.0 // none(무반응)
-}
-
 export interface ChargeState {
   /** 주차지 원소 (썬더단독이면 lightning) */
   main: ChargeElement
@@ -72,22 +64,7 @@ export interface ChargeState {
   baseMult?: number
 }
 
-/**
- * 차지 최종 속성배율 (§4 단독/중첩). 몬스터 무효 시 0.
- */
-export function chargeElementMult(state: ChargeState, monsterElemAttr: string | undefined): number {
-  const pMult = reactionMult(elementReaction(monsterElemAttr, ELEM_CODE[state.main]), state.mainLevel, state.main === 'holy')
-  // 단독차지 (또는 주차지가 썬더 = 썬더단독)
-  if (state.thunderLevel == null || state.main === 'lightning') {
-    return pMult === 'immune' ? 0 : pMult
-  }
-  // 중첩차지: 주차지 P + 보조 썬더 T
-  const tMult = reactionMult(elementReaction(monsterElemAttr, 'L'), state.thunderLevel, false)
-  if (pMult === 'immune' || tMult === 'immune') return 0
-  return pMult + (tMult - 1) * 0.5
-}
-
-// ── ORIGINAL_V86 통합 차지 모델 (팔라딘) ───────────────────────────────
+// ── ORIGINAL_V86 통합 차지 모델 ────────────────────────────────────────
 // 원작 고증(GMS v86/v95). 속성반응과 데미지 계수를 하나의 배율로 통합한다.
 
 export type ChargeStackRule = 'ORIGINAL_V86' | 'MAPLELAND_CURRENT'
