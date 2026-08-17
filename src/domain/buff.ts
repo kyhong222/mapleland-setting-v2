@@ -73,6 +73,12 @@ export interface SkillBuff extends BuffBase {
    * 예: 해적 트랜스폼/슈퍼트랜스폼. (에너지 차지는 변신과 독립이라 그룹에 없다)
    */
   exclusiveGroup?: string
+  /**
+   * 도핑/개인/파티 버프와 중첩되지 않는 효과. 특화 섹션의 토글이지만 합산 대신
+   * 그쪽과 같은 "능력치별 최댓값" 풀에 들어간다.
+   * 예: 해적 에너지 차지(공/명중/회피) — 타코야끼 공+8과 함께 켜도 공+20만 적용.
+   */
+  nonStacking?: boolean
 }
 
 export type Buff = ItemBuff | SkillBuff

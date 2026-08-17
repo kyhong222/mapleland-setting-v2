@@ -62,9 +62,10 @@ function BuffName({ buff, level }: { buff: Buff; level: number }) {
   )
 }
 
-/** 버프 툴팁 내용: 이름(+레벨) / 효과 */
+/** 버프 툴팁 내용: 이름(+레벨) / 효과 / 보조 안내문(note) */
 function buffTooltip(buff: Buff, level: number): React.ReactNode {
   const isSkill = buff.type === 'skill'
+  const effText = formatEffects(buffEffectsAtLevel(buff, level))
   return (
     <Box sx={{ py: 0.25 }}>
       <Typography variant="caption" sx={{ fontWeight: 700, display: 'block' }}>
@@ -72,8 +73,13 @@ function buffTooltip(buff: Buff, level: number): React.ReactNode {
         {isSkill && buff.masterLevel > 1 ? ` Lv.${level}` : ''}
       </Typography>
       <Typography variant="caption" sx={{ display: 'block' }}>
-        {formatEffects(buffEffectsAtLevel(buff, level)) || '—'}
+        {effText || '—'}
       </Typography>
+      {buff.note && (
+        <Typography variant="caption" sx={{ display: 'block', opacity: 0.75 }}>
+          {buff.note}
+        </Typography>
+      )}
     </Box>
   )
 }

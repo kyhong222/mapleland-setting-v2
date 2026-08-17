@@ -117,11 +117,15 @@ export interface BuffContext {
  *  - activeBuffs(토글): 영메·메용 + 직업특화 패시브 → 단순 합산
  *  - appliedBuffs(적용 목록: 도핑/개인/파티) → 능력치별 최댓값 후 합산
  *    (같은 종류 버프는 중첩되지 않고 높은 쪽만 적용)
+ *  - nonStacking 토글(해적 에너지 차지 등): 특화 섹션에 있지만 도핑/개인/파티와
+ *    중첩되지 않으므로, 합산이 아니라 위 최댓값 풀에 함께 넣는다.
  *  - 무기 마스터리/엑스퍼트: 장착 주무기 타입이 일치할 때만 자동 적용(레벨=masteryLevels[id] ?? 마스터)
  */
 export function activeBuffEffects(ctx: BuffContext): EffectMap {
   const { activeBuffs, appliedBuffs, masteryLevels, masteryOff, jobId, weaponType, hasShield } = ctx
   const sumMaps: EffectMap[] = []
+  // 능력치별 최댓값으로 경쟁하는 풀 (도핑/개인/파티 + nonStacking 토글)
+  const maxPool: EffectMap[] = []
   // 토글 버프 (무기 게이팅 버프는 여기서 제외 — 아래서 따로 처리)
   for (const [id, level] of Object.entries(activeBuffs)) {
     const b = getBuff(id)
@@ -129,19 +133,20 @@ export function activeBuffEffects(ctx: BuffContext): EffectMap {
     // 방패 필요 버프(블로킹)는 방패 미착용 시 제외
     if (b.type === 'skill' && b.requiresShield && !hasShield) continue
     // 직업 상한(정령의 축복: 모험가 12) 초과 저장분 클램프
-    sumMaps.push(buffEffectsAtLevel(b, Math.min(level, effectiveMasterLevel(b, jobId))))
+    const eff = buffEffectsAtLevel(b, Math.min(level, effectiveMasterLevel(b, jobId)))
+    if (b.type === 'skill' && b.nonStacking) maxPool.push(eff)
+    else sumMaps.push(eff)
   }
   // 무기 마스터리/엑스퍼트 — 장착 주무기 일치 시 자동 적용 (off한 것은 제외)
   for (const b of appliedMasteries(jobId, weaponType)) {
     if (!masteryOff?.[b.id]) sumMaps.push(buffEffectsAtLevel(b, masteryLevels[b.id] ?? b.masterLevel))
   }
   // 적용 버프(도핑/개인/파티) — 능력치별 최댓값 적용
-  const appliedMaps: EffectMap[] = []
   for (const [id, level] of Object.entries(appliedBuffs)) {
     const b = getBuff(id)
-    if (b) appliedMaps.push(buffEffectsAtLevel(b, level))
+    if (b) maxPool.push(buffEffectsAtLevel(b, level))
   }
-  return sumEffects(...sumMaps, maxEffects(...appliedMaps))
+  return sumEffects(...sumMaps, maxEffects(...maxPool))
 }
 
 export interface Aggregated {

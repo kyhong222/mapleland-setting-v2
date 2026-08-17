@@ -20,7 +20,7 @@
  *
  * ⚠ 이 생성기는 최초 부트스트랩 이후 손으로 관리해온 JSON을 따라오지 못한다.
  * 2026-08-14 기준 그대로 --write 하면 아래가 유실된다:
- *   - SKILL_MAP에 정의 없는 45건 (부스터 전종, 시그너스 5직업 전부,
+ *   - SKILL_MAP에 정의 없는 47건 (부스터 전종, 시그너스 5직업 전부,
  *     어드밴스드 차지, 매직 가드, 에너지 차지, 스턴 마스터리 등)
  *   - SUB_JOBS에 시그너스(1100~1511)가 없어 해당 스킬북을 읽지도 않음
  *   - requires / requiresShield / variants 필드 (buildSkill 미출력)
@@ -248,6 +248,7 @@ function buildSkill(skill, def, code) {
   if (def.weaponTypes) out.weaponTypes = def.weaponTypes
   if (def.exclusiveGroup) out.exclusiveGroup = def.exclusiveGroup
   if (def.note) out.note = def.note
+  if (def.nonStacking) out.nonStacking = def.nonStacking
   return out
 }
 

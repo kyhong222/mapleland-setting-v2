@@ -4506,7 +4506,8 @@
         "eva": 20
       }
     ],
-    "icon": "/skill-icons/15100004.png"
+    "icon": "/skill-icons/15100004.png",
+    "nonStacking": true
   },
   {
     "id": "5110001",
@@ -4717,7 +4718,8 @@
         "eva": 20,
         "pad": 20
       }
-    ]
+    ],
+    "nonStacking": true
   },
   {
     "id": "15111002",
