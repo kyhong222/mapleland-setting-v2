@@ -37,12 +37,14 @@ import type { ChargeElement } from '../../domain/paladinCharge'
  * 즉 기본배수 1.50. 팔라딘 차지의 z(13 or 43 + (L−1)×3 → 마스터 100, 배수 2.00)와
  * 같은 자리다. `damage` 필드는 차지 스킬 자체가 시전 시 때리는 공격 데미지%라 무관.
  *
- * 소울 차지(성): 마스터 기준 속성배수 약점 1.50 / 반감 0.50 확인됨.
- * 라이트닝 차지: 스킬 설명이 "너클에 번개 속성을 부여한다"라 번개로 두었으나
- *   실제 속성반응이 번개로 붙는지는 ❓ 미확인 — 실측 시 element를 고칠 것.
+ * 속성 근거는 스킬 설명("검에 성속성 부여" / "너클에 번개 속성 부여").
+ * 차지류는 무기 속성을 바꾸는 방식이라 스킬 자체에 elemAttr가 붙지 않고(팔라딘도 동일),
+ * 게다가 이 데이터셋은 시그너스 98개 스킬 전부 속성값이 비어 있다(플레임위자드
+ * 파이어 에로우조차 undefined). 즉 elemAttr 부재는 판단 근거가 못 된다.
+ * 소울 차지(성)는 마스터 속성배수 약점 1.50 / 반감 0.50으로 검증 완료.
  */
 const SKILL_CHARGES: Record<string, { id: number; element: ChargeElement }> = {
-  striker: { id: 15101006, element: 'lightning' }, // 라이트닝 차지 ❓ 속성 미확인
+  striker: { id: 15101006, element: 'lightning' }, // 라이트닝 차지
   soulMaster: { id: 11111007, element: 'holy' },   // 소울 차지
 }
 
