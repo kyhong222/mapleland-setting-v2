@@ -86,11 +86,17 @@ export function chargeBaseMult(el: ChargeElement, level: number): number {
   return 1 + internal / 100
 }
 
-/** 속성배수: 면역 0, 약점 1.05+L×0.015, 반감 0.95−L×0.015, 무반응 1.0 */
-function attrMult(reaction: Reaction, level: number): number {
+/**
+ * 속성배수 (docs/nhit-dpm.md §4). 면역 0 / 무반응 1.0.
+ *  - 파이어·아이스·썬더: 약점 1.05+L×0.015, 반감 0.95−L×0.015  → 마스터(L30) 1.50 / 0.50
+ *  - 홀리(성): 약점 1.20+L×0.015, 반감 0.80−L×0.015            → 마스터(L20) 1.50 / 0.50
+ * 홀리는 마스터레벨이 20이라 같은 1.50/0.50에 도달하도록 계수가 다르다.
+ * 소울 차지(성, 마스터 20)도 약점 1.50 / 반감 0.50으로 확인됨.
+ */
+function attrMult(reaction: Reaction, level: number, holy: boolean): number {
   if (reaction === 'immune') return 0
-  if (reaction === 'weak') return 1.05 + level * 0.015
-  if (reaction === 'half') return 0.95 - level * 0.015
+  if (reaction === 'weak') return (holy ? 1.2 : 1.05) + level * 0.015
+  if (reaction === 'half') return (holy ? 0.8 : 0.95) - level * 0.015
   return 1.0
 }
 
@@ -112,11 +118,11 @@ export function chargeMultiplier(
 ): number {
   const pReact = elementReaction(monsterElemAttr, ELEM_CODE[state.main])
   const base = state.baseMult ?? chargeBaseMult(state.main, state.mainLevel)
-  const primary = (base - 1) * attrMult(pReact, state.mainLevel)
+  const primary = (base - 1) * attrMult(pReact, state.mainLevel, state.main === 'holy')
   let assist = 0
   if (state.thunderLevel != null && state.main !== 'lightning') {
     const aReact = elementReaction(monsterElemAttr, 'L')
-    assist = ASSIST_COEF[rule] * attrMult(aReact, state.thunderLevel)
+    assist = ASSIST_COEF[rule] * attrMult(aReact, state.thunderLevel, false)
   }
   return 1 + primary + assist
 }

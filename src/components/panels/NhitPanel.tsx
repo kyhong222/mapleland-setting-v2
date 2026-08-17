@@ -33,9 +33,13 @@ import type { ChargeElement } from '../../domain/paladinCharge'
 /**
  * 스킬 원본 damage%가 곧 차지 기본배수인 차지 (팔라딘 차지는 별도 계수표 사용).
  * 직업당 하나이며, 특화 버프 토글 레벨이 그대로 차지 레벨이 된다.
+ *
+ * 소울 차지(성): 마스터 기준 약점 1.50 / 반감 0.50 확인됨.
+ * 라이트닝 차지: 스킬 설명이 "너클에 번개 속성을 부여한다"라 번개로 두었으나
+ *   실제 속성반응이 번개로 붙는지는 ❓ 미확인 — 실측 시 element를 고칠 것.
  */
 const SKILL_CHARGES: Record<string, { id: number; element: ChargeElement }> = {
-  striker: { id: 15101006, element: 'lightning' }, // 라이트닝 차지
+  striker: { id: 15101006, element: 'lightning' }, // 라이트닝 차지 ❓ 속성 미확인
   soulMaster: { id: 11111007, element: 'holy' },   // 소울 차지
 }
 
