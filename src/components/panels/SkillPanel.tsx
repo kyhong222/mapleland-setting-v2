@@ -26,8 +26,8 @@ import { maxEffects } from '../../domain/effects'
 import type { EffectMap } from '../../domain/effects'
 import type { JobId } from '../../domain/jobs'
 import { WEAPON_CONSTANTS } from '../../domain/weapons'
-import { comboFinalDamageP, COMBO_SKILLS, findSkillById, skillAttackAt, skillNumAt } from '../../data/skills'
-import { CHARGE_LABEL, CHARGE_MASTER, CHARGE_ELEMENTS, chargeBaseMult, chargeMultiplier, chargeFromUi } from '../../domain/paladinCharge'
+import { comboFinalDamageP, COMBO_SKILLS, findSkillById, skillAttackAt, skillNumAt, chargeDamagePercent, chargeStats } from '../../data/skills'
+import { CHARGE_LABEL, CHARGE_MASTER, CHARGE_ELEMENTS, chargeMultiplier, chargeFromUi } from '../../domain/paladinCharge'
 import type { ChargeElement } from '../../domain/paladinCharge'
 import { DEFAULT_CHARGE } from '../../store/buildStore'
 import { useMonsterStore } from '../../store/monsterStore'
@@ -309,18 +309,19 @@ const SKILL_CHARGE_ELEMENT: Record<string, string> = {
 }
 
 /**
- * 차지 버프 설명: 속성 부여 + 데미지 계수 + 마력.
- * 데미지%는 WZ `damage` 필드 − 100 (마스터 120 → +20%).
- * (`z`는 데미지가 아니라 속성반응 강도 — 약점 1 + z/200, 반감 1 − z/200)
- * 셋 다 실제로 반영된다 — 속성/계수는 NhitPanel이 팔라딘과 같은 통합
- * 차지배율(chargeMultiplier, baseMult = damage/100)로 처리한다.
+ * 차지 버프 설명: 속성 / 데미지% / 약점·반감 공격 시 총 배율.
+ * 차지는 데미지 증가(`damage`)와 속성배율(`z`)을 함께 갖고 서로 곱해진다.
+ *   무반응 = damage%,  약점 = damage% × (1 + z/200),  반감 = damage% × (1 − z/200)
  */
 function skillChargeCaption(buff: Buff, level: number, eff: EffectMap): string | null {
   const el = SKILL_CHARGE_ELEMENT[buff.id]
   if (!el) return null
-  const dmg = Math.max(0, skillNumAt(Number(buff.id), level, 'damage') - 100)
-  const parts = [`${el} 속성 부여`]
-  if (dmg > 0) parts.push(`데미지 +${dmg}%`)
+  const id = Number(buff.id)
+  const dmg = skillNumAt(id, level, 'damage')
+  const z = skillNumAt(id, level, 'z')
+  const parts = [`${el} 속성`, `데미지 ${dmg}%`]
+  parts.push(`약점 공격시 ${Math.round(dmg * (1 + z / 200))}%`)
+  parts.push(`반감 공격시 ${Math.round(dmg * (1 - z / 200))}%`)
   if (eff.mad) parts.push(`마력 +${eff.mad}`)
   return parts.join(', ')
 }
@@ -524,13 +525,13 @@ function ChargeSection() {
   const selectedMobId = useMonsterStore((s) => s.selectedId)
   const [dlg, setDlg] = useState<'main' | 'sub' | null>(null)
   const mainIsThunder = charge.mainElement === 'lightning'
-  // 선택 몬스터 기준 통합 차지배율(ORIGINAL_V86: 속성반응 + 계수 통합)
-  const state = charge.mainOn ? chargeFromUi(charge) : null
+  // 선택 몬스터 기준 차지배율 (데미지배수 × 속성배수)
+  const state = charge.mainOn ? chargeFromUi(charge, chargeStats) : null
   const monster = selectedMobId != null ? getMonster(selectedMobId) : undefined
   const appliedMult = state ? chargeMultiplier(state, monster?.elemAttr) : null
-  // 각 차지의 기본배수%(내부 수치 기반). 예: 파이어 30레벨 = 200%
-  const mainBase = Math.round(chargeBaseMult(charge.mainElement, charge.mainLevel) * 100)
-  const subBase = Math.round(chargeBaseMult('lightning', charge.subLevel) * 100)
+  // 각 차지의 데미지 증가%(damage 필드). 예: 파이어 30레벨 = 140%
+  const mainBase = chargeDamagePercent(charge.mainElement, charge.mainLevel)
+  const subBase = chargeDamagePercent('lightning', charge.subLevel)
   return (
     <>
       <Typography variant="caption" color="text.secondary" sx={{ display: 'block', mt: 0.5 }}>
@@ -545,7 +546,7 @@ function ChargeSection() {
         icon={CHARGE_ICON[charge.mainElement]}
         active={charge.mainOn}
         title={`메인 차지 [${CHARGE_LABEL[charge.mainElement]}]`}
-        caption={charge.mainOn ? `Lv.${charge.mainLevel} · 기본배수 ${mainBase}%` : '꺼짐'}
+        caption={charge.mainOn ? `Lv.${charge.mainLevel} · 데미지 ${mainBase}%` : '꺼짐'}
         onToggle={() => setCharge({ mainOn: !charge.mainOn })}
         onOpen={() => setDlg('main')}
       />
@@ -554,7 +555,7 @@ function ChargeSection() {
         active={charge.subOn && !mainIsThunder}
         disabled={mainIsThunder}
         title="보조 차지 [썬더]"
-        caption={mainIsThunder ? '비활성' : charge.subOn ? `Lv.${charge.subLevel} · 기본배수 ${subBase}%` : '꺼짐'}
+        caption={mainIsThunder ? '비활성' : charge.subOn ? `Lv.${charge.subLevel} · 데미지 ${subBase}%` : '꺼짐'}
         onToggle={() => setCharge({ subOn: !charge.subOn })}
         onOpen={() => setDlg('sub')}
       />

@@ -20,7 +20,7 @@ import {
 import { JOBS } from '../../domain/jobs'
 import { getMonster } from '../../data/mobs'
 import { elementReaction } from '../../domain/monster'
-import { attackSkillsForJob, skillAttackAt, skillLineCount, comboFinalDamageP, COMBO_SKILLS, findSkillById, skillNumAt } from '../../data/skills'
+import { attackSkillsForJob, skillAttackAt, skillLineCount, comboFinalDamageP, COMBO_SKILLS, findSkillById, skillNumAt, chargeStats } from '../../data/skills'
 import type { IJobSkill } from '../../data/skills'
 import type { ChargeState } from '../../domain/paladinCharge'
 import { computeCast, computeNhit, computeDpm, baseElementMult, SKILL_MOTION } from '../../domain/skillCombat'
@@ -33,15 +33,12 @@ import type { ChargeElement } from '../../domain/paladinCharge'
 /**
  * 시그너스 차지 — 직업당 하나이며, 특화 버프 토글 레벨이 그대로 차지 레벨이 된다.
  *
- * 기본배수 = `damage`/100 → 마스터 120 → ×1.20.
- * ⚠ `z`는 데미지 계수가 아니라 **속성반응 강도**다(약점 = 1 + z/200, 반감 = 1 − z/200).
- *   팔라딘 5종 전 레벨에서 문서의 속성반응 공식과 완전히 일치한다.
+ * 데미지배수 = `damage`/100 (마스터 120 → ×1.20), 속성배수는 `z`(마스터 50 → 1.25/0.75).
  *
  * 속성 근거는 스킬 설명("검에 성속성 부여" / "너클에 번개 속성 부여").
  * 차지류는 무기 속성을 바꾸는 방식이라 스킬 자체에 elemAttr가 붙지 않고(팔라딘도 동일),
  * 게다가 이 데이터셋은 시그너스 98개 스킬 전부 속성값이 비어 있다(플레임위자드
  * 파이어 에로우조차 undefined). 즉 elemAttr 부재는 판단 근거가 못 된다.
- * 소울 차지(성)는 마스터 속성배수 약점 1.50 / 반감 0.50으로 검증 완료.
  */
 const SKILL_CHARGES: Record<string, { id: number; element: ChargeElement }> = {
   striker: { id: 15101006, element: 'lightning' }, // 라이트닝 차지
@@ -138,9 +135,9 @@ export default function NhitPanel() {
     let charge: ChargeState | null = null
     if (!isMagic) {
       if (jobId === 'paladin') {
-        charge = chargeFromUi(chargeState)
+        charge = chargeFromUi(chargeState, chargeStats)
       } else {
-        // 시그너스 차지 — 켠 레벨의 damage%가 기본배수 (마스터 120 → ×1.20)
+        // 시그너스 차지 — 켠 레벨의 damage%가 데미지배수, z가 속성반응 강도
         const sc = SKILL_CHARGES[jobId ?? '']
         const clv = sc ? activeBuffs[String(sc.id)] : undefined
         if (sc && clv) {
@@ -149,6 +146,7 @@ export default function NhitPanel() {
             mainLevel: clv,
             thunderLevel: null,
             baseMult: skillNumAt(sc.id, clv, 'damage') / 100,
+            attrZ: skillNumAt(sc.id, clv, 'z'),
           }
         }
       }

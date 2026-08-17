@@ -189,6 +189,21 @@ export function chargeDamagePercent(element: string, level: number): number {
 }
 
 /**
+ * 차지의 레벨별 속성반응 강도(z 필드). 약점 = 1 + z/200, 반감 = 1 − z/200.
+ * 파/아/썬 lv30=100, 홀리 lv20=100 → 둘 다 약점 1.50 / 반감 0.50.
+ */
+export function chargeAttrZ(element: string, level: number): number {
+  const id = CHARGE_SKILL_ID[element]
+  const sk = id ? findSkillById(id) : undefined
+  return sk ? skillNum(skillPropsAtLevel(sk, level), 'z') : 0
+}
+
+/** 팔라딘 차지 원소/레벨 → 계산에 필요한 두 수치 */
+export function chargeStats(element: string, level: number): { baseMult: number; attrZ: number } {
+  return { baseMult: chargeDamagePercent(element, level) / 100, attrZ: chargeAttrZ(element, level) }
+}
+
+/**
  * 적용 차지 데미지 계수%(중첩 포함).
  *  단독: mainCoef
  *  중첩: mainCoef + (썬더Coef − 100)   ← 보조 썬더의 보너스 전체를 합산(실측 검증)
