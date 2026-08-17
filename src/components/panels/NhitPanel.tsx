@@ -31,10 +31,13 @@ import { chargeMultiplier, chargeFromUi } from '../../domain/paladinCharge'
 import type { ChargeElement } from '../../domain/paladinCharge'
 
 /**
- * 스킬 원본 damage%가 곧 차지 기본배수인 차지 (팔라딘 차지는 별도 계수표 사용).
- * 직업당 하나이며, 특화 버프 토글 레벨이 그대로 차지 레벨이 된다.
+ * 시그너스 차지 — 직업당 하나이며, 특화 버프 토글 레벨이 그대로 차지 레벨이 된다.
  *
- * 소울 차지(성): 마스터 기준 약점 1.50 / 반감 0.50 확인됨.
+ * 기본배수는 WZ `z` 필드에서 온다(`1 + z/100`). z = 12 + (L−1)×2 → 마스터(20) 50,
+ * 즉 기본배수 1.50. 팔라딘 차지의 z(13 or 43 + (L−1)×3 → 마스터 100, 배수 2.00)와
+ * 같은 자리다. `damage` 필드는 차지 스킬 자체가 시전 시 때리는 공격 데미지%라 무관.
+ *
+ * 소울 차지(성): 마스터 기준 속성배수 약점 1.50 / 반감 0.50 확인됨.
  * 라이트닝 차지: 스킬 설명이 "너클에 번개 속성을 부여한다"라 번개로 두었으나
  *   실제 속성반응이 번개로 붙는지는 ❓ 미확인 — 실측 시 element를 고칠 것.
  */
@@ -135,7 +138,7 @@ export default function NhitPanel() {
       if (jobId === 'paladin') {
         charge = chargeFromUi(chargeState)
       } else {
-        // 스킬 damage%가 곧 기본배수인 차지 — 켠 레벨로 baseMult를 만든다
+        // 시그너스 차지 — 켠 레벨의 z로 기본배수를 만든다 (1 + z/100)
         const sc = SKILL_CHARGES[jobId ?? '']
         const clv = sc ? activeBuffs[String(sc.id)] : undefined
         if (sc && clv) {
@@ -143,7 +146,7 @@ export default function NhitPanel() {
             main: sc.element,
             mainLevel: clv,
             thunderLevel: null,
-            baseMult: skillNumAt(sc.id, clv, 'damage') / 100,
+            baseMult: 1 + skillNumAt(sc.id, clv, 'z') / 100,
           }
         }
       }
