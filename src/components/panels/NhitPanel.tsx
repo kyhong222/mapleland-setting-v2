@@ -335,10 +335,11 @@ export default function NhitPanel() {
               />
             )}
           </Box>
-          {result && (
+          {/* 무속성은 표시하지 않는다 (속성이 붙은 경우만 의미가 있음) */}
+          {result && result.elements.length > 0 && (
             <Typography variant="body2" sx={{ mb: 1, color: 'text.secondary' }}>
               속성{' '}
-              <Box component="span" sx={{ fontWeight: 700, color: result.elements.length ? 'info.main' : 'text.disabled' }}>
+              <Box component="span" sx={{ fontWeight: 700, color: 'info.main' }}>
                 {formatElements(result.elements)}
               </Box>
               {chargeSource && (
