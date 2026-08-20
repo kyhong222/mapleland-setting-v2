@@ -79,10 +79,15 @@ export function maxLevelForOrder(order: JobOrder = 'explorer'): number {
 /** @deprecated 모험가 최대 레벨. 계열별 값은 maxLevelForOrder 사용. */
 export const MAX_LEVEL = MAX_LEVEL_BY_ORDER.explorer
 
-/** 최소 레벨 (입력 편의상 전 직업 1로 통일) */
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-export function minLevelForClass(_classId: ClassId): number {
-  return 1
+/**
+ * 최소(시작) 레벨 = 1차 전직 레벨. 이 아래로는 직업이 존재하지 않는다.
+ * 마법사만 8, 나머지는 10.
+ */
+const MIN_LEVEL_BY_CLASS: Partial<Record<ClassId, number>> = { magician: 8 }
+const MIN_LEVEL_DEFAULT = 10
+
+export function minLevelForClass(classId: ClassId): number {
+  return MIN_LEVEL_BY_CLASS[classId] ?? MIN_LEVEL_DEFAULT
 }
 
 /**
