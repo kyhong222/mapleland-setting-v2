@@ -16,6 +16,7 @@ import RadioGroup from '@mui/material/RadioGroup'
 import FormControlLabel from '@mui/material/FormControlLabel'
 import Tooltip from '@mui/material/Tooltip'
 import CollapsiblePanel from '../common/CollapsiblePanel'
+import ActionHint from '../common/ActionHint'
 import { useBuildStore } from '../../store/buildStore'
 import { useInventoryStore } from '../../store/inventoryStore'
 import { equippedWeaponType, equippedHasShield, jobMasteries, displayedMasteries, appliedMasteries } from '../../store/aggregate'
@@ -535,13 +536,21 @@ function ChargeSection() {
   return (
     <>
       <Typography variant="caption" color="text.secondary" sx={{ display: 'block', mt: 0.5 }}>
-        차지 (좌클릭 ON/OFF · 우클릭/모바일 길게: 편집)
+        차지
         {charge.mainOn && appliedMult != null && (
           <Box component="span" sx={{ color: 'success.main', fontWeight: 700, ml: 0.5 }}>
             · 차지배율 ×{appliedMult.toFixed(2)}
           </Box>
         )}
       </Typography>
+      <ActionHint
+        sx={{ mb: 0.5 }}
+        actions={[
+          { key: '좌클릭', desc: 'ON / OFF' },
+          { key: '우클릭', desc: '편집', tone: 'secondary' },
+        ]}
+        note="모바일: 길게 누르기"
+      />
       <ChargeRow
         icon={CHARGE_ICON[charge.mainElement]}
         active={charge.mainOn}
@@ -619,9 +628,14 @@ export default function SkillPanel() {
   return (
     <CollapsiblePanel id="skill" title="스킬 및 도핑">
       <SectionTitle>공통 버프</SectionTitle>
-      <Typography variant="caption" color="text.disabled" sx={{ display: 'block', mb: 0.25 }}>
-        좌클릭: ON/OFF · 우클릭(모바일: 길게): 레벨 변경
-      </Typography>
+      <ActionHint
+        sx={{ mb: 0.75 }}
+        actions={[
+          { key: '좌클릭', desc: 'ON / OFF' },
+          { key: '우클릭', desc: '레벨 변경', tone: 'secondary' },
+        ]}
+        note="모바일: 길게 누르기"
+      />
       {COMMON_BUFFS.map((b) => (
         <BuffRow key={b.id} buff={b} onOpen={open('toggle')} />
       ))}
@@ -644,9 +658,15 @@ export default function SkillPanel() {
       <Divider sx={{ my: 1 }} />
 
       <SectionTitle>적용된 버프</SectionTitle>
-      <Typography variant="caption" color="text.disabled" sx={{ display: 'block', mb: 0.5 }}>
-        좌클릭: 제거 · 우클릭(모바일: 길게): 레벨 변경 · 호버: 효과
-      </Typography>
+      <ActionHint
+        sx={{ mb: 0.75 }}
+        actions={[
+          { key: '좌클릭', desc: '제거' },
+          { key: '우클릭', desc: '레벨 변경', tone: 'secondary' },
+          { key: '호버', desc: '효과 보기', tone: 'default' },
+        ]}
+        note="모바일: 길게 누르기"
+      />
       <AppliedBuffList entries={appliedEntries} levels={appliedBuffs} onOpen={open('applied')} onRemove={removeBuff} />
 
       <SectionTitle sx={{ mt: 1 }}>적용된 효과</SectionTitle>
@@ -657,9 +677,14 @@ export default function SkillPanel() {
       <Divider sx={{ my: 1 }} />
 
       <SectionTitle>특화 버프 (패시브)</SectionTitle>
-      <Typography variant="caption" color="text.disabled" sx={{ display: 'block', mb: 0.25 }}>
-        좌클릭: ON/OFF · 우클릭(모바일: 길게): 레벨 변경
-      </Typography>
+      <ActionHint
+        sx={{ mb: 0.75 }}
+        actions={[
+          { key: '좌클릭', desc: 'ON / OFF' },
+          { key: '우클릭', desc: '레벨 변경', tone: 'secondary' },
+        ]}
+        note="모바일: 길게 누르기"
+      />
       {masteries.length > 0 && (
         <>
           <Typography variant="caption" color="text.secondary" sx={{ display: 'block' }}>무기 마스터리 (장착 무기 자동)</Typography>

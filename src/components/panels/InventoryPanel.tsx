@@ -12,6 +12,7 @@ import Divider from '@mui/material/Divider'
 import Snackbar from '@mui/material/Snackbar'
 import CollapsiblePanel from '../common/CollapsiblePanel'
 import ItemIcon from '../common/ItemIcon'
+import ActionHint from '../common/ActionHint'
 import ItemMakerDialog from '../maker/ItemMakerDialog'
 import { useInventoryStore, ownerOf } from '../../store/inventoryStore'
 import type { InventoryItem, InventoryOwner } from '../../store/inventoryStore'
@@ -347,11 +348,10 @@ export default function InventoryPanel() {
           )
         }
 
-        const section = (label: string, hint: string, list: InventoryItem[]) => (
+        const section = (label: string, list: InventoryItem[]) => (
           <Box>
             <Box sx={{ display: 'flex', alignItems: 'baseline', gap: 0.75, mb: 0.5 }}>
               <Typography variant="caption" sx={{ fontWeight: 700 }}>{label}</Typography>
-              <Typography variant="caption" color="text.disabled">{hint}</Typography>
               <Box sx={{ flexGrow: 1 }} />
               <Typography variant="caption" color="text.disabled">{list.length}개</Typography>
             </Box>
@@ -378,17 +378,22 @@ export default function InventoryPanel() {
         }
         return (
           <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
-            {section('개인 인벤토리', '저장슬롯을 따라다님', personal)}
+            {section('개인 인벤토리', personal)}
             <Divider />
-            {section('공용 인벤토리', '전 슬롯 공용', shared)}
+            {section('공용 인벤토리', shared)}
           </Box>
         )
       })()}
 
       {items.length > 0 && (
-        <Typography variant="caption" color="text.disabled" sx={{ display: 'block', mt: 1 }}>
-          좌클릭: 장착/해제 · 우클릭(모바일: 길게): 메뉴(편집·복제·이동·삭제)
-        </Typography>
+        <ActionHint
+          sx={{ mt: 1 }}
+          actions={[
+            { key: '좌클릭', desc: '장착 / 해제' },
+            { key: '우클릭', desc: '편집 · 복제 · 인벤토리 이동 · 삭제', tone: 'secondary' },
+          ]}
+          note="모바일: 길게 누르기"
+        />
       )}
 
       <Menu anchorEl={menu?.anchor ?? null} open={!!menu} onClose={() => setMenu(null)}>
