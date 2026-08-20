@@ -1,4 +1,3 @@
-import { useState, useRef } from 'react'
 import type { SyntheticEvent } from 'react'
 import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
@@ -9,6 +8,7 @@ import TextField from '@mui/material/TextField'
 import Button from '@mui/material/Button'
 import CollapsiblePanel from '../common/CollapsiblePanel'
 import { useBuildStore, DEFAULT_CHARGE } from '../../store/buildStore'
+import { useNhitStore } from '../../store/nhitStore'
 import { useInventoryStore } from '../../store/inventoryStore'
 import { useMonsterStore } from '../../store/monsterStore'
 import { aggregateBuild, equippedWeaponType } from '../../store/aggregate'
@@ -80,11 +80,15 @@ export default function NhitPanel() {
   const buffEffects = useBuffEffects()
   const builts = useActiveEquippedBuilts()
 
-  const [skillId, setSkillId] = useState<number | ''>('')
-  const [skillLevel, setSkillLevel] = useState(1)
-  // 추가스킬(1회 시전 분포를 방컷 prior로 반영). 같은 스킬 중복 추가 가능 → uid로 구분.
-  const uidRef = useRef(0)
-  const [preCast, setPreCast] = useState<{ uid: number; id: number; level: number }[]>([])
+  // 선택 상태는 저장슬롯을 따라다녀야 해서 스토어에 둔다 (nhitStore)
+  const skillId = useNhitStore((s) => s.skillId)
+  const skillLevel = useNhitStore((s) => s.skillLevel)
+  const preCast = useNhitStore((s) => s.preCast)
+  const setSkill = useNhitStore((s) => s.setSkill)
+  const setSkillLevel = useNhitStore((s) => s.setSkillLevel)
+  const addPreCast = useNhitStore((s) => s.addPreCast)
+  const setPreCastLevel = useNhitStore((s) => s.setPreCastLevel)
+  const removePreCast = useNhitStore((s) => s.removePreCast)
 
   const { finalStats, effects } = aggregateBuild(baseStats, builts, buffEffects)
   const job = jobId ? JOBS[jobId] : null
@@ -295,9 +299,8 @@ export default function NhitPanel() {
               size="small" displayEmpty value={skillId}
               onChange={(e) => {
                 const id = e.target.value === '' ? '' : Number(e.target.value)
-                setSkillId(id)
                 const sk = attackSkills.find((s) => s.id === id)
-                if (sk) setSkillLevel(sk.masterLevel)
+                setSkill(id, sk ? sk.masterLevel : 1)
               }}
               sx={{ flexGrow: 1, fontSize: 13, '& .MuiSelect-select': { display: 'flex', alignItems: 'center', gap: 1.25, py: 0.5 } }}
             >
@@ -334,11 +337,11 @@ export default function NhitPanel() {
                   size="small" type="number" value={p.level}
                   onChange={(e) => {
                     const v = Math.max(1, Math.min(p.masterLevel, Number(e.target.value) || 1))
-                    setPreCast((arr) => arr.map((x, i) => (i === idx ? { ...x, level: v } : x)))
+                    setPreCastLevel(p.uid, v)
                   }}
                   slotProps={{ htmlInput: { style: { width: 38, textAlign: 'center' }, min: 1, max: p.masterLevel } }}
                 />
-                <Button size="small" color="inherit" onClick={() => setPreCast((arr) => arr.filter((_, i) => i !== idx))} sx={{ minWidth: 24, px: 0.5, lineHeight: 1 }}>×</Button>
+                <Button size="small" color="inherit" onClick={() => removePreCast(p.uid)} sx={{ minWidth: 24, px: 0.5, lineHeight: 1 }}>×</Button>
               </Box>
             ))}
             <Select<number | ''>
@@ -347,8 +350,7 @@ export default function NhitPanel() {
                 const id = e.target.value === '' ? '' : Number(e.target.value)
                 if (!id) return
                 const sk = precastCandidates.find((s) => s.id === id)
-                const uid = ++uidRef.current
-                setPreCast((arr) => [...arr, { uid, id, level: sk?.masterLevel ?? 1 }])
+                addPreCast(id, sk?.masterLevel ?? 1)
               }}
               sx={{ width: '100%', fontSize: 12, '& .MuiSelect-select': { display: 'flex', alignItems: 'center', gap: 1, py: 0.4 } }}
             >

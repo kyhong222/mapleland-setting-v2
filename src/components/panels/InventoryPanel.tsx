@@ -13,8 +13,8 @@ import Snackbar from '@mui/material/Snackbar'
 import CollapsiblePanel from '../common/CollapsiblePanel'
 import ItemIcon from '../common/ItemIcon'
 import ItemMakerDialog from '../maker/ItemMakerDialog'
-import { useInventoryStore } from '../../store/inventoryStore'
-import type { InventoryItem } from '../../store/inventoryStore'
+import { useInventoryStore, ownerOf } from '../../store/inventoryStore'
+import type { InventoryItem, InventoryOwner } from '../../store/inventoryStore'
 import { useBuildStore } from '../../store/buildStore'
 import { useUiStore } from '../../store/uiStore'
 import { targetInstancesForSlot, SECONDARY_SLOTS } from '../../store/equipInstance'
@@ -36,6 +36,26 @@ const CLASS_BIT: Record<ClassId, number> = { warrior: 1, magician: 2, bowman: 4,
 const ALL_SLOT_IDS = ALL_SLOTS.map((s) => s.id)
 
 /** 인벤토리 정렬 순서: 무기 → 모자 → …(나머지는 슬롯 정의 순서) */
+/** 아이템 타일 한 줄 높이(아이콘 36 + 패딩·테두리) + 줄 간격 */
+const TILE_ROW = 46
+const ROW_GAP = 8
+/** 세로로 4줄이 보이도록 각 인벤토리 영역 높이 고정 */
+const AREA_HEIGHT = TILE_ROW * 4 + ROW_GAP * 3
+
+/** 내용이 넘칠 때 우측 스크롤바를 항상 보이게 (아래에 더 있음을 인지시키기 위함) */
+const scrollAreaSx = {
+  height: AREA_HEIGHT,
+  overflowY: 'auto' as const,
+  overflowX: 'hidden' as const,
+  pr: 0.5,
+  scrollbarWidth: 'thin' as const,
+  scrollbarGutter: 'stable' as const,
+  '&::-webkit-scrollbar': { width: 8 },
+  '&::-webkit-scrollbar-track': { bgcolor: 'action.hover', borderRadius: 4 },
+  '&::-webkit-scrollbar-thumb': { bgcolor: 'action.disabled', borderRadius: 4 },
+  '&::-webkit-scrollbar-thumb:hover': { bgcolor: 'text.disabled' },
+}
+
 const SLOT_ORDER: SlotId[] = ['weapon', ...ALL_SLOT_IDS.filter((id) => id !== 'weapon')]
 const SLOT_RANK = new Map(SLOT_ORDER.map((id, i) => [id, i]))
 const slotRank = (id: SlotId) => SLOT_RANK.get(id) ?? SLOT_ORDER.length
@@ -45,6 +65,7 @@ export default function InventoryPanel() {
   const add = useInventoryStore((s) => s.add)
   const update = useInventoryStore((s) => s.update)
   const remove = useInventoryStore((s) => s.remove)
+  const setOwner = useInventoryStore((s) => s.setOwner)
   const hoveredEquipInvId = useUiStore((s) => s.hoveredEquipInvId)
 
   const jobId = useBuildStore((s) => s.jobId)
@@ -181,7 +202,17 @@ export default function InventoryPanel() {
     // 부위(슬롯) → 아이템 id 순 정렬
     .sort((a, b) => slotRank(a.built.base.slot) - slotRank(b.built.base.slot) || a.built.base.id - b.built.base.id)
 
+  const personal = visible.filter((inv) => ownerOf(inv) === 'personal')
+  const shared = visible.filter((inv) => ownerOf(inv) === 'shared')
+
   const menuItem = menu ? items.find((i) => i.id === menu.id) : undefined
+  const menuOwner = menuItem ? ownerOf(menuItem) : 'shared'
+
+  const handleMove = (id: string, to: InventoryOwner) => {
+    setOwner(id, to)
+    setMenu(null)
+    setMsg(to === 'personal' ? '개인 인벤토리로 이동' : '공용 인벤토리로 이동')
+  }
 
   return (
     <CollapsiblePanel
@@ -245,91 +276,118 @@ export default function InventoryPanel() {
         </Box>
       </Popover>
 
-      {items.length === 0 ? (
-        <Typography variant="body2" color="text.disabled" sx={{ textAlign: 'center', py: 2 }}>
-          제작한 아이템이 없습니다.
-        </Typography>
-      ) : visible.length === 0 ? (
-        <Typography variant="body2" color="text.disabled" sx={{ textAlign: 'center', py: 2 }}>
-          필터에 해당하는 아이템이 없습니다.
-        </Typography>
-      ) : (
-        <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1 }}>
-          {visible.map((inv) => {
-            const { grade } = resolveBuiltItem(inv.built)
-            const isEquipped = Object.values(equipped).includes(inv.id)
-            const isHovered = inv.id === hoveredEquipInvId // 장비창에서 호버 중인 아이템
-            return (
-              <Tooltip
-                key={inv.id}
-                title={<ItemTooltip built={inv.built} />}
-                placement="right"
-                followCursor
-                disableInteractive
-                slotProps={{ tooltip: { sx: { bgcolor: 'transparent', p: 0, maxWidth: 'none' } } }}
+      {(() => {
+        const renderTile = (inv: InventoryItem) => {
+          const { grade } = resolveBuiltItem(inv.built)
+          const isEquipped = Object.values(equipped).includes(inv.id)
+          const isHovered = inv.id === hoveredEquipInvId // 장비창에서 호버 중인 아이템
+          return (
+            <Tooltip
+              key={inv.id}
+              title={<ItemTooltip built={inv.built} />}
+              placement="right"
+              followCursor
+              disableInteractive
+              slotProps={{ tooltip: { sx: { bgcolor: 'transparent', p: 0, maxWidth: 'none' } } }}
+            >
+              <Box
+                component="button"
+                type="button"
+                onClick={() => {
+                  if (pressFired.current) { pressFired.current = false; return }
+                  handleToggleEquip(inv)
+                }}
+                onContextMenu={(e) => {
+                  e.preventDefault()
+                  setMenu({ anchor: e.currentTarget, id: inv.id })
+                }}
+                onTouchStart={(e) => {
+                  const el = e.currentTarget
+                  const t = e.touches[0]
+                  pressStart.current = t ? { x: t.clientX, y: t.clientY } : null
+                  pressFired.current = false
+                  clearPress()
+                  pressTimer.current = setTimeout(() => {
+                    pressFired.current = true
+                    setMenu({ anchor: el, id: inv.id })
+                  }, 450)
+                }}
+                onTouchEnd={clearPress}
+                onTouchMove={(e) => {
+                  const st = pressStart.current
+                  const t = e.touches[0]
+                  if (st && t && Math.hypot(t.clientX - st.x, t.clientY - st.y) > 10) clearPress()
+                }}
+                onTouchCancel={clearPress}
+                sx={{
+                  position: 'relative',
+                  p: 0.5,
+                  lineHeight: 0,
+                  cursor: 'pointer',
+                  borderRadius: 1,
+                  border: isHovered || isEquipped ? 2 : 1,
+                  borderColor: isHovered ? 'secondary.main' : isEquipped ? 'primary.main' : 'divider',
+                  boxShadow: isHovered ? (t) => `0 0 0 2px ${t.palette.secondary.main}` : 'none',
+                  bgcolor: isHovered ? 'action.selected' : 'transparent',
+                  WebkitTouchCallout: 'none',
+                  userSelect: 'none',
+                  '&:hover': { bgcolor: 'action.hover' },
+                }}
               >
-                <Box
-                  component="button"
-                  type="button"
-                  onClick={() => {
-                    if (pressFired.current) { pressFired.current = false; return }
-                    handleToggleEquip(inv)
-                  }}
-                  onContextMenu={(e) => {
-                    e.preventDefault()
-                    setMenu({ anchor: e.currentTarget, id: inv.id })
-                  }}
-                  onTouchStart={(e) => {
-                    const el = e.currentTarget
-                    const t = e.touches[0]
-                    pressStart.current = t ? { x: t.clientX, y: t.clientY } : null
-                    pressFired.current = false
-                    clearPress()
-                    pressTimer.current = setTimeout(() => {
-                      pressFired.current = true
-                      setMenu({ anchor: el, id: inv.id })
-                    }, 450)
-                  }}
-                  onTouchEnd={clearPress}
-                  onTouchMove={(e) => {
-                    const s = pressStart.current
-                    const t = e.touches[0]
-                    if (s && t && Math.hypot(t.clientX - s.x, t.clientY - s.y) > 10) clearPress()
-                  }}
-                  onTouchCancel={clearPress}
-                  sx={{
-                    position: 'relative',
-                    p: 0.5,
-                    lineHeight: 0,
-                    cursor: 'pointer',
-                    borderRadius: 1,
-                    border: isHovered || isEquipped ? 2 : 1,
-                    borderColor: isHovered ? 'secondary.main' : isEquipped ? 'primary.main' : 'divider',
-                    boxShadow: isHovered ? (t) => `0 0 0 2px ${t.palette.secondary.main}` : 'none',
-                    bgcolor: isHovered ? 'action.selected' : 'transparent',
-                    WebkitTouchCallout: 'none',
-                    userSelect: 'none',
-                    '&:hover': { bgcolor: 'action.hover' },
-                  }}
-                >
-                  <ItemIcon src={inv.built.base.iconUrl} alt={inv.built.base.name} size={36} outlineColor={grade.info.color} />
-                  {inv.built.gems.length > 0 && (
-                    <Box sx={{ position: 'absolute', bottom: 0, left: '50%', transform: 'translateX(-50%)', display: 'flex', gap: 0, '& img:not(:first-of-type)': { ml: '-4px' } }}>
-                      {sortedGems(inv.built.gems).map((g, gi) => (
-                        <Box key={gi} component="img" src={gemIconUrl(g.type, g.grade)} alt="" sx={{ width: 16, height: 16, imageRendering: 'pixelated', display: 'block' }} />
-                      ))}
-                    </Box>
-                  )}
+                <ItemIcon src={inv.built.base.iconUrl} alt={inv.built.base.name} size={36} outlineColor={grade.info.color} />
+                {inv.built.gems.length > 0 && (
+                  <Box sx={{ position: 'absolute', bottom: 0, left: '50%', transform: 'translateX(-50%)', display: 'flex', gap: 0, '& img:not(:first-of-type)': { ml: '-4px' } }}>
+                    {sortedGems(inv.built.gems).map((g, gi) => (
+                      <Box key={gi} component="img" src={gemIconUrl(g.type, g.grade)} alt="" sx={{ width: 16, height: 16, imageRendering: 'pixelated', display: 'block' }} />
+                    ))}
+                  </Box>
+                )}
+              </Box>
+            </Tooltip>
+          )
+        }
+
+        const section = (label: string, hint: string, list: InventoryItem[]) => (
+          <Box>
+            <Box sx={{ display: 'flex', alignItems: 'baseline', gap: 0.75, mb: 0.5 }}>
+              <Typography variant="caption" sx={{ fontWeight: 700 }}>{label}</Typography>
+              <Typography variant="caption" color="text.disabled">{hint}</Typography>
+              <Box sx={{ flexGrow: 1 }} />
+              <Typography variant="caption" color="text.disabled">{list.length}개</Typography>
+            </Box>
+            <Box sx={scrollAreaSx}>
+              {list.length === 0 ? (
+                <Typography variant="body2" color="text.disabled" sx={{ textAlign: 'center', py: 2 }}>
+                  비어있음
+                </Typography>
+              ) : (
+                <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: `${ROW_GAP}px`, alignContent: 'flex-start' }}>
+                  {list.map(renderTile)}
                 </Box>
-              </Tooltip>
-            )
-          })}
-        </Box>
-      )}
+              )}
+            </Box>
+          </Box>
+        )
+
+        if (items.length === 0) {
+          return (
+            <Typography variant="body2" color="text.disabled" sx={{ textAlign: 'center', py: 2 }}>
+              제작한 아이템이 없습니다.
+            </Typography>
+          )
+        }
+        return (
+          <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
+            {section('개인 인벤토리', '저장슬롯을 따라다님', personal)}
+            <Divider />
+            {section('공용 인벤토리', '전 슬롯 공용', shared)}
+          </Box>
+        )
+      })()}
 
       {items.length > 0 && (
         <Typography variant="caption" color="text.disabled" sx={{ display: 'block', mt: 1 }}>
-          좌클릭: 장착/해제 · 우클릭(모바일: 길게): 메뉴(편집·복제·삭제)
+          좌클릭: 장착/해제 · 우클릭(모바일: 길게): 메뉴(편집·복제·이동·삭제)
         </Typography>
       )}
 
@@ -347,6 +405,11 @@ export default function InventoryPanel() {
           편집
         </MenuItem>
         <MenuItem onClick={() => menuItem && handleDuplicate(menuItem)}>복제</MenuItem>
+        <Divider />
+        <MenuItem onClick={() => menu && handleMove(menu.id, menuOwner === 'personal' ? 'shared' : 'personal')}>
+          {menuOwner === 'personal' ? '공용 인벤토리로 이동' : '개인 인벤토리로 이동'}
+        </MenuItem>
+        <Divider />
         <MenuItem onClick={() => menu && handleDelete(menu.id)} sx={{ color: 'error.main' }}>
           삭제
         </MenuItem>

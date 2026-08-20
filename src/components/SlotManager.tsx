@@ -7,8 +7,9 @@ import Typography from '@mui/material/Typography'
 import Button from '@mui/material/Button'
 import Stack from '@mui/material/Stack'
 import { JOBS } from '../domain/jobs'
-import { useBuildStore } from '../store/buildStore'
 import { useSlotsStore } from '../store/slotsStore'
+import { captureSnapshot, applySnapshot } from '../store/snapshot'
+import { useBuildStore } from '../store/buildStore'
 
 interface Props {
   open: boolean
@@ -19,18 +20,17 @@ export default function SlotManager({ open, onClose }: Props) {
   const slots = useSlotsStore((s) => s.slots)
   const save = useSlotsStore((s) => s.save)
   const clear = useSlotsStore((s) => s.clear)
-  const snapshot = useBuildStore((s) => s.snapshot)
-  const loadSnapshot = useBuildStore((s) => s.loadSnapshot)
+  // 저장 가능 여부만 반응형으로 본다 (실제 캡처는 여러 스토어를 훑는 captureSnapshot이 담당)
+  const canSave = useBuildStore((s) => s.jobId !== null)
 
-  const canSave = !!snapshot()
   const handleSave = (i: number) => {
-    const snap = snapshot()
+    const snap = captureSnapshot()
     if (snap) save(i, snap)
   }
   const handleLoad = (i: number) => {
     const slot = slots[i]
     if (slot) {
-      loadSnapshot(slot.snapshot)
+      applySnapshot(slot.snapshot)
       onClose()
     }
   }

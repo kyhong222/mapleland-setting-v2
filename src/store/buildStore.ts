@@ -19,6 +19,8 @@ import { defaultBuffLevel, effectiveMasterLevel } from '../domain/buff'
 import { getBuff } from '../data/buff'
 import type { EquipInstance } from './equipInstance'
 import type { ChargeElement } from '../domain/paladinCharge'
+import type { NhitSelection } from './nhitStore'
+import type { InventoryItem } from './inventoryStore'
 
 /** 팔라딘 차지 UI 상태: 메인차지(원소+레벨) + 보조차지(썬더, 레벨) */
 export interface ChargeUiState {
@@ -42,6 +44,14 @@ export interface BuildSnapshot {
   appliedBuffs: Record<string, number>
   /** 무기 마스터리/엑스퍼트 레벨: buffId → 레벨(없으면 마스터). 장착 주무기 일치 시 자동 적용 */
   masteryLevels: Record<string, number>
+  /** 팔라딘 차지 (구버전 스냅샷엔 없음) */
+  charge?: ChargeUiState
+  /** 선택 대상 몬스터 (null = 미선택). 구버전 스냅샷엔 없음 */
+  selectedMobId?: number | null
+  /** n방컷 스킬 선택 (구버전 스냅샷엔 없음) */
+  nhit?: NhitSelection
+  /** 개인 인벤토리 — 슬롯을 따라다닌다. 공용 인벤토리는 저장하지 않는다 */
+  personalItems?: InventoryItem[]
   /** @deprecated v0 스냅샷 하위호환용 (읽기 전용). appliedBuffs로 마이그레이션됨 */
   commonSlots?: Record<string, string>
   /** @deprecated v0 스냅샷 하위호환용 (읽기 전용). appliedBuffs로 마이그레이션됨 */
@@ -263,8 +273,10 @@ export const useBuildStore = create<BuildState>()(
         }),
       setCharge: (patch) => set((s) => ({ charge: { ...(s.charge ?? DEFAULT_CHARGE), ...patch } })),
       snapshot: () => {
-        const { jobId, level, baseStats, equipped, activeBuffs, appliedBuffs, masteryLevels } = get()
-        return jobId === null ? null : { jobId, level, baseStats, equipped, activeBuffs, appliedBuffs, masteryLevels }
+        const { jobId, level, baseStats, equipped, activeBuffs, appliedBuffs, masteryLevels, charge } = get()
+        return jobId === null
+          ? null
+          : { jobId, level, baseStats, equipped, activeBuffs, appliedBuffs, masteryLevels, charge: charge ?? DEFAULT_CHARGE }
       },
       loadSnapshot: (snap) =>
         set({
@@ -277,6 +289,7 @@ export const useBuildStore = create<BuildState>()(
           masteryLevels: { ...(snap.masteryLevels ?? {}) },
           buffLevels: { ...(snap.activeBuffs ?? {}) },
           masteryOff: {},
+          charge: { ...(snap.charge ?? DEFAULT_CHARGE) },
         }),
     }),
     {
