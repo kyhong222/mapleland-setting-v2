@@ -160,12 +160,16 @@ export default function NhitPanel() {
     const skillElems = skillElements(sk, lv)
     const elements = charge ? chargeElementCodes(charge) : skillElems
     // 속성배율 — 차지 우선, 복합속성(매직 컴포지션)은 데미지를 반씩 나눠 각각 판정
-    const elementMultRaw = charge
-      ? chargeMultiplier(charge, monster.elemAttr)
-      : skillElems.length > 1
-        ? skillElems.reduce((acc, e) => acc + baseElementMult(elementReaction(monster.elemAttr, e)) / skillElems.length, 0)
-        : baseElementMult(elementReaction(monster.elemAttr, att.element))
-    let elementMult: number = elementMultRaw
+    const elemMultFor = (elemAttr: string | undefined) =>
+      charge
+        ? chargeMultiplier(charge, elemAttr)
+        : skillElems.length > 1
+          ? skillElems.reduce((acc, e) => acc + baseElementMult(elementReaction(elemAttr, e)) / skillElems.length, 0)
+          : baseElementMult(elementReaction(elemAttr, att.element))
+    let elementMult: number = elemMultFor(monster.elemAttr)
+    // 같은 조건에서 무속성 몹을 때렸을 때의 배율. 차지의 데미지 증가분이 여기 그대로 들어 있어,
+    // 나눠주면 속성반응에 의한 몫만 남는다 (표시용).
+    const elementMultNeutral = elemMultFor(undefined)
     // 엘리멘탈 리셋(플위): 무속성화 blend
     if (jobId === 'flameWizard') {
       const rLv = activeBuffs['12101005']
@@ -174,6 +178,8 @@ export default function NhitPanel() {
         elementMult = elementMult * (1 - r) + r
       }
     }
+    /** 속성만의 배율 (데미지 증가분 제외) */
+    const elementRatio = elementMultNeutral > 0 ? elementMult / elementMultNeutral : 1
 
     // 방어
     const D = levelPenalty(monster.level, level)
@@ -219,7 +225,7 @@ export default function NhitPanel() {
       lineBase,
       hitMultipliers,
     })
-    return { cast, att, effSkillPercent, isMagic, elements, elementMult }
+    return { cast, att, effSkillPercent, isMagic, elements, elementRatio }
   }
 
   // 추가스킬 목록: 각 스킬 1회 시전 분포. 방컷 누적곱의 시작값(prior)으로 합성 → 데미지도 분포째 반영.
@@ -247,8 +253,8 @@ export default function NhitPanel() {
     if (!job || !monster || !selectedSkill) return null
     const built = buildCast(selectedSkill, skillLevel)
     if (!built) return null
-    const { cast, att, effSkillPercent, isMagic, elements, elementMult } = built
-    if (!cast) return { unsupported: true as const, elements, elementMult }
+    const { cast, att, effSkillPercent, isMagic, elements, elementRatio } = built
+    if (!cast) return { unsupported: true as const, elements, elementRatio }
 
     const noDpm = NO_DPM.has(selectedSkill.id)
     const hp = monster.maxHP ?? 0
@@ -264,7 +270,7 @@ export default function NhitPanel() {
     return {
       unsupported: false as const,
       elements,
-      elementMult,
+      elementRatio,
       isBoss,
       hp,
       hasPreCast: !!preCastPrior,
@@ -386,7 +392,7 @@ export default function NhitPanel() {
                 note={
                   result.elements.length > 0 ? (
                     <Box component="span" sx={{ color: 'success.main', fontWeight: 700, fontSize: 12 }}>
-                      {formatElements(result.elements)} ({result.elementMult.toFixed(2)}배)
+                      {formatElements(result.elements)} ({result.elementRatio.toFixed(2)}배)
                     </Box>
                   ) : undefined
                 }
