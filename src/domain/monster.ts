@@ -17,6 +17,13 @@
 export type ElementAttribute = string
 
 const ELEM_NAME: Record<string, string> = { F: '불', I: '얼음', L: '번개', S: '독', H: '성' }
+
+/** 속성코드(F/I/L/S/H) → 속성명. 모르는 코드는 그대로 반환 */
+export const elementName = (code: string): string => ELEM_NAME[code.toUpperCase()] ?? code
+
+/** 속성코드 목록 → "얼음 + 번개" (빈 목록은 '무속성') */
+export const formatElements = (codes: string[]): string =>
+  codes.length ? codes.map(elementName).join(' + ') : '무속성'
 const ELEM_EFFECT: Record<string, '무효' | '반감' | '약점'> = { '1': '무효', '2': '반감', '3': '약점' }
 
 /** 속성 한 항목: 속성명 + 효과(무효/반감/약점) */

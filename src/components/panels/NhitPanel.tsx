@@ -19,15 +19,15 @@ import {
 } from '../../domain/attackPower'
 import { JOBS } from '../../domain/jobs'
 import { getMonster } from '../../data/mobs'
-import { elementReaction } from '../../domain/monster'
-import { attackSkillsForJob, skillAttackAt, skillLineCount, comboFinalDamageP, COMBO_SKILLS, findSkillById, skillNumAt, chargeStats } from '../../data/skills'
+import { elementReaction, formatElements } from '../../domain/monster'
+import { attackSkillsForJob, skillAttackAt, skillLineCount, comboFinalDamageP, COMBO_SKILLS, findSkillById, skillNumAt, chargeStats, skillElements } from '../../data/skills'
 import type { IJobSkill } from '../../data/skills'
 import type { ChargeState } from '../../domain/paladinCharge'
 import { computeCast, computeNhit, computeDpm, baseElementMult, SKILL_MOTION } from '../../domain/skillCombat'
 import { convolve } from '../../domain/nhitProb'
 import type { Dist } from '../../domain/nhitProb'
 import { attacksPerMinute } from '../../data/attackSpeed'
-import { chargeMultiplier, chargeFromUi } from '../../domain/paladinCharge'
+import { chargeMultiplier, chargeFromUi, chargeElementCodes } from '../../domain/paladinCharge'
 import type { ChargeElement } from '../../domain/paladinCharge'
 
 /**
@@ -156,10 +156,15 @@ export default function NhitPanel() {
         }
       }
     }
-    // 속성배율 — 차지 활성 시 차지 속성/레벨 통합 배율로 대체
+    // 최종 속성 — 차지가 걸려 있으면 스킬 속성이 아니라 차지 속성이 된다
+    const skillElems = skillElements(sk, lv)
+    const elements = charge ? chargeElementCodes(charge) : skillElems
+    // 속성배율 — 차지 우선, 복합속성(매직 컴포지션)은 데미지를 반씩 나눠 각각 판정
     const elementMultRaw = charge
       ? chargeMultiplier(charge, monster.elemAttr)
-      : baseElementMult(elementReaction(monster.elemAttr, att.element))
+      : skillElems.length > 1
+        ? skillElems.reduce((acc, e) => acc + baseElementMult(elementReaction(monster.elemAttr, e)) / skillElems.length, 0)
+        : baseElementMult(elementReaction(monster.elemAttr, att.element))
     let elementMult: number = elementMultRaw
     // 엘리멘탈 리셋(플위): 무속성화 blend
     if (jobId === 'flameWizard') {
@@ -214,7 +219,7 @@ export default function NhitPanel() {
       lineBase,
       hitMultipliers,
     })
-    return { cast, att, effSkillPercent, isMagic }
+    return { cast, att, effSkillPercent, isMagic, elements }
   }
 
   // 추가스킬 목록: 각 스킬 1회 시전 분포. 방컷 누적곱의 시작값(prior)으로 합성 → 데미지도 분포째 반영.
@@ -238,12 +243,20 @@ export default function NhitPanel() {
     undefined,
   )
 
+  /** 차지로 속성이 덮어씌워졌으면 그 출처를 표기 */
+  const chargeSource =
+    jobId === 'paladin' && chargeState.mainOn
+      ? '차지'
+      : jobId && SKILL_CHARGES[jobId] && activeBuffs[String(SKILL_CHARGES[jobId].id)]
+        ? '차지'
+        : null
+
   const result = (() => {
     if (!job || !monster || !selectedSkill) return null
     const built = buildCast(selectedSkill, skillLevel)
     if (!built) return null
-    const { cast, att, effSkillPercent, isMagic } = built
-    if (!cast) return { unsupported: true as const }
+    const { cast, att, effSkillPercent, isMagic, elements } = built
+    if (!cast) return { unsupported: true as const, elements }
 
     const noDpm = NO_DPM.has(selectedSkill.id)
     const hp = monster.maxHP ?? 0
@@ -258,6 +271,7 @@ export default function NhitPanel() {
     const killSec = dpm && dpm > 0 && hp > 0 ? hp / (dpm / 60) : null
     return {
       unsupported: false as const,
+      elements,
       isBoss,
       hp,
       hasPreCast: !!preCastPrior,
@@ -321,6 +335,17 @@ export default function NhitPanel() {
               />
             )}
           </Box>
+          {result && (
+            <Typography variant="body2" sx={{ mb: 1, color: 'text.secondary' }}>
+              속성{' '}
+              <Box component="span" sx={{ fontWeight: 700, color: result.elements.length ? 'info.main' : 'text.disabled' }}>
+                {formatElements(result.elements)}
+              </Box>
+              {chargeSource && (
+                <Box component="span" sx={{ ml: 0.75, fontSize: 12, opacity: 0.8 }}>({chargeSource})</Box>
+              )}
+            </Typography>
+          )}
 
           {/* 추가스킬 (1회 시전 후 잔여 HP 기준으로 방컷 계산) */}
           <Box sx={{ mb: 1 }}>

@@ -136,6 +136,23 @@ const SKILL_ELEMENT_OVERRIDE: Record<string, string> = {
   '메테오': 'F',
 }
 
+/**
+ * 두 속성을 동시에 띠는 스킬 (원작은 데미지를 반씩 나눠 각 속성으로 판정한다).
+ * 매직 컴포지션: 불독 = 불+독, 썬콜 = 얼음+번개.
+ */
+export const MULTI_ELEMENT_SKILLS: Record<number, string[]> = {
+  2111006: ['F', 'S'],
+  2211006: ['I', 'L'],
+}
+
+/** 스킬이 띠는 속성코드 목록 (무속성이면 빈 배열). 복합속성 스킬은 2개 */
+export function skillElements(skill: IJobSkill, level: number): string[] {
+  const multi = MULTI_ELEMENT_SKILLS[skill.id]
+  if (multi) return multi
+  const att = skillAttackAt(skill, level)
+  return att?.element ? [att.element] : []
+}
+
 /** id로 스킬 검색 (전 스킬북) */
 export function findSkillById(id: number): IJobSkill | undefined {
   for (const book of Object.values(SKILLBOOKS) as IJobSkillBook[]) {

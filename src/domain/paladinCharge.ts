@@ -88,6 +88,16 @@ export function chargeFromUi(c: ChargeUiState, stats: ChargeStatsResolver): Char
 }
 
 /**
+ * 차지가 실제로 부여하는 속성코드 목록.
+ * 보조 썬더가 걸려 있으면 주차지 속성 + 번개 두 개가 된다.
+ */
+export function chargeElementCodes(state: ChargeState): string[] {
+  const codes = [ELEM_CODE[state.main]]
+  if (state.thunderLevel != null && state.main !== 'lightning') codes.push('L')
+  return codes
+}
+
+/**
  * 속성배수 — 원작 get_damage_adjusted_by_elemAttr 재현.
  *   무효(1) : 1 − z/100      ← z<100이면 0이 아니다. 시그너스 차지(z=50)는 50%가 들어간다
  *   반감(2) : 1 − z/200
