@@ -386,7 +386,7 @@ export default function NhitPanel() {
                 note={
                   result.elements.length > 0 ? (
                     <Box component="span" sx={{ color: 'success.main', fontWeight: 700, fontSize: 12 }}>
-                      {formatElements(result.elements)} ×{result.elementMult.toFixed(2)}
+                      {formatElements(result.elements)} ({result.elementMult.toFixed(2)}배)
                     </Box>
                   ) : undefined
                 }
