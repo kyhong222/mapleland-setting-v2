@@ -102,6 +102,7 @@ function BuffIcon({
   onClick,
   onLongPress,
   size = 46,
+  imgSize,
   tooltip,
   highlightActive = false,
 }: {
@@ -111,6 +112,11 @@ function BuffIcon({
   /** 우클릭(데스크톱) / 롱프레스(모바일) 동작 — 레벨 조정 등 */
   onLongPress?: () => void
   size?: number
+  /**
+   * 이미지 자체 크기를 직접 지정. 아이콘 원본이 32px 픽셀아트라, 정수배가 아닌
+   * 배율로 줄이면 픽셀이 통째로 빠져 깨져 보인다. 1:1로 그려야 할 때 쓴다.
+   */
+  imgSize?: number
   tooltip?: React.ReactNode
   /** 적용(active) 시 밝은 황금빛 테두리로 강조할지 여부 */
   highlightActive?: boolean
@@ -118,7 +124,7 @@ function BuffIcon({
   const lp = useTouchLongPress(() => onLongPress?.())
   const iconJobId = useBuildStore((s) => s.jobId)
   const icon = buffIconUrl(buff, iconJobId)
-  const img = Math.round(size * 0.82)
+  const img = imgSize ?? Math.round(size * 0.82)
   const highlighted = highlightActive && active
   const box = (
     <Box
@@ -411,7 +417,7 @@ function BuffSelect({ groups, appliedIds, onAdd, placeholder }: {
     .filter((g) => g.items.length > 0)
   const row = (b: Buff) => (
     <MenuItem key={b.id} value={b.id} sx={{ fontSize: 13, gap: 0.75 }}>
-      <BuffIcon buff={b} size={28} />
+      <BuffIcon buff={b} size={38} imgSize={32} />
       <Box component="span" sx={{ flex: 1, minWidth: 0 }}>{b.name}</Box>
       <Box component="span" sx={{ color: 'success.main' }}>{formatEffects(buffEffectsAtLevel(b, defaultBuffLevel(b))) || '—'}</Box>
     </MenuItem>
