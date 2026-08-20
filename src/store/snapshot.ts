@@ -30,6 +30,18 @@ export function captureSnapshot(): BuildSnapshot | null {
 }
 
 /**
+ * 전체 초기화 — 슬롯을 따라다니는 상태를 전부 비운다.
+ * buildStore.reset()만 부르면 개인 인벤토리·대상 몬스터·n타 선택이 남아
+ * 새 직업을 골라도 이전 빌드의 흔적이 그대로 보인다. 공용 인벤토리는 창고이므로 유지.
+ */
+export function resetAll(): void {
+  useBuildStore.getState().reset()
+  useInventoryStore.getState().replacePersonal([])
+  useMonsterStore.getState().select(null)
+  useNhitStore.getState().reset()
+}
+
+/**
  * 스냅샷 → 현재 상태.
  * 개인 인벤토리를 장비 복원보다 먼저 넣어야 equipped가 참조하는 id가 존재한다.
  */

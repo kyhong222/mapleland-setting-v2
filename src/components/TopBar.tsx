@@ -7,18 +7,18 @@ import Box from '@mui/material/Box'
 import Chip from '@mui/material/Chip'
 import { JOBS } from '../domain/jobs'
 import { useBuildStore } from '../store/buildStore'
+import { resetAll } from '../store/snapshot'
 import SlotManager from './SlotManager'
 import FeedbackDialog from './FeedbackDialog'
 
 export default function TopBar() {
   const jobId = useBuildStore((s) => s.jobId)
-  const reset = useBuildStore((s) => s.reset)
   const [slotsOpen, setSlotsOpen] = useState(false)
   const [feedbackOpen, setFeedbackOpen] = useState(false)
 
   const handleReset = () => {
-    if (window.confirm('초기화하면 현재 작성 중인 내용이 사라집니다. 계속할까요?')) {
-      reset()
+    if (window.confirm('초기화하면 현재 작성 중인 내용과 개인 인벤토리가 사라집니다.\n공용 인벤토리는 유지됩니다. 계속할까요?')) {
+      resetAll()
     }
   }
 
