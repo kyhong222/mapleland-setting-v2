@@ -219,7 +219,7 @@ export default function NhitPanel() {
       lineBase,
       hitMultipliers,
     })
-    return { cast, att, effSkillPercent, isMagic, elements }
+    return { cast, att, effSkillPercent, isMagic, elements, elementMult }
   }
 
   // 추가스킬 목록: 각 스킬 1회 시전 분포. 방컷 누적곱의 시작값(prior)으로 합성 → 데미지도 분포째 반영.
@@ -243,20 +243,12 @@ export default function NhitPanel() {
     undefined,
   )
 
-  /** 차지로 속성이 덮어씌워졌으면 그 출처를 표기 */
-  const chargeSource =
-    jobId === 'paladin' && chargeState.mainOn
-      ? '차지'
-      : jobId && SKILL_CHARGES[jobId] && activeBuffs[String(SKILL_CHARGES[jobId].id)]
-        ? '차지'
-        : null
-
   const result = (() => {
     if (!job || !monster || !selectedSkill) return null
     const built = buildCast(selectedSkill, skillLevel)
     if (!built) return null
-    const { cast, att, effSkillPercent, isMagic, elements } = built
-    if (!cast) return { unsupported: true as const, elements }
+    const { cast, att, effSkillPercent, isMagic, elements, elementMult } = built
+    if (!cast) return { unsupported: true as const, elements, elementMult }
 
     const noDpm = NO_DPM.has(selectedSkill.id)
     const hp = monster.maxHP ?? 0
@@ -272,6 +264,7 @@ export default function NhitPanel() {
     return {
       unsupported: false as const,
       elements,
+      elementMult,
       isBoss,
       hp,
       hasPreCast: !!preCastPrior,
@@ -335,19 +328,6 @@ export default function NhitPanel() {
               />
             )}
           </Box>
-          {/* 무속성은 표시하지 않는다 (속성이 붙은 경우만 의미가 있음) */}
-          {result && result.elements.length > 0 && (
-            <Typography variant="body2" sx={{ mb: 1, color: 'text.secondary' }}>
-              속성{' '}
-              <Box component="span" sx={{ fontWeight: 700, color: 'info.main' }}>
-                {formatElements(result.elements)}
-              </Box>
-              {chargeSource && (
-                <Box component="span" sx={{ ml: 0.75, fontSize: 12, opacity: 0.8 }}>({chargeSource})</Box>
-              )}
-            </Typography>
-          )}
-
           {/* 추가스킬 (1회 시전 후 잔여 HP 기준으로 방컷 계산) */}
           <Box sx={{ mb: 1 }}>
             <Typography variant="caption" sx={{ fontWeight: 700, display: 'block', mb: 0.25 }}>
@@ -399,7 +379,18 @@ export default function NhitPanel() {
               {/* 데미지 범위 */}
               <Typography variant="caption" sx={{ fontWeight: 700, display: 'block' }}>데미지 범위</Typography>
               {result.lines > 1 && <Row label={`1회 타격 (${result.lines}타, ${result.coef}%)`} value={rng(result.lineRange)} />}
-              <Row label={result.lines > 1 ? '총 데미지' : `데미지 (${result.coef}%)`} value={rng(result.totalRange)} strong />
+              <Row
+                label={result.lines > 1 ? '총 데미지' : `데미지 (${result.coef}%)`}
+                value={rng(result.totalRange)}
+                strong
+                note={
+                  result.elements.length > 0 ? (
+                    <Box component="span" sx={{ color: 'success.main', fontWeight: 700, fontSize: 12 }}>
+                      {formatElements(result.elements)} ×{result.elementMult.toFixed(2)}
+                    </Box>
+                  ) : undefined
+                }
+              />
 
               {/* 방컷 확률 (비보스) */}
               {result.nhit && (
@@ -447,11 +438,20 @@ export default function NhitPanel() {
   )
 }
 
-function Row({ label, value, strong = false }: { label: string; value: string; strong?: boolean }) {
+function Row({ label, value, strong = false, note }: {
+  label: string
+  value: string
+  strong?: boolean
+  /** 라벨 뒤에 붙는 부가 표기 (속성 등) */
+  note?: React.ReactNode
+}) {
   return (
-    <Box sx={{ display: 'flex', justifyContent: 'space-between', px: 1, py: 0.1 }}>
-      <Typography variant="body2" color="text.secondary">{label}</Typography>
-      <Typography variant="body2" sx={{ fontWeight: strong ? 700 : 500, color: strong ? 'error.main' : 'text.primary' }}>{value}</Typography>
+    <Box sx={{ display: 'flex', justifyContent: 'space-between', gap: 1, px: 1, py: 0.1 }}>
+      <Typography variant="body2" color="text.secondary" sx={{ display: 'flex', alignItems: 'baseline', gap: 0.75, minWidth: 0 }}>
+        <Box component="span">{label}</Box>
+        {note}
+      </Typography>
+      <Typography variant="body2" sx={{ whiteSpace: 'nowrap', fontWeight: strong ? 700 : 500, color: strong ? 'error.main' : 'text.primary' }}>{value}</Typography>
     </Box>
   )
 }
