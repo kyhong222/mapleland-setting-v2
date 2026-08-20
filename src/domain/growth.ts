@@ -165,9 +165,13 @@ function growthRangesFor(item: ItemData): GrowthRange[] | null {
 
 /** 스탯별 성장 스펙(레벨당 + 누적 범위) */
 export interface GrowthStat extends GrowthRange {
-  /** 누적 최소 = perLevelMin × maxLevel */
+  /**
+   * 누적 최소 = 0. 아직 한 번도 레벨업하지 않은 상태가 있을 수 있어
+   * perLevelMin × maxLevel로 잡으면 안 된다.
+   * (예: 리버스 무기 주스탯은 레벨당 1~2지만 0레벨이면 0이므로 0~6이 맞다)
+   */
   totalMin: number
-  /** 누적 최대 = perLevelMax × maxLevel */
+  /** 누적 최대 = perLevelMax × maxLevel (전 레벨 최대치로 올랐을 때) */
   totalMax: number
 }
 
@@ -186,7 +190,7 @@ export function itemGrowthSpec(item: ItemData): GrowthSpec | null {
   const maxLevel = GROWTH_MAX_LEVEL[tier]
   const stats: GrowthStat[] = ranges.map((r) => ({
     ...r,
-    totalMin: r.perLevelMin * maxLevel,
+    totalMin: 0,
     totalMax: r.perLevelMax * maxLevel,
   }))
   return { tier, maxLevel, stats }
