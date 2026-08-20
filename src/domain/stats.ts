@@ -23,23 +23,45 @@ export const STAT_BASE = 4
 export const MAX_STAT = 999
 
 /**
- * 전직 요구치 때문에 스탯 초기화로도 내려가지 않는 최소 스탯.
- * 도적은 DEX 25, 해적은 DEX 20이 전직 조건이라 초기화해도 그 값으로 남는다.
- * 이 몫은 순수 스탯합 안에서 나가므로 총합은 그대로고 주스탯이 그만큼 줄어든다.
+ * 직업군별 스탯 기본값/하한.
+ *  - base : 스탯 초기화(= 직업 선택) 시 기본으로 확보되는 값
+ *  - min  : 사용자가 직접 내릴 수 있는 하한 (없으면 base와 동일 = 못 내림)
+ *
+ * 도적은 전직 요구 DEX 25가 초기화 후에도 유지돼 내릴 수 없다.
+ * 해적은 초기화하면 20이지만 전직 직후에는 4일 수 있어 4까지 내릴 수 있게 둔다.
+ * 어느 쪽이든 이 몫은 순수 스탯합 안에서 나가므로 총합은 다른 직업과 같다.
  */
-const CLASS_STAT_FLOOR: Partial<Record<ClassId, Partial<BaseStats>>> = {
-  thief: { DEX: 25 },
-  pirate: { DEX: 20 },
+interface StatFloorSpec {
+  base: Partial<BaseStats>
+  min?: Partial<BaseStats>
+}
+const CLASS_STAT_FLOOR: Partial<Record<ClassId, StatFloorSpec>> = {
+  thief: { base: { DEX: 25 } },
+  pirate: { base: { DEX: 20 }, min: { DEX: STAT_BASE } },
 }
 
-/** 해당 직업군의 스탯별 하한 (지정 없으면 STAT_BASE) */
-export function statFloors(classId: ClassId): BaseStats {
-  const floor = CLASS_STAT_FLOOR[classId] ?? {}
+const pick = (src: Partial<BaseStats> | undefined): BaseStats => ({
+  STR: src?.STR ?? STAT_BASE,
+  DEX: src?.DEX ?? STAT_BASE,
+  INT: src?.INT ?? STAT_BASE,
+  LUK: src?.LUK ?? STAT_BASE,
+})
+
+/** 스탯 초기화 시 기본으로 확보되는 값 (도적 DEX 25 / 해적 DEX 20) */
+export function statDefaults(classId: ClassId): BaseStats {
+  return pick(CLASS_STAT_FLOOR[classId]?.base)
+}
+
+/** 사용자가 직접 내릴 수 있는 하한 (해적 DEX는 4까지 허용) */
+export function statMinimums(classId: ClassId): BaseStats {
+  const spec = CLASS_STAT_FLOOR[classId]
+  const base = pick(spec?.base)
+  const min = spec?.min
   return {
-    STR: floor.STR ?? STAT_BASE,
-    DEX: floor.DEX ?? STAT_BASE,
-    INT: floor.INT ?? STAT_BASE,
-    LUK: floor.LUK ?? STAT_BASE,
+    STR: min?.STR ?? base.STR,
+    DEX: min?.DEX ?? base.DEX,
+    INT: min?.INT ?? base.INT,
+    LUK: min?.LUK ?? base.LUK,
   }
 }
 

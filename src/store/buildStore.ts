@@ -14,7 +14,7 @@ import { persist } from 'zustand/middleware'
 import { JOBS } from '../domain/jobs'
 import type { JobId } from '../domain/jobs'
 import type { BaseStats, StatId } from '../domain/stats'
-import { STAT_BASE, STAT_IDS, totalAP, minLevelForClass, maxLevelForOrder, statFloors } from '../domain/stats'
+import { STAT_BASE, STAT_IDS, totalAP, minLevelForClass, maxLevelForOrder, statDefaults, statMinimums } from '../domain/stats'
 import { defaultBuffLevel, effectiveMasterLevel } from '../domain/buff'
 import { getBuff } from '../data/buff'
 import type { EquipInstance } from './equipInstance'
@@ -70,6 +70,12 @@ export interface BuildState {
   buffLevels: Record<string, number>
   /** 비활성화한 무기 마스터리 (기본은 무기 장착 시 자동 적용, 여기 있으면 제외) */
   masteryOff: Record<string, boolean>
+  /**
+   * 사용자가 스탯을 직접 만졌는지. false면 재배분 시 직업 기본값(도적 DEX 25 /
+   * 해적 DEX 20)을 하한으로 다시 확보한다. 레벨 1에서는 AP가 모자라 기본값을
+   * 못 채우는데, 이 플래그가 없으면 잘린 값이 레벨을 올려도 그대로 남는다.
+   */
+  statsTouched: boolean
   /** 팔라딘 차지 (메인/보조) */
   charge: ChargeUiState
 
@@ -105,30 +111,22 @@ const baseFour = (): BaseStats => ({ STR: STAT_BASE, DEX: STAT_BASE, INT: STAT_B
 
 /**
  * current 값 기준으로 AP 한도 내 재배분 — 비주스탯=입력값, 주스탯=남은 AP.
- * 직업군 하한(도적·해적 DEX 25)을 먼저 확보한 뒤 나머지를 배분한다.
- * 하한 몫도 AP에서 나가므로 순수 스탯합은 다른 직업과 같다.
+ * 직업군 하한(도적 DEX 25) 아래로는 내려가지 않는다. 해적 DEX는 4까지 허용이라
+ * current를 그대로 존중한다. 하한 몫도 AP에서 나가므로 순수 스탯합은 동일하다.
  */
-function recomputeStats(jobId: JobId, level: number, current: BaseStats): BaseStats {
+function recomputeStats(jobId: JobId, level: number, current: BaseStats, touched: boolean): BaseStats {
   const job = JOBS[jobId]
   const ap = totalAP(level, job.order)
-  const floors = statFloors(job.classId)
+  // 손대지 않았으면 직업 기본값까지 다시 끌어올린다
+  const mins = touched ? statMinimums(job.classId) : statDefaults(job.classId)
   const next = baseFour()
   let used = 0
-  const give = (stat: (typeof STAT_IDS)[number], upTo: number) => {
-    const want = Math.max(0, upTo - next[stat])
-    const alloc = Math.min(want, Math.max(0, ap - used))
-    next[stat] += alloc
-    used += alloc
-  }
-  // 1) 직업 하한 먼저 (주스탯은 어차피 남은 AP를 전부 받으므로 제외)
   for (const stat of STAT_IDS) {
     if (stat === job.primaryStat) continue
-    give(stat, floors[stat])
-  }
-  // 2) 사용자가 지정한 값까지 추가 배분
-  for (const stat of STAT_IDS) {
-    if (stat === job.primaryStat) continue
-    give(stat, Math.floor(current[stat] ?? 0))
+    const desired = Math.max(mins[stat], Math.floor(current[stat] ?? mins[stat]))
+    const alloc = Math.min(desired - STAT_BASE, Math.max(0, ap - used))
+    next[stat] = STAT_BASE + Math.max(0, alloc)
+    used += Math.max(0, alloc)
   }
   next[job.primaryStat] = STAT_BASE + Math.max(0, ap - used)
   return next
@@ -167,30 +165,31 @@ export const useBuildStore = create<BuildState>()(
       masteryLevels: {},
       buffLevels: {},
       masteryOff: {},
+      statsTouched: false,
       charge: DEFAULT_CHARGE,
 
       selectJob: (id) =>
         set((s) => {
           if (s.jobId !== null) return s
           const level = minLevelForClass(JOBS[id].classId)
-          return { jobId: id, level, baseStats: recomputeStats(id, level, baseFour()) }
+          return { jobId: id, level, baseStats: recomputeStats(id, level, statDefaults(JOBS[id].classId), false), statsTouched: false }
         }),
-      reset: () => set({ jobId: null, level: 1, baseStats: baseFour(), equipped: {}, activeBuffs: {}, appliedBuffs: {}, masteryLevels: {}, buffLevels: {}, masteryOff: {}, charge: DEFAULT_CHARGE }),
+      reset: () => set({ jobId: null, level: 1, baseStats: baseFour(), equipped: {}, activeBuffs: {}, appliedBuffs: {}, masteryLevels: {}, buffLevels: {}, masteryOff: {}, statsTouched: false, charge: DEFAULT_CHARGE }),
       setLevel: (n) =>
         set((s) => {
           const min = s.jobId ? minLevelForClass(JOBS[s.jobId].classId) : 1
           const max = s.jobId ? maxLevelForOrder(JOBS[s.jobId].order) : maxLevelForOrder()
           const level = Math.max(min, Math.min(max, Math.floor(n) || min))
-          const baseStats = s.jobId ? recomputeStats(s.jobId, level, s.baseStats) : s.baseStats
+          const baseStats = s.jobId ? recomputeStats(s.jobId, level, s.baseStats, s.statsTouched) : s.baseStats
           return { level, baseStats }
         }),
       setStat: (stat, value) =>
         set((s) => {
           if (!s.jobId) return s
           if (stat === JOBS[s.jobId].primaryStat) return s
-          const min = statFloors(JOBS[s.jobId].classId)[stat]
+          const min = statMinimums(JOBS[s.jobId].classId)[stat]
           const draft = { ...s.baseStats, [stat]: Math.max(min, Math.floor(value) || min) }
-          return { baseStats: recomputeStats(s.jobId, s.level, draft) }
+          return { baseStats: recomputeStats(s.jobId, s.level, draft, true), statsTouched: true }
         }),
       equip: (inst, invId) =>
         set((s) => {
@@ -304,6 +303,7 @@ export const useBuildStore = create<BuildState>()(
           masteryLevels: { ...(snap.masteryLevels ?? {}) },
           buffLevels: { ...(snap.activeBuffs ?? {}) },
           masteryOff: {},
+          statsTouched: true,
           charge: { ...(snap.charge ?? DEFAULT_CHARGE) },
         }),
     }),
