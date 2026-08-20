@@ -22,6 +22,27 @@ export const STAT_BASE = 4
 /** 한 능력치에 AP로 투자 가능한 최대값 */
 export const MAX_STAT = 999
 
+/**
+ * 전직 요구치 때문에 스탯 초기화로도 내려가지 않는 최소 스탯.
+ * 도적·해적은 전직에 DEX 25가 필요해 초기화해도 25로 남는다.
+ * 이 몫은 순수 스탯합 안에서 나가므로 총합은 그대로고 주스탯이 그만큼 줄어든다.
+ */
+const CLASS_STAT_FLOOR: Partial<Record<ClassId, Partial<BaseStats>>> = {
+  thief: { DEX: 25 },
+  pirate: { DEX: 25 },
+}
+
+/** 해당 직업군의 스탯별 하한 (지정 없으면 STAT_BASE) */
+export function statFloors(classId: ClassId): BaseStats {
+  const floor = CLASS_STAT_FLOOR[classId] ?? {}
+  return {
+    STR: floor.STR ?? STAT_BASE,
+    DEX: floor.DEX ?? STAT_BASE,
+    INT: floor.INT ?? STAT_BASE,
+    LUK: floor.LUK ?? STAT_BASE,
+  }
+}
+
 /** 계열별 최대 레벨 (모험가 200 / 시그너스 120) */
 export const MAX_LEVEL_BY_ORDER: Record<JobOrder, number> = {
   explorer: 200,

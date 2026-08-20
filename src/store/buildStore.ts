@@ -14,7 +14,7 @@ import { persist } from 'zustand/middleware'
 import { JOBS } from '../domain/jobs'
 import type { JobId } from '../domain/jobs'
 import type { BaseStats, StatId } from '../domain/stats'
-import { STAT_BASE, STAT_IDS, totalAP, minLevelForClass, maxLevelForOrder } from '../domain/stats'
+import { STAT_BASE, STAT_IDS, totalAP, minLevelForClass, maxLevelForOrder, statFloors } from '../domain/stats'
 import { defaultBuffLevel, effectiveMasterLevel } from '../domain/buff'
 import { getBuff } from '../data/buff'
 import type { EquipInstance } from './equipInstance'
@@ -103,18 +103,32 @@ export interface BuildState {
 
 const baseFour = (): BaseStats => ({ STR: STAT_BASE, DEX: STAT_BASE, INT: STAT_BASE, LUK: STAT_BASE })
 
-/** current 값 기준으로 AP 한도 내 재배분 — 비주스탯=입력값, 주스탯=남은 AP */
+/**
+ * current 값 기준으로 AP 한도 내 재배분 — 비주스탯=입력값, 주스탯=남은 AP.
+ * 직업군 하한(도적·해적 DEX 25)을 먼저 확보한 뒤 나머지를 배분한다.
+ * 하한 몫도 AP에서 나가므로 순수 스탯합은 다른 직업과 같다.
+ */
 function recomputeStats(jobId: JobId, level: number, current: BaseStats): BaseStats {
   const job = JOBS[jobId]
   const ap = totalAP(level, job.order)
+  const floors = statFloors(job.classId)
   const next = baseFour()
   let used = 0
+  const give = (stat: (typeof STAT_IDS)[number], upTo: number) => {
+    const want = Math.max(0, upTo - next[stat])
+    const alloc = Math.min(want, Math.max(0, ap - used))
+    next[stat] += alloc
+    used += alloc
+  }
+  // 1) 직업 하한 먼저 (주스탯은 어차피 남은 AP를 전부 받으므로 제외)
   for (const stat of STAT_IDS) {
     if (stat === job.primaryStat) continue
-    const desired = Math.max(STAT_BASE, Math.floor(current[stat] ?? STAT_BASE)) - STAT_BASE
-    const alloc = Math.min(desired, Math.max(0, ap - used))
-    next[stat] = STAT_BASE + alloc
-    used += alloc
+    give(stat, floors[stat])
+  }
+  // 2) 사용자가 지정한 값까지 추가 배분
+  for (const stat of STAT_IDS) {
+    if (stat === job.primaryStat) continue
+    give(stat, Math.floor(current[stat] ?? 0))
   }
   next[job.primaryStat] = STAT_BASE + Math.max(0, ap - used)
   return next
@@ -174,7 +188,8 @@ export const useBuildStore = create<BuildState>()(
         set((s) => {
           if (!s.jobId) return s
           if (stat === JOBS[s.jobId].primaryStat) return s
-          const draft = { ...s.baseStats, [stat]: Math.max(STAT_BASE, Math.floor(value) || STAT_BASE) }
+          const min = statFloors(JOBS[s.jobId].classId)[stat]
+          const draft = { ...s.baseStats, [stat]: Math.max(min, Math.floor(value) || min) }
           return { baseStats: recomputeStats(s.jobId, s.level, draft) }
         }),
       equip: (inst, invId) =>
