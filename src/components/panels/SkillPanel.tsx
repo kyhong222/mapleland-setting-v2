@@ -39,11 +39,21 @@ import { useTouchLongPress } from '../../lib/useLongPress'
 /** 레벨 조정 대상: 토글버프(영메·메용/직업패시브) / 적용버프(도핑·개인·파티) / 마스터리 */
 type BuffKind = 'toggle' | 'applied' | 'mastery'
 
-/** 스킬=base64 data URI, 아이템=id로 아이콘 URL 유도 */
-function buffIconUrl(buff: Buff): string | undefined {
+/**
+ * 스킬=아이콘 경로, 아이템=id로 아이콘 URL 유도.
+ * 같은 스킬이라도 직업에 따라 아이콘이 다른 경우(시그너스 분노 등) iconByJob이 우선한다.
+ */
+function buffIconUrl(buff: Buff, jobId: JobId | null): string | undefined {
+  if (buff.type === 'skill' && jobId && buff.iconByJob?.[jobId]) return buff.iconByJob[jobId]
   if (buff.icon) return buff.icon
   if (buff.type === 'item') return `https://maplestory.io/api/gms/62/item/${buff.id}/icon`
   return undefined
+}
+
+/** 파티 버프를 이 직업이 직접 가지고 있는가 (가지고 있으면 '개인'으로 분류) */
+function ownsBuff(buff: Buff, jobId: JobId | null): boolean {
+  if (!jobId || buff.type !== 'skill') return false
+  return buff.scope === 'personal' ? !!buff.jobs?.includes(jobId) : !!buff.owners?.includes(jobId)
 }
 
 /** 이름 앞 접두사: 변형='[변형명]' / 레벨스킬='[Lv. n]' / 그 외 없음 */
@@ -106,7 +116,8 @@ function BuffIcon({
   highlightActive?: boolean
 }) {
   const lp = useTouchLongPress(() => onLongPress?.())
-  const icon = buffIconUrl(buff)
+  const iconJobId = useBuildStore((s) => s.jobId)
+  const icon = buffIconUrl(buff, iconJobId)
   const img = Math.round(size * 0.82)
   const highlighted = highlightActive && active
   const box = (
@@ -383,8 +394,28 @@ function MasteryRow({ buff, applied, unappliedNote, onOpen }: {
 }
 
 /** 선택용 드롭다운 — 항목 선택 시 적용 목록에 추가(이미 적용된 버프는 목록에서 제외) */
-function BuffSelect({ buffs, appliedIds, onAdd, placeholder }: { buffs: Buff[]; appliedIds: Set<string>; onAdd: (id: string) => void; placeholder: string }) {
-  const available = buffs.filter((b) => !appliedIds.has(b.id))
+/** 드롭다운 한 그룹 (개인 / 파티) */
+interface BuffGroup {
+  label: string
+  items: Buff[]
+}
+
+function BuffSelect({ groups, appliedIds, onAdd, placeholder }: {
+  groups: BuffGroup[]
+  appliedIds: Set<string>
+  onAdd: (id: string) => void
+  placeholder: string
+}) {
+  const shown = groups
+    .map((g) => ({ ...g, items: g.items.filter((b) => !appliedIds.has(b.id)) }))
+    .filter((g) => g.items.length > 0)
+  const row = (b: Buff) => (
+    <MenuItem key={b.id} value={b.id} sx={{ fontSize: 13, gap: 0.75 }}>
+      <BuffIcon buff={b} size={28} />
+      <Box component="span" sx={{ flex: 1, minWidth: 0 }}>{b.name}</Box>
+      <Box component="span" sx={{ color: 'success.main' }}>{formatEffects(buffEffectsAtLevel(b, defaultBuffLevel(b))) || '—'}</Box>
+    </MenuItem>
+  )
   return (
     <Select
       size="small"
@@ -398,17 +429,18 @@ function BuffSelect({ buffs, appliedIds, onAdd, placeholder }: { buffs: Buff[]; 
       renderValue={() => <Box component="em" sx={{ color: 'text.disabled' }}>{placeholder}</Box>}
       sx={{ '& .MuiSelect-select': { py: 0.5, fontSize: 13, display: 'flex', alignItems: 'center' } }}
     >
-      {available.length === 0 ? (
-        <MenuItem value="" disabled>추가할 버프 없음</MenuItem>
-      ) : (
-        available.map((b) => (
-          <MenuItem key={b.id} value={b.id} sx={{ fontSize: 13, gap: 0.75 }}>
-            <BuffIcon buff={b} size={28} />
-            <Box component="span" sx={{ flex: 1, minWidth: 0 }}>{b.name}</Box>
-            <Box component="span" sx={{ color: 'success.main' }}>{formatEffects(buffEffectsAtLevel(b, defaultBuffLevel(b))) || '—'}</Box>
-          </MenuItem>
-        ))
-      )}
+      {shown.length === 0
+        ? <MenuItem value="" disabled>추가할 버프 없음</MenuItem>
+        : shown.flatMap((g, gi) => [
+            gi > 0 ? <Divider key={`div-${g.label}`} /> : null,
+            // 그룹이 하나뿐이면 굳이 머리글을 달지 않는다
+            shown.length > 1 ? (
+              <MenuItem key={`hdr-${g.label}`} value="" disabled sx={{ fontSize: 11, opacity: 1, color: 'text.secondary', fontWeight: 700, minHeight: 0, py: 0.25 }}>
+                {g.label}
+              </MenuItem>
+            ) : null,
+            ...g.items.map(row),
+          ])}
     </Select>
   )
 }
@@ -616,8 +648,18 @@ export default function SkillPanel() {
     ...(jobId ? PERSONAL_BUFFS.filter((b) => canUseBuff(b, jobId) && b.type === 'skill' && b.mode === 'passive') : []),
   ].sort((a, b) => (MAGIC_GUARD_IDS.has(b.id) ? 1 : 0) - (MAGIC_GUARD_IDS.has(a.id) ? 1 : 0))
 
-  // 개인 버프 드롭다운 풀 (액티브만 — 패시브는 특화 섹션으로) · 파티 버프는 전 직업(샤프아이즈/하이퍼바디 포함)
-  const personalPool = jobId ? PERSONAL_BUFFS.filter((b) => canUseBuff(b, jobId) && !(b.type === 'skill' && b.mode === 'passive')) : []
+  // 버프 드롭다운 풀 — 개인 액티브 스킬(패시브는 특화 섹션으로) + 파티 버프 전부.
+  // 그중 이 직업이 직접 가진 것(개인스킬 + 소유 파티버프)을 '개인'으로 앞에 모은다.
+  const buffPool = jobId
+    ? [
+        ...PERSONAL_BUFFS.filter((b) => canUseBuff(b, jobId) && !(b.type === 'skill' && b.mode === 'passive')),
+        ...PARTY_BUFFS,
+      ]
+    : PARTY_BUFFS
+  const buffGroups = [
+    { label: '개인 버프', items: buffPool.filter((b) => ownsBuff(b, jobId)) },
+    { label: '파티 버프', items: buffPool.filter((b) => !ownsBuff(b, jobId)) },
+  ]
 
   const appliedIds = new Set(Object.keys(appliedBuffs))
   const appliedEntries = Object.keys(appliedBuffs)
@@ -643,17 +685,10 @@ export default function SkillPanel() {
       <Divider sx={{ my: 1 }} />
 
       <SectionTitle>아이템 도핑</SectionTitle>
-      <BuffSelect buffs={DOPING_ITEMS} appliedIds={appliedIds} onAdd={addBuff} placeholder="도핑 선택하여 추가" />
+      <BuffSelect groups={[{ label: '아이템 도핑', items: DOPING_ITEMS }]} appliedIds={appliedIds} onAdd={addBuff} placeholder="도핑 선택하여 추가" />
 
-      <SectionTitle sx={{ mt: 0.75 }}>개인 버프</SectionTitle>
-      {jobId ? (
-        <BuffSelect buffs={personalPool} appliedIds={appliedIds} onAdd={addBuff} placeholder="개인 버프 선택하여 추가" />
-      ) : (
-        <Typography variant="caption" color="text.disabled">직업 선택 후 표시</Typography>
-      )}
-
-      <SectionTitle sx={{ mt: 0.75 }}>파티 버프</SectionTitle>
-      <BuffSelect buffs={PARTY_BUFFS} appliedIds={appliedIds} onAdd={addBuff} placeholder="파티 버프 선택하여 추가" />
+      <SectionTitle sx={{ mt: 0.75 }}>버프</SectionTitle>
+      <BuffSelect groups={buffGroups} appliedIds={appliedIds} onAdd={addBuff} placeholder="버프 선택하여 추가" />
 
       <Divider sx={{ my: 1 }} />
 

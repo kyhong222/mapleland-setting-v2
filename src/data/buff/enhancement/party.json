@@ -88,7 +88,15 @@
         "pdef": -12
       }
     ],
-    "icon": "/buff-icons/1101006.png"
+    "icon": "/skill-icons/1101006.png",
+    "owners": [
+      "hero",
+      "soulMaster"
+    ],
+    "iconByJob": {
+      "hero": "/skill-icons/1101006.png",
+      "soulMaster": "/skill-icons/11101003.png"
+    }
   },
   {
     "id": "1301006",
@@ -179,7 +187,10 @@
         "mdef": 20
       }
     ],
-    "icon": "/buff-icons/1301006.png"
+    "icon": "/skill-icons/1301006.png",
+    "owners": [
+      "darkKnight"
+    ]
   },
   {
     "id": "1301007",
@@ -310,7 +321,10 @@
         "mpP": 60
       }
     ],
-    "icon": "/buff-icons/1301007.png"
+    "icon": "/skill-icons/1301007.png",
+    "owners": [
+      "darkKnight"
+    ]
   },
   {
     "id": "2101001",
@@ -381,7 +395,17 @@
         "mad": 20
       }
     ],
-    "icon": "/buff-icons/2101001.png"
+    "icon": "/skill-icons/2101001.png",
+    "owners": [
+      "archMageFP",
+      "archMageIL",
+      "flameWizard"
+    ],
+    "iconByJob": {
+      "archMageFP": "/skill-icons/2101001.png",
+      "archMageIL": "/skill-icons/2201001.png",
+      "flameWizard": "/skill-icons/12101000.png"
+    }
   },
   {
     "id": "2301004",
@@ -512,7 +536,10 @@
         "mdef": 20
       }
     ],
-    "icon": "/buff-icons/2301004.png"
+    "icon": "/skill-icons/2301004.png",
+    "owners": [
+      "bishop"
+    ]
   },
   {
     "id": "3121002",
@@ -643,7 +670,15 @@
         "criticalDamage": 140
       }
     ],
-    "icon": "/buff-icons/3121002.png"
+    "icon": "/skill-icons/3121002.png",
+    "owners": [
+      "bowmaster",
+      "marksman"
+    ],
+    "iconByJob": {
+      "bowmaster": "/skill-icons/3121002.png",
+      "marksman": "/skill-icons/3221002.png"
+    }
   },
   {
     "id": "4101004",
@@ -734,7 +769,17 @@
         "jump": 20
       }
     ],
-    "icon": "/buff-icons/4101004.png"
+    "icon": "/skill-icons/4101004.png",
+    "owners": [
+      "nightLord",
+      "shadower",
+      "nightWalker"
+    ],
+    "iconByJob": {
+      "nightLord": "/skill-icons/4101004.png",
+      "shadower": "/skill-icons/4201003.png",
+      "nightWalker": "/skill-icons/14101003.png"
+    }
   },
   {
     "id": "1121010",
@@ -835,7 +880,10 @@
         "addPad": 16
       }
     ],
-    "icon": "/buff-icons/1121010.png"
+    "icon": "/skill-icons/1121010.png",
+    "owners": [
+      "hero"
+    ]
   },
   {
     "id": "1201006",
@@ -946,7 +994,10 @@
         "monsterAccReduceP": 20
       }
     ],
-    "icon": "/buff-icons/1201006.png"
+    "icon": "/skill-icons/1201006.png",
+    "owners": [
+      "paladin"
+    ]
   },
   {
     "id": "5121009",
@@ -1017,6 +1068,14 @@
         "windBoostStep": 2
       }
     ],
-    "icon": "/buff-icons/5121009.png"
+    "icon": "/skill-icons/5121009.png",
+    "owners": [
+      "viper",
+      "striker"
+    ],
+    "iconByJob": {
+      "viper": "/skill-icons/5121009.png",
+      "striker": "/skill-icons/15111005.png"
+    }
   }
 ]

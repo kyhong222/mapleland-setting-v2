@@ -57,6 +57,16 @@ export interface SkillBuff extends BuffBase {
   effectsByLevel: EffectMap[]
   /** 개인스킬: 사용 가능한 직업 목록. 파티스킬은 생략(전 직업) */
   jobs?: JobId[]
+  /**
+   * 파티스킬의 소유 직업. 이 직업으로 플레이 중이면 남에게 받는 게 아니라
+   * 자기 스킬이므로 버프 목록에서 '개인'으로 분류한다.
+   */
+  owners?: JobId[]
+  /**
+   * 직업별 아이콘 경로. 같은 이름·같은 효과라도 스킬 id가 달라 아이콘이 다른 경우
+   * (시그너스 분노/메디테이션/헤이스트/윈드 부스터 등)에 쓴다. 없으면 icon을 쓴다.
+   */
+  iconByJob?: Partial<Record<JobId, string>>
   /** 무기 숙련도/엑스퍼트: 적용되는 무기 타입. 장착 주무기가 일치할 때만 자동 적용 */
   weaponTypes?: WeaponType[]
   /**
