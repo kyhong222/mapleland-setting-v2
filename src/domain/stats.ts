@@ -24,12 +24,12 @@ export const MAX_STAT = 999
 
 /**
  * 전직 요구치 때문에 스탯 초기화로도 내려가지 않는 최소 스탯.
- * 도적·해적은 전직에 DEX 25가 필요해 초기화해도 25로 남는다.
+ * 도적은 DEX 25, 해적은 DEX 20이 전직 조건이라 초기화해도 그 값으로 남는다.
  * 이 몫은 순수 스탯합 안에서 나가므로 총합은 그대로고 주스탯이 그만큼 줄어든다.
  */
 const CLASS_STAT_FLOOR: Partial<Record<ClassId, Partial<BaseStats>>> = {
   thief: { DEX: 25 },
-  pirate: { DEX: 25 },
+  pirate: { DEX: 20 },
 }
 
 /** 해당 직업군의 스탯별 하한 (지정 없으면 STAT_BASE) */
