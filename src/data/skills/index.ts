@@ -121,6 +121,35 @@ export interface SkillAttack {
   spellAtk: number
   /** 속성 코드(F/I/L/S/H) — 무속성이면 undefined */
   element?: string
+  /** 마법 숙련도(0~1). 물리는 undefined — 무기 마스터리 스킬에서 오므로 masteryRatio가 담당 */
+  mastery?: number
+}
+
+/** 마법 기본 숙련도(%) — 스킬 숙련도에 항상 합산된다 */
+export const MAGIC_BASE_MASTERY = 10
+
+/**
+ * 마법 궁극기(제네시스·메테오·블리자드)의 숙련도(%) — 고정 60.
+ * 이 셋만 WZ에 mastery 필드가 없고 툴팁에도 '숙련도' 줄이 없다(다른 마법 공격 스킬의
+ * detail은 "…기본 공격력 #mad, 숙련도 #mastery%"). 인게임 확인값으로 고정한다.
+ */
+export const MAGIC_NO_MASTERY_DEFAULT = 60
+
+/**
+ * 마법 공격 스킬의 숙련도(0~1).
+ *
+ * 원작은 기본 숙련도 10%에 스킬 숙련도를 더한다. 스킬 숙련도 = WZ mastery 값 × 5%
+ * (소드 마스터리 20레벨의 mastery가 10인데 인게임 표기는 50%인 것으로 배율 검증).
+ *   - 엔젤레이/샤이닝 레이/홀리 에로우 마스터: mastery 10 → 10 + 50 = 60%
+ *   - 빅뱅 마스터: mastery 14 → 10 + 70 = 80%
+ *   - 제네시스/메테오/블리자드: mastery 없음 → 60% 고정
+ *
+ * 물리는 스킬이 아니라 무기 마스터리 스킬에서 오므로 여기서 다루지 않는다.
+ */
+export function magicMasteryRatio(props: ILevelProperties | undefined): number {
+  const raw = skillNum(props, 'mastery')
+  const pct = raw > 0 ? MAGIC_BASE_MASTERY + raw * 5 : MAGIC_NO_MASTERY_DEFAULT
+  return Math.min(1, pct / 100)
 }
 
 /**
@@ -262,7 +291,7 @@ export function skillAttackAt(skill: IJobSkill, level: number): SkillAttack | nu
   const dmg = skillNum(props, 'damage')
   const rawElement = skill.elementalAttribute || SKILL_ELEMENT_OVERRIDE[skill.description?.name ?? '']
   const element = rawElement ? rawElement.toUpperCase() : undefined
-  if (mad > 0) return { kind: 'magic', skillPercent: 100, spellAtk: mad, element }
+  if (mad > 0) return { kind: 'magic', skillPercent: 100, spellAtk: mad, element, mastery: magicMasteryRatio(props) }
   if (dmg > 0) return { kind: 'physical', skillPercent: dmg, spellAtk: 0, element }
   return null
 }

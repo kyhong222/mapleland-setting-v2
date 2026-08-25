@@ -99,7 +99,8 @@ export default function AttackPanel() {
       <Box sx={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 0.5 }}>
         <Row label="주스탯" value={primary.toLocaleString()} />
         <Row label={isMagic ? '총 마력' : '총 공격력'} value={(isMagic ? matk : watk).toLocaleString()} />
-        <Row label="숙련도" value={`${Math.round(mastery * 100)}%`} />
+        {/* 마법 숙련도는 캐릭터가 아니라 스킬마다 다르다(기본 10% + 스킬 mastery×5%) → 여기선 물리만 */}
+        {!isMagic && <Row label="숙련도" value={`${Math.round(mastery * 100)}%`} />}
       </Box>
 
       {isMagic ? null : !weaponType ? (
