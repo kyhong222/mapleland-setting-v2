@@ -29,6 +29,7 @@ import type { JobId } from '../../domain/jobs'
 import { WEAPON_CONSTANTS } from '../../domain/weapons'
 import { comboFinalDamageP, COMBO_SKILLS, findSkillById, skillAttackAt, skillNumAt, chargeDamagePercent, chargeStats } from '../../data/skills'
 import { CHARGE_LABEL, CHARGE_MASTER, CHARGE_ELEMENTS, chargeMultiplier, chargeFromUi } from '../../domain/paladinCharge'
+import ChargeMultTip from '../common/ChargeMultTip'
 import type { ChargeElement } from '../../domain/paladinCharge'
 import { DEFAULT_CHARGE } from '../../store/buildStore'
 import { useMonsterStore } from '../../store/monsterStore'
@@ -564,7 +565,7 @@ function ChargeSection() {
   const selectedMobId = useMonsterStore((s) => s.selectedId)
   const [dlg, setDlg] = useState<'main' | 'sub' | null>(null)
   const mainIsThunder = charge.mainElement === 'lightning'
-  // 선택 몬스터 기준 차지배율 (데미지배수 × 속성배수)
+  // 선택 몬스터 기준 차지배율. 몬스터 미선택이면 무속성 몹으로 간주(elemAttr undefined)
   const state = charge.mainOn ? chargeFromUi(charge, chargeStats) : null
   const monster = selectedMobId != null ? getMonster(selectedMobId) : undefined
   const appliedMult = state ? chargeMultiplier(state, monster?.elemAttr) : null
@@ -575,10 +576,17 @@ function ChargeSection() {
     <>
       <Typography variant="caption" color="text.secondary" sx={{ display: 'block', mt: 0.5 }}>
         차지
-        {charge.mainOn && appliedMult != null && (
-          <Box component="span" sx={{ color: 'success.main', fontWeight: 700, ml: 0.5 }}>
-            · 차지배율 ×{appliedMult.toFixed(2)}
-          </Box>
+        {charge.mainOn && appliedMult != null && state && (
+          <>
+            <Box component="span" sx={{ color: 'success.main', fontWeight: 700, ml: 0.5 }}>
+              · 차지배율 ×{appliedMult.toFixed(2)}
+            </Box>
+            <ChargeMultTip
+              state={state}
+              elemAttr={monster?.elemAttr}
+              target={monster ? monster.name : '무속성 몹 기준'}
+            />
+          </>
         )}
       </Typography>
       <ActionHint

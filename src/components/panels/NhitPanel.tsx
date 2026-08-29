@@ -29,6 +29,7 @@ import type { Dist } from '../../domain/nhitProb'
 import { attacksPerMinute } from '../../data/attackSpeed'
 import { chargeMultiplier, chargeFromUi, chargeElementCodes } from '../../domain/paladinCharge'
 import type { ChargeElement } from '../../domain/paladinCharge'
+import ChargeMultTip from '../common/ChargeMultTip'
 
 /**
  * 시그너스 차지 — 직업당 하나이며, 특화 버프 토글 레벨이 그대로 차지 레벨이 된다.
@@ -180,6 +181,11 @@ export default function NhitPanel() {
     }
     /** 속성만의 배율 (데미지 증가분 제외) */
     const elementRatio = elementMultNeutral > 0 ? elementMult / elementMultNeutral : 1
+    /**
+     * 표기용 배율. 차지가 걸려 있으면 데미지 증가분까지 합친 **종합 차지배율**을 보여준다
+     * (예: 무속성 몹에 홀리+썬더 = 1.625배). 차지가 없으면 속성반응 배율 그대로.
+     */
+    const displayMult = charge ? elementMult : elementRatio
 
     // 방어
     const D = levelPenalty(monster.level, level)
@@ -225,7 +231,7 @@ export default function NhitPanel() {
       lineBase,
       hitMultipliers,
     })
-    return { cast, att, effSkillPercent, isMagic, elements, elementRatio }
+    return { cast, att, effSkillPercent, isMagic, elements, displayMult, charge }
   }
 
   // 추가스킬 목록: 각 스킬 1회 시전 분포. 방컷 누적곱의 시작값(prior)으로 합성 → 데미지도 분포째 반영.
@@ -253,8 +259,8 @@ export default function NhitPanel() {
     if (!job || !monster || !selectedSkill) return null
     const built = buildCast(selectedSkill, skillLevel)
     if (!built) return null
-    const { cast, att, effSkillPercent, isMagic, elements, elementRatio } = built
-    if (!cast) return { unsupported: true as const, elements, elementRatio }
+    const { cast, att, effSkillPercent, isMagic, elements, displayMult, charge } = built
+    if (!cast) return { unsupported: true as const, elements, displayMult, charge }
 
     const noDpm = NO_DPM.has(selectedSkill.id)
     const hp = monster.maxHP ?? 0
@@ -270,7 +276,8 @@ export default function NhitPanel() {
     return {
       unsupported: false as const,
       elements,
-      elementRatio,
+      displayMult,
+      charge,
       isBoss,
       hp,
       hasPreCast: !!preCastPrior,
@@ -391,8 +398,11 @@ export default function NhitPanel() {
                 strong
                 note={
                   result.elements.length > 0 ? (
-                    <Box component="span" sx={{ color: 'success.main', fontWeight: 700, fontSize: 12 }}>
-                      {formatElements(result.elements)} ({result.elementRatio.toFixed(2)}배)
+                    <Box component="span" sx={{ display: 'inline-flex', alignItems: 'center', color: 'success.main', fontWeight: 700, fontSize: 12 }}>
+                      {formatElements(result.elements)} ({result.displayMult.toFixed(2)}배)
+                      {result.charge && (
+                        <ChargeMultTip state={result.charge} elemAttr={monster.elemAttr} target={monster.name} />
+                      )}
                     </Box>
                   ) : undefined
                 }
