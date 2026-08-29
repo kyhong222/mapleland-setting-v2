@@ -119,6 +119,8 @@ export const ASSIST_COEF = 0.5
 export interface ChargeTerm {
   /** '홀리 차지' / '썬더 차지' */
   label: string
+  /** 부여 속성코드 (F/I/L/H) */
+  elementCode: string
   role: 'main' | 'assist'
   /** 데미지 배수를 %로 (1.5 → 150) */
   damagePercent: number
@@ -167,6 +169,7 @@ export function chargeBreakdown(state: ChargeState, monsterElemAttr: string | un
   const pAttr = attrMultFromZ(pReact, state.attrZ)
   const terms: ChargeTerm[] = [{
     label: `${CHARGE_LABEL[state.main]} 차지`,
+    elementCode: ELEM_CODE[state.main],
     role: 'main',
     damagePercent: state.baseMult * 100,
     reaction: pReact,
@@ -185,6 +188,7 @@ export function chargeBreakdown(state: ChargeState, monsterElemAttr: string | un
     const halved = tReact !== 'weak'
     terms.push({
       label: `${CHARGE_LABEL.lightning} 차지`,
+      elementCode: ELEM_CODE.lightning,
       role: 'assist',
       damagePercent: bT * 100,
       reaction: tReact,

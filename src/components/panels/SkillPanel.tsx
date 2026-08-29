@@ -28,12 +28,9 @@ import type { EffectMap } from '../../domain/effects'
 import type { JobId } from '../../domain/jobs'
 import { WEAPON_CONSTANTS } from '../../domain/weapons'
 import { comboFinalDamageP, COMBO_SKILLS, findSkillById, skillAttackAt, skillNumAt, chargeDamagePercent, chargeStats } from '../../data/skills'
-import { CHARGE_LABEL, CHARGE_MASTER, CHARGE_ELEMENTS, chargeMultiplier, chargeFromUi } from '../../domain/paladinCharge'
-import ChargeMultTip from '../common/ChargeMultTip'
+import { CHARGE_LABEL, CHARGE_MASTER, CHARGE_ELEMENTS } from '../../domain/paladinCharge'
 import type { ChargeElement } from '../../domain/paladinCharge'
 import { DEFAULT_CHARGE } from '../../store/buildStore'
-import { useMonsterStore } from '../../store/monsterStore'
-import { getMonster } from '../../data/mobs'
 import { formatEffects } from '../../lib/effectFormat'
 import { useTouchLongPress } from '../../lib/useLongPress'
 
@@ -562,32 +559,16 @@ function ChargeSubDialog({ level, onApply, onClose }: { level: number; onApply: 
 function ChargeSection() {
   const charge = useBuildStore((s) => s.charge) ?? DEFAULT_CHARGE
   const setCharge = useBuildStore((s) => s.setCharge)
-  const selectedMobId = useMonsterStore((s) => s.selectedId)
   const [dlg, setDlg] = useState<'main' | 'sub' | null>(null)
   const mainIsThunder = charge.mainElement === 'lightning'
-  // 선택 몬스터 기준 차지배율. 몬스터 미선택이면 무속성 몹으로 간주(elemAttr undefined)
-  const state = charge.mainOn ? chargeFromUi(charge, chargeStats) : null
-  const monster = selectedMobId != null ? getMonster(selectedMobId) : undefined
-  const appliedMult = state ? chargeMultiplier(state, monster?.elemAttr) : null
   // 각 차지의 데미지 증가%(damage 필드). 예: 파이어 30레벨 = 140%
   const mainBase = chargeDamagePercent(charge.mainElement, charge.mainLevel)
   const subBase = chargeDamagePercent('lightning', charge.subLevel)
   return (
     <>
+      {/* 차지배율은 데미지 계산 섹션에서만 표기한다(대상 몬스터가 있어야 의미가 있어서) */}
       <Typography variant="caption" color="text.secondary" sx={{ display: 'block', mt: 0.5 }}>
         차지
-        {charge.mainOn && appliedMult != null && state && (
-          <>
-            <Box component="span" sx={{ color: 'success.main', fontWeight: 700, ml: 0.5 }}>
-              · 차지배율 ×{appliedMult.toFixed(2)}
-            </Box>
-            <ChargeMultTip
-              state={state}
-              elemAttr={monster?.elemAttr}
-              target={monster ? monster.name : '무속성 몹 기준'}
-            />
-          </>
-        )}
       </Typography>
       <ActionHint
         sx={{ mb: 0.5 }}

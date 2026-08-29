@@ -401,7 +401,7 @@ export default function NhitPanel() {
                     <Box component="span" sx={{ display: 'inline-flex', alignItems: 'center', color: 'success.main', fontWeight: 700, fontSize: 12 }}>
                       {formatElements(result.elements)} ({result.displayMult.toFixed(2)}배)
                       {result.charge && (
-                        <ChargeMultTip state={result.charge} elemAttr={monster.elemAttr} target={monster.name} />
+                        <ChargeMultTip state={result.charge} elemAttr={monster.elemAttr} monsterName={monster.koreanName || monster.name} />
                       )}
                     </Box>
                   ) : undefined
