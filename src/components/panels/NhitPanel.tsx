@@ -212,7 +212,8 @@ export default function NhitPanel() {
       primary: finalStats[job.primaryStat],
       secondary: job.secondaryStats.reduce((a, s) => a + finalStats[s], 0),
       watk,
-      mastery: masteryRatio(effects),
+      // 마법 숙련도는 스킬 자체에서(기본 10% + 스킬 mastery×5%), 물리는 무기 마스터리 버프에서 온다
+      mastery: att.mastery ?? masteryRatio(effects),
       magic: totalMagic(effects, finalStats.INT),
       int: finalStats.INT,
       spellAtk: att.spellAtk,
