@@ -737,8 +737,8 @@
       "levelProperties": [
         {
           "hs": "h1",
-          "mad": "62",
-          "mastery": "1",
+          "mad": "102",
+          "mastery": "15",
           "mobCount": "2",
           "mpCon": "15",
           "lt": "Point [ X=-300, Y=-100 ]",
@@ -747,8 +747,8 @@
         },
         {
           "hs": "h2",
-          "mad": "64",
-          "mastery": "1",
+          "mad": "104",
+          "mastery": "15",
           "mobCount": "2",
           "mpCon": "15",
           "lt": "Point [ X=-300, Y=-100 ]",
@@ -757,8 +757,8 @@
         },
         {
           "hs": "h3",
-          "mad": "66",
-          "mastery": "1",
+          "mad": "106",
+          "mastery": "15",
           "mobCount": "2",
           "mpCon": "15",
           "lt": "Point [ X=-300, Y=-100 ]",
@@ -767,8 +767,8 @@
         },
         {
           "hs": "h4",
-          "mad": "68",
-          "mastery": "2",
+          "mad": "108",
+          "mastery": "20",
           "mobCount": "2",
           "mpCon": "15",
           "lt": "Point [ X=-300, Y=-100 ]",
@@ -777,8 +777,8 @@
         },
         {
           "hs": "h5",
-          "mad": "70",
-          "mastery": "2",
+          "mad": "110",
+          "mastery": "20",
           "mobCount": "2",
           "mpCon": "15",
           "lt": "Point [ X=-300, Y=-100 ]",
@@ -787,8 +787,8 @@
         },
         {
           "hs": "h6",
-          "mad": "72",
-          "mastery": "2",
+          "mad": "112",
+          "mastery": "20",
           "mobCount": "2",
           "mpCon": "15",
           "lt": "Point [ X=-300, Y=-100 ]",
@@ -797,8 +797,8 @@
         },
         {
           "hs": "h7",
-          "mad": "74",
-          "mastery": "3",
+          "mad": "114",
+          "mastery": "25",
           "mobCount": "3",
           "mpCon": "18",
           "lt": "Point [ X=-300, Y=-100 ]",
@@ -807,8 +807,8 @@
         },
         {
           "hs": "h8",
-          "mad": "76",
-          "mastery": "3",
+          "mad": "116",
+          "mastery": "25",
           "mobCount": "3",
           "mpCon": "18",
           "lt": "Point [ X=-300, Y=-100 ]",
@@ -817,8 +817,8 @@
         },
         {
           "hs": "h9",
-          "mad": "78",
-          "mastery": "3",
+          "mad": "118",
+          "mastery": "25",
           "mobCount": "3",
           "mpCon": "18",
           "lt": "Point [ X=-300, Y=-100 ]",
@@ -827,8 +827,8 @@
         },
         {
           "hs": "h10",
-          "mad": "80",
-          "mastery": "4",
+          "mad": "120",
+          "mastery": "30",
           "mobCount": "3",
           "mpCon": "18",
           "lt": "Point [ X=-300, Y=-100 ]",
@@ -837,8 +837,8 @@
         },
         {
           "hs": "h11",
-          "mad": "82",
-          "mastery": "4",
+          "mad": "122",
+          "mastery": "30",
           "mobCount": "3",
           "mpCon": "18",
           "lt": "Point [ X=-300, Y=-100 ]",
@@ -847,8 +847,8 @@
         },
         {
           "hs": "h12",
-          "mad": "84",
-          "mastery": "4",
+          "mad": "124",
+          "mastery": "30",
           "mobCount": "3",
           "mpCon": "18",
           "lt": "Point [ X=-300, Y=-100 ]",
@@ -857,8 +857,8 @@
         },
         {
           "hs": "h13",
-          "mad": "86",
-          "mastery": "5",
+          "mad": "126",
+          "mastery": "35",
           "mobCount": "4",
           "mpCon": "21",
           "lt": "Point [ X=-300, Y=-100 ]",
@@ -867,8 +867,8 @@
         },
         {
           "hs": "h14",
-          "mad": "88",
-          "mastery": "5",
+          "mad": "128",
+          "mastery": "35",
           "mobCount": "4",
           "mpCon": "21",
           "lt": "Point [ X=-300, Y=-100 ]",
@@ -877,8 +877,8 @@
         },
         {
           "hs": "h15",
-          "mad": "90",
-          "mastery": "5",
+          "mad": "130",
+          "mastery": "35",
           "mobCount": "4",
           "mpCon": "21",
           "lt": "Point [ X=-300, Y=-100 ]",
@@ -887,38 +887,38 @@
         },
         {
           "hs": "h16",
-          "mad": "92",
-          "mastery": "6",
+          "mad": "132",
+          "mastery": "40",
           "mobCount": "4",
           "mpCon": "21",
           "lt": "Point [ X=-300, Y=-100 ]",
           "rb": "Point [ X=-15, Y=0 ]",
-          "time": "15"
+          "time": "10"
         },
         {
           "hs": "h17",
-          "mad": "94",
-          "mastery": "6",
+          "mad": "134",
+          "mastery": "40",
           "mobCount": "4",
           "mpCon": "21",
           "lt": "Point [ X=-300, Y=-100 ]",
           "rb": "Point [ X=-15, Y=0 ]",
-          "time": "15"
+          "time": "10"
         },
         {
           "hs": "h18",
-          "mad": "96",
-          "mastery": "6",
+          "mad": "136",
+          "mastery": "40",
           "mobCount": "4",
           "mpCon": "21",
           "lt": "Point [ X=-300, Y=-100 ]",
           "rb": "Point [ X=-15, Y=0 ]",
-          "time": "15"
+          "time": "10"
         },
         {
           "hs": "h19",
-          "mad": "98",
-          "mastery": "7",
+          "mad": "138",
+          "mastery": "45",
           "mobCount": "5",
           "mpCon": "31",
           "lt": "Point [ X=-300, Y=-100 ]",
@@ -927,8 +927,8 @@
         },
         {
           "hs": "h20",
-          "mad": "100",
-          "mastery": "7",
+          "mad": "140",
+          "mastery": "45",
           "mobCount": "5",
           "mpCon": "31",
           "lt": "Point [ X=-300, Y=-100 ]",
@@ -937,8 +937,8 @@
         },
         {
           "hs": "h21",
-          "mad": "102",
-          "mastery": "7",
+          "mad": "141",
+          "mastery": "45",
           "mobCount": "5",
           "mpCon": "31",
           "lt": "Point [ X=-300, Y=-100 ]",
@@ -947,8 +947,8 @@
         },
         {
           "hs": "h22",
-          "mad": "104",
-          "mastery": "8",
+          "mad": "142",
+          "mastery": "50",
           "mobCount": "5",
           "mpCon": "31",
           "lt": "Point [ X=-300, Y=-100 ]",
@@ -957,8 +957,8 @@
         },
         {
           "hs": "h23",
-          "mad": "106",
-          "mastery": "8",
+          "mad": "143",
+          "mastery": "50",
           "mobCount": "5",
           "mpCon": "31",
           "lt": "Point [ X=-300, Y=-100 ]",
@@ -967,8 +967,8 @@
         },
         {
           "hs": "h24",
-          "mad": "108",
-          "mastery": "8",
+          "mad": "144",
+          "mastery": "50",
           "mobCount": "5",
           "mpCon": "31",
           "lt": "Point [ X=-300, Y=-100 ]",
@@ -977,8 +977,8 @@
         },
         {
           "hs": "h25",
-          "mad": "110",
-          "mastery": "9",
+          "mad": "145",
+          "mastery": "55",
           "mobCount": "6",
           "mpCon": "34",
           "lt": "Point [ X=-300, Y=-100 ]",
@@ -987,8 +987,8 @@
         },
         {
           "hs": "h26",
-          "mad": "112",
-          "mastery": "9",
+          "mad": "146",
+          "mastery": "55",
           "mobCount": "6",
           "mpCon": "34",
           "lt": "Point [ X=-300, Y=-100 ]",
@@ -997,8 +997,8 @@
         },
         {
           "hs": "h27",
-          "mad": "114",
-          "mastery": "9",
+          "mad": "147",
+          "mastery": "55",
           "mobCount": "6",
           "mpCon": "34",
           "lt": "Point [ X=-300, Y=-100 ]",
@@ -1007,8 +1007,8 @@
         },
         {
           "hs": "h28",
-          "mad": "116",
-          "mastery": "10",
+          "mad": "148",
+          "mastery": "60",
           "mobCount": "6",
           "mpCon": "34",
           "lt": "Point [ X=-300, Y=-100 ]",
@@ -1017,8 +1017,8 @@
         },
         {
           "hs": "h29",
-          "mad": "118",
-          "mastery": "10",
+          "mad": "149",
+          "mastery": "60",
           "mobCount": "6",
           "mpCon": "34",
           "lt": "Point [ X=-300, Y=-100 ]",
@@ -1027,8 +1027,8 @@
         },
         {
           "hs": "h30",
-          "mad": "120",
-          "mastery": "10",
+          "mad": "150",
+          "mastery": "60",
           "mobCount": "6",
           "mpCon": "34",
           "lt": "Point [ X=-300, Y=-100 ]",
@@ -1715,152 +1715,152 @@
         {
           "hs": "h1",
           "mad": "330",
-          "mpCon": "5000"
+          "mpCon": "4000"
         },
         {
           "hs": "h2",
           "mad": "340",
-          "mpCon": "5000"
+          "mpCon": "4000"
         },
         {
           "hs": "h3",
           "mad": "350",
-          "mpCon": "5000"
+          "mpCon": "4000"
         },
         {
           "hs": "h4",
           "mad": "360",
-          "mpCon": "5000"
+          "mpCon": "4000"
         },
         {
           "hs": "h5",
           "mad": "370",
-          "mpCon": "5000"
+          "mpCon": "4000"
         },
         {
           "hs": "h6",
           "mad": "380",
-          "mpCon": "5000"
+          "mpCon": "4000"
         },
         {
           "hs": "h7",
           "mad": "390",
-          "mpCon": "5000"
+          "mpCon": "4000"
         },
         {
           "hs": "h8",
           "mad": "400",
-          "mpCon": "5000"
+          "mpCon": "4000"
         },
         {
           "hs": "h9",
           "mad": "410",
-          "mpCon": "5000"
+          "mpCon": "4000"
         },
         {
           "hs": "h10",
           "mad": "420",
-          "mpCon": "5000"
+          "mpCon": "4000"
         },
         {
           "hs": "h11",
           "mad": "430",
-          "mpCon": "5000"
+          "mpCon": "4000"
         },
         {
           "hs": "h12",
           "mad": "440",
-          "mpCon": "5000"
+          "mpCon": "4000"
         },
         {
           "hs": "h13",
           "mad": "450",
-          "mpCon": "5000"
+          "mpCon": "4000"
         },
         {
           "hs": "h14",
           "mad": "460",
-          "mpCon": "5000"
+          "mpCon": "4000"
         },
         {
           "hs": "h15",
           "mad": "470",
-          "mpCon": "5000"
+          "mpCon": "4000"
         },
         {
           "hs": "h16",
           "mad": "480",
-          "mpCon": "5000"
+          "mpCon": "4000"
         },
         {
           "hs": "h17",
           "mad": "490",
-          "mpCon": "5000"
+          "mpCon": "4000"
         },
         {
           "hs": "h18",
           "mad": "500",
-          "mpCon": "5000"
+          "mpCon": "4000"
         },
         {
           "hs": "h19",
           "mad": "510",
-          "mpCon": "5000"
+          "mpCon": "4000"
         },
         {
           "hs": "h20",
           "mad": "520",
-          "mpCon": "5000"
+          "mpCon": "4000"
         },
         {
           "hs": "h21",
           "mad": "530",
-          "mpCon": "4950"
+          "mpCon": "3950"
         },
         {
           "hs": "h22",
           "mad": "540",
-          "mpCon": "4900"
+          "mpCon": "3900"
         },
         {
           "hs": "h23",
           "mad": "550",
-          "mpCon": "4850"
+          "mpCon": "3850"
         },
         {
           "hs": "h24",
           "mad": "560",
-          "mpCon": "4800"
+          "mpCon": "3800"
         },
         {
           "hs": "h25",
           "mad": "570",
-          "mpCon": "4750"
+          "mpCon": "3750"
         },
         {
           "hs": "h26",
           "mad": "580",
-          "mpCon": "4700"
+          "mpCon": "3700"
         },
         {
           "hs": "h27",
           "mad": "585",
-          "mpCon": "4650"
+          "mpCon": "3650"
         },
         {
           "hs": "h28",
           "mad": "590",
-          "mpCon": "4600"
+          "mpCon": "3600"
         },
         {
           "hs": "h29",
           "mad": "595",
-          "mpCon": "4550"
+          "mpCon": "3550"
         },
         {
           "hs": "h30",
           "mad": "600",
-          "mpCon": "4500"
+          "mpCon": "3500"
         }
       ]
     },
