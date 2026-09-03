@@ -109,8 +109,9 @@ export interface LineDamageInput {
   /** 스킬 퍼뎀 % (5단계, 방어 뒤) */
   skillPercent: number
   /**
-   * 데미지 증가 배수(2단계 Modifiers) — 콤보·버서크·차지 계수·위협·쉐파·엘앰프 등 전부.
+   * 데미지 증가 배수(2단계 Modifiers) — 콤보·버서크·차지 계수·위협·엘앰프 등.
    * 원소와 함께 방어 차감 전에 적용한다. (기본 1)
+   * 쉐도우 파트너는 여기가 아니라 CastDamageParams.shadowRatio로 넘긴다(방어 차감 뒤).
    */
   damageMult: number
   /** 크리 기대배율 f = 1 + 크리확률×크리추뎀/100 (기본 1) */
@@ -160,7 +161,7 @@ export interface CastDamageParams {
   elementMult: number
   defense?: LineDamageInput['defense']
   skillPercent: number
-  /** 데미지 증가 배수(콤보·버서크·차지 계수·위협·쉐파·엘앰프 등). 방어 앞 적용 */
+  /** 데미지 증가 배수(콤보·버서크·차지 계수·위협·엘앰프 등). 방어 앞 적용 */
   damageMult: number
   /** 크리 확률 (0~1). 크리는 평균배율이 아니라 확률 혼합으로 분포에 반영 */
   critProb: number
@@ -176,6 +177,18 @@ export interface CastDamageParams {
    * 지정한 인덱스만 클램프 후 배율 적용, 없으면 1.
    */
   hitMultipliers?: number[]
+  /**
+   * 쉐도우 파트너 분신 비율(0~1, 마스터 0.5).
+   *
+   * 분신은 **본체 타격값을 그대로 비율만큼 복제**한다. 본체가 10000/20000/30000이면
+   * 분신은 5000/10000/15000이 뜨고, 크리 여부도 본체와 같다(실측).
+   * 따라서 난수를 따로 굴리지도, 방어를 한 번 더 차감하지도 않는다 —
+   * 클램프 뒤 배율 ×(1 + ratio)와 정확히 같다.
+   *
+   * 예전에는 damageMult로 넘겨 방어 차감 **앞에** 곱했는데, 그러면 분신 몫에서
+   * 방어 차감이 빠져 데미지가 과대평가됐다.
+   */
+  shadowRatio?: number
 }
 
 export interface CastResult {
@@ -324,21 +337,26 @@ export function computeCast(p: CastDamageParams): CastResult | null {
     lineRanges.push(specRange(spec))
   }
 
+  /**
+   * 7단계 클램프 뒤 배율 = 타수배율(피스트 5타×2·6타×4) × (1 + 쉐도우 파트너 비율).
+   * 분신은 본체 타격값의 복제라 방어 차감 뒤에 곱해야 한다(shadowRatio 주석 참고).
+   */
+  const postMultOf = (lineIdx: number) => (p.hitMultipliers?.[lineIdx] ?? 1) * (1 + (p.shadowRatio ?? 0))
+
   if (p.kind === 'magic') {
     // 마법: 모션 무관 단일 라인
-    push([motionOf(calcMagic(p.magic ?? 0, p.int ?? 0, p.spellAtk ?? 0, p.mastery ?? 1), 1)])
+    push([motionOf(calcMagic(p.magic ?? 0, p.int ?? 0, p.spellAtk ?? 0, p.mastery ?? 1), 1, postMultOf(0))])
   } else if (p.lineBase) {
     // 예외식(럭세/트스): 모션 무관 고정 base를 attackCount 라인으로
     const n = Math.max(1, p.attackCount || 1)
-    for (let i = 0; i < n; i++) push([motionOf(p.lineBase, 1, p.hitMultipliers?.[i] ?? 1)])
+    for (let i = 0; i < n; i++) push([motionOf(p.lineBase, 1, postMultOf(i))])
   } else {
     const lines = skillMotionLines(p.skillId, p.weaponType, p.attackCount)
     if (!lines) return null
     lines.forEach((comps, lineIdx) => {
-      const postMult = p.hitMultipliers?.[lineIdx] ?? 1 // 7단계 타수배율(피스트 5타×2·6타×4)
       push(comps.map(({ weight, mult }) => motionOf(
         physRange(p.primary ?? 0, p.secondary ?? 0, mult, p.watk ?? 0, p.mastery ?? 1),
-        weight, postMult,
+        weight, postMultOf(lineIdx),
       )))
     })
   }

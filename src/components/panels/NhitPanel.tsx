@@ -201,8 +201,9 @@ export default function NhitPanel() {
     const finalMult = 1 + ((effects.finalDamageP ?? 0) + comboBonus) / 100
     const threatenMult = 1 + (effects.monsterDamageTakenP ?? 0) / 100
     const counterMult = COMA_PANIC.has(sk.id) && comboBonus > 0 ? MAX_COUNTER_MULT : 1
-    const shadowMult = 1 + (effects.shadowPartnerP ?? 0) / 100
-    const damageMult = (isMagic ? magicAmpMultiplier(effects) : 1) * finalMult * threatenMult * counterMult * shadowMult
+    const damageMult = (isMagic ? magicAmpMultiplier(effects) : 1) * finalMult * threatenMult * counterMult
+    // 쉐도우 파트너는 데미지 배수가 아니라 분신의 별도 타격이다 → computeCast가 라인을 늘린다
+    const shadowRatio = (effects.shadowPartnerP ?? 0) / 100
 
     const watk = totalAttack(effects)
     // 럭세/트스: LUK 전용 예외식 base(모션·부스탯·숙련 무시). 스킬%는 그대로 적용
@@ -231,6 +232,7 @@ export default function NhitPanel() {
       critMult,
       lineBase,
       hitMultipliers,
+      shadowRatio,
     })
     return { cast, att, effSkillPercent, isMagic, elements, displayMult, charge }
   }
