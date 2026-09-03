@@ -16,9 +16,12 @@
  *   - 마법 숙련도는 무기 마스터리 스킬이 아니라 **공격 스킬 자체**에서 온다.
  *     기본 10% + 스킬 mastery × 5%. (data/skills의 magicMasteryRatio 참고)
  *
- * 럭키세븐 / 트리플 스로우(도적 표창):
+ * 럭키세븐 / 트리플 스로우(도적 표창) — 스탯항이 통째로 대체되는 별도식:
  *   MAX = LUK × 5.0 × 총공격력 / 100
  *   MIN = LUK × 2.5 × 총공격력 / 100
+ *   - 물리식의 `(주스탯 × 무기상수 + 부스탯)` 자리를 `LUK × 5.0 / 2.5`가 대신한다
+ *   - 부스탯·숙련도 없음. MIN = MAX/2 이므로 숙련도 50%가 식 자체로 보장된다
+ *   - 위 값은 **스킬% 적용 전 base**다. 스킬 퍼뎀은 파이프라인에서 따로 곱한다
  *
  * 주/부스탯은 최종 능력치(장비·버프 반영) 기준이다.
  */
@@ -99,7 +102,11 @@ export function calcPhysical(primary: number, secondary: number, weaponType: Wea
   return { display, swing, stab }
 }
 
-/** 럭키세븐 / 트리플 스로우 (도적 표창 전용 별도식) — 부스탯·숙련 없음. 최대렙(스킬%150) 기준 표기값 */
+/**
+ * 럭키세븐 / 트리플 스로우 (도적 표창 전용 별도식) — 부스탯·숙련 없음.
+ * 일반 물리식의 `(주스탯 × 무기상수 + 부스탯)` 자리를 `LUK × 5.0 / 2.5`가 통째로 대체한다.
+ * 즉 이 값은 **스킬% 적용 전 base**이며, 표기 데미지(physRange)와 같은 층위다.
+ */
 export function calcLuckySeven(luk: number, watk: number): DamageRange {
   return {
     max: Math.floor((luk * 5.0) * watk / 100),
@@ -108,15 +115,19 @@ export function calcLuckySeven(luk: number, watk: number): DamageRange {
 }
 
 /**
- * 럭세/트스 데미지 엔진용 base(스킬% 적용 전, 타당 1발).
- *  base × (스킬damage%/100)이 최대렙(150%)에서 LUK×5.0/2.5×watk/100이 되도록 정규화.
- *  → base_max = LUK×watk/30, base_min = LUK×watk/60  (부스탯·숙련 없음, min=max/2 고정)
+ * 럭세/트스 데미지 엔진용 base(타당 1발) = calcLuckySeven과 동일한 값.
+ *  base_max = LUK×watk/20, base_min = LUK×watk/40  (min = max/2 고정 = 숙련도 50% 보장)
  *  이후 파이프라인은 일반 스킬과 동일(속성/방어/스킬%/크리/클램프).
+ *
+ * 예전에는 5.0 계수가 마스터 스킬%(150%)를 이미 포함한 값이라고 보고 /30, /60으로
+ * 나눴는데, 그러면 실측 대비 데미지가 1.5배 낮게 나왔다(후회의 수호대장 4.73방 vs
+ * 인게임 3방, 서로 다른 두 제보가 같은 배수를 가리켰다). 5.0/2.5는 일반 물리식의
+ * 스탯항을 대체하는 base이고 스킬%는 그 위에 따로 곱해진다.
  */
 export function calcLuckyBase(luk: number, watk: number): DamageRange {
   return {
-    max: Math.floor(luk * watk / 30),
-    min: Math.floor(luk * watk / 60),
+    max: Math.floor(luk * watk / 20),
+    min: Math.floor(luk * watk / 40),
   }
 }
 
