@@ -397,5 +397,40 @@
     "reqJob": 0,
     "iconUrl": "https://maplestory.io/api/GMS/200/item/1032058/icon",
     "tuc": 0
+  },
+  {
+    "id": 1032043,
+    "name": "세실리아의 귀고리",
+    "slot": "earring",
+    "effects": {
+      "pdef": 10,
+      "mdef": 55
+    },
+    "reqLevel": 60,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1032043/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1032044,
+    "name": "문스타 귀고리",
+    "slot": "earring",
+    "effects": {
+      "pdef": 5,
+      "mdef": 27
+    },
+    "reqLevel": 45,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1032044/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1032045,
+    "name": "셀레스티얼 귀고리",
+    "slot": "earring",
+    "effects": {
+      "mdef": 25
+    },
+    "reqLevel": 40,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1032045/icon",
+    "tuc": 5
   }
 ]

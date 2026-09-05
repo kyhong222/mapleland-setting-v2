@@ -626,5 +626,107 @@
     "reqJob": 0,
     "iconUrl": "https://maplestory.io/api/GMS/200/item/1102174/icon",
     "tuc": 0
+  },
+  {
+    "id": 1102101,
+    "name": "엘리아스 망토(이속)",
+    "slot": "cape",
+    "effects": {
+      "pdef": 35,
+      "mdef": 35,
+      "speed": 10
+    },
+    "reqLevel": 65,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1102101/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1102102,
+    "name": "엘리아스 망토(점프)",
+    "slot": "cape",
+    "effects": {
+      "pdef": 35,
+      "mdef": 35,
+      "jump": 5
+    },
+    "reqLevel": 65,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1102102/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1102103,
+    "name": "엘리아스 망토(회피)",
+    "slot": "cape",
+    "effects": {
+      "pdef": 35,
+      "mdef": 35,
+      "eva": 15
+    },
+    "reqLevel": 65,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1102103/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1102104,
+    "name": "세실리아 망토(이속)",
+    "slot": "cape",
+    "effects": {
+      "pdef": 35,
+      "mdef": 35,
+      "speed": 10
+    },
+    "reqLevel": 65,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1102104/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1102105,
+    "name": "세실리아 망토(점프)",
+    "slot": "cape",
+    "effects": {
+      "pdef": 35,
+      "mdef": 35,
+      "jump": 5
+    },
+    "reqLevel": 65,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1102105/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1102106,
+    "name": "세실리아 망토(회피)",
+    "slot": "cape",
+    "effects": {
+      "pdef": 35,
+      "mdef": 35,
+      "eva": 15
+    },
+    "reqLevel": 65,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1102106/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1102999,
+    "name": "아모스의 로열 망토",
+    "slot": "cape",
+    "effects": {
+      "pdef": 20,
+      "mdef": 18
+    },
+    "reqLevel": 50,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1102999/icon",
+    "tuc": 5
+  },
+  {
+    "id": 1102100,
+    "name": "아모스의 스피릿 망토",
+    "slot": "cape",
+    "effects": {
+      "pdef": 18,
+      "mdef": 20
+    },
+    "reqLevel": 50,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1102100/icon",
+    "tuc": 5
   }
 ]
