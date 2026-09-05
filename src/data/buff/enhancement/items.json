@@ -254,5 +254,33 @@
     "effects": {
       "pad": 7
     }
+  },
+  {
+    "id": "2022181",
+    "type": "item",
+    "name": "승리의 아모리아 바구니",
+    "effects": {
+      "acc": 20,
+      "eva": 20,
+      "speed": 20
+    }
+  },
+  {
+    "id": "2022182",
+    "type": "item",
+    "name": "파인애플 결정 사탕",
+    "effects": {
+      "pad": 11
+    }
+  },
+  {
+    "id": "2022179",
+    "type": "item",
+    "name": "오닉스 사과",
+    "effects": {
+      "addPad": 20,
+      "addMad": 20,
+      "pdef": 20
+    }
   }
 ]
