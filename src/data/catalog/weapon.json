@@ -6003,7 +6003,7 @@
     "effects": {
       "pad": 88,
       "mad": 140,
-      "attackSpeed": 8
+      "attackSpeed": 4
     },
     "reqLevel": 120,
     "reqInt": 363,
@@ -6020,7 +6020,7 @@
     "effects": {
       "pad": 86,
       "mad": 135,
-      "attackSpeed": 8
+      "attackSpeed": 4
     },
     "reqLevel": 120,
     "reqInt": 363,
