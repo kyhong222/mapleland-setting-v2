@@ -334,5 +334,19 @@
     "reqJob": 0,
     "iconUrl": "https://maplestory.io/api/GMS/200/item/1142386/icon",
     "tuc": 0
+  },
+  {
+    "id": 9142002,
+    "name": "퀘스트 매니아의 훈장",
+    "slot": "medal",
+    "effects": {
+      "STR": 1,
+      "DEX": 1,
+      "INT": 1,
+      "LUK": 1,
+      "jump": 5
+    },
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1142002/icon",
+    "tuc": 0
   }
 ]
