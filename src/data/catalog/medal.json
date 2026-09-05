@@ -33,14 +33,15 @@
   },
   {
     "id": 1142002,
-    "name": "퀘스트 매니아",
+    "name": "퀘스트 스페셜리스트의 훈장",
     "slot": "medal",
     "effects": {
-      "STR": 1,
-      "DEX": 1,
-      "INT": 1,
-      "LUK": 1,
-      "jump": 5
+      "STR": 3,
+      "DEX": 3,
+      "INT": 3,
+      "LUK": 3,
+      "eva": 10,
+      "jump": 10
     },
     "iconUrl": "https://maplestory.io/api/GMS/200/item/1142002/icon",
     "tuc": 0
