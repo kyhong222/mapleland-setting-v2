@@ -95,6 +95,8 @@ export type EffectId =
   // 기상효과 — 모든 버프와 중첩되는 독립 보너스
   | 'pad_weather'
   | 'mad_weather'
+  // 바이퍼 에너지 차지 — 공격력만 도핑/버프와 무조건 중첩(명중/회피는 기존 acc/eva로 미중첩)
+  | 'pad_energyCharge'
 
 export interface EffectDef {
   id: EffectId
@@ -196,6 +198,9 @@ export const EFFECTS: Record<EffectId, EffectDef> = {
   // ── 기상효과 — 모든 버프와 중첩되는 독립 보너스 ──
   pad_weather: { id: 'pad_weather', label: '공격력', category: 'offense', unit: 'flat', appliesToItem: false },
   mad_weather: { id: 'mad_weather', label: '마력', category: 'offense', unit: 'flat', appliesToItem: false },
+
+  // ── 바이퍼 에너지 차지 — 공격력만 항상 중첩되는 독립 보너스 ──
+  pad_energyCharge: { id: 'pad_energyCharge', label: '공격력', category: 'offense', unit: 'flat', appliesToItem: false },
 }
 
 /** 마스터 효과 전체 목록 */
