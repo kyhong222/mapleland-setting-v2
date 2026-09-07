@@ -48,7 +48,7 @@ export interface PhysicalResult {
 /**
  * 총 공격력 = (장비+패시브+버프 공격력 + 추가공격력 + 정령의 축복) × (1 + 공격력%/100)
  * (장비·패시브·버프 공격력은 모두 effects.pad로 합산, 정령의 축복은 pad_botf로 별도 합산)
- * 바이퍼 에너지 차지의 공격력(pad_energyCharge)도 무조건 중첩되는 독립 채널이라 따로 더한다.
+ * 에너지 차지(바이퍼/스트라이커)의 공격력(pad_energyCharge)도 무조건 중첩되는 독립 채널이라 따로 더한다.
  */
 export function totalAttack(effects: EffectMap): number {
   const flat = (effects.pad ?? 0) + (effects.addPad ?? 0) + (effects.pad_botf ?? 0) + (effects.pad_burning ?? 0) + (effects.pad_weather ?? 0) + (effects.pad_energyCharge ?? 0)
