@@ -44,6 +44,9 @@ export interface BuildSnapshot {
   appliedBuffs: Record<string, number>
   /** 무기 마스터리/엑스퍼트 레벨: buffId → 레벨(없으면 마스터). 장착 주무기 일치 시 자동 적용 */
   masteryLevels: Record<string, number>
+  /** 기본(맨몸) HP/MP — 미입력(null)이면 최종 HP/MP를 표기하지 않는다. 구버전 스냅샷엔 없음 */
+  baseHp?: number | null
+  baseMp?: number | null
   /** 팔라딘 차지 (구버전 스냅샷엔 없음) */
   charge?: ChargeUiState
   /** 선택 대상 몬스터 (null = 미선택). 구버전 스냅샷엔 없음 */
@@ -66,6 +69,13 @@ export interface BuildState {
   activeBuffs: Record<string, number>
   appliedBuffs: Record<string, number>
   masteryLevels: Record<string, number>
+  /**
+   * 기본(맨몸) HP/MP. 레벨업 랜덤 증가·AP·HP증가 패시브로 정해져 유도가 불가능해서,
+   * 사용자가 인게임 표시값을 넣으면 역산(domain/resource.baseFromShown)해 여기에 보관한다.
+   * null = 미입력.
+   */
+  baseHp: number | null
+  baseMp: number | null
   /** 토글 버프의 레벨 기억 (on/off와 무관하게 유지 — 껐다 켜도 레벨 보존) */
   buffLevels: Record<string, number>
   /** 비활성화한 무기 마스터리 (기본은 무기 장착 시 자동 적용, 여기 있으면 제외) */
@@ -103,6 +113,8 @@ export interface BuildState {
   toggleMastery: (id: string) => void
   /** 팔라딘 차지 상태 부분 갱신 */
   setCharge: (patch: Partial<ChargeUiState>) => void
+  /** 기본(맨몸) HP/MP 설정 (null = 미입력으로 되돌림) */
+  setBaseResources: (patch: { hp?: number | null; mp?: number | null }) => void
   snapshot: () => BuildSnapshot | null
   loadSnapshot: (snap: BuildSnapshot) => void
 }
@@ -167,6 +179,8 @@ export const useBuildStore = create<BuildState>()(
       masteryOff: {},
       statsTouched: false,
       charge: DEFAULT_CHARGE,
+      baseHp: null,
+      baseMp: null,
 
       selectJob: (id) =>
         set((s) => {
@@ -174,7 +188,7 @@ export const useBuildStore = create<BuildState>()(
           const level = minLevelForClass(JOBS[id].classId)
           return { jobId: id, level, baseStats: recomputeStats(id, level, statDefaults(JOBS[id].classId), false), statsTouched: false }
         }),
-      reset: () => set({ jobId: null, level: 1, baseStats: baseFour(), equipped: {}, activeBuffs: {}, appliedBuffs: {}, masteryLevels: {}, buffLevels: {}, masteryOff: {}, statsTouched: false, charge: DEFAULT_CHARGE }),
+      reset: () => set({ jobId: null, level: 1, baseStats: baseFour(), equipped: {}, activeBuffs: {}, appliedBuffs: {}, masteryLevels: {}, buffLevels: {}, masteryOff: {}, statsTouched: false, charge: DEFAULT_CHARGE, baseHp: null, baseMp: null }),
       setLevel: (n) =>
         set((s) => {
           const min = s.jobId ? minLevelForClass(JOBS[s.jobId].classId) : 1
@@ -286,11 +300,16 @@ export const useBuildStore = create<BuildState>()(
           return { masteryOff: next }
         }),
       setCharge: (patch) => set((s) => ({ charge: { ...(s.charge ?? DEFAULT_CHARGE), ...patch } })),
+      setBaseResources: (patch) =>
+        set((s) => ({
+          baseHp: patch.hp === undefined ? s.baseHp : patch.hp,
+          baseMp: patch.mp === undefined ? s.baseMp : patch.mp,
+        })),
       snapshot: () => {
-        const { jobId, level, baseStats, equipped, activeBuffs, appliedBuffs, masteryLevels, charge } = get()
+        const { jobId, level, baseStats, equipped, activeBuffs, appliedBuffs, masteryLevels, charge, baseHp, baseMp } = get()
         return jobId === null
           ? null
-          : { jobId, level, baseStats, equipped, activeBuffs, appliedBuffs, masteryLevels, charge: charge ?? DEFAULT_CHARGE }
+          : { jobId, level, baseStats, equipped, activeBuffs, appliedBuffs, masteryLevels, charge: charge ?? DEFAULT_CHARGE, baseHp, baseMp }
       },
       loadSnapshot: (snap) =>
         set({
@@ -305,6 +324,8 @@ export const useBuildStore = create<BuildState>()(
           masteryOff: {},
           statsTouched: true,
           charge: { ...(snap.charge ?? DEFAULT_CHARGE) },
+          baseHp: snap.baseHp ?? null,
+          baseMp: snap.baseMp ?? null,
         }),
     }),
     {
