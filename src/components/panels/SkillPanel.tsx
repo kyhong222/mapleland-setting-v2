@@ -19,7 +19,7 @@ import CollapsiblePanel from '../common/CollapsiblePanel'
 import ActionHint from '../common/ActionHint'
 import { useBuildStore } from '../../store/buildStore'
 import { useInventoryStore } from '../../store/inventoryStore'
-import { equippedWeaponType, equippedHasShield, jobMasteries, displayedMasteries, appliedMasteries } from '../../store/aggregate'
+import { equippedWeaponType, equippedHasShield, jobMasteries, displayedMasteries, appliedMasteries, weaponGateOk } from '../../store/aggregate'
 import { COMMON_BUFFS, PARTY_BUFFS, PERSONAL_BUFFS, DOPING_ITEMS, JOB_BUFFS } from '../../data/buff'
 import { canUseBuff, buffEffectsAtLevel, defaultBuffLevel, effectiveMasterLevel } from '../../domain/buff'
 import type { Buff } from '../../domain/buff'
@@ -27,6 +27,7 @@ import { maxEffects } from '../../domain/effects'
 import type { EffectMap } from '../../domain/effects'
 import type { JobId } from '../../domain/jobs'
 import { WEAPON_CONSTANTS } from '../../domain/weapons'
+import type { WeaponType } from '../../domain/weapons'
 import { comboFinalDamageP, COMBO_SKILLS, findSkillById, skillAttackAt, skillNumAt, chargeDamagePercent, chargeStats } from '../../data/skills'
 import { CHARGE_LABEL, CHARGE_MASTER, CHARGE_ELEMENTS } from '../../domain/paladinCharge'
 import type { ChargeElement } from '../../domain/paladinCharge'
@@ -72,8 +73,20 @@ function BuffName({ buff, level }: { buff: Buff; level: number }) {
   )
 }
 
-/** 버프 툴팁 내용: 이름(+레벨) / 효과 / 보조 안내문(note) */
-function buffTooltip(buff: Buff, level: number): React.ReactNode {
+/**
+ * 무기 전용 버프(무기 부스터 등)가 장착 주무기와 맞지 않을 때의 미적용 사유.
+ * 맞거나 무기 제한이 없는 버프면 null.
+ */
+function weaponGateNote(buff: Buff, weaponType?: WeaponType): string | null {
+  if (weaponGateOk(buff, weaponType)) return null
+  const need = (buff.type === 'skill' ? buff.weaponTypes ?? [] : [])
+    .map((w) => WEAPON_CONSTANTS[w].label)
+    .join('/')
+  return weaponType ? `${need} 필요 — 미적용` : '무기 미장착 — 미적용'
+}
+
+/** 버프 툴팁 내용: 이름(+레벨) / 효과 / 미적용 사유 / 보조 안내문(note) */
+function buffTooltip(buff: Buff, level: number, unappliedNote?: string | null): React.ReactNode {
   const isSkill = buff.type === 'skill'
   const effText = formatEffects(buffEffectsAtLevel(buff, level))
   return (
@@ -85,6 +98,11 @@ function buffTooltip(buff: Buff, level: number): React.ReactNode {
       <Typography variant="caption" sx={{ display: 'block' }}>
         {effText || '—'}
       </Typography>
+      {unappliedNote && (
+        <Typography variant="caption" color="warning.main" sx={{ display: 'block' }}>
+          {unappliedNote}
+        </Typography>
+      )}
       {buff.note && (
         <Typography variant="caption" sx={{ display: 'block', opacity: 0.75 }}>
           {buff.note}
@@ -449,20 +467,31 @@ function BuffSelect({ groups, appliedIds, onAdd, placeholder }: {
   )
 }
 
-/** 적용된 버프 목록 — 좌클릭: 제거 / 우클릭: 레벨 변경(아이템 제외) / 호버: 효과 */
-function AppliedBuffList({ entries, levels, onOpen, onRemove }: { entries: Buff[]; levels: Record<string, number>; onOpen: (b: Buff) => void; onRemove: (id: string) => void }) {
+/**
+ * 적용된 버프 목록 — 좌클릭: 제거 / 우클릭: 레벨 변경(아이템 제외) / 호버: 효과.
+ * 무기 부스터처럼 장착 무기를 타는 버프는 무기가 맞지 않으면 회색(미적용)으로 표시한다.
+ */
+function AppliedBuffList({ entries, levels, weaponType, onOpen, onRemove }: {
+  entries: Buff[]
+  levels: Record<string, number>
+  weaponType?: WeaponType
+  onOpen: (b: Buff) => void
+  onRemove: (id: string) => void
+}) {
   if (entries.length === 0) return <Typography variant="caption" color="text.disabled">위에서 버프를 선택해 추가하세요</Typography>
   return (
     <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
       {entries.map((b) => {
         const lv = levels[b.id] ?? defaultBuffLevel(b)
         const hasLevel = b.type === 'skill' && b.masterLevel > 1
+        const gateNote = weaponGateNote(b, weaponType)
         return (
           <BuffIcon
             key={b.id}
             buff={b}
+            active={!gateNote}
             size={44}
-            tooltip={buffTooltip(b, lv)}
+            tooltip={buffTooltip(b, lv, gateNote)}
             onClick={() => onRemove(b.id)}
             onLongPress={hasLevel ? () => onOpen(b) : undefined}
           />
@@ -660,7 +689,10 @@ export default function SkillPanel() {
   const appliedEntries = Object.keys(appliedBuffs)
     .map((id) => [...DOPING_ITEMS, ...PERSONAL_BUFFS, ...PARTY_BUFFS].find((b) => b.id === id))
     .filter((b): b is Buff => !!b)
-  const appliedEff = maxEffects(...appliedEntries.map((b) => buffEffectsAtLevel(b, appliedBuffs[b.id])))
+  // 무기가 맞지 않아 미적용인 버프(부스터 등)는 합산에서 제외 — activeBuffEffects와 같은 규칙
+  const appliedEff = maxEffects(
+    ...appliedEntries.filter((b) => weaponGateOk(b, weaponType)).map((b) => buffEffectsAtLevel(b, appliedBuffs[b.id])),
+  )
 
   return (
     <CollapsiblePanel id="skill" title="스킬 및 도핑">
@@ -697,7 +729,7 @@ export default function SkillPanel() {
         ]}
         note="모바일: 길게 누르기"
       />
-      <AppliedBuffList entries={appliedEntries} levels={appliedBuffs} onOpen={open('applied')} onRemove={removeBuff} />
+      <AppliedBuffList entries={appliedEntries} levels={appliedBuffs} weaponType={weaponType} onOpen={open('applied')} onRemove={removeBuff} />
 
       <SectionTitle sx={{ mt: 1 }}>적용된 효과</SectionTitle>
       <Typography variant="body2" color="success.main">

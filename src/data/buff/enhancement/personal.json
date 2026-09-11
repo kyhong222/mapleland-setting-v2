@@ -1585,6 +1585,10 @@
     "jobs": [
       "hero"
     ],
+    "weaponTypes": [
+      "oneHandedSword",
+      "twoHandedSword"
+    ],
     "effectsByLevel": [
       {
         "attackSpeedBoost": 2
@@ -1658,6 +1662,10 @@
     "masterLevel": 20,
     "jobs": [
       "hero"
+    ],
+    "weaponTypes": [
+      "oneHandedAxe",
+      "twoHandedAxe"
     ],
     "effectsByLevel": [
       {
@@ -1733,6 +1741,10 @@
     "jobs": [
       "paladin"
     ],
+    "weaponTypes": [
+      "oneHandedSword",
+      "twoHandedSword"
+    ],
     "effectsByLevel": [
       {
         "attackSpeedBoost": 2
@@ -1806,6 +1818,10 @@
     "masterLevel": 20,
     "jobs": [
       "paladin"
+    ],
+    "weaponTypes": [
+      "oneHandedMace",
+      "twoHandedMace"
     ],
     "effectsByLevel": [
       {
@@ -1881,6 +1897,9 @@
     "jobs": [
       "darkKnight"
     ],
+    "weaponTypes": [
+      "spear"
+    ],
     "effectsByLevel": [
       {
         "attackSpeedBoost": 2
@@ -1954,6 +1973,9 @@
     "masterLevel": 20,
     "jobs": [
       "darkKnight"
+    ],
+    "weaponTypes": [
+      "polearm"
     ],
     "effectsByLevel": [
       {
@@ -2029,6 +2051,9 @@
     "jobs": [
       "bowmaster"
     ],
+    "weaponTypes": [
+      "bow"
+    ],
     "effectsByLevel": [
       {
         "attackSpeedBoost": 2
@@ -2102,6 +2127,9 @@
     "masterLevel": 20,
     "jobs": [
       "marksman"
+    ],
+    "weaponTypes": [
+      "crossbow"
     ],
     "effectsByLevel": [
       {
@@ -2177,6 +2205,9 @@
     "jobs": [
       "nightLord"
     ],
+    "weaponTypes": [
+      "claw"
+    ],
     "effectsByLevel": [
       {
         "attackSpeedBoost": 2
@@ -2250,6 +2281,9 @@
     "masterLevel": 20,
     "jobs": [
       "shadower"
+    ],
+    "weaponTypes": [
+      "dagger"
     ],
     "effectsByLevel": [
       {
@@ -2325,6 +2359,9 @@
     "jobs": [
       "viper"
     ],
+    "weaponTypes": [
+      "knuckle"
+    ],
     "effectsByLevel": [
       {
         "attackSpeedBoost": 2
@@ -2398,6 +2435,9 @@
     "masterLevel": 20,
     "jobs": [
       "captain"
+    ],
+    "weaponTypes": [
+      "gun"
     ],
     "effectsByLevel": [
       {
@@ -2621,6 +2661,10 @@
     "jobs": [
       "soulMaster"
     ],
+    "weaponTypes": [
+      "oneHandedSword",
+      "twoHandedSword"
+    ],
     "effectsByLevel": [
       {
         "attackSpeedBoost": 2
@@ -2769,6 +2813,9 @@
     "jobs": [
       "windBreaker"
     ],
+    "weaponTypes": [
+      "bow"
+    ],
     "effectsByLevel": [
       {
         "attackSpeedBoost": 2
@@ -2843,6 +2890,9 @@
     "jobs": [
       "nightWalker"
     ],
+    "weaponTypes": [
+      "claw"
+    ],
     "effectsByLevel": [
       {
         "attackSpeedBoost": 2
@@ -2916,6 +2966,9 @@
     "masterLevel": 20,
     "jobs": [
       "striker"
+    ],
+    "weaponTypes": [
+      "knuckle"
     ],
     "effectsByLevel": [
       {
