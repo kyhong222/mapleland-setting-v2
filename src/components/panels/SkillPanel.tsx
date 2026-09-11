@@ -17,6 +17,7 @@ import FormControlLabel from '@mui/material/FormControlLabel'
 import Tooltip from '@mui/material/Tooltip'
 import CollapsiblePanel from '../common/CollapsiblePanel'
 import ActionHint from '../common/ActionHint'
+import EditBadge from '../common/EditBadge'
 import { useBuildStore } from '../../store/buildStore'
 import { useInventoryStore } from '../../store/inventoryStore'
 import { equippedWeaponType, equippedHasShield, jobMasteries, displayedMasteries, appliedMasteries, weaponGateOk } from '../../store/aggregate'
@@ -113,10 +114,11 @@ function buffTooltip(buff: Buff, level: number, unappliedNote?: string | null): 
 }
 
 /**
- * 아이콘 우상단 편집 배지 — 우클릭(= 레벨 변경)을 찾지 못하는 사용자를 위한 가이드.
+ * 아이콘 우상단 편집 버튼 — 우클릭(= 레벨 변경)을 찾지 못하는 사용자를 위한 가이드.
  * 호버 가능한 기기에서만 뜬다(모바일은 길게 누르기 안내로 대체).
+ * 겉모습은 공용 EditBadge — 조작 안내문에 인라인으로 넣는 것과 같은 컴포넌트다.
  */
-function EditBadge({ onClick }: { onClick: () => void }) {
+function EditBadgeButton({ onClick }: { onClick: () => void }) {
   return (
     <Box
       className="edit-badge"
@@ -129,27 +131,25 @@ function EditBadge({ onClick }: { onClick: () => void }) {
         top: -5,
         right: -5,
         zIndex: 1,
-        width: 18,
-        height: 18,
-        borderRadius: '50%',
         display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        bgcolor: 'secondary.main',
-        color: 'secondary.contrastText',
-        boxShadow: 2,
         // 기본은 숨김 + 클릭 통과 — 터치 기기에서 :hover가 눌러붙어도 오작동하지 않게
         opacity: 0,
         pointerEvents: 'none',
         transition: 'opacity 120ms',
       }}
     >
-      <Box component="svg" viewBox="0 0 24 24" sx={{ width: 11, height: 11, fill: 'currentColor' }}>
-        <path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04a1 1 0 0 0 0-1.41l-2.34-2.34a1 1 0 0 0-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z" />
-      </Box>
+      <EditBadge />
     </Box>
   )
 }
+
+/** 안내문에 끼워 넣는 '편집 버튼' 표기 — 실제 버튼과 같은 모양 */
+const EDIT_HINT_KEY = (
+  <>
+    우클릭 /{' '}
+    <EditBadge size={16} sx={{ verticalAlign: 'text-bottom', mr: 0.25 }} />
+  </>
+)
 
 function BuffIcon({
   buff,
@@ -207,7 +207,7 @@ function BuffIcon({
       }}
     >
       {icon && <Box component="img" src={icon} alt="" sx={{ width: img, height: img, imageRendering: 'pixelated', filter: active ? 'none' : 'grayscale(1)' }} />}
-      {onLongPress && <EditBadge onClick={onLongPress} />}
+      {onLongPress && <EditBadgeButton onClick={onLongPress} />}
     </Box>
   )
   if (!tooltip) return box
@@ -575,7 +575,7 @@ function ChargeRow({
         }}
       >
         <Box component="img" src={icon} alt="" sx={{ width: 38, height: 38, imageRendering: 'pixelated', filter: active ? 'none' : 'grayscale(1)' }} />
-        {!disabled && onOpen && <EditBadge onClick={onOpen} />}
+        {!disabled && onOpen && <EditBadgeButton onClick={onOpen} />}
       </Box>
       <Box sx={{ flex: 1, minWidth: 0 }}>
         <Typography variant="body2" noWrap>{title}</Typography>
@@ -648,9 +648,8 @@ function ChargeSection() {
         sx={{ mb: 0.5 }}
         actions={[
           { key: '좌클릭', desc: 'ON / OFF' },
-          { key: '우클릭', desc: '편집', tone: 'secondary' },
+          { key: EDIT_HINT_KEY, desc: '편집', tone: 'secondary', note: '모바일: 길게 누르기' },
         ]}
-        note="모바일: 길게 누르기"
       />
       <ChargeRow
         icon={CHARGE_ICON[charge.mainElement]}
@@ -746,9 +745,8 @@ export default function SkillPanel() {
         sx={{ mb: 0.75 }}
         actions={[
           { key: '좌클릭', desc: 'ON / OFF' },
-          { key: '우클릭 / ✎', desc: '레벨 변경', tone: 'secondary' },
+          { key: EDIT_HINT_KEY, desc: '레벨 변경', tone: 'secondary', note: '모바일: 길게 누르기' },
         ]}
-        note="모바일: 길게 누르기"
       />
       {COMMON_BUFFS.map((b) => (
         <BuffRow key={b.id} buff={b} onOpen={open('toggle')} />
@@ -769,10 +767,9 @@ export default function SkillPanel() {
         sx={{ mb: 0.75 }}
         actions={[
           { key: '좌클릭', desc: '제거' },
-          { key: '우클릭 / ✎', desc: '레벨 변경', tone: 'secondary' },
-          { key: '호버', desc: '효과 보기', tone: 'default' },
+          { key: EDIT_HINT_KEY, desc: '레벨 변경', tone: 'secondary', note: '모바일: 길게 누르기' },
+          { desc: '마우스를 올리면 효과를 표시합니다.' },
         ]}
-        note="모바일: 길게 누르기"
       />
       <AppliedBuffList entries={appliedEntries} levels={appliedBuffs} weaponType={weaponType} onOpen={open('applied')} onRemove={removeBuff} />
 
@@ -788,9 +785,8 @@ export default function SkillPanel() {
         sx={{ mb: 0.75 }}
         actions={[
           { key: '좌클릭', desc: 'ON / OFF' },
-          { key: '우클릭 / ✎', desc: '레벨 변경', tone: 'secondary' },
+          { key: EDIT_HINT_KEY, desc: '레벨 변경', tone: 'secondary', note: '모바일: 길게 누르기' },
         ]}
-        note="모바일: 길게 누르기"
       />
       {masteries.length > 0 && (
         <>

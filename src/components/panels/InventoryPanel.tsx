@@ -390,9 +390,8 @@ export default function InventoryPanel() {
           sx={{ mt: 1 }}
           actions={[
             { key: '좌클릭', desc: '장착 / 해제' },
-            { key: '우클릭', desc: '편집 · 복제 · 인벤토리 이동 · 삭제', tone: 'secondary' },
+            { key: '우클릭', desc: '편집 · 복제 · 인벤토리 이동 · 삭제', tone: 'secondary', note: '모바일: 길게 누르기' },
           ]}
-          note="모바일: 길게 누르기"
         />
       )}
 
