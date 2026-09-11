@@ -23,6 +23,7 @@ npm run preview     # 빌드 결과 미리보기
 npx tsx scripts/smoke.ts         # itemRepository(로컬 카탈로그/API 폴백) 확인
 npx tsx scripts/scrollSmoke.ts   # 아이템별 주문서 매칭 확인
 npx tsx scripts/tucSmoke.ts      # postItem 오버라이드(tuc) 확인
+npx tsx scripts/weaponGateSmoke.ts # 무기 마스터리/부스터의 무기 게이팅 확인
 ```
 
 변경 후에는 최소한 `npm run typecheck`를 돌린다.
@@ -90,6 +91,9 @@ maplestory.io API ───┘   (로컬 카탈로그 우선 → GMS 62 → GMS 
 - `appliedBuffs` (도핑/개인/파티) → max 풀
 - `nonStacking` 토글 버프는 특화 섹션에 있어도 max 풀로 들어간다
 - 무기 마스터리/엑스퍼트는 **장착 주무기 타입이 일치할 때만** 자동 적용 (`masteryOff`로 개별 해제)
+- `weaponTypes`가 붙은 버프(마스터리/엑스퍼트 + 무기 부스터)는 `weaponGateOk()`로 게이팅된다.
+  인게임 스킬 설명이 근거이고, 검/도끼/둔기 계열은 한손·두손 양쪽을 모두 넣어야 한다.
+  무기를 가리지 않는 윈드 부스터만 `weaponTypes`를 비워 둔다.
 - `requiresShield` 버프(블로킹)는 보조무기에 방패가 있어야 적용
 
 주의점 두 가지가 실제로 버그를 낸 적 있다:

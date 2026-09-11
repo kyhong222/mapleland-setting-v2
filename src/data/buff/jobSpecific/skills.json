@@ -3283,7 +3283,8 @@
     ],
     "icon": "/buff-icons/11100000.png",
     "weaponTypes": [
-      "oneHandedSword"
+      "oneHandedSword",
+      "twoHandedSword"
     ]
   },
   {
