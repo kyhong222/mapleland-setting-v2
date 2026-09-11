@@ -106,7 +106,8 @@ maplestory.io API ───┘   (로컬 카탈로그 우선 → GMS 62 → GMS 
   (현재는 메소 가드 `damageReduce` 하나뿐. 데미지 감소 50%는 인게임 고정값이고 WZ `x`는 다른 뜻이다).
 - 스킬북이 상류(`ms-skill-simulator`)보다 낡아 파생이 막히는 경우가 있다. 위협이 그랬다 —
   스킬이 리워크됐는데 우리 쪽은 옛 정의(`x`)라 값을 손으로 적어둘 수밖에 없었다.
-  파생할 필드가 없어 보이면 먼저 상류와 대조할 것.
+  **파생할 필드가 없어 보이면 먼저 `scripts/skillbookUpstreamDiff.mjs`로 상류와 대조할 것.**
+  상류는 신뢰도가 높으니 특별한 근거가 없으면 그쪽을 따른다.
 - 콤보/차지/엘리멘탈 리셋은 효과표가 비어 있다. 수치를 `EffectMap`이 아니라 도메인에서 스킬북으로
   직접 계산하기 때문(`comboFinalDamageP`/`chargeCombinedCoef`/`skillNumAt`).
 - 새 사본이 생기면 `scripts/buffDeriveSmoke.ts`가 잡는다. **스킬 수치를 고칠 때는 스킬북만 고친다.**
@@ -158,6 +159,9 @@ id가 먼저 존재해야 하기 때문.
 - `convertV1.mjs` — v1 레포 아이템 → `src/data/catalog/<slot>.json`
 - `buildScrolls.mjs` — maplestory.io → `src/data/scrolls.json`
 - `importSkills.mjs` — ms-skill-simulator → `src/data/skills/skillbooks/`, 아이콘은 `public/skill-icons/`로 분리
+- `skillbookUpstreamDiff.mjs` — 스킬북이 상류(ms-skill-simulator)와 어긋난 곳 탐지. 읽기 전용이고
+  형제 디렉토리에 상류 레포가 있어야 한다. 상류를 일부러 안 따르는 건 스크립트 안
+  `EXPECTED_DIVERGENCE`에 사유와 함께 적는다(현재 블로킹 2건 + 파이어 샷 문구 1건)
 - `refreshReq.mjs` / `patchMissingTuc.mjs` / `fetch*.mjs` — 카탈로그 요구치·업횟·신규 아이템 보강
 - `migrateBuffDerive.mjs` — 버프 `effectsByLevel` → `derive` 전환. 이미 끝난 마이그레이션이라
   다시 돌릴 일은 없지만, 파생 규칙을 어떻게 뽑았는지 근거가 남아 있다.
