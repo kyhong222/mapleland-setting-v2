@@ -7,16 +7,16 @@
  *
  * 확인하는 것:
  *  §1 변형 id가 실제 스킬 id와 겹치지 않는다 (겹치면 아이콘·모션·공속이 엉뚱한 스킬로 조회된다)
- *  §2 바이퍼 공격 스킬마다 '(스턴)'이 붙고, 에너지 버스터만 '(단독 운용)'이 더 붙는다
- *  §3 스턴 비율 — 기본 0 / (스턴) 1 / (단독 운용) = 스킬 자체 스턴 확률
+ *  §2 바이퍼 공격 스킬마다 '(스턴)'이 한 벌씩 붙는다
+ *  §3 스턴 비율 — 기본 0 / (스턴) 1 / 자체 스턴 확률을 가진 스킬(에너지 버스터)은 기본에 prop 반영
  *  §4 스턴 마스터리는 상시 합산에서 빠지고 조건부 합산에만 잡힌다
- *  §5 (단독 운용)이 쓰는 혼합 분포가 가중평균과 맞는다
+ *  §5 자체 스턴 확률 스킬이 쓰는 혼합 분포가 가중평균과 맞는다
  */
 
 import { attackSkillsForJob, skillsForJob } from '../src/data/skills'
 import { JOB_SKILLBOOKS } from '../src/data/skills'
 import {
-  baseSkillId, damageSkillsForJob, stunHitRatio, variantKindOf, variantSkillId,
+  baseSkillId, damageSkillsForJob, migrateSkillId, stunHitRatio, variantKindOf, variantSkillId,
 } from '../src/data/skills/variants'
 import { computeCast, mixCasts } from '../src/domain/skillCombat'
 import { expectedValue } from '../src/domain/nhitProb'
@@ -39,26 +39,22 @@ console.log('── 변형 id ──')
 const realIds = [...new Set(JOB_IDS.flatMap((j) => skillsForJob(j).map((s) => s.id)))]
 expect('변형으로 오인되는 실제 스킬 id', realIds.filter((id) => variantKindOf(id) !== null), [])
 expect('변형 id 왕복 (피스트)', baseSkillId(variantSkillId(5121007, 'stun')), 5121007)
-expect('변형 id 왕복 (에너지 버스터 단독)', baseSkillId(variantSkillId(5111002, 'soloStun')), 5111002)
+expect('변형 id 왕복 (에너지 버스터)', baseSkillId(variantSkillId(5111002, 'stun')), 5111002)
 expect('변형 종류 판정', [
   variantKindOf(5121007),
   variantKindOf(variantSkillId(5121007, 'stun')),
-  variantKindOf(variantSkillId(5111002, 'soloStun')),
-], [null, 'stun', 'soloStun'])
+], [null, 'stun'])
+// 없앤 '(단독 운용)' 변형은 기본 항목으로 되돌린다 (저장된 선택 보정)
+expect('없앤 변형 id 보정', [migrateSkillId(805111002), migrateSkillId(5121007)], [5111002, 5121007])
 
 // ── §2 목록 구성 ──────────────────────────────────────────────────
 console.log('\n── 스킬 목록 ──')
 const viperBase = attackSkillsForJob('viper')
 const viperAll = damageSkillsForJob('viper')
-expect('바이퍼 항목 수 (기본 + 스턴 + 에버 단독)', viperAll.length, viperBase.length * 2 + 1)
+expect('바이퍼 항목 수 (기본 + 스턴)', viperAll.length, viperBase.length * 2)
 const nameOf = (id: number) => viperAll.find((s) => s.id === id)?.description?.name
 expect('피스트 (스턴) 이름', nameOf(variantSkillId(5121007, 'stun')), '피스트 (스턴)')
-expect('에너지 버스터 (단독 운용) 이름', nameOf(variantSkillId(5111002, 'soloStun')), '에너지 버스터 (단독 운용)')
-expect(
-  '단독 운용 변형은 에너지 버스터뿐',
-  viperAll.filter((s) => variantKindOf(s.id) === 'soloStun').map((s) => baseSkillId(s.id)),
-  [5111002],
-)
+expect('에너지 버스터 (스턴) 이름', nameOf(variantSkillId(5111002, 'stun')), '에너지 버스터 (스턴)')
 // 스턴 마스터리가 없는 직업은 변형 없이 그대로
 expect(
   '스턴 마스터리 없는 직업에 변형이 붙는지',
@@ -70,9 +66,11 @@ expect(
 console.log('\n── 스턴 비율 ──')
 expect('피스트 기본', stunHitRatio(5121007, 30), 0)
 expect('피스트 (스턴)', stunHitRatio(variantSkillId(5121007, 'stun'), 30), 1)
-// 에너지 버스터 자체 스턴 확률: lv1 11% → lv30 40% (인게임 값, 상류 스킬북에 없어 보강)
-expect('에너지 버스터 (단독 운용) lv30', stunHitRatio(variantSkillId(5111002, 'soloStun'), 30), 0.4)
-expect('에너지 버스터 (단독 운용) lv1', stunHitRatio(variantSkillId(5111002, 'soloStun'), 1), 0.11)
+// 에너지 버스터는 자체 스턴 확률이 있어 기본 항목에 반영된다 — lv1 11% → lv30 40%
+// (인게임 값, 상류 스킬북에 없어 보강)
+expect('에너지 버스터 기본 lv30', stunHitRatio(5111002, 30), 0.4)
+expect('에너지 버스터 기본 lv1', stunHitRatio(5111002, 1), 0.11)
+expect('에너지 버스터 (스턴)', stunHitRatio(variantSkillId(5111002, 'stun'), 30), 1)
 
 // ── §4 조건부 버프 배선 ───────────────────────────────────────────
 console.log('\n── 스턴 마스터리 합산 ──')

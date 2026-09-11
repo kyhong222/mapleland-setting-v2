@@ -22,7 +22,7 @@ import { getMonster } from '../../data/mobs'
 import { elementReaction, formatElements } from '../../domain/monster'
 import { skillAttackAt, skillLineCount, comboFinalDamageP, COMBO_SKILLS, findSkillById, skillNumAt, chargeStats, skillElements } from '../../data/skills'
 import type { IJobSkill } from '../../data/skills'
-import { damageSkillsForJob, baseSkillId, variantKindOf, stunHitRatio } from '../../data/skills/variants'
+import { damageSkillsForJob, baseSkillId, stunHitRatio } from '../../data/skills/variants'
 import type { ChargeState } from '../../domain/paladinCharge'
 import { computeCast, computeNhit, computeDpm, baseElementMult, mixCasts, SKILL_MOTION } from '../../domain/skillCombat'
 import { convolve } from '../../domain/nhitProb'
@@ -342,14 +342,13 @@ export default function NhitPanel() {
     return `※ ${pre} 이후 ${main}${objectJosa(main)} 몇 방 시전해야 하는지에 대한 기대 타수입니다.`
   })()
 
-  /** 변형 스킬 선택 시의 안내 문구 (스턴 마스터리가 어떻게 들어가는지) */
+  /** 스턴이 걸리는 스킬을 골랐을 때의 안내 문구 (스턴 마스터리가 어떻게 들어가는지) */
   const stunNote = (() => {
     if (!selectedSkill) return null
-    const kind = variantKindOf(selectedSkill.id)
-    if (!kind) return null
-    if (!hasStunBonus) return '스턴 마스터리를 켜야 차이가 생깁니다'
-    if (kind === 'stun') return '스턴 상태 가정 — 스턴 마스터리 크리 적용'
     const ratio = stunHitRatio(selectedSkill.id, skillLevel)
+    if (ratio <= 0) return null
+    if (!hasStunBonus) return '스턴 마스터리를 켜야 차이가 생깁니다'
+    if (ratio >= 1) return '스턴 상태 가정 — 스턴 마스터리 크리 적용'
     return `자체 스턴 확률 ${Math.round(ratio * 100)}%만큼 스턴 마스터리 크리 적용`
   })()
 

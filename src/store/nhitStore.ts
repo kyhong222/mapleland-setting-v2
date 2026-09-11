@@ -5,6 +5,7 @@
 
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
+import { migrateSkillId } from '../data/skills/variants'
 
 /** 추가스킬 1건. 같은 스킬을 여러 번 넣을 수 있어 uid로 구분한다. */
 export interface PreCastEntry {
@@ -58,19 +59,25 @@ export const useNhitStore = create<NhitState>()(
       },
       restore: (sel) => {
         const s = sel ?? EMPTY
+        // 없앤 변형 스킬 id 보정 — 저장슬롯에 남아 있어도 선택이 사라지지 않게
         set({
-          skillId: s.skillId,
+          skillId: s.skillId === '' ? '' : migrateSkillId(s.skillId),
           skillLevel: s.skillLevel,
-          preCast: (s.preCast ?? []).map((p) => ({ uid: nextUid(), id: p.id, level: p.level })),
+          preCast: (s.preCast ?? []).map((p) => ({ uid: nextUid(), id: migrateSkillId(p.id), level: p.level })),
         })
       },
       reset: () => set({ ...EMPTY, preCast: [] }),
     }),
     {
       name: 'mlsv2:nhit',
-      // 영속 복원 시 uid 시퀀스를 현재 최댓값 뒤로 밀어 충돌 방지
+      // 영속 복원 시 uid 시퀀스를 현재 최댓값 뒤로 밀어 충돌 방지 + 없앤 변형 id 보정
       onRehydrateStorage: () => (state) => {
-        if (state?.preCast?.length) uidSeq = Math.max(uidSeq, ...state.preCast.map((p) => p.uid ?? 0))
+        if (!state) return
+        if (state.preCast?.length) {
+          uidSeq = Math.max(uidSeq, ...state.preCast.map((p) => p.uid ?? 0))
+          state.preCast = state.preCast.map((p) => ({ ...p, id: migrateSkillId(p.id) }))
+        }
+        if (state.skillId !== '') state.skillId = migrateSkillId(state.skillId)
       },
     },
   ),
