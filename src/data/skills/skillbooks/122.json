@@ -226,47 +226,47 @@
         },
         {
           "hs": "h21",
-          "prop": "105",
-          "time": "2"
-        },
-        {
-          "hs": "h22",
           "prop": "110",
           "time": "2"
         },
         {
-          "hs": "h23",
-          "prop": "115",
-          "time": "2"
-        },
-        {
-          "hs": "h24",
+          "hs": "h22",
           "prop": "120",
           "time": "2"
         },
         {
-          "hs": "h25",
-          "prop": "125",
-          "time": "2"
-        },
-        {
-          "hs": "h26",
+          "hs": "h23",
           "prop": "130",
           "time": "2"
         },
         {
-          "hs": "h27",
-          "prop": "135",
-          "time": "2"
-        },
-        {
-          "hs": "h28",
+          "hs": "h24",
           "prop": "140",
           "time": "2"
         },
         {
+          "hs": "h25",
+          "prop": "150",
+          "time": "2"
+        },
+        {
+          "hs": "h26",
+          "prop": "160",
+          "time": "2"
+        },
+        {
+          "hs": "h27",
+          "prop": "170",
+          "time": "2"
+        },
+        {
+          "hs": "h28",
+          "prop": "180",
+          "time": "2"
+        },
+        {
           "hs": "h29",
-          "prop": "145",
+          "prop": "190",
           "time": "2"
         },
         {
@@ -276,7 +276,7 @@
         },
         {
           "hs": "h30",
-          "prop": "150",
+          "prop": "200",
           "time": "2"
         },
         {
@@ -1870,102 +1870,102 @@
         },
         {
           "hs": "h11",
-          "damage": "390",
-          "mpCon": "23"
-        },
-        {
-          "hs": "h12",
           "damage": "400",
           "mpCon": "23"
         },
         {
-          "hs": "h13",
+          "hs": "h12",
           "damage": "410",
           "mpCon": "23"
         },
         {
-          "hs": "h14",
+          "hs": "h13",
           "damage": "420",
           "mpCon": "23"
         },
         {
-          "hs": "h15",
+          "hs": "h14",
           "damage": "430",
           "mpCon": "23"
         },
         {
-          "hs": "h16",
+          "hs": "h15",
           "damage": "440",
-          "mpCon": "26"
+          "mpCon": "23"
         },
         {
-          "hs": "h17",
+          "hs": "h16",
           "damage": "450",
           "mpCon": "26"
         },
         {
-          "hs": "h18",
+          "hs": "h17",
           "damage": "460",
           "mpCon": "26"
         },
         {
-          "hs": "h19",
+          "hs": "h18",
           "damage": "470",
           "mpCon": "26"
         },
         {
-          "hs": "h20",
+          "hs": "h19",
           "damage": "480",
           "mpCon": "26"
         },
         {
-          "hs": "h21",
+          "hs": "h20",
           "damage": "490",
-          "mpCon": "29"
+          "mpCon": "26"
         },
         {
-          "hs": "h22",
-          "damage": "500",
-          "mpCon": "29"
-        },
-        {
-          "hs": "h23",
+          "hs": "h21",
           "damage": "510",
           "mpCon": "29"
         },
         {
-          "hs": "h24",
+          "hs": "h22",
           "damage": "520",
           "mpCon": "29"
         },
         {
-          "hs": "h25",
+          "hs": "h23",
           "damage": "530",
           "mpCon": "29"
         },
         {
-          "hs": "h26",
+          "hs": "h24",
           "damage": "540",
+          "mpCon": "29"
+        },
+        {
+          "hs": "h25",
+          "damage": "550",
+          "mpCon": "29"
+        },
+        {
+          "hs": "h26",
+          "damage": "560",
           "mpCon": "28"
         },
         {
           "hs": "h27",
-          "damage": "550",
+          "damage": "570",
           "mpCon": "27"
         },
         {
           "hs": "h28",
-          "damage": "560",
+          "damage": "580",
           "mpCon": "26"
         },
         {
           "hs": "h29",
-          "damage": "570",
+          "damage": "590",
           "mpCon": "25"
         },
         {
           "hs": "h30",
-          "damage": "580",
+          "damage": "600",
           "mpCon": "24"
         }
       ]
@@ -1988,7 +1988,7 @@
       },
       "levelProperties": [
         {
-          "cooltime": "360",
+          "cooltime": "310",
           "damage": "420",
           "hs": "h1",
           "lt": "Point [ X=-400, Y=-350 ]",
@@ -1997,7 +1997,7 @@
           "rb": "Point [ X=400, Y=250 ]"
         },
         {
-          "cooltime": "270",
+          "cooltime": "220",
           "damage": "600",
           "hs": "h10",
           "lt": "Point [ X=-400, Y=-350 ]",
@@ -2006,7 +2006,7 @@
           "rb": "Point [ X=400, Y=250 ]"
         },
         {
-          "cooltime": "260",
+          "cooltime": "210",
           "damage": "620",
           "hs": "h11",
           "lt": "Point [ X=-400, Y=-350 ]",
@@ -2015,7 +2015,7 @@
           "rb": "Point [ X=400, Y=250 ]"
         },
         {
-          "cooltime": "250",
+          "cooltime": "200",
           "damage": "640",
           "hs": "h12",
           "lt": "Point [ X=-400, Y=-350 ]",
@@ -2024,7 +2024,7 @@
           "rb": "Point [ X=400, Y=250 ]"
         },
         {
-          "cooltime": "240",
+          "cooltime": "190",
           "damage": "660",
           "hs": "h13",
           "lt": "Point [ X=-400, Y=-350 ]",
@@ -2033,7 +2033,7 @@
           "rb": "Point [ X=400, Y=250 ]"
         },
         {
-          "cooltime": "230",
+          "cooltime": "180",
           "damage": "680",
           "hs": "h14",
           "lt": "Point [ X=-400, Y=-350 ]",
@@ -2042,7 +2042,7 @@
           "rb": "Point [ X=400, Y=250 ]"
         },
         {
-          "cooltime": "220",
+          "cooltime": "170",
           "damage": "700",
           "hs": "h15",
           "lt": "Point [ X=-400, Y=-350 ]",
@@ -2051,7 +2051,7 @@
           "rb": "Point [ X=400, Y=250 ]"
         },
         {
-          "cooltime": "210",
+          "cooltime": "160",
           "damage": "720",
           "hs": "h16",
           "lt": "Point [ X=-400, Y=-350 ]",
@@ -2060,7 +2060,7 @@
           "rb": "Point [ X=400, Y=250 ]"
         },
         {
-          "cooltime": "200",
+          "cooltime": "150",
           "damage": "740",
           "hs": "h17",
           "lt": "Point [ X=-400, Y=-350 ]",
@@ -2069,7 +2069,7 @@
           "rb": "Point [ X=400, Y=250 ]"
         },
         {
-          "cooltime": "190",
+          "cooltime": "140",
           "damage": "760",
           "hs": "h18",
           "lt": "Point [ X=-400, Y=-350 ]",
@@ -2078,7 +2078,7 @@
           "rb": "Point [ X=400, Y=250 ]"
         },
         {
-          "cooltime": "180",
+          "cooltime": "130",
           "damage": "780",
           "hs": "h19",
           "lt": "Point [ X=-400, Y=-350 ]",
@@ -2087,7 +2087,7 @@
           "rb": "Point [ X=400, Y=250 ]"
         },
         {
-          "cooltime": "350",
+          "cooltime": "300",
           "damage": "440",
           "hs": "h2",
           "lt": "Point [ X=-400, Y=-350 ]",
@@ -2096,7 +2096,7 @@
           "rb": "Point [ X=400, Y=250 ]"
         },
         {
-          "cooltime": "170",
+          "cooltime": "120",
           "damage": "800",
           "hs": "h20",
           "lt": "Point [ X=-400, Y=-350 ]",
@@ -2105,7 +2105,7 @@
           "rb": "Point [ X=400, Y=250 ]"
         },
         {
-          "cooltime": "160",
+          "cooltime": "110",
           "damage": "810",
           "hs": "h21",
           "lt": "Point [ X=-400, Y=-350 ]",
@@ -2114,7 +2114,7 @@
           "rb": "Point [ X=400, Y=250 ]"
         },
         {
-          "cooltime": "150",
+          "cooltime": "100",
           "damage": "820",
           "hs": "h22",
           "lt": "Point [ X=-400, Y=-350 ]",
@@ -2123,7 +2123,7 @@
           "rb": "Point [ X=400, Y=250 ]"
         },
         {
-          "cooltime": "140",
+          "cooltime": "90",
           "damage": "830",
           "hs": "h23",
           "lt": "Point [ X=-400, Y=-350 ]",
@@ -2132,7 +2132,7 @@
           "rb": "Point [ X=400, Y=250 ]"
         },
         {
-          "cooltime": "130",
+          "cooltime": "80",
           "damage": "840",
           "hs": "h24",
           "lt": "Point [ X=-400, Y=-350 ]",
@@ -2141,7 +2141,7 @@
           "rb": "Point [ X=400, Y=250 ]"
         },
         {
-          "cooltime": "120",
+          "cooltime": "70",
           "damage": "850",
           "hs": "h25",
           "lt": "Point [ X=-400, Y=-350 ]",
@@ -2150,7 +2150,7 @@
           "rb": "Point [ X=400, Y=250 ]"
         },
         {
-          "cooltime": "110",
+          "cooltime": "60",
           "damage": "860",
           "hs": "h26",
           "lt": "Point [ X=-400, Y=-350 ]",
@@ -2159,7 +2159,7 @@
           "rb": "Point [ X=400, Y=250 ]"
         },
         {
-          "cooltime": "100",
+          "cooltime": "50",
           "damage": "870",
           "hs": "h27",
           "lt": "Point [ X=-400, Y=-350 ]",
@@ -2168,7 +2168,7 @@
           "rb": "Point [ X=400, Y=250 ]"
         },
         {
-          "cooltime": "90",
+          "cooltime": "40",
           "damage": "880",
           "hs": "h28",
           "lt": "Point [ X=-400, Y=-350 ]",
@@ -2177,7 +2177,7 @@
           "rb": "Point [ X=400, Y=250 ]"
         },
         {
-          "cooltime": "80",
+          "cooltime": "30",
           "damage": "890",
           "hs": "h29",
           "lt": "Point [ X=-400, Y=-350 ]",
@@ -2186,7 +2186,7 @@
           "rb": "Point [ X=400, Y=250 ]"
         },
         {
-          "cooltime": "340",
+          "cooltime": "290",
           "damage": "460",
           "hs": "h3",
           "lt": "Point [ X=-400, Y=-350 ]",
@@ -2195,7 +2195,7 @@
           "rb": "Point [ X=400, Y=250 ]"
         },
         {
-          "cooltime": "70",
+          "cooltime": "20",
           "damage": "900",
           "hs": "h30",
           "lt": "Point [ X=-400, Y=-350 ]",
@@ -2204,7 +2204,7 @@
           "rb": "Point [ X=400, Y=250 ]"
         },
         {
-          "cooltime": "330",
+          "cooltime": "280",
           "damage": "480",
           "hs": "h4",
           "lt": "Point [ X=-400, Y=-350 ]",
@@ -2213,7 +2213,7 @@
           "rb": "Point [ X=400, Y=250 ]"
         },
         {
-          "cooltime": "320",
+          "cooltime": "270",
           "damage": "500",
           "hs": "h5",
           "lt": "Point [ X=-400, Y=-350 ]",
@@ -2222,7 +2222,7 @@
           "rb": "Point [ X=400, Y=250 ]"
         },
         {
-          "cooltime": "310",
+          "cooltime": "260",
           "damage": "520",
           "hs": "h6",
           "lt": "Point [ X=-400, Y=-350 ]",
@@ -2231,7 +2231,7 @@
           "rb": "Point [ X=400, Y=250 ]"
         },
         {
-          "cooltime": "300",
+          "cooltime": "250",
           "damage": "540",
           "hs": "h7",
           "lt": "Point [ X=-400, Y=-350 ]",
@@ -2240,7 +2240,7 @@
           "rb": "Point [ X=400, Y=250 ]"
         },
         {
-          "cooltime": "290",
+          "cooltime": "240",
           "damage": "560",
           "hs": "h8",
           "lt": "Point [ X=-400, Y=-350 ]",
@@ -2249,7 +2249,7 @@
           "rb": "Point [ X=400, Y=250 ]"
         },
         {
-          "cooltime": "280",
+          "cooltime": "230",
           "damage": "580",
           "hs": "h9",
           "lt": "Point [ X=-400, Y=-350 ]",

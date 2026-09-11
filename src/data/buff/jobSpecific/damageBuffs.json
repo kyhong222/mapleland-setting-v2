@@ -9,99 +9,12 @@
     "jobs": [
       "darkKnight"
     ],
-    "effectsByLevel": [
-      {
-        "finalDamageP": 32
-      },
-      {
-        "finalDamageP": 34
-      },
-      {
-        "finalDamageP": 36
-      },
-      {
-        "finalDamageP": 38
-      },
-      {
-        "finalDamageP": 40
-      },
-      {
-        "finalDamageP": 42
-      },
-      {
-        "finalDamageP": 44
-      },
-      {
-        "finalDamageP": 46
-      },
-      {
-        "finalDamageP": 48
-      },
-      {
-        "finalDamageP": 50
-      },
-      {
-        "finalDamageP": 52
-      },
-      {
-        "finalDamageP": 54
-      },
-      {
-        "finalDamageP": 56
-      },
-      {
-        "finalDamageP": 58
-      },
-      {
-        "finalDamageP": 60
-      },
-      {
-        "finalDamageP": 62
-      },
-      {
-        "finalDamageP": 64
-      },
-      {
-        "finalDamageP": 66
-      },
-      {
-        "finalDamageP": 68
-      },
-      {
-        "finalDamageP": 70
-      },
-      {
-        "finalDamageP": 73
-      },
-      {
-        "finalDamageP": 76
-      },
-      {
-        "finalDamageP": 79
-      },
-      {
-        "finalDamageP": 82
-      },
-      {
-        "finalDamageP": 85
-      },
-      {
-        "finalDamageP": 88
-      },
-      {
-        "finalDamageP": 91
-      },
-      {
-        "finalDamageP": 94
-      },
-      {
-        "finalDamageP": 97
-      },
-      {
-        "finalDamageP": 100
+    "icon": "/skill-icons/1320006.png",
+    "derive": {
+      "finalDamageP": {
+        "field": "damage"
       }
-    ],
-    "icon": "/skill-icons/1320006.png"
+    }
   },
   {
     "id": "1111002",
@@ -271,98 +184,11 @@
     "jobs": [
       "nightLord"
     ],
-    "effectsByLevel": [
-      {
-        "shadowPartnerP": 21
-      },
-      {
-        "shadowPartnerP": 21
-      },
-      {
-        "shadowPartnerP": 21
-      },
-      {
-        "shadowPartnerP": 21
-      },
-      {
-        "shadowPartnerP": 21
-      },
-      {
-        "shadowPartnerP": 21
-      },
-      {
-        "shadowPartnerP": 21
-      },
-      {
-        "shadowPartnerP": 22
-      },
-      {
-        "shadowPartnerP": 23
-      },
-      {
-        "shadowPartnerP": 24
-      },
-      {
-        "shadowPartnerP": 25
-      },
-      {
-        "shadowPartnerP": 26
-      },
-      {
-        "shadowPartnerP": 27
-      },
-      {
-        "shadowPartnerP": 28
-      },
-      {
-        "shadowPartnerP": 29
-      },
-      {
-        "shadowPartnerP": 30
-      },
-      {
-        "shadowPartnerP": 31
-      },
-      {
-        "shadowPartnerP": 32
-      },
-      {
-        "shadowPartnerP": 33
-      },
-      {
-        "shadowPartnerP": 34
-      },
-      {
-        "shadowPartnerP": 35
-      },
-      {
-        "shadowPartnerP": 36
-      },
-      {
-        "shadowPartnerP": 37
-      },
-      {
-        "shadowPartnerP": 38
-      },
-      {
-        "shadowPartnerP": 40
-      },
-      {
-        "shadowPartnerP": 42
-      },
-      {
-        "shadowPartnerP": 44
-      },
-      {
-        "shadowPartnerP": 46
-      },
-      {
-        "shadowPartnerP": 48
-      },
-      {
-        "shadowPartnerP": 50
+    "icon": "/buff-icons/4111002.png",
+    "derive": {
+      "shadowPartnerP": {
+        "field": "y"
       }
-    ],
-    "icon": "/buff-icons/4111002.png"
+    }
   }
 ]

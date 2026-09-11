@@ -6,74 +6,17 @@
     "scope": "personal",
     "mode": "active",
     "masterLevel": 20,
-    "effectsByLevel": [
-      {
-        "pdef": 2
-      },
-      {
-        "pdef": 4
-      },
-      {
-        "pdef": 6
-      },
-      {
-        "pdef": 8
-      },
-      {
-        "pdef": 10
-      },
-      {
-        "pdef": 12
-      },
-      {
-        "pdef": 14
-      },
-      {
-        "pdef": 16
-      },
-      {
-        "pdef": 18
-      },
-      {
-        "pdef": 20
-      },
-      {
-        "pdef": 22
-      },
-      {
-        "pdef": 24
-      },
-      {
-        "pdef": 26
-      },
-      {
-        "pdef": 28
-      },
-      {
-        "pdef": 30
-      },
-      {
-        "pdef": 32
-      },
-      {
-        "pdef": 34
-      },
-      {
-        "pdef": 36
-      },
-      {
-        "pdef": 38
-      },
-      {
-        "pdef": 40
-      }
-    ],
     "icon": "/buff-icons/1001003.png",
     "jobs": [
       "hero",
       "paladin",
       "darkKnight"
-    ]
+    ],
+    "derive": {
+      "pdef": {
+        "field": "pdd"
+      }
+    }
   },
   {
     "id": "1101007",
@@ -82,102 +25,15 @@
     "scope": "personal",
     "mode": "active",
     "masterLevel": 30,
-    "effectsByLevel": [
-      {
-        "damageReflectP": 11
-      },
-      {
-        "damageReflectP": 12
-      },
-      {
-        "damageReflectP": 13
-      },
-      {
-        "damageReflectP": 14
-      },
-      {
-        "damageReflectP": 15
-      },
-      {
-        "damageReflectP": 16
-      },
-      {
-        "damageReflectP": 17
-      },
-      {
-        "damageReflectP": 18
-      },
-      {
-        "damageReflectP": 19
-      },
-      {
-        "damageReflectP": 20
-      },
-      {
-        "damageReflectP": 21
-      },
-      {
-        "damageReflectP": 22
-      },
-      {
-        "damageReflectP": 23
-      },
-      {
-        "damageReflectP": 24
-      },
-      {
-        "damageReflectP": 25
-      },
-      {
-        "damageReflectP": 26
-      },
-      {
-        "damageReflectP": 27
-      },
-      {
-        "damageReflectP": 28
-      },
-      {
-        "damageReflectP": 29
-      },
-      {
-        "damageReflectP": 30
-      },
-      {
-        "damageReflectP": 31
-      },
-      {
-        "damageReflectP": 32
-      },
-      {
-        "damageReflectP": 33
-      },
-      {
-        "damageReflectP": 34
-      },
-      {
-        "damageReflectP": 35
-      },
-      {
-        "damageReflectP": 36
-      },
-      {
-        "damageReflectP": 37
-      },
-      {
-        "damageReflectP": 38
-      },
-      {
-        "damageReflectP": 39
-      },
-      {
-        "damageReflectP": 40
-      }
-    ],
     "icon": "/buff-icons/1101007.png",
     "jobs": [
       "hero"
-    ]
+    ],
+    "derive": {
+      "damageReflectP": {
+        "field": "x"
+      }
+    }
   },
   {
     "id": "1120005",
@@ -186,103 +42,17 @@
     "scope": "personal",
     "mode": "passive",
     "masterLevel": 30,
-    "effectsByLevel": [
-      {
-        "blockRate": 0.5
-      },
-      {
-        "blockRate": 1
-      },
-      {
-        "blockRate": 1.5
-      },
-      {
-        "blockRate": 2
-      },
-      {
-        "blockRate": 2.5
-      },
-      {
-        "blockRate": 3
-      },
-      {
-        "blockRate": 3.5
-      },
-      {
-        "blockRate": 4
-      },
-      {
-        "blockRate": 4.5
-      },
-      {
-        "blockRate": 5
-      },
-      {
-        "blockRate": 5.5
-      },
-      {
-        "blockRate": 6
-      },
-      {
-        "blockRate": 6.5
-      },
-      {
-        "blockRate": 7
-      },
-      {
-        "blockRate": 7.5
-      },
-      {
-        "blockRate": 8
-      },
-      {
-        "blockRate": 8.5
-      },
-      {
-        "blockRate": 9
-      },
-      {
-        "blockRate": 9.5
-      },
-      {
-        "blockRate": 10
-      },
-      {
-        "blockRate": 11
-      },
-      {
-        "blockRate": 12
-      },
-      {
-        "blockRate": 13
-      },
-      {
-        "blockRate": 14
-      },
-      {
-        "blockRate": 15
-      },
-      {
-        "blockRate": 16
-      },
-      {
-        "blockRate": 17
-      },
-      {
-        "blockRate": 18
-      },
-      {
-        "blockRate": 19
-      },
-      {
-        "blockRate": 20
-      }
-    ],
     "icon": "/buff-icons/1120005.png",
     "jobs": [
       "hero"
     ],
-    "requiresShield": true
+    "requiresShield": true,
+    "derive": {
+      "blockRate": {
+        "field": "prop",
+        "scale": 0.1
+      }
+    }
   },
   {
     "id": "1121002",
@@ -291,102 +61,15 @@
     "scope": "personal",
     "mode": "active",
     "masterLevel": 30,
-    "effectsByLevel": [
-      {
-        "stanceP": 42
-      },
-      {
-        "stanceP": 44
-      },
-      {
-        "stanceP": 46
-      },
-      {
-        "stanceP": 48
-      },
-      {
-        "stanceP": 50
-      },
-      {
-        "stanceP": 52
-      },
-      {
-        "stanceP": 54
-      },
-      {
-        "stanceP": 56
-      },
-      {
-        "stanceP": 58
-      },
-      {
-        "stanceP": 60
-      },
-      {
-        "stanceP": 62
-      },
-      {
-        "stanceP": 64
-      },
-      {
-        "stanceP": 66
-      },
-      {
-        "stanceP": 68
-      },
-      {
-        "stanceP": 70
-      },
-      {
-        "stanceP": 72
-      },
-      {
-        "stanceP": 74
-      },
-      {
-        "stanceP": 76
-      },
-      {
-        "stanceP": 78
-      },
-      {
-        "stanceP": 80
-      },
-      {
-        "stanceP": 81
-      },
-      {
-        "stanceP": 82
-      },
-      {
-        "stanceP": 83
-      },
-      {
-        "stanceP": 84
-      },
-      {
-        "stanceP": 85
-      },
-      {
-        "stanceP": 86
-      },
-      {
-        "stanceP": 87
-      },
-      {
-        "stanceP": 88
-      },
-      {
-        "stanceP": 89
-      },
-      {
-        "stanceP": 90
-      }
-    ],
     "icon": "/buff-icons/1121002.png",
     "jobs": [
       "hero"
-    ]
+    ],
+    "derive": {
+      "stanceP": {
+        "field": "prop"
+      }
+    }
   },
   {
     "id": "1201007",
@@ -395,102 +78,15 @@
     "scope": "personal",
     "mode": "active",
     "masterLevel": 30,
-    "effectsByLevel": [
-      {
-        "damageReflectP": 11
-      },
-      {
-        "damageReflectP": 12
-      },
-      {
-        "damageReflectP": 13
-      },
-      {
-        "damageReflectP": 14
-      },
-      {
-        "damageReflectP": 15
-      },
-      {
-        "damageReflectP": 16
-      },
-      {
-        "damageReflectP": 17
-      },
-      {
-        "damageReflectP": 18
-      },
-      {
-        "damageReflectP": 19
-      },
-      {
-        "damageReflectP": 20
-      },
-      {
-        "damageReflectP": 21
-      },
-      {
-        "damageReflectP": 22
-      },
-      {
-        "damageReflectP": 23
-      },
-      {
-        "damageReflectP": 24
-      },
-      {
-        "damageReflectP": 25
-      },
-      {
-        "damageReflectP": 26
-      },
-      {
-        "damageReflectP": 27
-      },
-      {
-        "damageReflectP": 28
-      },
-      {
-        "damageReflectP": 29
-      },
-      {
-        "damageReflectP": 30
-      },
-      {
-        "damageReflectP": 31
-      },
-      {
-        "damageReflectP": 32
-      },
-      {
-        "damageReflectP": 33
-      },
-      {
-        "damageReflectP": 34
-      },
-      {
-        "damageReflectP": 35
-      },
-      {
-        "damageReflectP": 36
-      },
-      {
-        "damageReflectP": 37
-      },
-      {
-        "damageReflectP": 38
-      },
-      {
-        "damageReflectP": 39
-      },
-      {
-        "damageReflectP": 40
-      }
-    ],
     "icon": "/buff-icons/1201007.png",
     "jobs": [
       "paladin"
-    ]
+    ],
+    "derive": {
+      "damageReflectP": {
+        "field": "x"
+      }
+    }
   },
   {
     "id": "1220006",
@@ -499,103 +95,17 @@
     "scope": "personal",
     "mode": "passive",
     "masterLevel": 30,
-    "effectsByLevel": [
-      {
-        "blockRate": 0.5
-      },
-      {
-        "blockRate": 1
-      },
-      {
-        "blockRate": 1.5
-      },
-      {
-        "blockRate": 2
-      },
-      {
-        "blockRate": 2.5
-      },
-      {
-        "blockRate": 3
-      },
-      {
-        "blockRate": 3.5
-      },
-      {
-        "blockRate": 4
-      },
-      {
-        "blockRate": 4.5
-      },
-      {
-        "blockRate": 5
-      },
-      {
-        "blockRate": 5.5
-      },
-      {
-        "blockRate": 6
-      },
-      {
-        "blockRate": 6.5
-      },
-      {
-        "blockRate": 7
-      },
-      {
-        "blockRate": 7.5
-      },
-      {
-        "blockRate": 8
-      },
-      {
-        "blockRate": 8.5
-      },
-      {
-        "blockRate": 9
-      },
-      {
-        "blockRate": 9.5
-      },
-      {
-        "blockRate": 10
-      },
-      {
-        "blockRate": 11
-      },
-      {
-        "blockRate": 12
-      },
-      {
-        "blockRate": 13
-      },
-      {
-        "blockRate": 14
-      },
-      {
-        "blockRate": 15
-      },
-      {
-        "blockRate": 16
-      },
-      {
-        "blockRate": 17
-      },
-      {
-        "blockRate": 18
-      },
-      {
-        "blockRate": 19
-      },
-      {
-        "blockRate": 20
-      }
-    ],
     "icon": "/buff-icons/1220006.png",
     "jobs": [
       "paladin"
     ],
-    "requiresShield": true
+    "requiresShield": true,
+    "derive": {
+      "blockRate": {
+        "field": "prop",
+        "scale": 0.1
+      }
+    }
   },
   {
     "id": "1221002",
@@ -604,102 +114,15 @@
     "scope": "personal",
     "mode": "active",
     "masterLevel": 30,
-    "effectsByLevel": [
-      {
-        "stanceP": 42
-      },
-      {
-        "stanceP": 44
-      },
-      {
-        "stanceP": 46
-      },
-      {
-        "stanceP": 48
-      },
-      {
-        "stanceP": 50
-      },
-      {
-        "stanceP": 52
-      },
-      {
-        "stanceP": 54
-      },
-      {
-        "stanceP": 56
-      },
-      {
-        "stanceP": 58
-      },
-      {
-        "stanceP": 60
-      },
-      {
-        "stanceP": 62
-      },
-      {
-        "stanceP": 64
-      },
-      {
-        "stanceP": 66
-      },
-      {
-        "stanceP": 68
-      },
-      {
-        "stanceP": 70
-      },
-      {
-        "stanceP": 72
-      },
-      {
-        "stanceP": 74
-      },
-      {
-        "stanceP": 76
-      },
-      {
-        "stanceP": 78
-      },
-      {
-        "stanceP": 80
-      },
-      {
-        "stanceP": 81
-      },
-      {
-        "stanceP": 82
-      },
-      {
-        "stanceP": 83
-      },
-      {
-        "stanceP": 84
-      },
-      {
-        "stanceP": 85
-      },
-      {
-        "stanceP": 86
-      },
-      {
-        "stanceP": 87
-      },
-      {
-        "stanceP": 88
-      },
-      {
-        "stanceP": 89
-      },
-      {
-        "stanceP": 90
-      }
-    ],
     "icon": "/buff-icons/1221002.png",
     "jobs": [
       "paladin"
-    ]
+    ],
+    "derive": {
+      "stanceP": {
+        "field": "prop"
+      }
+    }
   },
   {
     "id": "1311008",
@@ -708,72 +131,15 @@
     "scope": "personal",
     "mode": "active",
     "masterLevel": 20,
-    "effectsByLevel": [
-      {
-        "pad": 1
-      },
-      {
-        "pad": 2
-      },
-      {
-        "pad": 3
-      },
-      {
-        "pad": 4
-      },
-      {
-        "pad": 4
-      },
-      {
-        "pad": 5
-      },
-      {
-        "pad": 5
-      },
-      {
-        "pad": 6
-      },
-      {
-        "pad": 6
-      },
-      {
-        "pad": 7
-      },
-      {
-        "pad": 7
-      },
-      {
-        "pad": 8
-      },
-      {
-        "pad": 8
-      },
-      {
-        "pad": 9
-      },
-      {
-        "pad": 9
-      },
-      {
-        "pad": 10
-      },
-      {
-        "pad": 10
-      },
-      {
-        "pad": 11
-      },
-      {
-        "pad": 11
-      },
-      {
-        "pad": 12
-      }
-    ],
     "icon": "/buff-icons/1311008.png",
     "jobs": [
       "darkKnight"
-    ]
+    ],
+    "derive": {
+      "pad": {
+        "field": "pad"
+      }
+    }
   },
   {
     "id": "1320009",
@@ -782,137 +148,27 @@
     "scope": "personal",
     "mode": "active",
     "masterLevel": 25,
-    "effectsByLevel": [
-      {
-        "pdef": 20
-      },
-      {
-        "pdef": 20
-      },
-      {
-        "pdef": 20
-      },
-      {
-        "pdef": 20
-      },
-      {
-        "pdef": 20
-      },
-      {
-        "pdef": 40,
-        "mdef": 25
-      },
-      {
-        "pdef": 40,
-        "mdef": 25
-      },
-      {
-        "pdef": 40,
-        "mdef": 25
-      },
-      {
-        "pdef": 40,
-        "mdef": 25
-      },
-      {
-        "pdef": 40,
-        "mdef": 25
-      },
-      {
-        "acc": 10,
-        "pdef": 60,
-        "mdef": 50
-      },
-      {
-        "acc": 10,
-        "pdef": 60,
-        "mdef": 50
-      },
-      {
-        "acc": 10,
-        "pdef": 60,
-        "mdef": 50
-      },
-      {
-        "acc": 10,
-        "pdef": 60,
-        "mdef": 50
-      },
-      {
-        "acc": 10,
-        "pdef": 60,
-        "mdef": 50
-      },
-      {
-        "acc": 20,
-        "eva": 30,
-        "pdef": 80,
-        "mdef": 75
-      },
-      {
-        "acc": 20,
-        "eva": 30,
-        "pdef": 80,
-        "mdef": 75
-      },
-      {
-        "acc": 20,
-        "eva": 30,
-        "pdef": 80,
-        "mdef": 75
-      },
-      {
-        "acc": 20,
-        "eva": 30,
-        "pdef": 80,
-        "mdef": 75
-      },
-      {
-        "acc": 20,
-        "eva": 30,
-        "pdef": 80,
-        "mdef": 75
-      },
-      {
-        "acc": 25,
-        "eva": 50,
-        "pad": 3,
-        "pdef": 100,
-        "mdef": 100
-      },
-      {
-        "acc": 25,
-        "eva": 50,
-        "pad": 6,
-        "pdef": 100,
-        "mdef": 100
-      },
-      {
-        "acc": 25,
-        "eva": 50,
-        "pad": 9,
-        "pdef": 100,
-        "mdef": 100
-      },
-      {
-        "acc": 25,
-        "eva": 50,
-        "pad": 12,
-        "pdef": 100,
-        "mdef": 100
-      },
-      {
-        "acc": 25,
-        "eva": 50,
-        "pad": 15,
-        "pdef": 100,
-        "mdef": 100
-      }
-    ],
     "icon": "/buff-icons/1320009.png",
     "jobs": [
       "darkKnight"
-    ]
+    ],
+    "derive": {
+      "pdef": {
+        "field": "pdd"
+      },
+      "mdef": {
+        "field": "mdd"
+      },
+      "acc": {
+        "field": "acc"
+      },
+      "eva": {
+        "field": "eva"
+      },
+      "pad": {
+        "field": "pad"
+      }
+    }
   },
   {
     "id": "1321002",
@@ -921,102 +177,15 @@
     "scope": "personal",
     "mode": "active",
     "masterLevel": 30,
-    "effectsByLevel": [
-      {
-        "stanceP": 42
-      },
-      {
-        "stanceP": 44
-      },
-      {
-        "stanceP": 46
-      },
-      {
-        "stanceP": 48
-      },
-      {
-        "stanceP": 50
-      },
-      {
-        "stanceP": 52
-      },
-      {
-        "stanceP": 54
-      },
-      {
-        "stanceP": 56
-      },
-      {
-        "stanceP": 58
-      },
-      {
-        "stanceP": 60
-      },
-      {
-        "stanceP": 62
-      },
-      {
-        "stanceP": 64
-      },
-      {
-        "stanceP": 66
-      },
-      {
-        "stanceP": 68
-      },
-      {
-        "stanceP": 70
-      },
-      {
-        "stanceP": 72
-      },
-      {
-        "stanceP": 74
-      },
-      {
-        "stanceP": 76
-      },
-      {
-        "stanceP": 78
-      },
-      {
-        "stanceP": 80
-      },
-      {
-        "stanceP": 81
-      },
-      {
-        "stanceP": 82
-      },
-      {
-        "stanceP": 83
-      },
-      {
-        "stanceP": 84
-      },
-      {
-        "stanceP": 85
-      },
-      {
-        "stanceP": 86
-      },
-      {
-        "stanceP": 87
-      },
-      {
-        "stanceP": 88
-      },
-      {
-        "stanceP": 89
-      },
-      {
-        "stanceP": 90
-      }
-    ],
     "icon": "/buff-icons/1321002.png",
     "jobs": [
       "darkKnight"
-    ]
+    ],
+    "derive": {
+      "stanceP": {
+        "field": "prop"
+      }
+    }
   },
   {
     "id": "2001003",
@@ -1025,74 +194,17 @@
     "scope": "personal",
     "mode": "active",
     "masterLevel": 20,
-    "effectsByLevel": [
-      {
-        "pdef": 2
-      },
-      {
-        "pdef": 4
-      },
-      {
-        "pdef": 6
-      },
-      {
-        "pdef": 8
-      },
-      {
-        "pdef": 10
-      },
-      {
-        "pdef": 12
-      },
-      {
-        "pdef": 14
-      },
-      {
-        "pdef": 16
-      },
-      {
-        "pdef": 18
-      },
-      {
-        "pdef": 20
-      },
-      {
-        "pdef": 22
-      },
-      {
-        "pdef": 24
-      },
-      {
-        "pdef": 26
-      },
-      {
-        "pdef": 28
-      },
-      {
-        "pdef": 30
-      },
-      {
-        "pdef": 32
-      },
-      {
-        "pdef": 34
-      },
-      {
-        "pdef": 36
-      },
-      {
-        "pdef": 38
-      },
-      {
-        "pdef": 40
-      }
-    ],
     "icon": "/buff-icons/2001003.png",
     "jobs": [
       "archMageFP",
       "archMageIL",
       "bishop"
-    ]
+    ],
+    "derive": {
+      "pdef": {
+        "field": "pdd"
+      }
+    }
   },
   {
     "id": "3001003",
@@ -1101,93 +213,19 @@
     "scope": "personal",
     "mode": "active",
     "masterLevel": 20,
-    "effectsByLevel": [
-      {
-        "acc": 1,
-        "eva": 1
-      },
-      {
-        "acc": 2,
-        "eva": 2
-      },
-      {
-        "acc": 3,
-        "eva": 3
-      },
-      {
-        "acc": 4,
-        "eva": 4
-      },
-      {
-        "acc": 5,
-        "eva": 5
-      },
-      {
-        "acc": 6,
-        "eva": 6
-      },
-      {
-        "acc": 7,
-        "eva": 7
-      },
-      {
-        "acc": 8,
-        "eva": 8
-      },
-      {
-        "acc": 9,
-        "eva": 9
-      },
-      {
-        "acc": 10,
-        "eva": 10
-      },
-      {
-        "acc": 11,
-        "eva": 11
-      },
-      {
-        "acc": 12,
-        "eva": 12
-      },
-      {
-        "acc": 13,
-        "eva": 13
-      },
-      {
-        "acc": 14,
-        "eva": 14
-      },
-      {
-        "acc": 15,
-        "eva": 15
-      },
-      {
-        "acc": 16,
-        "eva": 16
-      },
-      {
-        "acc": 17,
-        "eva": 17
-      },
-      {
-        "acc": 18,
-        "eva": 18
-      },
-      {
-        "acc": 19,
-        "eva": 19
-      },
-      {
-        "acc": 20,
-        "eva": 20
-      }
-    ],
     "icon": "/buff-icons/3001003.png",
     "jobs": [
       "bowmaster",
       "marksman"
-    ]
+    ],
+    "derive": {
+      "acc": {
+        "field": "acc"
+      },
+      "eva": {
+        "field": "eva"
+      }
+    }
   },
   {
     "id": "3121008",
@@ -1196,102 +234,15 @@
     "scope": "personal",
     "mode": "active",
     "masterLevel": 30,
-    "effectsByLevel": [
-      {
-        "pad": 11
-      },
-      {
-        "pad": 12
-      },
-      {
-        "pad": 12
-      },
-      {
-        "pad": 13
-      },
-      {
-        "pad": 13
-      },
-      {
-        "pad": 14
-      },
-      {
-        "pad": 14
-      },
-      {
-        "pad": 15
-      },
-      {
-        "pad": 15
-      },
-      {
-        "pad": 16
-      },
-      {
-        "pad": 16
-      },
-      {
-        "pad": 17
-      },
-      {
-        "pad": 17
-      },
-      {
-        "pad": 18
-      },
-      {
-        "pad": 18
-      },
-      {
-        "pad": 19
-      },
-      {
-        "pad": 19
-      },
-      {
-        "pad": 20
-      },
-      {
-        "pad": 20
-      },
-      {
-        "pad": 21
-      },
-      {
-        "pad": 21
-      },
-      {
-        "pad": 22
-      },
-      {
-        "pad": 22
-      },
-      {
-        "pad": 23
-      },
-      {
-        "pad": 23
-      },
-      {
-        "pad": 24
-      },
-      {
-        "pad": 24
-      },
-      {
-        "pad": 25
-      },
-      {
-        "pad": 25
-      },
-      {
-        "pad": 26
-      }
-    ],
     "icon": "/buff-icons/3121008.png",
     "jobs": [
       "bowmaster"
-    ]
+    ],
+    "derive": {
+      "pad": {
+        "field": "pad"
+      }
+    }
   },
   {
     "id": "4120002",
@@ -1300,102 +251,15 @@
     "scope": "personal",
     "mode": "passive",
     "masterLevel": 30,
-    "effectsByLevel": [
-      {
-        "addEvadeP": 1
-      },
-      {
-        "addEvadeP": 2
-      },
-      {
-        "addEvadeP": 3
-      },
-      {
-        "addEvadeP": 4
-      },
-      {
-        "addEvadeP": 5
-      },
-      {
-        "addEvadeP": 6
-      },
-      {
-        "addEvadeP": 7
-      },
-      {
-        "addEvadeP": 8
-      },
-      {
-        "addEvadeP": 9
-      },
-      {
-        "addEvadeP": 10
-      },
-      {
-        "addEvadeP": 11
-      },
-      {
-        "addEvadeP": 12
-      },
-      {
-        "addEvadeP": 13
-      },
-      {
-        "addEvadeP": 14
-      },
-      {
-        "addEvadeP": 15
-      },
-      {
-        "addEvadeP": 16
-      },
-      {
-        "addEvadeP": 17
-      },
-      {
-        "addEvadeP": 18
-      },
-      {
-        "addEvadeP": 19
-      },
-      {
-        "addEvadeP": 20
-      },
-      {
-        "addEvadeP": 21
-      },
-      {
-        "addEvadeP": 22
-      },
-      {
-        "addEvadeP": 23
-      },
-      {
-        "addEvadeP": 24
-      },
-      {
-        "addEvadeP": 25
-      },
-      {
-        "addEvadeP": 26
-      },
-      {
-        "addEvadeP": 27
-      },
-      {
-        "addEvadeP": 28
-      },
-      {
-        "addEvadeP": 29
-      },
-      {
-        "addEvadeP": 30
-      }
-    ],
     "icon": "/buff-icons/4120002.png",
     "jobs": [
       "nightLord"
-    ]
+    ],
+    "derive": {
+      "addEvadeP": {
+        "field": "prop"
+      }
+    }
   },
   {
     "id": "4211005",
@@ -1478,102 +342,15 @@
     "scope": "personal",
     "mode": "passive",
     "masterLevel": 30,
-    "effectsByLevel": [
-      {
-        "addEvadeP": 11
-      },
-      {
-        "addEvadeP": 12
-      },
-      {
-        "addEvadeP": 13
-      },
-      {
-        "addEvadeP": 14
-      },
-      {
-        "addEvadeP": 15
-      },
-      {
-        "addEvadeP": 16
-      },
-      {
-        "addEvadeP": 17
-      },
-      {
-        "addEvadeP": 18
-      },
-      {
-        "addEvadeP": 19
-      },
-      {
-        "addEvadeP": 20
-      },
-      {
-        "addEvadeP": 21
-      },
-      {
-        "addEvadeP": 22
-      },
-      {
-        "addEvadeP": 23
-      },
-      {
-        "addEvadeP": 24
-      },
-      {
-        "addEvadeP": 25
-      },
-      {
-        "addEvadeP": 26
-      },
-      {
-        "addEvadeP": 27
-      },
-      {
-        "addEvadeP": 28
-      },
-      {
-        "addEvadeP": 29
-      },
-      {
-        "addEvadeP": 30
-      },
-      {
-        "addEvadeP": 31
-      },
-      {
-        "addEvadeP": 32
-      },
-      {
-        "addEvadeP": 33
-      },
-      {
-        "addEvadeP": 34
-      },
-      {
-        "addEvadeP": 35
-      },
-      {
-        "addEvadeP": 36
-      },
-      {
-        "addEvadeP": 37
-      },
-      {
-        "addEvadeP": 38
-      },
-      {
-        "addEvadeP": 39
-      },
-      {
-        "addEvadeP": 40
-      }
-    ],
     "icon": "/buff-icons/4220002.png",
     "jobs": [
       "shadower"
-    ]
+    ],
+    "derive": {
+      "addEvadeP": {
+        "field": "prop"
+      }
+    }
   },
   {
     "id": "1101004",
@@ -1589,69 +366,13 @@
       "oneHandedSword",
       "twoHandedSword"
     ],
-    "effectsByLevel": [
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
+    "icon": "/buff-icons/1101004.png",
+    "derive": {
+      "attackSpeedBoost": {
+        "field": "x",
+        "scale": -1
       }
-    ],
-    "icon": "/buff-icons/1101004.png"
+    }
   },
   {
     "id": "1101005",
@@ -1667,69 +388,13 @@
       "oneHandedAxe",
       "twoHandedAxe"
     ],
-    "effectsByLevel": [
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
+    "icon": "/buff-icons/1101005.png",
+    "derive": {
+      "attackSpeedBoost": {
+        "field": "x",
+        "scale": -1
       }
-    ],
-    "icon": "/buff-icons/1101005.png"
+    }
   },
   {
     "id": "1201004",
@@ -1745,69 +410,13 @@
       "oneHandedSword",
       "twoHandedSword"
     ],
-    "effectsByLevel": [
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
+    "icon": "/buff-icons/1201004.png",
+    "derive": {
+      "attackSpeedBoost": {
+        "field": "x",
+        "scale": -1
       }
-    ],
-    "icon": "/buff-icons/1201004.png"
+    }
   },
   {
     "id": "1201005",
@@ -1823,69 +432,13 @@
       "oneHandedMace",
       "twoHandedMace"
     ],
-    "effectsByLevel": [
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
+    "icon": "/buff-icons/1201005.png",
+    "derive": {
+      "attackSpeedBoost": {
+        "field": "x",
+        "scale": -1
       }
-    ],
-    "icon": "/buff-icons/1201005.png"
+    }
   },
   {
     "id": "1301004",
@@ -1900,69 +453,13 @@
     "weaponTypes": [
       "spear"
     ],
-    "effectsByLevel": [
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
+    "icon": "/buff-icons/1301004.png",
+    "derive": {
+      "attackSpeedBoost": {
+        "field": "x",
+        "scale": -1
       }
-    ],
-    "icon": "/buff-icons/1301004.png"
+    }
   },
   {
     "id": "1301005",
@@ -1977,69 +474,13 @@
     "weaponTypes": [
       "polearm"
     ],
-    "effectsByLevel": [
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
+    "icon": "/buff-icons/1301005.png",
+    "derive": {
+      "attackSpeedBoost": {
+        "field": "x",
+        "scale": -1
       }
-    ],
-    "icon": "/buff-icons/1301005.png"
+    }
   },
   {
     "id": "3101002",
@@ -2054,69 +495,13 @@
     "weaponTypes": [
       "bow"
     ],
-    "effectsByLevel": [
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
+    "icon": "/buff-icons/3101002.png",
+    "derive": {
+      "attackSpeedBoost": {
+        "field": "x",
+        "scale": -1
       }
-    ],
-    "icon": "/buff-icons/3101002.png"
+    }
   },
   {
     "id": "3201002",
@@ -2131,69 +516,13 @@
     "weaponTypes": [
       "crossbow"
     ],
-    "effectsByLevel": [
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
+    "icon": "/buff-icons/3201002.png",
+    "derive": {
+      "attackSpeedBoost": {
+        "field": "x",
+        "scale": -1
       }
-    ],
-    "icon": "/buff-icons/3201002.png"
+    }
   },
   {
     "id": "4101003",
@@ -2208,69 +537,13 @@
     "weaponTypes": [
       "claw"
     ],
-    "effectsByLevel": [
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
+    "icon": "/buff-icons/4101003.png",
+    "derive": {
+      "attackSpeedBoost": {
+        "field": "x",
+        "scale": -1
       }
-    ],
-    "icon": "/buff-icons/4101003.png"
+    }
   },
   {
     "id": "4201002",
@@ -2285,69 +558,13 @@
     "weaponTypes": [
       "dagger"
     ],
-    "effectsByLevel": [
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
+    "icon": "/buff-icons/4201002.png",
+    "derive": {
+      "attackSpeedBoost": {
+        "field": "x",
+        "scale": -1
       }
-    ],
-    "icon": "/buff-icons/4201002.png"
+    }
   },
   {
     "id": "5101006",
@@ -2362,69 +579,13 @@
     "weaponTypes": [
       "knuckle"
     ],
-    "effectsByLevel": [
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
+    "icon": "/buff-icons/5101006.png",
+    "derive": {
+      "attackSpeedBoost": {
+        "field": "x",
+        "scale": -1
       }
-    ],
-    "icon": "/buff-icons/5101006.png"
+    }
   },
   {
     "id": "5201003",
@@ -2439,69 +600,13 @@
     "weaponTypes": [
       "gun"
     ],
-    "effectsByLevel": [
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
+    "icon": "/buff-icons/5201003.png",
+    "derive": {
+      "attackSpeedBoost": {
+        "field": "x",
+        "scale": -1
       }
-    ],
-    "icon": "/buff-icons/5201003.png"
+    }
   },
   {
     "id": "2111005",
@@ -2517,69 +622,13 @@
       "wand",
       "staff"
     ],
-    "effectsByLevel": [
-      {
-        "castSpeedBoost": 1
-      },
-      {
-        "castSpeedBoost": 1
-      },
-      {
-        "castSpeedBoost": 1
-      },
-      {
-        "castSpeedBoost": 1
-      },
-      {
-        "castSpeedBoost": 1
-      },
-      {
-        "castSpeedBoost": 1
-      },
-      {
-        "castSpeedBoost": 1
-      },
-      {
-        "castSpeedBoost": 1
-      },
-      {
-        "castSpeedBoost": 1
-      },
-      {
-        "castSpeedBoost": 1
-      },
-      {
-        "castSpeedBoost": 2
-      },
-      {
-        "castSpeedBoost": 2
-      },
-      {
-        "castSpeedBoost": 2
-      },
-      {
-        "castSpeedBoost": 2
-      },
-      {
-        "castSpeedBoost": 2
-      },
-      {
-        "castSpeedBoost": 2
-      },
-      {
-        "castSpeedBoost": 2
-      },
-      {
-        "castSpeedBoost": 2
-      },
-      {
-        "castSpeedBoost": 2
-      },
-      {
-        "castSpeedBoost": 2
+    "icon": "/buff-icons/2111005.png",
+    "derive": {
+      "castSpeedBoost": {
+        "field": "x",
+        "scale": -1
       }
-    ],
-    "icon": "/buff-icons/2111005.png"
+    }
   },
   {
     "id": "2211005",
@@ -2595,69 +644,13 @@
       "wand",
       "staff"
     ],
-    "effectsByLevel": [
-      {
-        "castSpeedBoost": 1
-      },
-      {
-        "castSpeedBoost": 1
-      },
-      {
-        "castSpeedBoost": 1
-      },
-      {
-        "castSpeedBoost": 1
-      },
-      {
-        "castSpeedBoost": 1
-      },
-      {
-        "castSpeedBoost": 1
-      },
-      {
-        "castSpeedBoost": 1
-      },
-      {
-        "castSpeedBoost": 1
-      },
-      {
-        "castSpeedBoost": 1
-      },
-      {
-        "castSpeedBoost": 1
-      },
-      {
-        "castSpeedBoost": 2
-      },
-      {
-        "castSpeedBoost": 2
-      },
-      {
-        "castSpeedBoost": 2
-      },
-      {
-        "castSpeedBoost": 2
-      },
-      {
-        "castSpeedBoost": 2
-      },
-      {
-        "castSpeedBoost": 2
-      },
-      {
-        "castSpeedBoost": 2
-      },
-      {
-        "castSpeedBoost": 2
-      },
-      {
-        "castSpeedBoost": 2
-      },
-      {
-        "castSpeedBoost": 2
+    "icon": "/buff-icons/2211005.png",
+    "derive": {
+      "castSpeedBoost": {
+        "field": "x",
+        "scale": -1
       }
-    ],
-    "icon": "/buff-icons/2211005.png"
+    }
   },
   {
     "id": "11101001",
@@ -2673,69 +666,13 @@
       "oneHandedSword",
       "twoHandedSword"
     ],
-    "effectsByLevel": [
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
+    "icon": "/buff-icons/11101001.png",
+    "derive": {
+      "attackSpeedBoost": {
+        "field": "x",
+        "scale": -1
       }
-    ],
-    "icon": "/buff-icons/11101001.png"
+    }
   },
   {
     "id": "12101004",
@@ -2751,69 +688,13 @@
       "wand",
       "staff"
     ],
-    "effectsByLevel": [
-      {
-        "castSpeedBoost": 1
-      },
-      {
-        "castSpeedBoost": 1
-      },
-      {
-        "castSpeedBoost": 1
-      },
-      {
-        "castSpeedBoost": 1
-      },
-      {
-        "castSpeedBoost": 1
-      },
-      {
-        "castSpeedBoost": 1
-      },
-      {
-        "castSpeedBoost": 1
-      },
-      {
-        "castSpeedBoost": 1
-      },
-      {
-        "castSpeedBoost": 1
-      },
-      {
-        "castSpeedBoost": 1
-      },
-      {
-        "castSpeedBoost": 2
-      },
-      {
-        "castSpeedBoost": 2
-      },
-      {
-        "castSpeedBoost": 2
-      },
-      {
-        "castSpeedBoost": 2
-      },
-      {
-        "castSpeedBoost": 2
-      },
-      {
-        "castSpeedBoost": 2
-      },
-      {
-        "castSpeedBoost": 2
-      },
-      {
-        "castSpeedBoost": 2
-      },
-      {
-        "castSpeedBoost": 2
-      },
-      {
-        "castSpeedBoost": 2
+    "icon": "/buff-icons/12101004.png",
+    "derive": {
+      "castSpeedBoost": {
+        "field": "x",
+        "scale": -1
       }
-    ],
-    "icon": "/buff-icons/12101004.png"
+    }
   },
   {
     "id": "13101001",
@@ -2828,69 +709,13 @@
     "weaponTypes": [
       "bow"
     ],
-    "effectsByLevel": [
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
+    "icon": "/buff-icons/13101001.png",
+    "derive": {
+      "attackSpeedBoost": {
+        "field": "x",
+        "scale": -1
       }
-    ],
-    "icon": "/buff-icons/13101001.png"
+    }
   },
   {
     "id": "14101002",
@@ -2905,69 +730,13 @@
     "weaponTypes": [
       "claw"
     ],
-    "effectsByLevel": [
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
+    "icon": "/buff-icons/14101002.png",
+    "derive": {
+      "attackSpeedBoost": {
+        "field": "x",
+        "scale": -1
       }
-    ],
-    "icon": "/buff-icons/14101002.png"
+    }
   },
   {
     "id": "15101002",
@@ -2982,69 +751,13 @@
     "weaponTypes": [
       "knuckle"
     ],
-    "effectsByLevel": [
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
-      },
-      {
-        "attackSpeedBoost": 2
+    "icon": "/buff-icons/15101002.png",
+    "derive": {
+      "attackSpeedBoost": {
+        "field": "x",
+        "scale": -1
       }
-    ],
-    "icon": "/buff-icons/15101002.png"
+    }
   },
   {
     "id": "2301003",
@@ -3056,68 +769,11 @@
     "jobs": [
       "bishop"
     ],
-    "effectsByLevel": [
-      {
-        "physicalRes": 11
-      },
-      {
-        "physicalRes": 12
-      },
-      {
-        "physicalRes": 13
-      },
-      {
-        "physicalRes": 14
-      },
-      {
-        "physicalRes": 15
-      },
-      {
-        "physicalRes": 16
-      },
-      {
-        "physicalRes": 17
-      },
-      {
-        "physicalRes": 18
-      },
-      {
-        "physicalRes": 19
-      },
-      {
-        "physicalRes": 20
-      },
-      {
-        "physicalRes": 21
-      },
-      {
-        "physicalRes": 22
-      },
-      {
-        "physicalRes": 23
-      },
-      {
-        "physicalRes": 24
-      },
-      {
-        "physicalRes": 25
-      },
-      {
-        "physicalRes": 26
-      },
-      {
-        "physicalRes": 27
-      },
-      {
-        "physicalRes": 28
-      },
-      {
-        "physicalRes": 29
-      },
-      {
-        "physicalRes": 30
+    "icon": "/buff-icons/2301003.png",
+    "derive": {
+      "physicalRes": {
+        "field": "x"
       }
-    ],
-    "icon": "/buff-icons/2301003.png"
+    }
   }
 ]

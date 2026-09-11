@@ -6,88 +6,6 @@
     "scope": "personal",
     "mode": "passive",
     "masterLevel": 20,
-    "effectsByLevel": [
-      {
-        "mastery": 5,
-        "acc": 1
-      },
-      {
-        "mastery": 5,
-        "acc": 2
-      },
-      {
-        "mastery": 10,
-        "acc": 3
-      },
-      {
-        "mastery": 10,
-        "acc": 4
-      },
-      {
-        "mastery": 15,
-        "acc": 5
-      },
-      {
-        "mastery": 15,
-        "acc": 6
-      },
-      {
-        "mastery": 20,
-        "acc": 7
-      },
-      {
-        "mastery": 20,
-        "acc": 8
-      },
-      {
-        "mastery": 25,
-        "acc": 9
-      },
-      {
-        "mastery": 25,
-        "acc": 10
-      },
-      {
-        "mastery": 30,
-        "acc": 11
-      },
-      {
-        "mastery": 30,
-        "acc": 12
-      },
-      {
-        "mastery": 35,
-        "acc": 13
-      },
-      {
-        "mastery": 35,
-        "acc": 14
-      },
-      {
-        "mastery": 40,
-        "acc": 15
-      },
-      {
-        "mastery": 40,
-        "acc": 16
-      },
-      {
-        "mastery": 45,
-        "acc": 17
-      },
-      {
-        "mastery": 45,
-        "acc": 18
-      },
-      {
-        "mastery": 50,
-        "acc": 19
-      },
-      {
-        "mastery": 50,
-        "acc": 20
-      }
-    ],
     "icon": "/buff-icons/1100000.png",
     "jobs": [
       "hero"
@@ -95,7 +13,16 @@
     "weaponTypes": [
       "oneHandedSword",
       "twoHandedSword"
-    ]
+    ],
+    "derive": {
+      "mastery": {
+        "field": "mastery",
+        "scale": 5
+      },
+      "acc": {
+        "field": "x"
+      }
+    }
   },
   {
     "id": "1100001",
@@ -104,88 +31,6 @@
     "scope": "personal",
     "mode": "passive",
     "masterLevel": 20,
-    "effectsByLevel": [
-      {
-        "mastery": 5,
-        "acc": 1
-      },
-      {
-        "mastery": 5,
-        "acc": 2
-      },
-      {
-        "mastery": 10,
-        "acc": 3
-      },
-      {
-        "mastery": 10,
-        "acc": 4
-      },
-      {
-        "mastery": 15,
-        "acc": 5
-      },
-      {
-        "mastery": 15,
-        "acc": 6
-      },
-      {
-        "mastery": 20,
-        "acc": 7
-      },
-      {
-        "mastery": 20,
-        "acc": 8
-      },
-      {
-        "mastery": 25,
-        "acc": 9
-      },
-      {
-        "mastery": 25,
-        "acc": 10
-      },
-      {
-        "mastery": 30,
-        "acc": 11
-      },
-      {
-        "mastery": 30,
-        "acc": 12
-      },
-      {
-        "mastery": 35,
-        "acc": 13
-      },
-      {
-        "mastery": 35,
-        "acc": 14
-      },
-      {
-        "mastery": 40,
-        "acc": 15
-      },
-      {
-        "mastery": 40,
-        "acc": 16
-      },
-      {
-        "mastery": 45,
-        "acc": 17
-      },
-      {
-        "mastery": 45,
-        "acc": 18
-      },
-      {
-        "mastery": 50,
-        "acc": 19
-      },
-      {
-        "mastery": 50,
-        "acc": 20
-      }
-    ],
     "icon": "/buff-icons/1100001.png",
     "jobs": [
       "hero"
@@ -193,7 +38,16 @@
     "weaponTypes": [
       "oneHandedAxe",
       "twoHandedAxe"
-    ]
+    ],
+    "derive": {
+      "mastery": {
+        "field": "mastery",
+        "scale": 5
+      },
+      "acc": {
+        "field": "x"
+      }
+    }
   },
   {
     "id": "1110001",
@@ -202,72 +56,16 @@
     "scope": "personal",
     "mode": "passive",
     "masterLevel": 20,
-    "effectsByLevel": [
-      {
-        "shieldBonusPdef": 5
-      },
-      {
-        "shieldBonusPdef": 10
-      },
-      {
-        "shieldBonusPdef": 15
-      },
-      {
-        "shieldBonusPdef": 20
-      },
-      {
-        "shieldBonusPdef": 25
-      },
-      {
-        "shieldBonusPdef": 30
-      },
-      {
-        "shieldBonusPdef": 35
-      },
-      {
-        "shieldBonusPdef": 40
-      },
-      {
-        "shieldBonusPdef": 45
-      },
-      {
-        "shieldBonusPdef": 50
-      },
-      {
-        "shieldBonusPdef": 55
-      },
-      {
-        "shieldBonusPdef": 60
-      },
-      {
-        "shieldBonusPdef": 65
-      },
-      {
-        "shieldBonusPdef": 70
-      },
-      {
-        "shieldBonusPdef": 75
-      },
-      {
-        "shieldBonusPdef": 80
-      },
-      {
-        "shieldBonusPdef": 85
-      },
-      {
-        "shieldBonusPdef": 90
-      },
-      {
-        "shieldBonusPdef": 95
-      },
-      {
-        "shieldBonusPdef": 100
-      }
-    ],
     "icon": "/buff-icons/1110001.png",
     "jobs": [
       "hero"
-    ]
+    ],
+    "derive": {
+      "shieldBonusPdef": {
+        "field": "x",
+        "offset": -100
+      }
+    }
   },
   {
     "id": "1120004",
@@ -276,102 +74,17 @@
     "scope": "personal",
     "mode": "passive",
     "masterLevel": 30,
-    "effectsByLevel": [
-      {
-        "damageReduce": 0.5
-      },
-      {
-        "damageReduce": 1
-      },
-      {
-        "damageReduce": 1.5
-      },
-      {
-        "damageReduce": 2
-      },
-      {
-        "damageReduce": 2.5
-      },
-      {
-        "damageReduce": 3
-      },
-      {
-        "damageReduce": 3.5
-      },
-      {
-        "damageReduce": 4
-      },
-      {
-        "damageReduce": 4.5
-      },
-      {
-        "damageReduce": 5
-      },
-      {
-        "damageReduce": 5.5
-      },
-      {
-        "damageReduce": 6
-      },
-      {
-        "damageReduce": 6.5
-      },
-      {
-        "damageReduce": 7
-      },
-      {
-        "damageReduce": 7.5
-      },
-      {
-        "damageReduce": 8
-      },
-      {
-        "damageReduce": 8.5
-      },
-      {
-        "damageReduce": 9
-      },
-      {
-        "damageReduce": 9.5
-      },
-      {
-        "damageReduce": 10
-      },
-      {
-        "damageReduce": 10.5
-      },
-      {
-        "damageReduce": 11
-      },
-      {
-        "damageReduce": 11.5
-      },
-      {
-        "damageReduce": 12
-      },
-      {
-        "damageReduce": 12.5
-      },
-      {
-        "damageReduce": 13
-      },
-      {
-        "damageReduce": 13.5
-      },
-      {
-        "damageReduce": 14
-      },
-      {
-        "damageReduce": 14.5
-      },
-      {
-        "damageReduce": 15
-      }
-    ],
     "icon": "/buff-icons/1120004.png",
     "jobs": [
       "hero"
-    ]
+    ],
+    "derive": {
+      "damageReduce": {
+        "field": "x",
+        "scale": -0.1,
+        "offset": 100
+      }
+    }
   },
   {
     "id": "1200000",
@@ -380,88 +93,6 @@
     "scope": "personal",
     "mode": "passive",
     "masterLevel": 20,
-    "effectsByLevel": [
-      {
-        "mastery": 5,
-        "acc": 1
-      },
-      {
-        "mastery": 5,
-        "acc": 2
-      },
-      {
-        "mastery": 10,
-        "acc": 3
-      },
-      {
-        "mastery": 10,
-        "acc": 4
-      },
-      {
-        "mastery": 15,
-        "acc": 5
-      },
-      {
-        "mastery": 15,
-        "acc": 6
-      },
-      {
-        "mastery": 20,
-        "acc": 7
-      },
-      {
-        "mastery": 20,
-        "acc": 8
-      },
-      {
-        "mastery": 25,
-        "acc": 9
-      },
-      {
-        "mastery": 25,
-        "acc": 10
-      },
-      {
-        "mastery": 30,
-        "acc": 11
-      },
-      {
-        "mastery": 30,
-        "acc": 12
-      },
-      {
-        "mastery": 35,
-        "acc": 13
-      },
-      {
-        "mastery": 35,
-        "acc": 14
-      },
-      {
-        "mastery": 40,
-        "acc": 15
-      },
-      {
-        "mastery": 40,
-        "acc": 16
-      },
-      {
-        "mastery": 45,
-        "acc": 17
-      },
-      {
-        "mastery": 45,
-        "acc": 18
-      },
-      {
-        "mastery": 50,
-        "acc": 19
-      },
-      {
-        "mastery": 50,
-        "acc": 20
-      }
-    ],
     "icon": "/buff-icons/1200000.png",
     "jobs": [
       "paladin"
@@ -469,7 +100,16 @@
     "weaponTypes": [
       "oneHandedSword",
       "twoHandedSword"
-    ]
+    ],
+    "derive": {
+      "mastery": {
+        "field": "mastery",
+        "scale": 5
+      },
+      "acc": {
+        "field": "x"
+      }
+    }
   },
   {
     "id": "1200001",
@@ -478,88 +118,6 @@
     "scope": "personal",
     "mode": "passive",
     "masterLevel": 20,
-    "effectsByLevel": [
-      {
-        "mastery": 5,
-        "acc": 1
-      },
-      {
-        "mastery": 5,
-        "acc": 2
-      },
-      {
-        "mastery": 10,
-        "acc": 3
-      },
-      {
-        "mastery": 10,
-        "acc": 4
-      },
-      {
-        "mastery": 15,
-        "acc": 5
-      },
-      {
-        "mastery": 15,
-        "acc": 6
-      },
-      {
-        "mastery": 20,
-        "acc": 7
-      },
-      {
-        "mastery": 20,
-        "acc": 8
-      },
-      {
-        "mastery": 25,
-        "acc": 9
-      },
-      {
-        "mastery": 25,
-        "acc": 10
-      },
-      {
-        "mastery": 30,
-        "acc": 11
-      },
-      {
-        "mastery": 30,
-        "acc": 12
-      },
-      {
-        "mastery": 35,
-        "acc": 13
-      },
-      {
-        "mastery": 35,
-        "acc": 14
-      },
-      {
-        "mastery": 40,
-        "acc": 15
-      },
-      {
-        "mastery": 40,
-        "acc": 16
-      },
-      {
-        "mastery": 45,
-        "acc": 17
-      },
-      {
-        "mastery": 45,
-        "acc": 18
-      },
-      {
-        "mastery": 50,
-        "acc": 19
-      },
-      {
-        "mastery": 50,
-        "acc": 20
-      }
-    ],
     "icon": "/buff-icons/1200001.png",
     "jobs": [
       "paladin"
@@ -567,7 +125,16 @@
     "weaponTypes": [
       "oneHandedMace",
       "twoHandedMace"
-    ]
+    ],
+    "derive": {
+      "mastery": {
+        "field": "mastery",
+        "scale": 5
+      },
+      "acc": {
+        "field": "x"
+      }
+    }
   },
   {
     "id": "1210001",
@@ -576,72 +143,16 @@
     "scope": "personal",
     "mode": "passive",
     "masterLevel": 20,
-    "effectsByLevel": [
-      {
-        "shieldBonusPdef": 5
-      },
-      {
-        "shieldBonusPdef": 10
-      },
-      {
-        "shieldBonusPdef": 15
-      },
-      {
-        "shieldBonusPdef": 20
-      },
-      {
-        "shieldBonusPdef": 25
-      },
-      {
-        "shieldBonusPdef": 30
-      },
-      {
-        "shieldBonusPdef": 35
-      },
-      {
-        "shieldBonusPdef": 40
-      },
-      {
-        "shieldBonusPdef": 45
-      },
-      {
-        "shieldBonusPdef": 50
-      },
-      {
-        "shieldBonusPdef": 55
-      },
-      {
-        "shieldBonusPdef": 60
-      },
-      {
-        "shieldBonusPdef": 65
-      },
-      {
-        "shieldBonusPdef": 70
-      },
-      {
-        "shieldBonusPdef": 75
-      },
-      {
-        "shieldBonusPdef": 80
-      },
-      {
-        "shieldBonusPdef": 85
-      },
-      {
-        "shieldBonusPdef": 90
-      },
-      {
-        "shieldBonusPdef": 95
-      },
-      {
-        "shieldBonusPdef": 100
-      }
-    ],
     "icon": "/buff-icons/1210001.png",
     "jobs": [
       "paladin"
-    ]
+    ],
+    "derive": {
+      "shieldBonusPdef": {
+        "field": "x",
+        "offset": -100
+      }
+    }
   },
   {
     "id": "1220005",
@@ -650,102 +161,17 @@
     "scope": "personal",
     "mode": "passive",
     "masterLevel": 30,
-    "effectsByLevel": [
-      {
-        "damageReduce": 0.5
-      },
-      {
-        "damageReduce": 1
-      },
-      {
-        "damageReduce": 1.5
-      },
-      {
-        "damageReduce": 2
-      },
-      {
-        "damageReduce": 2.5
-      },
-      {
-        "damageReduce": 3
-      },
-      {
-        "damageReduce": 3.5
-      },
-      {
-        "damageReduce": 4
-      },
-      {
-        "damageReduce": 4.5
-      },
-      {
-        "damageReduce": 5
-      },
-      {
-        "damageReduce": 5.5
-      },
-      {
-        "damageReduce": 6
-      },
-      {
-        "damageReduce": 6.5
-      },
-      {
-        "damageReduce": 7
-      },
-      {
-        "damageReduce": 7.5
-      },
-      {
-        "damageReduce": 8
-      },
-      {
-        "damageReduce": 8.5
-      },
-      {
-        "damageReduce": 9
-      },
-      {
-        "damageReduce": 9.5
-      },
-      {
-        "damageReduce": 10
-      },
-      {
-        "damageReduce": 10.5
-      },
-      {
-        "damageReduce": 11
-      },
-      {
-        "damageReduce": 11.5
-      },
-      {
-        "damageReduce": 12
-      },
-      {
-        "damageReduce": 12.5
-      },
-      {
-        "damageReduce": 13
-      },
-      {
-        "damageReduce": 13.5
-      },
-      {
-        "damageReduce": 14
-      },
-      {
-        "damageReduce": 14.5
-      },
-      {
-        "damageReduce": 15
-      }
-    ],
     "icon": "/buff-icons/1220005.png",
     "jobs": [
       "paladin"
-    ]
+    ],
+    "derive": {
+      "damageReduce": {
+        "field": "x",
+        "scale": -0.1,
+        "offset": 100
+      }
+    }
   },
   {
     "id": "1300000",
@@ -754,95 +180,22 @@
     "scope": "personal",
     "mode": "passive",
     "masterLevel": 20,
-    "effectsByLevel": [
-      {
-        "mastery": 5,
-        "acc": 1
-      },
-      {
-        "mastery": 5,
-        "acc": 2
-      },
-      {
-        "mastery": 10,
-        "acc": 3
-      },
-      {
-        "mastery": 10,
-        "acc": 4
-      },
-      {
-        "mastery": 15,
-        "acc": 5
-      },
-      {
-        "mastery": 15,
-        "acc": 6
-      },
-      {
-        "mastery": 20,
-        "acc": 7
-      },
-      {
-        "mastery": 20,
-        "acc": 8
-      },
-      {
-        "mastery": 25,
-        "acc": 9
-      },
-      {
-        "mastery": 25,
-        "acc": 10
-      },
-      {
-        "mastery": 30,
-        "acc": 11
-      },
-      {
-        "mastery": 30,
-        "acc": 12
-      },
-      {
-        "mastery": 35,
-        "acc": 13
-      },
-      {
-        "mastery": 35,
-        "acc": 14
-      },
-      {
-        "mastery": 40,
-        "acc": 15
-      },
-      {
-        "mastery": 40,
-        "acc": 16
-      },
-      {
-        "mastery": 45,
-        "acc": 17
-      },
-      {
-        "mastery": 45,
-        "acc": 18
-      },
-      {
-        "mastery": 50,
-        "acc": 19
-      },
-      {
-        "mastery": 50,
-        "acc": 20
-      }
-    ],
     "icon": "/buff-icons/1300000.png",
     "jobs": [
       "darkKnight"
     ],
     "weaponTypes": [
       "spear"
-    ]
+    ],
+    "derive": {
+      "mastery": {
+        "field": "mastery",
+        "scale": 5
+      },
+      "acc": {
+        "field": "x"
+      }
+    }
   },
   {
     "id": "1300001",
@@ -851,95 +204,22 @@
     "scope": "personal",
     "mode": "passive",
     "masterLevel": 20,
-    "effectsByLevel": [
-      {
-        "mastery": 5,
-        "acc": 1
-      },
-      {
-        "mastery": 5,
-        "acc": 2
-      },
-      {
-        "mastery": 10,
-        "acc": 3
-      },
-      {
-        "mastery": 10,
-        "acc": 4
-      },
-      {
-        "mastery": 15,
-        "acc": 5
-      },
-      {
-        "mastery": 15,
-        "acc": 6
-      },
-      {
-        "mastery": 20,
-        "acc": 7
-      },
-      {
-        "mastery": 20,
-        "acc": 8
-      },
-      {
-        "mastery": 25,
-        "acc": 9
-      },
-      {
-        "mastery": 25,
-        "acc": 10
-      },
-      {
-        "mastery": 30,
-        "acc": 11
-      },
-      {
-        "mastery": 30,
-        "acc": 12
-      },
-      {
-        "mastery": 35,
-        "acc": 13
-      },
-      {
-        "mastery": 35,
-        "acc": 14
-      },
-      {
-        "mastery": 40,
-        "acc": 15
-      },
-      {
-        "mastery": 40,
-        "acc": 16
-      },
-      {
-        "mastery": 45,
-        "acc": 17
-      },
-      {
-        "mastery": 45,
-        "acc": 18
-      },
-      {
-        "mastery": 50,
-        "acc": 19
-      },
-      {
-        "mastery": 50,
-        "acc": 20
-      }
-    ],
     "icon": "/buff-icons/1300001.png",
     "jobs": [
       "darkKnight"
     ],
     "weaponTypes": [
       "polearm"
-    ]
+    ],
+    "derive": {
+      "mastery": {
+        "field": "mastery",
+        "scale": 5
+      },
+      "acc": {
+        "field": "x"
+      }
+    }
   },
   {
     "id": "1310000",
@@ -948,72 +228,15 @@
     "scope": "personal",
     "mode": "passive",
     "masterLevel": 20,
-    "effectsByLevel": [
-      {
-        "allRes": 12
-      },
-      {
-        "allRes": 14
-      },
-      {
-        "allRes": 16
-      },
-      {
-        "allRes": 18
-      },
-      {
-        "allRes": 20
-      },
-      {
-        "allRes": 22
-      },
-      {
-        "allRes": 24
-      },
-      {
-        "allRes": 26
-      },
-      {
-        "allRes": 28
-      },
-      {
-        "allRes": 30
-      },
-      {
-        "allRes": 31
-      },
-      {
-        "allRes": 32
-      },
-      {
-        "allRes": 33
-      },
-      {
-        "allRes": 34
-      },
-      {
-        "allRes": 35
-      },
-      {
-        "allRes": 36
-      },
-      {
-        "allRes": 37
-      },
-      {
-        "allRes": 38
-      },
-      {
-        "allRes": 39
-      },
-      {
-        "allRes": 40
-      }
-    ],
     "icon": "/buff-icons/1310000.png",
     "jobs": [
       "darkKnight"
-    ]
+    ],
+    "derive": {
+      "allRes": {
+        "field": "x"
+      }
+    }
   },
   {
     "id": "1320005",
@@ -1022,102 +245,17 @@
     "scope": "personal",
     "mode": "passive",
     "masterLevel": 30,
-    "effectsByLevel": [
-      {
-        "damageReduce": 0.5
-      },
-      {
-        "damageReduce": 1
-      },
-      {
-        "damageReduce": 1.5
-      },
-      {
-        "damageReduce": 2
-      },
-      {
-        "damageReduce": 2.5
-      },
-      {
-        "damageReduce": 3
-      },
-      {
-        "damageReduce": 3.5
-      },
-      {
-        "damageReduce": 4
-      },
-      {
-        "damageReduce": 4.5
-      },
-      {
-        "damageReduce": 5
-      },
-      {
-        "damageReduce": 5.5
-      },
-      {
-        "damageReduce": 6
-      },
-      {
-        "damageReduce": 6.5
-      },
-      {
-        "damageReduce": 7
-      },
-      {
-        "damageReduce": 7.5
-      },
-      {
-        "damageReduce": 8
-      },
-      {
-        "damageReduce": 8.5
-      },
-      {
-        "damageReduce": 9
-      },
-      {
-        "damageReduce": 9.5
-      },
-      {
-        "damageReduce": 10
-      },
-      {
-        "damageReduce": 10.5
-      },
-      {
-        "damageReduce": 11
-      },
-      {
-        "damageReduce": 11.5
-      },
-      {
-        "damageReduce": 12
-      },
-      {
-        "damageReduce": 12.5
-      },
-      {
-        "damageReduce": 13
-      },
-      {
-        "damageReduce": 13.5
-      },
-      {
-        "damageReduce": 14
-      },
-      {
-        "damageReduce": 14.5
-      },
-      {
-        "damageReduce": 15
-      }
-    ],
     "icon": "/buff-icons/1320005.png",
     "jobs": [
       "darkKnight"
-    ]
+    ],
+    "derive": {
+      "damageReduce": {
+        "field": "x",
+        "scale": -0.1,
+        "offset": 100
+      }
+    }
   },
   {
     "id": "1321007",
@@ -1126,42 +264,16 @@
     "scope": "personal",
     "mode": "passive",
     "masterLevel": 10,
-    "effectsByLevel": [
-      {
-        "mastery": 5
-      },
-      {
-        "mastery": 5
-      },
-      {
-        "mastery": 5
-      },
-      {
-        "mastery": 10
-      },
-      {
-        "mastery": 10
-      },
-      {
-        "mastery": 10
-      },
-      {
-        "mastery": 15
-      },
-      {
-        "mastery": 15
-      },
-      {
-        "mastery": 15
-      },
-      {
-        "mastery": 20
-      }
-    ],
     "icon": "/buff-icons/1321007.png",
     "jobs": [
       "darkKnight"
-    ]
+    ],
+    "derive": {
+      "mastery": {
+        "field": "mastery",
+        "scale": 5
+      }
+    }
   },
   {
     "id": "2110000",
@@ -1170,92 +282,18 @@
     "scope": "personal",
     "mode": "passive",
     "masterLevel": 20,
-    "effectsByLevel": [
-      {
-        "fireRes": 23,
-        "poisonRes": 23
-      },
-      {
-        "fireRes": 26,
-        "poisonRes": 26
-      },
-      {
-        "fireRes": 29,
-        "poisonRes": 29
-      },
-      {
-        "fireRes": 32,
-        "poisonRes": 32
-      },
-      {
-        "fireRes": 35,
-        "poisonRes": 35
-      },
-      {
-        "fireRes": 38,
-        "poisonRes": 38
-      },
-      {
-        "fireRes": 41,
-        "poisonRes": 41
-      },
-      {
-        "fireRes": 44,
-        "poisonRes": 44
-      },
-      {
-        "fireRes": 47,
-        "poisonRes": 47
-      },
-      {
-        "fireRes": 50,
-        "poisonRes": 50
-      },
-      {
-        "fireRes": 52,
-        "poisonRes": 52
-      },
-      {
-        "fireRes": 54,
-        "poisonRes": 54
-      },
-      {
-        "fireRes": 56,
-        "poisonRes": 56
-      },
-      {
-        "fireRes": 58,
-        "poisonRes": 58
-      },
-      {
-        "fireRes": 60,
-        "poisonRes": 60
-      },
-      {
-        "fireRes": 62,
-        "poisonRes": 62
-      },
-      {
-        "fireRes": 64,
-        "poisonRes": 64
-      },
-      {
-        "fireRes": 66,
-        "poisonRes": 66
-      },
-      {
-        "fireRes": 68,
-        "poisonRes": 68
-      },
-      {
-        "fireRes": 70,
-        "poisonRes": 70
-      }
-    ],
     "icon": "/buff-icons/2110000.png",
     "jobs": [
       "archMageFP"
-    ]
+    ],
+    "derive": {
+      "fireRes": {
+        "field": "x"
+      },
+      "poisonRes": {
+        "field": "x"
+      }
+    }
   },
   {
     "id": "2110001",
@@ -1264,102 +302,16 @@
     "scope": "personal",
     "mode": "passive",
     "masterLevel": 30,
-    "effectsByLevel": [
-      {
-        "amplifiedMagicDamageP": 7
-      },
-      {
-        "amplifiedMagicDamageP": 9
-      },
-      {
-        "amplifiedMagicDamageP": 11
-      },
-      {
-        "amplifiedMagicDamageP": 13
-      },
-      {
-        "amplifiedMagicDamageP": 14
-      },
-      {
-        "amplifiedMagicDamageP": 15
-      },
-      {
-        "amplifiedMagicDamageP": 16
-      },
-      {
-        "amplifiedMagicDamageP": 17
-      },
-      {
-        "amplifiedMagicDamageP": 18
-      },
-      {
-        "amplifiedMagicDamageP": 19
-      },
-      {
-        "amplifiedMagicDamageP": 21
-      },
-      {
-        "amplifiedMagicDamageP": 21
-      },
-      {
-        "amplifiedMagicDamageP": 23
-      },
-      {
-        "amplifiedMagicDamageP": 23
-      },
-      {
-        "amplifiedMagicDamageP": 25
-      },
-      {
-        "amplifiedMagicDamageP": 25
-      },
-      {
-        "amplifiedMagicDamageP": 27
-      },
-      {
-        "amplifiedMagicDamageP": 27
-      },
-      {
-        "amplifiedMagicDamageP": 29
-      },
-      {
-        "amplifiedMagicDamageP": 29
-      },
-      {
-        "amplifiedMagicDamageP": 31
-      },
-      {
-        "amplifiedMagicDamageP": 31
-      },
-      {
-        "amplifiedMagicDamageP": 33
-      },
-      {
-        "amplifiedMagicDamageP": 33
-      },
-      {
-        "amplifiedMagicDamageP": 35
-      },
-      {
-        "amplifiedMagicDamageP": 35
-      },
-      {
-        "amplifiedMagicDamageP": 37
-      },
-      {
-        "amplifiedMagicDamageP": 37
-      },
-      {
-        "amplifiedMagicDamageP": 37
-      },
-      {
-        "amplifiedMagicDamageP": 40
-      }
-    ],
     "icon": "/buff-icons/2110001.png",
     "jobs": [
       "archMageFP"
-    ]
+    ],
+    "derive": {
+      "amplifiedMagicDamageP": {
+        "field": "y",
+        "offset": -100
+      }
+    }
   },
   {
     "id": "2210000",
@@ -1368,92 +320,18 @@
     "scope": "personal",
     "mode": "passive",
     "masterLevel": 20,
-    "effectsByLevel": [
-      {
-        "coldRes": 23,
-        "lightningRes": 23
-      },
-      {
-        "coldRes": 26,
-        "lightningRes": 26
-      },
-      {
-        "coldRes": 29,
-        "lightningRes": 29
-      },
-      {
-        "coldRes": 32,
-        "lightningRes": 32
-      },
-      {
-        "coldRes": 35,
-        "lightningRes": 35
-      },
-      {
-        "coldRes": 38,
-        "lightningRes": 38
-      },
-      {
-        "coldRes": 41,
-        "lightningRes": 41
-      },
-      {
-        "coldRes": 44,
-        "lightningRes": 44
-      },
-      {
-        "coldRes": 47,
-        "lightningRes": 47
-      },
-      {
-        "coldRes": 50,
-        "lightningRes": 50
-      },
-      {
-        "coldRes": 52,
-        "lightningRes": 52
-      },
-      {
-        "coldRes": 54,
-        "lightningRes": 54
-      },
-      {
-        "coldRes": 56,
-        "lightningRes": 56
-      },
-      {
-        "coldRes": 58,
-        "lightningRes": 58
-      },
-      {
-        "coldRes": 60,
-        "lightningRes": 60
-      },
-      {
-        "coldRes": 62,
-        "lightningRes": 62
-      },
-      {
-        "coldRes": 64,
-        "lightningRes": 64
-      },
-      {
-        "coldRes": 66,
-        "lightningRes": 66
-      },
-      {
-        "coldRes": 68,
-        "lightningRes": 68
-      },
-      {
-        "coldRes": 70,
-        "lightningRes": 70
-      }
-    ],
     "icon": "/buff-icons/2210000.png",
     "jobs": [
       "archMageIL"
-    ]
+    ],
+    "derive": {
+      "coldRes": {
+        "field": "x"
+      },
+      "lightningRes": {
+        "field": "x"
+      }
+    }
   },
   {
     "id": "2210001",
@@ -1462,102 +340,16 @@
     "scope": "personal",
     "mode": "passive",
     "masterLevel": 30,
-    "effectsByLevel": [
-      {
-        "amplifiedMagicDamageP": 7
-      },
-      {
-        "amplifiedMagicDamageP": 9
-      },
-      {
-        "amplifiedMagicDamageP": 11
-      },
-      {
-        "amplifiedMagicDamageP": 13
-      },
-      {
-        "amplifiedMagicDamageP": 14
-      },
-      {
-        "amplifiedMagicDamageP": 15
-      },
-      {
-        "amplifiedMagicDamageP": 16
-      },
-      {
-        "amplifiedMagicDamageP": 17
-      },
-      {
-        "amplifiedMagicDamageP": 18
-      },
-      {
-        "amplifiedMagicDamageP": 19
-      },
-      {
-        "amplifiedMagicDamageP": 21
-      },
-      {
-        "amplifiedMagicDamageP": 21
-      },
-      {
-        "amplifiedMagicDamageP": 23
-      },
-      {
-        "amplifiedMagicDamageP": 23
-      },
-      {
-        "amplifiedMagicDamageP": 25
-      },
-      {
-        "amplifiedMagicDamageP": 25
-      },
-      {
-        "amplifiedMagicDamageP": 27
-      },
-      {
-        "amplifiedMagicDamageP": 27
-      },
-      {
-        "amplifiedMagicDamageP": 29
-      },
-      {
-        "amplifiedMagicDamageP": 29
-      },
-      {
-        "amplifiedMagicDamageP": 31
-      },
-      {
-        "amplifiedMagicDamageP": 31
-      },
-      {
-        "amplifiedMagicDamageP": 33
-      },
-      {
-        "amplifiedMagicDamageP": 33
-      },
-      {
-        "amplifiedMagicDamageP": 35
-      },
-      {
-        "amplifiedMagicDamageP": 35
-      },
-      {
-        "amplifiedMagicDamageP": 37
-      },
-      {
-        "amplifiedMagicDamageP": 37
-      },
-      {
-        "amplifiedMagicDamageP": 37
-      },
-      {
-        "amplifiedMagicDamageP": 40
-      }
-    ],
     "icon": "/buff-icons/2210001.png",
     "jobs": [
       "archMageIL"
-    ]
+    ],
+    "derive": {
+      "amplifiedMagicDamageP": {
+        "field": "y",
+        "offset": -100
+      }
+    }
   },
   {
     "id": "2310000",
@@ -1566,72 +358,15 @@
     "scope": "personal",
     "mode": "passive",
     "masterLevel": 20,
-    "effectsByLevel": [
-      {
-        "allRes": 12
-      },
-      {
-        "allRes": 14
-      },
-      {
-        "allRes": 16
-      },
-      {
-        "allRes": 18
-      },
-      {
-        "allRes": 20
-      },
-      {
-        "allRes": 22
-      },
-      {
-        "allRes": 24
-      },
-      {
-        "allRes": 26
-      },
-      {
-        "allRes": 28
-      },
-      {
-        "allRes": 30
-      },
-      {
-        "allRes": 32
-      },
-      {
-        "allRes": 34
-      },
-      {
-        "allRes": 36
-      },
-      {
-        "allRes": 38
-      },
-      {
-        "allRes": 40
-      },
-      {
-        "allRes": 42
-      },
-      {
-        "allRes": 44
-      },
-      {
-        "allRes": 46
-      },
-      {
-        "allRes": 48
-      },
-      {
-        "allRes": 50
-      }
-    ],
     "icon": "/buff-icons/2310000.png",
     "jobs": [
       "bishop"
-    ]
+    ],
+    "derive": {
+      "allRes": {
+        "field": "x"
+      }
+    }
   },
   {
     "id": "3000000",
@@ -1640,61 +375,16 @@
     "scope": "personal",
     "mode": "passive",
     "masterLevel": 16,
-    "effectsByLevel": [
-      {
-        "acc": 1
-      },
-      {
-        "acc": 2
-      },
-      {
-        "acc": 3
-      },
-      {
-        "acc": 4
-      },
-      {
-        "acc": 5
-      },
-      {
-        "acc": 6
-      },
-      {
-        "acc": 7
-      },
-      {
-        "acc": 8
-      },
-      {
-        "acc": 9
-      },
-      {
-        "acc": 10
-      },
-      {
-        "acc": 11
-      },
-      {
-        "acc": 12
-      },
-      {
-        "acc": 13
-      },
-      {
-        "acc": 14
-      },
-      {
-        "acc": 15
-      },
-      {
-        "acc": 16
-      }
-    ],
     "icon": "/buff-icons/3000000.png",
     "jobs": [
       "bowmaster",
       "marksman"
-    ]
+    ],
+    "derive": {
+      "acc": {
+        "field": "x"
+      }
+    }
   },
   {
     "id": "3000001",
@@ -1703,93 +393,20 @@
     "scope": "personal",
     "mode": "passive",
     "masterLevel": 20,
-    "effectsByLevel": [
-      {
-        "criticalP": 12,
-        "criticalDamage": 5
-      },
-      {
-        "criticalP": 14,
-        "criticalDamage": 10
-      },
-      {
-        "criticalP": 16,
-        "criticalDamage": 15
-      },
-      {
-        "criticalP": 18,
-        "criticalDamage": 20
-      },
-      {
-        "criticalP": 20,
-        "criticalDamage": 25
-      },
-      {
-        "criticalP": 22,
-        "criticalDamage": 30
-      },
-      {
-        "criticalP": 24,
-        "criticalDamage": 35
-      },
-      {
-        "criticalP": 26,
-        "criticalDamage": 40
-      },
-      {
-        "criticalP": 28,
-        "criticalDamage": 45
-      },
-      {
-        "criticalP": 30,
-        "criticalDamage": 50
-      },
-      {
-        "criticalP": 31,
-        "criticalDamage": 55
-      },
-      {
-        "criticalP": 32,
-        "criticalDamage": 60
-      },
-      {
-        "criticalP": 33,
-        "criticalDamage": 65
-      },
-      {
-        "criticalP": 34,
-        "criticalDamage": 70
-      },
-      {
-        "criticalP": 35,
-        "criticalDamage": 75
-      },
-      {
-        "criticalP": 36,
-        "criticalDamage": 80
-      },
-      {
-        "criticalP": 37,
-        "criticalDamage": 85
-      },
-      {
-        "criticalP": 38,
-        "criticalDamage": 90
-      },
-      {
-        "criticalP": 39,
-        "criticalDamage": 95
-      },
-      {
-        "criticalP": 40,
-        "criticalDamage": 100
-      }
-    ],
     "icon": "/buff-icons/3000001.png",
     "jobs": [
       "bowmaster",
       "marksman"
-    ]
+    ],
+    "derive": {
+      "criticalP": {
+        "field": "prop"
+      },
+      "criticalDamage": {
+        "field": "damage",
+        "offset": -100
+      }
+    }
   },
   {
     "id": "3100000",
@@ -1798,95 +415,22 @@
     "scope": "personal",
     "mode": "passive",
     "masterLevel": 20,
-    "effectsByLevel": [
-      {
-        "mastery": 5,
-        "acc": 1
-      },
-      {
-        "mastery": 5,
-        "acc": 2
-      },
-      {
-        "mastery": 10,
-        "acc": 3
-      },
-      {
-        "mastery": 10,
-        "acc": 4
-      },
-      {
-        "mastery": 15,
-        "acc": 5
-      },
-      {
-        "mastery": 15,
-        "acc": 6
-      },
-      {
-        "mastery": 20,
-        "acc": 7
-      },
-      {
-        "mastery": 20,
-        "acc": 8
-      },
-      {
-        "mastery": 25,
-        "acc": 9
-      },
-      {
-        "mastery": 25,
-        "acc": 10
-      },
-      {
-        "mastery": 30,
-        "acc": 11
-      },
-      {
-        "mastery": 30,
-        "acc": 12
-      },
-      {
-        "mastery": 35,
-        "acc": 13
-      },
-      {
-        "mastery": 35,
-        "acc": 14
-      },
-      {
-        "mastery": 40,
-        "acc": 15
-      },
-      {
-        "mastery": 40,
-        "acc": 16
-      },
-      {
-        "mastery": 45,
-        "acc": 17
-      },
-      {
-        "mastery": 45,
-        "acc": 18
-      },
-      {
-        "mastery": 50,
-        "acc": 19
-      },
-      {
-        "mastery": 50,
-        "acc": 20
-      }
-    ],
     "icon": "/buff-icons/3100000.png",
     "jobs": [
       "bowmaster"
     ],
     "weaponTypes": [
       "bow"
-    ]
+    ],
+    "derive": {
+      "mastery": {
+        "field": "mastery",
+        "scale": 5
+      },
+      "acc": {
+        "field": "x"
+      }
+    }
   },
   {
     "id": "3110000",
@@ -1895,72 +439,15 @@
     "scope": "personal",
     "mode": "passive",
     "masterLevel": 20,
-    "effectsByLevel": [
-      {
-        "speed": 2
-      },
-      {
-        "speed": 4
-      },
-      {
-        "speed": 6
-      },
-      {
-        "speed": 8
-      },
-      {
-        "speed": 10
-      },
-      {
-        "speed": 12
-      },
-      {
-        "speed": 14
-      },
-      {
-        "speed": 16
-      },
-      {
-        "speed": 18
-      },
-      {
-        "speed": 20
-      },
-      {
-        "speed": 21
-      },
-      {
-        "speed": 22
-      },
-      {
-        "speed": 23
-      },
-      {
-        "speed": 24
-      },
-      {
-        "speed": 25
-      },
-      {
-        "speed": 26
-      },
-      {
-        "speed": 27
-      },
-      {
-        "speed": 28
-      },
-      {
-        "speed": 29
-      },
-      {
-        "speed": 30
-      }
-    ],
     "icon": "/buff-icons/3110000.png",
     "jobs": [
       "bowmaster"
-    ]
+    ],
+    "derive": {
+      "speed": {
+        "field": "speed"
+      }
+    }
   },
   {
     "id": "3120005",
@@ -1969,133 +456,23 @@
     "scope": "personal",
     "mode": "passive",
     "masterLevel": 30,
-    "effectsByLevel": [
-      {
-        "mastery": 5
-      },
-      {
-        "mastery": 5
-      },
-      {
-        "mastery": 5,
-        "pad": 1
-      },
-      {
-        "mastery": 5,
-        "pad": 1
-      },
-      {
-        "mastery": 5,
-        "pad": 1
-      },
-      {
-        "mastery": 10,
-        "pad": 2
-      },
-      {
-        "mastery": 10,
-        "pad": 2
-      },
-      {
-        "mastery": 10,
-        "pad": 2
-      },
-      {
-        "mastery": 10,
-        "pad": 3
-      },
-      {
-        "mastery": 10,
-        "pad": 3
-      },
-      {
-        "mastery": 15,
-        "pad": 3
-      },
-      {
-        "mastery": 15,
-        "pad": 4
-      },
-      {
-        "mastery": 15,
-        "pad": 4
-      },
-      {
-        "mastery": 15,
-        "pad": 4
-      },
-      {
-        "mastery": 15,
-        "pad": 5
-      },
-      {
-        "mastery": 20,
-        "pad": 5
-      },
-      {
-        "mastery": 20,
-        "pad": 5
-      },
-      {
-        "mastery": 20,
-        "pad": 6
-      },
-      {
-        "mastery": 20,
-        "pad": 6
-      },
-      {
-        "mastery": 20,
-        "pad": 6
-      },
-      {
-        "mastery": 25,
-        "pad": 7
-      },
-      {
-        "mastery": 25,
-        "pad": 7
-      },
-      {
-        "mastery": 25,
-        "pad": 7
-      },
-      {
-        "mastery": 25,
-        "pad": 8
-      },
-      {
-        "mastery": 25,
-        "pad": 8
-      },
-      {
-        "mastery": 30,
-        "pad": 8
-      },
-      {
-        "mastery": 30,
-        "pad": 9
-      },
-      {
-        "mastery": 30,
-        "pad": 9
-      },
-      {
-        "mastery": 30,
-        "pad": 9
-      },
-      {
-        "mastery": 30,
-        "pad": 10
-      }
-    ],
     "icon": "/buff-icons/3120005.png",
     "jobs": [
       "bowmaster"
     ],
     "weaponTypes": [
       "bow"
-    ]
+    ],
+    "derive": {
+      "mastery": {
+        "field": "mastery",
+        "scale": 5,
+        "offset": -50
+      },
+      "pad": {
+        "field": "x"
+      }
+    }
   },
   {
     "id": "3200000",
@@ -2104,95 +481,22 @@
     "scope": "personal",
     "mode": "passive",
     "masterLevel": 20,
-    "effectsByLevel": [
-      {
-        "mastery": 5,
-        "acc": 1
-      },
-      {
-        "mastery": 5,
-        "acc": 2
-      },
-      {
-        "mastery": 10,
-        "acc": 3
-      },
-      {
-        "mastery": 10,
-        "acc": 4
-      },
-      {
-        "mastery": 15,
-        "acc": 5
-      },
-      {
-        "mastery": 15,
-        "acc": 6
-      },
-      {
-        "mastery": 20,
-        "acc": 7
-      },
-      {
-        "mastery": 20,
-        "acc": 8
-      },
-      {
-        "mastery": 25,
-        "acc": 9
-      },
-      {
-        "mastery": 25,
-        "acc": 10
-      },
-      {
-        "mastery": 30,
-        "acc": 11
-      },
-      {
-        "mastery": 30,
-        "acc": 12
-      },
-      {
-        "mastery": 35,
-        "acc": 13
-      },
-      {
-        "mastery": 35,
-        "acc": 14
-      },
-      {
-        "mastery": 40,
-        "acc": 15
-      },
-      {
-        "mastery": 40,
-        "acc": 16
-      },
-      {
-        "mastery": 45,
-        "acc": 17
-      },
-      {
-        "mastery": 45,
-        "acc": 18
-      },
-      {
-        "mastery": 50,
-        "acc": 19
-      },
-      {
-        "mastery": 50,
-        "acc": 20
-      }
-    ],
     "icon": "/buff-icons/3200000.png",
     "jobs": [
       "marksman"
     ],
     "weaponTypes": [
       "crossbow"
-    ]
+    ],
+    "derive": {
+      "mastery": {
+        "field": "mastery",
+        "scale": 5
+      },
+      "acc": {
+        "field": "x"
+      }
+    }
   },
   {
     "id": "3210000",
@@ -2201,72 +505,15 @@
     "scope": "personal",
     "mode": "passive",
     "masterLevel": 20,
-    "effectsByLevel": [
-      {
-        "speed": 2
-      },
-      {
-        "speed": 4
-      },
-      {
-        "speed": 6
-      },
-      {
-        "speed": 8
-      },
-      {
-        "speed": 10
-      },
-      {
-        "speed": 12
-      },
-      {
-        "speed": 14
-      },
-      {
-        "speed": 16
-      },
-      {
-        "speed": 18
-      },
-      {
-        "speed": 20
-      },
-      {
-        "speed": 21
-      },
-      {
-        "speed": 22
-      },
-      {
-        "speed": 23
-      },
-      {
-        "speed": 24
-      },
-      {
-        "speed": 25
-      },
-      {
-        "speed": 26
-      },
-      {
-        "speed": 27
-      },
-      {
-        "speed": 28
-      },
-      {
-        "speed": 29
-      },
-      {
-        "speed": 30
-      }
-    ],
     "icon": "/buff-icons/3210000.png",
     "jobs": [
       "marksman"
-    ]
+    ],
+    "derive": {
+      "speed": {
+        "field": "speed"
+      }
+    }
   },
   {
     "id": "3220004",
@@ -2275,133 +522,23 @@
     "scope": "personal",
     "mode": "passive",
     "masterLevel": 30,
-    "effectsByLevel": [
-      {
-        "mastery": 5
-      },
-      {
-        "mastery": 5
-      },
-      {
-        "mastery": 5,
-        "pad": 1
-      },
-      {
-        "mastery": 5,
-        "pad": 1
-      },
-      {
-        "mastery": 5,
-        "pad": 1
-      },
-      {
-        "mastery": 10,
-        "pad": 2
-      },
-      {
-        "mastery": 10,
-        "pad": 2
-      },
-      {
-        "mastery": 10,
-        "pad": 2
-      },
-      {
-        "mastery": 10,
-        "pad": 3
-      },
-      {
-        "mastery": 10,
-        "pad": 3
-      },
-      {
-        "mastery": 15,
-        "pad": 3
-      },
-      {
-        "mastery": 15,
-        "pad": 4
-      },
-      {
-        "mastery": 15,
-        "pad": 4
-      },
-      {
-        "mastery": 15,
-        "pad": 4
-      },
-      {
-        "mastery": 15,
-        "pad": 5
-      },
-      {
-        "mastery": 20,
-        "pad": 5
-      },
-      {
-        "mastery": 20,
-        "pad": 5
-      },
-      {
-        "mastery": 20,
-        "pad": 6
-      },
-      {
-        "mastery": 20,
-        "pad": 6
-      },
-      {
-        "mastery": 20,
-        "pad": 6
-      },
-      {
-        "mastery": 25,
-        "pad": 7
-      },
-      {
-        "mastery": 25,
-        "pad": 7
-      },
-      {
-        "mastery": 25,
-        "pad": 7
-      },
-      {
-        "mastery": 25,
-        "pad": 8
-      },
-      {
-        "mastery": 25,
-        "pad": 8
-      },
-      {
-        "mastery": 30,
-        "pad": 8
-      },
-      {
-        "mastery": 30,
-        "pad": 9
-      },
-      {
-        "mastery": 30,
-        "pad": 9
-      },
-      {
-        "mastery": 30,
-        "pad": 9
-      },
-      {
-        "mastery": 30,
-        "pad": 10
-      }
-    ],
     "icon": "/buff-icons/3220004.png",
     "jobs": [
       "marksman"
     ],
     "weaponTypes": [
       "crossbow"
-    ]
+    ],
+    "derive": {
+      "mastery": {
+        "field": "mastery",
+        "scale": 5,
+        "offset": -50
+      },
+      "pad": {
+        "field": "x"
+      }
+    }
   },
   {
     "id": "4000000",
@@ -2410,93 +547,19 @@
     "scope": "personal",
     "mode": "passive",
     "masterLevel": 20,
-    "effectsByLevel": [
-      {
-        "acc": 1,
-        "eva": 1
-      },
-      {
-        "acc": 2,
-        "eva": 2
-      },
-      {
-        "acc": 3,
-        "eva": 3
-      },
-      {
-        "acc": 4,
-        "eva": 4
-      },
-      {
-        "acc": 5,
-        "eva": 5
-      },
-      {
-        "acc": 6,
-        "eva": 6
-      },
-      {
-        "acc": 7,
-        "eva": 7
-      },
-      {
-        "acc": 8,
-        "eva": 8
-      },
-      {
-        "acc": 9,
-        "eva": 9
-      },
-      {
-        "acc": 10,
-        "eva": 10
-      },
-      {
-        "acc": 11,
-        "eva": 11
-      },
-      {
-        "acc": 12,
-        "eva": 12
-      },
-      {
-        "acc": 13,
-        "eva": 13
-      },
-      {
-        "acc": 14,
-        "eva": 14
-      },
-      {
-        "acc": 15,
-        "eva": 15
-      },
-      {
-        "acc": 16,
-        "eva": 16
-      },
-      {
-        "acc": 17,
-        "eva": 17
-      },
-      {
-        "acc": 18,
-        "eva": 18
-      },
-      {
-        "acc": 19,
-        "eva": 19
-      },
-      {
-        "acc": 20,
-        "eva": 20
-      }
-    ],
     "icon": "/buff-icons/4000000.png",
     "jobs": [
       "nightLord",
       "shadower"
-    ]
+    ],
+    "derive": {
+      "acc": {
+        "field": "x"
+      },
+      "eva": {
+        "field": "x"
+      }
+    }
   },
   {
     "id": "4100000",
@@ -2505,95 +568,22 @@
     "scope": "personal",
     "mode": "passive",
     "masterLevel": 20,
-    "effectsByLevel": [
-      {
-        "mastery": 5,
-        "acc": 1
-      },
-      {
-        "mastery": 5,
-        "acc": 2
-      },
-      {
-        "mastery": 10,
-        "acc": 3
-      },
-      {
-        "mastery": 10,
-        "acc": 4
-      },
-      {
-        "mastery": 15,
-        "acc": 5
-      },
-      {
-        "mastery": 15,
-        "acc": 6
-      },
-      {
-        "mastery": 20,
-        "acc": 7
-      },
-      {
-        "mastery": 20,
-        "acc": 8
-      },
-      {
-        "mastery": 25,
-        "acc": 9
-      },
-      {
-        "mastery": 25,
-        "acc": 10
-      },
-      {
-        "mastery": 30,
-        "acc": 11
-      },
-      {
-        "mastery": 30,
-        "acc": 12
-      },
-      {
-        "mastery": 35,
-        "acc": 13
-      },
-      {
-        "mastery": 35,
-        "acc": 14
-      },
-      {
-        "mastery": 40,
-        "acc": 15
-      },
-      {
-        "mastery": 40,
-        "acc": 16
-      },
-      {
-        "mastery": 45,
-        "acc": 17
-      },
-      {
-        "mastery": 45,
-        "acc": 18
-      },
-      {
-        "mastery": 50,
-        "acc": 19
-      },
-      {
-        "mastery": 50,
-        "acc": 20
-      }
-    ],
     "icon": "/buff-icons/4100000.png",
     "jobs": [
       "nightLord"
     ],
     "weaponTypes": [
       "claw"
-    ]
+    ],
+    "derive": {
+      "mastery": {
+        "field": "mastery",
+        "scale": 5
+      },
+      "acc": {
+        "field": "x"
+      }
+    }
   },
   {
     "id": "4100001",
@@ -2602,132 +592,19 @@
     "scope": "personal",
     "mode": "passive",
     "masterLevel": 30,
-    "effectsByLevel": [
-      {
-        "criticalP": 21,
-        "criticalDamage": 13
-      },
-      {
-        "criticalP": 22,
-        "criticalDamage": 16
-      },
-      {
-        "criticalP": 23,
-        "criticalDamage": 19
-      },
-      {
-        "criticalP": 24,
-        "criticalDamage": 22
-      },
-      {
-        "criticalP": 25,
-        "criticalDamage": 25
-      },
-      {
-        "criticalP": 26,
-        "criticalDamage": 28
-      },
-      {
-        "criticalP": 27,
-        "criticalDamage": 31
-      },
-      {
-        "criticalP": 28,
-        "criticalDamage": 34
-      },
-      {
-        "criticalP": 29,
-        "criticalDamage": 37
-      },
-      {
-        "criticalP": 30,
-        "criticalDamage": 40
-      },
-      {
-        "criticalP": 31,
-        "criticalDamage": 43
-      },
-      {
-        "criticalP": 32,
-        "criticalDamage": 46
-      },
-      {
-        "criticalP": 33,
-        "criticalDamage": 49
-      },
-      {
-        "criticalP": 34,
-        "criticalDamage": 52
-      },
-      {
-        "criticalP": 35,
-        "criticalDamage": 55
-      },
-      {
-        "criticalP": 36,
-        "criticalDamage": 58
-      },
-      {
-        "criticalP": 37,
-        "criticalDamage": 61
-      },
-      {
-        "criticalP": 38,
-        "criticalDamage": 64
-      },
-      {
-        "criticalP": 39,
-        "criticalDamage": 67
-      },
-      {
-        "criticalP": 40,
-        "criticalDamage": 70
-      },
-      {
-        "criticalP": 41,
-        "criticalDamage": 73
-      },
-      {
-        "criticalP": 42,
-        "criticalDamage": 76
-      },
-      {
-        "criticalP": 43,
-        "criticalDamage": 79
-      },
-      {
-        "criticalP": 44,
-        "criticalDamage": 82
-      },
-      {
-        "criticalP": 45,
-        "criticalDamage": 85
-      },
-      {
-        "criticalP": 46,
-        "criticalDamage": 88
-      },
-      {
-        "criticalP": 47,
-        "criticalDamage": 91
-      },
-      {
-        "criticalP": 48,
-        "criticalDamage": 94
-      },
-      {
-        "criticalP": 49,
-        "criticalDamage": 97
-      },
-      {
-        "criticalP": 50,
-        "criticalDamage": 100
-      }
-    ],
     "icon": "/buff-icons/4100001.png",
     "jobs": [
       "nightLord"
-    ]
+    ],
+    "derive": {
+      "criticalP": {
+        "field": "prop"
+      },
+      "criticalDamage": {
+        "field": "damage",
+        "offset": -100
+      }
+    }
   },
   {
     "id": "4200000",
@@ -2736,95 +613,22 @@
     "scope": "personal",
     "mode": "passive",
     "masterLevel": 20,
-    "effectsByLevel": [
-      {
-        "mastery": 5,
-        "acc": 1
-      },
-      {
-        "mastery": 5,
-        "acc": 2
-      },
-      {
-        "mastery": 10,
-        "acc": 3
-      },
-      {
-        "mastery": 10,
-        "acc": 4
-      },
-      {
-        "mastery": 15,
-        "acc": 5
-      },
-      {
-        "mastery": 15,
-        "acc": 6
-      },
-      {
-        "mastery": 20,
-        "acc": 7
-      },
-      {
-        "mastery": 20,
-        "acc": 8
-      },
-      {
-        "mastery": 25,
-        "acc": 9
-      },
-      {
-        "mastery": 25,
-        "acc": 10
-      },
-      {
-        "mastery": 30,
-        "acc": 11
-      },
-      {
-        "mastery": 30,
-        "acc": 12
-      },
-      {
-        "mastery": 35,
-        "acc": 13
-      },
-      {
-        "mastery": 35,
-        "acc": 14
-      },
-      {
-        "mastery": 40,
-        "acc": 15
-      },
-      {
-        "mastery": 40,
-        "acc": 16
-      },
-      {
-        "mastery": 45,
-        "acc": 17
-      },
-      {
-        "mastery": 45,
-        "acc": 18
-      },
-      {
-        "mastery": 50,
-        "acc": 19
-      },
-      {
-        "mastery": 50,
-        "acc": 20
-      }
-    ],
     "icon": "/buff-icons/4200000.png",
     "jobs": [
       "shadower"
     ],
     "weaponTypes": [
       "dagger"
-    ]
+    ],
+    "derive": {
+      "mastery": {
+        "field": "mastery",
+        "scale": 5
+      },
+      "acc": {
+        "field": "x"
+      }
+    }
   },
   {
     "id": "4210000",
@@ -2833,72 +637,16 @@
     "scope": "personal",
     "mode": "passive",
     "masterLevel": 20,
-    "effectsByLevel": [
-      {
-        "shieldBonusPdef": 5
-      },
-      {
-        "shieldBonusPdef": 10
-      },
-      {
-        "shieldBonusPdef": 15
-      },
-      {
-        "shieldBonusPdef": 20
-      },
-      {
-        "shieldBonusPdef": 25
-      },
-      {
-        "shieldBonusPdef": 30
-      },
-      {
-        "shieldBonusPdef": 35
-      },
-      {
-        "shieldBonusPdef": 40
-      },
-      {
-        "shieldBonusPdef": 45
-      },
-      {
-        "shieldBonusPdef": 50
-      },
-      {
-        "shieldBonusPdef": 55
-      },
-      {
-        "shieldBonusPdef": 60
-      },
-      {
-        "shieldBonusPdef": 65
-      },
-      {
-        "shieldBonusPdef": 70
-      },
-      {
-        "shieldBonusPdef": 75
-      },
-      {
-        "shieldBonusPdef": 80
-      },
-      {
-        "shieldBonusPdef": 85
-      },
-      {
-        "shieldBonusPdef": 90
-      },
-      {
-        "shieldBonusPdef": 95
-      },
-      {
-        "shieldBonusPdef": 100
-      }
-    ],
     "icon": "/buff-icons/4210000.png",
     "jobs": [
       "shadower"
-    ]
+    ],
+    "derive": {
+      "shieldBonusPdef": {
+        "field": "x",
+        "offset": -100
+      }
+    }
   },
   {
     "id": "5000000",
@@ -2907,93 +655,19 @@
     "scope": "personal",
     "mode": "passive",
     "masterLevel": 20,
-    "effectsByLevel": [
-      {
-        "acc": 1,
-        "eva": 1
-      },
-      {
-        "acc": 2,
-        "eva": 2
-      },
-      {
-        "acc": 3,
-        "eva": 3
-      },
-      {
-        "acc": 4,
-        "eva": 4
-      },
-      {
-        "acc": 5,
-        "eva": 5
-      },
-      {
-        "acc": 6,
-        "eva": 6
-      },
-      {
-        "acc": 7,
-        "eva": 7
-      },
-      {
-        "acc": 8,
-        "eva": 8
-      },
-      {
-        "acc": 9,
-        "eva": 9
-      },
-      {
-        "acc": 10,
-        "eva": 10
-      },
-      {
-        "acc": 11,
-        "eva": 11
-      },
-      {
-        "acc": 12,
-        "eva": 12
-      },
-      {
-        "acc": 13,
-        "eva": 13
-      },
-      {
-        "acc": 14,
-        "eva": 14
-      },
-      {
-        "acc": 15,
-        "eva": 15
-      },
-      {
-        "acc": 16,
-        "eva": 16
-      },
-      {
-        "acc": 17,
-        "eva": 17
-      },
-      {
-        "acc": 18,
-        "eva": 18
-      },
-      {
-        "acc": 19,
-        "eva": 19
-      },
-      {
-        "acc": 20,
-        "eva": 20
-      }
-    ],
     "icon": "/buff-icons/5000000.png",
     "jobs": [
       "viper",
       "captain"
-    ]
+    ],
+    "derive": {
+      "acc": {
+        "field": "x"
+      },
+      "eva": {
+        "field": "x"
+      }
+    }
   },
   {
     "id": "5100001",
@@ -3002,95 +676,22 @@
     "scope": "personal",
     "mode": "passive",
     "masterLevel": 20,
-    "effectsByLevel": [
-      {
-        "mastery": 5,
-        "acc": 1
-      },
-      {
-        "mastery": 5,
-        "acc": 2
-      },
-      {
-        "mastery": 10,
-        "acc": 3
-      },
-      {
-        "mastery": 10,
-        "acc": 4
-      },
-      {
-        "mastery": 15,
-        "acc": 5
-      },
-      {
-        "mastery": 15,
-        "acc": 6
-      },
-      {
-        "mastery": 20,
-        "acc": 7
-      },
-      {
-        "mastery": 20,
-        "acc": 8
-      },
-      {
-        "mastery": 25,
-        "acc": 9
-      },
-      {
-        "mastery": 25,
-        "acc": 10
-      },
-      {
-        "mastery": 30,
-        "acc": 11
-      },
-      {
-        "mastery": 30,
-        "acc": 12
-      },
-      {
-        "mastery": 35,
-        "acc": 13
-      },
-      {
-        "mastery": 35,
-        "acc": 14
-      },
-      {
-        "mastery": 40,
-        "acc": 15
-      },
-      {
-        "mastery": 40,
-        "acc": 16
-      },
-      {
-        "mastery": 45,
-        "acc": 17
-      },
-      {
-        "mastery": 45,
-        "acc": 18
-      },
-      {
-        "mastery": 50,
-        "acc": 19
-      },
-      {
-        "mastery": 50,
-        "acc": 20
-      }
-    ],
     "icon": "/buff-icons/5100001.png",
     "jobs": [
       "viper"
     ],
     "weaponTypes": [
       "knuckle"
-    ]
+    ],
+    "derive": {
+      "mastery": {
+        "field": "mastery",
+        "scale": 5
+      },
+      "acc": {
+        "field": "x"
+      }
+    }
   },
   {
     "id": "5200000",
@@ -3099,95 +700,22 @@
     "scope": "personal",
     "mode": "passive",
     "masterLevel": 20,
-    "effectsByLevel": [
-      {
-        "mastery": 5,
-        "acc": 1
-      },
-      {
-        "mastery": 5,
-        "acc": 2
-      },
-      {
-        "mastery": 10,
-        "acc": 3
-      },
-      {
-        "mastery": 10,
-        "acc": 4
-      },
-      {
-        "mastery": 15,
-        "acc": 5
-      },
-      {
-        "mastery": 15,
-        "acc": 6
-      },
-      {
-        "mastery": 20,
-        "acc": 7
-      },
-      {
-        "mastery": 20,
-        "acc": 8
-      },
-      {
-        "mastery": 25,
-        "acc": 9
-      },
-      {
-        "mastery": 25,
-        "acc": 10
-      },
-      {
-        "mastery": 30,
-        "acc": 11
-      },
-      {
-        "mastery": 30,
-        "acc": 12
-      },
-      {
-        "mastery": 35,
-        "acc": 13
-      },
-      {
-        "mastery": 35,
-        "acc": 14
-      },
-      {
-        "mastery": 40,
-        "acc": 15
-      },
-      {
-        "mastery": 40,
-        "acc": 16
-      },
-      {
-        "mastery": 45,
-        "acc": 17
-      },
-      {
-        "mastery": 45,
-        "acc": 18
-      },
-      {
-        "mastery": 50,
-        "acc": 19
-      },
-      {
-        "mastery": 50,
-        "acc": 20
-      }
-    ],
     "icon": "/buff-icons/5200000.png",
     "jobs": [
       "captain"
     ],
     "weaponTypes": [
       "gun"
-    ]
+    ],
+    "derive": {
+      "mastery": {
+        "field": "mastery",
+        "scale": 5
+      },
+      "acc": {
+        "field": "x"
+      }
+    }
   },
   {
     "id": "11100000",
@@ -3199,93 +727,20 @@
     "jobs": [
       "soulMaster"
     ],
-    "effectsByLevel": [
-      {
-        "mastery": 5,
-        "acc": 1
-      },
-      {
-        "mastery": 5,
-        "acc": 2
-      },
-      {
-        "mastery": 10,
-        "acc": 3
-      },
-      {
-        "mastery": 10,
-        "acc": 4
-      },
-      {
-        "mastery": 15,
-        "acc": 5
-      },
-      {
-        "mastery": 15,
-        "acc": 6
-      },
-      {
-        "mastery": 20,
-        "acc": 7
-      },
-      {
-        "mastery": 20,
-        "acc": 8
-      },
-      {
-        "mastery": 25,
-        "acc": 9
-      },
-      {
-        "mastery": 25,
-        "acc": 10
-      },
-      {
-        "mastery": 30,
-        "acc": 11
-      },
-      {
-        "mastery": 30,
-        "acc": 12
-      },
-      {
-        "mastery": 35,
-        "acc": 13
-      },
-      {
-        "mastery": 35,
-        "acc": 14
-      },
-      {
-        "mastery": 40,
-        "acc": 15
-      },
-      {
-        "mastery": 40,
-        "acc": 16
-      },
-      {
-        "mastery": 45,
-        "acc": 17
-      },
-      {
-        "mastery": 45,
-        "acc": 18
-      },
-      {
-        "mastery": 50,
-        "acc": 19
-      },
-      {
-        "mastery": 50,
-        "acc": 20
-      }
-    ],
     "icon": "/buff-icons/11100000.png",
     "weaponTypes": [
       "oneHandedSword",
       "twoHandedSword"
-    ]
+    ],
+    "derive": {
+      "mastery": {
+        "field": "mastery",
+        "scale": 5
+      },
+      "acc": {
+        "field": "x"
+      }
+    }
   },
   {
     "id": "12110001",
@@ -3297,69 +752,13 @@
     "jobs": [
       "flameWizard"
     ],
-    "effectsByLevel": [
-      {
-        "amplifiedMagicDamageP": 2
-      },
-      {
-        "amplifiedMagicDamageP": 4
-      },
-      {
-        "amplifiedMagicDamageP": 6
-      },
-      {
-        "amplifiedMagicDamageP": 8
-      },
-      {
-        "amplifiedMagicDamageP": 10
-      },
-      {
-        "amplifiedMagicDamageP": 12
-      },
-      {
-        "amplifiedMagicDamageP": 14
-      },
-      {
-        "amplifiedMagicDamageP": 16
-      },
-      {
-        "amplifiedMagicDamageP": 18
-      },
-      {
-        "amplifiedMagicDamageP": 20
-      },
-      {
-        "amplifiedMagicDamageP": 21
-      },
-      {
-        "amplifiedMagicDamageP": 22
-      },
-      {
-        "amplifiedMagicDamageP": 23
-      },
-      {
-        "amplifiedMagicDamageP": 24
-      },
-      {
-        "amplifiedMagicDamageP": 25
-      },
-      {
-        "amplifiedMagicDamageP": 26
-      },
-      {
-        "amplifiedMagicDamageP": 27
-      },
-      {
-        "amplifiedMagicDamageP": 28
-      },
-      {
-        "amplifiedMagicDamageP": 29
-      },
-      {
-        "amplifiedMagicDamageP": 30
+    "icon": "/buff-icons/12110001.png",
+    "derive": {
+      "amplifiedMagicDamageP": {
+        "field": "y",
+        "offset": -100
       }
-    ],
-    "icon": "/buff-icons/12110001.png"
+    }
   },
   {
     "id": "12110000",
@@ -3371,69 +770,12 @@
     "jobs": [
       "flameWizard"
     ],
-    "effectsByLevel": [
-      {
-        "allRes": 12
-      },
-      {
-        "allRes": 14
-      },
-      {
-        "allRes": 16
-      },
-      {
-        "allRes": 18
-      },
-      {
-        "allRes": 20
-      },
-      {
-        "allRes": 22
-      },
-      {
-        "allRes": 24
-      },
-      {
-        "allRes": 26
-      },
-      {
-        "allRes": 28
-      },
-      {
-        "allRes": 30
-      },
-      {
-        "allRes": 31
-      },
-      {
-        "allRes": 32
-      },
-      {
-        "allRes": 33
-      },
-      {
-        "allRes": 34
-      },
-      {
-        "allRes": 35
-      },
-      {
-        "allRes": 36
-      },
-      {
-        "allRes": 37
-      },
-      {
-        "allRes": 38
-      },
-      {
-        "allRes": 39
-      },
-      {
-        "allRes": 40
+    "icon": "/buff-icons/12110000.png",
+    "derive": {
+      "allRes": {
+        "field": "x"
       }
-    ],
-    "icon": "/buff-icons/12110000.png"
+    }
   },
   {
     "id": "13000000",
@@ -3445,89 +787,16 @@
     "jobs": [
       "windBreaker"
     ],
-    "effectsByLevel": [
-      {
-        "criticalP": 12,
-        "criticalDamage": 5
+    "icon": "/buff-icons/13000000.png",
+    "derive": {
+      "criticalP": {
+        "field": "prop"
       },
-      {
-        "criticalP": 14,
-        "criticalDamage": 10
-      },
-      {
-        "criticalP": 16,
-        "criticalDamage": 15
-      },
-      {
-        "criticalP": 18,
-        "criticalDamage": 20
-      },
-      {
-        "criticalP": 20,
-        "criticalDamage": 25
-      },
-      {
-        "criticalP": 22,
-        "criticalDamage": 30
-      },
-      {
-        "criticalP": 24,
-        "criticalDamage": 35
-      },
-      {
-        "criticalP": 26,
-        "criticalDamage": 40
-      },
-      {
-        "criticalP": 28,
-        "criticalDamage": 45
-      },
-      {
-        "criticalP": 30,
-        "criticalDamage": 50
-      },
-      {
-        "criticalP": 31,
-        "criticalDamage": 55
-      },
-      {
-        "criticalP": 32,
-        "criticalDamage": 60
-      },
-      {
-        "criticalP": 33,
-        "criticalDamage": 65
-      },
-      {
-        "criticalP": 34,
-        "criticalDamage": 70
-      },
-      {
-        "criticalP": 35,
-        "criticalDamage": 75
-      },
-      {
-        "criticalP": 36,
-        "criticalDamage": 80
-      },
-      {
-        "criticalP": 37,
-        "criticalDamage": 85
-      },
-      {
-        "criticalP": 38,
-        "criticalDamage": 90
-      },
-      {
-        "criticalP": 39,
-        "criticalDamage": 95
-      },
-      {
-        "criticalP": 40,
-        "criticalDamage": 100
+      "criticalDamage": {
+        "field": "damage",
+        "offset": -100
       }
-    ],
-    "icon": "/buff-icons/13000000.png"
+    }
   },
   {
     "id": "13100000",
@@ -3539,92 +808,19 @@
     "jobs": [
       "windBreaker"
     ],
-    "effectsByLevel": [
-      {
-        "mastery": 5,
-        "acc": 1
-      },
-      {
-        "mastery": 5,
-        "acc": 2
-      },
-      {
-        "mastery": 10,
-        "acc": 3
-      },
-      {
-        "mastery": 10,
-        "acc": 4
-      },
-      {
-        "mastery": 15,
-        "acc": 5
-      },
-      {
-        "mastery": 15,
-        "acc": 6
-      },
-      {
-        "mastery": 20,
-        "acc": 7
-      },
-      {
-        "mastery": 20,
-        "acc": 8
-      },
-      {
-        "mastery": 25,
-        "acc": 9
-      },
-      {
-        "mastery": 25,
-        "acc": 10
-      },
-      {
-        "mastery": 30,
-        "acc": 11
-      },
-      {
-        "mastery": 30,
-        "acc": 12
-      },
-      {
-        "mastery": 35,
-        "acc": 13
-      },
-      {
-        "mastery": 35,
-        "acc": 14
-      },
-      {
-        "mastery": 40,
-        "acc": 15
-      },
-      {
-        "mastery": 40,
-        "acc": 16
-      },
-      {
-        "mastery": 45,
-        "acc": 17
-      },
-      {
-        "mastery": 45,
-        "acc": 18
-      },
-      {
-        "mastery": 50,
-        "acc": 19
-      },
-      {
-        "mastery": 50,
-        "acc": 20
-      }
-    ],
     "icon": "/buff-icons/13100000.png",
     "weaponTypes": [
       "bow"
-    ]
+    ],
+    "derive": {
+      "mastery": {
+        "field": "mastery",
+        "scale": 5
+      },
+      "acc": {
+        "field": "x"
+      }
+    }
   },
   {
     "id": "13110003",
@@ -3636,92 +832,20 @@
     "jobs": [
       "windBreaker"
     ],
-    "effectsByLevel": [
-      {
-        "mastery": 5,
-        "pad": 0
-      },
-      {
-        "mastery": 5,
-        "pad": 1
-      },
-      {
-        "mastery": 5,
-        "pad": 1
-      },
-      {
-        "mastery": 5,
-        "pad": 1
-      },
-      {
-        "mastery": 5,
-        "pad": 2
-      },
-      {
-        "mastery": 10,
-        "pad": 2
-      },
-      {
-        "mastery": 10,
-        "pad": 2
-      },
-      {
-        "mastery": 10,
-        "pad": 3
-      },
-      {
-        "mastery": 10,
-        "pad": 3
-      },
-      {
-        "mastery": 10,
-        "pad": 3
-      },
-      {
-        "mastery": 15,
-        "pad": 4
-      },
-      {
-        "mastery": 15,
-        "pad": 4
-      },
-      {
-        "mastery": 15,
-        "pad": 4
-      },
-      {
-        "mastery": 15,
-        "pad": 5
-      },
-      {
-        "mastery": 15,
-        "pad": 5
-      },
-      {
-        "mastery": 20,
-        "pad": 5
-      },
-      {
-        "mastery": 20,
-        "pad": 6
-      },
-      {
-        "mastery": 20,
-        "pad": 6
-      },
-      {
-        "mastery": 20,
-        "pad": 6
-      },
-      {
-        "mastery": 20,
-        "pad": 7
-      }
-    ],
     "icon": "/buff-icons/13110003.png",
     "weaponTypes": [
       "bow"
-    ]
+    ],
+    "derive": {
+      "mastery": {
+        "field": "mastery",
+        "scale": 5,
+        "offset": -50
+      },
+      "pad": {
+        "field": "x"
+      }
+    }
   },
   {
     "id": "14100000",
@@ -3733,92 +857,19 @@
     "jobs": [
       "nightWalker"
     ],
-    "effectsByLevel": [
-      {
-        "mastery": 5,
-        "acc": 1
-      },
-      {
-        "mastery": 5,
-        "acc": 2
-      },
-      {
-        "mastery": 10,
-        "acc": 3
-      },
-      {
-        "mastery": 10,
-        "acc": 4
-      },
-      {
-        "mastery": 15,
-        "acc": 5
-      },
-      {
-        "mastery": 15,
-        "acc": 6
-      },
-      {
-        "mastery": 20,
-        "acc": 7
-      },
-      {
-        "mastery": 20,
-        "acc": 8
-      },
-      {
-        "mastery": 25,
-        "acc": 9
-      },
-      {
-        "mastery": 25,
-        "acc": 10
-      },
-      {
-        "mastery": 30,
-        "acc": 11
-      },
-      {
-        "mastery": 30,
-        "acc": 12
-      },
-      {
-        "mastery": 35,
-        "acc": 13
-      },
-      {
-        "mastery": 35,
-        "acc": 14
-      },
-      {
-        "mastery": 40,
-        "acc": 15
-      },
-      {
-        "mastery": 40,
-        "acc": 16
-      },
-      {
-        "mastery": 45,
-        "acc": 17
-      },
-      {
-        "mastery": 45,
-        "acc": 18
-      },
-      {
-        "mastery": 50,
-        "acc": 19
-      },
-      {
-        "mastery": 50,
-        "acc": 20
-      }
-    ],
     "icon": "/buff-icons/14100000.png",
     "weaponTypes": [
       "claw"
-    ]
+    ],
+    "derive": {
+      "mastery": {
+        "field": "mastery",
+        "scale": 5
+      },
+      "acc": {
+        "field": "x"
+      }
+    }
   },
   {
     "id": "14100001",
@@ -3830,129 +881,16 @@
     "jobs": [
       "nightWalker"
     ],
-    "effectsByLevel": [
-      {
-        "criticalP": 21,
-        "criticalDamage": 13
+    "icon": "/buff-icons/14100001.png",
+    "derive": {
+      "criticalP": {
+        "field": "prop"
       },
-      {
-        "criticalP": 22,
-        "criticalDamage": 16
-      },
-      {
-        "criticalP": 23,
-        "criticalDamage": 19
-      },
-      {
-        "criticalP": 24,
-        "criticalDamage": 22
-      },
-      {
-        "criticalP": 25,
-        "criticalDamage": 25
-      },
-      {
-        "criticalP": 26,
-        "criticalDamage": 28
-      },
-      {
-        "criticalP": 27,
-        "criticalDamage": 31
-      },
-      {
-        "criticalP": 28,
-        "criticalDamage": 34
-      },
-      {
-        "criticalP": 29,
-        "criticalDamage": 37
-      },
-      {
-        "criticalP": 30,
-        "criticalDamage": 40
-      },
-      {
-        "criticalP": 31,
-        "criticalDamage": 43
-      },
-      {
-        "criticalP": 32,
-        "criticalDamage": 46
-      },
-      {
-        "criticalP": 33,
-        "criticalDamage": 49
-      },
-      {
-        "criticalP": 34,
-        "criticalDamage": 52
-      },
-      {
-        "criticalP": 35,
-        "criticalDamage": 55
-      },
-      {
-        "criticalP": 36,
-        "criticalDamage": 58
-      },
-      {
-        "criticalP": 37,
-        "criticalDamage": 61
-      },
-      {
-        "criticalP": 38,
-        "criticalDamage": 64
-      },
-      {
-        "criticalP": 39,
-        "criticalDamage": 67
-      },
-      {
-        "criticalP": 40,
-        "criticalDamage": 70
-      },
-      {
-        "criticalP": 41,
-        "criticalDamage": 73
-      },
-      {
-        "criticalP": 42,
-        "criticalDamage": 76
-      },
-      {
-        "criticalP": 43,
-        "criticalDamage": 79
-      },
-      {
-        "criticalP": 44,
-        "criticalDamage": 82
-      },
-      {
-        "criticalP": 45,
-        "criticalDamage": 85
-      },
-      {
-        "criticalP": 46,
-        "criticalDamage": 88
-      },
-      {
-        "criticalP": 47,
-        "criticalDamage": 91
-      },
-      {
-        "criticalP": 48,
-        "criticalDamage": 94
-      },
-      {
-        "criticalP": 49,
-        "criticalDamage": 97
-      },
-      {
-        "criticalP": 50,
-        "criticalDamage": 100
+      "criticalDamage": {
+        "field": "damage",
+        "offset": -100
       }
-    ],
-    "icon": "/buff-icons/14100001.png"
+    }
   },
   {
     "id": "14111000",
@@ -3964,99 +902,12 @@
     "jobs": [
       "nightWalker"
     ],
-    "effectsByLevel": [
-      {
-        "shadowPartnerP": 21
-      },
-      {
-        "shadowPartnerP": 21
-      },
-      {
-        "shadowPartnerP": 21
-      },
-      {
-        "shadowPartnerP": 21
-      },
-      {
-        "shadowPartnerP": 21
-      },
-      {
-        "shadowPartnerP": 21
-      },
-      {
-        "shadowPartnerP": 21
-      },
-      {
-        "shadowPartnerP": 22
-      },
-      {
-        "shadowPartnerP": 23
-      },
-      {
-        "shadowPartnerP": 24
-      },
-      {
-        "shadowPartnerP": 25
-      },
-      {
-        "shadowPartnerP": 26
-      },
-      {
-        "shadowPartnerP": 27
-      },
-      {
-        "shadowPartnerP": 28
-      },
-      {
-        "shadowPartnerP": 29
-      },
-      {
-        "shadowPartnerP": 30
-      },
-      {
-        "shadowPartnerP": 31
-      },
-      {
-        "shadowPartnerP": 32
-      },
-      {
-        "shadowPartnerP": 33
-      },
-      {
-        "shadowPartnerP": 34
-      },
-      {
-        "shadowPartnerP": 35
-      },
-      {
-        "shadowPartnerP": 36
-      },
-      {
-        "shadowPartnerP": 37
-      },
-      {
-        "shadowPartnerP": 38
-      },
-      {
-        "shadowPartnerP": 40
-      },
-      {
-        "shadowPartnerP": 42
-      },
-      {
-        "shadowPartnerP": 44
-      },
-      {
-        "shadowPartnerP": 46
-      },
-      {
-        "shadowPartnerP": 48
-      },
-      {
-        "shadowPartnerP": 50
+    "icon": "/buff-icons/14111000.png",
+    "derive": {
+      "shadowPartnerP": {
+        "field": "y"
       }
-    ],
-    "icon": "/buff-icons/14111000.png"
+    }
   },
   {
     "id": "15100001",
@@ -4068,92 +919,19 @@
     "jobs": [
       "striker"
     ],
-    "effectsByLevel": [
-      {
-        "mastery": 5,
-        "acc": 1
-      },
-      {
-        "mastery": 5,
-        "acc": 2
-      },
-      {
-        "mastery": 10,
-        "acc": 3
-      },
-      {
-        "mastery": 10,
-        "acc": 4
-      },
-      {
-        "mastery": 15,
-        "acc": 5
-      },
-      {
-        "mastery": 15,
-        "acc": 6
-      },
-      {
-        "mastery": 20,
-        "acc": 7
-      },
-      {
-        "mastery": 20,
-        "acc": 8
-      },
-      {
-        "mastery": 25,
-        "acc": 9
-      },
-      {
-        "mastery": 25,
-        "acc": 10
-      },
-      {
-        "mastery": 30,
-        "acc": 11
-      },
-      {
-        "mastery": 30,
-        "acc": 12
-      },
-      {
-        "mastery": 35,
-        "acc": 13
-      },
-      {
-        "mastery": 35,
-        "acc": 14
-      },
-      {
-        "mastery": 40,
-        "acc": 15
-      },
-      {
-        "mastery": 40,
-        "acc": 16
-      },
-      {
-        "mastery": 45,
-        "acc": 17
-      },
-      {
-        "mastery": 45,
-        "acc": 18
-      },
-      {
-        "mastery": 50,
-        "acc": 19
-      },
-      {
-        "mastery": 50,
-        "acc": 20
-      }
-    ],
     "icon": "/buff-icons/15100001.png",
     "weaponTypes": [
       "knuckle"
-    ]
+    ],
+    "derive": {
+      "mastery": {
+        "field": "mastery",
+        "scale": 5
+      },
+      "acc": {
+        "field": "x"
+      }
+    }
   },
   {
     "id": "15110000",
@@ -4165,89 +943,16 @@
     "jobs": [
       "striker"
     ],
-    "effectsByLevel": [
-      {
-        "criticalP": 12,
-        "criticalDamage": 5
+    "icon": "/buff-icons/15110000.png",
+    "derive": {
+      "criticalP": {
+        "field": "prop"
       },
-      {
-        "criticalP": 14,
-        "criticalDamage": 10
-      },
-      {
-        "criticalP": 16,
-        "criticalDamage": 15
-      },
-      {
-        "criticalP": 18,
-        "criticalDamage": 20
-      },
-      {
-        "criticalP": 20,
-        "criticalDamage": 25
-      },
-      {
-        "criticalP": 22,
-        "criticalDamage": 30
-      },
-      {
-        "criticalP": 24,
-        "criticalDamage": 35
-      },
-      {
-        "criticalP": 26,
-        "criticalDamage": 40
-      },
-      {
-        "criticalP": 28,
-        "criticalDamage": 45
-      },
-      {
-        "criticalP": 30,
-        "criticalDamage": 50
-      },
-      {
-        "criticalP": 31,
-        "criticalDamage": 55
-      },
-      {
-        "criticalP": 32,
-        "criticalDamage": 60
-      },
-      {
-        "criticalP": 33,
-        "criticalDamage": 65
-      },
-      {
-        "criticalP": 34,
-        "criticalDamage": 70
-      },
-      {
-        "criticalP": 35,
-        "criticalDamage": 75
-      },
-      {
-        "criticalP": 36,
-        "criticalDamage": 80
-      },
-      {
-        "criticalP": 37,
-        "criticalDamage": 85
-      },
-      {
-        "criticalP": 38,
-        "criticalDamage": 90
-      },
-      {
-        "criticalP": 39,
-        "criticalDamage": 95
-      },
-      {
-        "criticalP": 40,
-        "criticalDamage": 100
+      "criticalDamage": {
+        "field": "damage",
+        "offset": -100
       }
-    ],
-    "icon": "/buff-icons/15110000.png"
+    }
   },
   {
     "id": "1220010",
@@ -4283,70 +988,13 @@
     "jobs": [
       "soulMaster"
     ],
-    "effectsByLevel": [
-      {
-        "mad": 11
-      },
-      {
-        "mad": 12
-      },
-      {
-        "mad": 13
-      },
-      {
-        "mad": 14
-      },
-      {
-        "mad": 15
-      },
-      {
-        "mad": 16
-      },
-      {
-        "mad": 17
-      },
-      {
-        "mad": 18
-      },
-      {
-        "mad": 19
-      },
-      {
-        "mad": 20
-      },
-      {
-        "mad": 21
-      },
-      {
-        "mad": 22
-      },
-      {
-        "mad": 23
-      },
-      {
-        "mad": 24
-      },
-      {
-        "mad": 25
-      },
-      {
-        "mad": 26
-      },
-      {
-        "mad": 27
-      },
-      {
-        "mad": 28
-      },
-      {
-        "mad": 29
-      },
-      {
-        "mad": 30
-      }
-    ],
     "icon": "/buff-icons/11111007.png",
-    "nonStacking": true
+    "nonStacking": true,
+    "derive": {
+      "mad": {
+        "field": "mad"
+      }
+    }
   },
   {
     "id": "12101005",
@@ -4392,49 +1040,15 @@
     "jobs": [
       "striker"
     ],
-    "effectsByLevel": [
-      {
-        "acc": 2,
-        "eva": 2
+    "icon": "/skill-icons/15000000.png",
+    "derive": {
+      "acc": {
+        "field": "x"
       },
-      {
-        "acc": 4,
-        "eva": 4
-      },
-      {
-        "acc": 6,
-        "eva": 6
-      },
-      {
-        "acc": 8,
-        "eva": 8
-      },
-      {
-        "acc": 10,
-        "eva": 10
-      },
-      {
-        "acc": 12,
-        "eva": 12
-      },
-      {
-        "acc": 14,
-        "eva": 14
-      },
-      {
-        "acc": 16,
-        "eva": 16
-      },
-      {
-        "acc": 18,
-        "eva": 18
-      },
-      {
-        "acc": 20,
-        "eva": 20
+      "eva": {
+        "field": "x"
       }
-    ],
-    "icon": "/skill-icons/15000000.png"
+    }
   },
   {
     "id": "15100004",
@@ -4446,110 +1060,19 @@
     "jobs": [
       "striker"
     ],
-    "effectsByLevel": [
-      {
-        "pad_energyCharge": 0,
-        "acc": 1,
-        "eva": 1
-      },
-      {
-        "pad_energyCharge": 11,
-        "acc": 2,
-        "eva": 2
-      },
-      {
-        "pad_energyCharge": 11,
-        "acc": 3,
-        "eva": 3
-      },
-      {
-        "pad_energyCharge": 12,
-        "acc": 4,
-        "eva": 4
-      },
-      {
-        "pad_energyCharge": 12,
-        "acc": 5,
-        "eva": 5
-      },
-      {
-        "pad_energyCharge": 13,
-        "acc": 6,
-        "eva": 6
-      },
-      {
-        "pad_energyCharge": 13,
-        "acc": 7,
-        "eva": 7
-      },
-      {
-        "pad_energyCharge": 14,
-        "acc": 8,
-        "eva": 8
-      },
-      {
-        "pad_energyCharge": 14,
-        "acc": 9,
-        "eva": 9
-      },
-      {
-        "pad_energyCharge": 15,
-        "acc": 10,
-        "eva": 10
-      },
-      {
-        "pad_energyCharge": 15,
-        "acc": 11,
-        "eva": 11
-      },
-      {
-        "pad_energyCharge": 16,
-        "acc": 12,
-        "eva": 12
-      },
-      {
-        "pad_energyCharge": 16,
-        "acc": 13,
-        "eva": 13
-      },
-      {
-        "pad_energyCharge": 17,
-        "acc": 14,
-        "eva": 14
-      },
-      {
-        "pad_energyCharge": 17,
-        "acc": 15,
-        "eva": 15
-      },
-      {
-        "pad_energyCharge": 18,
-        "acc": 16,
-        "eva": 16
-      },
-      {
-        "pad_energyCharge": 18,
-        "acc": 17,
-        "eva": 17
-      },
-      {
-        "pad_energyCharge": 19,
-        "acc": 18,
-        "eva": 18
-      },
-      {
-        "pad_energyCharge": 19,
-        "acc": 19,
-        "eva": 19
-      },
-      {
-        "pad_energyCharge": 20,
-        "acc": 20,
-        "eva": 20
-      }
-    ],
     "icon": "/skill-icons/15100004.png",
-    "nonStacking": true
+    "nonStacking": true,
+    "derive": {
+      "pad_energyCharge": {
+        "field": "pad"
+      },
+      "acc": {
+        "field": "acc"
+      },
+      "eva": {
+        "field": "eva"
+      }
+    }
   },
   {
     "id": "15101006",
@@ -4558,73 +1081,16 @@
     "scope": "personal",
     "mode": "passive",
     "masterLevel": 20,
-    "effectsByLevel": [
-      {
-        "mad": 11
-      },
-      {
-        "mad": 12
-      },
-      {
-        "mad": 13
-      },
-      {
-        "mad": 14
-      },
-      {
-        "mad": 15
-      },
-      {
-        "mad": 16
-      },
-      {
-        "mad": 17
-      },
-      {
-        "mad": 18
-      },
-      {
-        "mad": 19
-      },
-      {
-        "mad": 20
-      },
-      {
-        "mad": 21
-      },
-      {
-        "mad": 22
-      },
-      {
-        "mad": 23
-      },
-      {
-        "mad": 24
-      },
-      {
-        "mad": 25
-      },
-      {
-        "mad": 26
-      },
-      {
-        "mad": 27
-      },
-      {
-        "mad": 28
-      },
-      {
-        "mad": 29
-      },
-      {
-        "mad": 30
-      }
-    ],
     "icon": "/skill-icons/15101006.png",
     "jobs": [
       "striker"
     ],
-    "nonStacking": true
+    "nonStacking": true,
+    "derive": {
+      "mad": {
+        "field": "mad"
+      }
+    }
   },
   {
     "id": "5110001",
@@ -4637,206 +1103,18 @@
     ],
     "icon": "/skill-icons/5110001.png",
     "masterLevel": 40,
-    "effectsByLevel": [
-      {
-        "acc": 1,
-        "eva": 1
+    "nonStacking": true,
+    "derive": {
+      "acc": {
+        "field": "acc"
       },
-      {
-        "acc": 1,
-        "eva": 1
+      "eva": {
+        "field": "eva"
       },
-      {
-        "acc": 2,
-        "eva": 2
-      },
-      {
-        "acc": 2,
-        "eva": 2,
-        "pad_energyCharge": 11
-      },
-      {
-        "acc": 3,
-        "eva": 3,
-        "pad_energyCharge": 11
-      },
-      {
-        "acc": 3,
-        "eva": 3,
-        "pad_energyCharge": 11
-      },
-      {
-        "acc": 4,
-        "eva": 4,
-        "pad_energyCharge": 11
-      },
-      {
-        "acc": 4,
-        "eva": 4,
-        "pad_energyCharge": 12
-      },
-      {
-        "acc": 5,
-        "eva": 5,
-        "pad_energyCharge": 12
-      },
-      {
-        "acc": 5,
-        "eva": 5,
-        "pad_energyCharge": 12
-      },
-      {
-        "acc": 6,
-        "eva": 6,
-        "pad_energyCharge": 12
-      },
-      {
-        "acc": 6,
-        "eva": 6,
-        "pad_energyCharge": 13
-      },
-      {
-        "acc": 7,
-        "eva": 7,
-        "pad_energyCharge": 13
-      },
-      {
-        "acc": 7,
-        "eva": 7,
-        "pad_energyCharge": 13
-      },
-      {
-        "acc": 8,
-        "eva": 8,
-        "pad_energyCharge": 13
-      },
-      {
-        "acc": 8,
-        "eva": 8,
-        "pad_energyCharge": 14
-      },
-      {
-        "acc": 9,
-        "eva": 9,
-        "pad_energyCharge": 14
-      },
-      {
-        "acc": 9,
-        "eva": 9,
-        "pad_energyCharge": 14
-      },
-      {
-        "acc": 10,
-        "eva": 10,
-        "pad_energyCharge": 14
-      },
-      {
-        "acc": 10,
-        "eva": 10,
-        "pad_energyCharge": 15
-      },
-      {
-        "acc": 11,
-        "eva": 11,
-        "pad_energyCharge": 15
-      },
-      {
-        "acc": 11,
-        "eva": 11,
-        "pad_energyCharge": 15
-      },
-      {
-        "acc": 12,
-        "eva": 12,
-        "pad_energyCharge": 15
-      },
-      {
-        "acc": 12,
-        "eva": 12,
-        "pad_energyCharge": 16
-      },
-      {
-        "acc": 13,
-        "eva": 13,
-        "pad_energyCharge": 16
-      },
-      {
-        "acc": 13,
-        "eva": 13,
-        "pad_energyCharge": 16
-      },
-      {
-        "acc": 14,
-        "eva": 14,
-        "pad_energyCharge": 16
-      },
-      {
-        "acc": 14,
-        "eva": 14,
-        "pad_energyCharge": 17
-      },
-      {
-        "acc": 15,
-        "eva": 15,
-        "pad_energyCharge": 17
-      },
-      {
-        "acc": 15,
-        "eva": 15,
-        "pad_energyCharge": 17
-      },
-      {
-        "acc": 16,
-        "eva": 16,
-        "pad_energyCharge": 17
-      },
-      {
-        "acc": 16,
-        "eva": 16,
-        "pad_energyCharge": 18
-      },
-      {
-        "acc": 17,
-        "eva": 17,
-        "pad_energyCharge": 18
-      },
-      {
-        "acc": 17,
-        "eva": 17,
-        "pad_energyCharge": 18
-      },
-      {
-        "acc": 18,
-        "eva": 18,
-        "pad_energyCharge": 18
-      },
-      {
-        "acc": 18,
-        "eva": 18,
-        "pad_energyCharge": 19
-      },
-      {
-        "acc": 19,
-        "eva": 19,
-        "pad_energyCharge": 19
-      },
-      {
-        "acc": 19,
-        "eva": 19,
-        "pad_energyCharge": 19
-      },
-      {
-        "acc": 20,
-        "eva": 20,
-        "pad_energyCharge": 19
-      },
-      {
-        "acc": 20,
-        "eva": 20,
-        "pad_energyCharge": 20
+      "pad_energyCharge": {
+        "field": "pad"
       }
-    ],
-    "nonStacking": true
+    }
   },
   {
     "id": "15111002",
@@ -4850,48 +1128,14 @@
     "icon": "/skill-icons/15111002.png",
     "masterLevel": 10,
     "exclusiveGroup": "pirateForm",
-    "effectsByLevel": [
-      {
-        "pdef": 4,
-        "mdef": 4
+    "derive": {
+      "pdef": {
+        "field": "pdd"
       },
-      {
-        "pdef": 8,
-        "mdef": 8
-      },
-      {
-        "pdef": 12,
-        "mdef": 12
-      },
-      {
-        "pdef": 16,
-        "mdef": 16
-      },
-      {
-        "pdef": 20,
-        "mdef": 20
-      },
-      {
-        "pdef": 24,
-        "mdef": 24
-      },
-      {
-        "pdef": 28,
-        "mdef": 28
-      },
-      {
-        "pdef": 32,
-        "mdef": 32
-      },
-      {
-        "pdef": 36,
-        "mdef": 36
-      },
-      {
-        "pdef": 40,
-        "mdef": 40
+      "mdef": {
+        "field": "mdd"
       }
-    ]
+    }
   },
   {
     "id": "5111005",
@@ -4905,88 +1149,14 @@
     "icon": "/skill-icons/5111005.png",
     "masterLevel": 20,
     "exclusiveGroup": "pirateForm",
-    "effectsByLevel": [
-      {
-        "pdef": 2,
-        "mdef": 2
+    "derive": {
+      "pdef": {
+        "field": "pdd"
       },
-      {
-        "pdef": 4,
-        "mdef": 4
-      },
-      {
-        "pdef": 6,
-        "mdef": 6
-      },
-      {
-        "pdef": 8,
-        "mdef": 8
-      },
-      {
-        "pdef": 10,
-        "mdef": 10
-      },
-      {
-        "pdef": 12,
-        "mdef": 12
-      },
-      {
-        "pdef": 14,
-        "mdef": 14
-      },
-      {
-        "pdef": 16,
-        "mdef": 16
-      },
-      {
-        "pdef": 18,
-        "mdef": 18
-      },
-      {
-        "pdef": 20,
-        "mdef": 20
-      },
-      {
-        "pdef": 22,
-        "mdef": 22
-      },
-      {
-        "pdef": 24,
-        "mdef": 24
-      },
-      {
-        "pdef": 26,
-        "mdef": 26
-      },
-      {
-        "pdef": 28,
-        "mdef": 28
-      },
-      {
-        "pdef": 30,
-        "mdef": 30
-      },
-      {
-        "pdef": 32,
-        "mdef": 32
-      },
-      {
-        "pdef": 34,
-        "mdef": 34
-      },
-      {
-        "pdef": 36,
-        "mdef": 36
-      },
-      {
-        "pdef": 38,
-        "mdef": 38
-      },
-      {
-        "pdef": 40,
-        "mdef": 40
+      "mdef": {
+        "field": "mdd"
       }
-    ]
+    }
   },
   {
     "id": "5121003",
@@ -5000,88 +1170,14 @@
     "icon": "/skill-icons/5121003.png",
     "masterLevel": 20,
     "exclusiveGroup": "pirateForm",
-    "effectsByLevel": [
-      {
-        "pdef": 41,
-        "mdef": 41
+    "derive": {
+      "pdef": {
+        "field": "pdd"
       },
-      {
-        "pdef": 42,
-        "mdef": 42
-      },
-      {
-        "pdef": 43,
-        "mdef": 43
-      },
-      {
-        "pdef": 44,
-        "mdef": 44
-      },
-      {
-        "pdef": 45,
-        "mdef": 45
-      },
-      {
-        "pdef": 46,
-        "mdef": 46
-      },
-      {
-        "pdef": 47,
-        "mdef": 47
-      },
-      {
-        "pdef": 48,
-        "mdef": 48
-      },
-      {
-        "pdef": 49,
-        "mdef": 49
-      },
-      {
-        "pdef": 50,
-        "mdef": 50
-      },
-      {
-        "pdef": 51,
-        "mdef": 51
-      },
-      {
-        "pdef": 52,
-        "mdef": 52
-      },
-      {
-        "pdef": 53,
-        "mdef": 53
-      },
-      {
-        "pdef": 54,
-        "mdef": 54
-      },
-      {
-        "pdef": 55,
-        "mdef": 55
-      },
-      {
-        "pdef": 56,
-        "mdef": 56
-      },
-      {
-        "pdef": 57,
-        "mdef": 57
-      },
-      {
-        "pdef": 58,
-        "mdef": 58
-      },
-      {
-        "pdef": 59,
-        "mdef": 59
-      },
-      {
-        "pdef": 60,
-        "mdef": 60
+      "mdef": {
+        "field": "mdd"
       }
-    ]
+    }
   },
   {
     "id": "5110000",
@@ -5095,88 +1191,15 @@
     "icon": "/skill-icons/5110000.png",
     "masterLevel": 20,
     "note": "스턴 상황 가정",
-    "effectsByLevel": [
-      {
-        "criticalP": 22,
-        "criticalDamage": 3
+    "derive": {
+      "criticalP": {
+        "field": "prop"
       },
-      {
-        "criticalP": 24,
-        "criticalDamage": 6
-      },
-      {
-        "criticalP": 26,
-        "criticalDamage": 9
-      },
-      {
-        "criticalP": 28,
-        "criticalDamage": 12
-      },
-      {
-        "criticalP": 30,
-        "criticalDamage": 15
-      },
-      {
-        "criticalP": 32,
-        "criticalDamage": 18
-      },
-      {
-        "criticalP": 34,
-        "criticalDamage": 21
-      },
-      {
-        "criticalP": 36,
-        "criticalDamage": 24
-      },
-      {
-        "criticalP": 38,
-        "criticalDamage": 27
-      },
-      {
-        "criticalP": 40,
-        "criticalDamage": 30
-      },
-      {
-        "criticalP": 42,
-        "criticalDamage": 33
-      },
-      {
-        "criticalP": 44,
-        "criticalDamage": 36
-      },
-      {
-        "criticalP": 46,
-        "criticalDamage": 39
-      },
-      {
-        "criticalP": 48,
-        "criticalDamage": 42
-      },
-      {
-        "criticalP": 50,
-        "criticalDamage": 45
-      },
-      {
-        "criticalP": 52,
-        "criticalDamage": 48
-      },
-      {
-        "criticalP": 54,
-        "criticalDamage": 51
-      },
-      {
-        "criticalP": 56,
-        "criticalDamage": 54
-      },
-      {
-        "criticalP": 58,
-        "criticalDamage": 57
-      },
-      {
-        "criticalP": 60,
-        "criticalDamage": 60
+      "criticalDamage": {
+        "field": "damage",
+        "offset": -100
       }
-    ]
+    }
   },
   {
     "id": "2001002",
@@ -5191,68 +1214,11 @@
       "bishop"
     ],
     "icon": "/skill-icons/2001002.png",
-    "effectsByLevel": [
-      {
-        "incomingDamageReduceP": 11
-      },
-      {
-        "incomingDamageReduceP": 14
-      },
-      {
-        "incomingDamageReduceP": 17
-      },
-      {
-        "incomingDamageReduceP": 20
-      },
-      {
-        "incomingDamageReduceP": 23
-      },
-      {
-        "incomingDamageReduceP": 30
-      },
-      {
-        "incomingDamageReduceP": 33
-      },
-      {
-        "incomingDamageReduceP": 36
-      },
-      {
-        "incomingDamageReduceP": 39
-      },
-      {
-        "incomingDamageReduceP": 42
-      },
-      {
-        "incomingDamageReduceP": 49
-      },
-      {
-        "incomingDamageReduceP": 52
-      },
-      {
-        "incomingDamageReduceP": 55
-      },
-      {
-        "incomingDamageReduceP": 58
-      },
-      {
-        "incomingDamageReduceP": 61
-      },
-      {
-        "incomingDamageReduceP": 68
-      },
-      {
-        "incomingDamageReduceP": 71
-      },
-      {
-        "incomingDamageReduceP": 74
-      },
-      {
-        "incomingDamageReduceP": 77
-      },
-      {
-        "incomingDamageReduceP": 80
+    "derive": {
+      "incomingDamageReduceP": {
+        "field": "x"
       }
-    ]
+    }
   },
   {
     "id": "12001001",
@@ -5265,37 +1231,10 @@
       "flameWizard"
     ],
     "icon": "/skill-icons/12001001.png",
-    "effectsByLevel": [
-      {
-        "incomingDamageReduceP": 8
-      },
-      {
-        "incomingDamageReduceP": 16
-      },
-      {
-        "incomingDamageReduceP": 24
-      },
-      {
-        "incomingDamageReduceP": 32
-      },
-      {
-        "incomingDamageReduceP": 40
-      },
-      {
-        "incomingDamageReduceP": 48
-      },
-      {
-        "incomingDamageReduceP": 56
-      },
-      {
-        "incomingDamageReduceP": 64
-      },
-      {
-        "incomingDamageReduceP": 72
-      },
-      {
-        "incomingDamageReduceP": 80
+    "derive": {
+      "incomingDamageReduceP": {
+        "field": "x"
       }
-    ]
+    }
   }
 ]
