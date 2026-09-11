@@ -61,6 +61,8 @@ const MANUAL = {
   amplifiedMagicDamageP: { field: 'y', offset: -100 },
   // 인레이지: WZ pad가 곧 추가 공격력
   addPad: { field: 'pad' },
+  // 블로킹: WZ prop이 10배로 들어있다 (상류 SkillToolTipPostfix.blockingPostfix와 동일)
+  blockRate: { field: 'prop', scale: 0.1 },
 }
 /** 버프 id별 예외 */
 const MANUAL_BY_ID = {

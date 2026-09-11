@@ -101,6 +101,12 @@ maplestory.io API ───┘   (로컬 카탈로그 우선 → GMS 62 → GMS 
 해당 레벨에 필드가 없으면 키를 넣지 않는다. 값을 두 벌 유지하던 시절 스킬북만 갱신돼 엘리먼트
 엠플리피케이션이 몇 주간 140%로 계산된 적이 있어 이렇게 바꿨다.
 
+**WZ 필드는 날것이라 표시값과 다를 수 있다.** 변환식의 근거는 상류의
+`src/components/SkillTree/SkillToolTipPostfix.tsx`다 — 블로킹 `prop÷10`, 아킬레스 `(1000-x)/10`,
+숙련도 `mastery×5`, 버서크 `damage+100` 등이 거기 정리돼 있다. 새 규칙을 만들 때 먼저 볼 것.
+(단 샤프아이즈는 예외다. 툴팁은 `y-100`이지만 메랜 실적용이 `y` 그대로라 docs/plan.md §크리티컬에
+실측 근거가 있다.)
+
 - 스킬북에 없는 버프(영웅의 메아리·정령의 축복·기상효과·버닝)만 `effectsByLevel`에 값을 직접 적는다.
 - 일부 능력치만 스킬북에 근거가 없으면 둘을 함께 쓴다 — `effectsByLevel` 쪽이 파생값을 덮는다
   (현재는 메소 가드 `damageReduce` 하나뿐. 데미지 감소 50%는 인게임 고정값이고 WZ `x`는 다른 뜻이다).
@@ -161,7 +167,7 @@ id가 먼저 존재해야 하기 때문.
 - `importSkills.mjs` — ms-skill-simulator → `src/data/skills/skillbooks/`, 아이콘은 `public/skill-icons/`로 분리
 - `skillbookUpstreamDiff.mjs` — 스킬북이 상류(ms-skill-simulator)와 어긋난 곳 탐지. 읽기 전용이고
   형제 디렉토리에 상류 레포가 있어야 한다. 상류를 일부러 안 따르는 건 스크립트 안
-  `EXPECTED_DIVERGENCE`에 사유와 함께 적는다(현재 블로킹 2건 + 파이어 샷 문구 1건)
+  `EXPECTED_DIVERGENCE`에 사유와 함께 적는다(현재 파이어 샷 설명 문구 1건뿐)
 - `refreshReq.mjs` / `patchMissingTuc.mjs` / `fetch*.mjs` — 카탈로그 요구치·업횟·신규 아이템 보강
 - `migrateBuffDerive.mjs` — 버프 `effectsByLevel` → `derive` 전환. 이미 끝난 마이그레이션이라
   다시 돌릴 일은 없지만, 파생 규칙을 어떻게 뽑았는지 근거가 남아 있다.
