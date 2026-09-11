@@ -154,8 +154,8 @@ const SKILL_MAP = {
   // 해적
   5000000: pPassive('퀵모션', p => ({ acc: n(p, 'x'), eva: n(p, 'y') })),
   // 스턴 마스터리: 스턴 상태 적 공격 시 크리 발동 — 유도식은 크리티컬 샷/스로우와 동일.
-  // 상황 의존이라 켤 때 스턴 상태를 가정한다는 뜻으로 note를 단다.
-  5110000: { ...pPassive('스턴 마스터리', crit), note: '스턴 상황 가정' },
+  // 상시 효과가 아니라 conditional:'stun'으로 두고, 데미지 계산의 '(스턴)' 변형 스킬에만 얹는다.
+  5110000: { ...pPassive('스턴 마스터리', crit), note: "'(스턴)' 스킬에만 적용", conditional: 'stun' },
   // 변신은 특화 버프 토글(passive)로 둬야 exclusiveGroup 배타가 걸린다.
   // 트폼↔슈트폼만 상호배타 — 에너지 차지는 변신과 완전히 독립이라 그룹에 넣지 않는다.
   5111005: { ...pPassive('트랜스폼', transform), exclusiveGroup: 'pirateForm' },

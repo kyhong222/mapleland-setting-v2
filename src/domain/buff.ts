@@ -21,6 +21,13 @@ import type { WeaponType } from './weapons'
 
 export type BuffType = 'item' | 'skill'
 
+/**
+ * 조건부 버프의 조건. 이런 버프는 상시 효과가 아니라서 전체 합산(activeBuffEffects)에서 빠지고,
+ * 그 상황을 가정하는 계산에서만 따로 더해진다.
+ *  - stun : 스턴 상태인 적을 때릴 때만 (스턴 마스터리). 데미지 계산의 '(스턴)' 변형 스킬에만 적용.
+ */
+export type BuffCondition = 'stun'
+
 /** 스킬 적용 범위: 파티(전 직업) / 개인(특정 직업) */
 export type SkillScope = 'party' | 'personal'
 
@@ -34,7 +41,7 @@ interface BuffBase {
   /** 아이콘 (스킬=base64 data URI, 아이템=미지정 시 id로 URL 유도) */
   icon?: string
   /**
-   * 캡션 보조 안내문. 효과가 있으면 효과 뒤에 덧붙고(예: '스턴 상황 가정'),
+   * 캡션 보조 안내문. 효과가 있으면 효과 뒤에 덧붙고(예: 스턴 마스터리의 적용 범위 안내),
    * 효과가 비어 있으면 효과 대신 단독 표시된다(예: 미구현 스킬 표기).
    */
   note?: string
@@ -91,6 +98,12 @@ export interface SkillBuff extends BuffBase {
    * 빠졌다. 따라서 이 버프의 최댓값 경쟁은 acc/eva에만 걸린다.
    */
   nonStacking?: boolean
+  /**
+   * 조건부 효과 — 특정 상황에서만 들어간다. 전체 합산에서는 빠지고, 그 상황을 가정한
+   * 계산에서만 conditionalBuffEffects()로 따로 더해진다.
+   * 예: 스턴 마스터리 — 스턴 상태인 적을 때리는 '(스턴)' 변형 스킬에만 크리가 붙는다.
+   */
+  conditional?: BuffCondition
 }
 
 export type Buff = ItemBuff | SkillBuff

@@ -344,7 +344,7 @@ function BuffRow({ buff, onOpen }: { buff: Buff; onOpen: (b: Buff) => void }) {
   const mgText = magicGuardCaption(buff, shownLevel)
   const lcText = skillChargeCaption(buff, shownLevel, eff)
   const effText = formatEffects(eff)
-  // note는 보조 안내문 — 효과가 있으면 뒤에 덧붙이고(스턴 마스터리 '스턴 상황 가정'),
+  // note는 보조 안내문 — 효과가 있으면 뒤에 덧붙이고(스턴 마스터리의 적용 범위 안내),
   // 효과가 없으면 단독 표시(미구현 스킬 표기)
   const noteText = buff.note ? (effText ? `${effText} · ${buff.note}` : buff.note) : null
   const caption = requiresShield && !shieldOk ? '방패 착용 필요' : (mgText ?? lcText ?? noteText ?? advText ?? comboText ?? (effText || '—'))

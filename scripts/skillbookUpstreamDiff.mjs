@@ -26,6 +26,9 @@ const OURS = path.join(HERE, '..', 'src', 'data', 'skills', 'skillbooks')
 const EXPECTED_DIVERGENCE = new Map([
   // 수치는 상류와 같고 설명 문구만 다르다. 상류가 "#damage%#time"으로 깨져 있어 우리 쪽을 쓴다.
   [3111003, '설명 문구만 다름 — 상류 표기가 깨져 있어 우리 문구 유지 (수치는 동일)'],
+  // 에너지 버스터는 스턴을 걸지만 상류 levelProperties에 확률(prop)이 없다.
+  // 단독 운용 시 스턴 마스터리가 얼마나 터지는지 계산하려면 필요해 인게임 값(11~40%)을 넣었다.
+  [5111002, 'prop(스턴 확률 11~40%) 추가 — 상류에 없어 인게임 값으로 보강 (damage/mobCount는 동일)'],
 ])
 
 if (!fs.existsSync(UP)) {

@@ -13,17 +13,18 @@ import { useInventoryStore } from '../../store/inventoryStore'
 import { useMonsterStore } from '../../store/monsterStore'
 import { aggregateBuild, equippedWeaponType } from '../../store/aggregate'
 import { useActiveEquippedBuilts } from '../../store/activation'
-import { useBuffEffects } from '../../store/useBuffEffects'
+import { useBuffEffects, useConditionalBuffEffects } from '../../store/useBuffEffects'
 import {
   totalAttack, totalMagic, masteryRatio, magicAmpMultiplier, levelPenalty, calcLuckyBase,
 } from '../../domain/attackPower'
 import { JOBS } from '../../domain/jobs'
 import { getMonster } from '../../data/mobs'
 import { elementReaction, formatElements } from '../../domain/monster'
-import { attackSkillsForJob, skillAttackAt, skillLineCount, comboFinalDamageP, COMBO_SKILLS, findSkillById, skillNumAt, chargeStats, skillElements } from '../../data/skills'
+import { skillAttackAt, skillLineCount, comboFinalDamageP, COMBO_SKILLS, findSkillById, skillNumAt, chargeStats, skillElements } from '../../data/skills'
 import type { IJobSkill } from '../../data/skills'
+import { damageSkillsForJob, baseSkillId, variantKindOf, stunHitRatio } from '../../data/skills/variants'
 import type { ChargeState } from '../../domain/paladinCharge'
-import { computeCast, computeNhit, computeDpm, baseElementMult, SKILL_MOTION } from '../../domain/skillCombat'
+import { computeCast, computeNhit, computeDpm, baseElementMult, mixCasts, SKILL_MOTION } from '../../domain/skillCombat'
 import { convolve } from '../../domain/nhitProb'
 import type { Dist } from '../../domain/nhitProb'
 import { attacksPerMinute } from '../../data/attackSpeed'
@@ -46,7 +47,8 @@ const SKILL_CHARGES: Record<string, { id: number; element: ChargeElement }> = {
   soulMaster: { id: 11111007, element: 'holy' },   // 소울 차지
 }
 
-const skillIconSrc = (id: number) => `/skill-icons/${id}.png`
+/** 변형 스킬(…(스턴) 등)은 아이콘이 따로 없으므로 원래 스킬 id로 받는다 */
+const skillIconSrc = (id: number) => `/skill-icons/${baseSkillId(id)}.png`
 const hideOnError = (e: SyntheticEvent<HTMLImageElement>) => { e.currentTarget.style.visibility = 'hidden' }
 const pct = (n: number) => `${(n * 100).toFixed(1)}%`
 /** 공속 단계(2~9) → 한글 라벨 (docs §12.0) */
@@ -79,6 +81,8 @@ export default function NhitPanel() {
   // 구버전 영속 상태엔 charge가 없을 수 있다 (없으면 chargeFromUi에서 터진다)
   const chargeState = useBuildStore((s) => s.charge) ?? DEFAULT_CHARGE
   const buffEffects = useBuffEffects()
+  // 스턴 마스터리 — 상시 효과가 아니라 '(스턴)' 변형 스킬에만 얹는 조건부 버프
+  const stunEffects = useConditionalBuffEffects('stun')
   const builts = useActiveEquippedBuilts()
 
   // 선택 상태는 저장슬롯을 따라다녀야 해서 스토어에 둔다 (nhitStore)
@@ -95,7 +99,8 @@ export default function NhitPanel() {
   const job = jobId ? JOBS[jobId] : null
   const monster = selectedMobId != null ? getMonster(selectedMobId) : undefined
   const weaponType = equippedWeaponType(equipped, invItems)
-  const attackSkills = jobId ? attackSkillsForJob(jobId) : []
+  // 공격 스킬 + 변형('(스턴)' 등, data/skills/variants.ts)
+  const attackSkills = jobId ? damageSkillsForJob(jobId) : []
   const selectedSkill = attackSkills.find((s) => s.id === skillId)
   // 추가스킬 후보: 공격 스킬(돌진·베놈 등 포함). 패시브(크리티컬 스로우)·콤보·소환수 등은 제외.
   const precastCandidates = attackSkills
@@ -109,25 +114,30 @@ export default function NhitPanel() {
   /**
    * 임의 스킬(sk, lv)의 1회 시전 데미지 분포 계산 — 메인/추가스킬 공용.
    * 캐릭터 스탯·버프·차지·크리·몬스터 방어를 모두 반영. 데미지 산출 불가 시 null.
+   *
+   * @param stunned 대상이 스턴 상태인지 — 스턴 마스터리 크리가 이때만 붙는다.
    */
-  const buildCast = (sk: IJobSkill, lv: number) => {
+  const buildCastAt = (sk: IJobSkill, lv: number, stunned: boolean) => {
     if (!job || !monster) return null
     const att = skillAttackAt(sk, lv)
     if (!att) return null
     const isMagic = att.kind === 'magic'
     if (!isMagic && !weaponType) return null
+    // 변형 스킬은 id에 오프셋이 붙어 있다 — 모션 규칙/공속표/예외식은 전부 원래 id로 조회
+    const baseId = baseSkillId(sk.id)
 
     // 차지 블로우(1211002): 어드밴스드 차지(1220010) 학습 시 계수를 어차 값(260~350%)으로 대체
     let effSkillPercent = att.skillPercent
-    if (sk.id === 1211002) {
+    if (baseId === 1211002) {
       const advLv = activeBuffs['1220010'] ?? 0
       const adv = advLv > 0 ? findSkillById(1220010) : undefined
       const advAtt = adv ? skillAttackAt(adv, advLv) : null
       if (advAtt) effSkillPercent = advAtt.skillPercent
     }
     // 크리: 확률 혼합으로 분포에 반영. 물리=합연산 / 마법=곱연산(샤프아이즈만)
-    const critChance = effects.criticalP ?? 0
-    const critDmgTotal = effects.criticalDamage ?? 0
+    // 스턴 상태면 스턴 마스터리 크리(확률·추뎀)가 샤프아이즈 등과 합산돼 얹힌다.
+    const critChance = (effects.criticalP ?? 0) + (stunned ? (stunEffects.criticalP ?? 0) : 0)
+    const critDmgTotal = (effects.criticalDamage ?? 0) + (stunned ? (stunEffects.criticalDamage ?? 0) : 0)
     let critMult = 1
     if (isMagic) {
       critMult = critDmgTotal > 100 ? 1 + (critDmgTotal - 100) / 100 : 1
@@ -200,20 +210,20 @@ export default function NhitPanel() {
       : 0
     const finalMult = 1 + ((effects.finalDamageP ?? 0) + comboBonus) / 100
     const threatenMult = 1 + (effects.monsterDamageTakenP ?? 0) / 100
-    const counterMult = COMA_PANIC.has(sk.id) && comboBonus > 0 ? MAX_COUNTER_MULT : 1
+    const counterMult = COMA_PANIC.has(baseId) && comboBonus > 0 ? MAX_COUNTER_MULT : 1
     const damageMult = (isMagic ? magicAmpMultiplier(effects) : 1) * finalMult * threatenMult * counterMult
     // 쉐도우 파트너는 데미지 배수가 아니라 분신의 별도 타격이다 → computeCast가 라인을 늘린다
     const shadowRatio = (effects.shadowPartnerP ?? 0) / 100
 
     const watk = totalAttack(effects)
     // 럭세/트스: LUK 전용 예외식 base(모션·부스탯·숙련 무시). 스킬%는 그대로 적용
-    const lineBase = !isMagic && LUCKY_SKILLS.has(sk.id) ? calcLuckyBase(finalStats.LUK, watk) : undefined
+    const lineBase = !isMagic && LUCKY_SKILLS.has(baseId) ? calcLuckyBase(finalStats.LUK, watk) : undefined
     // 피스트: 타수별 배율(5타×2·6타×4)
-    const hitMultipliers = FIST_SKILLS.has(sk.id) ? FIST_HIT_MULT : undefined
+    const hitMultipliers = FIST_SKILLS.has(baseId) ? FIST_HIT_MULT : undefined
 
     const cast = computeCast({
       weaponType: weaponType ?? 'oneHandedSword',
-      skillId: sk.id,
+      skillId: baseId,
       attackCount: skillLineCount(sk, lv),
       kind: att.kind,
       primary: finalStats[job.primaryStat],
@@ -235,6 +245,23 @@ export default function NhitPanel() {
       shadowRatio,
     })
     return { cast, att, effSkillPercent, isMagic, elements, displayMult, charge }
+  }
+
+  /** 스턴 마스터리가 실제로 켜져 있는지 (꺼져 있으면 변형 스킬도 기본 스킬과 같다) */
+  const hasStunBonus = (stunEffects.criticalP ?? 0) > 0 || (stunEffects.criticalDamage ?? 0) > 0
+
+  /**
+   * 스킬 1회 시전 결과 — 변형에 따라 스턴 상황을 반영한다.
+   *  - 기본 스킬 / (스턴): 스턴 여부를 하나로 고정해 한 번만 계산
+   *  - (단독 운용): 스턴 확률만큼 두 분포를 섞는다 (variants.ts stunHitRatio)
+   */
+  const buildCast = (sk: IJobSkill, lv: number) => {
+    const ratio = hasStunBonus ? stunHitRatio(sk.id, lv) : 0
+    if (ratio <= 0 || ratio >= 1) return buildCastAt(sk, lv, ratio >= 1)
+    const off = buildCastAt(sk, lv, false)
+    const on = buildCastAt(sk, lv, true)
+    if (!off?.cast || !on?.cast) return off
+    return { ...on, cast: mixCasts([{ weight: 1 - ratio, cast: off.cast }, { weight: ratio, cast: on.cast }]) }
   }
 
   // 추가스킬 목록: 각 스킬 1회 시전 분포. 방컷 누적곱의 시작값(prior)으로 합성 → 데미지도 분포째 반영.
@@ -265,7 +292,8 @@ export default function NhitPanel() {
     const { cast, att, effSkillPercent, isMagic, elements, displayMult, charge } = built
     if (!cast) return { unsupported: true as const, elements, displayMult, charge }
 
-    const noDpm = NO_DPM.has(selectedSkill.id)
+    const baseId = baseSkillId(selectedSkill.id)
+    const noDpm = NO_DPM.has(baseId)
     const hp = monster.maxHP ?? 0
     const isBoss = !!monster.isBoss
     // 물리: 무기 부스터(attackSpeedBoost) + 윈드부스터(windBoostStep) 중첩 공속상승
@@ -273,7 +301,7 @@ export default function NhitPanel() {
     // 마법: 매직부스터(castSpeedBoost) 또는 윈드부스터 활성 여부만 사용
     const magicBooster = ((effects.castSpeedBoost ?? 0) + (effects.windBoostStep ?? 0)) > 0
     const effStep = Math.max(2, Math.min(9, weaponSpeedStep - boosterSteps))
-    const apm = attacksPerMinute(selectedSkill.id, weaponSpeedStep, boosterSteps, att.kind, magicBooster)
+    const apm = attacksPerMinute(baseId, weaponSpeedStep, boosterSteps, att.kind, magicBooster)
     const dpm = apm != null ? computeDpm(cast.dist, apm) : null
     const killSec = dpm && dpm > 0 && hp > 0 ? hp / (dpm / 60) : null
     return {
@@ -295,6 +323,17 @@ export default function NhitPanel() {
       nhit: isBoss || noDpm ? null : computeNhit(cast.dist, hp, 10, preCastPrior),
       apm, dpm, killSec, isMagic, effStep, boosterActive: magicBooster, noDpm,
     }
+  })()
+
+  /** 변형 스킬 선택 시의 안내 문구 (스턴 마스터리가 어떻게 들어가는지) */
+  const stunNote = (() => {
+    if (!selectedSkill) return null
+    const kind = variantKindOf(selectedSkill.id)
+    if (!kind) return null
+    if (!hasStunBonus) return '스턴 마스터리를 켜야 차이가 생깁니다'
+    if (kind === 'stun') return '스턴 상태 가정 — 스턴 마스터리 크리 적용'
+    const ratio = stunHitRatio(selectedSkill.id, skillLevel)
+    return `자체 스턴 확률 ${Math.round(ratio * 100)}%만큼 스턴 마스터리 크리 적용`
   })()
 
   return (
@@ -332,7 +371,7 @@ export default function NhitPanel() {
                 <MenuItem key={s.id} value={s.id} sx={{ fontSize: 13, gap: 1.25, alignItems: 'center' }}>
                   <Box component="img" src={skillIconSrc(s.id)} alt="" onError={hideOnError} sx={{ width: 32, height: 32, imageRendering: 'pixelated', display: 'block', flexShrink: 0 }} />
                   <Box component="span" sx={{ lineHeight: 1.2 }}>{s.description?.name ?? s.id}</Box>
-                  {SKILL_MOTION[s.id] && <Box component="span" sx={{ fontSize: 10, color: 'text.disabled' }}>*</Box>}
+                  {SKILL_MOTION[baseSkillId(s.id)] && <Box component="span" sx={{ fontSize: 10, color: 'text.disabled' }}>*</Box>}
                 </MenuItem>
               ))}
             </Select>
@@ -344,6 +383,15 @@ export default function NhitPanel() {
               />
             )}
           </Box>
+          {stunNote && (
+            <Typography
+              variant="caption"
+              color={hasStunBonus ? 'success.main' : 'text.disabled'}
+              sx={{ display: 'block', mt: -0.5, mb: 1 }}
+            >
+              {stunNote}
+            </Typography>
+          )}
           {/* 추가스킬 (1회 시전 후 잔여 HP 기준으로 방컷 계산) */}
           <Box sx={{ mb: 1 }}>
             <Typography variant="caption" sx={{ fontWeight: 700, display: 'block', mb: 0.25 }}>

@@ -11,7 +11,7 @@ import type { BaseStats } from '../domain/stats'
 import { resolveBuiltItem } from '../domain/builtItem'
 import type { BuiltItem } from '../domain/builtItem'
 import { buffEffectsAtLevel, canUseBuff, effectiveMasterLevel } from '../domain/buff'
-import type { Buff, SkillBuff } from '../domain/buff'
+import type { Buff, BuffCondition, SkillBuff } from '../domain/buff'
 import { getBuff, JOB_BUFFS } from '../data/buff'
 import type { JobId } from '../domain/jobs'
 import type { WeaponType } from '../domain/weapons'
@@ -131,6 +131,8 @@ export interface BuffEntry {
   effects: EffectMap
   /** sum = 단순 합산 / max = 능력치별 최댓값 경쟁 풀 */
   pool: 'sum' | 'max'
+  /** 조건부 버프(스턴 마스터리 등) — 상시 합산에서 빠지고 해당 상황 계산에서만 쓰인다 */
+  conditional?: BuffCondition
 }
 
 /**
@@ -157,7 +159,8 @@ export function activeBuffEntries(ctx: BuffContext): BuffEntry[] {
     // 직업 상한(정령의 축복: 모험가 12) 초과 저장분 클램프
     const lv = Math.min(level, effectiveMasterLevel(b, jobId))
     const nonStacking = b.type === 'skill' && b.nonStacking
-    out.push({ buff: b, level: lv, effects: buffEffectsAtLevel(b, lv), pool: nonStacking ? 'max' : 'sum' })
+    const conditional = b.type === 'skill' ? b.conditional : undefined
+    out.push({ buff: b, level: lv, effects: buffEffectsAtLevel(b, lv), pool: nonStacking ? 'max' : 'sum', conditional })
   }
   // 무기 마스터리/엑스퍼트 — 장착 주무기 일치 시 자동 적용 (off한 것은 제외)
   for (const b of appliedMasteries(jobId, weaponType)) {
@@ -175,12 +178,27 @@ export function activeBuffEntries(ctx: BuffContext): BuffEntry[] {
   return out
 }
 
-/** 활성 버프 → 합산 EffectMap (합산 풀은 덧셈, 최댓값 풀은 능력치별 최댓값) */
+/**
+ * 활성 버프 → 합산 EffectMap (합산 풀은 덧셈, 최댓값 풀은 능력치별 최댓값).
+ * 조건부 버프(스턴 마스터리)는 상시 효과가 아니라 여기서 빠진다 — conditionalBuffEffects 참고.
+ */
 export function activeBuffEffects(ctx: BuffContext): EffectMap {
-  const entries = activeBuffEntries(ctx)
+  const entries = activeBuffEntries(ctx).filter((e) => !e.conditional)
   return sumEffects(
     ...entries.filter((e) => e.pool === 'sum').map((e) => e.effects),
     maxEffects(...entries.filter((e) => e.pool === 'max').map((e) => e.effects)),
+  )
+}
+
+/**
+ * 특정 조건의 버프만 합산한 EffectMap.
+ * 그 상황을 가정하는 계산(예: 스턴 상태를 때리는 '(스턴)' 스킬)에서 상시 효과 위에 더해 쓴다.
+ */
+export function conditionalBuffEffects(ctx: BuffContext, condition: BuffCondition): EffectMap {
+  return sumEffects(
+    ...activeBuffEntries(ctx)
+      .filter((e) => e.conditional === condition)
+      .map((e) => e.effects),
   )
 }
 
@@ -222,7 +240,8 @@ export function resourceSources(builts: BuiltItem[], ctx: BuffContext): Resource
     }
   }
 
-  const entries = activeBuffEntries(ctx)
+  // 조건부 버프는 상시 효과가 아니라 HP/MP 기여 목록에서도 뺀다 (activeBuffEffects와 같은 규칙)
+  const entries = activeBuffEntries(ctx).filter((e) => !e.conditional)
   const maxEntries = entries.filter((e) => e.pool === 'max')
   // 효과 id별 최댓값 승자 — 동률이면 먼저 온 쪽
   const winner = new Map<EffectId, BuffEntry>()

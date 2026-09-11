@@ -369,6 +369,30 @@ export function computeCast(p: CastDamageParams): CastResult | null {
   }
 }
 
+/**
+ * 시전 결과들의 가중 혼합 — 한 시전이 상황에 따라 다른 분포를 갖는 경우에 쓴다.
+ * (예: 에너지 버스터 단독 운용 — 스턴 확률만큼 '스턴 상태' 분포가 섞인다)
+ *
+ * 분포는 가중 혼합, 데미지 범위는 섞인 모든 경우를 덮도록 합집합을 취한다.
+ */
+export function mixCasts(parts: { weight: number; cast: CastResult }[]): CastResult {
+  const valid = parts.filter((p) => p.weight > 0)
+  if (valid.length <= 1) return (valid[0] ?? parts[0]).cast
+  const union = (a: DamageRange, b: DamageRange): DamageRange => ({
+    min: Math.min(a.min, b.min),
+    max: Math.max(a.max, b.max),
+  })
+  return {
+    dist: mixtureDist(valid.map(({ weight, cast }) => ({ weight, dist: cast.dist }))),
+    totalRange: valid.map((p) => p.cast.totalRange).reduce(union),
+    lineRanges: valid.reduce<DamageRange[]>(
+      (acc, { cast }) =>
+        acc.length === 0 ? cast.lineRanges : acc.map((r, i) => (cast.lineRanges[i] ? union(r, cast.lineRanges[i]) : r)),
+      [],
+    ),
+  }
+}
+
 /** @deprecated computeCast 사용 */
 export function computeCastDist(p: CastDamageParams): Dist | null {
   return computeCast(p)?.dist ?? null
