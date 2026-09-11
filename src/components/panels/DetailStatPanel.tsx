@@ -59,21 +59,25 @@ function EditBadgeButton({ label, onClick }: { label: string; onClick: () => voi
   )
 }
 
+/** 인게임 게이지 색을 따라 HP=빨강 / MP=파랑 (MP는 테마의 primary 파랑을 그대로 쓴다) */
+const RESOURCE_COLOR: Record<ResourceKind, string> = { hp: 'error.main', mp: 'primary.main' }
+
 /**
  * HP/MP 표시값.
  * 기본값을 넣기 전에는 최종값을 알 수 없으므로, 대신 지금 반영 중인 몫("+205 +20%")을
- * 흐리게 보여준다 — 값 앞의 +와 흐린 색이 "아직 최종치가 아니다"를 나타낸다.
- * 얹히는 몫이 없으면 0.
+ * 보여준다. 색은 그대로 두되 불투명도를 낮춰 "아직 최종치가 아니다"를 나타낸다
+ * (값 앞의 +도 같은 신호). 얹히는 몫이 없으면 0.
  */
-function ResourceValue({ parts }: { parts: ResourceParts }) {
+function ResourceValue({ kind, parts }: { kind: ResourceKind; parts: ResourceParts }) {
+  const color = RESOURCE_COLOR[kind]
   if (parts.total !== null) {
-    return <Typography variant="body2" sx={{ fontWeight: 600 }}>{parts.total.toLocaleString()}</Typography>
+    return <Typography variant="body2" sx={{ fontWeight: 600, color }}>{parts.total.toLocaleString()}</Typography>
   }
   const bits: string[] = []
   if (parts.flat) bits.push(`+${parts.flat}`)
   if (parts.percent) bits.push(`+${parts.percent}%`)
   return (
-    <Typography variant="body2" color="text.disabled" sx={{ fontWeight: 600 }}>
+    <Typography variant="body2" sx={{ fontWeight: 600, color, opacity: 0.45 }}>
       {bits.length > 0 ? bits.join(' ') : '0'}
     </Typography>
   )
@@ -101,8 +105,8 @@ export default function DetailStatPanel() {
   // 마법사는 명중률 자리를 마법명중률(floor(INT/10)+floor(LUK/10))로 대체.
   // 행 목록은 순서가 고정이라 렌더 key는 인덱스로 충분하다.
   const rows: { label: string; value: ReactNode; help?: ReactNode; onEdit?: () => void }[] = [
-    { label: RESOURCE_LABEL.hp, value: <ResourceValue parts={resources.hp} />, help: RESOURCE_HELP, onEdit: () => setEditKind('hp') },
-    { label: RESOURCE_LABEL.mp, value: <ResourceValue parts={resources.mp} />, help: RESOURCE_HELP, onEdit: () => setEditKind('mp') },
+    { label: RESOURCE_LABEL.hp, value: <ResourceValue kind="hp" parts={resources.hp} />, help: RESOURCE_HELP, onEdit: () => setEditKind('hp') },
+    { label: RESOURCE_LABEL.mp, value: <ResourceValue kind="mp" parts={resources.mp} />, help: RESOURCE_HELP, onEdit: () => setEditKind('mp') },
     isMagician
       ? { label: '마법명중률', value: fmt(magicAccuracy(finalStats)), help: MACC_HELP }
       : {
