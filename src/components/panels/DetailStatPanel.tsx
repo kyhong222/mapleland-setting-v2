@@ -11,10 +11,10 @@ import { useBuffEffects } from '../../store/useBuffEffects'
 import InfoTip, { InfoTitle, Formula, InfoWarn } from '../common/InfoTip'
 import { computeDetailStats, accStatCoef, evaStatCoef } from '../../domain/detailStats'
 import { computeResources } from '../../domain/resource'
-import type { ResourceParts } from '../../domain/resource'
+import type { ResourceKind, ResourceParts } from '../../domain/resource'
 import { magicAccuracy } from '../../domain/combat'
 import { JOBS } from '../../domain/jobs'
-import BaseResourceDialog from './BaseResourceDialog'
+import BaseResourceDialog, { RESOURCE_LABEL } from './BaseResourceDialog'
 import type { ReactNode } from 'react'
 
 /** 정수면 그대로, 소수면 1자리로 표기 */
@@ -37,12 +37,12 @@ const RESOURCE_HELP = (
 )
 
 /** 편집(연필) 배지 — 행 호버로 꺼낸다 (터치 기기는 항상 노출) */
-function EditBadgeButton({ onClick }: { onClick: () => void }) {
+function EditBadgeButton({ label, onClick }: { label: string; onClick: () => void }) {
   return (
     <Box
       className="edit-badge"
       role="button"
-      aria-label="기본 HP/MP 설정"
+      aria-label={`기본 ${label} 설정`}
       onClick={onClick}
       sx={{
         display: 'flex',
@@ -63,7 +63,8 @@ function EditBadgeButton({ onClick }: { onClick: () => void }) {
  * 행 이름. 기본값을 넣기 전에는 최종 HP가 아니라 장비·버프가 얹어 주는 몫만 보여주므로,
  * 그 상태에서는 이름도 '추가HP'로 바꿔 표시값과 어긋나지 않게 한다.
  */
-function resourceLabel(label: string, parts: ResourceParts): string {
+function resourceLabel(kind: ResourceKind, parts: ResourceParts): string {
+  const label = RESOURCE_LABEL[kind]
   return parts.total === null ? `추가${label}` : label
 }
 
@@ -92,7 +93,8 @@ export default function DetailStatPanel() {
   const baseHp = useBuildStore((s) => s.baseHp)
   const baseMp = useBuildStore((s) => s.baseMp)
   const { finalStats, effects } = aggregateBuild(baseStats, useActiveEquippedBuilts(), useBuffEffects())
-  const [editOpen, setEditOpen] = useState(false)
+  // HP/MP는 각각 따로 재서 넣는 값이라 편집 다이얼로그도 행별로 연다
+  const [editKind, setEditKind] = useState<ResourceKind | null>(null)
 
   if (!jobId) {
     return <CollapsiblePanel id="detail" title="세부스탯" />
@@ -108,8 +110,8 @@ export default function DetailStatPanel() {
   // 행 순서는 고정이므로 렌더 key는 인덱스로 잡는다 — 라벨은 상태에 따라 바뀌어(HP/추가HP)
   // key로 쓰면 두 행이 같은 값이 되는 순간 한 행이 통째로 사라진다.
   const rows: { label: string; value: ReactNode; help?: ReactNode; onEdit?: () => void }[] = [
-    { label: resourceLabel('HP', resources.hp), value: <ResourceValue parts={resources.hp} />, help: RESOURCE_HELP, onEdit: () => setEditOpen(true) },
-    { label: resourceLabel('MP', resources.mp), value: <ResourceValue parts={resources.mp} />, help: RESOURCE_HELP, onEdit: () => setEditOpen(true) },
+    { label: resourceLabel('hp', resources.hp), value: <ResourceValue parts={resources.hp} />, help: RESOURCE_HELP, onEdit: () => setEditKind('hp') },
+    { label: resourceLabel('mp', resources.mp), value: <ResourceValue parts={resources.mp} />, help: RESOURCE_HELP, onEdit: () => setEditKind('mp') },
     isMagician
       ? { label: '마법명중률', value: fmt(magicAccuracy(finalStats)), help: MACC_HELP }
       : {
@@ -169,7 +171,7 @@ export default function DetailStatPanel() {
               {help && <InfoTip title={help} />}
               {/* 편집 배지는 라벨 쪽에 둔다 — 값 뒤에 두면 숨어 있을 때도 자리를 차지해
                   HP/MP 숫자만 다른 행보다 왼쪽으로 밀린다. */}
-              {onEdit && <EditBadgeButton onClick={onEdit} />}
+              {onEdit && <EditBadgeButton label={label} onClick={onEdit} />}
             </Typography>
             {typeof value === 'string' ? <Typography variant="body2" sx={{ fontWeight: 600 }}>{value}</Typography> : value}
           </Box>
@@ -177,9 +179,9 @@ export default function DetailStatPanel() {
       </Box>
       <ActionHint
         sx={{ mt: 1 }}
-        actions={[{ key: <EditBadge size={15} sx={{ verticalAlign: 'text-bottom' }} />, desc: 'HP/MP 행의 이 버튼으로 기본(맨몸) HP·MP를 입력합니다', tone: 'secondary' }]}
+        actions={[{ key: <EditBadge size={15} sx={{ verticalAlign: 'text-bottom' }} />, desc: 'HP·MP 행의 이 버튼으로 기본(맨몸) 값을 각각 입력합니다', tone: 'secondary' }]}
       />
-      {editOpen && <BaseResourceDialog onClose={() => setEditOpen(false)} />}
+      {editKind && <BaseResourceDialog kind={editKind} onClose={() => setEditKind(null)} />}
     </CollapsiblePanel>
   )
 }

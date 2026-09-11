@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
-import Divider from '@mui/material/Divider'
 import Dialog from '@mui/material/Dialog'
 import DialogTitle from '@mui/material/DialogTitle'
 import DialogContent from '@mui/material/DialogContent'
@@ -16,12 +15,12 @@ import { useActiveEquippedBuilts } from '../../store/activation'
 import { aggregateBuild, resourceSources } from '../../store/aggregate'
 import type { ResourceSource } from '../../store/aggregate'
 import { resourceParts, resourceEffectIds, baseFromShown, resourceTotal } from '../../domain/resource'
-import type { ResourceKind, ResourceParts } from '../../domain/resource'
+import type { ResourceKind } from '../../domain/resource'
 import { EFFECTS } from '../../domain/effects'
 import type { EffectId } from '../../domain/effects'
 import { buffIconUrl } from '../../lib/buffIcon'
 
-const KIND_LABEL: Record<ResourceKind, string> = { hp: 'HP', mp: 'MP' }
+export const RESOURCE_LABEL: Record<ResourceKind, string> = { hp: 'HP', mp: 'MP' }
 
 /** "+60" / "+10%" — percent 단위만 뒤에 % */
 function contribText(id: EffectId, value: number): string {
@@ -51,19 +50,32 @@ function SourceIcon({ source, ids }: { source: ResourceSource; ids: EffectId[] }
 }
 
 /**
- * HP(또는 MP) 한 종류의 입력 구역 — 기여 요소 아이콘 + 인게임 표시값 입력 + 역산 결과.
- * 입력은 문자열 draft로 들고 있다가 [적용] 시점에만 스토어로 커밋한다.
+ * 기본(맨몸) HP 또는 MP 입력 다이얼로그. HP/MP는 서로 다른 값을 재서 넣는 일이라
+ * 한 화면에 묶지 않고 각 행의 편집 버튼이 자기 것만 연다.
+ *
+ * 맨몸 값은 레벨업 증가량이 랜덤 + AP 투자 + HP증가 패시브라 레벨/직업만으로 유도할 수
+ * 없다. 그렇다고 "다 벗고 재서 넣어라"는 번거로우므로, **지금 착용·적용한 그대로**의
+ * 인게임 표시값을 받아 현재 반영분(고정·증가율)을 걷어내고 기본값만 남긴다
+ * (domain/resource.baseFromShown).
+ *
+ * 그래서 "지금 무엇이 반영된 상태인지"가 눈에 보여야 한다 — 장착 장비(보석·주문서 포함)와
+ * 활성 버프 중 이 값에 기여하는 것을 전부 아이콘으로 나열한다.
  */
-function ResourceSection({ kind, parts, sources, draft, onDraft }: {
-  kind: ResourceKind
-  parts: ResourceParts
-  sources: ResourceSource[]
-  draft: string
-  onDraft: (v: string) => void
-}) {
+export default function BaseResourceDialog({ kind, onClose }: { kind: ResourceKind; onClose: () => void }) {
+  const baseStats = useBuildStore((s) => s.baseStats)
+  const stored = useBuildStore((s) => (kind === 'hp' ? s.baseHp : s.baseMp))
+  const setBaseResources = useBuildStore((s) => s.setBaseResources)
+  const builts = useActiveEquippedBuilts()
+  const ctx = useBuffContext()
+  const { effects } = aggregateBuild(baseStats, builts, useBuffEffects())
+
+  const label = RESOURCE_LABEL[kind]
+  const parts = resourceParts(kind, effects, stored)
   const ids = resourceEffectIds(kind)
-  const related = sources.filter((s) => ids.some((id) => s.effects[id]))
-  const label = KIND_LABEL[kind]
+  const related = resourceSources(builts, ctx).filter((s) => ids.some((id) => s.effects[id]))
+
+  // 이미 입력돼 있으면 현재 최종값을 채워 둔다 — 인게임 값과 바로 대조할 수 있게
+  const [draft, setDraft] = useState(parts.total === null ? '' : String(parts.total))
 
   const n = Number(draft)
   const valid = draft.trim() !== '' && Number.isFinite(n) && n > 0
@@ -71,114 +83,62 @@ function ResourceSection({ kind, parts, sources, draft, onDraft }: {
   // 역산값을 다시 씌워도 입력값이 안 나오면 도달할 수 없는 표시값이다(오타 등)
   const roundTrip = base === null ? null : resourceTotal(base, parts.flat, parts.percent)
 
-  return (
-    <Box>
-      <Box sx={{ display: 'flex', alignItems: 'baseline', gap: 1, mb: 0.5 }}>
-        <Typography variant="subtitle2">{label}</Typography>
-        <Typography variant="caption" color="text.secondary">
-          현재 반영분 — 고정 +{parts.flat} · 증가 +{parts.percent}%
-        </Typography>
-      </Box>
-
-      {related.length > 0 ? (
-        <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.75, mb: 1 }}>
-          {related.map((s) => (
-            <SourceIcon key={s.key} source={s} ids={ids} />
-          ))}
-        </Box>
-      ) : (
-        <Typography variant="caption" color="text.disabled" sx={{ display: 'block', mb: 1 }}>
-          {label}에 영향을 주는 장비·버프가 없습니다 — 인게임 값이 곧 기본값입니다.
-        </Typography>
-      )}
-
-      <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-        <TextField
-          size="small"
-          type="number"
-          label={`인게임 ${label}`}
-          value={draft}
-          onChange={(e) => onDraft(e.target.value)}
-          sx={{ width: 150 }}
-        />
-        <Typography variant="body2" color={base === null ? 'text.disabled' : 'text.secondary'}>
-          {base === null ? `기본 ${label} —` : `기본 ${label} ${base.toLocaleString()}`}
-        </Typography>
-      </Box>
-      {roundTrip !== null && roundTrip !== n && (
-        <Typography variant="caption" color="warning.main" sx={{ display: 'block', mt: 0.5 }}>
-          이 세팅에서는 {n.toLocaleString()}이 나올 수 없습니다 (가장 가까운 값 {roundTrip.toLocaleString()}). 입력값을 확인해 주세요.
-        </Typography>
-      )}
-    </Box>
-  )
-}
-
-/**
- * 기본(맨몸) HP/MP 입력 다이얼로그.
- *
- * 맨몸 HP/MP는 레벨업 증가량이 랜덤이고 AP 투자·HP증가 패시브까지 얽혀 레벨/직업만으로
- * 유도할 수 없다. 그렇다고 "다 벗고 재서 넣어라"고 하면 쓰기 번거로우므로,
- * **지금 착용·적용한 그대로**의 인게임 표시값을 받아 현재 반영분(고정·증가율)을 걷어내고
- * 기본값만 남긴다(domain/resource.baseFromShown).
- *
- * 그래서 "지금 무엇이 반영된 상태인지"가 눈에 보여야 한다 — 장착 장비(보석·주문서 포함)와
- * 활성 버프 중 HP/MP에 기여하는 것을 전부 아이콘으로 나열한다.
- */
-export default function BaseResourceDialog({ onClose }: { onClose: () => void }) {
-  const baseStats = useBuildStore((s) => s.baseStats)
-  const baseHp = useBuildStore((s) => s.baseHp)
-  const baseMp = useBuildStore((s) => s.baseMp)
-  const setBaseResources = useBuildStore((s) => s.setBaseResources)
-  const builts = useActiveEquippedBuilts()
-  const ctx = useBuffContext()
-  const { effects } = aggregateBuild(baseStats, builts, useBuffEffects())
-
-  const hp = resourceParts('hp', effects, baseHp)
-  const mp = resourceParts('mp', effects, baseMp)
-  const sources = resourceSources(builts, ctx)
-
-  // 이미 입력돼 있으면 현재 최종값을 채워 둔다 — 인게임 값과 바로 대조할 수 있게
-  const [hpDraft, setHpDraft] = useState(hp.total === null ? '' : String(hp.total))
-  const [mpDraft, setMpDraft] = useState(mp.total === null ? '' : String(mp.total))
-
-  const commit = (draft: string, parts: ResourceParts): number | null => {
-    const n = Number(draft)
-    if (draft.trim() === '' || !Number.isFinite(n) || n <= 0) return null
-    return baseFromShown(n, parts.flat, parts.percent)
-  }
-
-  const apply = () => {
-    setBaseResources({ hp: commit(hpDraft, hp), mp: commit(mpDraft, mp) })
+  const save = (value: number | null) => {
+    setBaseResources(kind === 'hp' ? { hp: value } : { mp: value })
     onClose()
   }
 
   return (
     <Dialog open onClose={onClose} maxWidth="sm" fullWidth>
-      <DialogTitle>기본 HP / MP 설정</DialogTitle>
+      <DialogTitle>기본 {label} 설정</DialogTitle>
       <DialogContent>
         <Typography variant="body2" color="text.secondary" sx={{ mb: 1.5 }}>
-          맨몸 HP/MP는 레벨업 증가량이 랜덤이라 계산으로 알아낼 수 없습니다.
+          맨몸 {label}는 레벨업 증가량이 랜덤이라 계산으로 알아낼 수 없습니다.
           <Box component="span" sx={{ color: 'text.primary', fontWeight: 600 }}> 지금 착용·적용한 그대로</Box>의
           인게임 스탯창 값을 넣으면, 아래 요소들을 걷어내고 기본값을 역산해 저장합니다.
         </Typography>
-        <ResourceSection kind="hp" parts={hp} sources={sources} draft={hpDraft} onDraft={setHpDraft} />
-        <Divider sx={{ my: 1.5 }} />
-        <ResourceSection kind="mp" parts={mp} sources={sources} draft={mpDraft} onDraft={setMpDraft} />
+
+        <Typography variant="caption" color="text.secondary" sx={{ display: 'block', mb: 0.5 }}>
+          현재 반영분 — 고정 +{parts.flat} · 증가 +{parts.percent}%
+        </Typography>
+
+        {related.length > 0 ? (
+          <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.75, mb: 1.5 }}>
+            {related.map((s) => (
+              <SourceIcon key={s.key} source={s} ids={ids} />
+            ))}
+          </Box>
+        ) : (
+          <Typography variant="caption" color="text.disabled" sx={{ display: 'block', mb: 1.5 }}>
+            {label}에 영향을 주는 장비·버프가 없습니다 — 인게임 값이 곧 기본값입니다.
+          </Typography>
+        )}
+
+        <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+          <TextField
+            size="small"
+            type="number"
+            autoFocus
+            label={`인게임 ${label}`}
+            value={draft}
+            onChange={(e) => setDraft(e.target.value)}
+            sx={{ width: 150 }}
+          />
+          <Typography variant="body2" color={base === null ? 'text.disabled' : 'text.secondary'}>
+            {base === null ? `기본 ${label} —` : `기본 ${label} ${base.toLocaleString()}`}
+          </Typography>
+        </Box>
+        {roundTrip !== null && roundTrip !== n && (
+          <Typography variant="caption" color="warning.main" sx={{ display: 'block', mt: 0.5 }}>
+            이 세팅에서는 {n.toLocaleString()}이 나올 수 없습니다 (가장 가까운 값 {roundTrip.toLocaleString()}). 입력값을 확인해 주세요.
+          </Typography>
+        )}
       </DialogContent>
       <DialogActions>
-        <Button
-          onClick={() => {
-            setBaseResources({ hp: null, mp: null })
-            onClose()
-          }}
-          color="inherit"
-        >
-          지우기
-        </Button>
+        <Button onClick={() => save(null)} color="inherit">지우기</Button>
         <Box sx={{ flex: 1 }} />
         <Button onClick={onClose} color="inherit">취소</Button>
-        <Button onClick={apply} variant="contained">적용</Button>
+        <Button onClick={() => save(base)} variant="contained">적용</Button>
       </DialogActions>
     </Dialog>
   )
