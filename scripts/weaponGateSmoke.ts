@@ -73,6 +73,10 @@ const BOOSTER_CASES: [string, JobId, WeaponType[], WeaponType[]][] = [
   ['1301004', 'darkKnight', ['spear'], ['polearm']],
   ['1301005', 'darkKnight', ['polearm'], ['spear']],
   ['11101001', 'soulMaster', ['oneHandedSword', 'twoHandedSword'], []],
+  // 매직 부스터도 완드/스태프를 들어야 시전된다
+  ['2111005', 'archMageFP', ['wand', 'staff'], ['dagger']],
+  ['2211005', 'archMageIL', ['wand', 'staff'], ['dagger']],
+  ['12101004', 'flameWizard', ['wand', 'staff'], ['dagger']],
 ]
 console.log('\n== 무기 부스터')
 for (const [id, job, yes, no] of BOOSTER_CASES) {
@@ -82,10 +86,11 @@ for (const [id, job, yes, no] of BOOSTER_CASES) {
   expect(`${name}(${job}) + 무기 미장착 미적용`, boostSteps(job, undefined, id), 0)
 }
 
-// ── 무기 제한이 없는 버프는 그대로 적용 ──────────────────────────
+// ── 무기를 가리지 않는 버프는 그대로 적용 ────────────────────────
+// 윈드 부스터는 "기존 부스터와 중복하여 사용할 수 있고 파티원 모두 효과를 받는다"
 console.log('\n== 무기 제한 없는 버프')
 expect('윈드 부스터 + 무기 미장착', boostSteps('hero', undefined, '5121009') > 0, true)
-expect('매직 부스터 + 무기 미장착', boostSteps('archMageFP', undefined, '2111005') > 0, true)
+expect('윈드 부스터 + 두손도끼', boostSteps('hero', 'twoHandedAxe', '5121009') > 0, true)
 
 console.log(fails === 0 ? '\n전부 통과' : `\n실패 ${fails}건`)
 if (fails > 0) process.exitCode = 1

@@ -2513,6 +2513,10 @@
     "jobs": [
       "archMageFP"
     ],
+    "weaponTypes": [
+      "wand",
+      "staff"
+    ],
     "effectsByLevel": [
       {
         "castSpeedBoost": 1
@@ -2586,6 +2590,10 @@
     "masterLevel": 20,
     "jobs": [
       "archMageIL"
+    ],
+    "weaponTypes": [
+      "wand",
+      "staff"
     ],
     "effectsByLevel": [
       {
@@ -2738,6 +2746,10 @@
     "masterLevel": 20,
     "jobs": [
       "flameWizard"
+    ],
+    "weaponTypes": [
+      "wand",
+      "staff"
     ],
     "effectsByLevel": [
       {

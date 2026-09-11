@@ -89,7 +89,7 @@ export function appliedMasteries(jobId: JobId | null, weaponType?: WeaponType): 
 /**
  * 무기 게이팅 통과 여부. weaponTypes가 붙은 스킬(무기 마스터리/엑스퍼트, 무기 부스터)은
  * 인게임에서도 해당 무기를 들었을 때만 적용/시전되므로, 장착 주무기가 맞아야 효과가 들어간다.
- * weaponTypes가 없는 버프(윈드 부스터·매직 부스터 등)는 항상 통과한다.
+ * weaponTypes가 없는 버프(윈드 부스터 등 무기를 가리지 않는 것)는 항상 통과한다.
  */
 export function weaponGateOk(buff: Buff, weaponType?: WeaponType): boolean {
   if (buff.type !== 'skill' || !buff.weaponTypes) return true
