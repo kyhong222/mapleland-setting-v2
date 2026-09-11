@@ -24,6 +24,7 @@ npx tsx scripts/smoke.ts         # itemRepository(로컬 카탈로그/API 폴백
 npx tsx scripts/scrollSmoke.ts   # 아이템별 주문서 매칭 확인
 npx tsx scripts/tucSmoke.ts      # postItem 오버라이드(tuc) 확인
 npx tsx scripts/weaponGateSmoke.ts # 무기 마스터리/부스터의 무기 게이팅 확인
+npx tsx scripts/resourceSmoke.ts   # HP/MP 수식·역산을 인게임 실측 4건과 대조
 ```
 
 변경 후에는 최소한 `npm run typecheck`를 돌린다.
@@ -61,6 +62,7 @@ npx tsx scripts/weaponGateSmoke.ts # 무기 마스터리/부스터의 무기 게
 
 - `domain/attackPower.ts`의 `totalAttack()` / `totalMagic()`
 - `domain/detailStats.ts`의 `computeDetailStats()`
+- `domain/resource.ts`의 `resourceParts()` (HP/MP의 `hpP_botf`·`mpP_botf`)
 
 → 새 독립 채널을 추가하면 위 두 곳을 반드시 함께 고쳐야 한다. 안 그러면 조용히 무시된다.
 

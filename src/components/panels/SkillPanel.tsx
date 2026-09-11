@@ -34,21 +34,11 @@ import { CHARGE_LABEL, CHARGE_MASTER, CHARGE_ELEMENTS } from '../../domain/palad
 import type { ChargeElement } from '../../domain/paladinCharge'
 import { DEFAULT_CHARGE } from '../../store/buildStore'
 import { formatEffects } from '../../lib/effectFormat'
+import { buffIconUrl } from '../../lib/buffIcon'
 import { useTouchLongPress } from '../../lib/useLongPress'
 
 /** 레벨 조정 대상: 토글버프(영메·메용/직업패시브) / 적용버프(도핑·개인·파티) / 마스터리 */
 type BuffKind = 'toggle' | 'applied' | 'mastery'
-
-/**
- * 스킬=아이콘 경로, 아이템=id로 아이콘 URL 유도.
- * 같은 스킬이라도 직업에 따라 아이콘이 다른 경우(시그너스 분노 등) iconByJob이 우선한다.
- */
-function buffIconUrl(buff: Buff, jobId: JobId | null): string | undefined {
-  if (buff.type === 'skill' && jobId && buff.iconByJob?.[jobId]) return buff.iconByJob[jobId]
-  if (buff.icon) return buff.icon
-  if (buff.type === 'item') return `https://maplestory.io/api/gms/62/item/${buff.id}/icon`
-  return undefined
-}
 
 /** 파티 버프를 이 직업이 직접 가지고 있는가 (가지고 있으면 '개인'으로 분류) */
 function ownsBuff(buff: Buff, jobId: JobId | null): boolean {

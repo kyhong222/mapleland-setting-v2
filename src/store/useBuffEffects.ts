@@ -3,8 +3,10 @@ import type { EffectMap } from '../domain/effects'
 import { useBuildStore } from './buildStore'
 import { useInventoryStore } from './inventoryStore'
 import { activeBuffEffects, equippedWeaponType, equippedHasShield } from './aggregate'
+import type { BuffContext } from './aggregate'
 
-export function useBuffEffects(): EffectMap {
+/** 현재 빌드의 버프 계산 컨텍스트 (무기/방패 게이팅 포함) */
+export function useBuffContext(): BuffContext {
   const jobId = useBuildStore((s) => s.jobId)
   const activeBuffs = useBuildStore((s) => s.activeBuffs)
   const appliedBuffs = useBuildStore((s) => s.appliedBuffs)
@@ -14,5 +16,9 @@ export function useBuffEffects(): EffectMap {
   const invItems = useInventoryStore((s) => s.items)
   const weaponType = equippedWeaponType(equipped, invItems)
   const hasShield = equippedHasShield(equipped, invItems)
-  return activeBuffEffects({ activeBuffs, appliedBuffs, masteryLevels, masteryOff, jobId, weaponType, hasShield })
+  return { activeBuffs, appliedBuffs, masteryLevels, masteryOff, jobId, weaponType, hasShield }
+}
+
+export function useBuffEffects(): EffectMap {
+  return activeBuffEffects(useBuffContext())
 }
