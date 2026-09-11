@@ -47,6 +47,7 @@ function EditBadgeButton({ onClick }: { onClick: () => void }) {
       sx={{
         display: 'flex',
         alignItems: 'center',
+        ml: 0.5,
         cursor: 'pointer',
         transition: 'opacity 120ms',
         // 호버가 되는 기기에서만 숨겼다가 행 호버로 꺼낸다. 터치 기기는 꺼낼 방법이 없어 항상 보인다.
@@ -166,11 +167,11 @@ export default function DetailStatPanel() {
             <Typography variant="body2" color="text.secondary" sx={{ display: 'flex', alignItems: 'center' }}>
               {label}
               {help && <InfoTip title={help} />}
-            </Typography>
-            <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
-              {typeof value === 'string' ? <Typography variant="body2" sx={{ fontWeight: 600 }}>{value}</Typography> : value}
+              {/* 편집 배지는 라벨 쪽에 둔다 — 값 뒤에 두면 숨어 있을 때도 자리를 차지해
+                  HP/MP 숫자만 다른 행보다 왼쪽으로 밀린다. */}
               {onEdit && <EditBadgeButton onClick={onEdit} />}
-            </Box>
+            </Typography>
+            {typeof value === 'string' ? <Typography variant="body2" sx={{ fontWeight: 600 }}>{value}</Typography> : value}
           </Box>
         ))}
       </Box>
