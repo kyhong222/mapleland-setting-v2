@@ -31,6 +31,7 @@ import { attacksPerMinute } from '../../data/attackSpeed'
 import { chargeMultiplier, chargeFromUi, chargeElementCodes } from '../../domain/paladinCharge'
 import type { ChargeElement } from '../../domain/paladinCharge'
 import ChargeMultTip from '../common/ChargeMultTip'
+import { objectJosa } from '../../lib/josa'
 
 /**
  * 시그너스 차지 — 직업당 하나이며, 특화 버프 토글 레벨이 그대로 차지 레벨이 된다.
@@ -325,6 +326,22 @@ export default function NhitPanel() {
     }
   })()
 
+  /**
+   * 추가스킬을 넣었을 때의 안내 문구 — '기대 처치 타수'가 **메인 스킬** 타수라는 뜻임을 밝힌다.
+   * 메인/추가를 뒤집어 넣으면(더블 어퍼를 메인, 피스트를 추가스킬로) 타수가 오히려 늘어
+   * 계산이 틀린 것처럼 보이기 때문에 덧붙였다.
+   */
+  const preCastNote = (() => {
+    if (!selectedSkill || !preCastPrior) return null
+    // 미지원(분포를 못 만든) 추가스킬은 계산에 안 들어가므로 문구에서도 뺀다
+    const counts = new Map<string, number>()
+    for (const p of preCastInfos) if (p.ok) counts.set(p.name, (counts.get(p.name) ?? 0) + 1)
+    if (counts.size === 0) return null
+    const pre = [...counts].map(([name, n]) => (n > 1 ? `${name} ×${n}` : name)).join(' · ')
+    const main = selectedSkill.description?.name ?? String(selectedSkill.id)
+    return `※ ${pre} 이후 ${main}${objectJosa(main)} 몇 방 시전해야 하는지에 대한 기대 타수입니다.`
+  })()
+
   /** 변형 스킬 선택 시의 안내 문구 (스턴 마스터리가 어떻게 들어가는지) */
   const stunNote = (() => {
     if (!selectedSkill) return null
@@ -473,6 +490,11 @@ export default function NhitPanel() {
                     {result.nhit.over >= 0.0005 && <Row label="11방+" value={pct(result.nhit.over)} />}
                   </Box>
                   <Row label={result.hasPreCast ? '기대 처치 타수(추가스킬 후)' : '기대 처치 타수'} value={result.nhit.over >= 0.9995 ? '알 수 없음' : `${result.nhit.meanHits.toFixed(2)}방`} strong />
+                  {preCastNote && (
+                    <Typography variant="caption" color="text.disabled" sx={{ display: 'block', mt: 0.25, lineHeight: 1.4 }}>
+                      {preCastNote}
+                    </Typography>
+                  )}
                 </>
               )}
 
