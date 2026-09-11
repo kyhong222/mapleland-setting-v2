@@ -190,80 +190,19 @@
     "scope": "party",
     "mode": "active",
     "masterLevel": 20,
-    "effectsByLevel": [
-      {
-        "monsterDamageTakenP": 1
-      },
-      {
-        "monsterDamageTakenP": 1
-      },
-      {
-        "monsterDamageTakenP": 1
-      },
-      {
-        "monsterDamageTakenP": 1
-      },
-      {
-        "monsterDamageTakenP": 2
-      },
-      {
-        "monsterDamageTakenP": 2
-      },
-      {
-        "monsterDamageTakenP": 2
-      },
-      {
-        "monsterDamageTakenP": 2
-      },
-      {
-        "monsterDamageTakenP": 3
-      },
-      {
-        "monsterDamageTakenP": 3
-      },
-      {
-        "monsterDamageTakenP": 3
-      },
-      {
-        "monsterDamageTakenP": 4
-      },
-      {
-        "monsterDamageTakenP": 4
-      },
-      {
-        "monsterDamageTakenP": 4
-      },
-      {
-        "monsterDamageTakenP": 5
-      },
-      {
-        "monsterDamageTakenP": 5
-      },
-      {
-        "monsterDamageTakenP": 6
-      },
-      {
-        "monsterDamageTakenP": 6
-      },
-      {
-        "monsterDamageTakenP": 7
-      },
-      {
-        "monsterDamageTakenP": 7
-      }
-    ],
     "icon": "/skill-icons/1201006.png",
     "owners": [
       "paladin"
     ],
     "derive": {
       "monsterAttackReduceP": {
-        "field": "x",
-        "scale": -1
+        "field": "pad"
       },
       "monsterAccReduceP": {
-        "field": "x",
-        "scale": -1
+        "field": "acc"
+      },
+      "monsterDamageTakenP": {
+        "field": "damage"
       }
     }
   },

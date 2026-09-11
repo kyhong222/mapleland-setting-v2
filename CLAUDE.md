@@ -103,7 +103,10 @@ maplestory.io API ───┘   (로컬 카탈로그 우선 → GMS 62 → GMS 
 
 - 스킬북에 없는 버프(영웅의 메아리·정령의 축복·기상효과·버닝)만 `effectsByLevel`에 값을 직접 적는다.
 - 일부 능력치만 스킬북에 근거가 없으면 둘을 함께 쓴다 — `effectsByLevel` 쪽이 파생값을 덮는다
-  (메소 가드 `damageReduce`, 위협 `monsterDamageTakenP`).
+  (현재는 메소 가드 `damageReduce` 하나뿐. 데미지 감소 50%는 인게임 고정값이고 WZ `x`는 다른 뜻이다).
+- 스킬북이 상류(`ms-skill-simulator`)보다 낡아 파생이 막히는 경우가 있다. 위협이 그랬다 —
+  스킬이 리워크됐는데 우리 쪽은 옛 정의(`x`)라 값을 손으로 적어둘 수밖에 없었다.
+  파생할 필드가 없어 보이면 먼저 상류와 대조할 것.
 - 콤보/차지/엘리멘탈 리셋은 효과표가 비어 있다. 수치를 `EffectMap`이 아니라 도메인에서 스킬북으로
   직접 계산하기 때문(`comboFinalDamageP`/`chargeCombinedCoef`/`skillNumAt`).
 - 새 사본이 생기면 `scripts/buffDeriveSmoke.ts`가 잡는다. **스킬 수치를 고칠 때는 스킬북만 고친다.**

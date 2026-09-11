@@ -53,9 +53,10 @@ expect('매직 부스터 lv20', at('2111005', 20)?.castSpeedBoost, 2)
 expect('아킬레스 lv30', at('1120004', 30)?.damageReduce, 15)
 // 스탠스 30레벨 = 95% (스킬북 prop)
 expect('스탠스 히어로 lv30', at('1121002', 30)?.stanceP, 95)
-// 파생과 직접값이 섞인 버프 — 위협은 x 파생 2종 + 메랜 고유값 1종
-expect('위협 lv20 (파생)', at('1201006', 20)?.monsterAccReduceP, 20)
-expect('위협 lv20 (직접값)', at('1201006', 20)?.monsterDamageTakenP, 7)
+// 위협 20레벨 = 적 물공/명중 -20%, 받는 데미지 +7%
+expect('위협 lv20 물공감소', at('1201006', 20)?.monsterAttackReduceP, 20)
+expect('위협 lv20 명중감소', at('1201006', 20)?.monsterAccReduceP, 20)
+expect('위협 lv20 받는뎀증가', at('1201006', 20)?.monsterDamageTakenP, 7)
 
 // ── §2 사본 탐지: 스킬북에 있는데 레벨값을 JSON에 직접 적어둔 버프 ────
 // 런타임 Buff에는 derive가 남지 않으므로 JSON 원본을 직접 본다.
@@ -64,9 +65,8 @@ const BUFF_DIR = path.resolve(import.meta.dirname, '../src/data/buff')
 /**
  * 파생하지 않고 직접 값을 두는 것이 맞는 효과 — 스킬북에 대응 필드가 없다.
  *  - 메소 가드 damageReduce: WZ x는 "메소로 방어하는 비율", 데미지 감소 50%는 인게임 고정
- *  - 위협 monsterDamageTakenP: 메랜 고유 효과
  */
-const ALLOWED_LITERAL = new Set(['4211005:damageReduce', '1201006:monsterDamageTakenP'])
+const ALLOWED_LITERAL = new Set(['4211005:damageReduce'])
 
 const copies: string[] = []
 for (const dir of ['common', 'enhancement', 'jobSpecific']) {

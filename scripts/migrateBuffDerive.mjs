@@ -51,9 +51,10 @@ const MANUAL = {
   attackSpeedBoost: { field: 'x', scale: -1 },
   castSpeedBoost: { field: 'x', scale: -1 },
   windBoostStep: { field: 'x', scale: -1 },
-  // 위협: 적 물공/명중 감소량(WZ x는 음수)
-  monsterAttackReduceP: { field: 'x', scale: -1 },
-  monsterAccReduceP: { field: 'x', scale: -1 },
+  // 위협: 적 물공/명중 감소량(%)과 받는 데미지 증가(%)
+  monsterAttackReduceP: { field: 'pad' },
+  monsterAccReduceP: { field: 'acc' },
+  monsterDamageTakenP: { field: 'damage' },
   // 스탠스: WZ prop이 곧 넉백 방지 확률%
   stanceP: { field: 'prop' },
   // 엘리먼트 엠플리피케이션: WZ y가 "데미지 150%" 형태 → 증가분으로 환산
@@ -75,9 +76,8 @@ const MANUAL_BY_ID = {
 /**
  * 파생하지 않고 값을 그대로 두는 효과 (스킬북에 근거가 없음).
  *  - 메소 가드 damageReduce: WZ x는 "메소로 방어하는 비율"이고 데미지 감소 50%는 인게임 고정값
- *  - 위협 monsterDamageTakenP: 메랜 고유 효과로 WZ에 대응 필드가 없다
  */
-const KEEP_LITERAL = new Set(['4211005:damageReduce', '1201006:monsterDamageTakenP'])
+const KEEP_LITERAL = new Set(['4211005:damageReduce'])
 
 /** 효과 id → 이름이 대응되는 WZ 필드 (자동 추론 우선순위) */
 const PREFERRED_FIELD = {
