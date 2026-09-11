@@ -69,7 +69,7 @@ function resourceLabel(label: string, parts: ResourceParts): string {
 /**
  * HP/MP 표시값.
  * 기본값을 넣기 전에는 최종값을 알 수 없으므로, 대신 지금 반영 중인 몫("+205 +20%")을
- * 흐리게 보여준다 — 뭘 더 해야 숫자가 나오는지가 그대로 드러나게.
+ * 흐리게 보여준다 — 뭘 더 해야 숫자가 나오는지가 그대로 드러나게. 얹히는 몫이 없으면 0.
  */
 function ResourceValue({ parts }: { parts: ResourceParts }) {
   if (parts.total !== null) {
@@ -80,7 +80,7 @@ function ResourceValue({ parts }: { parts: ResourceParts }) {
   if (parts.percent) bits.push(`+${parts.percent}%`)
   return (
     <Typography variant="body2" color="text.disabled" sx={{ fontWeight: 600 }}>
-      {bits.length > 0 ? bits.join(' ') : '—'}
+      {bits.length > 0 ? bits.join(' ') : '0'}
     </Typography>
   )
 }
