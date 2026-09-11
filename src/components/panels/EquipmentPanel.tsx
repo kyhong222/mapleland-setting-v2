@@ -27,10 +27,10 @@ const ICON = 42
 /** 5×7 슬롯 배치 (null = 빈칸/비활성 박스) */
 const LAYOUT: (EquipInstance | null)[][] = [
   [null, 'hat', null, null, null],
-  ['medal', 'faceAccessory', null, 'ring1', 'ring2'],
+  ['medal', 'faceAccessory', null, 'ring3', 'ring4'],
   [null, null, 'eyeAccessory', 'earring', null],
   ['cape', 'top', 'pendant', 'weapon', 'secondary'],
-  ['gloves', 'bottom', 'belt', 'ring3', 'ring4'],
+  ['gloves', 'bottom', 'belt', 'ring1', 'ring2'],
   [null, null, 'shoes', null, null],
   [null, null, 'petAcc1', 'petAcc2', 'petAcc3'],
 ]
