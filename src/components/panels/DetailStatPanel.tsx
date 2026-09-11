@@ -3,7 +3,6 @@ import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
 import CollapsiblePanel from '../common/CollapsiblePanel'
 import EditBadge from '../common/EditBadge'
-import ActionHint from '../common/ActionHint'
 import { useBuildStore } from '../../store/buildStore'
 import { aggregateBuild } from '../../store/aggregate'
 import { useActiveEquippedBuilts } from '../../store/activation'
@@ -172,10 +171,6 @@ export default function DetailStatPanel() {
           </Box>
         ))}
       </Box>
-      <ActionHint
-        sx={{ mt: 1 }}
-        actions={[{ key: <EditBadge size={15} sx={{ verticalAlign: 'text-bottom' }} />, desc: 'HP·MP 행의 이 버튼으로 기본(맨몸) 값을 각각 입력합니다', tone: 'secondary' }]}
-      />
       {editKind && <BaseResourceDialog kind={editKind} onClose={() => setEditKind(null)} />}
     </CollapsiblePanel>
   )
