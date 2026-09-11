@@ -27,26 +27,11 @@ npx tsx scripts/tucSmoke.ts      # postItem 오버라이드(tuc) 확인
 
 변경 후에는 최소한 `npm run typecheck`를 돌린다.
 
-### 실행 환경 (Windows에서 작업하는 경우)
+### 실행 환경
 
-레포는 WSL 안(`/home/ubuntu/codes/mapleland-setting-v2`)에 있고 Windows 셸에서는
-`\\wsl.localhost\Ubuntu\...` 경로로 보인다. 도구마다 사는 곳이 달라서 주의가 필요하다.
-
-- **`git`** — Windows 쪽에서 WSL 경로를 그대로 다룰 수 있다. 별도 처리 없이 쓰면 된다.
-- **`npm` · `npx` · `gh`** — Windows PATH에 **없고 WSL 안에만 있다.** 게다가 nvm이 로그인 셸에서
-  자동 로드되지 않아 `wsl -lc 'npm ...'`조차 `command not found`가 난다. PATH를 직접 얹을 것:
-
-```bash
-# npm / npx (nvm 경로를 PATH에 추가)
-wsl.exe -e bash -lc 'export PATH="$HOME/.nvm/versions/node/v24.16.0/bin:$PATH"; \
-  cd /home/ubuntu/codes/mapleland-setting-v2 && npm run typecheck'
-
-# gh (/usr/bin/gh — PATH 조작 불필요)
-wsl.exe -e bash -lc 'cd /home/ubuntu/codes/mapleland-setting-v2 && gh pr create ...'
-```
-
-`gh`에 여러 줄 본문을 넘길 때는 셸 중첩 인용이 깨지기 쉬우니 파일로 쓰고 `--body-file`을 쓴다.
-Windows 임시 경로는 WSL에서 `/mnt/c/...`로 접근한다.
+위 명령어가 그대로 듣지 않는 머신이 있다(툴체인 위치, 경로 표기, WSL 경유 여부 등).
+**레포 루트에 `LOCAL.md`가 있으면 먼저 읽을 것** — 그 PC에서만 통하는 호출 방법이 적혀 있다.
+`LOCAL.md`는 머신마다 다르므로 gitignore 대상이고, 여기(CLAUDE.md)에는 전 환경 공통 사항만 둔다.
 
 ## 아키텍처
 
