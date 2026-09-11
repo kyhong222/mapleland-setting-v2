@@ -112,6 +112,45 @@ function buffTooltip(buff: Buff, level: number, unappliedNote?: string | null): 
   )
 }
 
+/**
+ * 아이콘 우상단 편집 배지 — 우클릭(= 레벨 변경)을 찾지 못하는 사용자를 위한 가이드.
+ * 호버 가능한 기기에서만 뜬다(모바일은 길게 누르기 안내로 대체).
+ */
+function EditBadge({ onClick }: { onClick: () => void }) {
+  return (
+    <Box
+      className="edit-badge"
+      role="button"
+      aria-label="레벨 변경"
+      onClick={(e) => { e.stopPropagation(); onClick() }}
+      onContextMenu={(e) => { e.preventDefault(); e.stopPropagation(); onClick() }}
+      sx={{
+        position: 'absolute',
+        top: -5,
+        right: -5,
+        zIndex: 1,
+        width: 18,
+        height: 18,
+        borderRadius: '50%',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        bgcolor: 'secondary.main',
+        color: 'secondary.contrastText',
+        boxShadow: 2,
+        // 기본은 숨김 + 클릭 통과 — 터치 기기에서 :hover가 눌러붙어도 오작동하지 않게
+        opacity: 0,
+        pointerEvents: 'none',
+        transition: 'opacity 120ms',
+      }}
+    >
+      <Box component="svg" viewBox="0 0 24 24" sx={{ width: 11, height: 11, fill: 'currentColor' }}>
+        <path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04a1 1 0 0 0 0-1.41l-2.34-2.34a1 1 0 0 0-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z" />
+      </Box>
+    </Box>
+  )
+}
+
 function BuffIcon({
   buff,
   active = true,
@@ -163,9 +202,12 @@ function BuffIcon({
         cursor: onClick || onLongPress ? 'pointer' : 'default',
         WebkitTouchCallout: 'none',
         userSelect: 'none',
+        position: 'relative',
+        '@media (hover: hover)': { '&:hover .edit-badge': { opacity: 1, pointerEvents: 'auto' } },
       }}
     >
       {icon && <Box component="img" src={icon} alt="" sx={{ width: img, height: img, imageRendering: 'pixelated', filter: active ? 'none' : 'grayscale(1)' }} />}
+      {onLongPress && <EditBadge onClick={onLongPress} />}
     </Box>
   )
   if (!tooltip) return box
@@ -528,9 +570,12 @@ function ChargeRow({
           bgcolor: 'action.hover', borderRadius: 0.5, border: '2.5px solid transparent',
           boxShadow: active ? 'inset 0 0 0 5px #ffc53d' : 'none', cursor: disabled ? 'default' : 'pointer',
           WebkitTouchCallout: 'none', userSelect: 'none',
+          position: 'relative',
+          '@media (hover: hover)': { '&:hover .edit-badge': { opacity: 1, pointerEvents: 'auto' } },
         }}
       >
         <Box component="img" src={icon} alt="" sx={{ width: 38, height: 38, imageRendering: 'pixelated', filter: active ? 'none' : 'grayscale(1)' }} />
+        {!disabled && onOpen && <EditBadge onClick={onOpen} />}
       </Box>
       <Box sx={{ flex: 1, minWidth: 0 }}>
         <Typography variant="body2" noWrap>{title}</Typography>
@@ -701,7 +746,7 @@ export default function SkillPanel() {
         sx={{ mb: 0.75 }}
         actions={[
           { key: '좌클릭', desc: 'ON / OFF' },
-          { key: '우클릭', desc: '레벨 변경', tone: 'secondary' },
+          { key: '우클릭 / ✎', desc: '레벨 변경', tone: 'secondary' },
         ]}
         note="모바일: 길게 누르기"
       />
@@ -724,7 +769,7 @@ export default function SkillPanel() {
         sx={{ mb: 0.75 }}
         actions={[
           { key: '좌클릭', desc: '제거' },
-          { key: '우클릭', desc: '레벨 변경', tone: 'secondary' },
+          { key: '우클릭 / ✎', desc: '레벨 변경', tone: 'secondary' },
           { key: '호버', desc: '효과 보기', tone: 'default' },
         ]}
         note="모바일: 길게 누르기"
@@ -743,7 +788,7 @@ export default function SkillPanel() {
         sx={{ mb: 0.75 }}
         actions={[
           { key: '좌클릭', desc: 'ON / OFF' },
-          { key: '우클릭', desc: '레벨 변경', tone: 'secondary' },
+          { key: '우클릭 / ✎', desc: '레벨 변경', tone: 'secondary' },
         ]}
         note="모바일: 길게 누르기"
       />
