@@ -1190,7 +1190,8 @@
     ],
     "icon": "/skill-icons/5110000.png",
     "masterLevel": 20,
-    "note": "스턴 상황 가정",
+    "note": "'(스턴)' 스킬에만 적용",
+    "conditional": "stun",
     "derive": {
       "criticalP": {
         "field": "prop"

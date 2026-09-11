@@ -26,6 +26,7 @@ npx tsx scripts/tucSmoke.ts      # postItem 오버라이드(tuc) 확인
 npx tsx scripts/weaponGateSmoke.ts # 무기 마스터리/부스터의 무기 게이팅 확인
 npx tsx scripts/resourceSmoke.ts   # HP/MP 수식·역산을 인게임 실측 4건과 대조
 npx tsx scripts/buffDeriveSmoke.ts # 버프 레벨표가 스킬북에서 파생되는지 + 사본 탐지
+npx tsx scripts/viperStunSmoke.ts  # 바이퍼 스턴 변형 스킬 + 조건부 버프(스턴 마스터리) 배선
 ```
 
 변경 후에는 최소한 `npm run typecheck`를 돌린다.
@@ -126,6 +127,8 @@ maplestory.io API ───┘   (로컬 카탈로그 우선 → GMS 62 → GMS 
   인게임 스킬 설명이 근거이고, 검/도끼/둔기 계열은 한손·두손 양쪽을 모두 넣어야 한다.
   무기를 가리지 않는 윈드 부스터만 `weaponTypes`를 비워 둔다.
 - `requiresShield` 버프(블로킹)는 보조무기에 방패가 있어야 적용
+- `conditional` 버프(스턴 마스터리)는 **상시 합산에서 빠진다.** 그 상황을 가정하는 계산에서만
+  `conditionalBuffEffects(ctx, 'stun')`으로 따로 더한다 → 아래 "스킬 변형" 참고
 
 주의점 두 가지가 실제로 버그를 낸 적 있다:
 
@@ -134,6 +137,19 @@ maplestory.io API ───┘   (로컬 카탈로그 우선 → GMS 62 → GMS 
    변신류는 `jobSpecific/skills.json`에 passive로 둘 것.
 2. **종료된 이벤트 버프**는 JSON에서 지우지 말고 `data/buff/index.ts`의 `DISABLED_BUFF_IDS`로 가린다
    (JSON에 주석을 달 수 없어서 쓰는 방식). 저장된 빌드에 id가 남아 있어도 조용히 건너뛴다.
+
+### 스킬 변형(variant)
+
+`data/skills/variants.ts` — 스킬북에 없는 "운용 상황"을 별도 스킬 항목으로 파생한다.
+현재는 바이퍼 스턴 마스터리 하나뿐이다(스턴 상태인 적에게만 크리가 터지는 패시브).
+
+- 공격 스킬마다 `피스트` / `피스트 (스턴)` 두 항목을 만들고, 스턴 마스터리 크리는 (스턴)에만 얹는다.
+- 자체 스턴 확률(`prop`)이 있는 스킬은 `(단독 운용)`을 하나 더 둔다(현재 에너지 버스터뿐).
+  스턴/비스턴 두 시전 분포를 `prop` 비율로 섞는다(`domain/skillCombat.ts`의 `mixCasts`).
+- **변형 스킬 id = 기본 id + 오프셋(9자리)다.** 아이콘(`/skill-icons/<id>.png`)·모션 규칙
+  (`SKILL_MOTION`)·공속표(`SKILL_APM`)·예외식(럭세/피스트)은 전부 `baseSkillId()`로 되돌려 조회할 것.
+  안 그러면 조용히 기본값으로 떨어진다.
+- 근거·수식은 [docs/nhit-dpm.md](docs/nhit-dpm.md) §6 "스턴 마스터리".
 
 ### 활성화(activation) 판정
 
