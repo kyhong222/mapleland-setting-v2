@@ -103,7 +103,9 @@ export default function DetailStatPanel() {
   const ac = accStatCoef(jobId)
   const ev = evaStatCoef(jobId)
 
-  // 마법사는 명중률 자리를 마법명중률(floor(INT/10)+floor(LUK/10))로 대체
+  // 마법사는 명중률 자리를 마법명중률(floor(INT/10)+floor(LUK/10))로 대체.
+  // 행 순서는 고정이므로 렌더 key는 인덱스로 잡는다 — 라벨은 상태에 따라 바뀌어(HP/추가HP)
+  // key로 쓰면 두 행이 같은 값이 되는 순간 한 행이 통째로 사라진다.
   const rows: { label: string; value: ReactNode; help?: ReactNode; onEdit?: () => void }[] = [
     { label: resourceLabel('HP', resources.hp), value: <ResourceValue parts={resources.hp} />, help: RESOURCE_HELP, onEdit: () => setEditOpen(true) },
     { label: resourceLabel('MP', resources.mp), value: <ResourceValue parts={resources.mp} />, help: RESOURCE_HELP, onEdit: () => setEditOpen(true) },
@@ -150,9 +152,9 @@ export default function DetailStatPanel() {
   return (
     <CollapsiblePanel id="detail" title="세부스탯">
       <Box sx={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 0.5 }}>
-        {rows.map(({ label, value, help, onEdit }) => (
+        {rows.map(({ label, value, help, onEdit }, i) => (
           <Box
-            key={label}
+            key={i}
             sx={{
               display: 'flex',
               justifyContent: 'space-between',
