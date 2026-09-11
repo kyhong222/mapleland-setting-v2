@@ -9,6 +9,9 @@
  * 스킬 데이터는 scripts/buildBuffs.mjs가 외부 레포에서 생성한다.
  * 각 JSON은 도메인 Buff(아이템/스킬) 형태(domain/buff.ts).
  *
+ * 레벨별 수치는 JSON에 적지 않고 스킬북에서 파생한다(derive.ts). 값을 두 벌 유지하면
+ * 한쪽만 갱신됐을 때 조용히 어긋나기 때문이다 — 스킬북이 단일 출처다.
+ *
  * 주의 — id 중복: ALL_BUFFS 순서상 PERSONAL_BUFFS가 JOB_BUFFS보다 앞이라,
  * 같은 id가 양쪽에 있으면 getBuff()는 personal 쪽을 돌려준다. 과거 바이퍼
  * 트랜스폼/슈퍼트랜스폼이 중복 정의돼 exclusiveGroup이 조용히 무력화된 적 있다.
@@ -18,6 +21,7 @@
 import type { Buff } from '../../domain/buff'
 import type { JobId } from '../../domain/jobs'
 import { canUseBuff } from '../../domain/buff'
+import { resolveBuffs } from './derive'
 
 import enhancementItems from './enhancement/items.json'
 import enhancementParty from './enhancement/party.json'
@@ -27,7 +31,7 @@ import jobSkills from './jobSpecific/skills.json'
 import damageBuffs from './jobSpecific/damageBuffs.json'
 
 /** 도핑(아이템 타입) */
-export const DOPING_ITEMS = enhancementItems as unknown as Buff[]
+export const DOPING_ITEMS = resolveBuffs(enhancementItems)
 /**
  * 종료된 이벤트 버프 — JSON 데이터는 그대로 남겨두고 목록에서만 빼놓는다.
  * (JSON은 주석을 달 수 없어 "주석 처리" 대신 이 집합으로 가린다.)
@@ -43,15 +47,13 @@ export const DOPING_ITEMS = enhancementItems as unknown as Buff[]
 const DISABLED_BUFF_IDS: ReadonlySet<string> = new Set(['burning'])
 
 /** 공용 버프 (메이플 용사 등) — 종료된 이벤트 버프 제외 */
-export const COMMON_BUFFS = (commonSkills as unknown as Buff[]).filter(
-  (b) => !DISABLED_BUFF_IDS.has(b.id),
-)
+export const COMMON_BUFFS = resolveBuffs(commonSkills).filter((b) => !DISABLED_BUFF_IDS.has(b.id))
 /** 파티 버프 (샤프아이즈/하이퍼바디/블레스/헤이스트/메디테이션 등) */
-export const PARTY_BUFFS = enhancementParty as unknown as Buff[]
+export const PARTY_BUFFS = resolveBuffs(enhancementParty)
 /** 개인특화 액티브 버프 (아이언바디/포커스/인레이지 등) */
-export const PERSONAL_BUFFS = enhancementPersonal as unknown as Buff[]
+export const PERSONAL_BUFFS = resolveBuffs(enhancementPersonal)
 /** 직업 특화 패시브 (+ 자가 데미지증가 버프: 콤보/버서크) */
-export const JOB_BUFFS = [...jobSkills, ...damageBuffs] as unknown as Buff[]
+export const JOB_BUFFS = [...resolveBuffs(jobSkills), ...resolveBuffs(damageBuffs)]
 
 /** 전체 버프 목록 */
 export const ALL_BUFFS: Buff[] = [...COMMON_BUFFS, ...PARTY_BUFFS, ...PERSONAL_BUFFS, ...DOPING_ITEMS, ...JOB_BUFFS]

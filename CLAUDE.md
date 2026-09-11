@@ -25,6 +25,7 @@ npx tsx scripts/scrollSmoke.ts   # 아이템별 주문서 매칭 확인
 npx tsx scripts/tucSmoke.ts      # postItem 오버라이드(tuc) 확인
 npx tsx scripts/weaponGateSmoke.ts # 무기 마스터리/부스터의 무기 게이팅 확인
 npx tsx scripts/resourceSmoke.ts   # HP/MP 수식·역산을 인게임 실측 4건과 대조
+npx tsx scripts/buffDeriveSmoke.ts # 버프 레벨표가 스킬북에서 파생되는지 + 사본 탐지
 ```
 
 변경 후에는 최소한 `npm run typecheck`를 돌린다.
@@ -86,8 +87,26 @@ maplestory.io API ───┘   (로컬 카탈로그 우선 → GMS 62 → GMS 
 
 ### 버프 파이프라인
 
-`data/buff/` JSON(`common`/`enhancement`/`jobSpecific`) → `getBuff(id)` → `store/aggregate.ts`의
-`activeBuffEffects()` → `useBuffEffects()` 훅.
+`data/buff/` JSON(`common`/`enhancement`/`jobSpecific`) → `resolveBuffs()` → `getBuff(id)` →
+`store/aggregate.ts`의 `activeBuffEffects()` → `useBuffEffects()` 훅.
+
+**레벨별 수치는 스킬북이 단일 출처(SSOT)다.** 버프 JSON에는 값 대신 변환 규칙만 둔다.
+
+```jsonc
+{ "id": "2110001", "derive": { "amplifiedMagicDamageP": { "field": "y", "offset": -100 } } }
+```
+
+`data/buff/derive.ts`가 `findSkillById(id)`로 스킬북 `levelProperties`를 읽어
+`효과값 = WZ필드값 × scale + offset`(scale 기본 1, offset 기본 0)으로 표를 만든다. 결과가 0이거나
+해당 레벨에 필드가 없으면 키를 넣지 않는다. 값을 두 벌 유지하던 시절 스킬북만 갱신돼 엘리먼트
+엠플리피케이션이 몇 주간 140%로 계산된 적이 있어 이렇게 바꿨다.
+
+- 스킬북에 없는 버프(영웅의 메아리·정령의 축복·기상효과·버닝)만 `effectsByLevel`에 값을 직접 적는다.
+- 일부 능력치만 스킬북에 근거가 없으면 둘을 함께 쓴다 — `effectsByLevel` 쪽이 파생값을 덮는다
+  (메소 가드 `damageReduce`, 위협 `monsterDamageTakenP`).
+- 콤보/차지/엘리멘탈 리셋은 효과표가 비어 있다. 수치를 `EffectMap`이 아니라 도메인에서 스킬북으로
+  직접 계산하기 때문(`comboFinalDamageP`/`chargeCombinedCoef`/`skillNumAt`).
+- 새 사본이 생기면 `scripts/buffDeriveSmoke.ts`가 잡는다. **스킬 수치를 고칠 때는 스킬북만 고친다.**
 
 - `activeBuffs` (토글: 공용 버프·직업 패시브) → sum
 - `appliedBuffs` (도핑/개인/파티) → max 풀
@@ -129,17 +148,20 @@ id가 먼저 존재해야 하기 때문.
 
 ### 데이터 생성 스크립트 (`scripts/`)
 
-전부 일회성/수동 실행이며 CI에 없다. 일부(`buildBuffs`·`fetchBalrogItems`·`patchMissingTuc`)는
-`--write` 없이는 드라이런이지만 나머지는 실행 즉시 파일을 덮어쓴다 — 돌리기 전에 해당 스크립트
-상단 주석을 확인할 것.
+전부 일회성/수동 실행이며 CI에 없다. 일부(`buildBuffs`·`fetchBalrogItems`·`patchMissingTuc`·
+`migrateBuffDerive`)는 `--write` 없이는 드라이런이지만 나머지는 실행 즉시 파일을 덮어쓴다 —
+돌리기 전에 해당 스크립트 상단 주석을 확인할 것.
 
 - `convertV1.mjs` — v1 레포 아이템 → `src/data/catalog/<slot>.json`
 - `buildScrolls.mjs` — maplestory.io → `src/data/scrolls.json`
 - `importSkills.mjs` — ms-skill-simulator → `src/data/skills/skillbooks/`, 아이콘은 `public/skill-icons/`로 분리
 - `refreshReq.mjs` / `patchMissingTuc.mjs` / `fetch*.mjs` — 카탈로그 요구치·업횟·신규 아이템 보강
+- `migrateBuffDerive.mjs` — 버프 `effectsByLevel` → `derive` 전환. 이미 끝난 마이그레이션이라
+  다시 돌릴 일은 없지만, 파생 규칙을 어떻게 뽑았는지 근거가 남아 있다.
 
 ⚠ **`buildBuffs.mjs --write`는 실행하지 말 것.** 최초 부트스트랩 이후 손으로 관리해온 JSON을 따라오지
-못해 시그너스 전 직업·부스터 등 46건이 유실된다. 버프 데이터는 JSON을 직접 편집한다.
+못해 시그너스 전 직업·부스터 등 46건이 유실된다. 버프 데이터는 JSON을 직접 편집한다
+(레벨별 수치는 스킬북 쪽을 고친다 — 위 "버프 파이프라인" 참고).
 
 ## 문서 (공식의 출처)
 
