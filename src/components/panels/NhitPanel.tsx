@@ -22,7 +22,7 @@ import { getMonster } from '../../data/mobs'
 import { elementReaction, formatElements } from '../../domain/monster'
 import { skillAttackAt, skillLineCount, comboFinalDamageP, COMBO_SKILLS, findSkillById, skillNumAt, chargeStats, skillElements } from '../../data/skills'
 import type { IJobSkill } from '../../data/skills'
-import { damageSkillsForJob, baseSkillId, variantKindOf, stunHitRatio } from '../../data/skills/variants'
+import { damageSkillsForJob, baseSkillId, stunHitRatio } from '../../data/skills/variants'
 import type { ChargeState } from '../../domain/paladinCharge'
 import { computeCast, computeNhit, computeDpm, baseElementMult, mixCasts, SKILL_MOTION } from '../../domain/skillCombat'
 import { convolve } from '../../domain/nhitProb'
@@ -31,6 +31,7 @@ import { attacksPerMinute } from '../../data/attackSpeed'
 import { chargeMultiplier, chargeFromUi, chargeElementCodes } from '../../domain/paladinCharge'
 import type { ChargeElement } from '../../domain/paladinCharge'
 import ChargeMultTip from '../common/ChargeMultTip'
+import { objectJosa } from '../../lib/josa'
 
 /**
  * 시그너스 차지 — 직업당 하나이며, 특화 버프 토글 레벨이 그대로 차지 레벨이 된다.
@@ -325,14 +326,29 @@ export default function NhitPanel() {
     }
   })()
 
-  /** 변형 스킬 선택 시의 안내 문구 (스턴 마스터리가 어떻게 들어가는지) */
+  /**
+   * 추가스킬을 넣었을 때의 안내 문구 — '기대 처치 타수'가 **메인 스킬** 타수라는 뜻임을 밝힌다.
+   * 메인/추가를 뒤집어 넣으면(더블 어퍼를 메인, 피스트를 추가스킬로) 타수가 오히려 늘어
+   * 계산이 틀린 것처럼 보이기 때문에 덧붙였다.
+   */
+  const preCastNote = (() => {
+    if (!selectedSkill || !preCastPrior) return null
+    // 미지원(분포를 못 만든) 추가스킬은 계산에 안 들어가므로 문구에서도 뺀다
+    const counts = new Map<string, number>()
+    for (const p of preCastInfos) if (p.ok) counts.set(p.name, (counts.get(p.name) ?? 0) + 1)
+    if (counts.size === 0) return null
+    const pre = [...counts].map(([name, n]) => (n > 1 ? `${name} ×${n}` : name)).join(' · ')
+    const main = selectedSkill.description?.name ?? String(selectedSkill.id)
+    return `※ ${pre} 이후 ${main}${objectJosa(main)} 몇 방 시전해야 하는지에 대한 기대 타수입니다.`
+  })()
+
+  /** 스턴이 걸리는 스킬을 골랐을 때의 안내 문구 (스턴 마스터리가 어떻게 들어가는지) */
   const stunNote = (() => {
     if (!selectedSkill) return null
-    const kind = variantKindOf(selectedSkill.id)
-    if (!kind) return null
-    if (!hasStunBonus) return '스턴 마스터리를 켜야 차이가 생깁니다'
-    if (kind === 'stun') return '스턴 상태 가정 — 스턴 마스터리 크리 적용'
     const ratio = stunHitRatio(selectedSkill.id, skillLevel)
+    if (ratio <= 0) return null
+    if (!hasStunBonus) return '스턴 마스터리를 켜야 차이가 생깁니다'
+    if (ratio >= 1) return '스턴 상태 가정 — 스턴 마스터리 크리 적용'
     return `자체 스턴 확률 ${Math.round(ratio * 100)}%만큼 스턴 마스터리 크리 적용`
   })()
 
@@ -465,14 +481,19 @@ export default function NhitPanel() {
                   <Divider sx={{ my: 0.75 }} />
                   <Typography variant="caption" sx={{ fontWeight: 700, display: 'block', mb: 0.25 }}>
                     방컷 확률 (HP {result.hp.toLocaleString()})
-                    {result.hasPreCast && <Box component="span" sx={{ fontWeight: 400, color: 'text.disabled', ml: 0.5 }}>· 추가스킬 후 메인 타수</Box>}
                   </Typography>
                   <Box sx={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 0.25 }}>
                     {result.hasPreCast && result.nhit.zero >= 0.0005 && <Row label="0방 (추가스킬만)" value={pct(result.nhit.zero)} />}
                     {result.nhit.exact.map((p, i) => (p >= 0.0005 ? <Row key={i} label={`${i + 1}방`} value={pct(p)} /> : null))}
                     {result.nhit.over >= 0.0005 && <Row label="11방+" value={pct(result.nhit.over)} />}
                   </Box>
-                  <Row label={result.hasPreCast ? '기대 처치 타수(추가스킬 후)' : '기대 처치 타수'} value={result.nhit.over >= 0.9995 ? '알 수 없음' : `${result.nhit.meanHits.toFixed(2)}방`} strong />
+                  {/* 추가스킬을 넣었을 때 무엇을 세는 타수인지는 아래 preCastNote가 설명한다 */}
+                  <Row label="기대 처치 타수" value={result.nhit.over >= 0.9995 ? '알 수 없음' : `${result.nhit.meanHits.toFixed(2)}방`} strong />
+                  {preCastNote && (
+                    <Typography variant="caption" color="text.disabled" sx={{ display: 'block', mt: 0.25, lineHeight: 1.4 }}>
+                      {preCastNote}
+                    </Typography>
+                  )}
                 </>
               )}
 

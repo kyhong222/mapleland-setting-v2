@@ -7,8 +7,9 @@
  * 그래서 공격 스킬마다 '스킬'과 '스킬 (스턴)' 두 항목을 만들고, 스턴 마스터리의 크리는
  * (스턴) 쪽에만 얹는다.
  *
- * 에너지 버스터는 자체 스턴 확률(prop)이 있어 혼자 난사해도 일부 타격이 스턴 상태로 들어간다.
- * 이 경우만 '(단독 운용)' 변형을 하나 더 둔다.
+ * 에너지 버스터처럼 **자체 스턴 확률(prop)**을 가진 스킬은 혼자 난사해도 일부 타격이 스턴
+ * 상태로 들어간다. 그런 스킬은 기본 항목이 곧 단독 운용이라, 기본 쪽에 자체 스턴 확률을 반영한다
+ * (별도 '(단독 운용)' 항목을 두었다가 기본과 뜻이 겹쳐 없앴다).
  *
  * 변형 스킬 id = 기본 id + 오프셋. 아이콘(`/skill-icons/<id>.png`)·모션 규칙(SKILL_MOTION)·
  * 공속표(SKILL_APM)는 전부 **기본 id로** 조회해야 하므로 소비처에서 baseSkillId()로 되돌린다.
@@ -22,27 +23,35 @@ import { attackSkillsForJob, findSkillById, skillsForJob, skillNum, skillPropsAt
 /** 스턴 마스터리 skill id — 이 스킬을 가진 직업만 (스턴) 변형을 만든다 */
 export const STUN_MASTERY_ID = 5110000
 
-/** 변형 종류: 스턴 상태 가정 / 스턴 확률을 가진 스킬의 단독 운용 */
-export type SkillVariantKind = 'stun' | 'soloStun'
+/** 변형 종류: 지금은 '스턴 상태를 가정한다' 하나뿐 */
+export type SkillVariantKind = 'stun'
 
 /** 변형별 id 오프셋 (실제 스킬 id와 겹치지 않는 9자리) */
 const VARIANT_OFFSET: Record<SkillVariantKind, number> = {
   stun: 900_000_000,
-  soloStun: 800_000_000,
 }
 
 /** 변형별 이름 접미사 */
 const VARIANT_SUFFIX: Record<SkillVariantKind, string> = {
   stun: '(스턴)',
-  soloStun: '(단독 운용)',
 }
 
 /**
- * '(단독 운용)' 변형을 만드는 스킬 — 자체 스턴 확률(levelProperties.prop)을 가진 공격 스킬.
+ * 자체 스턴 확률(levelProperties.prop)을 가진 공격 스킬 — 기본 항목에 그 확률이 반영된다.
  * 에너지 버스터의 prop은 상류 스킬북에 없어 인게임 값으로 보강했다
  * (scripts/skillbookUpstreamDiff.mjs의 EXPECTED_DIVERGENCE 참고).
+ *
+ * 주의: 100% 스턴이라 prop이 없는 스킬(더블 어퍼·백스핀 블로우)은 여기 넣지 않는다.
+ * 그 스킬들은 (스턴) 항목으로 고르면 된다.
  */
-const SOLO_STUN_SKILLS: ReadonlySet<number> = new Set([5111002])
+const SELF_STUN_SKILLS: ReadonlySet<number> = new Set([5111002])
+
+/**
+ * 없앤 변형 id → 대신 고를 id. 저장된 선택이 조용히 사라지지 않게 읽을 때만 갈아끼운다.
+ *  - 805111002 '에너지 버스터 (단독 운용)': 기본 항목과 뜻이 같아져 제거(2026-09-12).
+ *    기본 항목이 자체 스턴 확률을 반영하므로 5111002로 되돌린다.
+ */
+const RETIRED_SKILL_IDS: ReadonlyMap<number, number> = new Map([[805111002, 5111002]])
 
 /** 변형 스킬 id */
 export function variantSkillId(baseId: number, kind: SkillVariantKind): number {
@@ -63,6 +72,11 @@ export function variantKindOf(skillId: number): SkillVariantKind | null {
 export function baseSkillId(skillId: number): number {
   const kind = variantKindOf(skillId)
   return kind ? skillId - VARIANT_OFFSET[kind] : skillId
+}
+
+/** 저장된 스킬 선택을 현재 목록에 있는 id로 보정 (없앤 변형 대응) */
+export function migrateSkillId(skillId: number): number {
+  return RETIRED_SKILL_IDS.get(skillId) ?? skillId
 }
 
 /** 기본 스킬 → 변형 스킬 (id와 표시 이름만 바꾼 사본) */
@@ -88,29 +102,25 @@ export function hasStunMastery(jobId: JobId): boolean {
 export function damageSkillsForJob(jobId: JobId): IJobSkill[] {
   const skills = attackSkillsForJob(jobId)
   if (!hasStunMastery(jobId)) return skills
-  return skills.flatMap((s) => [
-    s,
-    makeVariant(s, 'stun'),
-    ...(SOLO_STUN_SKILLS.has(s.id) ? [makeVariant(s, 'soloStun')] : []),
-  ])
+  return skills.flatMap((s) => [s, makeVariant(s, 'stun')])
 }
 
 /**
  * 스턴 마스터리가 걸리는 타격 비율 (0~1).
  *
- *  - 기본 스킬     0 — 스턴 상태가 아니라고 본다
- *  - (스턴)        1 — 더블 어퍼/백스핀 블로우 등으로 기절을 걸어 둔 상태
- *  - (단독 운용)   스킬 자체 스턴 확률 prop/100
+ *  - (스턴) 변형          1 — 더블 어퍼/백스핀 블로우 등으로 기절을 걸어 둔 상태
+ *  - 자체 스턴 확률 보유   prop/100 — 혼자 난사할 때 스턴 상태로 들어가는 몫
+ *  - 그 외 기본 스킬      0 — 스턴 상태가 아니라고 본다
  *
- * 단독 운용의 근거: 한 타가 prop% 확률로 스턴을 걸면 **다음 타**가 스턴 상태에서 들어간다.
+ * 자체 스턴 확률의 근거: 한 타가 prop% 확률로 스턴을 걸면 **다음 타**가 스턴 상태에서 들어간다.
  * 스턴 지속시간이 스킬북에 없어 "한 타 동안 유지"로 두면 정상상태 스턴 비율이 그대로 prop이 된다.
  * (지속시간이 공격 간격보다 길면 실제 비율은 이보다 높아지므로 보수적인 값이다.)
  */
 export function stunHitRatio(skillId: number, level: number): number {
-  const kind = variantKindOf(skillId)
-  if (kind === 'stun') return 1
-  if (kind !== 'soloStun') return 0
-  const skill = findSkillById(baseSkillId(skillId))
+  if (variantKindOf(skillId) === 'stun') return 1
+  const base = baseSkillId(skillId)
+  if (!SELF_STUN_SKILLS.has(base)) return 0
+  const skill = findSkillById(base)
   if (!skill) return 0
   return Math.max(0, Math.min(1, skillNum(skillPropsAtLevel(skill, level), 'prop') / 100))
 }
