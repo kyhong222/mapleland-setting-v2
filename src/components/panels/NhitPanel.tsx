@@ -482,14 +482,14 @@ export default function NhitPanel() {
                   <Divider sx={{ my: 0.75 }} />
                   <Typography variant="caption" sx={{ fontWeight: 700, display: 'block', mb: 0.25 }}>
                     방컷 확률 (HP {result.hp.toLocaleString()})
-                    {result.hasPreCast && <Box component="span" sx={{ fontWeight: 400, color: 'text.disabled', ml: 0.5 }}>· 추가스킬 후 메인 타수</Box>}
                   </Typography>
                   <Box sx={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 0.25 }}>
                     {result.hasPreCast && result.nhit.zero >= 0.0005 && <Row label="0방 (추가스킬만)" value={pct(result.nhit.zero)} />}
                     {result.nhit.exact.map((p, i) => (p >= 0.0005 ? <Row key={i} label={`${i + 1}방`} value={pct(p)} /> : null))}
                     {result.nhit.over >= 0.0005 && <Row label="11방+" value={pct(result.nhit.over)} />}
                   </Box>
-                  <Row label={result.hasPreCast ? '기대 처치 타수(추가스킬 후)' : '기대 처치 타수'} value={result.nhit.over >= 0.9995 ? '알 수 없음' : `${result.nhit.meanHits.toFixed(2)}방`} strong />
+                  {/* 추가스킬을 넣었을 때 무엇을 세는 타수인지는 아래 preCastNote가 설명한다 */}
+                  <Row label="기대 처치 타수" value={result.nhit.over >= 0.9995 ? '알 수 없음' : `${result.nhit.meanHits.toFixed(2)}방`} strong />
                   {preCastNote && (
                     <Typography variant="caption" color="text.disabled" sx={{ display: 'block', mt: 0.25, lineHeight: 1.4 }}>
                       {preCastNote}
