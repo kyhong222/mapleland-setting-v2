@@ -644,7 +644,7 @@
       },
       "levelProperties": [
         {
-          "damage": "73",
+          "damage": "103",
           "hs": "h1",
           "itemConsume": "2331000",
           "lt": "Point [ X=-250, Y=-100 ]",
@@ -654,7 +654,7 @@
           "time": "3"
         },
         {
-          "damage": "100",
+          "damage": "130",
           "hs": "h10",
           "itemConsume": "2331000",
           "lt": "Point [ X=-250, Y=-100 ]",
@@ -664,7 +664,7 @@
           "time": "3"
         },
         {
-          "damage": "103",
+          "damage": "133",
           "hs": "h11",
           "itemConsume": "2331000",
           "lt": "Point [ X=-250, Y=-100 ]",
@@ -674,7 +674,7 @@
           "time": "4"
         },
         {
-          "damage": "106",
+          "damage": "136",
           "hs": "h12",
           "itemConsume": "2331000",
           "lt": "Point [ X=-250, Y=-100 ]",
@@ -684,7 +684,7 @@
           "time": "4"
         },
         {
-          "damage": "109",
+          "damage": "139",
           "hs": "h13",
           "itemConsume": "2331000",
           "lt": "Point [ X=-250, Y=-100 ]",
@@ -694,7 +694,7 @@
           "time": "4"
         },
         {
-          "damage": "112",
+          "damage": "142",
           "hs": "h14",
           "itemConsume": "2331000",
           "lt": "Point [ X=-250, Y=-100 ]",
@@ -704,7 +704,7 @@
           "time": "4"
         },
         {
-          "damage": "115",
+          "damage": "145",
           "hs": "h15",
           "itemConsume": "2331000",
           "lt": "Point [ X=-250, Y=-100 ]",
@@ -714,7 +714,7 @@
           "time": "4"
         },
         {
-          "damage": "118",
+          "damage": "148",
           "hs": "h16",
           "itemConsume": "2331000",
           "lt": "Point [ X=-250, Y=-100 ]",
@@ -724,7 +724,7 @@
           "time": "4"
         },
         {
-          "damage": "121",
+          "damage": "151",
           "hs": "h17",
           "itemConsume": "2331000",
           "lt": "Point [ X=-250, Y=-100 ]",
@@ -734,7 +734,7 @@
           "time": "4"
         },
         {
-          "damage": "124",
+          "damage": "154",
           "hs": "h18",
           "itemConsume": "2331000",
           "lt": "Point [ X=-250, Y=-100 ]",
@@ -744,7 +744,7 @@
           "time": "4"
         },
         {
-          "damage": "127",
+          "damage": "157",
           "hs": "h19",
           "itemConsume": "2331000",
           "lt": "Point [ X=-250, Y=-100 ]",
@@ -754,7 +754,7 @@
           "time": "4"
         },
         {
-          "damage": "76",
+          "damage": "106",
           "hs": "h2",
           "itemConsume": "2331000",
           "lt": "Point [ X=-250, Y=-100 ]",
@@ -764,7 +764,7 @@
           "time": "3"
         },
         {
-          "damage": "130",
+          "damage": "160",
           "hs": "h20",
           "itemConsume": "2331000",
           "lt": "Point [ X=-250, Y=-100 ]",
@@ -774,7 +774,7 @@
           "time": "4"
         },
         {
-          "damage": "133",
+          "damage": "163",
           "hs": "h21",
           "itemConsume": "2331000",
           "lt": "Point [ X=-250, Y=-100 ]",
@@ -784,7 +784,7 @@
           "time": "5"
         },
         {
-          "damage": "136",
+          "damage": "166",
           "hs": "h22",
           "itemConsume": "2331000",
           "lt": "Point [ X=-250, Y=-100 ]",
@@ -794,7 +794,7 @@
           "time": "5"
         },
         {
-          "damage": "139",
+          "damage": "169",
           "hs": "h23",
           "itemConsume": "2331000",
           "lt": "Point [ X=-250, Y=-100 ]",
@@ -804,7 +804,7 @@
           "time": "5"
         },
         {
-          "damage": "142",
+          "damage": "172",
           "hs": "h24",
           "itemConsume": "2331000",
           "lt": "Point [ X=-250, Y=-100 ]",
@@ -814,7 +814,7 @@
           "time": "5"
         },
         {
-          "damage": "145",
+          "damage": "175",
           "hs": "h25",
           "itemConsume": "2331000",
           "lt": "Point [ X=-250, Y=-100 ]",
@@ -824,7 +824,7 @@
           "time": "5"
         },
         {
-          "damage": "148",
+          "damage": "178",
           "hs": "h26",
           "itemConsume": "2331000",
           "lt": "Point [ X=-250, Y=-100 ]",
@@ -834,7 +834,7 @@
           "time": "5"
         },
         {
-          "damage": "151",
+          "damage": "181",
           "hs": "h27",
           "itemConsume": "2331000",
           "lt": "Point [ X=-250, Y=-100 ]",
@@ -844,7 +844,7 @@
           "time": "5"
         },
         {
-          "damage": "154",
+          "damage": "184",
           "hs": "h28",
           "itemConsume": "2331000",
           "lt": "Point [ X=-250, Y=-100 ]",
@@ -854,7 +854,7 @@
           "time": "5"
         },
         {
-          "damage": "157",
+          "damage": "187",
           "hs": "h29",
           "itemConsume": "2331000",
           "lt": "Point [ X=-250, Y=-100 ]",
@@ -864,7 +864,7 @@
           "time": "5"
         },
         {
-          "damage": "79",
+          "damage": "109",
           "hs": "h3",
           "itemConsume": "2331000",
           "lt": "Point [ X=-250, Y=-100 ]",
@@ -874,7 +874,7 @@
           "time": "3"
         },
         {
-          "damage": "160",
+          "damage": "190",
           "hs": "h30",
           "itemConsume": "2331000",
           "lt": "Point [ X=-250, Y=-100 ]",
@@ -884,7 +884,7 @@
           "time": "5"
         },
         {
-          "damage": "82",
+          "damage": "112",
           "hs": "h4",
           "itemConsume": "2331000",
           "lt": "Point [ X=-250, Y=-100 ]",
@@ -894,7 +894,7 @@
           "time": "3"
         },
         {
-          "damage": "85",
+          "damage": "115",
           "hs": "h5",
           "itemConsume": "2331000",
           "lt": "Point [ X=-250, Y=-100 ]",
@@ -904,7 +904,7 @@
           "time": "3"
         },
         {
-          "damage": "88",
+          "damage": "118",
           "hs": "h6",
           "itemConsume": "2331000",
           "lt": "Point [ X=-250, Y=-100 ]",
@@ -914,7 +914,7 @@
           "time": "3"
         },
         {
-          "damage": "91",
+          "damage": "121",
           "hs": "h7",
           "itemConsume": "2331000",
           "lt": "Point [ X=-250, Y=-100 ]",
@@ -924,7 +924,7 @@
           "time": "3"
         },
         {
-          "damage": "94",
+          "damage": "124",
           "hs": "h8",
           "itemConsume": "2331000",
           "lt": "Point [ X=-250, Y=-100 ]",
@@ -934,7 +934,7 @@
           "time": "3"
         },
         {
-          "damage": "97",
+          "damage": "127",
           "hs": "h9",
           "itemConsume": "2331000",
           "lt": "Point [ X=-250, Y=-100 ]",
@@ -964,7 +964,7 @@
       },
       "levelProperties": [
         {
-          "damage": "72",
+          "damage": "102",
           "hs": "h1",
           "itemConsume": "2331001",
           "lt": "Point [ X=-280, Y=-100 ]",
@@ -974,7 +974,7 @@
           "time": "1"
         },
         {
-          "damage": "90",
+          "damage": "120",
           "hs": "h10",
           "itemConsume": "2331001",
           "lt": "Point [ X=-280, Y=-100 ]",
@@ -984,7 +984,7 @@
           "time": "1"
         },
         {
-          "damage": "92",
+          "damage": "122",
           "hs": "h11",
           "itemConsume": "2331001",
           "lt": "Point [ X=-280, Y=-100 ]",
@@ -994,7 +994,7 @@
           "time": "2"
         },
         {
-          "damage": "94",
+          "damage": "124",
           "hs": "h12",
           "itemConsume": "2331001",
           "lt": "Point [ X=-280, Y=-100 ]",
@@ -1004,7 +1004,7 @@
           "time": "2"
         },
         {
-          "damage": "96",
+          "damage": "126",
           "hs": "h13",
           "itemConsume": "2331001",
           "lt": "Point [ X=-280, Y=-100 ]",
@@ -1014,7 +1014,7 @@
           "time": "2"
         },
         {
-          "damage": "98",
+          "damage": "128",
           "hs": "h14",
           "itemConsume": "2331001",
           "lt": "Point [ X=-280, Y=-100 ]",
@@ -1024,7 +1024,7 @@
           "time": "2"
         },
         {
-          "damage": "100",
+          "damage": "130",
           "hs": "h15",
           "itemConsume": "2331001",
           "lt": "Point [ X=-280, Y=-100 ]",
@@ -1034,7 +1034,7 @@
           "time": "2"
         },
         {
-          "damage": "102",
+          "damage": "132",
           "hs": "h16",
           "itemConsume": "2331001",
           "lt": "Point [ X=-280, Y=-100 ]",
@@ -1044,7 +1044,7 @@
           "time": "2"
         },
         {
-          "damage": "104",
+          "damage": "134",
           "hs": "h17",
           "itemConsume": "2331001",
           "lt": "Point [ X=-280, Y=-100 ]",
@@ -1054,7 +1054,7 @@
           "time": "2"
         },
         {
-          "damage": "106",
+          "damage": "136",
           "hs": "h18",
           "itemConsume": "2331001",
           "lt": "Point [ X=-280, Y=-100 ]",
@@ -1064,7 +1064,7 @@
           "time": "2"
         },
         {
-          "damage": "108",
+          "damage": "138",
           "hs": "h19",
           "itemConsume": "2331001",
           "lt": "Point [ X=-280, Y=-100 ]",
@@ -1074,7 +1074,7 @@
           "time": "2"
         },
         {
-          "damage": "74",
+          "damage": "104",
           "hs": "h2",
           "itemConsume": "2331001",
           "lt": "Point [ X=-280, Y=-100 ]",
@@ -1084,7 +1084,7 @@
           "time": "1"
         },
         {
-          "damage": "110",
+          "damage": "140",
           "hs": "h20",
           "itemConsume": "2331001",
           "lt": "Point [ X=-280, Y=-100 ]",
@@ -1094,7 +1094,7 @@
           "time": "2"
         },
         {
-          "damage": "112",
+          "damage": "142",
           "hs": "h21",
           "itemConsume": "2331001",
           "lt": "Point [ X=-280, Y=-100 ]",
@@ -1104,7 +1104,7 @@
           "time": "3"
         },
         {
-          "damage": "114",
+          "damage": "144",
           "hs": "h22",
           "itemConsume": "2331001",
           "lt": "Point [ X=-280, Y=-100 ]",
@@ -1114,7 +1114,7 @@
           "time": "3"
         },
         {
-          "damage": "116",
+          "damage": "146",
           "hs": "h23",
           "itemConsume": "2331001",
           "lt": "Point [ X=-280, Y=-100 ]",
@@ -1124,7 +1124,7 @@
           "time": "3"
         },
         {
-          "damage": "118",
+          "damage": "148",
           "hs": "h24",
           "itemConsume": "2331001",
           "lt": "Point [ X=-280, Y=-100 ]",
@@ -1134,7 +1134,7 @@
           "time": "3"
         },
         {
-          "damage": "120",
+          "damage": "150",
           "hs": "h25",
           "itemConsume": "2331001",
           "lt": "Point [ X=-280, Y=-100 ]",
@@ -1144,7 +1144,7 @@
           "time": "3"
         },
         {
-          "damage": "122",
+          "damage": "152",
           "hs": "h26",
           "itemConsume": "2331001",
           "lt": "Point [ X=-280, Y=-100 ]",
@@ -1154,7 +1154,7 @@
           "time": "3"
         },
         {
-          "damage": "124",
+          "damage": "154",
           "hs": "h27",
           "itemConsume": "2331001",
           "lt": "Point [ X=-280, Y=-100 ]",
@@ -1164,7 +1164,7 @@
           "time": "3"
         },
         {
-          "damage": "126",
+          "damage": "156",
           "hs": "h28",
           "itemConsume": "2331001",
           "lt": "Point [ X=-280, Y=-100 ]",
@@ -1174,7 +1174,7 @@
           "time": "3"
         },
         {
-          "damage": "128",
+          "damage": "158",
           "hs": "h29",
           "itemConsume": "2331001",
           "lt": "Point [ X=-280, Y=-100 ]",
@@ -1184,7 +1184,7 @@
           "time": "3"
         },
         {
-          "damage": "76",
+          "damage": "106",
           "hs": "h3",
           "itemConsume": "2331001",
           "lt": "Point [ X=-280, Y=-100 ]",
@@ -1194,7 +1194,7 @@
           "time": "1"
         },
         {
-          "damage": "130",
+          "damage": "160",
           "hs": "h30",
           "itemConsume": "2331001",
           "lt": "Point [ X=-280, Y=-100 ]",
@@ -1204,7 +1204,7 @@
           "time": "3"
         },
         {
-          "damage": "78",
+          "damage": "108",
           "hs": "h4",
           "itemConsume": "2331001",
           "lt": "Point [ X=-280, Y=-100 ]",
@@ -1214,7 +1214,7 @@
           "time": "1"
         },
         {
-          "damage": "80",
+          "damage": "110",
           "hs": "h5",
           "itemConsume": "2331001",
           "lt": "Point [ X=-280, Y=-100 ]",
@@ -1224,7 +1224,7 @@
           "time": "1"
         },
         {
-          "damage": "82",
+          "damage": "112",
           "hs": "h6",
           "itemConsume": "2331001",
           "lt": "Point [ X=-280, Y=-100 ]",
@@ -1234,7 +1234,7 @@
           "time": "1"
         },
         {
-          "damage": "84",
+          "damage": "114",
           "hs": "h7",
           "itemConsume": "2331001",
           "lt": "Point [ X=-280, Y=-100 ]",
@@ -1244,7 +1244,7 @@
           "time": "1"
         },
         {
-          "damage": "86",
+          "damage": "116",
           "hs": "h8",
           "itemConsume": "2331001",
           "lt": "Point [ X=-280, Y=-100 ]",
@@ -1254,7 +1254,7 @@
           "time": "1"
         },
         {
-          "damage": "88",
+          "damage": "118",
           "hs": "h9",
           "itemConsume": "2331001",
           "lt": "Point [ X=-280, Y=-100 ]",
