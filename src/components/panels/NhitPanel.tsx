@@ -32,6 +32,7 @@ import { chargeMultiplier, chargeFromUi, chargeElementCodes } from '../../domain
 import type { ChargeElement } from '../../domain/paladinCharge'
 import ChargeMultTip from '../common/ChargeMultTip'
 import { objectJosa } from '../../lib/josa'
+import { speedLabel } from '../../lib/speedLabel'
 
 /**
  * 시그너스 차지 — 직업당 하나이며, 특화 버프 토글 레벨이 그대로 차지 레벨이 된다.
@@ -52,9 +53,6 @@ const SKILL_CHARGES: Record<string, { id: number; element: ChargeElement }> = {
 const skillIconSrc = (id: number) => `/skill-icons/${baseSkillId(id)}.png`
 const hideOnError = (e: SyntheticEvent<HTMLImageElement>) => { e.currentTarget.style.visibility = 'hidden' }
 const pct = (n: number) => `${(n * 100).toFixed(1)}%`
-/** 공속 단계(2~9) → 한글 라벨 (docs §12.0) */
-const speedLabel = (step: number): string =>
-  step <= 3 ? '매우 빠름' : step <= 5 ? '빠름' : step === 6 ? '보통' : step <= 8 ? '느림' : '매우 느림'
 
 /** 패닉/코마(검·도끼/둔기, 히어로·소마) — 콤보 카운터 전량 소모형 */
 const COMA_PANIC = new Set([1111003, 1111004, 1111005, 1111006, 11111002, 11111003])
