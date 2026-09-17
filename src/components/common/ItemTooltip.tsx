@@ -3,6 +3,7 @@ import { resolveBuiltItem } from '../../domain/builtItem'
 import type { BuiltItem } from '../../domain/builtItem'
 import { SLOTS } from '../../domain/equipSlots'
 import { EFFECTS } from '../../domain/effects'
+import { formatSpeedStep } from '../../lib/speedLabel'
 import type { EffectId } from '../../domain/effects'
 
 /** 클래스 표기 (초보자는 공용(reqJob 0)일 때만 사용 가능) */
@@ -134,7 +135,7 @@ export default function ItemTooltip({ built, note }: Props) {
           const v = finalEffects[r.id]
           if (v === undefined || v === 0) return null
           const unit = EFFECTS[r.id].unit
-          const text = unit === 'step' ? `${v}` : `${v > 0 ? '+' : ''}${v}${unit === 'percent' ? '%' : ''}`
+          const text = r.id === 'attackSpeed' ? formatSpeedStep(v) : unit === 'step' ? `${v}` : `${v > 0 ? '+' : ''}${v}${unit === 'percent' ? '%' : ''}`
           return <StatLine key={r.id} label={r.label} value={text} color={v < 0 ? '#ff8a80' : '#a5f3b0'} />
         })}
         <StatLine label="업그레이드 가능 횟수" value={String(tucLeft)} color="#c8cde6" />

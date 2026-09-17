@@ -4231,7 +4231,8 @@
     "weaponType": "dagger",
     "iconUrl": "https://maplestory.io/api/gms/62/item/1332023/icon",
     "tuc": 7,
-    "reqLuk": 210
+    "reqLuk": 210,
+    "reqDex": 140
   },
   {
     "id": 1332077,
@@ -6126,7 +6127,7 @@
     "slot": "weapon",
     "effects": {
       "pad": 114,
-      "attackSpeed": 6
+      "attackSpeed": 7
     },
     "reqLevel": 120,
     "reqStr": 370,
@@ -6141,7 +6142,7 @@
     "slot": "weapon",
     "effects": {
       "pad": 112,
-      "attackSpeed": 6
+      "attackSpeed": 7
     },
     "reqLevel": 120,
     "reqStr": 370,

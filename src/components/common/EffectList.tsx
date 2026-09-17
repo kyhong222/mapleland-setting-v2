@@ -2,6 +2,7 @@ import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
 import { EFFECTS, ALL_EFFECTS } from '../../domain/effects'
 import type { EffectId, EffectMap } from '../../domain/effects'
+import { formatSpeedStep } from '../../lib/speedLabel'
 
 const ORDER: EffectId[] = ALL_EFFECTS.map((e) => e.id)
 
@@ -36,6 +37,7 @@ export default function EffectList({ effects, hideZero = true, dense }: Props) {
       {ids.map((id) => {
         const v = effects[id] as number
         const step = EFFECTS[id].unit === 'step'
+        const speed = id === 'attackSpeed'
         return (
           <Box key={id} sx={{ display: 'flex', justifyContent: 'space-between' }}>
             <Typography variant="body2" color="text.secondary">
@@ -46,7 +48,7 @@ export default function EffectList({ effects, hideZero = true, dense }: Props) {
               sx={{ fontWeight: 600 }}
               color={!step && v < 0 ? 'error.main' : 'text.primary'}
             >
-              {step ? v : `${v > 0 ? '+' : ''}${v}`}
+              {speed ? formatSpeedStep(v) : step ? v : `${v > 0 ? '+' : ''}${v}`}
             </Typography>
           </Box>
         )
