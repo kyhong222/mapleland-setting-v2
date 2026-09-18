@@ -38,8 +38,18 @@ const { useInventoryStore } = await import('../src/store/inventoryStore')
 const { useMonsterStore } = await import('../src/store/monsterStore')
 const { useNhitStore } = await import('../src/store/nhitStore')
 const { useSlotsStore } = await import('../src/store/slotsStore')
-const { captureAll, applyAll, captureSnapshot, captureSlots, applySlots, hasLocalData, resetAll } =
-  await import('../src/store/snapshot')
+const {
+  captureAll,
+  applyAll,
+  captureSnapshot,
+  captureSlots,
+  applySlots,
+  hasLocalData,
+  resetAll,
+  saveGuestBundle,
+  loadGuestBundle,
+  restoreGuest,
+} = await import('../src/store/snapshot')
 const { CATALOG_ITEMS } = await import('../src/data/catalog')
 const { emptyBuiltItem } = await import('../src/domain/builtItem')
 
@@ -125,6 +135,30 @@ check('슬롯 24칸 유지', restored.length === 24)
 check('슬롯 내용 복원', restored[3]?.name === '테스트' && restored[3]?.snapshot.jobId === 'hero')
 check('빈 칸은 그대로 null', restored[0] === null)
 check('hasLocalData 감지', hasLocalData())
+
+// ── 게스트 벌 보관/복원 (docs/cloud-sync.md §5) ────────────────
+// 로그인해도 비로그인 데이터가 사라지면 안 되고, 로그아웃하면 그대로 돌아와야 한다.
+console.log('\n게스트 벌 보관/복원')
+
+const guestState = roundTrip(captureAll())
+const guestSlots = roundTrip(captureSlots())
+saveGuestBundle()
+
+// 계정 데이터를 받아 화면이 바뀐 상황을 흉내낸다
+resetAll()
+useBuildStore.getState().selectJob('paladin')
+useBuildStore.getState().setLevel(70)
+useSlotsStore.getState().clear(3)
+
+// 로그인 상태로 새로고침하면 여기가 또 불린다. 덮이면 게스트 벌이 계정 데이터로
+// 바뀌어 영영 못 돌아온다 — 이 스모크의 핵심.
+saveGuestBundle()
+check('새로고침해도 게스트 벌은 안 덮인다', loadGuestBundle()?.state.build.jobId === 'hero')
+
+restoreGuest()
+check('로그아웃하면 게스트 상태로 돌아온다', JSON.stringify(roundTrip(captureAll())) === JSON.stringify(guestState))
+check('게스트 슬롯도 돌아온다', JSON.stringify(roundTrip(captureSlots())) === JSON.stringify(guestSlots))
+check('복원하면 게스트 벌은 지워진다', loadGuestBundle() === null)
 
 console.log(failures === 0 ? '\n전부 통과' : `\n${failures}건 실패`)
 process.exit(failures === 0 ? 0 : 1)

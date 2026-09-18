@@ -6,7 +6,7 @@
  * (스토어끼리 import하지 않는다는 규칙 때문에 authStore ↔ cloudSync 연결을 여기서 한다.)
  */
 
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
 import Alert from '@mui/material/Alert'
 import Button from '@mui/material/Button'
 import Dialog from '@mui/material/Dialog'
@@ -16,7 +16,7 @@ import Snackbar from '@mui/material/Snackbar'
 import Stack from '@mui/material/Stack'
 import Typography from '@mui/material/Typography'
 import { useAuthStore } from '../store/authStore'
-import { startCloudSync, stopCloudSync, useCloudSyncStore } from '../store/cloudSync'
+import { signOutCleanup, startCloudSync, stopCloudSync, useCloudSyncStore } from '../store/cloudSync'
 
 /** 제목 + 설명이 붙은 선택지 버튼 — 되돌릴 수 없는 선택이라 결과를 같이 적는다 */
 function ChoiceButton({
@@ -64,10 +64,21 @@ export default function CloudSyncGate() {
   useEffect(() => {
     if (status === 'signedIn' && userId) {
       void startCloudSync(userId)
+      // 언마운트에서는 멈추기만 한다 — 되돌리기는 아래 로그아웃 전이에서만
       return () => stopCloudSync()
     }
-    if (status === 'signedOut') stopCloudSync()
   }, [status, userId])
+
+  /**
+   * 로그아웃 전이에서만 게스트 데이터로 되돌린다.
+   * 위 effect의 cleanup은 탭을 닫을 때도 도므로 거기서 되돌리면 안 된다.
+   */
+  const prevStatus = useRef(status)
+  useEffect(() => {
+    const was = prevStatus.current
+    prevStatus.current = status
+    if (was === 'signedIn' && status === 'signedOut') signOutCleanup()
+  }, [status])
 
   return (
     <>

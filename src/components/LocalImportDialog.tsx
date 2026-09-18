@@ -1,12 +1,12 @@
 /**
- * '이 기기에서 불러오기' — 로그인할 때 보관해 둔 이 기기 데이터를 계정으로 옮긴다.
+ * '이 기기에서 불러오기' — 로그인 전에 이 기기에서 쓰던 것을 계정으로 옮긴다.
  * docs/cloud-sync.md §5
  *
- * 로그인하면 화면이 계정 기준으로 바뀌면서 이 기기에 있던 내용이 덮인다. 그 직전에
- * `mlsv2:backup`으로 한 벌 보관해 두는데, 꺼내는 곳이 바로 여기다.
+ * 로그인하면 화면이 계정 기준으로 바뀌는데, 그때 게스트 데이터를 `mlsv2:guest`로 옮겨 둔다.
+ * 그건 로그아웃하면 그대로 돌아오므로 사라진 게 아니고, 여기서는 그 벌을 계정으로 **복사**한다.
  *
- * 옮기기는 한 번에 하나씩이다(로컬 항목 고르기 → 계정 칸 고르기). 기존 저장 슬롯 화면과
- * 같은 조작이라 따로 배울 게 없다. 통째로 되돌리고 싶을 때만 아래쪽 '전체 덮어쓰기'를 쓴다.
+ * 옮기기는 한 번에 하나씩이다(항목 고르기 → 계정 칸 고르기). 기존 저장 슬롯 화면과 같은
+ * 조작이라 따로 배울 게 없다. 통째로 가져올 때만 아래쪽 '전체 덮어쓰기'를 쓴다.
  */
 
 import { useEffect, useState } from 'react'
@@ -26,16 +26,16 @@ import { JOBS } from '../domain/jobs'
 import type { BuildSnapshot } from '../store/buildStore'
 import { useSlotsStore } from '../store/slotsStore'
 import {
-  backupCurrentBuild,
+  bundleCurrentBuild,
   importSharedItems,
   importSlot,
-  loadLocalBackup,
+  loadGuestBundle,
   ownerCountOfShared,
   restoreBundle,
   type LocalBundle,
 } from '../store/snapshot'
 
-/** 옮길 항목 하나 — 보관본의 저장 슬롯이거나 '작업하던 빌드' */
+/** 옮길 항목 하나 — 게스트 벌의 저장 슬롯이거나 '작업하던 빌드' */
 interface Entry {
   key: string
   name: string
@@ -55,7 +55,7 @@ export default function LocalImportDialog({ open, onClose }: { open: boolean; on
   // 열 때마다 다시 읽는다 — 그 사이 다른 탭에서 로그인했을 수 있다
   useEffect(() => {
     if (open) {
-      setBundle(loadLocalBackup())
+      setBundle(loadGuestBundle())
       setPick(null)
       setConfirmAll(false)
     }
@@ -63,7 +63,7 @@ export default function LocalImportDialog({ open, onClose }: { open: boolean; on
 
   const entries: Entry[] = []
   if (bundle) {
-    const current = backupCurrentBuild(bundle)
+    const current = bundleCurrentBuild(bundle)
     if (current) entries.push({ key: 'current', name: '작업하던 빌드', snapshot: current })
     bundle.slots.forEach((s, i) => {
       if (s) entries.push({ key: `slot-${i}`, name: s.name?.trim() || `슬롯 ${i + 1}`, snapshot: s.snapshot })
@@ -88,7 +88,7 @@ export default function LocalImportDialog({ open, onClose }: { open: boolean; on
         <DialogContent dividers>
           {!bundle ? (
             <Typography variant="body2" color="text.secondary">
-              이 기기에 보관된 데이터가 없습니다. 로그인할 때 이 기기에 세팅이 있었다면 자동으로 보관됩니다.
+              로그인 전에 이 기기에서 쓰던 내용이 없습니다.
             </Typography>
           ) : pick ? (
             <>
@@ -119,7 +119,7 @@ export default function LocalImportDialog({ open, onClose }: { open: boolean; on
             <>
               {savedAt && (
                 <Typography variant="caption" color="text.secondary" sx={{ display: 'block', mb: 1.5 }}>
-                  {savedAt} 기준으로 보관된 내용입니다.
+                  로그인 전({savedAt}) 이 기기 내용입니다. 로그아웃하면 그대로 돌아옵니다.
                 </Typography>
               )}
 
@@ -165,7 +165,7 @@ export default function LocalImportDialog({ open, onClose }: { open: boolean; on
 
                 {entries.length === 0 && sharedCount === 0 && (
                   <Typography variant="body2" color="text.secondary">
-                    보관된 내용이 비어 있습니다.
+                    가져올 내용이 없습니다.
                   </Typography>
                 )}
               </Stack>
@@ -187,7 +187,7 @@ export default function LocalImportDialog({ open, onClose }: { open: boolean; on
                         onClick={() => {
                           restoreBundle(bundle)
                           setConfirmAll(false)
-                          setToast('이 기기 보관본으로 전체를 덮었습니다.')
+                          setToast('이 기기 내용으로 전체를 덮었습니다.')
                           onClose()
                         }}
                       >
@@ -196,11 +196,11 @@ export default function LocalImportDialog({ open, onClose }: { open: boolean; on
                     </Stack>
                   }
                 >
-                  계정에 저장된 슬롯과 인벤토리가 모두 이 기기 보관본으로 바뀝니다.
+                  계정의 슬롯과 인벤토리가 모두 이 기기 것으로 바뀝니다.
                 </Alert>
               ) : (
                 <Button color="error" size="small" onClick={() => setConfirmAll(true)}>
-                  이 기기 보관본으로 전체 덮어쓰기
+                  이 기기 내용으로 전체 덮어쓰기
                 </Button>
               )}
             </>

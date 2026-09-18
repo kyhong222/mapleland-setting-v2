@@ -142,14 +142,35 @@ export function captureBundle(): LocalBundle {
   return { state: captureAll(), slots: captureSlots(), at: Date.now() }
 }
 
-/** 덮어쓰기 직전 복구 경로. 마지막 1벌만 유지한다(docs/cloud-sync.md §5) */
-export const BACKUP_KEY = 'mlsv2:backup'
+/**
+ * 비로그인(게스트) 데이터 보관소. docs/cloud-sync.md §5
+ *
+ * 로그인하면 화면이 계정 기준으로 바뀌면서 `mlsv2:*`가 계정 데이터로 채워진다.
+ * 그 전에 게스트 벌을 여기 옮겨 두고, 로그아웃할 때 되돌린다 — 로그인했다고 이 기기에서
+ * 쓰던 내용이 사라지면 안 된다.
+ */
+export const GUEST_KEY = 'mlsv2:guest'
 
-export function saveLocalBackup(): void {
+/**
+ * 게스트 벌 보관. **이미 있으면 덮지 않는다.**
+ *
+ * 로그인 상태로 새로고침하면 화면에 있는 건 계정 데이터인데, 그때 덮어쓰면 게스트 벌이
+ * 계정 데이터로 바뀌어 영영 못 돌아온다. 저장은 로그인 전환 1회뿐이어야 한다.
+ */
+export function saveGuestBundle(): void {
   try {
-    localStorage.setItem(BACKUP_KEY, JSON.stringify(captureBundle()))
+    if (localStorage.getItem(GUEST_KEY) !== null) return
+    localStorage.setItem(GUEST_KEY, JSON.stringify(captureBundle()))
   } catch {
-    // 용량 초과 등 — 백업 실패가 이관 자체를 막지는 않는다
+    // 용량 초과 등 — 보관 실패가 로그인 자체를 막지는 않는다
+  }
+}
+
+export function clearGuestBundle(): void {
+  try {
+    localStorage.removeItem(GUEST_KEY)
+  } catch {
+    /* noop */
   }
 }
 
@@ -174,10 +195,10 @@ function snapshotFromAppState(s: AppState): BuildSnapshot | null {
   }
 }
 
-/** 보관본 읽기. 없거나 깨졌으면 null */
-export function loadLocalBackup(): LocalBundle | null {
+/** 게스트 벌 읽기. 없거나 깨졌으면 null */
+export function loadGuestBundle(): LocalBundle | null {
   try {
-    const raw = localStorage.getItem(BACKUP_KEY)
+    const raw = localStorage.getItem(GUEST_KEY)
     if (!raw) return null
     const b = JSON.parse(raw) as Partial<LocalBundle>
     if (!b || typeof b !== 'object' || !b.state) return null
@@ -187,8 +208,8 @@ export function loadLocalBackup(): LocalBundle | null {
   }
 }
 
-/** 보관본의 '작업하던 빌드'(슬롯에 저장하지 않은 것). 직업이 없으면 null */
-export function backupCurrentBuild(b: LocalBundle): BuildSnapshot | null {
+/** 게스트 벌의 '작업하던 빌드'(슬롯에 저장하지 않은 것). 직업이 없으면 null */
+export function bundleCurrentBuild(b: LocalBundle): BuildSnapshot | null {
   return snapshotFromAppState(b.state)
 }
 
@@ -197,7 +218,7 @@ export function importSlot(snapshot: BuildSnapshot, targetIdx: number, name?: st
   useSlotsStore.getState().save(targetIdx, structuredClone(snapshot), name)
 }
 
-/** 보관본에 든 공용 아이템 수 (불러오기 화면 표시용) */
+/** 게스트 벌에 든 공용 아이템 수 (불러오기 화면 표시용) */
 export function ownerCountOfShared(items: InventoryItem[] | undefined): number {
   return (items ?? []).filter((it) => ownerOf(it) === 'shared').length
 }
@@ -211,10 +232,25 @@ export function importSharedItems(incoming: InventoryItem[]): number {
   return add.length
 }
 
-/** 보관본으로 통째로 되돌린다 ('전체 덮어쓰기') */
+/** 게스트 벌로 통째로 되돌린다 (로그아웃 복원 · '전체 덮어쓰기') */
 export function restoreBundle(b: LocalBundle): void {
   applyAll(b.state)
   applySlots(b.slots)
+}
+
+/**
+ * 로그아웃 — 계정 데이터를 이 기기에서 지우고 게스트 벌로 되돌린다.
+ * 게스트 벌이 없으면(비로그인 데이터가 애초에 없었으면) 빈 상태로 되돌린다.
+ */
+export function restoreGuest(): void {
+  const guest = loadGuestBundle()
+  if (guest) restoreBundle(guest)
+  else {
+    resetAll()
+    useInventoryStore.getState().replaceAll([])
+    applySlots([])
+  }
+  clearGuestBundle()
 }
 
 /**
