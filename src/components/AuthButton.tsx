@@ -12,8 +12,10 @@ import Menu from '@mui/material/Menu'
 import MenuItem from '@mui/material/MenuItem'
 import Snackbar from '@mui/material/Snackbar'
 import Typography from '@mui/material/Typography'
+import Divider from '@mui/material/Divider'
 import { useAuthStore } from '../store/authStore'
 import { useCloudSyncStore } from '../store/cloudSync'
+import LocalImportDialog from './LocalImportDialog'
 
 /** 동기화 상태 한 줄. idle은 보여줄 게 없어 비운다 */
 const SYNC_LABEL: Record<string, string> = {
@@ -31,7 +33,10 @@ export default function AuthButton() {
   const signIn = useAuthStore((s) => s.signIn)
   const signOut = useAuthStore((s) => s.signOut)
   const syncStatus = useCloudSyncStore((s) => s.status)
+  const autoSync = useCloudSyncStore((s) => s.autoSync)
+  const uploadLocal = useCloudSyncStore((s) => s.keepLocal)
   const [anchor, setAnchor] = useState<HTMLElement | null>(null)
+  const [importOpen, setImportOpen] = useState(false)
 
   if (status === 'disabled') return null
 
@@ -76,6 +81,30 @@ export default function AuthButton() {
                 </Typography>
               )}
             </Box>
+            <Divider />
+            {/*
+              '나중에'를 골라 아직 계정이 빈 기기에서는 불러올 보관본이 없다.
+              그 기기에 필요한 건 반대 방향이라 항목을 바꿔 단다.
+            */}
+            {autoSync ? (
+              <MenuItem
+                onClick={() => {
+                  closeMenu()
+                  setImportOpen(true)
+                }}
+              >
+                이 기기에서 불러오기
+              </MenuItem>
+            ) : (
+              <MenuItem
+                onClick={() => {
+                  closeMenu()
+                  void uploadLocal()
+                }}
+              >
+                계정에 올리기
+              </MenuItem>
+            )}
             <MenuItem
               onClick={() => {
                 closeMenu()
@@ -103,6 +132,8 @@ export default function AuthButton() {
         autoHideDuration={6000}
         onClose={() => useAuthStore.setState({ error: null })}
       />
+
+      <LocalImportDialog open={importOpen} onClose={() => setImportOpen(false)} />
     </>
   )
 }

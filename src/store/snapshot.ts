@@ -174,49 +174,47 @@ function snapshotFromAppState(s: AppState): BuildSnapshot | null {
   }
 }
 
-export interface MergeResult {
-  slotsAdded: number
-  /** 24칸이 모자라 넣지 못한 수 */
-  slotsSkipped: number
-  sharedItemsAdded: number
+/** 보관본 읽기. 없거나 깨졌으면 null */
+export function loadLocalBackup(): LocalBundle | null {
+  try {
+    const raw = localStorage.getItem(BACKUP_KEY)
+    if (!raw) return null
+    const b = JSON.parse(raw) as Partial<LocalBundle>
+    if (!b || typeof b !== 'object' || !b.state) return null
+    return { state: b.state, slots: b.slots ?? [], at: b.at ?? 0 }
+  } catch {
+    return null
+  }
 }
 
-/**
- * 계정 데이터를 적용한 **뒤에** 이 기기 것을 손실 없이 얹는다(docs/cloud-sync.md §5).
- *
- * - 저장슬롯: 비어 있는 칸에만 넣는다. 계정 슬롯을 덮지 않는다.
- * - 로컬의 현재 작업 빌드는 화면에서는 계정 것에 밀리므로, 잃지 않도록 슬롯 한 칸으로 만들어 넣는다.
- * - 공용 인벤토리: 합집합(id가 겹치면 이미 같은 아이템이므로 건너뛴다).
- *   로컬 개인 인벤토리는 위 '이 기기 빌드' 슬롯이 들고 있으므로 따로 합치지 않는다.
- */
-export function mergeLocalInto(local: LocalBundle): MergeResult {
-  const incoming: SavedSlot[] = []
-  const currentBuild = snapshotFromAppState(local.state)
-  if (currentBuild) incoming.push({ snapshot: currentBuild, savedAt: local.at, name: '이 기기 빌드' })
-  for (const s of local.slots) if (s) incoming.push(s)
+/** 보관본의 '작업하던 빌드'(슬롯에 저장하지 않은 것). 직업이 없으면 null */
+export function backupCurrentBuild(b: LocalBundle): BuildSnapshot | null {
+  return snapshotFromAppState(b.state)
+}
 
-  const slots = useSlotsStore.getState().slots.slice()
-  let slotsAdded = 0
-  let slotsSkipped = 0
-  for (const s of incoming) {
-    const free = slots.findIndex((x) => x === null)
-    if (free < 0) {
-      slotsSkipped++
-      continue
-    }
-    slots[free] = s
-    slotsAdded++
-  }
-  useSlotsStore.getState().replaceAll(slots)
+/** 스냅샷 하나를 계정 슬롯 한 칸에 넣는다 (기존 내용은 덮인다) */
+export function importSlot(snapshot: BuildSnapshot, targetIdx: number, name?: string): void {
+  useSlotsStore.getState().save(targetIdx, structuredClone(snapshot), name)
+}
 
+/** 보관본에 든 공용 아이템 수 (불러오기 화면 표시용) */
+export function ownerCountOfShared(items: InventoryItem[] | undefined): number {
+  return (items ?? []).filter((it) => ownerOf(it) === 'shared').length
+}
+
+/** 공용 아이템 합집합. id가 겹치면 이미 같은 것이므로 건너뛴다. 추가된 개수를 돌려준다 */
+export function importSharedItems(incoming: InventoryItem[]): number {
   const items = useInventoryStore.getState().items
   const known = new Set(items.map((it) => it.id))
-  const incomingShared = (local.state.inventory ?? [])
-    .filter((it) => ownerOf(it) === 'shared' && !known.has(it.id))
-    .map(cloneItem)
-  if (incomingShared.length > 0) useInventoryStore.getState().replaceAll([...items, ...incomingShared])
+  const add = incoming.filter((it) => ownerOf(it) === 'shared' && !known.has(it.id)).map(cloneItem)
+  if (add.length > 0) useInventoryStore.getState().replaceAll([...items, ...add])
+  return add.length
+}
 
-  return { slotsAdded, slotsSkipped, sharedItemsAdded: incomingShared.length }
+/** 보관본으로 통째로 되돌린다 ('전체 덮어쓰기') */
+export function restoreBundle(b: LocalBundle): void {
+  applyAll(b.state)
+  applySlots(b.slots)
 }
 
 /**

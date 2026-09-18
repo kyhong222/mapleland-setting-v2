@@ -55,13 +55,11 @@ export default function CloudSyncGate() {
   const userId = useAuthStore((s) => s.user?.id)
   const prompt = useCloudSyncStore((s) => s.prompt)
   const busy = useCloudSyncStore((s) => s.busy)
-  const merge = useCloudSyncStore((s) => s.merge)
   const syncStatus = useCloudSyncStore((s) => s.status)
   const message = useCloudSyncStore((s) => s.message)
   const takeRemote = useCloudSyncStore((s) => s.takeRemote)
   const keepLocal = useCloudSyncStore((s) => s.keepLocal)
-  const mergeBoth = useCloudSyncStore((s) => s.mergeBoth)
-  const dismissMerge = useCloudSyncStore((s) => s.dismissMerge)
+  const postpone = useCloudSyncStore((s) => s.postpone)
 
   useEffect(() => {
     if (status === 'signedIn' && userId) {
@@ -76,49 +74,51 @@ export default function CloudSyncGate() {
       {/* 닫기 수단을 주지 않는다 — 고르기 전에는 동기화를 시작할 수 없다 */}
       <Dialog open={prompt !== null} maxWidth="xs" fullWidth>
         <DialogTitle sx={{ pb: 1 }}>
-          {prompt === 'migrate' ? '이 기기의 데이터를 어떻게 할까요?' : '다른 기기에서 먼저 저장했습니다'}
+          {prompt === 'upload' ? '이 기기의 세팅을 계정에 올릴까요?' : '다른 기기에서 먼저 저장했습니다'}
         </DialogTitle>
         <DialogContent>
           <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
-            {prompt === 'migrate'
-              ? '계정에 저장된 데이터가 있는데, 이 기기에도 작업하던 내용이 있습니다.'
-              : '이 기기의 변경을 올리려 했지만 계정 데이터가 더 최신입니다.'}
+            {prompt === 'upload'
+              ? '계정이 비어 있습니다. 올려두면 다른 기기에서도 이어서 볼 수 있습니다.'
+              : '어느 쪽을 남길까요?'}
           </Typography>
 
           <Stack spacing={1.25}>
-            {prompt === 'migrate' && (
-              <ChoiceButton
-                recommended
-                disabled={busy}
-                label="병합"
-                detail="계정 데이터를 기준으로 두고, 이 기기의 저장 슬롯을 빈 칸에 채웁니다. 작업하던 빌드는 '이 기기 빌드' 슬롯으로 보관돼 사라지지 않습니다."
-                onClick={() => void mergeBoth()}
-              />
+            {prompt === 'upload' ? (
+              <>
+                <ChoiceButton
+                  recommended
+                  disabled={busy}
+                  label="올리기"
+                  detail="지금 내용을 계정에 저장하고, 이후 변경도 자동으로 저장합니다."
+                  onClick={() => void keepLocal()}
+                />
+                <ChoiceButton
+                  disabled={busy}
+                  label="나중에"
+                  detail="이 기기에만 저장합니다. 계정 메뉴에서 언제든 올릴 수 있습니다."
+                  onClick={postpone}
+                />
+              </>
+            ) : (
+              <>
+                <ChoiceButton
+                  disabled={busy}
+                  label="계정 것만 쓰기"
+                  detail="이 기기의 내용은 사라집니다."
+                  onClick={() => void takeRemote()}
+                />
+                <ChoiceButton
+                  disabled={busy}
+                  label="이 기기 것만 쓰기"
+                  detail="계정에 저장된 내용은 사라집니다."
+                  onClick={() => void keepLocal()}
+                />
+              </>
             )}
-            <ChoiceButton
-              disabled={busy}
-              label={prompt === 'migrate' ? '계정 데이터 사용' : '계정 것 받기'}
-              detail="이 기기의 내용이 계정 것으로 바뀝니다. 되돌릴 수 있게 이 기기 상태를 한 벌 백업해 둡니다."
-              onClick={() => void takeRemote()}
-            />
-            <ChoiceButton
-              disabled={busy}
-              label="이 기기 데이터로 덮기"
-              detail="계정에 저장된 내용이 이 기기 것으로 바뀝니다. 다른 기기에서 저장한 내용은 사라집니다."
-              onClick={() => void keepLocal()}
-            />
           </Stack>
         </DialogContent>
       </Dialog>
-
-      <Snackbar open={merge !== null} autoHideDuration={8000} onClose={dismissMerge}>
-        <Alert severity="success" onClose={dismissMerge} variant="filled">
-          {merge &&
-            `저장 슬롯 ${merge.slotsAdded}개를 추가했습니다` +
-              (merge.slotsSkipped > 0 ? ` (칸이 모자라 ${merge.slotsSkipped}개는 이 기기에 남겨뒀습니다)` : '') +
-              (merge.sharedItemsAdded > 0 ? ` · 공용 아이템 ${merge.sharedItemsAdded}개 합침` : '')}
-        </Alert>
-      </Snackbar>
 
       <Snackbar open={syncStatus === 'error' && message !== null} autoHideDuration={10000}>
         <Alert severity="error" variant="filled">

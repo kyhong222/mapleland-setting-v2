@@ -16,22 +16,18 @@ import {
   applyAll,
   applySlotRows,
   captureAll,
-  captureBundle,
   captureSlotRows,
   hasLocalData,
-  mergeLocalInto,
   saveLocalBackup,
   subscribeAll,
-  type LocalBundle,
-  type MergeResult,
 } from './snapshot'
 import { CLOUD_SCHEMA_VERSION, migrateCloudState } from './cloudSchema'
 
 /** 사용자에게 물어야 하는 상황 */
 export type CloudPrompt =
   | null
-  /** 로그인 직후: 이 기기에도, 계정에도 데이터가 있다(§5) */
-  | 'migrate'
+  /** 계정이 비어 있다 — 이 기기 세팅을 계정으로 올릴지 묻는다(§5) */
+  | 'upload'
   /** 저장 중: 다른 기기가 먼저 썼다(§4) */
   | 'conflict'
 
@@ -39,28 +35,32 @@ interface CloudSyncState {
   status: SyncStatus
   message: string | null
   prompt: CloudPrompt
-  /** 병합 직후 결과 안내 (읽고 나면 dismissMerge로 지운다) */
-  merge: MergeResult | null
+  /**
+   * 자동 동기화가 돌고 있는지. 계정이 빈 상태에서 '나중에'를 고르면 false로 남는다 —
+   * 올릴지 말지 답을 안 한 기기를 조용히 올려버리지 않기 위해서다.
+   */
+  autoSync: boolean
   /** 선택 처리 중 — 다이얼로그 버튼을 잠근다 */
   busy: boolean
+  /** 계정 것을 받는다 (이 기기 내용은 덮인다) */
   takeRemote: () => Promise<void>
+  /** 이 기기 것으로 계정을 덮는다 */
   keepLocal: () => Promise<void>
-  mergeBoth: () => Promise<void>
-  dismissMerge: () => void
+  /** '나중에' — 이관하지 않고 동기화도 시작하지 않는다 */
+  postpone: () => void
 }
 
 let engine: CloudSync | null = null
 let unsubStores: (() => void) | null = null
 let onVisibility: (() => void) | null = null
 let onPageHide: (() => void) | null = null
-/** 로그인 시점의 이 기기 상태 — 병합 입력으로 쓴다 */
-let localAtLogin: LocalBundle | null = null
 
 const setState = (patch: Partial<CloudSyncState>) => useCloudSyncStore.setState(patch)
 
 /** 분기가 끝난 뒤에만 부른다 (파일 상단 주석 참고) */
 function beginPushing(): void {
   if (!engine || unsubStores) return
+  setState({ autoSync: true })
   unsubStores = subscribeAll(() => engine?.schedulePush())
 
   onVisibility = () => {
@@ -90,7 +90,7 @@ export const useCloudSyncStore = create<CloudSyncState>()(() => ({
   status: 'idle',
   message: null,
   prompt: null,
-  merge: null,
+  autoSync: false,
   busy: false,
 
   // 로컬이 덮이므로 백업을 남긴다
@@ -99,16 +99,7 @@ export const useCloudSyncStore = create<CloudSyncState>()(() => ({
   // 서버만 덮인다 — 로컬은 그대로라 백업이 필요 없다
   keepLocal: () => resolve((e) => e.keepLocal(), false),
 
-  mergeBoth: () =>
-    resolve(async (e) => {
-      const local = localAtLogin ?? captureBundle()
-      await e.takeRemote()
-      const merge = mergeLocalInto(local)
-      await e.keepLocal()
-      setState({ merge })
-    }, true),
-
-  dismissMerge: () => setState({ merge: null }),
+  postpone: () => setState({ prompt: null }),
 }))
 
 /**
@@ -144,7 +135,6 @@ export async function startCloudSync(userId: string): Promise<void> {
   const stale = () => engine !== mine
 
   const hadLocal = hasLocalData()
-  localAtLogin = hadLocal ? captureBundle() : null
 
   let hasRemote = false
   try {
@@ -156,14 +146,15 @@ export async function startCloudSync(userId: string): Promise<void> {
   }
   if (stale()) return
 
-  if (hadLocal && hasRemote) {
-    setState({ prompt: 'migrate' }) // 사용자가 고를 때까지 구독하지 않는다
-    return
-  }
-  if (hadLocal) {
-    await mine.keepLocal() // 계정이 비어 있다 — 그냥 올린다
-  } else if (hasRemote) {
+  if (hasRemote) {
+    // 계정이 기준이다. 이 기기 내용은 덮이므로 먼저 한 벌 보관한다 —
+    // 계정 메뉴의 '이 기기에서 불러오기'가 이 보관본을 읽는다(§5).
+    if (hadLocal) saveLocalBackup()
     await mine.takeRemote()
+  } else if (hadLocal) {
+    // 계정이 비어 있다 = 아직 한 번도 올린 적 없다. 올릴지 물어본다.
+    setState({ prompt: 'upload' }) // 고를 때까지 구독하지 않는다
+    return
   }
   if (stale()) return
   beginPushing()
@@ -179,6 +170,5 @@ export function stopCloudSync(): void {
   onPageHide = null
   engine?.dispose()
   engine = null
-  localAtLogin = null
-  setState({ status: 'idle', message: null, prompt: null, merge: null, busy: false })
+  setState({ status: 'idle', message: null, prompt: null, autoSync: false, busy: false })
 }
