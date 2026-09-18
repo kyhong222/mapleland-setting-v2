@@ -5,8 +5,8 @@ import TextField from '@mui/material/TextField'
 import type { ItemData } from '../../domain/item'
 import type { EffectMap } from '../../domain/effects'
 import { EFFECTS } from '../../domain/effects'
-import { itemGrowthSpec, GROWTH_TIER_LABEL } from '../../domain/growth'
-import type { GrowthStat } from '../../domain/growth'
+import { itemGrowthSpec, growthAtLevel, growthLevelOf, GROWTH_TIER_LABEL } from '../../domain/growth'
+import type { GrowthSpec, GrowthStat } from '../../domain/growth'
 
 interface Props {
   item: ItemData
@@ -36,17 +36,49 @@ function GrowthInput({ value, min, max, onCommit }: { value: number; min: number
   )
 }
 
+/** 상승폭이 고정인 성장: 레벨 하나만 받고 누적치는 계산한다 */
+function FixedGrowth({ spec, growth, onChange }: { spec: GrowthSpec; growth: EffectMap; onChange: (next: EffectMap) => void }) {
+  const level = growthLevelOf(spec, growth)
+  const summary = spec.stats
+    .map((st) => `${EFFECTS[st.effectId].label} +${st.perLevelMin * level}`)
+    .join(' · ')
+  return (
+    <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mt: 0.5 }}>
+      <Typography variant="body2" sx={{ width: 64, flexShrink: 0 }}>
+        레벨
+      </Typography>
+      <Typography variant="caption" color="text.disabled" sx={{ flexGrow: 1 }}>
+        {summary}
+      </Typography>
+      <GrowthInput value={level} min={0} max={spec.maxLevel} onCommit={(n) => onChange(growthAtLevel(spec, n))} />
+    </Box>
+  )
+}
+
 export default function GrowthSection({ item, growth, onChange }: Props) {
   const spec = itemGrowthSpec(item)
   if (!spec) return null
 
   const setStat = (st: GrowthStat, n: number) => onChange({ ...growth, [st.effectId]: n })
 
+  const header = (
+    <Typography variant="caption" color="text.secondary">
+      성장 · {GROWTH_TIER_LABEL[spec.tier]} (최대 {spec.maxLevel}레벨)
+    </Typography>
+  )
+
+  if (spec.fixed) {
+    return (
+      <Box>
+        {header}
+        <FixedGrowth spec={spec} growth={growth} onChange={onChange} />
+      </Box>
+    )
+  }
+
   return (
     <Box>
-      <Typography variant="caption" color="text.secondary">
-        성장 · {GROWTH_TIER_LABEL[spec.tier]} (최대 {spec.maxLevel}레벨)
-      </Typography>
+      {header}
 
       <Box sx={{ display: 'flex', flexDirection: 'column', gap: 0.5, mt: 0.5 }}>
         {spec.stats.map((st) => {

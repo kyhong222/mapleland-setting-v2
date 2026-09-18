@@ -1,0 +1,16 @@
+[
+  {
+    "id": 1152052,
+    "name": "월묘 견장",
+    "slot": "shoulder",
+    "effects": {
+      "STR": 5,
+      "DEX": 5,
+      "INT": 5,
+      "LUK": 5
+    },
+    "reqLevel": 10,
+    "iconUrl": "https://maplestory.io/api/KMS/384/item/1152052/icon",
+    "tuc": 0
+  }
+]

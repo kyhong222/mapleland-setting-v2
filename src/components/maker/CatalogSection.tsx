@@ -82,7 +82,7 @@ const RENDER_CAP = 600
 /** 부위 선택 드롭다운: 방어구 슬롯(개별) */
 const ARMOR_SLOTS: SlotId[] = [
   'hat', 'faceAccessory', 'eyeAccessory', 'earring', 'top', 'bottom', 'overall',
-  'shoes', 'gloves', 'cape', 'shield', 'pendant', 'ring', 'belt', 'petAcc', 'medal',
+  'shoes', 'gloves', 'cape', 'shield', 'pendant', 'ring', 'belt', 'petAcc', 'medal', 'shoulder',
 ]
 
 /** 필터 key → 해당 슬롯 집합 (화살=화살+볼트) */

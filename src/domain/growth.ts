@@ -1,11 +1,15 @@
 /**
- * 리버스/타임리스 장비의 아이템 레벨업(성장) 기믹.
+ * 아이템 레벨업(성장) 기믹.
  *
- * 일반 장비는 변동옵 + 주문서(업횟)로 강화하지만, 리버스/타임리스 장비는
- * 캐릭터 성장에 따라 레벨업으로 추가 강화된다.
- *  - 리버스  : 3레벨 / 타임리스 : 5레벨
- *  - 레벨업당 상승폭은 가변이므로(스탯별 min~max), 세팅 시뮬레이션에서는
- *    사용자가 누적 성장치를 [총min ~ 총max] 범위로 직접 입력한다.
+ * 일반 장비는 변동옵 + 주문서(업횟)로 강화하지만, 일부 장비는 캐릭터 성장에 따라
+ * 레벨업으로 추가 강화된다. 판별 경로가 둘이다.
+ *  - 이름 접두사 — "리버스 …"(3레벨) / "타임리스 …"(5레벨). 부위·무기종류·직업으로 표를 고른다.
+ *  - 아이템 단위 — 이름 규칙이 없는 개별 기믹(`ITEM_GROWTH`). 메랜 오리지널 조정분이 여기 온다.
+ *
+ * 레벨업당 상승폭은 대개 가변이라(스탯별 min~max) 사용자가 누적 성장치를
+ * [총min ~ 총max] 범위로 직접 입력한다. 반대로 상승폭이 고정(min === max)이면
+ * 누적치가 레벨에서 일의적으로 정해지므로 `GrowthSpec.fixed`로 표시하고 UI는
+ * 스탯별 입력 대신 레벨 하나만 받는다.
  *
  * 성장 범위 데이터 출처: https://maplekibun.tistory.com/762
  * (카테고리 = 아이템 1:1 이므로 무기종류/부위별 표가 곧 아이템별 데이터)
@@ -16,15 +20,19 @@ import type { ItemData } from './item'
 import type { SlotId } from './equipSlots'
 import type { WeaponType } from './weapons'
 
-export type GrowthTier = 'reverse' | 'timeless'
+/** 이름 접두사로 판별되는 티어 */
+export type NameGrowthTier = 'reverse' | 'timeless'
+/** 이름 규칙 없이 아이템 단위로 붙는 기믹 = 'itemLevel' */
+export type GrowthTier = NameGrowthTier | 'itemLevel'
 
 export const GROWTH_TIER_LABEL: Record<GrowthTier, string> = {
   reverse: '리버스',
   timeless: '타임리스',
+  itemLevel: '아이템 레벨업',
 }
 
-/** 티어별 최대 레벨업 횟수 */
-export const GROWTH_MAX_LEVEL: Record<GrowthTier, number> = {
+/** 이름 접두사 티어별 최대 레벨업 횟수 (아이템 단위 기믹은 각자 maxLevel을 가진다) */
+export const GROWTH_MAX_LEVEL: Record<NameGrowthTier, number> = {
   reverse: 3,
   timeless: 5,
 }
@@ -144,8 +152,23 @@ const ARMOR_GROWTH: Partial<Record<SlotId, Partial<Record<ArmorClass, GrowthRang
   shield: SHIELD_GROWTH,
 }
 
+// ── 아이템 단위 성장 기믹 (이름 규칙에 걸리지 않는 개별 아이템) ──
+interface ItemGrowthDef {
+  maxLevel: number
+  ranges: GrowthRange[]
+}
+
+const ITEM_GROWTH: Record<number, ItemGrowthDef> = {
+  // 월묘 견장 — 원작은 공2/마력2지만 메랜은 올스탯 5 + 레벨업 기믹으로 바뀌었다.
+  // 레벨업 1회당 올스탯 +1 고정, 5레벨까지.
+  1152052: {
+    maxLevel: 5,
+    ranges: [g('STR', 1, 1), g('DEX', 1, 1), g('INT', 1, 1), g('LUK', 1, 1)],
+  },
+}
+
 /** 이름 접두사로 성장 티어 판별 ("타임리스 …" / "리버스 …") */
-export function growthTier(name: string): GrowthTier | null {
+export function growthTier(name: string): NameGrowthTier | null {
   if (/^타임리스\s/.test(name)) return 'timeless'
   if (/^리버스\s/.test(name)) return 'reverse'
   return null
@@ -179,21 +202,54 @@ export interface GrowthSpec {
   tier: GrowthTier
   maxLevel: number
   stats: GrowthStat[]
+  /**
+   * 모든 스탯의 레벨당 상승폭이 고정(min === max)이라 누적치가 레벨 하나로 결정되는지.
+   * true면 UI가 스탯별 입력 대신 레벨만 받는다 (스탯끼리 어긋난 조합을 막기 위함).
+   */
+  fixed: boolean
 }
 
-/** 아이템의 성장 스펙 (성장 불가면 null) */
-export function itemGrowthSpec(item: ItemData): GrowthSpec | null {
-  const tier = growthTier(item.name)
-  if (!tier) return null
-  const ranges = growthRangesFor(item)
-  if (!ranges) return null
-  const maxLevel = GROWTH_MAX_LEVEL[tier]
+function toSpec(tier: GrowthTier, maxLevel: number, ranges: GrowthRange[]): GrowthSpec {
   const stats: GrowthStat[] = ranges.map((r) => ({
     ...r,
     totalMin: 0,
     totalMax: r.perLevelMax * maxLevel,
   }))
-  return { tier, maxLevel, stats }
+  return { tier, maxLevel, stats, fixed: ranges.every((r) => r.perLevelMin === r.perLevelMax) }
+}
+
+/** 아이템의 성장 스펙 (성장 불가면 null) */
+export function itemGrowthSpec(item: ItemData): GrowthSpec | null {
+  // 아이템 단위 기믹이 이름 규칙보다 우선한다.
+  const own = ITEM_GROWTH[item.id]
+  if (own) return toSpec('itemLevel', own.maxLevel, own.ranges)
+
+  const tier = growthTier(item.name)
+  if (!tier) return null
+  const ranges = growthRangesFor(item)
+  if (!ranges) return null
+  return toSpec(tier, GROWTH_MAX_LEVEL[tier], ranges)
+}
+
+/** 고정 성장 스펙에서 레벨 → 누적 성장 EffectMap */
+export function growthAtLevel(spec: GrowthSpec, level: number): EffectMap {
+  const lv = Math.max(0, Math.min(spec.maxLevel, Math.floor(level)))
+  const out: EffectMap = {}
+  for (const st of spec.stats) out[st.effectId] = st.perLevelMin * lv
+  return out
+}
+
+/**
+ * 고정 성장 스펙에서 누적 EffectMap → 레벨 역산.
+ * 스탯별로 어긋나 있으면(수동 편집/구버전 데이터) 가장 큰 레벨을 택한다.
+ */
+export function growthLevelOf(spec: GrowthSpec, growth: EffectMap): number {
+  let lv = 0
+  for (const st of spec.stats) {
+    if (st.perLevelMin <= 0) continue
+    lv = Math.max(lv, Math.floor((growth[st.effectId] ?? 0) / st.perLevelMin))
+  }
+  return Math.max(0, Math.min(spec.maxLevel, lv))
 }
 
 /** 성장 값(EffectMap)을 스펙 범위 [totalMin, totalMax]로 클램프하고 스펙 외 스탯은 제거 */
