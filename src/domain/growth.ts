@@ -160,15 +160,16 @@ interface ItemGrowthDef {
   perStatLevels?: boolean
 }
 
+/** 올스탯이 스탯별로 따로 레벨업하는 기믹 (스탯당 1회 +1, 총합 제한 없음) */
+const ALLSTAT_PER_STAT: GrowthRange[] = [g('STR', 1, 1), g('DEX', 1, 1), g('INT', 1, 1), g('LUK', 1, 1)]
+
 const ITEM_GROWTH: Record<number, ItemGrowthDef> = {
   // 월묘 견장 — 원작은 공2/마력2지만 메랜은 올스탯 5 + 레벨업 기믹으로 바뀌었다.
-  // 레벨업은 STR/DEX/INT/LUK이 **각각 따로** 오른다. 스탯별 1회당 +1, 스탯마다 5업까지
-  // (전부 만렙이면 올스탯 +5 → 최종 올스탯 10). 총합 제한은 없다.
-  1152052: {
-    maxLevel: 5,
-    perStatLevels: true,
-    ranges: [g('STR', 1, 1), g('DEX', 1, 1), g('INT', 1, 1), g('LUK', 1, 1)],
-  },
+  // 스탯마다 5업 → 전부 만렙이면 올스탯 +5 (최종 올스탯 10).
+  1152052: { maxLevel: 5, perStatLevels: true, ranges: ALLSTAT_PER_STAT },
+  // 황금 송편 목걸이 — 정옵 올스탯 10. 스탯마다 5업 → 만렙 올스탯 15.
+  // (툴팁의 ITEM LEV 1이 정옵 상태이고, 거기서 스탯별로 5번 더 오른다)
+  1122161: { maxLevel: 5, perStatLevels: true, ranges: ALLSTAT_PER_STAT },
 }
 
 /** 이름 접두사로 성장 티어 판별 ("타임리스 …" / "리버스 …") */
