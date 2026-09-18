@@ -28,7 +28,7 @@ const ICON = 42
 const LAYOUT: (EquipInstance | null)[][] = [
   [null, 'hat', null, null, null],
   ['medal', 'faceAccessory', null, 'ring3', 'ring4'],
-  [null, null, 'eyeAccessory', 'earring', null],
+  [null, null, 'eyeAccessory', 'earring', 'shoulder'],
   ['cape', 'top', 'pendant', 'weapon', 'secondary'],
   ['gloves', 'bottom', 'belt', 'ring1', 'ring2'],
   [null, null, 'shoes', null, null],

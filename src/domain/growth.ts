@@ -1,11 +1,15 @@
 /**
- * 리버스/타임리스 장비의 아이템 레벨업(성장) 기믹.
+ * 아이템 레벨업(성장) 기믹.
  *
- * 일반 장비는 변동옵 + 주문서(업횟)로 강화하지만, 리버스/타임리스 장비는
- * 캐릭터 성장에 따라 레벨업으로 추가 강화된다.
- *  - 리버스  : 3레벨 / 타임리스 : 5레벨
- *  - 레벨업당 상승폭은 가변이므로(스탯별 min~max), 세팅 시뮬레이션에서는
- *    사용자가 누적 성장치를 [총min ~ 총max] 범위로 직접 입력한다.
+ * 일반 장비는 변동옵 + 주문서(업횟)로 강화하지만, 일부 장비는 캐릭터 성장에 따라
+ * 레벨업으로 추가 강화된다. 판별 경로가 둘이다.
+ *  - 이름 접두사 — "리버스 …"(3레벨) / "타임리스 …"(5레벨). 부위·무기종류·직업으로 표를 고른다.
+ *  - 아이템 단위 — 이름 규칙이 없는 개별 기믹(`ITEM_GROWTH`). 메랜 오리지널 조정분이 여기 온다.
+ *
+ * 어느 쪽이든 사용자는 누적 성장치를 스탯별 [총min ~ 총max] 범위로 직접 입력한다.
+ * 레벨업 단위가 아이템 전체냐 스탯별이냐는 `GrowthSpec.perStatLevels`로 구분하는데,
+ * 이건 표기(최대 N레벨 / 스탯별 최대 N레벨)에만 쓰인다 — 입력 범위는 어차피
+ * 스탯마다 독립이라 계산은 같다.
  *
  * 성장 범위 데이터 출처: https://maplekibun.tistory.com/762
  * (카테고리 = 아이템 1:1 이므로 무기종류/부위별 표가 곧 아이템별 데이터)
@@ -16,15 +20,19 @@ import type { ItemData } from './item'
 import type { SlotId } from './equipSlots'
 import type { WeaponType } from './weapons'
 
-export type GrowthTier = 'reverse' | 'timeless'
+/** 이름 접두사로 판별되는 티어 */
+export type NameGrowthTier = 'reverse' | 'timeless'
+/** 이름 규칙 없이 아이템 단위로 붙는 기믹 = 'itemLevel' */
+export type GrowthTier = NameGrowthTier | 'itemLevel'
 
 export const GROWTH_TIER_LABEL: Record<GrowthTier, string> = {
   reverse: '리버스',
   timeless: '타임리스',
+  itemLevel: '아이템 레벨업',
 }
 
-/** 티어별 최대 레벨업 횟수 */
-export const GROWTH_MAX_LEVEL: Record<GrowthTier, number> = {
+/** 이름 접두사 티어별 최대 레벨업 횟수 (아이템 단위 기믹은 각자 maxLevel을 가진다) */
+export const GROWTH_MAX_LEVEL: Record<NameGrowthTier, number> = {
   reverse: 3,
   timeless: 5,
 }
@@ -144,8 +152,28 @@ const ARMOR_GROWTH: Partial<Record<SlotId, Partial<Record<ArmorClass, GrowthRang
   shield: SHIELD_GROWTH,
 }
 
+// ── 아이템 단위 성장 기믹 (이름 규칙에 걸리지 않는 개별 아이템) ──
+interface ItemGrowthDef {
+  maxLevel: number
+  ranges: GrowthRange[]
+  /** 레벨업이 아이템 전체가 아니라 스탯마다 따로 매겨지는지 (표기용) */
+  perStatLevels?: boolean
+}
+
+/** 올스탯이 스탯별로 따로 레벨업하는 기믹 (스탯당 1회 +1, 총합 제한 없음) */
+const ALLSTAT_PER_STAT: GrowthRange[] = [g('STR', 1, 1), g('DEX', 1, 1), g('INT', 1, 1), g('LUK', 1, 1)]
+
+const ITEM_GROWTH: Record<number, ItemGrowthDef> = {
+  // 월묘 견장 — 원작은 공2/마력2지만 메랜은 올스탯 5 + 레벨업 기믹으로 바뀌었다.
+  // 스탯마다 5업 → 전부 만렙이면 올스탯 +5 (최종 올스탯 10).
+  1152052: { maxLevel: 5, perStatLevels: true, ranges: ALLSTAT_PER_STAT },
+  // 황금 송편 목걸이 — 정옵 올스탯 10. 스탯마다 5업 → 만렙 올스탯 15.
+  // (툴팁의 ITEM LEV 1이 정옵 상태이고, 거기서 스탯별로 5번 더 오른다)
+  1122161: { maxLevel: 5, perStatLevels: true, ranges: ALLSTAT_PER_STAT },
+}
+
 /** 이름 접두사로 성장 티어 판별 ("타임리스 …" / "리버스 …") */
-export function growthTier(name: string): GrowthTier | null {
+export function growthTier(name: string): NameGrowthTier | null {
   if (/^타임리스\s/.test(name)) return 'timeless'
   if (/^리버스\s/.test(name)) return 'reverse'
   return null
@@ -179,21 +207,38 @@ export interface GrowthSpec {
   tier: GrowthTier
   maxLevel: number
   stats: GrowthStat[]
+  /**
+   * 레벨업 단위가 아이템 전체(리버스/타임리스)가 아니라 스탯별인지 — 표기에만 쓴다.
+   * 누적 입력 범위는 어느 쪽이든 스탯마다 독립이라 계산에는 영향이 없다.
+   */
+  perStatLevels: boolean
 }
 
-/** 아이템의 성장 스펙 (성장 불가면 null) */
-export function itemGrowthSpec(item: ItemData): GrowthSpec | null {
-  const tier = growthTier(item.name)
-  if (!tier) return null
-  const ranges = growthRangesFor(item)
-  if (!ranges) return null
-  const maxLevel = GROWTH_MAX_LEVEL[tier]
+function toSpec(
+  tier: GrowthTier,
+  maxLevel: number,
+  ranges: GrowthRange[],
+  perStatLevels = false,
+): GrowthSpec {
   const stats: GrowthStat[] = ranges.map((r) => ({
     ...r,
     totalMin: 0,
     totalMax: r.perLevelMax * maxLevel,
   }))
-  return { tier, maxLevel, stats }
+  return { tier, maxLevel, stats, perStatLevels }
+}
+
+/** 아이템의 성장 스펙 (성장 불가면 null) */
+export function itemGrowthSpec(item: ItemData): GrowthSpec | null {
+  // 아이템 단위 기믹이 이름 규칙보다 우선한다.
+  const own = ITEM_GROWTH[item.id]
+  if (own) return toSpec('itemLevel', own.maxLevel, own.ranges, own.perStatLevels ?? false)
+
+  const tier = growthTier(item.name)
+  if (!tier) return null
+  const ranges = growthRangesFor(item)
+  if (!ranges) return null
+  return toSpec(tier, GROWTH_MAX_LEVEL[tier], ranges)
 }
 
 /** 성장 값(EffectMap)을 스펙 범위 [totalMin, totalMax]로 클램프하고 스펙 외 스탯은 제거 */

@@ -89,6 +89,20 @@
     "tuc": 3
   },
   {
+    "id": 1122161,
+    "name": "황금 송편 목걸이",
+    "slot": "pendant",
+    "effects": {
+      "STR": 10,
+      "DEX": 10,
+      "INT": 10,
+      "LUK": 10
+    },
+    "reqLevel": 10,
+    "iconUrl": "https://maplestory.io/api/KMS/384/item/1122161/icon",
+    "tuc": 0
+  },
+  {
     "id": 1122012,
     "name": "타임리스 펜던트",
     "slot": "pendant",

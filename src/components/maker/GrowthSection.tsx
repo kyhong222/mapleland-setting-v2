@@ -45,19 +45,22 @@ export default function GrowthSection({ item, growth, onChange }: Props) {
   return (
     <Box>
       <Typography variant="caption" color="text.secondary">
-        성장 · {GROWTH_TIER_LABEL[spec.tier]} (최대 {spec.maxLevel}레벨)
+        성장 · {GROWTH_TIER_LABEL[spec.tier]}
+        {spec.perStatLevels ? ` (스탯별 최대 ${spec.maxLevel}레벨)` : ` (최대 ${spec.maxLevel}레벨)`}
       </Typography>
 
       <Box sx={{ display: 'flex', flexDirection: 'column', gap: 0.5, mt: 0.5 }}>
         {spec.stats.map((st) => {
           const value = growth[st.effectId] ?? st.totalMin
+          // 상승폭이 고정이면 "+1~1"이 아니라 "+1"로 쓴다
+          const perLevel = st.perLevelMin === st.perLevelMax ? `+${st.perLevelMax}` : `+${st.perLevelMin}~${st.perLevelMax}`
           return (
             <Box key={st.effectId} sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
               <Typography variant="body2" sx={{ width: 64, flexShrink: 0 }}>
                 {EFFECTS[st.effectId].label}
               </Typography>
               <Typography variant="caption" color="text.disabled" sx={{ flexGrow: 1 }}>
-                레벨당 +{st.perLevelMin}~{st.perLevelMax} · 누적 {st.totalMin}~{st.totalMax}
+                레벨당 {perLevel} · 누적 {st.totalMin}~{st.totalMax}
               </Typography>
               <GrowthInput value={value} min={st.totalMin} max={st.totalMax} onCommit={(n) => setStat(st, n)} />
             </Box>

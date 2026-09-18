@@ -18,6 +18,7 @@ export type EquipInstance =
   | 'ring2'
   | 'ring3'
   | 'ring4'
+  | 'shoulder'
   | 'belt'
   | 'medal'
   | 'top'
@@ -42,6 +43,7 @@ export const EQUIP_INSTANCES: EquipInstance[] = [
   'ring2',
   'ring3',
   'ring4',
+  'shoulder',
   'belt',
   'medal',
   'top',
@@ -66,6 +68,7 @@ const LABELS: Record<EquipInstance, string> = {
   ring2: '반지2',
   ring3: '반지3',
   ring4: '반지4',
+  shoulder: '어깨장식',
   belt: '벨트',
   medal: '훈장',
   top: '상의',

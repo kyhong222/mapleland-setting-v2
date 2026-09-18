@@ -109,6 +109,7 @@ export const GEM_SLOT_CAPACITY: Record<SlotId, number> = {
   belt: 0,
   petAcc: 0,
   medal: 0,
+  shoulder: 0,
   // 투사체(강화 불가)
   arrow: 0,
   bolt: 0,
