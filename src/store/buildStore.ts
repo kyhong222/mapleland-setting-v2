@@ -61,6 +61,30 @@ export interface BuildSnapshot {
   commonLevels?: Record<string, number>
 }
 
+/**
+ * 클라우드 동기화용 빌드 상태 전체. docs/cloud-sync.md §4
+ *
+ * `BuildSnapshot`(저장슬롯)과 달리 `masteryOff`·`buffLevels`·`statsTouched`까지 담는다.
+ * 저장슬롯은 "빌드를 보관했다가 꺼내는" 것이라 loadSnapshot이 이 셋을 초기화해도 되지만,
+ * 클라우드는 "다른 기기에서 보던 화면을 이어서 보는" 것이라 화면 상태가 그대로 옮겨져야 한다.
+ * 특히 masteryOff(무기 마스터리 개별 해제)가 빠지면 다른 기기에서 공격력이 조용히 달라진다.
+ */
+export interface BuildPersisted {
+  jobId: JobId | null
+  level: number
+  baseStats: BaseStats
+  equipped: Partial<Record<EquipInstance, string>>
+  activeBuffs: Record<string, number>
+  appliedBuffs: Record<string, number>
+  masteryLevels: Record<string, number>
+  baseHp: number | null
+  baseMp: number | null
+  buffLevels: Record<string, number>
+  masteryOff: Record<string, boolean>
+  statsTouched: boolean
+  charge: ChargeUiState
+}
+
 export interface BuildState {
   jobId: JobId | null
   level: number
@@ -117,6 +141,10 @@ export interface BuildState {
   setBaseResources: (patch: { hp?: number | null; mp?: number | null }) => void
   snapshot: () => BuildSnapshot | null
   loadSnapshot: (snap: BuildSnapshot) => void
+  /** 클라우드 동기화용 — 화면 상태 전체 (BuildPersisted 주석 참고) */
+  captureFull: () => BuildPersisted
+  /** 클라우드 동기화용 — captureFull 결과를 그대로 되돌린다 */
+  restoreFull: (p: BuildPersisted) => void
 }
 
 const baseFour = (): BaseStats => ({ STR: STAT_BASE, DEX: STAT_BASE, INT: STAT_BASE, LUK: STAT_BASE })
@@ -311,6 +339,41 @@ export const useBuildStore = create<BuildState>()(
           ? null
           : { jobId, level, baseStats, equipped, activeBuffs, appliedBuffs, masteryLevels, charge: charge ?? DEFAULT_CHARGE, baseHp, baseMp }
       },
+      captureFull: () => {
+        const s = get()
+        return {
+          jobId: s.jobId,
+          level: s.level,
+          baseStats: { ...s.baseStats },
+          equipped: { ...s.equipped },
+          activeBuffs: { ...s.activeBuffs },
+          appliedBuffs: { ...s.appliedBuffs },
+          masteryLevels: { ...s.masteryLevels },
+          baseHp: s.baseHp,
+          baseMp: s.baseMp,
+          buffLevels: { ...s.buffLevels },
+          masteryOff: { ...s.masteryOff },
+          statsTouched: s.statsTouched,
+          charge: { ...(s.charge ?? DEFAULT_CHARGE) },
+        }
+      },
+      restoreFull: (p) =>
+        set({
+          // 서버에서 온 값이라 필드가 빠져 있을 수 있다 — 전부 기본값을 깔고 받는다
+          jobId: p.jobId ?? null,
+          level: p.level ?? 1,
+          baseStats: { ...baseFour(), ...(p.baseStats ?? {}) },
+          equipped: { ...(p.equipped ?? {}) },
+          activeBuffs: { ...(p.activeBuffs ?? {}) },
+          appliedBuffs: { ...(p.appliedBuffs ?? {}) },
+          masteryLevels: { ...(p.masteryLevels ?? {}) },
+          baseHp: p.baseHp ?? null,
+          baseMp: p.baseMp ?? null,
+          buffLevels: { ...(p.buffLevels ?? p.activeBuffs ?? {}) },
+          masteryOff: { ...(p.masteryOff ?? {}) },
+          statsTouched: p.statsTouched ?? true,
+          charge: { ...DEFAULT_CHARGE, ...(p.charge ?? {}) },
+        }),
       loadSnapshot: (snap) =>
         set({
           jobId: snap.jobId,

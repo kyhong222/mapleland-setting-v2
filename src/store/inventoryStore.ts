@@ -34,6 +34,8 @@ interface InventoryState {
   getById: (id: string) => InventoryItem | undefined
   /** 저장슬롯 불러오기: 개인 인벤토리만 통째로 교체(공용은 유지) */
   replacePersonal: (items: InventoryItem[]) => void
+  /** 클라우드 복원: 공용까지 포함해 통째로 교체 */
+  replaceAll: (items: InventoryItem[]) => void
   clear: () => void
 }
 
@@ -60,6 +62,7 @@ export const useInventoryStore = create<InventoryState>()(
             ...next.map((it) => ({ ...it, owner: 'personal' as const })),
           ],
         })),
+      replaceAll: (items) => set({ items }),
       clear: () => set({ items: [] }),
     }),
     {

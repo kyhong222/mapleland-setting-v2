@@ -9,10 +9,17 @@
  */
 
 import { useBuildStore } from './buildStore'
-import type { BuildSnapshot } from './buildStore'
+import type { BuildPersisted, BuildSnapshot } from './buildStore'
 import { useMonsterStore } from './monsterStore'
 import { useNhitStore } from './nhitStore'
+import type { NhitSelection } from './nhitStore'
 import { useInventoryStore, ownerOf } from './inventoryStore'
+import type { InventoryItem } from './inventoryStore'
+import { useSlotsStore } from './slotsStore'
+import type { SavedSlot } from './slotsStore'
+
+/** 인벤토리 인스턴스 깊은 복사 — built를 공유하면 한쪽 편집이 다른 쪽에 샌다 */
+const cloneItem = (it: InventoryItem): InventoryItem => ({ ...it, built: structuredClone(it.built) })
 
 /** 현재 상태 → 스냅샷. 직업 미선택이면 null */
 export function captureSnapshot(): BuildSnapshot | null {
@@ -25,8 +32,54 @@ export function captureSnapshot(): BuildSnapshot | null {
     personalItems: useInventoryStore
       .getState()
       .items.filter((it) => ownerOf(it) === 'personal')
-      .map((it) => ({ ...it, built: structuredClone(it.built) })),
+      .map(cloneItem),
   }
+}
+
+/**
+ * 클라우드에 올라가는 "현재 화면" 전체. docs/cloud-sync.md §4
+ *
+ * 저장슬롯(captureSlots)과 접힘 상태(uiStore)는 여기 들어가지 않는다 —
+ * 슬롯은 행을 따로 쓰고, 접힘은 기기마다 달라 동기화하면 서로 덮어쓴다.
+ */
+export interface AppState {
+  build: BuildPersisted
+  /** 공용 + 개인 인벤토리 전부. 개인만 담는 BuildSnapshot.personalItems와 다르다 */
+  inventory: InventoryItem[]
+  selectedMobId: number | null
+  nhit: NhitSelection
+}
+
+export function captureAll(): AppState {
+  return {
+    build: useBuildStore.getState().captureFull(),
+    inventory: useInventoryStore.getState().items.map(cloneItem),
+    selectedMobId: useMonsterStore.getState().selectedId,
+    nhit: useNhitStore.getState().capture(),
+  }
+}
+
+/** 인벤토리를 장비 복원보다 먼저 — equipped가 참조하는 id가 존재해야 한다(applySnapshot과 같은 이유) */
+export function applyAll(state: AppState): void {
+  useInventoryStore.getState().replaceAll((state.inventory ?? []).map(cloneItem))
+  useBuildStore.getState().restoreFull(state.build)
+  useMonsterStore.getState().select(state.selectedMobId ?? null)
+  useNhitStore.getState().restore(state.nhit)
+}
+
+export function captureSlots(): (SavedSlot | null)[] {
+  return useSlotsStore.getState().slots
+}
+
+export function applySlots(slots: (SavedSlot | null)[]): void {
+  useSlotsStore.getState().replaceAll(slots)
+}
+
+/** 이 기기에 계정으로 옮길 만한 데이터가 있는지 — 이관 다이얼로그 분기용(docs/cloud-sync.md §5) */
+export function hasLocalData(): boolean {
+  if (useBuildStore.getState().jobId !== null) return true
+  if (useInventoryStore.getState().items.length > 0) return true
+  return useSlotsStore.getState().slots.some((s) => s !== null)
 }
 
 /**

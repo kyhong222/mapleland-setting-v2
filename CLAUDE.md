@@ -29,6 +29,7 @@ npx tsx scripts/buffDeriveSmoke.ts # 버프 레벨표가 스킬북에서 파생�
 npx tsx scripts/viperStunSmoke.ts  # 바이퍼 스턴 변형 스킬 + 조건부 버프(스턴 마스터리) 배선
 npx tsx scripts/growthSmoke.ts     # 성장(레벨업) 스펙 — 스탯별 + 아이템 단위(리버스/타임리스)
 npx tsx scripts/attackSpeedSmoke.ts # 공속표 커버리지·프레임 정합·분기 스펙
+npx tsx scripts/cloudSmoke.ts      # 클라우드 캡처/복원 왕복 (네트워크·Supabase 키 불필요)
 ```
 
 변경 후에는 최소한 `npm run typecheck`를 돌린다.
