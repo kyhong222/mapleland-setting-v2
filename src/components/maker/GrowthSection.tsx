@@ -46,7 +46,8 @@ export default function GrowthSection({ item, growth, onChange }: Props) {
     <Box>
       <Typography variant="caption" color="text.secondary">
         성장 · {GROWTH_TIER_LABEL[spec.tier]}
-        {spec.perStatLevels ? ` (스탯별 최대 ${spec.maxLevel}레벨)` : ` (최대 ${spec.maxLevel}레벨)`}
+        {/* 스탯별 기믹은 "N레벨"이라 쓰면 툴팁의 ITEM LEV(1부터 시작)와 헷갈려 업 횟수로 쓴다 */}
+        {spec.perStatLevels ? ` (스탯별 ${spec.maxLevel}업까지)` : ` (최대 ${spec.maxLevel}레벨)`}
       </Typography>
 
       <Box sx={{ display: 'flex', flexDirection: 'column', gap: 0.5, mt: 0.5 }}>

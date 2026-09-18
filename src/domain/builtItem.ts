@@ -15,6 +15,7 @@ import type { GemSelection } from './maker'
 import { applyGems } from './maker'
 import type { GradeResult } from './grade'
 import { computeGrade } from './grade'
+import { itemGrowthSpec, clampGrowth } from './growth'
 
 export interface AppliedScroll {
   /** 주문서 군 key (ScrollDef.key) */
@@ -54,9 +55,21 @@ export function builtItemDelta(b: BuiltItem): EffectMap {
   )
 }
 
+/**
+ * 저장된 성장치를 현재 스펙 범위로 클램프한다.
+ * 스펙이 바뀌면(월묘 견장·황금 송편 목걸이를 5업 → 4업으로 정정한 것처럼) 이미 저장된
+ * 인벤토리 아이템에 범위 밖 값이 남는다. 입력 UI는 편집할 때만 막아주므로 여기서 한 번 더 건다.
+ */
+function effectiveGrowth(b: BuiltItem): EffectMap {
+  const growth = b.growth
+  if (!growth) return {}
+  const spec = itemGrowthSpec(b.base)
+  return spec ? clampGrowth(spec, growth) : growth
+}
+
 export function resolveBuiltItem(b: BuiltItem): BuiltItemResult {
   const delta = builtItemDelta(b)
-  const growth = b.growth ?? {}
+  const growth = effectiveGrowth(b)
   const finalEffects = sumEffects(b.base.effects, delta, growth)
   // 성장치(리버스/타임리스 레벨업)도 정옵 대비 향상분이므로 등급 점수에 포함한다.
   const grade = computeGrade(sumEffects(delta, growth), b.scrolls.length > 0)
