@@ -27,7 +27,7 @@ npx tsx scripts/weaponGateSmoke.ts # 무기 마스터리/부스터의 무기 게
 npx tsx scripts/resourceSmoke.ts   # HP/MP 수식·역산을 인게임 실측 4건과 대조
 npx tsx scripts/buffDeriveSmoke.ts # 버프 레벨표가 스킬북에서 파생되는지 + 사본 탐지
 npx tsx scripts/viperStunSmoke.ts  # 바이퍼 스턴 변형 스킬 + 조건부 버프(스턴 마스터리) 배선
-npx tsx scripts/growthSmoke.ts     # 성장(레벨업) 스펙 — 고정(월묘 견장) + 가변(리버스/타임리스)
+npx tsx scripts/growthSmoke.ts     # 성장(레벨업) 스펙 — 스탯별(월묘 견장) + 아이템 단위(리버스/타임리스)
 npx tsx scripts/attackSpeedSmoke.ts # 공속표 커버리지·프레임 정합·분기 스펙
 ```
 

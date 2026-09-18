@@ -5,8 +5,8 @@ import TextField from '@mui/material/TextField'
 import type { ItemData } from '../../domain/item'
 import type { EffectMap } from '../../domain/effects'
 import { EFFECTS } from '../../domain/effects'
-import { itemGrowthSpec, growthAtLevel, growthLevelOf, GROWTH_TIER_LABEL } from '../../domain/growth'
-import type { GrowthSpec, GrowthStat } from '../../domain/growth'
+import { itemGrowthSpec, GROWTH_TIER_LABEL } from '../../domain/growth'
+import type { GrowthStat } from '../../domain/growth'
 
 interface Props {
   item: ItemData
@@ -36,60 +36,31 @@ function GrowthInput({ value, min, max, onCommit }: { value: number; min: number
   )
 }
 
-/** 상승폭이 고정인 성장: 레벨 하나만 받고 누적치는 계산한다 */
-function FixedGrowth({ spec, growth, onChange }: { spec: GrowthSpec; growth: EffectMap; onChange: (next: EffectMap) => void }) {
-  const level = growthLevelOf(spec, growth)
-  const summary = spec.stats
-    .map((st) => `${EFFECTS[st.effectId].label} +${st.perLevelMin * level}`)
-    .join(' · ')
-  return (
-    <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mt: 0.5 }}>
-      <Typography variant="body2" sx={{ width: 64, flexShrink: 0 }}>
-        레벨
-      </Typography>
-      <Typography variant="caption" color="text.disabled" sx={{ flexGrow: 1 }}>
-        {summary}
-      </Typography>
-      <GrowthInput value={level} min={0} max={spec.maxLevel} onCommit={(n) => onChange(growthAtLevel(spec, n))} />
-    </Box>
-  )
-}
-
 export default function GrowthSection({ item, growth, onChange }: Props) {
   const spec = itemGrowthSpec(item)
   if (!spec) return null
 
   const setStat = (st: GrowthStat, n: number) => onChange({ ...growth, [st.effectId]: n })
 
-  const header = (
-    <Typography variant="caption" color="text.secondary">
-      성장 · {GROWTH_TIER_LABEL[spec.tier]} (최대 {spec.maxLevel}레벨)
-    </Typography>
-  )
-
-  if (spec.fixed) {
-    return (
-      <Box>
-        {header}
-        <FixedGrowth spec={spec} growth={growth} onChange={onChange} />
-      </Box>
-    )
-  }
-
   return (
     <Box>
-      {header}
+      <Typography variant="caption" color="text.secondary">
+        성장 · {GROWTH_TIER_LABEL[spec.tier]}
+        {spec.perStatLevels ? ` (스탯별 최대 ${spec.maxLevel}레벨)` : ` (최대 ${spec.maxLevel}레벨)`}
+      </Typography>
 
       <Box sx={{ display: 'flex', flexDirection: 'column', gap: 0.5, mt: 0.5 }}>
         {spec.stats.map((st) => {
           const value = growth[st.effectId] ?? st.totalMin
+          // 상승폭이 고정이면 "+1~1"이 아니라 "+1"로 쓴다
+          const perLevel = st.perLevelMin === st.perLevelMax ? `+${st.perLevelMax}` : `+${st.perLevelMin}~${st.perLevelMax}`
           return (
             <Box key={st.effectId} sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
               <Typography variant="body2" sx={{ width: 64, flexShrink: 0 }}>
                 {EFFECTS[st.effectId].label}
               </Typography>
               <Typography variant="caption" color="text.disabled" sx={{ flexGrow: 1 }}>
-                레벨당 +{st.perLevelMin}~{st.perLevelMax} · 누적 {st.totalMin}~{st.totalMax}
+                레벨당 {perLevel} · 누적 {st.totalMin}~{st.totalMax}
               </Typography>
               <GrowthInput value={value} min={st.totalMin} max={st.totalMax} onCommit={(n) => setStat(st, n)} />
             </Box>
