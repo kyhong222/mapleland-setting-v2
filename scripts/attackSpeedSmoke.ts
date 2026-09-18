@@ -37,7 +37,8 @@ const ctx = (over: Partial<SpeedContext> = {}): SpeedContext => ({
 
 // ── 1. 프레임 정합 ──────────────────────────────────────────────────────────
 /**
- * 메랜 실측 apm에서 역산한 값은 프레임 정합을 보장할 수 없어 제외한다
+ * 내부 쿨타임으로 묶인 스킬은 모션 프레임이 아니라 별도 타이머가 간격을 정하므로 프레임 검사에서 뺀다.
+ * 값도 메랜 실측 apm에서 역산한 것이라 30ms 배수가 아니다
  * (드래곤 로어 30/분 = 2000ms, 윈드 피어싱 21/분 = 2857ms — docs/attack-speed.md §6 #1·#8).
  */
 const MEASURED_FIXED = new Set([1311006, 13111006])
@@ -106,7 +107,7 @@ console.log('\n[4] 분기 스펙')
 
   // 고정(spamming) · 연사
   check(attacksPerMinute(3121004, ctx()) === 500, '폭풍의 시 = 500/분')
-  check(attacksPerMinute(1311006, ctx({ weaponSpeedStep: 2 })) === 30, '드래곤 로어 = 공속 무관 30/분')
+  check(attacksPerMinute(1311006, ctx({ weaponSpeedStep: 2 })) === 30, '드래곤 로어 = 내부 쿨타임, 공속 무관 30/분')
 
   // 미지원
   check(attackIntervalMs(2121001, ctx({ kind: 'magic' })) === null, '빅뱅 = 미지원')
