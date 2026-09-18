@@ -208,12 +208,18 @@ id가 먼저 존재해야 하기 때문.
   `src/data/attackSpeed.ts`가 이 문서를 §번호로 참조한다.
 - [docs/plan.md](docs/plan.md) — 세부스탯/몬스터/공격력/성장템/시그너스/피격데미지/방컷 기획 확정본.
 - [docs/feedback-setup.md](docs/feedback-setup.md) — 문의하기 프록시 배포/토큰 설정.
+- [docs/cloud-sync.md](docs/cloud-sync.md) — 디스코드 로그인/계정 동기화 확정본. Supabase 스키마·RLS,
+  동기화·이관 정책, 콘솔 세팅 절차. `src/data/cloud/`가 이 문서를 §번호로 참조한다.
 
 ## 배포
 
 Vite SPA + Vercel Node Function(`api/feedback.js` — 폼 입력을 GitHub 이슈로 등록).
 서버 전용 환경변수(`GITHUB_TOKEN` 등)는 `.env`가 아니라 배포 플랫폼에 넣는다. 프론트에 노출되는 값은
-`VITE_` 접두사만 해당(`VITE_FEEDBACK_ENDPOINT`). `.env.example` 참고.
+`VITE_` 접두사만 해당(`VITE_FEEDBACK_ENDPOINT`, `VITE_SUPABASE_*`, `VITE_APP_ID`). `.env.example` 참고.
+
+배포 도메인은 `https://item.mapleland.st`. 계정 연동은 `*.mapleland.st`의 다른 서비스와 Supabase
+프로젝트 하나를 공유하므로, 관련 값을 바꾸기 전에 [docs/cloud-sync.md](docs/cloud-sync.md) §2를 볼 것.
+**Supabase 키가 없으면 로그인 UI가 숨겨지고 기존 localStorage 전용으로 동작한다** — 키 없이도 빌드된다.
 
 ## 작업 흐름
 
