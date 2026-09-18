@@ -17,6 +17,7 @@ import { useInventoryStore, ownerOf } from './inventoryStore'
 import type { InventoryItem } from './inventoryStore'
 import { useSlotsStore } from './slotsStore'
 import type { SavedSlot } from './slotsStore'
+import { CLOUD_SCHEMA_VERSION, migrateCloudSlot } from './cloudSchema'
 
 /** 인벤토리 인스턴스 깊은 복사 — built를 공유하면 한쪽 편집이 다른 쪽에 샌다 */
 const cloneItem = (it: InventoryItem): InventoryItem => ({ ...it, built: structuredClone(it.built) })
@@ -71,6 +72,39 @@ export function captureSlots(): (SavedSlot | null)[] {
   return useSlotsStore.getState().slots
 }
 
+/** 저장슬롯 → 클라우드 행 (빈 칸은 행을 만들지 않는다) */
+export function captureSlotRows(): { idx: number; name: string | null; savedAt: string; snapshot: BuildSnapshot }[] {
+  const rows: { idx: number; name: string | null; savedAt: string; snapshot: BuildSnapshot }[] = []
+  useSlotsStore.getState().slots.forEach((s, idx) => {
+    if (!s) return
+    rows.push({
+      idx,
+      name: s.name ?? null,
+      savedAt: new Date(s.savedAt).toISOString(),
+      snapshot: s.snapshot,
+    })
+  })
+  return rows
+}
+
+/**
+ * 클라우드 행 → 저장슬롯.
+ * 서버가 이 클라이언트보다 새 스키마면 false — 아무것도 적용하지 않는다(cloudSchema 주석 참고).
+ */
+export function applySlotRows(
+  rows: { idx: number; name: string | null; savedAt: string; schemaVersion: number; snapshot: unknown }[],
+): boolean {
+  const slots: (SavedSlot | null)[] = []
+  for (const r of rows) {
+    if (r.schemaVersion > CLOUD_SCHEMA_VERSION) return false
+    const snap = migrateCloudSlot(r.snapshot, r.schemaVersion)
+    if (!snap) continue // 형태가 깨진 행은 조용히 건너뛴다
+    slots[r.idx] = { snapshot: snap, savedAt: Date.parse(r.savedAt) || Date.now(), name: r.name ?? undefined }
+  }
+  applySlots(slots)
+  return true
+}
+
 export function applySlots(slots: (SavedSlot | null)[]): void {
   useSlotsStore.getState().replaceAll(slots)
 }
@@ -80,6 +114,109 @@ export function hasLocalData(): boolean {
   if (useBuildStore.getState().jobId !== null) return true
   if (useInventoryStore.getState().items.length > 0) return true
   return useSlotsStore.getState().slots.some((s) => s !== null)
+}
+
+/**
+ * 동기화 대상 스토어의 변경 구독.
+ * uiStore(패널 접힘)는 빠진다 — 기기마다 달라 동기화하면 서로 덮어쓴다(docs/cloud-sync.md §4).
+ */
+export function subscribeAll(fn: () => void): () => void {
+  const unsubs = [
+    useBuildStore.subscribe(fn),
+    useInventoryStore.subscribe(fn),
+    useMonsterStore.subscribe(fn),
+    useNhitStore.subscribe(fn),
+    useSlotsStore.subscribe(fn),
+  ]
+  return () => unsubs.forEach((u) => u())
+}
+
+/** 이 기기의 전체 상태 한 벌 (이관 전 백업·병합 입력) */
+export interface LocalBundle {
+  state: AppState
+  slots: (SavedSlot | null)[]
+  at: number
+}
+
+export function captureBundle(): LocalBundle {
+  return { state: captureAll(), slots: captureSlots(), at: Date.now() }
+}
+
+/** 덮어쓰기 직전 복구 경로. 마지막 1벌만 유지한다(docs/cloud-sync.md §5) */
+export const BACKUP_KEY = 'mlsv2:backup'
+
+export function saveLocalBackup(): void {
+  try {
+    localStorage.setItem(BACKUP_KEY, JSON.stringify(captureBundle()))
+  } catch {
+    // 용량 초과 등 — 백업 실패가 이관 자체를 막지는 않는다
+  }
+}
+
+/** AppState에서 저장슬롯용 스냅샷을 만든다 (병합에서 로컬 현재 빌드를 잃지 않게 쓴다) */
+function snapshotFromAppState(s: AppState): BuildSnapshot | null {
+  const b = s.build
+  if (!b.jobId) return null
+  return {
+    jobId: b.jobId,
+    level: b.level,
+    baseStats: b.baseStats,
+    equipped: b.equipped,
+    activeBuffs: b.activeBuffs,
+    appliedBuffs: b.appliedBuffs,
+    masteryLevels: b.masteryLevels,
+    baseHp: b.baseHp,
+    baseMp: b.baseMp,
+    charge: b.charge,
+    selectedMobId: s.selectedMobId,
+    nhit: s.nhit,
+    personalItems: (s.inventory ?? []).filter((it) => ownerOf(it) === 'personal').map(cloneItem),
+  }
+}
+
+export interface MergeResult {
+  slotsAdded: number
+  /** 24칸이 모자라 넣지 못한 수 */
+  slotsSkipped: number
+  sharedItemsAdded: number
+}
+
+/**
+ * 계정 데이터를 적용한 **뒤에** 이 기기 것을 손실 없이 얹는다(docs/cloud-sync.md §5).
+ *
+ * - 저장슬롯: 비어 있는 칸에만 넣는다. 계정 슬롯을 덮지 않는다.
+ * - 로컬의 현재 작업 빌드는 화면에서는 계정 것에 밀리므로, 잃지 않도록 슬롯 한 칸으로 만들어 넣는다.
+ * - 공용 인벤토리: 합집합(id가 겹치면 이미 같은 아이템이므로 건너뛴다).
+ *   로컬 개인 인벤토리는 위 '이 기기 빌드' 슬롯이 들고 있으므로 따로 합치지 않는다.
+ */
+export function mergeLocalInto(local: LocalBundle): MergeResult {
+  const incoming: SavedSlot[] = []
+  const currentBuild = snapshotFromAppState(local.state)
+  if (currentBuild) incoming.push({ snapshot: currentBuild, savedAt: local.at, name: '이 기기 빌드' })
+  for (const s of local.slots) if (s) incoming.push(s)
+
+  const slots = useSlotsStore.getState().slots.slice()
+  let slotsAdded = 0
+  let slotsSkipped = 0
+  for (const s of incoming) {
+    const free = slots.findIndex((x) => x === null)
+    if (free < 0) {
+      slotsSkipped++
+      continue
+    }
+    slots[free] = s
+    slotsAdded++
+  }
+  useSlotsStore.getState().replaceAll(slots)
+
+  const items = useInventoryStore.getState().items
+  const known = new Set(items.map((it) => it.id))
+  const incomingShared = (local.state.inventory ?? [])
+    .filter((it) => ownerOf(it) === 'shared' && !known.has(it.id))
+    .map(cloneItem)
+  if (incomingShared.length > 0) useInventoryStore.getState().replaceAll([...items, ...incomingShared])
+
+  return { slotsAdded, slotsSkipped, sharedItemsAdded: incomingShared.length }
 }
 
 /**

@@ -4,6 +4,7 @@ import { useBuildStore } from './store/buildStore'
 import TopBar from './components/TopBar'
 import JobSelectScreen from './components/JobSelectScreen'
 import Dashboard from './components/Dashboard'
+import CloudSyncGate from './components/CloudSyncGate'
 
 export default function App() {
   const jobId = useBuildStore((s) => s.jobId)
@@ -11,6 +12,7 @@ export default function App() {
     <Box sx={{ minHeight: '100vh', bgcolor: 'background.default' }}>
       <TopBar />
       {jobId ? <Dashboard /> : <JobSelectScreen />}
+      <CloudSyncGate />
       <Analytics />
     </Box>
   )

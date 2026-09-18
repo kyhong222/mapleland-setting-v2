@@ -13,6 +13,16 @@ import MenuItem from '@mui/material/MenuItem'
 import Snackbar from '@mui/material/Snackbar'
 import Typography from '@mui/material/Typography'
 import { useAuthStore } from '../store/authStore'
+import { useCloudSyncStore } from '../store/cloudSync'
+
+/** 동기화 상태 한 줄. idle은 보여줄 게 없어 비운다 */
+const SYNC_LABEL: Record<string, string> = {
+  syncing: '계정에 저장 중…',
+  saved: '계정에 저장됨',
+  offline: '오프라인 — 연결되면 자동 저장',
+  conflict: '다른 기기와 충돌 — 선택이 필요합니다',
+  error: '동기화 오류',
+}
 
 export default function AuthButton() {
   const status = useAuthStore((s) => s.status)
@@ -20,6 +30,7 @@ export default function AuthButton() {
   const error = useAuthStore((s) => s.error)
   const signIn = useAuthStore((s) => s.signIn)
   const signOut = useAuthStore((s) => s.signOut)
+  const syncStatus = useCloudSyncStore((s) => s.status)
   const [anchor, setAnchor] = useState<HTMLElement | null>(null)
 
   if (status === 'disabled') return null
@@ -55,6 +66,15 @@ export default function AuthButton() {
               <Typography variant="body2" sx={{ fontWeight: 700 }}>
                 {user.name}
               </Typography>
+              {SYNC_LABEL[syncStatus] && (
+                <Typography
+                  variant="caption"
+                  color={syncStatus === 'error' || syncStatus === 'conflict' ? 'error' : 'text.secondary'}
+                  sx={{ display: 'block', mt: 0.5 }}
+                >
+                  {SYNC_LABEL[syncStatus]}
+                </Typography>
+              )}
             </Box>
             <MenuItem
               onClick={() => {
