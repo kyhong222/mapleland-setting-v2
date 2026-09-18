@@ -14,7 +14,9 @@ import { buffEffectsAtLevel, canUseBuff, effectiveMasterLevel } from '../domain/
 import type { Buff, BuffCondition, SkillBuff } from '../domain/buff'
 import { getBuff, JOB_BUFFS } from '../data/buff'
 import type { JobId } from '../domain/jobs'
-import type { WeaponType } from '../domain/weapons'
+import { WEAPON_CONSTANTS } from '../domain/weapons'
+import type { SecondaryWeapon, WeaponType } from '../domain/weapons'
+import type { SlotId } from '../domain/equipSlots'
 import type { EquipInstance } from './equipInstance'
 import type { InventoryItem } from './inventoryStore'
 
@@ -52,14 +54,39 @@ export function equippedWeaponType(
   return invItems.find((it) => it.id === id)?.built.base.weaponType
 }
 
+/** 보조무기 슬롯에 장착된 아이템의 부위 (없으면 undefined) */
+export function equippedSecondarySlot(
+  equipped: Partial<Record<EquipInstance, string>>,
+  invItems: InventoryItem[],
+): SlotId | undefined {
+  const id = equipped.secondary
+  if (!id) return undefined
+  return invItems.find((it) => it.id === id)?.built.base.slot
+}
+
 /** 보조무기 슬롯에 방패가 장착돼 있는지 (블로킹 조건) */
 export function equippedHasShield(
   equipped: Partial<Record<EquipInstance, string>>,
   invItems: InventoryItem[],
 ): boolean {
-  const id = equipped.secondary
-  if (!id) return false
-  return invItems.find((it) => it.id === id)?.built.base.slot === 'shield'
+  return equippedSecondarySlot(equipped, invItems) === 'shield'
+}
+
+/**
+ * 주무기가 요구하는 보조무기(아대의 표창 등)가 비어 있으면 그 종류를 돌려준다.
+ * 채워져 있거나 애초에 필수가 아니면 undefined. → 소비처는 무기 미장착과 같이 취급한다.
+ */
+export function missingRequiredSecondary(
+  weaponType: WeaponType | undefined,
+  equipped: Partial<Record<EquipInstance, string>>,
+  invItems: InventoryItem[],
+): SecondaryWeapon[] | undefined {
+  if (!weaponType) return undefined
+  const need = WEAPON_CONSTANTS[weaponType].secondaryRequired
+  if (!need) return undefined
+  const slot = equippedSecondarySlot(equipped, invItems)
+  if (slot && (need as string[]).includes(slot)) return undefined
+  return need
 }
 
 /**

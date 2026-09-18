@@ -5,7 +5,7 @@ import CollapsiblePanel from '../common/CollapsiblePanel'
 import { useBuildStore } from '../../store/buildStore'
 import { useInventoryStore } from '../../store/inventoryStore'
 import { useMonsterStore } from '../../store/monsterStore'
-import { aggregateBuild, equippedWeaponType } from '../../store/aggregate'
+import { aggregateBuild, equippedWeaponType, missingRequiredSecondary } from '../../store/aggregate'
 import { useActiveEquippedBuilts } from '../../store/activation'
 import { useBuffEffects } from '../../store/useBuffEffects'
 import {
@@ -15,6 +15,7 @@ import {
 } from '../../domain/attackPower'
 import type { AtkStatRatio, DamageRange } from '../../domain/attackPower'
 import { WEAPON_CONSTANTS } from '../../domain/weapons'
+import { secondaryPrompt } from '../../lib/weaponNotice'
 import { JOBS } from '../../domain/jobs'
 import type { StatId } from '../../domain/stats'
 import { getMonster } from '../../data/mobs'
@@ -60,11 +61,14 @@ export default function AttackPanel() {
   const statLabel = job ? STAT_SHORT[job.primaryStat] : '스탯'
 
   const isMagic = job?.attackType === 'magical'
-  const phys = !isMagic && weaponType ? calcPhysical(primary, secondary, weaponType, watk, mastery) : null
-  const physRatios = !isMagic && weaponType ? calcPhysicalRatios(primary, secondary, weaponType, watk, mastery) : null
-  const hasSwingStab = weaponType ? WEAPON_CONSTANTS[weaponType].constMin !== WEAPON_CONSTANTS[weaponType].constMax : false
-  const lucky = weaponType === 'claw' ? calcLuckySeven(finalStats.LUK, watk) : null
-  const luckyRatio = weaponType === 'claw' ? calcLuckyRatio(finalStats.LUK, watk) : null
+  // 아대의 표창처럼 필수 보조무기가 비어 있으면 인게임에서 공격이 성립하지 않는다 → 무기 미장착과 동일 취급
+  const missingSecondary = missingRequiredSecondary(weaponType, equipped, invItems)
+  const atkWeapon = missingSecondary ? undefined : weaponType
+  const phys = !isMagic && atkWeapon ? calcPhysical(primary, secondary, atkWeapon, watk, mastery) : null
+  const physRatios = !isMagic && atkWeapon ? calcPhysicalRatios(primary, secondary, atkWeapon, watk, mastery) : null
+  const hasSwingStab = atkWeapon ? WEAPON_CONSTANTS[atkWeapon].constMin !== WEAPON_CONSTANTS[atkWeapon].constMax : false
+  const lucky = atkWeapon === 'claw' ? calcLuckySeven(finalStats.LUK, watk) : null
+  const luckyRatio = atkWeapon === 'claw' ? calcLuckyRatio(finalStats.LUK, watk) : null
 
   // vs 몬스터 물리 실질 데미지 (일반 공격 기준)
   const monster = selectedMobId != null ? getMonster(selectedMobId) : undefined
@@ -106,7 +110,12 @@ export default function AttackPanel() {
       {isMagic ? null : !weaponType ? (
         <>
           <Divider sx={{ my: 1 }} />
-          <Typography variant="caption" color="text.disabled">무기를 장착하세요.</Typography>
+          <Typography variant="caption" color="text.disabled">무기를 장착해 주세요.</Typography>
+        </>
+      ) : missingSecondary ? (
+        <>
+          <Divider sx={{ my: 1 }} />
+          <Typography variant="caption" color="text.disabled">{secondaryPrompt(missingSecondary)}</Typography>
         </>
       ) : (
         phys && physRatios && (

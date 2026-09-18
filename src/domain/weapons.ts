@@ -35,7 +35,8 @@ export type SecondaryWeapon =
 export const SECONDARY_WEAPON_LABELS: Record<SecondaryWeapon, string> = {
   shield: '방패',
   arrow: '화살', // 활 전용
-  bolt: '볼트', // 석궁 전용
+  // 슬롯 id는 bolt지만 인게임 아이템명은 '석궁 전용 화살'이다 → 유저에게는 '화살'로 보여준다
+  bolt: '화살', // 석궁 전용
   throwingStar: '표창',
   bullet: '불릿',
   capsule: '캡슐',
@@ -51,6 +52,12 @@ export interface WeaponConst {
   constMax: number
   /** 함께 착용 가능한 보조무기(없으면 빈 배열, 건은 불릿+캡슐 둘 다) */
   secondary: SecondaryWeapon[]
+  /**
+   * 공격이 성립하려면 **반드시 있어야 하는** 보조무기 — 없으면 무기 미장착과 같이 취급해
+   * 표기 데미지/방컷을 내지 않는다. 방패처럼 선택인 경우엔 붙이지 않는다.
+   * `secondary`의 부분집합이다(건의 캡슐은 투사체가 아니라 여기서 빠진다).
+   */
+  secondaryRequired?: SecondaryWeapon[]
 }
 
 export const WEAPON_CONSTANTS: Record<WeaponType, WeaponConst> = {
@@ -64,11 +71,12 @@ export const WEAPON_CONSTANTS: Record<WeaponType, WeaponConst> = {
   spear: { type: 'spear', label: '창', constMin: 5, constMax: 3, secondary: [] },
   polearm: { type: 'polearm', label: '폴암', constMin: 3, constMax: 5, secondary: [] },
   dagger: { type: 'dagger', label: '단검', constMin: 3.6, constMax: 3.6, secondary: ['shield'] },
-  claw: { type: 'claw', label: '아대', constMin: 3.6, constMax: 3.6, secondary: ['throwingStar'] },
-  bow: { type: 'bow', label: '활', constMin: 3.4, constMax: 3.4, secondary: ['arrow'] },
-  crossbow: { type: 'crossbow', label: '석궁', constMin: 3.6, constMax: 3.6, secondary: ['bolt'] },
+  claw: { type: 'claw', label: '아대', constMin: 3.6, constMax: 3.6, secondary: ['throwingStar'], secondaryRequired: ['throwingStar'] },
+  bow: { type: 'bow', label: '활', constMin: 3.4, constMax: 3.4, secondary: ['arrow'], secondaryRequired: ['arrow'] },
+  crossbow: { type: 'crossbow', label: '석궁', constMin: 3.6, constMax: 3.6, secondary: ['bolt'], secondaryRequired: ['bolt'] },
   knuckle: { type: 'knuckle', label: '너클', constMin: 4.8, constMax: 4.8, secondary: [] },
-  gun: { type: 'gun', label: '건', constMin: 3.6, constMax: 3.6, secondary: ['bullet', 'capsule'] },
+  // 건: 캡슐은 투사체가 아니라 요구 목록에서 빠진다(불릿만 인정)
+  gun: { type: 'gun', label: '건', constMin: 3.6, constMax: 3.6, secondary: ['bullet', 'capsule'], secondaryRequired: ['bullet'] },
   wand: { type: 'wand', label: '완드', constMin: 1, constMax: 1, secondary: ['shield'] },
   staff: { type: 'staff', label: '스태프', constMin: 1, constMax: 1, secondary: ['shield'] },
 }
