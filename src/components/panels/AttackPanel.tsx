@@ -110,7 +110,7 @@ export default function AttackPanel() {
       {isMagic ? null : !weaponType ? (
         <>
           <Divider sx={{ my: 1 }} />
-          <Typography variant="caption" color="text.disabled">무기를 장착하세요.</Typography>
+          <Typography variant="caption" color="text.disabled">무기를 장착해 주세요.</Typography>
         </>
       ) : missingSecondary ? (
         <>

@@ -35,7 +35,8 @@ export type SecondaryWeapon =
 export const SECONDARY_WEAPON_LABELS: Record<SecondaryWeapon, string> = {
   shield: '방패',
   arrow: '화살', // 활 전용
-  bolt: '볼트', // 석궁 전용
+  // 슬롯 id는 bolt지만 인게임 아이템명은 '석궁 전용 화살'이다 → 유저에게는 '화살'로 보여준다
+  bolt: '화살', // 석궁 전용
   throwingStar: '표창',
   bullet: '불릿',
   capsule: '캡슐',
