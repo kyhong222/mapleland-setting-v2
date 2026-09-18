@@ -27,6 +27,7 @@ npx tsx scripts/weaponGateSmoke.ts # 무기 마스터리/부스터의 무기 게
 npx tsx scripts/resourceSmoke.ts   # HP/MP 수식·역산을 인게임 실측 4건과 대조
 npx tsx scripts/buffDeriveSmoke.ts # 버프 레벨표가 스킬북에서 파생되는지 + 사본 탐지
 npx tsx scripts/viperStunSmoke.ts  # 바이퍼 스턴 변형 스킬 + 조건부 버프(스턴 마스터리) 배선
+npx tsx scripts/attackSpeedSmoke.ts # 공속표 커버리지·프레임 정합·분기 스펙
 ```
 
 변경 후에는 최소한 `npm run typecheck`를 돌린다.
@@ -199,8 +200,11 @@ id가 먼저 존재해야 하기 때문.
 
 계산식을 건드리기 전에 먼저 읽을 것. 코드 주석은 이 문서들을 §번호로 참조한다.
 
-- [docs/nhit-dpm.md](docs/nhit-dpm.md) — N방컷/DPM 기획서. 모션 규칙, 난수 순환(7슬롯), 차지, 콤보,
-  공속표(분당 공격횟수)까지 실측 근거와 함께 확정본.
+- [docs/nhit-dpm.md](docs/nhit-dpm.md) — N방컷/DPM 기획서. 모션 규칙, 난수 순환(7슬롯), 차지, 콤보까지
+  실측 근거와 함께 확정본. §12의 공속표는 **1차 raw 기록**이라 아래 문서로 대체됐다.
+- [docs/attack-speed.md](docs/attack-speed.md) — **공속표 확정본.** 곡선 카탈로그(모션 단위) ·
+  추정 절차와 검증 · 후딜(spamming/delay) 분리 목록 · DPM 미산출 목록 · 결정 이력.
+  `src/data/attackSpeed.ts`가 이 문서를 §번호로 참조한다.
 - [docs/plan.md](docs/plan.md) — 세부스탯/몬스터/공격력/성장템/시그너스/피격데미지/방컷 기획 확정본.
 - [docs/feedback-setup.md](docs/feedback-setup.md) — 문의하기 프록시 배포/토큰 설정.
 

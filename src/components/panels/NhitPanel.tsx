@@ -27,7 +27,7 @@ import type { ChargeState } from '../../domain/paladinCharge'
 import { computeCast, computeNhit, computeDpm, baseElementMult, mixCasts, SKILL_MOTION } from '../../domain/skillCombat'
 import { convolve } from '../../domain/nhitProb'
 import type { Dist } from '../../domain/nhitProb'
-import { attacksPerMinute } from '../../data/attackSpeed'
+import { attacksPerMinute, effectiveCastStep, effectiveSpeedStep, type SpeedContext } from '../../data/attackSpeed'
 import { chargeMultiplier, chargeFromUi, chargeElementCodes } from '../../domain/paladinCharge'
 import type { ChargeElement } from '../../domain/paladinCharge'
 import ChargeMultTip from '../common/ChargeMultTip'
@@ -296,11 +296,18 @@ export default function NhitPanel() {
     const hp = monster.maxHP ?? 0
     const isBoss = !!monster.isBoss
     // 물리: 무기 부스터(attackSpeedBoost) + 윈드부스터(windBoostStep) 중첩 공속상승
-    const boosterSteps = (effects.attackSpeedBoost ?? 0) + (effects.windBoostStep ?? 0)
-    // 마법: 매직부스터(castSpeedBoost) 또는 윈드부스터 활성 여부만 사용
-    const magicBooster = ((effects.castSpeedBoost ?? 0) + (effects.windBoostStep ?? 0)) > 0
-    const effStep = Math.max(2, Math.min(9, weaponSpeedStep - boosterSteps))
-    const apm = attacksPerMinute(baseId, weaponSpeedStep, boosterSteps, att.kind, magicBooster)
+    // 마법: 매직부스터(castSpeedBoost) + 윈드부스터가 시전속도 단계를 내린다 (docs/attack-speed.md)
+    const speedCtx: SpeedContext = {
+      weaponSpeedStep,
+      boosterSteps: (effects.attackSpeedBoost ?? 0) + (effects.windBoostStep ?? 0),
+      castBoostSteps: effects.castSpeedBoost ?? 0,
+      windBoostSteps: effects.windBoostStep ?? 0,
+      skillLevel,
+      kind: att.kind,
+    }
+    const effStep = att.kind === 'magic' ? effectiveCastStep(speedCtx) : effectiveSpeedStep(speedCtx)
+    // 추가스킬을 섞으면 메인/추가 시전 비율이 정의되지 않아 분당횟수가 모호해진다 → DPM 미산출
+    const apm = preCastPrior ? null : attacksPerMinute(baseId, speedCtx)
     const dpm = apm != null ? computeDpm(cast.dist, apm) : null
     const killSec = dpm && dpm > 0 && hp > 0 ? hp / (dpm / 60) : null
     return {
@@ -320,7 +327,7 @@ export default function NhitPanel() {
       coef: Math.round(effSkillPercent),
       // 패닉/코마/돌진은 방컷·DPM 미제공(데미지 범위만). 추가스킬은 prior 분포로 반영.
       nhit: isBoss || noDpm ? null : computeNhit(cast.dist, hp, 10, preCastPrior),
-      apm, dpm, killSec, isMagic, effStep, boosterActive: magicBooster, noDpm,
+      apm, dpm, killSec, isMagic, effStep, noDpm,
     }
   })()
 
@@ -502,7 +509,7 @@ export default function NhitPanel() {
                   <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
                     <Typography variant="caption" sx={{ fontWeight: 700 }}>DPM</Typography>
                     <Typography variant="caption" color="text.secondary">
-                      공격속도 {result.isMagic ? (result.boosterActive ? '매직부스터' : '노말') : `${result.effStep}단계 (${speedLabel(result.effStep)})`}
+                      {result.isMagic ? '시전속도' : '공격속도'} {result.effStep}단계 ({speedLabel(result.effStep)})
                     </Typography>
                   </Box>
                   {result.dpm != null ? (
@@ -512,7 +519,11 @@ export default function NhitPanel() {
                       {result.isBoss && result.killSec != null && <Row label="처치 소요(참고)" value={`${result.killSec.toFixed(1)}초`} />}
                     </>
                   ) : (
-                    <Typography variant="body2" color="text.disabled">공속 데이터가 없습니다.</Typography>
+                    <Typography variant="body2" color="text.disabled">
+                      {result.hasPreCast
+                        ? '추가스킬을 섞으면 시전 비율이 정해지지 않아 DPM을 산출하지 않습니다.'
+                        : '공속 데이터가 없어 DPM을 산출하지 않습니다.'}
+                    </Typography>
                   )}
                 </>
               )}
