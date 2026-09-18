@@ -12,14 +12,10 @@ import IconButton from '@mui/material/IconButton'
 import Stack from '@mui/material/Stack'
 import ItemIcon from './common/ItemIcon'
 import { JOBS } from '../domain/jobs'
-import { SLOTS } from '../domain/equipSlots'
-import { resolveBuiltItem } from '../domain/builtItem'
-import type { GradeResult } from '../domain/grade'
+import { equippedPreview } from '../lib/slotPreview'
 import { useSlotsStore, SLOT_GROUP_SIZE } from '../store/slotsStore'
 import type { SavedSlot } from '../store/slotsStore'
-import type { EquipInstance } from '../store/equipInstance'
 import { useInventoryStore, ownerOf } from '../store/inventoryStore'
-import type { InventoryItem } from '../store/inventoryStore'
 import { captureSnapshot, applySnapshot } from '../store/snapshot'
 import { useBuildStore } from '../store/buildStore'
 
@@ -52,51 +48,6 @@ const jobLine = (slot: SavedSlot) =>
 /** 되묻기 대상 — 빈 슬롯 저장은 잃을 게 없어 확인하지 않는다 */
 type Confirm = { kind: 'save' | 'clear'; index: number } | null
 
-/**
- * 카드에 미리 보여줄 장착 부위 — 무기·방패·상의·하의·장갑·신발 순.
- * 한벌옷은 별도 인스턴스 없이 top 칸에 들어가므로(equipInstance.ts) top 하나로 덮이고,
- * 한벌옷을 입으면 하의가 비어 자연히 '무기-방패-전신-장갑-신발'로 렌더된다.
- */
-const EQUIP_PREVIEW: EquipInstance[] = ['weapon', 'secondary', 'top', 'bottom', 'gloves', 'shoes']
-
-/**
- * 슬롯에 장착돼 있던 장비를 표시용으로 푼다.
- * equipped는 인벤토리 id만 들고 있어서, 슬롯을 따라다니는 개인 인벤토리(스냅샷)와
- * 공용 인벤토리(현재 스토어) 양쪽에서 찾아야 이름이 나온다. 못 찾으면 건너뛴다
- * (구버전 스냅샷엔 personalItems가 없어 개인 장비는 조회되지 않는다).
- * 부위 이름은 인스턴스가 아니라 실제 아이템의 도메인 슬롯에서 가져온다 —
- * secondary 칸이 방패인지 화살인지, top 칸이 상의인지 한벌옷인지가 그래야 구분된다.
- */
-interface PreviewItem {
-  inst: EquipInstance
-  label: string
-  name: string
-  iconUrl?: string
-  grade: GradeResult
-}
-
-function equippedPreview(slot: SavedSlot, sharedItems: InventoryItem[]): PreviewItem[] {
-  const byId = new Map<string, InventoryItem>()
-  for (const it of sharedItems) byId.set(it.id, it)
-  for (const it of slot.snapshot.personalItems ?? []) byId.set(it.id, it)
-  const out: PreviewItem[] = []
-  for (const inst of EQUIP_PREVIEW) {
-    const invId = slot.snapshot.equipped[inst]
-    if (!invId) continue
-    const item = byId.get(invId)
-    if (!item) continue
-    const base = item.built.base
-    out.push({
-      inst,
-      label: SLOTS[base.slot].label,
-      name: base.name,
-      iconUrl: base.iconUrl,
-      grade: resolveBuiltItem(item.built).grade,
-    })
-  }
-  return out
-}
-
 export default function SlotManager({ open, onClose }: Props) {
   const slots = useSlotsStore((s) => s.slots)
   const save = useSlotsStore((s) => s.save)
@@ -110,7 +61,7 @@ export default function SlotManager({ open, onClose }: Props) {
   // 등급 산출까지 도는 계산이라 슬롯/인벤토리가 바뀔 때만 다시 푼다
   // (이름 편집 입력마다 24칸을 재계산하지 않도록)
   const previews = useMemo(
-    () => slots.map((s) => (s ? equippedPreview(s, sharedItems) : [])),
+    () => slots.map((s) => (s ? equippedPreview(s.snapshot, sharedItems) : [])),
     [slots, sharedItems],
   )
 
