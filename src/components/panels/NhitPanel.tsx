@@ -11,7 +11,7 @@ import { useBuildStore, DEFAULT_CHARGE } from '../../store/buildStore'
 import { useNhitStore } from '../../store/nhitStore'
 import { useInventoryStore } from '../../store/inventoryStore'
 import { useMonsterStore } from '../../store/monsterStore'
-import { aggregateBuild, equippedWeaponType } from '../../store/aggregate'
+import { aggregateBuild, equippedWeaponType, missingRequiredSecondary } from '../../store/aggregate'
 import { useActiveEquippedBuilts } from '../../store/activation'
 import { useBuffEffects, useConditionalBuffEffects } from '../../store/useBuffEffects'
 import {
@@ -32,6 +32,7 @@ import { chargeMultiplier, chargeFromUi, chargeElementCodes } from '../../domain
 import type { ChargeElement } from '../../domain/paladinCharge'
 import ChargeMultTip from '../common/ChargeMultTip'
 import { objectJosa } from '../../lib/josa'
+import { secondaryPrompt } from '../../lib/weaponNotice'
 import { speedLabel } from '../../lib/speedLabel'
 
 /**
@@ -98,6 +99,9 @@ export default function NhitPanel() {
   const job = jobId ? JOBS[jobId] : null
   const monster = selectedMobId != null ? getMonster(selectedMobId) : undefined
   const weaponType = equippedWeaponType(equipped, invItems)
+  // 아대의 표창처럼 필수 보조무기가 비어 있으면 인게임에서 공격이 성립하지 않는다 → 무기 미장착과 동일 취급
+  const missingSecondary = missingRequiredSecondary(weaponType, equipped, invItems)
+  const atkWeapon = missingSecondary ? undefined : weaponType
   // 공격 스킬 + 변형('(스턴)' 등, data/skills/variants.ts)
   const attackSkills = jobId ? damageSkillsForJob(jobId) : []
   const selectedSkill = attackSkills.find((s) => s.id === skillId)
@@ -121,7 +125,7 @@ export default function NhitPanel() {
     const att = skillAttackAt(sk, lv)
     if (!att) return null
     const isMagic = att.kind === 'magic'
-    if (!isMagic && !weaponType) return null
+    if (!isMagic && !atkWeapon) return null
     // 변형 스킬은 id에 오프셋이 붙어 있다 — 모션 규칙/공속표/예외식은 전부 원래 id로 조회
     const baseId = baseSkillId(sk.id)
 
@@ -221,7 +225,7 @@ export default function NhitPanel() {
     const hitMultipliers = FIST_SKILLS.has(baseId) ? FIST_HIT_MULT : undefined
 
     const cast = computeCast({
-      weaponType: weaponType ?? 'oneHandedSword',
+      weaponType: atkWeapon ?? 'oneHandedSword',
       skillId: baseId,
       attackCount: skillLineCount(sk, lv),
       kind: att.kind,
@@ -455,7 +459,9 @@ export default function NhitPanel() {
             </Select>
           </Box>
 
-          {result === null ? (
+          {missingSecondary ? (
+            <Typography variant="body2" color="text.disabled">{secondaryPrompt(missingSecondary)}</Typography>
+          ) : result === null ? (
             <Typography variant="body2" color="text.disabled">스킬을 선택하세요.</Typography>
           ) : result.unsupported ? (
             <Typography variant="body2" color="warning.main">이 스킬은 아직 지원하지 않습니다.</Typography>
