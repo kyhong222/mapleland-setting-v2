@@ -163,13 +163,20 @@ interface ItemGrowthDef {
 /** 올스탯이 스탯별로 따로 레벨업하는 기믹 (스탯당 1회 +1, 총합 제한 없음) */
 const ALLSTAT_PER_STAT: GrowthRange[] = [g('STR', 1, 1), g('DEX', 1, 1), g('INT', 1, 1), g('LUK', 1, 1)]
 
+/**
+ * 레벨업 가능 횟수 = 4.
+ * 툴팁의 ITEM LEV는 1에서 시작해 5가 상한이므로 실제 레벨업은 1→5의 **네 번**이다
+ * ("5레벨까지"를 5회로 읽으면 한 칸 더 준다). 월묘 견장이 올스탯 10에 닿는 경로도
+ * 5(정옵) + 1(상옵) + 4(레벨업)로, 레벨업 몫은 4가 맞다.
+ */
+const ITEM_LEVELUPS = 4
+
 const ITEM_GROWTH: Record<number, ItemGrowthDef> = {
   // 월묘 견장 — 원작은 공2/마력2지만 메랜은 올스탯 5 + 레벨업 기믹으로 바뀌었다.
-  // 스탯마다 5업 → 전부 만렙이면 올스탯 +5 (최종 올스탯 10).
-  1152052: { maxLevel: 5, perStatLevels: true, ranges: ALLSTAT_PER_STAT },
-  // 황금 송편 목걸이 — 정옵 올스탯 10. 스탯마다 5업 → 만렙 올스탯 15.
-  // (툴팁의 ITEM LEV 1이 정옵 상태이고, 거기서 스탯별로 5번 더 오른다)
-  1122161: { maxLevel: 5, perStatLevels: true, ranges: ALLSTAT_PER_STAT },
+  // 스탯마다 4업 → 전부 만렙이면 올스탯 +4 (정옵만이면 최종 올스탯 9).
+  1152052: { maxLevel: ITEM_LEVELUPS, perStatLevels: true, ranges: ALLSTAT_PER_STAT },
+  // 황금 송편 목걸이 — 정옵 올스탯 10. 스탯마다 4업 → 만렙 올스탯 14.
+  1122161: { maxLevel: ITEM_LEVELUPS, perStatLevels: true, ranges: ALLSTAT_PER_STAT },
 }
 
 /** 이름 접두사로 성장 티어 판별 ("타임리스 …" / "리버스 …") */
