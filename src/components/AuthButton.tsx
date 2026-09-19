@@ -15,6 +15,8 @@ import Typography from '@mui/material/Typography'
 import Divider from '@mui/material/Divider'
 import { useAuthStore } from '../store/authStore'
 import { useCloudSyncStore } from '../store/cloudSync'
+import MyFeedbackDialog from './MyFeedbackDialog'
+import AdminFeedbackDialog from './AdminFeedbackDialog'
 
 /** 동기화 상태 한 줄. idle은 보여줄 게 없어 비운다 */
 const SYNC_LABEL: Record<string, string> = {
@@ -32,7 +34,10 @@ export default function AuthButton() {
   const signIn = useAuthStore((s) => s.signIn)
   const signOut = useAuthStore((s) => s.signOut)
   const syncStatus = useCloudSyncStore((s) => s.status)
+  const isAdmin = useAuthStore((s) => s.isAdmin)
   const [anchor, setAnchor] = useState<HTMLElement | null>(null)
+  const [myFeedbackOpen, setMyFeedbackOpen] = useState(false)
+  const [adminOpen, setAdminOpen] = useState(false)
 
   if (status === 'disabled') return null
 
@@ -81,6 +86,26 @@ export default function AuthButton() {
             <MenuItem
               onClick={() => {
                 closeMenu()
+                setMyFeedbackOpen(true)
+              }}
+            >
+              내 문의
+            </MenuItem>
+            {/* 어드민에게만 보인다. 감추는 것일 뿐이고 실제 권한은 RLS가 건다 */}
+            {isAdmin && (
+              <MenuItem
+                onClick={() => {
+                  closeMenu()
+                  setAdminOpen(true)
+                }}
+              >
+                문의 관리
+              </MenuItem>
+            )}
+            <Divider />
+            <MenuItem
+              onClick={() => {
+                closeMenu()
                 void signOut()
               }}
             >
@@ -106,6 +131,8 @@ export default function AuthButton() {
         onClose={() => useAuthStore.setState({ error: null })}
       />
 
+      <MyFeedbackDialog open={myFeedbackOpen} onClose={() => setMyFeedbackOpen(false)} />
+      {isAdmin && <AdminFeedbackDialog open={adminOpen} onClose={() => setAdminOpen(false)} />}
     </>
   )
 }

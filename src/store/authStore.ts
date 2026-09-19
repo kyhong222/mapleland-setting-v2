@@ -10,6 +10,7 @@
 import { create } from 'zustand'
 import type { Session } from '@supabase/supabase-js'
 import { isCloudEnabled, supabase } from '../data/cloud/supabase'
+import { checkIsAdmin } from '../data/cloud/feedback'
 
 export interface CloudUser {
   id: string
@@ -29,6 +30,11 @@ export type AuthStatus =
 interface AuthState {
   status: AuthStatus
   user: CloudUser | null
+  /**
+   * 어드민인지 — **화면을 감추기 위한 힌트일 뿐이다.**
+   * 실제 권한은 RLS가 건다(docs/feedback.md §2). 이 값이 조작돼도 쓰기는 서버에서 막힌다.
+   */
+  isAdmin: boolean
   /** 사용자에게 보여줄 오류 (없으면 null) */
   error: string | null
   signIn: () => Promise<void>
@@ -56,6 +62,7 @@ function toUser(session: Session | null): CloudUser | null {
 export const useAuthStore = create<AuthState>()((set) => ({
   status: isCloudEnabled ? 'loading' : 'disabled',
   user: null,
+  isAdmin: false,
   error: null,
 
   signIn: async () => {
@@ -81,7 +88,7 @@ export const useAuthStore = create<AuthState>()((set) => ({
       set({ error: '로그아웃에 실패했습니다.' })
       return
     }
-    set({ status: 'signedOut', user: null, error: null })
+    set({ status: 'signedOut', user: null, isAdmin: false, error: null })
   },
 }))
 
@@ -96,10 +103,21 @@ export function initAuth(): void {
   initialized = true
   // 콜백 안에서 supabase를 다시 await 하면 교착이 생길 수 있어 상태 반영만 한다
   supabase().auth.onAuthStateChange((_event, session) => {
+    const user = toUser(session)
     useAuthStore.setState({
       status: session ? 'signedIn' : 'signedOut',
-      user: toUser(session),
+      user,
+      isAdmin: false,
       error: null,
     })
+    // 어드민 조회는 콜백 밖으로 밀어낸다 (같은 이유 — 콜백 안에서 supabase를 다시 부르지 않는다)
+    if (user) setTimeout(() => void refreshAdminFlag(user.id), 0)
   })
+}
+
+/** admins에 내 행이 있는지 확인해 화면 표시용 플래그를 갱신한다 */
+async function refreshAdminFlag(userId: string): Promise<void> {
+  const isAdmin = await checkIsAdmin(userId)
+  // 그 사이 로그아웃/계정 전환이 일어났으면 버린다
+  if (useAuthStore.getState().user?.id === userId) useAuthStore.setState({ isAdmin })
 }

@@ -32,3 +32,6 @@ pnpm-debug.log*
 
 # 로컬 전용 환경 메모 (머신마다 다름)
 LOCAL.md
+
+# tsc 증분 빌드 캐시
+tsconfig.tsbuildinfo
