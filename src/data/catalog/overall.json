@@ -2951,7 +2951,8 @@
       "LUK": 5,
       "pdef": 50,
       "mdef": 25,
-      "eva": 15
+      "eva": 15,
+      "hp": 15
     },
     "reqLevel": 10,
     "reqJob": 0,
