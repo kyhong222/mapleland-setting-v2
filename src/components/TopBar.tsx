@@ -10,6 +10,7 @@ import { useBuildStore } from '../store/buildStore'
 import { resetAll } from '../store/snapshot'
 import SlotManager from './SlotManager'
 import FeedbackDialog from './FeedbackDialog'
+import AuthButton from './AuthButton'
 
 export default function TopBar() {
   const jobId = useBuildStore((s) => s.jobId)
@@ -43,6 +44,7 @@ export default function TopBar() {
               초기화
             </Button>
           )}
+          <AuthButton />
         </Toolbar>
         <SlotManager open={slotsOpen} onClose={() => setSlotsOpen(false)} />
         <FeedbackDialog open={feedbackOpen} onClose={() => setFeedbackOpen(false)} />

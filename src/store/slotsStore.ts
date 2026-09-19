@@ -30,6 +30,8 @@ interface SlotsState {
   clear: (index: number) => void
   /** 구분용 이름 변경. 빈 문자열/공백이면 이름을 지워 '슬롯 N' 표시로 되돌린다 */
   rename: (index: number, name: string) => void
+  /** 클라우드 복원: 24칸을 통째로 교체 (길이가 달라도 앞에서부터 채우고 나머지는 빈 칸) */
+  replaceAll: (slots: (SavedSlot | null)[]) => void
 }
 
 const emptySlots = (): (SavedSlot | null)[] => Array.from({ length: SLOT_COUNT }, () => null)
@@ -57,6 +59,12 @@ export const useSlotsStore = create<SlotsState>()(
           const trimmed = name.trim()
           const slots = s.slots.slice()
           slots[index] = { ...slot, name: trimmed || undefined }
+          return { slots }
+        }),
+      replaceAll: (next) =>
+        set(() => {
+          const slots = emptySlots()
+          for (let i = 0; i < SLOT_COUNT; i++) slots[i] = next[i] ?? null
           return { slots }
         }),
     }),

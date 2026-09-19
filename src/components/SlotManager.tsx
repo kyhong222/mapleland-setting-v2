@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import Dialog from '@mui/material/Dialog'
 import DialogTitle from '@mui/material/DialogTitle'
 import DialogContent from '@mui/material/DialogContent'
@@ -10,17 +10,16 @@ import Typography from '@mui/material/Typography'
 import Button from '@mui/material/Button'
 import IconButton from '@mui/material/IconButton'
 import Stack from '@mui/material/Stack'
+import Tabs from '@mui/material/Tabs'
+import Tab from '@mui/material/Tab'
 import ItemIcon from './common/ItemIcon'
 import { JOBS } from '../domain/jobs'
-import { SLOTS } from '../domain/equipSlots'
-import { resolveBuiltItem } from '../domain/builtItem'
-import type { GradeResult } from '../domain/grade'
-import { useSlotsStore, SLOT_GROUP_SIZE } from '../store/slotsStore'
+import { equippedPreview } from '../lib/slotPreview'
+import { useSlotsStore, SLOT_COUNT, SLOT_GROUP_SIZE } from '../store/slotsStore'
 import type { SavedSlot } from '../store/slotsStore'
-import type { EquipInstance } from '../store/equipInstance'
 import { useInventoryStore, ownerOf } from '../store/inventoryStore'
-import type { InventoryItem } from '../store/inventoryStore'
-import { captureSnapshot, applySnapshot } from '../store/snapshot'
+import { captureSnapshot, applySnapshot, loadGuestBundle } from '../store/snapshot'
+import { useAuthStore } from '../store/authStore'
 import { useBuildStore } from '../store/buildStore'
 
 interface Props {
@@ -53,49 +52,11 @@ const jobLine = (slot: SavedSlot) =>
 type Confirm = { kind: 'save' | 'clear'; index: number } | null
 
 /**
- * 카드에 미리 보여줄 장착 부위 — 무기·방패·상의·하의·장갑·신발 순.
- * 한벌옷은 별도 인스턴스 없이 top 칸에 들어가므로(equipInstance.ts) top 하나로 덮이고,
- * 한벌옷을 입으면 하의가 비어 자연히 '무기-방패-전신-장갑-신발'로 렌더된다.
+ * 어느 쪽 슬롯을 보고 있는지. docs/cloud-sync.md §5
+ *  - account: 지금 스토어(로그인 중이면 계정 데이터). 편집 가능
+ *  - local  : 로그인 전 이 기기 데이터. 로그인 중에는 게스트 벌이라 읽기 전용이다
  */
-const EQUIP_PREVIEW: EquipInstance[] = ['weapon', 'secondary', 'top', 'bottom', 'gloves', 'shoes']
-
-/**
- * 슬롯에 장착돼 있던 장비를 표시용으로 푼다.
- * equipped는 인벤토리 id만 들고 있어서, 슬롯을 따라다니는 개인 인벤토리(스냅샷)와
- * 공용 인벤토리(현재 스토어) 양쪽에서 찾아야 이름이 나온다. 못 찾으면 건너뛴다
- * (구버전 스냅샷엔 personalItems가 없어 개인 장비는 조회되지 않는다).
- * 부위 이름은 인스턴스가 아니라 실제 아이템의 도메인 슬롯에서 가져온다 —
- * secondary 칸이 방패인지 화살인지, top 칸이 상의인지 한벌옷인지가 그래야 구분된다.
- */
-interface PreviewItem {
-  inst: EquipInstance
-  label: string
-  name: string
-  iconUrl?: string
-  grade: GradeResult
-}
-
-function equippedPreview(slot: SavedSlot, sharedItems: InventoryItem[]): PreviewItem[] {
-  const byId = new Map<string, InventoryItem>()
-  for (const it of sharedItems) byId.set(it.id, it)
-  for (const it of slot.snapshot.personalItems ?? []) byId.set(it.id, it)
-  const out: PreviewItem[] = []
-  for (const inst of EQUIP_PREVIEW) {
-    const invId = slot.snapshot.equipped[inst]
-    if (!invId) continue
-    const item = byId.get(invId)
-    if (!item) continue
-    const base = item.built.base
-    out.push({
-      inst,
-      label: SLOTS[base.slot].label,
-      name: base.name,
-      iconUrl: base.iconUrl,
-      grade: resolveBuiltItem(item.built).grade,
-    })
-  }
-  return out
-}
+type SlotTab = 'account' | 'local'
 
 export default function SlotManager({ open, onClose }: Props) {
   const slots = useSlotsStore((s) => s.slots)
@@ -104,14 +65,44 @@ export default function SlotManager({ open, onClose }: Props) {
   const rename = useSlotsStore((s) => s.rename)
   // 저장 가능 여부만 반응형으로 본다 (실제 캡처는 여러 스토어를 훑는 captureSnapshot이 담당)
   const canSave = useBuildStore((s) => s.jobId !== null)
-  // 장착 미리보기용 — 공용 인벤토리는 스냅샷에 없어서 현재 것을 쓴다
+  const authStatus = useAuthStore((s) => s.status)
+  const signedIn = authStatus === 'signedIn'
+  // Supabase 키가 없으면 탭 자체를 숨긴다 — 로컬 전용으로 쓰던 그대로 보인다
+  const cloudEnabled = authStatus !== 'disabled'
+
+  const [tab, setTab] = useState<SlotTab>('local')
+  // 로그인하면 계정 쪽이 기본, 로그아웃하면 계정 탭이 잠기므로 로컬로 되돌린다
+  useEffect(() => setTab(signedIn ? 'account' : 'local'), [signedIn])
+
+  /**
+   * 로그인 중의 '로컬' 탭은 게스트 벌을 본다. 열 때 한 번만 읽으면 되는 값이라
+   * (그 사이 바뀌지 않는다) 여는 시점에만 잡는다.
+   */
+  const guest = useMemo(() => (open && signedIn ? loadGuestBundle() : null), [open, signedIn])
+  /** 로그인 중 '로컬' 탭 = 읽기 전용. 저장/삭제/이름변경은 계정 쪽에서만 한다 */
+  const readOnly = signedIn && tab === 'local'
+
+  const viewSlots = useMemo(() => {
+    if (!readOnly) return slots
+    const padded: (SavedSlot | null)[] = Array.from({ length: SLOT_COUNT }, () => null)
+    ;(guest?.slots ?? []).forEach((s, i) => {
+      if (i < SLOT_COUNT) padded[i] = s ?? null
+    })
+    return padded
+  }, [readOnly, slots, guest])
+
+  // 장착 미리보기용 — 공용 인벤토리는 스냅샷에 없어서 보고 있는 쪽의 것을 쓴다.
+  // 게스트 슬롯을 계정 인벤토리로 풀면 장비 이름이 조용히 빈다(lib/slotPreview 주석)
   const invItems = useInventoryStore((s) => s.items)
-  const sharedItems = useMemo(() => invItems.filter((it) => ownerOf(it) === 'shared'), [invItems])
+  const sharedItems = useMemo(() => {
+    const source = readOnly ? (guest?.state.inventory ?? []) : invItems
+    return source.filter((it) => ownerOf(it) === 'shared')
+  }, [readOnly, guest, invItems])
   // 등급 산출까지 도는 계산이라 슬롯/인벤토리가 바뀔 때만 다시 푼다
   // (이름 편집 입력마다 24칸을 재계산하지 않도록)
   const previews = useMemo(
-    () => slots.map((s) => (s ? equippedPreview(s, sharedItems) : [])),
-    [slots, sharedItems],
+    () => viewSlots.map((s) => (s ? equippedPreview(s.snapshot, sharedItems) : [])),
+    [viewSlots, sharedItems],
   )
 
   const [confirm, setConfirm] = useState<Confirm>(null)
@@ -123,8 +114,10 @@ export default function SlotManager({ open, onClose }: Props) {
     const snap = captureSnapshot()
     if (snap) save(i, snap, slots[i]?.name)
   }
+  // 로컬 탭에서 불러오면 그 빌드가 현재 작업 빌드가 된다. 계정 탭에서 슬롯에 저장하면
+  // 그대로 계정으로 넘어간다 — '로컬에서 계정으로 옮기기'가 이 두 동작으로 끝난다.
   const handleLoad = (i: number) => {
-    const slot = slots[i]
+    const slot = viewSlots[i]
     if (slot) {
       applySnapshot(slot.snapshot)
       onClose()
@@ -159,9 +152,32 @@ export default function SlotManager({ open, onClose }: Props) {
   return (
     <>
       <Dialog open={open} onClose={onClose} fullWidth maxWidth="xl">
-        <DialogTitle>저장 슬롯</DialogTitle>
+        <DialogTitle sx={{ pb: cloudEnabled ? 0 : undefined }}>저장 슬롯</DialogTitle>
+        {cloudEnabled && (
+          <Tabs
+            value={tab}
+            onChange={(_, v: SlotTab) => setTab(v)}
+            sx={{ px: 3, borderBottom: 1, borderColor: 'divider' }}
+          >
+            {/* 로그인 전에는 잠가 두어 '로그인하면 여기에 뭔가 있다'가 보이게 한다 */}
+            <Tab value="account" label="디스코드 계정" disabled={!signedIn} />
+            <Tab value="local" label="로컬" />
+          </Tabs>
+        )}
         <DialogContent dividers>
           <Stack spacing={2}>
+            {cloudEnabled && !signedIn && (
+              <Typography variant="body2" color="text.secondary">
+                디스코드로 로그인하면 계정에 저장된 슬롯을 여기서 함께 볼 수 있습니다. 로그인해도 이 기기 내용은
+                그대로 남습니다.
+              </Typography>
+            )}
+            {readOnly && (
+              <Typography variant="body2" color="text.secondary">
+                로그인 전에 이 기기에서 쓰던 내용입니다. 여기서는 불러오기만 됩니다 — 불러온 뒤 '디스코드 계정'
+                탭의 빈 칸에 저장하면 계정으로 넘어갑니다. 로그아웃하면 이 내용으로 돌아옵니다.
+              </Typography>
+            )}
             {groups.map((group, g) => (
               <Paper key={g} variant="outlined" sx={{ p: 1.25, bgcolor: 'action.hover' }}>
                 <Box
@@ -177,7 +193,7 @@ export default function SlotManager({ open, onClose }: Props) {
                   }}
                 >
                   {group.map((i) => {
-                    const slot = slots[i]
+                    const slot = viewSlots[i]
                     return (
                       <Paper
                         key={i}
@@ -201,15 +217,17 @@ export default function SlotManager({ open, onClose }: Props) {
                               >
                                 {slotLabel(slot, i)}
                               </Typography>
-                              <IconButton
-                                size="small"
-                                onClick={() => openRename(i)}
-                                title="이름 편집"
-                                aria-label={`${slotLabel(slot, i)} 이름 편집`}
-                                sx={{ p: 0.75, fontSize: '1.15rem', lineHeight: 1, flexShrink: 0 }}
-                              >
-                                ✎
-                              </IconButton>
+                              {!readOnly && (
+                                <IconButton
+                                  size="small"
+                                  onClick={() => openRename(i)}
+                                  title="이름 편집"
+                                  aria-label={`${slotLabel(slot, i)} 이름 편집`}
+                                  sx={{ p: 0.75, fontSize: '1.15rem', lineHeight: 1, flexShrink: 0 }}
+                                >
+                                  ✎
+                                </IconButton>
+                              )}
                             </Box>
                             <Typography
                               color="text.secondary"
@@ -247,7 +265,7 @@ export default function SlotManager({ open, onClose }: Props) {
                               ))}
                             </Box>
                             <Box sx={{ flexGrow: 1 }} />
-                            {/* 3등분해서 슬롯 하단을 꽉 채운다 */}
+                            {/* 읽기 전용(로그인 중 로컬 탭)은 불러오기만. 그 외에는 3등분해 꽉 채운다 */}
                             <Stack direction="row" spacing={0.5} sx={{ mt: 0.75 }}>
                               <Button
                                 size="small"
@@ -258,25 +276,29 @@ export default function SlotManager({ open, onClose }: Props) {
                               >
                                 불러오기
                               </Button>
-                              <Button
-                                size="small"
-                                variant="contained"
-                                color="success"
-                                disabled={!canSave}
-                                onClick={() => setConfirm({ kind: 'save', index: i })}
-                                sx={SLOT_ACTION_SX}
-                              >
-                                저장
-                              </Button>
-                              <Button
-                                size="small"
-                                variant="contained"
-                                color="error"
-                                onClick={() => setConfirm({ kind: 'clear', index: i })}
-                                sx={SLOT_ACTION_SX}
-                              >
-                                삭제
-                              </Button>
+                              {!readOnly && (
+                                <>
+                                  <Button
+                                    size="small"
+                                    variant="contained"
+                                    color="success"
+                                    disabled={!canSave}
+                                    onClick={() => setConfirm({ kind: 'save', index: i })}
+                                    sx={SLOT_ACTION_SX}
+                                  >
+                                    저장
+                                  </Button>
+                                  <Button
+                                    size="small"
+                                    variant="contained"
+                                    color="error"
+                                    onClick={() => setConfirm({ kind: 'clear', index: i })}
+                                    sx={SLOT_ACTION_SX}
+                                  >
+                                    삭제
+                                  </Button>
+                                </>
+                              )}
                             </Stack>
                           </>
                         ) : (
@@ -298,17 +320,19 @@ export default function SlotManager({ open, onClose }: Props) {
                             </Box>
                             {/* 빈 슬롯은 잃을 게 없어 되묻지 않고 바로 저장한다.
                                 빈 칸이 많을 때 화면이 무거워지지 않게 outlined로 둔다 */}
-                            <Button
-                              size="small"
-                              variant="outlined"
-                              color="success"
-                              fullWidth
-                              disabled={!canSave}
-                              onClick={() => doSave(i)}
-                              sx={{ px: 0.5 }}
-                            >
-                              저장
-                            </Button>
+                            {!readOnly && (
+                              <Button
+                                size="small"
+                                variant="outlined"
+                                color="success"
+                                fullWidth
+                                disabled={!canSave}
+                                onClick={() => doSave(i)}
+                                sx={{ px: 0.5 }}
+                              >
+                                저장
+                              </Button>
+                            )}
                           </>
                         )}
                       </Paper>
