@@ -13,18 +13,9 @@ import DialogActions from '@mui/material/DialogActions'
 import DialogContent from '@mui/material/DialogContent'
 import DialogTitle from '@mui/material/DialogTitle'
 import Stack from '@mui/material/Stack'
-import Box from '@mui/material/Box'
-import TextField from '@mui/material/TextField'
 import Typography from '@mui/material/Typography'
 import FeedbackItem from './common/FeedbackItem'
-import {
-  createReply,
-  listMyFeedbacks,
-  listReplies,
-  signImages,
-  type Feedback,
-  type FeedbackReply,
-} from '../data/cloud/feedback'
+import { listMyFeedbacks, listReplies, signImages, type Feedback, type FeedbackReply } from '../data/cloud/feedback'
 import { useAuthStore } from '../store/authStore'
 
 export default function MyFeedbackDialog({ open, onClose }: { open: boolean; onClose: () => void }) {
@@ -34,9 +25,6 @@ export default function MyFeedbackDialog({ open, onClose }: { open: boolean; onC
   const [imageUrls, setImageUrls] = useState<Map<string, string>>(new Map())
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
-  /** 재문의 입력 (문의 id별) */
-  const [drafts, setDrafts] = useState<Record<string, string>>({})
-  const [busyId, setBusyId] = useState<string | null>(null)
 
   const load = useCallback(async () => {
     if (!userId) return
@@ -58,23 +46,6 @@ export default function MyFeedbackDialog({ open, onClose }: { open: boolean; onC
     if (open) void load()
   }, [open, load])
 
-  /** 이어서 문의하기 — 트리거가 상태를 '접수됨'으로 되돌려 어드민 목록에 다시 뜬다 */
-  const submitReply = async (feedbackId: string) => {
-    const text = (drafts[feedbackId] ?? '').trim()
-    if (!text || !userId) return
-    setBusyId(feedbackId)
-    setError(null)
-    try {
-      await createReply(feedbackId, userId, text)
-      setDrafts((d) => ({ ...d, [feedbackId]: '' }))
-      await load() // 상태가 바뀌므로 목록째 다시 읽는다
-    } catch (e) {
-      setError(e instanceof Error ? e.message : '등록에 실패했습니다.')
-    } finally {
-      setBusyId(null)
-    }
-  }
-
   return (
     <Dialog open={open} onClose={onClose} maxWidth="sm" fullWidth>
       <DialogTitle sx={{ fontWeight: 800 }}>내 문의</DialogTitle>
@@ -92,29 +63,7 @@ export default function MyFeedbackDialog({ open, onClose }: { open: boolean; onC
         ) : (
           <Stack spacing={1.5}>
             {items.map((f) => (
-              <FeedbackItem key={f.id} feedback={f} replies={replies.get(f.id) ?? []} imageUrls={imageUrls}>
-                <Box sx={{ mt: 1.25 }}>
-                  <TextField
-                    size="small"
-                    fullWidth
-                    multiline
-                    minRows={2}
-                    placeholder="이어서 문의하기"
-                    value={drafts[f.id] ?? ''}
-                    onChange={(e) => setDrafts((d) => ({ ...d, [f.id]: e.target.value }))}
-                    disabled={busyId === f.id}
-                  />
-                  <Button
-                    size="small"
-                    variant="outlined"
-                    sx={{ mt: 1 }}
-                    disabled={busyId === f.id || !(drafts[f.id] ?? '').trim()}
-                    onClick={() => void submitReply(f.id)}
-                  >
-                    등록
-                  </Button>
-                </Box>
-              </FeedbackItem>
+              <FeedbackItem key={f.id} feedback={f} replies={replies.get(f.id) ?? []} imageUrls={imageUrls} />
             ))}
           </Stack>
         )}

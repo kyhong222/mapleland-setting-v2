@@ -80,7 +80,7 @@ create table public.feedbacks (
 create index feedbacks_user_idx   on public.feedbacks (user_id, created_at desc);
 create index feedbacks_public_idx on public.feedbacks (is_public, created_at desc);
 
--- ── 답글 (어드민 답변 · 작성자 재문의) ────────────────────────
+-- ── 답변 (어드민만 작성) ──────────────────────────────────────
 create table public.feedback_replies (
   id          uuid primary key default gen_random_uuid(),
   feedback_id uuid not null references public.feedbacks(id) on delete cascade,
@@ -90,31 +90,20 @@ create table public.feedback_replies (
 );
 create index feedback_replies_idx on public.feedback_replies (feedback_id, created_at);
 
--- ── 글이 달리면 상태를 옮긴다 ──────────────────────────────────
---  어드민이 답하면 answered, 작성자가 다시 물으면 open으로 되돌린다.
---  되돌리지 않으면 처리 완료로 닫힌 건의 재문의가 어드민 목록(기본 필터 '접수됨')에서 사라진다.
-create or replace function public.sync_feedback_status()
+-- ── 답변이 달리면 상태를 answered로 (이미 처리한 건은 건드리지 않는다) ──
+create or replace function public.mark_answered()
 returns trigger language plpgsql security definer set search_path = '' as $fn$
-declare
-  owner_id uuid;
 begin
-  select user_id into owner_id from public.feedbacks where id = new.feedback_id;
-  if new.author_id = owner_id then
-    update public.feedbacks
-       set status = 'open', updated_at = now()
-     where id = new.feedback_id and status <> 'open';
-  else
-    update public.feedbacks
-       set status = 'answered', updated_at = now()
-     where id = new.feedback_id and status = 'open';
-  end if;
+  update public.feedbacks
+     set status = 'answered', updated_at = now()
+   where id = new.feedback_id and status = 'open';
   return new;
 end;
 $fn$;
 
-create trigger feedback_replies_sync_status
+create trigger feedback_replies_mark_answered
   after insert on public.feedback_replies
-  for each row execute function public.sync_feedback_status();
+  for each row execute function public.mark_answered();
 
 -- ── RLS ──────────────────────────────────────────────────────
 alter table public.admins           enable row level security;
@@ -150,26 +139,9 @@ create policy read_replies on public.feedback_replies
     )
   );
 
--- 어드민이 답하거나, 그 문의를 남긴 본인이 다시 묻는다.
--- author_id를 자기 것으로 못 박아 남의 이름으로 쓰지 못하게 한다
-create policy write_replies on public.feedback_replies
-  for insert to authenticated
-  with check (
-    author_id = auth.uid()
-    and (
-      public.is_admin()
-      or exists (
-        select 1 from public.feedbacks f
-         where f.id = feedback_id and f.user_id = auth.uid()
-      )
-    )
-  );
-
--- 고치고 지우는 건 어드민만
-create policy admin_update_replies on public.feedback_replies
-  for update using (public.is_admin()) with check (public.is_admin());
-create policy admin_delete_replies on public.feedback_replies
-  for delete using (public.is_admin());
+-- 답변 작성은 어드민만
+create policy admin_write_replies on public.feedback_replies
+  for all using (public.is_admin()) with check (public.is_admin());
 ```
 
 어드민 등록은 콘솔에서 한 줄이다.
@@ -179,59 +151,8 @@ insert into public.admins (user_id, note)
 select id, '운영자' from auth.users where email = '<내 디스코드 이메일>';
 ```
 
-### 이미 DDL을 돌린 뒤라면
-
-바뀐 부분만 따로 적용한다. 전부 여러 번 돌려도 안전하다.
-
-```sql
--- 첨부 이미지 컬럼
-alter table public.feedbacks add column if not exists images text[] not null default '{}';
-
--- 재문의 허용: 답변 작성 정책을 어드민 전용에서 '어드민 또는 작성자 본인'으로 넓힌다
-drop policy if exists admin_write_replies on public.feedback_replies;
-
-create policy write_replies on public.feedback_replies
-  for insert to authenticated
-  with check (
-    author_id = auth.uid()
-    and (
-      public.is_admin()
-      or exists (
-        select 1 from public.feedbacks f
-         where f.id = feedback_id and f.user_id = auth.uid()
-      )
-    )
-  );
-create policy admin_update_replies on public.feedback_replies
-  for update using (public.is_admin()) with check (public.is_admin());
-create policy admin_delete_replies on public.feedback_replies
-  for delete using (public.is_admin());
-
--- 상태 트리거 교체 (작성자가 다시 물으면 open으로 되돌린다)
-drop trigger if exists feedback_replies_mark_answered on public.feedback_replies;
-drop function if exists public.mark_answered();
-
-create or replace function public.sync_feedback_status()
-returns trigger language plpgsql security definer set search_path = '' as $fn$
-declare
-  owner_id uuid;
-begin
-  select user_id into owner_id from public.feedbacks where id = new.feedback_id;
-  if new.author_id = owner_id then
-    update public.feedbacks set status = 'open', updated_at = now()
-     where id = new.feedback_id and status <> 'open';
-  else
-    update public.feedbacks set status = 'answered', updated_at = now()
-     where id = new.feedback_id and status = 'open';
-  end if;
-  return new;
-end;
-$fn$;
-
-create trigger feedback_replies_sync_status
-  after insert on public.feedback_replies
-  for each row execute function public.sync_feedback_status();
-```
+> 위 DDL을 이미 한 번 돌린 뒤라면 첨부 이미지 컬럼만 따로 추가한다:
+> `alter table public.feedbacks add column if not exists images text[] not null default '{}';`
 
 ---
 
@@ -335,7 +256,7 @@ const { data: signed } = await supabase.storage
 | 화면 | 위치 | 누가 |
 |---|---|---|
 | 문의 작성 | 상단 `문의하기` | 로그인한 사용자. 비로그인이면 로그인 안내만 |
-| 내 문의 | 계정 메뉴 → `내 문의` | 본인 문의 열람 + 답변 확인 + **이어서 재문의** |
+| 내 문의 | 계정 메뉴 → `내 문의` | 본인 문의 + 답변 열람 |
 | 문의 관리 | 계정 메뉴 → `문의 관리` | **어드민에게만 보인다** |
 
 `문의 관리`는 상태로 거른 목록에서 답변을 쓰고, 상태와 공개 여부를 바꾼다.
@@ -350,12 +271,7 @@ const { data: signed } = await supabase.storage
 - **GitHub 이슈 프록시 폐기** — 계정이 생겨 신원과 답변 경로가 앱 안에서 해결됐다.
   `api/feedback.js`가 사라지면서 이 레포의 서버 코드는 0이 됐다.
 - **허니팟 제거** — 로그인 필수가 봇을 막는다. 숨긴 입력칸을 유지할 이유가 없다.
-- **답글은 양방향** — 처음엔 어드민만 쓰게 했다가 작성자의 재문의까지 열었다. 한 문의 안에서
-  대화가 이어지는 편이 새 문의를 또 넣는 것보다 맥락이 남는다. 표 구조는 그대로 두고 정책
-  한 줄과 상태 트리거만 바꿨다.
-- **재문의는 상태를 `접수됨`으로 되돌린다** — 안 되돌리면 이미 처리 완료로 닫힌 건의 재문의가
-  어드민 목록(기본 필터 `접수됨`)에서 보이지 않는다.
-- **작성자와 어드민을 `author_id`로 가른다** — 쓸 수 있는 사람이 그 둘뿐이라 별도 플래그가
-  필요 없다. 문의의 `user_id`와 같으면 재문의, 다르면 운영자 답변이다.
+- **답변은 어드민만** — 사용자 재질문까지는 넓히지 않았다. 필요해지면
+  `admin_write_replies`를 `is_admin() or 본인 문의`로 넓히면 되고, 표 구조는 그대로 쓴다.
 - **어드민 화면을 앱 안에 둔 이유** — 이 앱엔 라우터가 없어 다이얼로그가 가장 싸다.
-  서비스가 늘어 문의를 한곳에서 볼 필요가 생기면 §5의 데이터 접근 파일만 들고 나가면 된다.
+  서비스가 늘어 문의를 한곳에서 볼 필요가 생기면 §4의 데이터 접근 파일만 들고 나가면 된다.
