@@ -1,6 +1,6 @@
 /**
  * 문의 한 건 + 답변 목록. '내 문의'와 '문의 관리'가 같은 생김새를 쓴다.
- * docs/feedback.md §4
+ * docs/feedback.md §5
  *
  * 어드민 조작(답변 작성·상태 변경·공개 토글)은 children으로 받는다.
  */
@@ -35,12 +35,15 @@ const STATUS_COLOR: Record<FeedbackStatus, 'default' | 'info' | 'success' | 'war
 interface Props {
   feedback: Feedback
   replies: FeedbackReply[]
+  /** 스토리지 경로 → 서명 URL. 버킷이 비공개라 원본 경로로는 못 띄운다(docs/feedback.md §3) */
+  imageUrls?: Map<string, string>
   /** 어드민 화면에서만 작성자를 보여준다 */
   showAuthor?: boolean
   children?: ReactNode
 }
 
-export default function FeedbackItem({ feedback: f, replies, showAuthor, children }: Props) {
+export default function FeedbackItem({ feedback: f, replies, imageUrls, showAuthor, children }: Props) {
+  const shots = f.images.map((p) => imageUrls?.get(p)).filter((u): u is string => Boolean(u))
   return (
     <Paper variant="outlined" sx={{ p: 1.5 }}>
       <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.75, flexWrap: 'wrap', mb: 0.5 }}>
@@ -64,6 +67,31 @@ export default function FeedbackItem({ feedback: f, replies, showAuthor, childre
       <Typography variant="body2" sx={{ mt: 0.75, whiteSpace: 'pre-wrap' }}>
         {f.body}
       </Typography>
+
+      {shots.length > 0 && (
+        <Box sx={{ mt: 1, display: 'flex', gap: 1, flexWrap: 'wrap' }}>
+          {shots.map((url) => (
+            // 새 탭으로 원본 보기 — 서명 URL이라 1시간 뒤엔 만료된다
+            <Box key={url} component="a" href={url} target="_blank" rel="noopener" sx={{ display: 'block' }}>
+              <Box
+                component="img"
+                src={url}
+                alt="첨부 이미지"
+                loading="lazy"
+                sx={{
+                  width: 96,
+                  height: 96,
+                  objectFit: 'cover',
+                  borderRadius: 1,
+                  border: 1,
+                  borderColor: 'divider',
+                  display: 'block',
+                }}
+              />
+            </Box>
+          ))}
+        </Box>
+      )}
 
       {replies.map((r) => (
         <Box

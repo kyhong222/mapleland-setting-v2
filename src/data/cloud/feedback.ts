@@ -25,8 +25,18 @@ export interface Feedback {
   isPublic: boolean
   authorName: string | null
   authorAvatar: string | null
+  /** 첨부 이미지의 스토리지 경로. 보여주려면 서명 URL로 바꿔야 한다(signImages) */
+  images: string[]
   createdAt: string
 }
+
+/** 첨부 이미지 버킷. 비공개다 — 읽을 때마다 서명 URL을 만든다(docs/feedback.md §3) */
+export const FEEDBACK_BUCKET = 'feedback'
+export const MAX_IMAGES = 3
+export const MAX_IMAGE_BYTES = 5 * 1024 * 1024
+export const ALLOWED_IMAGE_TYPES = ['image/png', 'image/jpeg', 'image/gif', 'image/webp']
+/** 서명 URL 수명(초) */
+const SIGN_TTL = 3600
 
 export interface FeedbackReply {
   id: string
@@ -36,7 +46,7 @@ export interface FeedbackReply {
 }
 
 const FEEDBACK_COLUMNS =
-  'id, user_id, app_id, type, title, body, status, is_public, author_name, author_avatar, created_at'
+  'id, user_id, app_id, type, title, body, status, is_public, author_name, author_avatar, images, created_at'
 
 interface FeedbackRow {
   id: string
@@ -49,6 +59,7 @@ interface FeedbackRow {
   is_public: boolean
   author_name: string | null
   author_avatar: string | null
+  images: string[] | null
   created_at: string
 }
 
@@ -63,6 +74,7 @@ const toFeedback = (r: FeedbackRow): Feedback => ({
   isPublic: r.is_public,
   authorName: r.author_name,
   authorAvatar: r.author_avatar,
+  images: r.images ?? [],
   createdAt: r.created_at,
 })
 
@@ -80,18 +92,59 @@ export async function checkIsAdmin(userId: string): Promise<boolean> {
   return data !== null
 }
 
+/**
+ * 첨부 이미지 업로드. 경로는 `<user_id>/<feedback_id>/<uuid>.<ext>` —
+ * 스토리지 정책이 폴더 이름만으로 소유자/문의를 판정한다(docs/feedback.md §3).
+ *
+ * 문의 행보다 먼저 올리므로 행 삽입이 실패하면 고아 파일이 남는다.
+ * 비공개 버킷이라 누구에게도 보이지 않아 그대로 둔다.
+ */
+export async function uploadFeedbackImages(
+  userId: string,
+  feedbackId: string,
+  files: File[],
+): Promise<string[]> {
+  const storage = supabase().storage.from(FEEDBACK_BUCKET)
+  const paths: string[] = []
+  for (const file of files.slice(0, MAX_IMAGES)) {
+    const ext = (file.name.split('.').pop() || 'png').toLowerCase().replace(/[^a-z0-9]/g, '')
+    const path = `${userId}/${feedbackId}/${crypto.randomUUID()}.${ext}`
+    const { error } = await storage.upload(path, file, { contentType: file.type, upsert: false })
+    if (error) throw new Error(`이미지 업로드 실패: ${error.message}`)
+    paths.push(path)
+  }
+  return paths
+}
+
+/** 경로 → 서명 URL. 정책이 막은 경로는 결과에서 빠진다 */
+export async function signImages(paths: string[]): Promise<Map<string, string>> {
+  const out = new Map<string, string>()
+  const unique = [...new Set(paths)]
+  if (unique.length === 0) return out
+  const { data, error } = await supabase().storage.from(FEEDBACK_BUCKET).createSignedUrls(unique, SIGN_TTL)
+  if (error) return out // 이미지가 안 보일 뿐 목록은 그대로 보여준다
+  for (const row of data ?? []) {
+    if (row.signedUrl && row.path) out.set(row.path, row.signedUrl)
+  }
+  return out
+}
+
 export interface NewFeedback {
+  /** 이미지 경로를 먼저 정해야 해서 id를 호출부가 만든다 */
+  id: string
   type: FeedbackType
   title: string
   body: string
   authorName: string | null
   authorAvatar: string | null
+  images: string[]
 }
 
 export async function createFeedback(userId: string, input: NewFeedback): Promise<Feedback> {
   const { data, error } = await supabase()
     .from('feedbacks')
     .insert({
+      id: input.id,
       user_id: userId,
       app_id: APP_ID,
       type: input.type,
@@ -99,6 +152,7 @@ export async function createFeedback(userId: string, input: NewFeedback): Promis
       body: input.body,
       author_name: input.authorName,
       author_avatar: input.authorAvatar,
+      images: input.images,
     })
     .select(FEEDBACK_COLUMNS)
     .single()

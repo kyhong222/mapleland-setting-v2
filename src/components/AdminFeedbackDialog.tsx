@@ -1,11 +1,11 @@
 /**
- * '문의 관리' — 어드민 전용. docs/feedback.md §4
+ * '문의 관리' — 어드민 전용. docs/feedback.md §5
  *
  * 메뉴 자체가 어드민에게만 보이지만, 그건 화면을 감추는 것일 뿐이다.
  * 실제 차단은 RLS가 한다 — 어드민이 아니면 목록에 본인 문의만 나오고 답변 작성은 실패한다.
  *
  * 앱 라우터가 없어 다이얼로그로 뒀다. 서비스가 늘어 문의를 한곳에서 볼 필요가 생기면
- * `data/cloud/feedback.ts`만 들고 나가면 된다(docs/feedback.md §5).
+ * `data/cloud/feedback.ts`만 들고 나가면 된다(docs/feedback.md §6).
  */
 
 import { useCallback, useEffect, useState } from 'react'
@@ -29,6 +29,7 @@ import {
   createReply,
   listAllFeedbacks,
   listReplies,
+  signImages,
   updateFeedback,
   type Feedback,
   type FeedbackReply,
@@ -43,6 +44,7 @@ export default function AdminFeedbackDialog({ open, onClose }: { open: boolean; 
   const [filter, setFilter] = useState<FeedbackStatus | 'all'>('open')
   const [items, setItems] = useState<Feedback[]>([])
   const [replies, setReplies] = useState<Map<string, FeedbackReply[]>>(new Map())
+  const [imageUrls, setImageUrls] = useState<Map<string, string>>(new Map())
   const [drafts, setDrafts] = useState<Record<string, string>>({})
   const [loading, setLoading] = useState(false)
   const [busyId, setBusyId] = useState<string | null>(null)
@@ -55,6 +57,7 @@ export default function AdminFeedbackDialog({ open, onClose }: { open: boolean; 
       const list = await listAllFeedbacks(filter === 'all' ? undefined : filter)
       setItems(list)
       setReplies(await listReplies(list.map((f) => f.id)))
+      setImageUrls(await signImages(list.flatMap((f) => f.images)))
     } catch (e) {
       setError(e instanceof Error ? e.message : '문의를 불러오지 못했습니다.')
     } finally {
@@ -135,7 +138,7 @@ export default function AdminFeedbackDialog({ open, onClose }: { open: boolean; 
         ) : (
           <Stack spacing={1.5}>
             {items.map((f) => (
-              <FeedbackItem key={f.id} feedback={f} replies={replies.get(f.id) ?? []} showAuthor>
+              <FeedbackItem key={f.id} feedback={f} replies={replies.get(f.id) ?? []} imageUrls={imageUrls} showAuthor>
                 <Box sx={{ mt: 1.25 }}>
                   <TextField
                     size="small"

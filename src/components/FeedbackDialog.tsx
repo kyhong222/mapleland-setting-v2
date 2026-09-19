@@ -18,7 +18,16 @@ import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
 import Alert from '@mui/material/Alert'
 import CircularProgress from '@mui/material/CircularProgress'
-import { createFeedback, type FeedbackType } from '../data/cloud/feedback'
+import Stack from '@mui/material/Stack'
+import IconButton from '@mui/material/IconButton'
+import {
+  ALLOWED_IMAGE_TYPES,
+  MAX_IMAGES,
+  MAX_IMAGE_BYTES,
+  createFeedback,
+  uploadFeedbackImages,
+  type FeedbackType,
+} from '../data/cloud/feedback'
 import { useAuthStore } from '../store/authStore'
 
 const TYPES = [
@@ -42,6 +51,9 @@ export default function FeedbackDialog({ open, onClose }: { open: boolean; onClo
   const [body, setBody] = useState('')
   const [status, setStatus] = useState<Status>('idle')
   const [errorMsg, setErrorMsg] = useState('')
+  /** 첨부 이미지 — 업로드는 보내기 누를 때 한 번에 한다 */
+  const [files, setFiles] = useState<File[]>([])
+  const [fileError, setFileError] = useState('')
 
   const signedIn = authStatus === 'signedIn' && user !== null
   const canSubmit = signedIn && title.trim().length > 0 && body.trim().length > 0 && status !== 'submitting'
@@ -52,6 +64,31 @@ export default function FeedbackDialog({ open, onClose }: { open: boolean; onClo
     setBody('')
     setStatus('idle')
     setErrorMsg('')
+    setFiles([])
+    setFileError('')
+  }
+
+  /** 개수·크기·타입을 여기서 한 번 거른다 (버킷에도 같은 제한이 걸려 있다) */
+  const addFiles = (picked: FileList | null) => {
+    if (!picked) return
+    setFileError('')
+    const next = [...files]
+    for (const f of Array.from(picked)) {
+      if (next.length >= MAX_IMAGES) {
+        setFileError(`이미지는 최대 ${MAX_IMAGES}장까지 첨부할 수 있습니다.`)
+        break
+      }
+      if (!ALLOWED_IMAGE_TYPES.includes(f.type)) {
+        setFileError('PNG·JPG·GIF·WEBP 이미지만 첨부할 수 있습니다.')
+        continue
+      }
+      if (f.size > MAX_IMAGE_BYTES) {
+        setFileError(`'${f.name}'이(가) 너무 큽니다 (장당 ${MAX_IMAGE_BYTES / 1024 / 1024}MB까지).`)
+        continue
+      }
+      next.push(f)
+    }
+    setFiles(next)
   }
   const handleClose = () => {
     if (status !== 'submitting') {
@@ -65,13 +102,18 @@ export default function FeedbackDialog({ open, onClose }: { open: boolean; onClo
     setStatus('submitting')
     setErrorMsg('')
     try {
+      // 이미지 경로에 문의 id가 들어가므로 id를 먼저 만든다(docs/feedback.md §3)
+      const id = crypto.randomUUID()
+      const images = files.length > 0 ? await uploadFeedbackImages(user.id, id, files) : []
       await createFeedback(user.id, {
+        id,
         type,
         title: title.trim(),
         body: body.trim(),
         // 지금 닉네임을 행에 박아 둔다 — 나중에 바뀌어도 당시 기록이 남는다(docs/feedback.md §2)
         authorName: user.name,
         authorAvatar: user.avatarUrl ?? null,
+        images,
       })
       setStatus('success')
     } catch (e) {
@@ -147,6 +189,63 @@ export default function FeedbackDialog({ open, onClose }: { open: boolean; onClo
               slotProps={{ htmlInput: { maxLength: BODY_MAX } }}
             />
 
+            <Stack direction="row" spacing={1} sx={{ mt: 1, mb: 0.5, alignItems: 'center', flexWrap: 'wrap' }}>
+              <Button component="label" size="small" variant="outlined" disabled={files.length >= MAX_IMAGES}>
+                이미지 첨부
+                <input
+                  hidden
+                  type="file"
+                  accept={ALLOWED_IMAGE_TYPES.join(',')}
+                  multiple
+                  onChange={(e) => {
+                    addFiles(e.target.files)
+                    e.target.value = '' // 같은 파일을 다시 고를 수 있게
+                  }}
+                />
+              </Button>
+              <Typography variant="caption" color="text.secondary">
+                {files.length}/{MAX_IMAGES}장 · 장당 {MAX_IMAGE_BYTES / 1024 / 1024}MB까지
+              </Typography>
+            </Stack>
+
+            {files.length > 0 && (
+              <Stack direction="row" spacing={1} sx={{ mb: 1, flexWrap: 'wrap', gap: 1 }}>
+                {files.map((f, i) => (
+                  <Box key={`${f.name}-${i}`} sx={{ position: 'relative' }}>
+                    {/* createObjectURL을 매 렌더 만들면 새지만, 최대 3장이고 다이얼로그 수명이 짧아 감수한다 */}
+                    <Box
+                      component="img"
+                      src={URL.createObjectURL(f)}
+                      alt={f.name}
+                      sx={{ width: 72, height: 72, objectFit: 'cover', borderRadius: 1, display: 'block' }}
+                    />
+                    <IconButton
+                      size="small"
+                      aria-label={`${f.name} 첨부 취소`}
+                      onClick={() => setFiles(files.filter((_, n) => n !== i))}
+                      sx={{
+                        position: 'absolute',
+                        top: -6,
+                        right: -6,
+                        bgcolor: 'background.paper',
+                        border: 1,
+                        borderColor: 'divider',
+                        p: 0.25,
+                      }}
+                    >
+                      ✕
+                    </IconButton>
+                  </Box>
+                ))}
+              </Stack>
+            )}
+
+            {fileError && (
+              <Alert severity="warning" sx={{ mb: 1 }}>
+                {fileError}
+              </Alert>
+            )}
+
             <Typography variant="caption" color="text.secondary">
               디스코드 아이디가 기록되며 답변에 사용됩니다.
             </Typography>
@@ -184,7 +283,7 @@ export default function FeedbackDialog({ open, onClose }: { open: boolean; onClo
               disabled={!canSubmit}
               startIcon={status === 'submitting' ? <CircularProgress size={16} color="inherit" /> : undefined}
             >
-              {status === 'submitting' ? '전송 중…' : '보내기'}
+              {status === 'submitting' ? (files.length > 0 ? '올리는 중…' : '전송 중…') : '보내기'}
             </Button>
           </>
         )}

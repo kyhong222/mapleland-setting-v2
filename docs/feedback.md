@@ -72,6 +72,8 @@ create table public.feedbacks (
   -- 작성 시점 디스코드 프로필 스냅샷
   author_name   text,
   author_avatar text,
+  -- 첨부 이미지의 스토리지 경로 (`<user_id>/<feedback_id>/<uuid>.<ext>`). §3 참고
+  images        text[] not null default '{}',
   created_at    timestamptz not null default now(),
   updated_at    timestamptz not null default now()
 );
@@ -149,9 +151,67 @@ insert into public.admins (user_id, note)
 select id, '운영자' from auth.users where email = '<내 디스코드 이메일>';
 ```
 
+> 위 DDL을 이미 한 번 돌린 뒤라면 첨부 이미지 컬럼만 따로 추가한다:
+> `alter table public.feedbacks add column if not exists images text[] not null default '{}';`
+
 ---
 
-## §3 대문 크롤링
+## §3 첨부 이미지
+
+버그 제보는 스크린샷 한 장이 설명 열 줄보다 낫다. Supabase Storage에 올리고 경로만
+`feedbacks.images`에 담는다.
+
+**버킷은 비공개다.** 문의 자체가 기본 비공개인데 이미지만 공개 URL로 열리면 앞뒤가 안 맞는다.
+읽을 때마다 서명 URL(1시간)을 만들어 쓴다. 정책이 세 부류를 통과시킨다 — 본인, 어드민,
+그리고 **공개 처리된 문의의 이미지**(대문이 anon key로 서명 URL을 만들 수 있어야 한다).
+
+경로를 `<user_id>/<feedback_id>/<uuid>.<ext>`로 잡은 건 정책에서 폴더 이름만으로 판정하기
+위해서다 — 1번째 조각이 소유자, 2번째가 문의 id다.
+
+```sql
+-- 비공개 버킷 (이미 있으면 건너뛴다)
+insert into storage.buckets (id, name, public, file_size_limit, allowed_mime_types)
+values ('feedback', 'feedback', false, 5242880,
+        array['image/png', 'image/jpeg', 'image/gif', 'image/webp'])
+on conflict (id) do nothing;
+
+-- 자기 폴더에만 올린다
+create policy feedback_images_insert on storage.objects
+  for insert to authenticated
+  with check (
+    bucket_id = 'feedback'
+    and (storage.foldername(name))[1] = auth.uid()::text
+  );
+
+-- 본인 · 어드민 · 공개된 문의의 이미지
+create policy feedback_images_read on storage.objects
+  for select
+  using (
+    bucket_id = 'feedback'
+    and (
+      (storage.foldername(name))[1] = auth.uid()::text
+      or public.is_admin()
+      or exists (
+        select 1 from public.feedbacks f
+         where f.is_public
+           and f.id::text = (storage.foldername(name))[2]
+      )
+    )
+  );
+
+-- 정리는 어드민만
+create policy feedback_images_delete on storage.objects
+  for delete using (bucket_id = 'feedback' and public.is_admin());
+```
+
+앱은 한 건당 **3장 · 장당 5MB · 이미지 타입만** 받는다(버킷 설정과 클라이언트 양쪽에서 건다).
+
+문의 행을 넣기 전에 id를 클라이언트에서 만들어(`crypto.randomUUID()`) 그 id로 업로드한다.
+행 삽입이 실패하면 이미지가 고아로 남지만, 비공개 버킷이라 누구에게도 보이지 않는다.
+
+---
+
+## §4 대문 크롤링
 
 `mapleland.st` 대문은 **같은 Supabase 프로젝트의 anon key**로 `feedbacks`를 읽으면 된다.
 서버 코드도, 별도 API도 필요 없다. RLS가 `is_public = true`인 행만 내보낸다.
@@ -160,7 +220,7 @@ select id, '운영자' from auth.users where email = '<내 디스코드 이메�
 // 대문 프로젝트에서
 const { data } = await supabase
   .from('feedbacks')
-  .select('id, app_id, type, title, body, status, author_name, author_avatar, created_at')
+  .select('id, app_id, type, title, body, status, author_name, author_avatar, images, created_at')
   .eq('is_public', true)
   .order('created_at', { ascending: false })
   .limit(50)
@@ -168,12 +228,21 @@ const { data } = await supabase
 
 답변까지 함께 보이려면 `feedback_replies`를 같이 읽는다 — 공개 문의의 답변은 같은 정책으로 열린다.
 
+첨부 이미지는 경로만 담겨 있으니 서명 URL을 만들어 쓴다. 공개 문의의 이미지는 anon key로도
+서명이 되도록 정책이 열려 있다(§3).
+
+```js
+const { data: signed } = await supabase.storage
+  .from('feedback')
+  .createSignedUrls(row.images, 3600)
+```
+
 **공개되면 작성자 디스코드 닉네임도 같이 나간다.** 어드민이 `is_public`을 켜기 전에 본문을
 한 번 읽게 되는 구조라(답변하면서 켠다) 실수로 개인정보가 나가는 경로는 막혀 있다.
 
 ---
 
-## §4 화면
+## §5 화면
 
 | 화면 | 위치 | 누가 |
 |---|---|---|
@@ -188,7 +257,7 @@ const { data } = await supabase
 
 ---
 
-## §5 결정 이력
+## §6 결정 이력
 
 - **GitHub 이슈 프록시 폐기** — 계정이 생겨 신원과 답변 경로가 앱 안에서 해결됐다.
   `api/feedback.js`가 사라지면서 이 레포의 서버 코드는 0이 됐다.

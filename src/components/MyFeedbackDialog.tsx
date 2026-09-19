@@ -1,5 +1,5 @@
 /**
- * '내 문의' — 내가 남긴 문의와 운영자 답변. docs/feedback.md §4
+ * '내 문의' — 내가 남긴 문의와 운영자 답변. docs/feedback.md §5
  *
  * 서비스를 가리지 않는다. 스킬 시뮬에서 남긴 문의도 같은 계정이면 여기 함께 나온다.
  */
@@ -15,13 +15,14 @@ import DialogTitle from '@mui/material/DialogTitle'
 import Stack from '@mui/material/Stack'
 import Typography from '@mui/material/Typography'
 import FeedbackItem from './common/FeedbackItem'
-import { listMyFeedbacks, listReplies, type Feedback, type FeedbackReply } from '../data/cloud/feedback'
+import { listMyFeedbacks, listReplies, signImages, type Feedback, type FeedbackReply } from '../data/cloud/feedback'
 import { useAuthStore } from '../store/authStore'
 
 export default function MyFeedbackDialog({ open, onClose }: { open: boolean; onClose: () => void }) {
   const userId = useAuthStore((s) => s.user?.id)
   const [items, setItems] = useState<Feedback[]>([])
   const [replies, setReplies] = useState<Map<string, FeedbackReply[]>>(new Map())
+  const [imageUrls, setImageUrls] = useState<Map<string, string>>(new Map())
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
 
@@ -33,6 +34,7 @@ export default function MyFeedbackDialog({ open, onClose }: { open: boolean; onC
       const list = await listMyFeedbacks(userId)
       setItems(list)
       setReplies(await listReplies(list.map((f) => f.id)))
+      setImageUrls(await signImages(list.flatMap((f) => f.images)))
     } catch (e) {
       setError(e instanceof Error ? e.message : '문의를 불러오지 못했습니다.')
     } finally {
@@ -61,7 +63,7 @@ export default function MyFeedbackDialog({ open, onClose }: { open: boolean; onC
         ) : (
           <Stack spacing={1.5}>
             {items.map((f) => (
-              <FeedbackItem key={f.id} feedback={f} replies={replies.get(f.id) ?? []} />
+              <FeedbackItem key={f.id} feedback={f} replies={replies.get(f.id) ?? []} imageUrls={imageUrls} />
             ))}
           </Stack>
         )}
