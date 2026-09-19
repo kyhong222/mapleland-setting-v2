@@ -103,7 +103,8 @@ export default function FeedbackDialog({ open, onClose }: { open: boolean; onClo
         ) : (
           <>
             <Typography variant="caption" color="text.disabled" sx={{ display: 'block', mb: 1.5 }}>
-              버그 제보나 건의사항을 남겨주세요. 답변에 도움이 될 문의는 <b>공개 목록에 실릴 수 있으니</b>
+              {/* </b> 뒤의 줄바꿈은 JSX가 공백 없이 삼킨다 — {' '}로 명시해야 붙지 않는다 */}
+              버그 제보나 건의사항을 남겨주세요. 답변에 도움이 될 문의는 <b>공개 목록에 실릴 수 있으니</b>{' '}
               개인정보는 넣지 마세요.
             </Typography>
 
