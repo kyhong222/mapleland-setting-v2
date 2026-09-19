@@ -1,3 +1,10 @@
+/**
+ * 문의 작성. docs/feedback.md §1·§4
+ *
+ * 로그인해야 쓸 수 있다 — 디스코드 계정이 연락처를 대신하고, 답변은 '내 문의'에서 본다.
+ * 폼(유형·제목·내용)은 예전 그대로다. 연락처 칸과 스팸 허니팟만 빠졌다.
+ */
+
 import { useState } from 'react'
 import Dialog from '@mui/material/Dialog'
 import DialogTitle from '@mui/material/DialogTitle'
@@ -10,76 +17,104 @@ import Button from '@mui/material/Button'
 import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
 import Alert from '@mui/material/Alert'
-import Link from '@mui/material/Link'
 import CircularProgress from '@mui/material/CircularProgress'
-
-/** 문의가 등록될 공개 저장소 */
-const OWNER = 'kyhong222'
-const REPO = 'mapleland-setting-v2'
-/** 서버리스 프록시 엔드포인트 (미설정 시 동일 출처 /api/feedback). 실패 시 GitHub 프리필로 폴백 */
-const ENDPOINT = import.meta.env.VITE_FEEDBACK_ENDPOINT || '/api/feedback'
+import Stack from '@mui/material/Stack'
+import IconButton from '@mui/material/IconButton'
+import {
+  ALLOWED_IMAGE_TYPES,
+  MAX_IMAGES,
+  MAX_IMAGE_BYTES,
+  createFeedback,
+  uploadFeedbackImages,
+  type FeedbackType,
+} from '../data/cloud/feedback'
+import { useAuthStore } from '../store/authStore'
 
 const TYPES = [
   { value: 'bug', label: '🐛 버그 제보' },
   { value: 'idea', label: '💡 기능 건의' },
   { value: 'etc', label: '💬 기타' },
 ] as const
-type FeedbackType = (typeof TYPES)[number]['value']
 
 const TITLE_MAX = 120
 const BODY_MAX = 5000
 
-/** [유형] 접두사가 붙은 이슈 제목 */
-function issueTitle(type: FeedbackType, title: string): string {
-  const tag = TYPES.find((t) => t.value === type)?.label ?? ''
-  return `${tag} ${title}`.trim()
-}
-
-/** 이슈 본문 (내용 + 연락처) */
-function issueBody(body: string, contact: string): string {
-  const lines = [body.trim()]
-  if (contact.trim()) lines.push('', '---', `연락처: ${contact.trim()}`)
-  return lines.join('\n')
-}
-
-/** 백엔드 없이 GitHub 새 이슈 페이지를 채워서 여는 폴백 URL */
-function prefillUrl(type: FeedbackType, title: string, body: string, contact: string): string {
-  const q = new URLSearchParams({ title: issueTitle(type, title), body: issueBody(body, contact) })
-  return `https://github.com/${OWNER}/${REPO}/issues/new?${q.toString()}`
-}
-
 type Status = 'idle' | 'submitting' | 'success' | 'error'
 
 export default function FeedbackDialog({ open, onClose }: { open: boolean; onClose: () => void }) {
+  const authStatus = useAuthStore((s) => s.status)
+  const user = useAuthStore((s) => s.user)
+  const signIn = useAuthStore((s) => s.signIn)
+
   const [type, setType] = useState<FeedbackType>('bug')
   const [title, setTitle] = useState('')
   const [body, setBody] = useState('')
-  const [contact, setContact] = useState('')
-  const [hp, setHp] = useState('') // 허니팟(스팸봇 트랩) — 사람은 비워둠
   const [status, setStatus] = useState<Status>('idle')
-  const [resultUrl, setResultUrl] = useState('')
   const [errorMsg, setErrorMsg] = useState('')
+  /** 첨부 이미지 — 업로드는 보내기 누를 때 한 번에 한다 */
+  const [files, setFiles] = useState<File[]>([])
+  const [fileError, setFileError] = useState('')
 
-  const canSubmit = title.trim().length > 0 && body.trim().length > 0 && status !== 'submitting'
+  const signedIn = authStatus === 'signedIn' && user !== null
+  const canSubmit = signedIn && title.trim().length > 0 && body.trim().length > 0 && status !== 'submitting'
 
   const reset = () => {
-    setType('bug'); setTitle(''); setBody(''); setContact(''); setHp('')
-    setStatus('idle'); setResultUrl(''); setErrorMsg('')
+    setType('bug')
+    setTitle('')
+    setBody('')
+    setStatus('idle')
+    setErrorMsg('')
+    setFiles([])
+    setFileError('')
   }
-  const handleClose = () => { if (status !== 'submitting') { onClose(); setTimeout(reset, 200) } }
+
+  /** 개수·크기·타입을 여기서 한 번 거른다 (버킷에도 같은 제한이 걸려 있다) */
+  const addFiles = (picked: FileList | null) => {
+    if (!picked) return
+    setFileError('')
+    const next = [...files]
+    for (const f of Array.from(picked)) {
+      if (next.length >= MAX_IMAGES) {
+        setFileError(`이미지는 최대 ${MAX_IMAGES}장까지 첨부할 수 있습니다.`)
+        break
+      }
+      if (!ALLOWED_IMAGE_TYPES.includes(f.type)) {
+        setFileError('PNG·JPG·GIF·WEBP 이미지만 첨부할 수 있습니다.')
+        continue
+      }
+      if (f.size > MAX_IMAGE_BYTES) {
+        setFileError(`'${f.name}'이(가) 너무 큽니다 (장당 ${MAX_IMAGE_BYTES / 1024 / 1024}MB까지).`)
+        continue
+      }
+      next.push(f)
+    }
+    setFiles(next)
+  }
+  const handleClose = () => {
+    if (status !== 'submitting') {
+      onClose()
+      setTimeout(reset, 200)
+    }
+  }
 
   const submit = async () => {
-    if (!canSubmit) return
-    setStatus('submitting'); setErrorMsg('')
+    if (!canSubmit || !user) return
+    setStatus('submitting')
+    setErrorMsg('')
     try {
-      const res = await fetch(ENDPOINT, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ type, title: title.trim(), body: body.trim(), contact: contact.trim(), hp }),
+      // 이미지 경로에 문의 id가 들어가므로 id를 먼저 만든다(docs/feedback.md §3)
+      const id = crypto.randomUUID()
+      const images = files.length > 0 ? await uploadFeedbackImages(user.id, id, files) : []
+      await createFeedback(user.id, {
+        id,
+        type,
+        title: title.trim(),
+        body: body.trim(),
+        // 지금 닉네임을 행에 박아 둔다 — 나중에 바뀌어도 당시 기록이 남는다(docs/feedback.md §2)
+        authorName: user.name,
+        authorAvatar: user.avatarUrl ?? null,
+        images,
       })
-      if (!res.ok) throw new Error(`서버 응답 오류 (${res.status})`)
-      const data = await res.json().catch(() => ({}))
-      setResultUrl(typeof data?.url === 'string' ? data.url : '')
       setStatus('success')
     } catch (e) {
       setErrorMsg(e instanceof Error ? e.message : '전송에 실패했습니다.')
@@ -93,57 +128,131 @@ export default function FeedbackDialog({ open, onClose }: { open: boolean; onClo
       <DialogContent>
         {status === 'success' ? (
           <Box sx={{ py: 1 }}>
-            <Alert severity="success" sx={{ mb: 1 }}>문의가 정상적으로 접수되었습니다. 감사합니다!</Alert>
-            {resultUrl && (
-              <Typography variant="body2">
-                등록된 문의: <Link href={resultUrl} target="_blank" rel="noopener">{resultUrl}</Link>
-              </Typography>
-            )}
+            <Alert severity="success">문의가 접수되었습니다. 감사합니다!</Alert>
+            <Typography variant="body2" color="text.secondary" sx={{ mt: 1 }}>
+              답변이 달리면 계정 메뉴의 <b>내 문의</b>에서 확인할 수 있습니다.
+            </Typography>
+          </Box>
+        ) : !signedIn ? (
+          <Box sx={{ py: 1 }}>
+            <Typography variant="body2" sx={{ mb: 1.5 }}>
+              문의하려면 디스코드 로그인이 필요합니다.
+            </Typography>
+            <Typography variant="caption" color="text.secondary" sx={{ display: 'block' }}>
+              연락처를 따로 적지 않아도 되고, 남긴 문의와 답변을 계정에서 계속 확인할 수 있습니다.
+            </Typography>
           </Box>
         ) : (
           <>
             <Typography variant="caption" color="text.disabled" sx={{ display: 'block', mb: 1.5 }}>
-              버그 제보나 건의사항을 남겨주세요. 접수된 내용은 <b>공개 저장소의 이슈</b>로 등록되니 개인정보는 넣지 마세요.
+              {/* </b> 뒤의 줄바꿈은 JSX가 공백 없이 삼킨다 — {' '}로 명시해야 붙지 않는다 */}
+              버그 제보나 건의사항을 남겨주세요. 답변에 도움이 될 문의는 <b>공개 목록에 실릴 수 있으니</b>{' '}
+              개인정보는 넣지 마세요.
             </Typography>
 
             <Select
-              size="small" fullWidth value={type}
+              size="small"
+              fullWidth
+              value={type}
               onChange={(e) => setType(e.target.value as FeedbackType)}
               sx={{ mb: 1.5 }}
             >
-              {TYPES.map((t) => <MenuItem key={t.value} value={t.value}>{t.label}</MenuItem>)}
+              {TYPES.map((t) => (
+                <MenuItem key={t.value} value={t.value}>
+                  {t.label}
+                </MenuItem>
+              ))}
             </Select>
 
             <TextField
-              size="small" fullWidth label="제목" required value={title}
+              size="small"
+              fullWidth
+              label="제목"
+              required
+              value={title}
               onChange={(e) => setTitle(e.target.value.slice(0, TITLE_MAX))}
               sx={{ mb: 1.5 }}
               slotProps={{ htmlInput: { maxLength: TITLE_MAX } }}
             />
 
             <TextField
-              size="small" fullWidth label="내용" required multiline minRows={5} value={body}
+              size="small"
+              fullWidth
+              label="내용"
+              required
+              multiline
+              minRows={5}
+              value={body}
               onChange={(e) => setBody(e.target.value.slice(0, BODY_MAX))}
               helperText={`${body.length} / ${BODY_MAX}`}
-              sx={{ mb: 1.5 }}
+              sx={{ mb: 0.5 }}
               slotProps={{ htmlInput: { maxLength: BODY_MAX } }}
             />
 
-            <TextField
-              size="small" fullWidth label="연락처 (선택 · 공개됨)" value={contact}
-              onChange={(e) => setContact(e.target.value)}
-              placeholder="답변 받을 이메일/디스코드 등"
-              sx={{ mb: 0.5 }}
-            />
+            <Stack direction="row" spacing={1} sx={{ mt: 1, mb: 0.5, alignItems: 'center', flexWrap: 'wrap' }}>
+              <Button component="label" size="small" variant="outlined" disabled={files.length >= MAX_IMAGES}>
+                이미지 첨부
+                <input
+                  hidden
+                  type="file"
+                  accept={ALLOWED_IMAGE_TYPES.join(',')}
+                  multiple
+                  onChange={(e) => {
+                    addFiles(e.target.files)
+                    e.target.value = '' // 같은 파일을 다시 고를 수 있게
+                  }}
+                />
+              </Button>
+              <Typography variant="caption" color="text.secondary">
+                {files.length}/{MAX_IMAGES}장 · 장당 {MAX_IMAGE_BYTES / 1024 / 1024}MB까지
+              </Typography>
+            </Stack>
 
-            {/* 허니팟: 화면에 보이지 않지만 봇이 채우면 서버에서 거른다 */}
-            <Box aria-hidden sx={{ position: 'absolute', left: '-9999px', top: 0, height: 0, overflow: 'hidden' }}>
-              <input tabIndex={-1} autoComplete="off" value={hp} onChange={(e) => setHp(e.target.value)} name="website" />
-            </Box>
+            {files.length > 0 && (
+              <Stack direction="row" spacing={1} sx={{ mb: 1, flexWrap: 'wrap', gap: 1 }}>
+                {files.map((f, i) => (
+                  <Box key={`${f.name}-${i}`} sx={{ position: 'relative' }}>
+                    {/* createObjectURL을 매 렌더 만들면 새지만, 최대 3장이고 다이얼로그 수명이 짧아 감수한다 */}
+                    <Box
+                      component="img"
+                      src={URL.createObjectURL(f)}
+                      alt={f.name}
+                      sx={{ width: 72, height: 72, objectFit: 'cover', borderRadius: 1, display: 'block' }}
+                    />
+                    <IconButton
+                      size="small"
+                      aria-label={`${f.name} 첨부 취소`}
+                      onClick={() => setFiles(files.filter((_, n) => n !== i))}
+                      sx={{
+                        position: 'absolute',
+                        top: -6,
+                        right: -6,
+                        bgcolor: 'background.paper',
+                        border: 1,
+                        borderColor: 'divider',
+                        p: 0.25,
+                      }}
+                    >
+                      ✕
+                    </IconButton>
+                  </Box>
+                ))}
+              </Stack>
+            )}
+
+            {fileError && (
+              <Alert severity="warning" sx={{ mb: 1 }}>
+                {fileError}
+              </Alert>
+            )}
+
+            <Typography variant="caption" color="text.secondary">
+              디스코드 아이디가 기록되며 답변에 사용됩니다.
+            </Typography>
 
             {status === 'error' && (
               <Alert severity="error" sx={{ mt: 1 }}>
-                전송에 실패했습니다{errorMsg ? ` (${errorMsg})` : ''}. 아래 버튼으로 GitHub에서 직접 등록할 수 있어요.
+                전송에 실패했습니다{errorMsg ? ` (${errorMsg})` : ''}.
               </Alert>
             )}
           </>
@@ -151,25 +260,30 @@ export default function FeedbackDialog({ open, onClose }: { open: boolean; onClo
       </DialogContent>
       <DialogActions sx={{ px: 3, pb: 2 }}>
         {status === 'success' ? (
-          <Button onClick={handleClose} variant="contained">닫기</Button>
+          <Button onClick={handleClose} variant="contained">
+            닫기
+          </Button>
+        ) : !signedIn ? (
+          <>
+            <Button onClick={handleClose} color="inherit">
+              취소
+            </Button>
+            <Button onClick={() => void signIn()} variant="contained" disabled={authStatus === 'loading'}>
+              디스코드 로그인
+            </Button>
+          </>
         ) : (
           <>
-            {status === 'error' && (
-              <Button
-                component="a"
-                href={prefillUrl(type, title, body, contact)}
-                target="_blank" rel="noopener"
-                sx={{ mr: 'auto' }}
-              >
-                GitHub에서 직접 등록
-              </Button>
-            )}
-            <Button onClick={handleClose} color="inherit" disabled={status === 'submitting'}>취소</Button>
+            <Button onClick={handleClose} color="inherit" disabled={status === 'submitting'}>
+              취소
+            </Button>
             <Button
-              onClick={submit} variant="contained" disabled={!canSubmit}
+              onClick={() => void submit()}
+              variant="contained"
+              disabled={!canSubmit}
               startIcon={status === 'submitting' ? <CircularProgress size={16} color="inherit" /> : undefined}
             >
-              {status === 'submitting' ? '전송 중…' : '보내기'}
+              {status === 'submitting' ? (files.length > 0 ? '올리는 중…' : '전송 중…') : '보내기'}
             </Button>
           </>
         )}
