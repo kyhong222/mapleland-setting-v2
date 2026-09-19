@@ -147,7 +147,7 @@ export default function FeedbackDialog({ open, onClose }: { open: boolean; onClo
             />
 
             <Typography variant="caption" color="text.secondary">
-              {user.name}(으)로 접수됩니다.
+              디스코드 아이디가 기록되며 답변에 사용됩니다.
             </Typography>
 
             {status === 'error' && (
