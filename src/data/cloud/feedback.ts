@@ -41,6 +41,11 @@ const SIGN_TTL = 3600
 export interface FeedbackReply {
   id: string
   feedbackId: string
+  /**
+   * 쓴 사람. 문의 작성자와 같으면 재문의, 다르면 운영자 답변이다 —
+   * 쓸 수 있는 사람이 그 둘뿐이라 별도 플래그 없이 갈린다(docs/feedback.md §2).
+   */
+  authorId: string
   body: string
   createdAt: string
 }
@@ -183,35 +188,55 @@ export async function listAllFeedbacks(status?: FeedbackStatus): Promise<Feedbac
   return (data ?? []).map((r) => toFeedback(r as FeedbackRow))
 }
 
-/** 여러 문의의 답변을 한 번에 — 문의 수만큼 요청을 날리지 않는다 */
+const REPLY_COLUMNS = 'id, feedback_id, author_id, body, created_at'
+
+interface ReplyRow {
+  id: string
+  feedback_id: string
+  author_id: string
+  body: string
+  created_at: string
+}
+
+const toReply = (r: ReplyRow): FeedbackReply => ({
+  id: r.id,
+  feedbackId: r.feedback_id,
+  authorId: r.author_id,
+  body: r.body,
+  createdAt: r.created_at,
+})
+
+/** 여러 문의의 답글을 한 번에 — 문의 수만큼 요청을 날리지 않는다 */
 export async function listReplies(feedbackIds: string[]): Promise<Map<string, FeedbackReply[]>> {
   const out = new Map<string, FeedbackReply[]>()
   if (feedbackIds.length === 0) return out
   const { data, error } = await supabase()
     .from('feedback_replies')
-    .select('id, feedback_id, body, created_at')
+    .select(REPLY_COLUMNS)
     .in('feedback_id', feedbackIds)
     .order('created_at')
   if (error) throw new Error(error.message)
   for (const r of data ?? []) {
-    const row = r as { id: string; feedback_id: string; body: string; created_at: string }
-    const list = out.get(row.feedback_id) ?? []
-    list.push({ id: row.id, feedbackId: row.feedback_id, body: row.body, createdAt: row.created_at })
-    out.set(row.feedback_id, list)
+    const reply = toReply(r as ReplyRow)
+    const list = out.get(reply.feedbackId) ?? []
+    list.push(reply)
+    out.set(reply.feedbackId, list)
   }
   return out
 }
 
-/** 답변 작성 (어드민). 트리거가 문의 상태를 answered로 올린다 */
+/**
+ * 답글 작성 — 어드민의 답변이거나 작성자의 재문의다.
+ * 트리거가 상태를 옮긴다(어드민이면 answered, 작성자면 open으로 되돌림).
+ */
 export async function createReply(feedbackId: string, authorId: string, body: string): Promise<FeedbackReply> {
   const { data, error } = await supabase()
     .from('feedback_replies')
     .insert({ feedback_id: feedbackId, author_id: authorId, body })
-    .select('id, feedback_id, body, created_at')
+    .select(REPLY_COLUMNS)
     .single()
   if (error) throw new Error(error.message)
-  const row = data as { id: string; feedback_id: string; body: string; created_at: string }
-  return { id: row.id, feedbackId: row.feedback_id, body: row.body, createdAt: row.created_at }
+  return toReply(data as ReplyRow)
 }
 
 /** 상태·공개 여부 변경 (어드민) */

@@ -93,19 +93,36 @@ export default function FeedbackItem({ feedback: f, replies, imageUrls, showAuth
         </Box>
       )}
 
-      {replies.map((r) => (
-        <Box
-          key={r.id}
-          sx={{ mt: 1, pl: 1.5, borderLeft: 3, borderColor: 'primary.main', bgcolor: 'action.hover', py: 0.75, pr: 1 }}
-        >
-          <Typography variant="caption" color="primary" sx={{ fontWeight: 700 }}>
-            운영자 답변 · {new Date(r.createdAt).toLocaleString('ko-KR')}
-          </Typography>
-          <Typography variant="body2" sx={{ whiteSpace: 'pre-wrap' }}>
-            {r.body}
-          </Typography>
-        </Box>
-      ))}
+      {replies.map((r) => {
+        // 쓸 수 있는 사람이 작성자와 어드민뿐이라 별도 플래그 없이 갈린다
+        const fromAuthor = r.authorId === f.userId
+        return (
+          <Box
+            key={r.id}
+            sx={{
+              mt: 1,
+              pl: 1.5,
+              pr: 1,
+              py: 0.75,
+              borderLeft: 3,
+              borderColor: fromAuthor ? 'divider' : 'primary.main',
+              bgcolor: 'action.hover',
+            }}
+          >
+            <Typography
+              variant="caption"
+              color={fromAuthor ? 'text.secondary' : 'primary'}
+              sx={{ fontWeight: 700 }}
+            >
+              {fromAuthor ? `${f.authorName ?? '작성자'} 재문의` : '운영자 답변'} ·{' '}
+              {new Date(r.createdAt).toLocaleString('ko-KR')}
+            </Typography>
+            <Typography variant="body2" sx={{ whiteSpace: 'pre-wrap' }}>
+              {r.body}
+            </Typography>
+          </Box>
+        )
+      })}
 
       {children}
     </Paper>
