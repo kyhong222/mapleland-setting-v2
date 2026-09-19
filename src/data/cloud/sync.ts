@@ -52,6 +52,11 @@ export interface CloudSyncDeps {
    */
   applyState: (payload: unknown, schemaVersion: number) => boolean
   applySlots: (slots: SlotRow[]) => boolean
+  /**
+   * 계정이 비어 있을 때 화면을 비운다.
+   * 이게 없으면 직전(로컬) 내용이 남아 계정 데이터인 것처럼 보인다.
+   */
+  resetState: () => void
   onStatus: (status: SyncStatus, message?: string) => void
   onConflict: () => void
 }
@@ -222,6 +227,8 @@ export function createCloudSync(deps: CloudSyncDeps): CloudSync {
           status('error', MSG_TOO_NEW)
           return
         }
+        // 계정에 아직 아무것도 없다 — 그 사실을 그대로 보여준다
+        if (!row) deps.resetState()
         stateRev = row?.rev ?? null
         slotRevs = new Map(slots.map((s) => [s.idx, s.rev]))
         markBaseline()

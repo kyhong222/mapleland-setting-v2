@@ -14,6 +14,7 @@ import { createCloudSync, type CloudSync, type SyncStatus } from '../data/cloud/
 import { APP_ID } from '../data/cloud/supabase'
 import {
   applyAll,
+  clearAppState,
   applySlotRows,
   captureAll,
   captureSlotRows,
@@ -36,19 +37,12 @@ interface CloudSyncState {
   status: SyncStatus
   message: string | null
   prompt: CloudPrompt
-  /**
-   * 자동 동기화가 돌고 있는지. 계정이 빈 상태에서 '나중에'를 고르면 false로 남는다 —
-   * 올릴지 말지 답을 안 한 기기를 조용히 올려버리지 않기 위해서다.
-   */
-  autoSync: boolean
   /** 선택 처리 중 — 다이얼로그 버튼을 잠근다 */
   busy: boolean
-  /** 계정 것을 받는다 (이 기기 내용은 덮인다) */
+  /** 계정 것을 받는다 (화면이 계정 기준으로 바뀐다) */
   takeRemote: () => Promise<void>
   /** 이 기기 것으로 계정을 덮는다 */
   keepLocal: () => Promise<void>
-  /** '나중에' — 이관하지 않고 동기화도 시작하지 않는다 */
-  postpone: () => void
 }
 
 let engine: CloudSync | null = null
@@ -61,7 +55,6 @@ const setState = (patch: Partial<CloudSyncState>) => useCloudSyncStore.setState(
 /** 분기가 끝난 뒤에만 부른다 (파일 상단 주석 참고) */
 function beginPushing(): void {
   if (!engine || unsubStores) return
-  setState({ autoSync: true })
   unsubStores = subscribeAll(() => engine?.schedulePush())
 
   onVisibility = () => {
@@ -90,13 +83,13 @@ export const useCloudSyncStore = create<CloudSyncState>()(() => ({
   status: 'idle',
   message: null,
   prompt: null,
-  autoSync: false,
   busy: false,
 
+  // '나중에'도 이걸 쓴다 — 계정이 빈 채로 시작한다는 뜻이고, 로컬은 저장 슬롯의
+  // '로컬' 탭에 그대로 남는다. 동기화를 멈춰 두면 mlsv2:slots에 로컬이 남아
+  // '계정' 탭이 로컬을 계정인 것처럼 보여주게 된다.
   takeRemote: () => resolve((e) => e.takeRemote()),
   keepLocal: () => resolve((e) => e.keepLocal()),
-
-  postpone: () => setState({ prompt: null }),
 }))
 
 /**
@@ -119,6 +112,7 @@ export async function startCloudSync(userId: string): Promise<void> {
       return true
     },
     applySlots: (rows) => applySlotRows(rows),
+    resetState: clearAppState,
     onStatus: (status, message) => setState({ status, message: message ?? null }),
     onConflict: () => setState({ prompt: 'conflict' }),
   })
@@ -178,5 +172,5 @@ export function stopCloudSync(): void {
   onPageHide = null
   engine?.dispose()
   engine = null
-  setState({ status: 'idle', message: null, prompt: null, autoSync: false, busy: false })
+  setState({ status: 'idle', message: null, prompt: null, busy: false })
 }

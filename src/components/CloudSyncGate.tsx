@@ -59,7 +59,6 @@ export default function CloudSyncGate() {
   const message = useCloudSyncStore((s) => s.message)
   const takeRemote = useCloudSyncStore((s) => s.takeRemote)
   const keepLocal = useCloudSyncStore((s) => s.keepLocal)
-  const postpone = useCloudSyncStore((s) => s.postpone)
 
   useEffect(() => {
     if (status === 'signedIn' && userId) {
@@ -107,8 +106,8 @@ export default function CloudSyncGate() {
                 <ChoiceButton
                   disabled={busy}
                   label="나중에"
-                  detail="이 기기에만 저장합니다. 계정 메뉴에서 언제든 올릴 수 있습니다."
-                  onClick={postpone}
+                  detail="계정을 빈 채로 시작합니다. 이 기기 내용은 저장 슬롯의 '로컬' 탭에 그대로 있습니다."
+                  onClick={() => void takeRemote()}
                 />
               </>
             ) : (

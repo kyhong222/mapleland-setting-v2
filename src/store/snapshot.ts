@@ -131,7 +131,7 @@ export function subscribeAll(fn: () => void): () => void {
   return () => unsubs.forEach((u) => u())
 }
 
-/** 이 기기의 전체 상태 한 벌 (이관 전 백업·병합 입력) */
+/** 이 기기의 전체 상태 한 벌 (게스트 보관용) */
 export interface LocalBundle {
   state: AppState
   slots: (SavedSlot | null)[]
@@ -174,27 +174,6 @@ export function clearGuestBundle(): void {
   }
 }
 
-/** AppState에서 저장슬롯용 스냅샷을 만든다 (병합에서 로컬 현재 빌드를 잃지 않게 쓴다) */
-function snapshotFromAppState(s: AppState): BuildSnapshot | null {
-  const b = s.build
-  if (!b.jobId) return null
-  return {
-    jobId: b.jobId,
-    level: b.level,
-    baseStats: b.baseStats,
-    equipped: b.equipped,
-    activeBuffs: b.activeBuffs,
-    appliedBuffs: b.appliedBuffs,
-    masteryLevels: b.masteryLevels,
-    baseHp: b.baseHp,
-    baseMp: b.baseMp,
-    charge: b.charge,
-    selectedMobId: s.selectedMobId,
-    nhit: s.nhit,
-    personalItems: (s.inventory ?? []).filter((it) => ownerOf(it) === 'personal').map(cloneItem),
-  }
-}
-
 /** 게스트 벌 읽기. 없거나 깨졌으면 null */
 export function loadGuestBundle(): LocalBundle | null {
   try {
@@ -206,30 +185,6 @@ export function loadGuestBundle(): LocalBundle | null {
   } catch {
     return null
   }
-}
-
-/** 게스트 벌의 '작업하던 빌드'(슬롯에 저장하지 않은 것). 직업이 없으면 null */
-export function bundleCurrentBuild(b: LocalBundle): BuildSnapshot | null {
-  return snapshotFromAppState(b.state)
-}
-
-/** 스냅샷 하나를 계정 슬롯 한 칸에 넣는다 (기존 내용은 덮인다) */
-export function importSlot(snapshot: BuildSnapshot, targetIdx: number, name?: string): void {
-  useSlotsStore.getState().save(targetIdx, structuredClone(snapshot), name)
-}
-
-/** 게스트 벌에 든 공용 아이템 수 (불러오기 화면 표시용) */
-export function ownerCountOfShared(items: InventoryItem[] | undefined): number {
-  return (items ?? []).filter((it) => ownerOf(it) === 'shared').length
-}
-
-/** 공용 아이템 합집합. id가 겹치면 이미 같은 것이므로 건너뛴다. 추가된 개수를 돌려준다 */
-export function importSharedItems(incoming: InventoryItem[]): number {
-  const items = useInventoryStore.getState().items
-  const known = new Set(items.map((it) => it.id))
-  const add = incoming.filter((it) => ownerOf(it) === 'shared' && !known.has(it.id)).map(cloneItem)
-  if (add.length > 0) useInventoryStore.getState().replaceAll([...items, ...add])
-  return add.length
 }
 
 /** 게스트 벌로 통째로 되돌린다 (로그아웃 복원 · '전체 덮어쓰기') */
@@ -245,12 +200,26 @@ export function restoreBundle(b: LocalBundle): void {
 export function restoreGuest(): void {
   const guest = loadGuestBundle()
   if (guest) restoreBundle(guest)
-  else {
-    resetAll()
-    useInventoryStore.getState().replaceAll([])
-    applySlots([])
-  }
+  else clearAll()
   clearGuestBundle()
+}
+
+/**
+ * 빌드·인벤토리(공용 포함)·대상 몹·n타를 비운다. **저장 슬롯은 건드리지 않는다** —
+ * 슬롯은 행을 따로 받아 applySlotRows가 이미 처리한 뒤라 여기서 또 비우면 그걸 지운다.
+ *
+ * 계정이 비어 있을 때 그 상태를 그대로 보여주려면 필요하다. 안 비우면 직전(로컬) 내용이
+ * 남아 계정 데이터인 것처럼 보인다.
+ */
+export function clearAppState(): void {
+  resetAll()
+  useInventoryStore.getState().replaceAll([])
+}
+
+/** 슬롯까지 포함해 전부 비운다 */
+export function clearAll(): void {
+  clearAppState()
+  applySlots([])
 }
 
 /**
