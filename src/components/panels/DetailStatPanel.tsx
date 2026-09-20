@@ -75,7 +75,7 @@ const RESOURCE_COLOR: Record<ResourceKind, string> = { hp: 'error.main', mp: 'pr
  * 레벨업 증가량이 랜덤이라 옛 값을 그대로 쓰면 틀린 숫자가 멀쩡한 얼굴로 앉아 있게 된다 —
  * 조용히 틀리느니 "다시 넣어라"를 보여주는 쪽이다. 이때는 이유를 알 수 있게 경고 배지를 붙인다.
  */
-function ResourceValue({ kind, parts, level, onEdit }: { kind: ResourceKind; parts: ResourceParts; level: number; onEdit: () => void }) {
+function ResourceValue({ kind, parts, onEdit }: { kind: ResourceKind; parts: ResourceParts; onEdit: () => void }) {
   const color = RESOURCE_COLOR[kind]
   if (parts.total !== null) {
     return <Typography variant="body2" sx={{ fontWeight: 600, color }}>{parts.total.toLocaleString()}</Typography>
@@ -96,9 +96,11 @@ function ResourceValue({ kind, parts, level, onEdit }: { kind: ResourceKind; par
       <Tooltip
         title={
           <Box sx={{ fontSize: 11.5, lineHeight: 1.65, py: 0.25 }}>
-            Lv.{parts.staleLevel}에서 입력한 기본 {label}({parts.base?.toLocaleString()})가 보관돼 있습니다.
-            맨몸 {label}는 레벨업 증가량이 랜덤이라 Lv.{level}에서는 그대로 쓸 수 없어 최종치를 내지 않습니다.
-            <InfoWarn>눌러서 지금 레벨의 인게임 값을 다시 넣어 주세요. Lv.{parts.staleLevel}로 돌아가면 보관값이 그대로 되살아납니다.</InfoWarn>
+            <Box>기록된 {label}정보와 레벨이 달라 재입력이 필요합니다.</Box>
+            <Box>레벨이 기록 시점으로 돌아가면 복원됩니다.</Box>
+            <Box sx={{ mt: 0.75 }}>
+              기록된 정보: Lv. {parts.staleLevel} {label} {parts.base}
+            </Box>
           </Box>
         }
         placement="top"
@@ -108,7 +110,7 @@ function ResourceValue({ kind, parts, level, onEdit }: { kind: ResourceKind; par
         <Box
           component="span"
           role="button"
-          aria-label={`기본 ${label} 다시 입력 (Lv.${parts.staleLevel}에서 입력한 값)`}
+          aria-label={`기본 ${label} 재입력 필요 (기록된 정보: Lv. ${parts.staleLevel} ${label} ${parts.base})`}
           onClick={onEdit}
           sx={{
             ml: 0.5,
@@ -168,13 +170,13 @@ export default function DetailStatPanel() {
   const rows: { label: string; value: ReactNode; help?: ReactNode; onEdit?: () => void }[] = [
     {
       label: RESOURCE_LABEL.hp,
-      value: <ResourceValue kind="hp" parts={resources.hp} level={level} onEdit={() => setEditKind('hp')} />,
+      value: <ResourceValue kind="hp" parts={resources.hp} onEdit={() => setEditKind('hp')} />,
       help: RESOURCE_HELP,
       onEdit: () => setEditKind('hp'),
     },
     {
       label: RESOURCE_LABEL.mp,
-      value: <ResourceValue kind="mp" parts={resources.mp} level={level} onEdit={() => setEditKind('mp')} />,
+      value: <ResourceValue kind="mp" parts={resources.mp} onEdit={() => setEditKind('mp')} />,
       help: RESOURCE_HELP,
       onEdit: () => setEditKind('mp'),
     },

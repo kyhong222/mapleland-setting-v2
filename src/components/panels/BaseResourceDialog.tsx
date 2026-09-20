@@ -106,8 +106,10 @@ export default function BaseResourceDialog({ kind, onClose }: { kind: ResourceKi
 
         {parts.staleLevel !== null && (
           <Typography variant="body2" color="warning.main" sx={{ mb: 1.5 }}>
-            Lv.{parts.staleLevel}에서 입력한 값({stored?.toLocaleString()})이 보관돼 있지만, 레벨이 바뀌어 지금은 쓰이지 않습니다.
-            Lv.{level} 기준으로 다시 넣어 주세요 (Lv.{parts.staleLevel}로 돌아가면 보관값이 되살아납니다).
+            기록된 {label}정보와 레벨이 달라 재입력이 필요합니다. 레벨이 기록 시점으로 돌아가면 복원됩니다.
+            <Box component="span" sx={{ display: 'block', mt: 0.5 }}>
+              기록된 정보: Lv. {parts.staleLevel} {label} {stored}
+            </Box>
           </Typography>
         )}
 
