@@ -16,6 +16,7 @@ import type { JobId } from '../domain/jobs'
 import type { BaseStats, StatId } from '../domain/stats'
 import { STAT_BASE, STAT_IDS, totalAP, minLevelForClass, maxLevelForOrder, statDefaults, statMinimums } from '../domain/stats'
 import { defaultBuffLevel, effectiveMasterLevel } from '../domain/buff'
+import { baseLevelOf } from '../domain/resource'
 import { getBuff } from '../data/buff'
 import type { EquipInstance } from './equipInstance'
 import type { ChargeElement } from '../domain/paladinCharge'
@@ -47,6 +48,9 @@ export interface BuildSnapshot {
   /** 기본(맨몸) HP/MP — 미입력(null)이면 최종 HP/MP를 표기하지 않는다. 구버전 스냅샷엔 없음 */
   baseHp?: number | null
   baseMp?: number | null
+  /** 위 값을 입력한 시점의 레벨. 레벨 기록 이전 스냅샷엔 없다 → 읽을 때 snap.level로 본다 */
+  baseHpLevel?: number | null
+  baseMpLevel?: number | null
   /** 팔라딘 차지 (구버전 스냅샷엔 없음) */
   charge?: ChargeUiState
   /** 선택 대상 몬스터 (null = 미선택). 구버전 스냅샷엔 없음 */
@@ -79,6 +83,8 @@ export interface BuildPersisted {
   masteryLevels: Record<string, number>
   baseHp: number | null
   baseMp: number | null
+  baseHpLevel: number | null
+  baseMpLevel: number | null
   buffLevels: Record<string, number>
   masteryOff: Record<string, boolean>
   statsTouched: boolean
@@ -100,6 +106,13 @@ export interface BuildState {
    */
   baseHp: number | null
   baseMp: number | null
+  /**
+   * 위 값을 입력한 시점의 레벨. 맨몸 HP/MP는 레벨을 올리면 같이 오르는데 그 증가량이
+   * 랜덤이라 유도할 수 없어서, 레벨이 달라지면 보관값을 최종치로 쓸 수 없다
+   * (domain/resource.ts 참고). 값과 항상 짝으로 움직인다 — setBaseResources가 함께 찍는다.
+   */
+  baseHpLevel: number | null
+  baseMpLevel: number | null
   /** 토글 버프의 레벨 기억 (on/off와 무관하게 유지 — 껐다 켜도 레벨 보존) */
   buffLevels: Record<string, number>
   /** 비활성화한 무기 마스터리 (기본은 무기 장착 시 자동 적용, 여기 있으면 제외) */
@@ -137,7 +150,7 @@ export interface BuildState {
   toggleMastery: (id: string) => void
   /** 팔라딘 차지 상태 부분 갱신 */
   setCharge: (patch: Partial<ChargeUiState>) => void
-  /** 기본(맨몸) HP/MP 설정 (null = 미입력으로 되돌림) */
+  /** 기본(맨몸) HP/MP 설정 (null = 미입력으로 되돌림). 현재 레벨도 함께 기록한다 */
   setBaseResources: (patch: { hp?: number | null; mp?: number | null }) => void
   snapshot: () => BuildSnapshot | null
   loadSnapshot: (snap: BuildSnapshot) => void
@@ -209,6 +222,8 @@ export const useBuildStore = create<BuildState>()(
       charge: DEFAULT_CHARGE,
       baseHp: null,
       baseMp: null,
+      baseHpLevel: null,
+      baseMpLevel: null,
 
       selectJob: (id) =>
         set((s) => {
@@ -216,7 +231,7 @@ export const useBuildStore = create<BuildState>()(
           const level = minLevelForClass(JOBS[id].classId)
           return { jobId: id, level, baseStats: recomputeStats(id, level, statDefaults(JOBS[id].classId), false), statsTouched: false }
         }),
-      reset: () => set({ jobId: null, level: 1, baseStats: baseFour(), equipped: {}, activeBuffs: {}, appliedBuffs: {}, masteryLevels: {}, buffLevels: {}, masteryOff: {}, statsTouched: false, charge: DEFAULT_CHARGE, baseHp: null, baseMp: null }),
+      reset: () => set({ jobId: null, level: 1, baseStats: baseFour(), equipped: {}, activeBuffs: {}, appliedBuffs: {}, masteryLevels: {}, buffLevels: {}, masteryOff: {}, statsTouched: false, charge: DEFAULT_CHARGE, baseHp: null, baseMp: null, baseHpLevel: null, baseMpLevel: null }),
       setLevel: (n) =>
         set((s) => {
           const min = s.jobId ? minLevelForClass(JOBS[s.jobId].classId) : 1
@@ -332,12 +347,28 @@ export const useBuildStore = create<BuildState>()(
         set((s) => ({
           baseHp: patch.hp === undefined ? s.baseHp : patch.hp,
           baseMp: patch.mp === undefined ? s.baseMp : patch.mp,
+          // 값을 건드릴 때만 레벨도 같이 찍는다 — 지우면 레벨도 지워 짝을 유지한다
+          baseHpLevel: patch.hp === undefined ? s.baseHpLevel : patch.hp === null ? null : s.level,
+          baseMpLevel: patch.mp === undefined ? s.baseMpLevel : patch.mp === null ? null : s.level,
         })),
       snapshot: () => {
-        const { jobId, level, baseStats, equipped, activeBuffs, appliedBuffs, masteryLevels, charge, baseHp, baseMp } = get()
+        const { jobId, level, baseStats, equipped, activeBuffs, appliedBuffs, masteryLevels, charge, baseHp, baseMp, baseHpLevel, baseMpLevel } = get()
         return jobId === null
           ? null
-          : { jobId, level, baseStats, equipped, activeBuffs, appliedBuffs, masteryLevels, charge: charge ?? DEFAULT_CHARGE, baseHp, baseMp }
+          : {
+              jobId,
+              level,
+              baseStats,
+              equipped,
+              activeBuffs,
+              appliedBuffs,
+              masteryLevels,
+              charge: charge ?? DEFAULT_CHARGE,
+              baseHp,
+              baseMp,
+              baseHpLevel,
+              baseMpLevel,
+            }
       },
       captureFull: () => {
         const s = get()
@@ -351,17 +382,20 @@ export const useBuildStore = create<BuildState>()(
           masteryLevels: { ...s.masteryLevels },
           baseHp: s.baseHp,
           baseMp: s.baseMp,
+          baseHpLevel: s.baseHpLevel,
+          baseMpLevel: s.baseMpLevel,
           buffLevels: { ...s.buffLevels },
           masteryOff: { ...s.masteryOff },
           statsTouched: s.statsTouched,
           charge: { ...(s.charge ?? DEFAULT_CHARGE) },
         }
       },
-      restoreFull: (p) =>
+      restoreFull: (p) => {
+        const level = p.level ?? 1
         set({
           // 서버에서 온 값이라 필드가 빠져 있을 수 있다 — 전부 기본값을 깔고 받는다
           jobId: p.jobId ?? null,
-          level: p.level ?? 1,
+          level,
           baseStats: { ...baseFour(), ...(p.baseStats ?? {}) },
           equipped: { ...(p.equipped ?? {}) },
           activeBuffs: { ...(p.activeBuffs ?? {}) },
@@ -369,11 +403,14 @@ export const useBuildStore = create<BuildState>()(
           masteryLevels: { ...(p.masteryLevels ?? {}) },
           baseHp: p.baseHp ?? null,
           baseMp: p.baseMp ?? null,
+          baseHpLevel: baseLevelOf(p.baseHp, p.baseHpLevel, level),
+          baseMpLevel: baseLevelOf(p.baseMp, p.baseMpLevel, level),
           buffLevels: { ...(p.buffLevels ?? p.activeBuffs ?? {}) },
           masteryOff: { ...(p.masteryOff ?? {}) },
           statsTouched: p.statsTouched ?? true,
           charge: { ...DEFAULT_CHARGE, ...(p.charge ?? {}) },
-        }),
+        })
+      },
       loadSnapshot: (snap) =>
         set({
           jobId: snap.jobId,
@@ -389,21 +426,29 @@ export const useBuildStore = create<BuildState>()(
           charge: { ...(snap.charge ?? DEFAULT_CHARGE) },
           baseHp: snap.baseHp ?? null,
           baseMp: snap.baseMp ?? null,
+          baseHpLevel: baseLevelOf(snap.baseHp, snap.baseHpLevel, snap.level),
+          baseMpLevel: baseLevelOf(snap.baseMp, snap.baseMpLevel, snap.level),
         }),
     }),
     {
       name: 'mlsv2:build',
-      version: 1,
-      // v0(공통버프 8슬롯) 영속 상태를 v1(적용 버프 목록)으로 변환
+      version: 2,
       migrate: (persisted, version) => {
         const state = persisted as Partial<BuildState> & {
           commonSlots?: Record<string, string>
           commonLevels?: Record<string, number>
         }
+        // v0(공통버프 8슬롯) → v1(적용 버프 목록)
         if (version < 1 && state) {
           state.appliedBuffs = migrateApplied(state)
           delete state.commonSlots
           delete state.commonLevels
+        }
+        // v1 → v2: 기본 HP/MP를 입력 당시 레벨과 짝으로 보관하게 됐다
+        // (레벨이 없는 옛 데이터를 어떻게 보는지는 domain/resource.baseLevelOf 주석 참고)
+        if (version < 2 && state) {
+          state.baseHpLevel = baseLevelOf(state.baseHp, state.baseHpLevel, state.level ?? 1)
+          state.baseMpLevel = baseLevelOf(state.baseMp, state.baseMpLevel, state.level ?? 1)
         }
         return state as BuildState
       },

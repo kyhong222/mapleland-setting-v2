@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
+import Tooltip from '@mui/material/Tooltip'
 import CollapsiblePanel from '../common/CollapsiblePanel'
 import EditBadge from '../common/EditBadge'
 import { useBuildStore } from '../../store/buildStore'
@@ -31,7 +32,10 @@ const RESOURCE_HELP = (
     <InfoTitle>HP / MP</InfoTitle>
     <Formula>⌊(기본 + 고정) × (1 + 증가율%)⌋</Formula>
     <Box>고정분(장비·칭호 등)은 증가율 안쪽에서 더해지고, 증가율(정령의 축복·카오스 자쿰의 투구·하이퍼 바디)은 서로 곱하지 않고 더해집니다.</Box>
-    <InfoWarn>기본(맨몸) 값은 레벨업 증가량이 랜덤이라 계산으로 알 수 없습니다. 편집 버튼으로 인게임 표시값을 넣으면 역산해 저장합니다.</InfoWarn>
+    <InfoWarn>
+      기본(맨몸) 값은 레벨업 증가량이 랜덤이라 계산으로 알 수 없습니다. 편집 버튼으로 인게임 표시값을 넣으면 역산해 저장합니다.
+      저장은 <b>입력 당시 레벨과 짝</b>이라, 레벨이 바뀌면 다시 입력해야 합니다.
+    </InfoWarn>
   </>
 )
 
@@ -66,8 +70,12 @@ const RESOURCE_COLOR: Record<ResourceKind, string> = { hp: 'error.main', mp: 'pr
  * 기본값을 넣기 전에는 최종값을 알 수 없으므로, 대신 지금 반영 중인 몫("+205 +20%")을
  * 보여준다. 색은 그대로 두되 불투명도를 낮춰 "아직 최종치가 아니다"를 나타낸다
  * (값 앞의 +도 같은 신호). 얹히는 몫이 없으면 0.
+ *
+ * 입력해둔 값이 있어도 **그때와 레벨이 다르면** 같은 표기로 돌아간다(parts.staleLevel).
+ * 레벨업 증가량이 랜덤이라 옛 값을 그대로 쓰면 틀린 숫자가 멀쩡한 얼굴로 앉아 있게 된다 —
+ * 조용히 틀리느니 "다시 넣어라"를 보여주는 쪽이다. 이때는 이유를 알 수 있게 경고 배지를 붙인다.
  */
-function ResourceValue({ kind, parts }: { kind: ResourceKind; parts: ResourceParts }) {
+function ResourceValue({ kind, parts, level, onEdit }: { kind: ResourceKind; parts: ResourceParts; level: number; onEdit: () => void }) {
   const color = RESOURCE_COLOR[kind]
   if (parts.total !== null) {
     return <Typography variant="body2" sx={{ fontWeight: 600, color }}>{parts.total.toLocaleString()}</Typography>
@@ -75,18 +83,68 @@ function ResourceValue({ kind, parts }: { kind: ResourceKind; parts: ResourcePar
   const bits: string[] = []
   if (parts.flat) bits.push(`+${parts.flat}`)
   if (parts.percent) bits.push(`+${parts.percent}%`)
-  return (
+  const value = (
     <Typography variant="body2" sx={{ fontWeight: 600, color, opacity: 0.45 }}>
       {bits.length > 0 ? bits.join(' ') : '0'}
     </Typography>
+  )
+  if (parts.staleLevel === null) return value
+  const label = RESOURCE_LABEL[kind]
+  return (
+    <Box sx={{ display: 'flex', alignItems: 'center' }}>
+      {value}
+      <Tooltip
+        title={
+          <Box sx={{ fontSize: 11.5, lineHeight: 1.65, py: 0.25 }}>
+            Lv.{parts.staleLevel}에서 입력한 기본 {label}({parts.base?.toLocaleString()})가 보관돼 있습니다.
+            맨몸 {label}는 레벨업 증가량이 랜덤이라 Lv.{level}에서는 그대로 쓸 수 없어 최종치를 내지 않습니다.
+            <InfoWarn>눌러서 지금 레벨의 인게임 값을 다시 넣어 주세요. Lv.{parts.staleLevel}로 돌아가면 보관값이 그대로 되살아납니다.</InfoWarn>
+          </Box>
+        }
+        placement="top"
+        arrow
+        slotProps={{ tooltip: { sx: { maxWidth: 320 } } }}
+      >
+        <Box
+          component="span"
+          role="button"
+          aria-label={`기본 ${label} 다시 입력 (Lv.${parts.staleLevel}에서 입력한 값)`}
+          onClick={onEdit}
+          sx={{
+            ml: 0.5,
+            width: 13,
+            height: 13,
+            flexShrink: 0,
+            borderRadius: '50%',
+            display: 'inline-flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            border: 1,
+            borderColor: 'warning.main',
+            color: 'warning.main',
+            fontSize: 9,
+            fontWeight: 700,
+            lineHeight: 1,
+            cursor: 'pointer',
+          }}
+        >
+          !
+        </Box>
+      </Tooltip>
+    </Box>
   )
 }
 
 export default function DetailStatPanel() {
   const jobId = useBuildStore((s) => s.jobId)
+  const level = useBuildStore((s) => s.level)
   const baseStats = useBuildStore((s) => s.baseStats)
+  // 값과 레벨은 스토어에 평평하게 있다 — 셀렉터가 객체를 새로 만들면 매 렌더 재구독이라
+  // 원시값으로 꺼내 여기서 묶는다
   const baseHp = useBuildStore((s) => s.baseHp)
   const baseMp = useBuildStore((s) => s.baseMp)
+  const baseHpLevel = useBuildStore((s) => s.baseHpLevel)
+  const baseMpLevel = useBuildStore((s) => s.baseMpLevel)
   const { finalStats, effects } = aggregateBuild(baseStats, useActiveEquippedBuilts(), useBuffEffects())
   // HP/MP는 각각 따로 재서 넣는 값이라 편집 다이얼로그도 행별로 연다
   const [editKind, setEditKind] = useState<ResourceKind | null>(null)
@@ -96,7 +154,11 @@ export default function DetailStatPanel() {
   }
 
   const detail = computeDetailStats(jobId, finalStats, effects)
-  const resources = computeResources(effects, { hp: baseHp, mp: baseMp })
+  const resources = computeResources(
+    effects,
+    { hp: { value: baseHp, level: baseHpLevel }, mp: { value: baseMp, level: baseMpLevel } },
+    level,
+  )
   const isMagician = JOBS[jobId].attackType === 'magical'
   const ac = accStatCoef(jobId)
   const ev = evaStatCoef(jobId)
@@ -104,8 +166,18 @@ export default function DetailStatPanel() {
   // 마법사는 명중률 자리를 마법명중률(floor(INT/10)+floor(LUK/10))로 대체.
   // 행 목록은 순서가 고정이라 렌더 key는 인덱스로 충분하다.
   const rows: { label: string; value: ReactNode; help?: ReactNode; onEdit?: () => void }[] = [
-    { label: RESOURCE_LABEL.hp, value: <ResourceValue kind="hp" parts={resources.hp} />, help: RESOURCE_HELP, onEdit: () => setEditKind('hp') },
-    { label: RESOURCE_LABEL.mp, value: <ResourceValue kind="mp" parts={resources.mp} />, help: RESOURCE_HELP, onEdit: () => setEditKind('mp') },
+    {
+      label: RESOURCE_LABEL.hp,
+      value: <ResourceValue kind="hp" parts={resources.hp} level={level} onEdit={() => setEditKind('hp')} />,
+      help: RESOURCE_HELP,
+      onEdit: () => setEditKind('hp'),
+    },
+    {
+      label: RESOURCE_LABEL.mp,
+      value: <ResourceValue kind="mp" parts={resources.mp} level={level} onEdit={() => setEditKind('mp')} />,
+      help: RESOURCE_HELP,
+      onEdit: () => setEditKind('mp'),
+    },
     isMagician
       ? { label: '마법명중률', value: fmt(magicAccuracy(finalStats)), help: MACC_HELP }
       : {
