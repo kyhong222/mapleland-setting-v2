@@ -17,6 +17,14 @@ npm run build       # tsc --noEmit && vite build
 npm run preview     # 빌드 결과 미리보기
 ```
 
+⚠ **개발 서버(`npm run dev`)는 Claude가 띄우지 않는다.** 세션이 끝나거나 바뀌면 그 백그라운드
+작업과의 연결이 끊기는데 프로세스는 살아남아, 이후 세션에서는 목록에도 안 잡히는 고아가 된다
+(실제로 5173을 물고 있어 다음 서버가 5174로 밀린 적이 있다). 브라우저로 확인이 필요하면
+**사용자가 직접 띄우도록 안내할 것.** Claude가 쓸 검증 수단은 아래 typecheck·build·스모크다.
+
+부득이 띄웠다면 같은 턴 안에서 정리한다. 남은 것을 찾으려면 `ss -ltnp | grep 5173`,
+`pgrep -af vite`로 보고 `fuser -k 5173/tcp`로 지운다.
+
 **테스트 프레임워크가 없다.** 검증은 `npm run typecheck` + `scripts/*Smoke.ts` 수동 스모크뿐이다.
 
 ```bash
