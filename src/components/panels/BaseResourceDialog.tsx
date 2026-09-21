@@ -59,22 +59,27 @@ function SourceIcon({ source, ids }: { source: ResourceSource; ids: EffectId[] }
  * (domain/resource.baseFromShown).
  *
  * 그래서 "지금 무엇이 반영된 상태인지"가 눈에 보여야 한다 — 장착 장비(보석·주문서 포함)와
- * 활성 버프 중 이 값에 기여하는 것을 전부 아이콘으로 나열한다.
+ * 활성 버프 중 이 값에 기여하는 것을 전부 아이콘으로 나열하고, **기준이 되는 현재 레벨**도
+ * 함께 보여준다. 저장값은 이 레벨과 짝이라 레벨이 바뀌면 다시 받아야 하기 때문이다
+ * (domain/resource.ts 참고). 다시 넣으면 레벨까지 통째로 덮어쓴다.
  */
 export default function BaseResourceDialog({ kind, onClose }: { kind: ResourceKind; onClose: () => void }) {
   const baseStats = useBuildStore((s) => s.baseStats)
+  const level = useBuildStore((s) => s.level)
   const stored = useBuildStore((s) => (kind === 'hp' ? s.baseHp : s.baseMp))
+  const storedLevel = useBuildStore((s) => (kind === 'hp' ? s.baseHpLevel : s.baseMpLevel))
   const setBaseResources = useBuildStore((s) => s.setBaseResources)
   const builts = useActiveEquippedBuilts()
   const ctx = useBuffContext()
   const { effects } = aggregateBuild(baseStats, builts, useBuffEffects())
 
   const label = RESOURCE_LABEL[kind]
-  const parts = resourceParts(kind, effects, stored)
+  const parts = resourceParts(kind, effects, { value: stored, level: storedLevel }, level)
   const ids = resourceEffectIds(kind)
   const related = resourceSources(builts, ctx).filter((s) => ids.some((id) => s.effects[id]))
 
-  // 이미 입력돼 있으면 현재 최종값을 채워 둔다 — 인게임 값과 바로 대조할 수 있게
+  // 이미 입력돼 있으면 현재 최종값을 채워 둔다 — 인게임 값과 바로 대조할 수 있게.
+  // 레벨이 어긋난 보관값(staleLevel)은 지금 레벨에서 틀린 값이라 채우지 않는다.
   const [draft, setDraft] = useState(parts.total === null ? '' : String(parts.total))
 
   const n = Number(draft)
@@ -95,11 +100,22 @@ export default function BaseResourceDialog({ kind, onClose }: { kind: ResourceKi
         <Typography variant="body2" color="text.secondary" sx={{ mb: 1.5 }}>
           맨몸 {label}는 레벨업 증가량이 랜덤이라 계산으로 알아낼 수 없습니다.
           <Box component="span" sx={{ color: 'text.primary', fontWeight: 600 }}> 지금 착용·적용한 그대로</Box>의
-          인게임 스탯창 값을 넣으면, 아래 요소들을 걷어내고 기본값을 역산해 저장합니다.
+          인게임 스탯창 값을 넣으면, 아래 요소들을 걷어내고 기본값을 역산해
+          <Box component="span" sx={{ color: 'text.primary', fontWeight: 600 }}> 현재 레벨과 함께</Box> 저장합니다.
         </Typography>
 
+        {parts.staleLevel !== null && (
+          <Typography variant="body2" color="warning.main" sx={{ mb: 1.5 }}>
+            기록된 {label}정보와 레벨이 달라 재입력이 필요합니다. 레벨이 기록 시점으로 돌아가면 복원됩니다.
+            <Box component="span" sx={{ display: 'block', mt: 0.5 }}>
+              기록된 정보: Lv. {parts.staleLevel} {label} {stored}
+            </Box>
+          </Typography>
+        )}
+
         <Typography variant="caption" color="text.secondary" sx={{ display: 'block', mb: 0.5 }}>
-          현재 반영분 — 고정 +{parts.flat} · 증가 +{parts.percent}%
+          기준 레벨 <Box component="span" sx={{ color: 'text.primary', fontWeight: 600 }}>Lv.{level}</Box>
+          {' · '}현재 반영분 — 고정 +{parts.flat} · 증가 +{parts.percent}%
         </Typography>
 
         {related.length > 0 ? (
@@ -138,7 +154,9 @@ export default function BaseResourceDialog({ kind, onClose }: { kind: ResourceKi
         <Button onClick={() => save(null)} color="inherit">지우기</Button>
         <Box sx={{ flex: 1 }} />
         <Button onClick={onClose} color="inherit">취소</Button>
-        <Button onClick={() => save(base)} variant="contained">적용</Button>
+        {/* 빈 칸으로 적용하면 보관값이 조용히 날아간다 — 지우는 건 '지우기'의 몫이다.
+            레벨이 어긋나 칸이 비어 있는 상태에서 특히 중요하다(되돌아가면 살아날 값이므로). */}
+        <Button onClick={() => save(base)} variant="contained" disabled={base === null}>적용</Button>
       </DialogActions>
     </Dialog>
   )

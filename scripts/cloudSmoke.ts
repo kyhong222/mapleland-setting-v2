@@ -110,6 +110,12 @@ check('전체 상태가 동일', JSON.stringify(after) === JSON.stringify(before
 check('장착 id가 인벤토리에 존재', useInventoryStore.getState().getById(invId) !== undefined)
 check('공용 인벤토리도 복원', useInventoryStore.getState().items.length === 2)
 check('baseHp/baseMp 유지', after.build.baseHp === 12345 && after.build.baseMp === 6789)
+// 값만 오고 레벨이 빠지면 다른 기기에서 "다시 입력하세요"로 보인다 — 짝이 같이 건너와야 한다
+check(
+  'baseHp/baseMp 입력 레벨 유지',
+  after.build.baseHpLevel === 180 && after.build.baseMpLevel === 180,
+  `${after.build.baseHpLevel} / ${after.build.baseMpLevel}`,
+)
 check('대상 몬스터 유지', after.selectedMobId === 9400589)
 check('n타 선택 유지', after.nhit.skillId === 1121008 && after.nhit.preCast.length === 1)
 
@@ -133,6 +139,7 @@ applySlots(slots)
 const restored = useSlotsStore.getState().slots
 check('슬롯 24칸 유지', restored.length === 24)
 check('슬롯 내용 복원', restored[3]?.name === '테스트' && restored[3]?.snapshot.jobId === 'hero')
+check('슬롯 스냅샷도 기본 HP의 입력 레벨을 담는다', restored[3]?.snapshot.baseHpLevel === 180)
 check('빈 칸은 그대로 null', restored[0] === null)
 check('hasLocalData 감지', hasLocalData())
 

@@ -7,7 +7,7 @@
  *   npx tsx scripts/resourceSmoke.ts
  */
 
-import { resourceTotal, baseFromShown } from '../src/domain/resource'
+import { resourceTotal, baseFromShown, computeResources } from '../src/domain/resource'
 import { getBuff } from '../src/data/buff'
 import { buffEffectsAtLevel } from '../src/domain/buff'
 import { getItem } from '../src/data/itemRepository'
@@ -47,6 +47,29 @@ async function main() {
     if (!ok) failed++
     console.log(`  ${ok ? 'OK  ' : 'FAIL'} ${c.label}: ${c.expected} -> 기본 ${got} (기대 ${BASE_HP})`)
   }
+
+  console.log('— 레벨 기록 (입력 당시 레벨에서만 최종치를 낸다)')
+  // 정축12 + 고정HP장비 케이스의 효과맵 — 기본 13238이면 14787이 나온다
+  const effects = { hp: FLAT, hpP_botf: 10 } as const
+  const at = (storedLevel: number | null, level: number) =>
+    computeResources(effects, { hp: { value: BASE_HP, level: storedLevel }, mp: { value: null, level: null } }, level).hp
+
+  const levelCases: { label: string; got: ReturnType<typeof at>; total: number | null; stale: number | null }[] = [
+    { label: '같은 레벨 — 최종치', got: at(170, 170), total: 14787, stale: null },
+    { label: '레벨업 후 — 최종치 없음 + 기록레벨 노출', got: at(170, 171), total: null, stale: 170 },
+    { label: '되돌아오면 원래대로', got: at(170, 170), total: 14787, stale: null },
+    { label: '구버전(레벨 미기록) — 검사 생략', got: at(null, 171), total: 14787, stale: null },
+  ]
+  for (const c of levelCases) {
+    const ok = c.got.total === c.total && c.got.staleLevel === c.stale
+    if (!ok) failed++
+    console.log(`  ${ok ? 'OK  ' : 'FAIL'} ${c.label}: total ${c.got.total} / staleLevel ${c.got.staleLevel} (기대 ${c.total} / ${c.stale})`)
+  }
+  // 레벨이 어긋나도 "지금 얹히는 몫"은 그대로 보여줘야 한다 (미입력과 같은 표기)
+  const stale = at(170, 171)
+  const partsOk = stale.flat === FLAT && stale.percent === 10 && stale.base === BASE_HP
+  if (!partsOk) failed++
+  console.log(`  ${partsOk ? 'OK  ' : 'FAIL'} 어긋나도 고정/증가율/보관값은 유지: 고정 ${stale.flat} / ${stale.percent}% / 보관 ${stale.base}`)
 
   console.log('— 데이터 출처 확인')
   const hat = await getItem(1003112)

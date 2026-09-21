@@ -177,9 +177,14 @@ create policy own_slots on public.user_slots for all
 
 ### 스키마 버전
 
-zustand `persist`의 `migrate`는 **localStorage 경로에만** 걸린다(`buildStore` v1, `inventoryStore` v1).
+zustand `persist`의 `migrate`는 **localStorage 경로에만** 걸린다(`buildStore` v2, `inventoryStore` v1).
 서버에서 받은 payload는 `applyAll()` 앞에서 같은 마이그레이션을 수동으로 태워야 한다.
 안 태우면 구버전 스키마가 검증 없이 들어간다.
+
+| 버전 | 바뀐 것 |
+|---:|---|
+| 1 | 최초 |
+| 2 | 기본 HP/MP에 입력 당시 레벨(`baseHpLevel`·`baseMpLevel`)을 함께 보관 (docs/plan.md §1) |
 
 ---
 
