@@ -5272,7 +5272,7 @@
     "effects": {
       "pad": 102,
       "STR": 5,
-      "attackSpeed": 6
+      "attackSpeed": 7
     },
     "reqLevel": 100,
     "reqJob": 1,
