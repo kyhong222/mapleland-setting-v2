@@ -17,6 +17,7 @@ import { useBuffEffects, useConditionalBuffEffects } from '../../store/useBuffEf
 import {
   totalAttack, totalMagic, masteryRatio, magicAmpMultiplier, levelPenalty, calcLuckyBase,
 } from '../../domain/attackPower'
+import type { DamageRange } from '../../domain/attackPower'
 import { JOBS } from '../../domain/jobs'
 import { getMonster } from '../../data/mobs'
 import { elementReaction, formatElements } from '../../domain/monster'
@@ -31,6 +32,7 @@ import { attacksPerMinute, effectiveCastStep, effectiveSpeedStep, type SpeedCont
 import { chargeMultiplier, chargeFromUi, chargeElementCodes } from '../../domain/paladinCharge'
 import type { ChargeElement } from '../../domain/paladinCharge'
 import ChargeMultTip from '../common/ChargeMultTip'
+import InfoTip, { InfoTitle } from '../common/InfoTip'
 import { objectJosa } from '../../lib/josa'
 import { secondaryPrompt } from '../../lib/weaponNotice'
 import { speedLabel } from '../../lib/speedLabel'
@@ -69,6 +71,39 @@ const FIST_HIT_MULT = [1, 1, 1, 1, 2, 4]
 /** 최대 콤보 카운터(5~10) 소모 시 카운터 뎀증 배율 (docs §4) */
 const MAX_COUNTER_MULT = 2.5
 const rng = (r: { min: number; max: number }) => `${Math.round(r.min).toLocaleString()} ~ ${Math.round(r.max).toLocaleString()}`
+
+/**
+ * "1회 타격" 범위 = 기준 배율(×1) 라인들의 min~max.
+ * 피스트처럼 라인마다 타수배율이 달라(5타×2·6타×4) 라인별 lineRanges에 그 배율이 이미
+ * 곱해져 있으면, 전체 라인의 min/max를 그대로 뽑을 경우 서로 다른 배율의 값이 섞인다
+ * (예: 최솟값은 ×1 라인, 최댓값은 ×4 라인) → 배율이 없는(=1) 라인만으로 계산한다.
+ */
+function unitLineRange(ranges: DamageRange[], hitMultipliers?: number[]): DamageRange {
+  const idx = hitMultipliers
+    ? hitMultipliers.reduce<number[]>((acc, m, i) => (m === 1 ? [...acc, i] : acc), [])
+    : ranges.map((_, i) => i)
+  const pick = idx.length > 0 ? idx : ranges.map((_, i) => i)
+  return {
+    min: Math.min(...pick.map((i) => ranges[i].min)),
+    max: Math.max(...pick.map((i) => ranges[i].max)),
+  }
+}
+
+/** 피스트(5타×2·6타×4) 구조 설명 — "1회 타격" 라벨 옆 안내 */
+function FistStructureTip() {
+  return (
+    <InfoTip
+      maxWidth={280}
+      title={
+        <>
+          <InfoTitle>피스트 6타 구조</InfoTitle>
+          <Box>1~4타는 기본 배율(×1), 5타는 ×2, 6타는 ×4가 적용됩니다.</Box>
+          <Box sx={{ mt: 0.5 }}>이 범위는 1~4타(기본 배율) 기준입니다. 5·6타 몫은 총 데미지에만 반영됩니다.</Box>
+        </>
+      }
+    />
+  )
+}
 
 export default function NhitPanel() {
   const jobId = useBuildStore((s) => s.jobId)
@@ -247,7 +282,7 @@ export default function NhitPanel() {
       hitMultipliers,
       shadowRatio,
     })
-    return { cast, att, effSkillPercent, isMagic, elements, displayMult, charge }
+    return { cast, att, effSkillPercent, isMagic, elements, displayMult, charge, hitMultipliers }
   }
 
   /** 스턴 마스터리가 실제로 켜져 있는지 (꺼져 있으면 변형 스킬도 기본 스킬과 같다) */
@@ -292,10 +327,11 @@ export default function NhitPanel() {
     if (!job || !monster || !selectedSkill) return null
     const built = buildCast(selectedSkill, skillLevel)
     if (!built) return null
-    const { cast, att, effSkillPercent, isMagic, elements, displayMult, charge } = built
+    const { cast, att, effSkillPercent, isMagic, elements, displayMult, charge, hitMultipliers } = built
     if (!cast) return { unsupported: true as const, elements, displayMult, charge }
 
     const baseId = baseSkillId(selectedSkill.id)
+    const isFist = FIST_SKILLS.has(baseId)
     const noDpm = NO_DPM.has(baseId)
     const hp = monster.maxHP ?? 0
     const isBoss = !!monster.isBoss
@@ -323,10 +359,8 @@ export default function NhitPanel() {
       hp,
       hasPreCast: !!preCastPrior,
       lines: cast.lineRanges.length,
-      lineRange: {
-        min: Math.min(...cast.lineRanges.map((r) => r.min)),
-        max: Math.max(...cast.lineRanges.map((r) => r.max)),
-      },
+      lineRange: unitLineRange(cast.lineRanges, hitMultipliers),
+      isFist,
       totalRange: cast.totalRange,
       coef: Math.round(effSkillPercent),
       // 패닉/코마/돌진은 방컷·DPM 미제공(데미지 범위만). 추가스킬은 prior 분포로 반영.
@@ -469,7 +503,13 @@ export default function NhitPanel() {
             <>
               {/* 데미지 범위 */}
               <Typography variant="caption" sx={{ fontWeight: 700, display: 'block' }}>데미지 범위</Typography>
-              {result.lines > 1 && <Row label={`1회 타격 (${result.lines}타, ${result.coef}%)`} value={rng(result.lineRange)} />}
+              {result.lines > 1 && (
+                <Row
+                  label={`1회 타격 (${result.lines}타, ${result.coef}%)`}
+                  value={rng(result.lineRange)}
+                  note={result.isFist ? <FistStructureTip /> : undefined}
+                />
+              )}
               <Row
                 label={result.lines > 1 ? '총 데미지' : `데미지 (${result.coef}%)`}
                 value={rng(result.totalRange)}
