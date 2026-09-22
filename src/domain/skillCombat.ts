@@ -260,6 +260,82 @@ function groupDist(
   return mixtureDist(parts)
 }
 
+/** groupDist와 같은 갈래(combo) 전개, 확률분포 대신 min/max 경계만 계산 */
+function groupRange(
+  lineIdx: number[],
+  specs: LineSpec[],
+  isCrit: (line: number) => boolean,
+  lowHalf: boolean | undefined,
+  critProb: number,
+): DamageRange {
+  let combos: { min: number; max: number }[] = [{ min: 0, max: 0 }]
+  for (const i of lineIdx) {
+    const useCrit = isCrit(i)
+    const next: typeof combos = []
+    for (const c of combos) {
+      for (const m of specs[i].motions) {
+        const r = useCrit ? m.crit : m.normal
+        next.push({ min: c.min + r.min, max: c.max + r.max })
+      }
+    }
+    combos = next
+  }
+  let lo = Infinity
+  let hi = -Infinity
+  for (const { min, max } of combos) {
+    const cut = min + critProb * (max - min)
+    lo = Math.min(lo, lowHalf === false ? cut : min)
+    hi = Math.max(hi, lowHalf === true ? cut : max)
+  }
+  return { min: lo, max: hi }
+}
+
+/**
+ * assembleCast와 같은 갈래(크리 슬롯 마스크) 전개로 시전 총합의 정확한 min/max만 계산.
+ *
+ * `assembleCast`가 만드는 `dist`는 확률 계산용으로 이산화(step 격자)돼 있어 경계값에
+ * 반올림 오차(최대 step 하나 정도)가 생긴다. N방컷·DPM은 그 오차가 무시할 수준이지만
+ * "총 데미지" 표시값은 라인별 range(`lineRanges`, 무이산 정확값)와 나란히 보여주므로
+ * 같은 정밀도가 필요하다 — 그래서 범위만은 이산화 없이 별도로 정확히 구한다.
+ */
+function assembleCastRange(specs: LineSpec[], critProb: number): DamageRange {
+  const slots = lineSlots(specs.length)
+  const cs = critSlots(slots)
+  const p = Math.max(0, Math.min(1, critProb))
+
+  const groups = new Map<number, number[]>()
+  slots.forEach((s, i) => {
+    const g = groups.get(s.dmg)
+    if (g) g.push(i)
+    else groups.set(s.dmg, [i])
+  })
+
+  let totalMin = Infinity
+  let totalMax = -Infinity
+  for (let mask = 0; mask < 1 << cs.length; mask++) {
+    let weight = 1
+    const low = new Map<number, boolean>()
+    cs.forEach((slot, k) => {
+      const isLow = ((mask >> k) & 1) === 1
+      low.set(slot, isLow)
+      weight *= isLow ? p : 1 - p
+    })
+    if (weight <= 0) continue
+
+    const isCrit = (line: number) => low.get(slots[line].crit) === true
+    let branchMin = 0
+    let branchMax = 0
+    for (const [dmgSlot, idx] of groups) {
+      const g = groupRange(idx, specs, isCrit, low.get(dmgSlot), p)
+      branchMin += g.min
+      branchMax += g.max
+    }
+    totalMin = Math.min(totalMin, branchMin)
+    totalMax = Math.max(totalMax, branchMax)
+  }
+  return { min: totalMin, max: totalMax }
+}
+
 /**
  * 라인 스펙들을 난수 순환에 따라 합성해 시전 1회 분포를 만든다.
  *
@@ -361,10 +437,11 @@ export function computeCast(p: CastDamageParams): CastResult | null {
     })
   }
 
-  const dist = assembleCast(specs, hasCrit ? critProb : 0)
+  const effCritProb = hasCrit ? critProb : 0
+  const dist = assembleCast(specs, effCritProb)
   return {
     dist,
-    totalRange: { min: dist.base, max: dist.base + (dist.p.length - 1) * dist.step },
+    totalRange: assembleCastRange(specs, effCritProb),
     lineRanges,
   }
 }
