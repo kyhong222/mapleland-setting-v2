@@ -1197,8 +1197,7 @@
         "field": "prop"
       },
       "criticalDamage": {
-        "field": "damage",
-        "offset": -100
+        "field": "damage"
       }
     }
   },
