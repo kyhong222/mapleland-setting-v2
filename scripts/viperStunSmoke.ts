@@ -84,9 +84,10 @@ const always = activeBuffEffects(ctx)
 const onStun = conditionalBuffEffects(ctx, 'stun')
 expect('상시 합산에 크리 확률', always.criticalP ?? 0, 0)
 expect('상시 합산에 크리 추뎀', always.criticalDamage ?? 0, 0)
-// 스킬북 lv20: prop 60 → 크리 확률 60%, damage 160 → 추뎀 +60%
+// 스킬북 lv20: prop 60 → 크리 확률 60%, damage 160 → 추뎀 **+160%**.
+// 크리티컬 샷/스로우/펀치와 달리 -100을 빼지 않는다 (실측, docs/plan.md §크리티컬)
 expect('조건부 합산 크리 확률', onStun.criticalP, 60)
-expect('조건부 합산 크리 추뎀', onStun.criticalDamage, 60)
+expect('조건부 합산 크리 추뎀', onStun.criticalDamage, 160)
 
 // ── §5 단독 운용 혼합 분포 ────────────────────────────────────────
 console.log('\n── 혼합 분포 ──')
@@ -100,7 +101,7 @@ const fistCast = (critP: number, critD: number) =>
     hitMultipliers: [1, 1, 1, 1, 2, 4],
   })
 const plain = fistCast(0, 1)
-const stunned = fistCast(0.6, (126 + 60) / 126)
+const stunned = fistCast(0.6, (126 + 160) / 126)
 if (!plain || !stunned) {
   fails++
   console.log('FAIL 피스트 시전 분포를 만들지 못했다')
