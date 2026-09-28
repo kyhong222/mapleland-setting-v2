@@ -65,6 +65,11 @@ const CURVES = {
    * 달리 공속을 탄다. 스킬 시간 840~1110 + 후딜 450(6속만 480)으로 나뉜다 (docs §5-1).
    */
   dragonStrike: { 2: 1290, 3: 1350, 4: 1440, 5: 1500, 6: 1590 },
+  /**
+   * 에너지 버스터 — 메랜은 후딜이 없어 원자료의 delay 곡선이 곧 시전 간격이다.
+   * 원자료의 spamming 1140 고정은 쓰지 않는다 (docs §6-6).
+   */
+  energyBuster: { 2: 570, 3: 630, 4: 660, 5: 720, 6: 750 },
   // 건
   gunDoubleShot: { 2: 390, 3: 420, 4: 450, 5: 480, 6: 480 },
   battleshipCannon: { 2: 600, 3: 630, 4: 690, 5: 750, 6: 780 },
@@ -201,8 +206,8 @@ export const SKILL_SPEED: Record<number, SpeedSpec> = {
   15111003: { type: 'curve', curve: 'shockwave' },
   5121002: { type: 'curve', curve: 'energyOrb' }, // 에너지 오브
   15111007: { type: 'curve', curve: 'sharkWave' }, // 샤크 웨이브
-  5111002: { type: 'fixed', ms: 1140 }, // 에너지 버스터 — spamming 고정
-  15101005: { type: 'fixed', ms: 1140 },
+  5111002: { type: 'curve', curve: 'energyBuster' }, // 에너지 버스터 — 후딜 없음 (§6-6)
+  15101005: { type: 'curve', curve: 'energyBuster' },
   5121001: { type: 'curve', curve: 'dragonStrike' }, // 드래곤 스트라이크 — 메랜 실측
 
   // ── 해적(건) ──

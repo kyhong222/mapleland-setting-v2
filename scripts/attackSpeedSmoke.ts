@@ -113,6 +113,11 @@ console.log('\n[4] 분기 스펙')
   check(attackIntervalMs(5121001, ctx()) === 1590, '드래곤 스트라이크 6속 = 1590ms')
   check(attackIntervalMs(5121001, ctx({ weaponSpeedStep: 2 })) === 1290, '드래곤 스트라이크 2속 = 1290ms')
 
+  // 에너지 버스터: 메랜은 후딜이 없어 delay 곡선 그대로 (원자료 spamming 1140 고정을 대체)
+  check(attackIntervalMs(5111002, ctx()) === 750, '에너지 버스터 6속 = 750ms')
+  check(attackIntervalMs(5111002, ctx({ weaponSpeedStep: 2 })) === 570, '에너지 버스터 2속 = 570ms')
+  check(attackIntervalMs(15101005, ctx({ weaponSpeedStep: 4 })) === 660, '에너지 버스터(스트라이커) 4속 = 660ms')
+
   // 미지원
   check(attackIntervalMs(2121001, ctx({ kind: 'magic' })) === null, '빅뱅 = 미지원')
   check(attackIntervalMs(3221001, ctx()) === null, '피어싱 = 미지원')
