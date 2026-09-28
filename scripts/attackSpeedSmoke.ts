@@ -109,9 +109,16 @@ console.log('\n[4] 분기 스펙')
   check(attacksPerMinute(3121004, ctx()) === 500, '폭풍의 시 = 500/분')
   check(attacksPerMinute(1311006, ctx({ weaponSpeedStep: 2 })) === 30, '드래곤 로어 = 내부 쿨타임, 공속 무관 30/분')
 
+  // 드래곤 스트라이크: 메랜 실측 1사이클, 공속을 탄다 (원자료 spamming 2250 고정을 대체)
+  check(attackIntervalMs(5121001, ctx()) === 1590, '드래곤 스트라이크 6속 = 1590ms')
+  check(attackIntervalMs(5121001, ctx({ weaponSpeedStep: 2 })) === 1290, '드래곤 스트라이크 2속 = 1290ms')
+
   // 미지원
   check(attackIntervalMs(2121001, ctx({ kind: 'magic' })) === null, '빅뱅 = 미지원')
   check(attackIntervalMs(3221001, ctx()) === null, '피어싱 = 미지원')
+  for (const [id, name] of [[5121004, '데몰리션'], [5121005, '스내치'], [5121007, '피스트'], [15111004, '피스트(스트라이커)']] as const) {
+    check(attackIntervalMs(id, ctx()) === null, `${name} = 미지원 (평타 폴백 금지)`)
+  }
 }
 
 console.log(failed === 0 ? '\n전부 통과\n' : `\n실패 ${failed}건\n`)

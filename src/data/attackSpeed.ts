@@ -58,9 +58,13 @@ const CURVES = {
   backspin: { 2: 720, 3: 780, 4: 840, 5: 900, 6: 960 },
   doubleUpper: { 2: 1140, 3: 1140, 4: 1140, 5: 1140, 6: 1170 },
   shockwave: { 2: 1500, 3: 1620, 4: 1740, 5: 1860, 6: 1980 },
-  demolition: { 2: 2340, 3: 2550, 4: 2730, 5: 2940, 6: 3120 },
   energyOrb: { 2: 930, 3: 990, 4: 1050, 5: 1140, 6: 1200 },
   sharkWave: { 2: 810, 3: 870, 4: 930, 5: 990, 6: 1050 },
+  /**
+   * 드래곤 스트라이크 — 메랜 실측 1사이클(꾹 눌렀을 때 시전→다음 시전). 원자료의 spamming 2250 고정과
+   * 달리 공속을 탄다. 스킬 시간 840~1110 + 후딜 450(6속만 480)으로 나뉜다 (docs §5-1).
+   */
+  dragonStrike: { 2: 1290, 3: 1350, 4: 1440, 5: 1500, 6: 1590 },
   // 건
   gunDoubleShot: { 2: 390, 3: 420, 4: 450, 5: 480, 6: 480 },
   battleshipCannon: { 2: 600, 3: 630, 4: 690, 5: 750, 6: 780 },
@@ -196,14 +200,10 @@ export const SKILL_SPEED: Record<number, SpeedSpec> = {
   5111006: { type: 'curve', curve: 'shockwave' }, // 쇼크웨이브
   15111003: { type: 'curve', curve: 'shockwave' },
   5121002: { type: 'curve', curve: 'energyOrb' }, // 에너지 오브
-  5121004: { type: 'curve', curve: 'demolition' }, // 데몰리션
   15111007: { type: 'curve', curve: 'sharkWave' }, // 샤크 웨이브
   5111002: { type: 'fixed', ms: 1140 }, // 에너지 버스터 — spamming 고정
   15101005: { type: 'fixed', ms: 1140 },
-  5121001: { type: 'fixed', ms: 2250 }, // 드래곤 스트라이크 — spamming 고정
-  5121005: { type: 'fixed', ms: 1320 }, // 스내치 — spamming 고정
-  5121007: { type: 'fixed', ms: 3240 }, // 피스트 — spamming 고정
-  15111004: { type: 'fixed', ms: 3240 },
+  5121001: { type: 'curve', curve: 'dragonStrike' }, // 드래곤 스트라이크 — 메랜 실측
 
   // ── 해적(건) ──
   5001003: { type: 'curve', curve: 'gunDoubleShot' }, // 더블 파이어
@@ -244,6 +244,10 @@ export const NO_SPEED_DATA = new Set([
   5220001, // 속성강화
   13101006, // 윈드워크
   5221003, // 에어 스트라이크 — delay만 측정되고 실반복 간격(spamming)이 없다
+  // 원자료 값이 메랜과 맞지 않고 메랜 실측도 없다 — 확인 전까지 뺀다 (평타 폴백도 틀린다)
+  5121004, // 데몰리션
+  5121005, // 스내치
+  5121007, 15111004, // 피스트(바이퍼·스트라이커)
 ])
 
 /** 스킬별 공속 계산에 필요한 문맥 */
