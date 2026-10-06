@@ -215,7 +215,7 @@
     "type": "item",
     "name": "스위스 치즈",
     "effects": {
-      "mad": 40
+      "addMad": 40
     },
     "icon": "/buff-icons/2022273.png"
   },
