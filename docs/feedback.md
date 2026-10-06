@@ -18,7 +18,7 @@
 | 신원 | 사용자가 적은 연락처 문자열 | 디스코드 계정 |
 | 저장소 | GitHub 이슈 | Supabase `feedbacks` |
 | 답변 확인 | GitHub | 앱 안 `내 문의` |
-| 서버 코드 | `api/feedback.js` | **없음** (RLS로 브라우저 직결) |
+| 서버 코드 | `api/feedback.js` | **없음** (RLS로 브라우저 직결) · 디스코드 봇만 Edge Function(§6) |
 
 폼 자체(유형·제목·내용)는 그대로 두었다. 연락처 칸과 스팸 허니팟만 빠졌다 —
 로그인이 신원을 대신하고, 로그인 자체가 봇을 막는다.
@@ -266,12 +266,142 @@ const { data: signed } = await supabase.storage
 
 ---
 
-## §6 결정 이력
+## §6 디스코드 봇 (접수 알림 · 답변)
+
+문의가 들어오면 봇이 운영자에게 **DM**을 보낸다. DM의 **[답변하기]** 버튼을 누르면 입력창(모달)이
+뜨고, 제출하면 그대로 `feedback_replies`에 답변이 등록된다 — 앱의 `문의 관리`에서 쓴 답변과 똑같다.
+
+```
+feedbacks insert ─▶ 트리거(pg_net) ─▶ Edge Function ─▶ 운영자 DM [답변하기]
+                                         ▲                    │ 버튼 → 모달 → 제출
+                                         └── Interactions ◀───┘ ─▶ feedback_replies insert
+```
+
+코드는 `supabase/functions/feedback-discord/index.ts` 하나다. **이 레포의 유일한 서버 코드**이고,
+앱 빌드와는 무관하게 Supabase CLI로 따로 배포한다.
+
+- **DM에 그냥 타이핑한 답장은 받지 못한다.** 메시지를 받으려면 디스코드 Gateway에 상시 접속한
+  프로세스가 필요한데, Edge Function은 요청이 올 때만 뜬다. 버튼·모달(Interactions)은 디스코드가
+  HTTP로 보내주므로 서버 없이 된다.
+- **인증은 두 갈래다.** 트리거는 `x-notify-secret` 공유 비밀로, 디스코드는 Ed25519 서명으로
+  들어온다. 둘 다 Supabase JWT를 보내지 않으므로 `--no-verify-jwt`로 배포한다.
+- **답변은 운영자 디스코드 ID만 등록할 수 있다.** 함수가 service role로 넣기 때문에 RLS의
+  `is_admin()`을 거치지 않는다 — 대신 함수가 `DISCORD_ADMIN_ID`와 누른 사람을 직접 대조한다.
+  `author_id`는 `ADMIN_USER_ID`(운영자의 `auth.users` id)로 고정한다.
+- **답변이 등록되면 상태는 기존 `mark_answered` 트리거가 `answered`로 바꾼다**(§2). 상태 변경·
+  공개 처리는 여전히 앱의 `문의 관리`에서 한다.
+- **알림이 실패해도 문의 접수는 막지 않는다.** `pg_net`은 요청을 큐에 넣고 바로 돌아오고,
+  그조차 실패하면 경고만 남긴다. Vault에 값이 없으면 조용히 건너뛴다.
+- **사용자 본문에 멘션이 있어도 아무도 호출되지 않는다**(`allowed_mentions: { parse: [] }`).
+- **같은 Supabase 프로젝트의 모든 서비스 문의가 온다**(§2 `app_id`). 메시지에 서비스를 표시한다.
+
+### 세팅
+
+**1. 디스코드 봇 만들기** — [Developer Portal](https://discord.com/developers/applications) →
+New Application
+
+- General Information → **Application ID**, **Public Key** 복사
+- Bot → Reset Token → **봇 토큰** 복사 (다시 볼 수 없다)
+- OAuth2 → URL Generator → scope `bot` 체크 → 나온 URL로 **운영자 서버에 봇 초대**.
+  권한은 필요 없다. 봇과 운영자가 서버 하나를 공유해야 DM이 열린다.
+- 디스코드 설정 → 고급 → 개발자 모드 → 내 프로필 우클릭 → **사용자 ID 복사**
+
+**2. 운영자의 `auth.users` id 확인** — SQL Editor
+
+```sql
+select user_id from public.admins;
+```
+
+**3. 함수 배포** — Supabase CLI. `<project-ref>`는 `VITE_SUPABASE_URL`의 서브도메인이다.
+
+```bash
+supabase login
+supabase link --project-ref <project-ref>
+supabase secrets set \
+  DISCORD_BOT_TOKEN=<봇 토큰> \
+  DISCORD_PUBLIC_KEY=<Public Key> \
+  DISCORD_ADMIN_ID=<내 디스코드 사용자 ID> \
+  ADMIN_USER_ID=<2에서 확인한 uuid> \
+  FEEDBACK_NOTIFY_SECRET=<임의의 긴 문자열>
+supabase functions deploy feedback-discord --no-verify-jwt --use-api
+```
+
+`SUPABASE_URL`·`SUPABASE_SERVICE_ROLE_KEY`는 Edge Function에 자동으로 주어진다.
+`--use-api`는 Docker 없이 Supabase 서버에서 번들하게 한다(로컬에 Docker가 없어도 된다).
+
+**4. Interactions 엔드포인트 등록** — Developer Portal → General Information →
+Interactions Endpoint URL에 `https://<project-ref>.supabase.co/functions/v1/feedback-discord`를
+넣고 저장. 디스코드가 PING으로 서명 검증을 확인한 뒤에야 저장된다(실패하면 3의 Public Key를 볼 것).
+
+**5. 트리거 연결** — SQL Editor. 함수 URL과 3에서 정한 공유 비밀을 Vault에 넣는다(한 번만).
+
+```sql
+select vault.create_secret('https://<project-ref>.supabase.co/functions/v1/feedback-discord',
+                           'feedback_notify_url');
+select vault.create_secret('<FEEDBACK_NOTIFY_SECRET과 같은 값>', 'feedback_notify_secret');
+```
+
+> 값을 바꿀 때는 `create_secret`를 다시 부르지 말고(이름 중복으로 실패한다)
+> `select vault.update_secret(id, '<새 값>') from vault.secrets where name = '<이름>';`
+
+```sql
+create extension if not exists pg_net with schema extensions;
+
+create or replace function public.notify_feedback_discord()
+returns trigger language plpgsql security definer set search_path = '' as $fn$
+declare
+  url    text;
+  secret text;
+begin
+  select decrypted_secret into url
+    from vault.decrypted_secrets where name = 'feedback_notify_url';
+  select decrypted_secret into secret
+    from vault.decrypted_secrets where name = 'feedback_notify_secret';
+  if url is null or secret is null then
+    return new;
+  end if;
+
+  perform net.http_post(
+    url     := url,
+    body    := jsonb_build_object('record', to_jsonb(new)),
+    headers := jsonb_build_object('Content-Type', 'application/json', 'x-notify-secret', secret)
+  );
+  return new;
+exception when others then
+  -- 알림 실패가 문의 접수를 막으면 안 된다
+  raise warning 'notify_feedback_discord: %', sqlerrm;
+  return new;
+end;
+$fn$;
+
+drop trigger if exists feedbacks_notify_discord on public.feedbacks;
+create trigger feedbacks_notify_discord
+  after insert on public.feedbacks
+  for each row execute function public.notify_feedback_discord();
+```
+
+**6. 확인** — 앱에서 문의를 하나 남겨 DM이 오는지, [답변하기]로 등록한 답변이 앱의 `내 문의`에
+보이는지 본다. DM이 안 오면 함수 응답을 확인한다(함수 로그는 Dashboard → Edge Functions → Logs).
+
+```sql
+select created, status_code, content
+  from net._http_response order by created desc limit 5;
+```
+
+알림을 끄려면 `drop trigger feedbacks_notify_discord on public.feedbacks;` 한 줄이면 된다.
+
+---
+
+## §7 결정 이력
 
 - **GitHub 이슈 프록시 폐기** — 계정이 생겨 신원과 답변 경로가 앱 안에서 해결됐다.
-  `api/feedback.js`가 사라지면서 이 레포의 서버 코드는 0이 됐다.
+  `api/feedback.js`가 사라지면서 이 레포의 서버 코드는 0이 됐다(이후 디스코드 봇 때문에 Edge Function 하나가 생겼다 — 아래).
 - **허니팟 제거** — 로그인 필수가 봇을 막는다. 숨긴 입력칸을 유지할 이유가 없다.
 - **답변은 어드민만** — 사용자 재질문까지는 넓히지 않았다. 필요해지면
   `admin_write_replies`를 `is_admin() or 본인 문의`로 넓히면 되고, 표 구조는 그대로 쓴다.
 - **어드민 화면을 앱 안에 둔 이유** — 이 앱엔 라우터가 없어 다이얼로그가 가장 싸다.
   서비스가 늘어 문의를 한곳에서 볼 필요가 생기면 §4의 데이터 접근 파일만 들고 나가면 된다.
+- **디스코드 알림: 채널 웹후크 → 봇 DM** — 처음엔 웹후크 + 멘션으로 서버 코드 없이 가려 했으나,
+  알림을 개인 DM으로 받고 디스코드에서 바로 답변까지 등록하려면 봇이 필요해 Edge Function
+  하나(`supabase/functions/feedback-discord`)를 들였다. 앱 자체는 여전히 서버 없이 Supabase와
+  직결한다. 평문 답장 대신 버튼·모달을 쓰는 건 상시 Gateway 접속 없이 HTTP로 받기 위해서다(§6).

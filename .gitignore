@@ -35,3 +35,6 @@ LOCAL.md
 
 # tsc 증분 빌드 캐시
 tsconfig.tsbuildinfo
+
+# Supabase CLI 로컬 상태 (link 정보·캐시)
+supabase/.temp/

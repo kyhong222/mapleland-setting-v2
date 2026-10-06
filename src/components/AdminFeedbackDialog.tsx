@@ -5,7 +5,7 @@
  * 실제 차단은 RLS가 한다 — 어드민이 아니면 목록에 본인 문의만 나오고 답변 작성은 실패한다.
  *
  * 앱 라우터가 없어 다이얼로그로 뒀다. 서비스가 늘어 문의를 한곳에서 볼 필요가 생기면
- * `data/cloud/feedback.ts`만 들고 나가면 된다(docs/feedback.md §6).
+ * `data/cloud/feedback.ts`만 들고 나가면 된다(docs/feedback.md §7).
  */
 
 import { useCallback, useEffect, useState } from 'react'

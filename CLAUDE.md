@@ -3,8 +3,9 @@
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
 메이플랜드(메랜) 세팅 시뮬레이터. 장비·주문서·보석·버프를 조합해 스탯/공격력/데미지/피격데미지/N방컷을
-계산하는 클라이언트 전용 SPA다. **서버 코드가 없다** — 계정 연동과 문의하기는 브라우저가 Supabase와
+계산하는 클라이언트 전용 SPA다. **앱에는 서버 코드가 없다** — 계정 연동과 문의하기는 브라우저가 Supabase와
 직접 통신하고, 격리는 전적으로 RLS가 담당한다. 비로그인 세팅은 브라우저 localStorage에 저장된다.
+(예외는 문의 알림·답변용 디스코드 봇 하나다 — `supabase/functions/feedback-discord`, 아래 "배포" 참고)
 
 코드 주석·커밋 메시지·UI는 모두 한국어다. 새 코드도 같은 톤을 유지할 것.
 
@@ -222,14 +223,21 @@ id가 먼저 존재해야 하기 때문.
   `src/data/attackSpeed.ts`가 이 문서를 §번호로 참조한다.
 - [docs/plan.md](docs/plan.md) — 세부스탯/몬스터/공격력/성장템/시그너스/피격데미지/방컷 기획 확정본.
 - [docs/feedback.md](docs/feedback.md) — 문의하기(계정 기반) 확정본. 문의/답변 스키마·RLS,
-  대문 공개 규칙, 어드민 화면. `src/data/cloud/feedback.ts`가 이 문서를 §번호로 참조한다.
+  대문 공개 규칙, 어드민 화면, 디스코드 봇(접수 DM · 디스코드에서 답변). `src/data/cloud/feedback.ts`가 이 문서를 §번호로 참조한다.
 - [docs/cloud-sync.md](docs/cloud-sync.md) — 디스코드 로그인/계정 동기화 확정본. Supabase 스키마·RLS,
   동기화·이관 정책, 콘솔 세팅 절차. `src/data/cloud/`가 이 문서를 §번호로 참조한다.
 
 ## 배포
 
-Vite SPA 정적 배포. 서버리스 함수는 없다(문의하기가 GitHub 이슈 프록시를 쓰던 시절에만 있었다).
-환경변수는 `VITE_SUPABASE_URL` · `VITE_SUPABASE_ANON_KEY` · `VITE_APP_ID` 셋뿐이고 전부 브라우저에
+Vite SPA 정적 배포. 앱 빌드에 서버리스 함수는 없다.
+
+단 **Supabase Edge Function 하나**가 앱과 별개로 배포된다 — `supabase/functions/feedback-discord`
+(문의 접수 DM + 디스코드에서 답변 등록). Deno 코드라 `npm run typecheck` 대상이 아니고(tsconfig는
+`src`만 본다), 고친 뒤에는 `supabase functions deploy feedback-discord --no-verify-jwt --use-api`로 따로
+배포해야 반영된다. 봇 토큰 등 비밀값은 `supabase secrets`에만 있다. 절차는
+[docs/feedback.md](docs/feedback.md) §6.
+
+앱 환경변수는 `VITE_SUPABASE_URL` · `VITE_SUPABASE_ANON_KEY` · `VITE_APP_ID` 셋뿐이고 전부 브라우저에
 노출되는 값이다 — **격리는 RLS가 하므로 테이블을 추가할 때 RLS 활성화를 빠뜨리면 안 된다.**
 `.env.example` 참고.
 
