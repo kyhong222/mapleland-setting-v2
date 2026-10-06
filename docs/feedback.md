@@ -323,10 +323,11 @@ supabase secrets set \
   DISCORD_ADMIN_ID=<내 디스코드 사용자 ID> \
   ADMIN_USER_ID=<2에서 확인한 uuid> \
   FEEDBACK_NOTIFY_SECRET=<임의의 긴 문자열>
-supabase functions deploy feedback-discord --no-verify-jwt
+supabase functions deploy feedback-discord --no-verify-jwt --use-api
 ```
 
 `SUPABASE_URL`·`SUPABASE_SERVICE_ROLE_KEY`는 Edge Function에 자동으로 주어진다.
+`--use-api`는 Docker 없이 Supabase 서버에서 번들하게 한다(로컬에 Docker가 없어도 된다).
 
 **4. Interactions 엔드포인트 등록** — Developer Portal → General Information →
 Interactions Endpoint URL에 `https://<project-ref>.supabase.co/functions/v1/feedback-discord`를

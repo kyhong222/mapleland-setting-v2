@@ -233,7 +233,7 @@ Vite SPA 정적 배포. 앱 빌드에 서버리스 함수는 없다.
 
 단 **Supabase Edge Function 하나**가 앱과 별개로 배포된다 — `supabase/functions/feedback-discord`
 (문의 접수 DM + 디스코드에서 답변 등록). Deno 코드라 `npm run typecheck` 대상이 아니고(tsconfig는
-`src`만 본다), 고친 뒤에는 `supabase functions deploy feedback-discord --no-verify-jwt`로 따로
+`src`만 본다), 고친 뒤에는 `supabase functions deploy feedback-discord --no-verify-jwt --use-api`로 따로
 배포해야 반영된다. 봇 토큰 등 비밀값은 `supabase secrets`에만 있다. 절차는
 [docs/feedback.md](docs/feedback.md) §6.
 

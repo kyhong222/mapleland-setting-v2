@@ -9,7 +9,7 @@
  * 평문 답장(DM에 그냥 타이핑)은 받을 수 없다 — 메시지 수신은 상시 Gateway 연결이 필요한데
  * Edge Function은 요청이 올 때만 뜬다. 버튼·모달은 HTTP로 오므로 서버 없이 된다.
  *
- * 배포: supabase functions deploy feedback-discord --no-verify-jwt
+ * 배포: supabase functions deploy feedback-discord --no-verify-jwt --use-api
  * (디스코드도 트리거도 Supabase JWT를 보내지 않는다. 인증은 위 두 방식이 대신한다)
  */
 
