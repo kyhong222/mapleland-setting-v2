@@ -266,7 +266,108 @@ const { data: signed } = await supabase.storage
 
 ---
 
-## §6 결정 이력
+## §6 디스코드 알림
+
+문의가 들어오면 운영자 디스코드로 알림이 온다. 운영자 서버의 비공개 채널에 **웹후크**로 메시지를
+남기면서 운영자 계정을 `@멘션`해 푸시를 받는 방식이다.
+
+- **DB 트리거가 보낸다.** `feedbacks`에 행이 들어가면 `pg_net`이 웹후크로 POST한다. 서버 코드도,
+  Edge Function도, 봇도 없다. 브라우저는 알림의 존재를 모른다.
+- **웹후크 URL은 Supabase Vault에 둔다.** URL만 있으면 누구나 그 채널에 글을 쓸 수 있으니
+  레포·`.env`·브라우저 어디에도 두지 않는다. 운영자 디스코드 ID도 같은 곳에 둔다.
+- **알림이 실패해도 문의 접수는 막지 않는다.** `pg_net`은 요청을 큐에 넣고 바로 돌아오고(비동기),
+  큐에 넣는 것조차 실패하면 경고만 남긴다. Vault에 URL이 없으면 조용히 건너뛴다.
+- **본문은 embed에 넣고 멘션은 운영자 한 명으로 못 박는다**(`allowed_mentions`). 사용자가 본문에
+  `@everyone`을 적어도 아무도 호출되지 않는다.
+- **비공개 문의 본문이 채널에 그대로 찍힌다.** 채널을 운영자만 보이게 둘 것.
+- **같은 Supabase 프로젝트의 모든 서비스 문의에 울린다**(§2 `app_id`). 메시지에 서비스를 표시한다.
+
+### 콘솔 세팅
+
+1. 디스코드 운영자 서버 → 알림 받을 **비공개 채널** → 채널 편집 → 연동 → 웹후크 → 새 웹후크 →
+   URL 복사
+2. 디스코드 설정 → 고급 → **개발자 모드** 켜기 → 내 프로필 우클릭 → **사용자 ID 복사**
+3. Supabase Dashboard → SQL Editor에서 비밀값 두 개를 넣는다(한 번만).
+
+```sql
+select vault.create_secret('<웹후크 URL>',        'feedback_discord_webhook');
+select vault.create_secret('<내 디스코드 사용자 ID>', 'feedback_discord_user_id');
+```
+
+> 값을 바꿀 때는 `create_secret`를 다시 부르지 말고(이름 중복으로 실패한다)
+> `select vault.update_secret(id, '<새 값>') from vault.secrets where name = '<이름>';`
+
+4. 아래 DDL을 붙여 넣는다.
+
+```sql
+create extension if not exists pg_net with schema extensions;
+
+create or replace function public.notify_feedback_discord()
+returns trigger language plpgsql security definer set search_path = '' as $fn$
+declare
+  hook text;
+  uid  text;
+begin
+  select decrypted_secret into hook
+    from vault.decrypted_secrets where name = 'feedback_discord_webhook';
+  select decrypted_secret into uid
+    from vault.decrypted_secrets where name = 'feedback_discord_user_id';
+  if hook is null then
+    return new;
+  end if;
+
+  perform net.http_post(
+    url  := hook,
+    body := jsonb_build_object(
+      'content', case when uid is null then '📮 새 문의' else format('<@%s> 📮 새 문의', uid) end,
+      -- 운영자 한 명만 호출한다. 본문에 @everyone이 있어도 무시된다
+      'allowed_mentions', jsonb_build_object(
+        'parse', '[]'::jsonb,
+        'users', case when uid is null then '[]'::jsonb else jsonb_build_array(uid) end
+      ),
+      'embeds', jsonb_build_array(jsonb_strip_nulls(jsonb_build_object(
+        'title',       left(new.title, 256),
+        'description', nullif(left(new.body, 1000)
+                         || case when length(new.body) > 1000 then ' …' else '' end, ''),
+        'color',       case new.type when 'bug' then 15548997 when 'idea' then 16705372 else 5793266 end,
+        'fields', jsonb_build_array(
+          jsonb_build_object('name', '유형', 'inline', true, 'value',
+            case new.type when 'bug' then '🐛 버그 제보' when 'idea' then '💡 기능 건의' else '💬 기타' end),
+          jsonb_build_object('name', '서비스', 'inline', true, 'value', new.app_id),
+          jsonb_build_object('name', '작성자', 'inline', true, 'value', coalesce(new.author_name, '(이름 없음)')),
+          jsonb_build_object('name', '첨부',   'inline', true, 'value', format('%s장', cardinality(new.images)))
+        ),
+        'footer',    jsonb_build_object('text', new.id::text),
+        'timestamp', to_jsonb(new.created_at)
+      )))
+    )
+  );
+  return new;
+exception when others then
+  -- 알림 실패가 문의 접수를 막으면 안 된다
+  raise warning 'notify_feedback_discord: %', sqlerrm;
+  return new;
+end;
+$fn$;
+
+drop trigger if exists feedbacks_notify_discord on public.feedbacks;
+create trigger feedbacks_notify_discord
+  after insert on public.feedbacks
+  for each row execute function public.notify_feedback_discord();
+```
+
+5. 앱에서 문의를 하나 남겨 알림이 오는지 본다. 안 오면 웹후크 응답을 확인한다.
+
+```sql
+select created, status_code, content
+  from net._http_response order by created desc limit 5;
+```
+
+알림을 끄려면 `drop trigger feedbacks_notify_discord on public.feedbacks;` 한 줄이면 된다.
+
+---
+
+## §7 결정 이력
 
 - **GitHub 이슈 프록시 폐기** — 계정이 생겨 신원과 답변 경로가 앱 안에서 해결됐다.
   `api/feedback.js`가 사라지면서 이 레포의 서버 코드는 0이 됐다.
@@ -275,3 +376,5 @@ const { data: signed } = await supabase.storage
   `admin_write_replies`를 `is_admin() or 본인 문의`로 넓히면 되고, 표 구조는 그대로 쓴다.
 - **어드민 화면을 앱 안에 둔 이유** — 이 앱엔 라우터가 없어 다이얼로그가 가장 싸다.
   서비스가 늘어 문의를 한곳에서 볼 필요가 생기면 §4의 데이터 접근 파일만 들고 나가면 된다.
+- **알림은 봇 DM이 아니라 채널 웹후크 + 멘션** — DM은 봇 토큰과 Edge Function이 필요해 이 레포에
+  서버 코드가 다시 생긴다. 웹후크는 DB 트리거 하나로 끝나고, 멘션으로 푸시도 똑같이 온다(§6).

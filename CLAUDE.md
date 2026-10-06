@@ -222,7 +222,7 @@ id가 먼저 존재해야 하기 때문.
   `src/data/attackSpeed.ts`가 이 문서를 §번호로 참조한다.
 - [docs/plan.md](docs/plan.md) — 세부스탯/몬스터/공격력/성장템/시그너스/피격데미지/방컷 기획 확정본.
 - [docs/feedback.md](docs/feedback.md) — 문의하기(계정 기반) 확정본. 문의/답변 스키마·RLS,
-  대문 공개 규칙, 어드민 화면. `src/data/cloud/feedback.ts`가 이 문서를 §번호로 참조한다.
+  대문 공개 규칙, 어드민 화면, 디스코드 접수 알림(DB 트리거 → 웹후크). `src/data/cloud/feedback.ts`가 이 문서를 §번호로 참조한다.
 - [docs/cloud-sync.md](docs/cloud-sync.md) — 디스코드 로그인/계정 동기화 확정본. Supabase 스키마·RLS,
   동기화·이관 정책, 콘솔 세팅 절차. `src/data/cloud/`가 이 문서를 §번호로 참조한다.
 
