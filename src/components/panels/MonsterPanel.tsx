@@ -6,6 +6,7 @@ import Divider from '@mui/material/Divider'
 import Button from '@mui/material/Button'
 import Chip from '@mui/material/Chip'
 import Tooltip from '@mui/material/Tooltip'
+import { inkOnDark } from '../../theme'
 import CollapsiblePanel from '../common/CollapsiblePanel'
 import InfoTip, { InfoTitle, Formula, InfoWarn } from '../common/InfoTip'
 import MonsterIcon from '../monster/MonsterIcon'
@@ -163,7 +164,7 @@ function MonsterInfo({ m }: { m: Monster }) {
             const outlined = p.kind === 'status' && !p.cure // 만병통치약 불가 = outlined
             return (
               <Chip key={p.label} label={p.label} size="small" variant={outlined ? 'outlined' : 'filled'}
-                sx={{ height: 18, fontSize: 10, borderColor: c, bgcolor: outlined ? 'transparent' : c, color: outlined ? c : '#fff' }} />
+                sx={[{ height: 18, fontSize: 10, borderColor: c, bgcolor: outlined ? 'transparent' : c, color: outlined ? c : '#fff' }, outlined && inkOnDark(c)]} />
             )
           })}
         </Box>

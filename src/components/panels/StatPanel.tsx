@@ -35,7 +35,7 @@ function ApInput({ value, disabled, error, onCommit }: { value: number; disabled
         if (e.key === 'Enter') (e.target as HTMLInputElement).blur()
       }}
       slotProps={{ htmlInput: { style: { textAlign: 'center' } } }}
-      sx={error ? { '& .MuiOutlinedInput-notchedOutline': { borderColor: 'error.main' }, '& .MuiInputBase-input': { color: 'error.main', WebkitTextFillColor: (theme) => theme.palette.error.main } } : undefined}
+      sx={error ? { '& .MuiOutlinedInput-notchedOutline': { borderColor: 'error.main' }, '& .MuiInputBase-input': { color: 'error.main', WebkitTextFillColor: (theme) => theme.vars!.palette.error.main } } : undefined}
     />
   )
 }

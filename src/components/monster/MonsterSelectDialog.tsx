@@ -12,6 +12,7 @@ import Chip from '@mui/material/Chip'
 import Checkbox from '@mui/material/Checkbox'
 import FormControlLabel from '@mui/material/FormControlLabel'
 import Tooltip from '@mui/material/Tooltip'
+import { inkOnDark } from '../../theme'
 import MonsterIcon from './MonsterIcon'
 import { useMonsterStore } from '../../store/monsterStore'
 import { useBuildStore } from '../../store/buildStore'
@@ -227,7 +228,7 @@ export default function MonsterSelectDialog({ open, onClose }: { open: boolean; 
                       <FormControlLabel
                         key={label}
                         sx={{ mr: 0, '& .MuiFormControlLabel-label': { fontSize: 13 } }}
-                        control={<Checkbox size="small" sx={{ p: 0.5, color, '&.Mui-checked': { color } }} checked={patternFilters.has(label)} onChange={() => togglePattern(label)} />}
+                        control={<Checkbox size="small" sx={[{ p: 0.5, color, '&.Mui-checked': { color } }, inkOnDark(color, '&.Mui-checked')]} checked={patternFilters.has(label)} onChange={() => togglePattern(label)} />}
                         label={label}
                       />
                     ))}
@@ -306,7 +307,7 @@ export default function MonsterSelectDialog({ open, onClose }: { open: boolean; 
                           const outlined = p.kind === 'status' && !p.cure // 만병통치약 불가 = outlined
                           return (
                             <Chip key={p.label} label={p.label} size="small" variant={outlined ? 'outlined' : 'filled'}
-                              sx={{ height: 18, fontSize: 10, borderColor: c, bgcolor: outlined ? 'transparent' : c, color: outlined ? c : '#fff' }} />
+                              sx={[{ height: 18, fontSize: 10, borderColor: c, bgcolor: outlined ? 'transparent' : c, color: outlined ? c : '#fff' }, outlined && inkOnDark(c)]} />
                           )
                         })}
                       </Box>

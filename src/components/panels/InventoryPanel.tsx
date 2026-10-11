@@ -328,7 +328,7 @@ export default function InventoryPanel() {
                   borderRadius: 1,
                   border: isHovered || isEquipped ? 2 : 1,
                   borderColor: isHovered ? 'secondary.main' : isEquipped ? 'primary.main' : 'divider',
-                  boxShadow: isHovered ? (t) => `0 0 0 2px ${t.palette.secondary.main}` : 'none',
+                  boxShadow: isHovered ? (t) => `0 0 0 2px ${t.vars!.palette.secondary.main}` : 'none',
                   bgcolor: isHovered ? 'action.selected' : 'transparent',
                   WebkitTouchCallout: 'none',
                   userSelect: 'none',
