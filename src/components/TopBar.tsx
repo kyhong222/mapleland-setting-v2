@@ -11,6 +11,7 @@ import { resetAll } from '../store/snapshot'
 import SlotManager from './SlotManager'
 import FeedbackDialog from './FeedbackDialog'
 import AuthButton from './AuthButton'
+import ColorModeButton from './ColorModeButton'
 
 export default function TopBar() {
   const jobId = useBuildStore((s) => s.jobId)
@@ -33,6 +34,7 @@ export default function TopBar() {
           </Typography>
           {jobId && <Chip size="small" color="primary" label={JOBS[jobId].label} />}
           <Box sx={{ flexGrow: 1 }} />
+          <ColorModeButton />
           <Button variant="text" size="small" onClick={() => setFeedbackOpen(true)}>
             문의하기
           </Button>
