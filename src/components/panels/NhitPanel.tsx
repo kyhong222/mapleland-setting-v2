@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import type { SyntheticEvent } from 'react'
 import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
@@ -6,6 +7,13 @@ import Select from '@mui/material/Select'
 import MenuItem from '@mui/material/MenuItem'
 import TextField from '@mui/material/TextField'
 import Button from '@mui/material/Button'
+import Dialog from '@mui/material/Dialog'
+import DialogTitle from '@mui/material/DialogTitle'
+import DialogContent from '@mui/material/DialogContent'
+import DialogActions from '@mui/material/DialogActions'
+import Slider from '@mui/material/Slider'
+import Switch from '@mui/material/Switch'
+import FormControlLabel from '@mui/material/FormControlLabel'
 import CollapsiblePanel from '../common/CollapsiblePanel'
 import { useBuildStore, DEFAULT_CHARGE } from '../../store/buildStore'
 import { useNhitStore } from '../../store/nhitStore'
@@ -126,6 +134,9 @@ export default function NhitPanel() {
   const preCast = useNhitStore((s) => s.preCast)
   const setSkill = useNhitStore((s) => s.setSkill)
   const setSkillLevel = useNhitStore((s) => s.setSkillLevel)
+  const coefOverride = useNhitStore((s) => s.coefOverride)
+  const setCoefOverride = useNhitStore((s) => s.setCoefOverride)
+  const [levelDlgOpen, setLevelDlgOpen] = useState(false)
   const addPreCast = useNhitStore((s) => s.addPreCast)
   const setPreCastLevel = useNhitStore((s) => s.setPreCastLevel)
   const removePreCast = useNhitStore((s) => s.removePreCast)
@@ -154,8 +165,10 @@ export default function NhitPanel() {
    * 캐릭터 스탯·버프·차지·크리·몬스터 방어를 모두 반영. 데미지 산출 불가 시 null.
    *
    * @param stunned 대상이 스턴 상태인지 — 스턴 마스터리 크리가 이때만 붙는다.
+   * @param coef 계수 직접 입력값(물리 %, 마법 기본 공격력). null이면 스킬북 계수.
+   *   레벨은 그대로 쓰인다 — 타수·숙련도·공속·스턴 확률 등 계수 외 수치는 레벨에서 온다.
    */
-  const buildCastAt = (sk: IJobSkill, lv: number, stunned: boolean) => {
+  const buildCastAt = (sk: IJobSkill, lv: number, stunned: boolean, coef: number | null = null) => {
     if (!job || !monster) return null
     const att = skillAttackAt(sk, lv)
     if (!att) return null
@@ -172,6 +185,9 @@ export default function NhitPanel() {
       const advAtt = adv ? skillAttackAt(adv, advLv) : null
       if (advAtt) effSkillPercent = advAtt.skillPercent
     }
+    // 계수 직접 입력 — 어드밴스드 차지 대체까지 끝난 최종 계수를 덮는다 (사용자가 본 인게임 값이 최종값)
+    if (coef != null && !isMagic) effSkillPercent = coef
+    const spellAtk = coef != null && isMagic ? coef : att.spellAtk
     // 크리: 확률 혼합으로 분포에 반영. 물리=합연산 / 마법=곱연산(샤프아이즈만)
     // 스턴 상태면 스턴 마스터리 크리(확률·추뎀)가 샤프아이즈 등과 합산돼 얹힌다.
     const critChance = (effects.criticalP ?? 0) + (stunned ? (stunEffects.criticalP ?? 0) : 0)
@@ -271,7 +287,7 @@ export default function NhitPanel() {
       mastery: att.mastery ?? masteryRatio(effects),
       magic: totalMagic(effects, finalStats.INT),
       int: finalStats.INT,
-      spellAtk: att.spellAtk,
+      spellAtk,
       elementMult,
       defense,
       skillPercent: effSkillPercent,
@@ -282,7 +298,7 @@ export default function NhitPanel() {
       hitMultipliers,
       shadowRatio,
     })
-    return { cast, att, effSkillPercent, isMagic, elements, displayMult, charge, hitMultipliers }
+    return { cast, att, effSkillPercent, spellAtk, isMagic, elements, displayMult, charge, hitMultipliers }
   }
 
   /** 스턴 마스터리가 실제로 켜져 있는지 (꺼져 있으면 변형 스킬도 기본 스킬과 같다) */
@@ -293,11 +309,11 @@ export default function NhitPanel() {
    *  - 기본 스킬 / (스턴): 스턴 여부를 하나로 고정해 한 번만 계산
    *  - (단독 운용): 스턴 확률만큼 두 분포를 섞는다 (variants.ts stunHitRatio)
    */
-  const buildCast = (sk: IJobSkill, lv: number) => {
+  const buildCast = (sk: IJobSkill, lv: number, coef: number | null = null) => {
     const ratio = hasStunBonus ? stunHitRatio(sk.id, lv) : 0
-    if (ratio <= 0 || ratio >= 1) return buildCastAt(sk, lv, ratio >= 1)
-    const off = buildCastAt(sk, lv, false)
-    const on = buildCastAt(sk, lv, true)
+    if (ratio <= 0 || ratio >= 1) return buildCastAt(sk, lv, ratio >= 1, coef)
+    const off = buildCastAt(sk, lv, false, coef)
+    const on = buildCastAt(sk, lv, true, coef)
     if (!off?.cast || !on?.cast) return off
     return { ...on, cast: mixCasts([{ weight: 1 - ratio, cast: off.cast }, { weight: ratio, cast: on.cast }]) }
   }
@@ -325,9 +341,9 @@ export default function NhitPanel() {
 
   const result = (() => {
     if (!job || !monster || !selectedSkill) return null
-    const built = buildCast(selectedSkill, skillLevel)
+    const built = buildCast(selectedSkill, skillLevel, coefOverride)
     if (!built) return null
-    const { cast, att, effSkillPercent, isMagic, elements, displayMult, charge, hitMultipliers } = built
+    const { cast, att, effSkillPercent, spellAtk, isMagic, elements, displayMult, charge, hitMultipliers } = built
     if (!cast) return { unsupported: true as const, elements, displayMult, charge }
 
     const baseId = baseSkillId(selectedSkill.id)
@@ -362,7 +378,8 @@ export default function NhitPanel() {
       lineRange: unitLineRange(cast.lineRanges, hitMultipliers),
       isFist,
       totalRange: cast.totalRange,
-      coef: Math.round(effSkillPercent),
+      // 마법은 스킬%가 아니라 기본 공격력이 계수다. 직접 입력값이면 '*'로 표시
+      coef: `${isMagic ? `공격력 ${spellAtk}` : `${Math.round(effSkillPercent)}%`}${coefOverride != null ? '*' : ''}`,
       // 패닉/코마/돌진은 방컷·DPM 미제공(데미지 범위만). 추가스킬은 prior 분포로 반영.
       nhit: isBoss || noDpm ? null : computeNhit(cast.dist, hp, 10, preCastPrior),
       apm, dpm, killSec, isMagic, effStep, noDpm,
@@ -435,13 +452,29 @@ export default function NhitPanel() {
               ))}
             </Select>
             {selectedSkill && (
-              <TextField
-                size="small" type="number" label="Lv" value={skillLevel}
-                onChange={(e) => setSkillLevel(Math.max(1, Math.min(selectedSkill.masterLevel, Number(e.target.value) || 1)))}
-                slotProps={{ htmlInput: { style: { width: 44, textAlign: 'center' }, min: 1, max: selectedSkill.masterLevel } }}
-              />
+              <Button
+                size="small" variant="outlined" onClick={() => setLevelDlgOpen(true)}
+                sx={{ flexShrink: 0, minWidth: 0, px: 1, fontSize: 12, lineHeight: 1.2, flexDirection: 'column' }}
+              >
+                <Box component="span">Lv.{skillLevel}{coefOverride != null && '*'}</Box>
+                <Box component="span" sx={{ fontSize: 10, fontWeight: 400 }}>수정</Box>
+              </Button>
             )}
           </Box>
+          {levelDlgOpen && selectedSkill && (
+            <SkillLevelDialog
+              skill={selectedSkill}
+              level={skillLevel}
+              coefOverride={coefOverride}
+              onApply={(lv, coef) => { setSkillLevel(lv); setCoefOverride(coef); setLevelDlgOpen(false) }}
+              onClose={() => setLevelDlgOpen(false)}
+            />
+          )}
+          {coefOverride != null && (
+            <Typography variant="caption" color="secondary.main" sx={{ display: 'block', mt: -0.5, mb: 1 }}>
+              * 직접 입력한 계수로 계산 중입니다
+            </Typography>
+          )}
           {stunNote && (
             <Typography
               variant="caption"
@@ -505,13 +538,13 @@ export default function NhitPanel() {
               <Typography variant="caption" sx={{ fontWeight: 700, display: 'block' }}>데미지 범위</Typography>
               {result.lines > 1 && (
                 <Row
-                  label={`1회 타격 (${result.lines}타, ${result.coef}%)`}
+                  label={`1회 타격 (${result.lines}타, ${result.coef})`}
                   value={rng(result.lineRange)}
                   note={result.isFist ? <FistStructureTip /> : undefined}
                 />
               )}
               <Row
-                label={result.lines > 1 ? '총 데미지' : `데미지 (${result.coef}%)`}
+                label={result.lines > 1 ? '총 데미지' : `데미지 (${result.coef})`}
                 value={rng(result.totalRange)}
                 strong
                 note={
@@ -578,6 +611,112 @@ export default function NhitPanel() {
         </>
       )}
     </CollapsiblePanel>
+  )
+}
+
+/** 레벨 퀵버튼 — 1 + 10단위 + 마스터 레벨 (예: 마스터 30 → 1·10·20·30, 마스터 15 → 1·10·15) */
+function quickLevels(master: number): number[] {
+  const set = new Set([1, master])
+  for (let v = 10; v < master; v += 10) set.add(v)
+  return [...set].sort((a, b) => a - b)
+}
+
+/**
+ * 메인 스킬 레벨/계수 수정 다이얼로그.
+ * 메랜은 스킬 수치가 자주 바뀌는데 인게임에서만 확인돼 스킬북 반영이 늦다 →
+ * 레벨을 고르면 스킬북 계수, '계수 직접 입력'을 켜면 입력한 계수로 계산한다.
+ * 직접 입력이어도 레벨은 유지된다(타수·숙련도·공속 등 계수 외 수치의 출처).
+ */
+function SkillLevelDialog({ skill, level, coefOverride, onApply, onClose }: {
+  skill: IJobSkill
+  level: number
+  coefOverride: number | null
+  onApply: (level: number, coef: number | null) => void
+  onClose: () => void
+}) {
+  const master = skill.masterLevel
+  const [draftLevel, setDraftLevel] = useState(level)
+  const [custom, setCustom] = useState(coefOverride != null)
+  const att = skillAttackAt(skill, draftLevel)
+  const isMagic = att?.kind === 'magic'
+  const levelCoef = att ? (isMagic ? att.spellAtk : att.skillPercent) : 0
+  // 입력 중 빈칸을 허용하려고 문자열로 들고 있는다. 처음 켤 때는 현재 레벨 계수로 채운다.
+  const [coefText, setCoefText] = useState(String(coefOverride ?? levelCoef))
+  const coefNum = Number(coefText)
+  const coefValid = coefText.trim() !== '' && Number.isFinite(coefNum) && coefNum > 0
+  const clampLv = (v: number) => Math.max(1, Math.min(master, v))
+  const fmt = (v: number) => (isMagic ? `기본 공격력 ${v}` : `${v}%`)
+
+  return (
+    <Dialog open onClose={onClose} maxWidth="xs" fullWidth>
+      <DialogTitle sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+        <Box component="img" src={skillIconSrc(skill.id)} alt="" onError={hideOnError} sx={{ width: 32, height: 32, imageRendering: 'pixelated' }} />
+        {skill.description?.name ?? skill.id}
+      </DialogTitle>
+      <DialogContent>
+        <Box sx={{ px: 1 }}>
+          <Typography variant="body2" gutterBottom>스킬 레벨: {draftLevel} / {master}</Typography>
+          {master > 1 && (
+            <>
+              <Box sx={{ display: 'flex', gap: 0.5, mb: 1 }}>
+                {quickLevels(master).map((v) => (
+                  <Button
+                    key={v} size="small"
+                    variant={draftLevel === v ? 'contained' : 'outlined'}
+                    onClick={() => setDraftLevel(v)}
+                    sx={{ minWidth: 0, flex: 1, py: 0.25 }}
+                  >
+                    {v}
+                  </Button>
+                ))}
+              </Box>
+              <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
+                <Button size="small" variant="outlined" onClick={() => setDraftLevel(clampLv(draftLevel - 1))} disabled={draftLevel <= 1} sx={{ minWidth: 32, px: 0 }}>−</Button>
+                <Slider min={1} max={master} value={draftLevel} onChange={(_, v) => setDraftLevel(v as number)} valueLabelDisplay="auto" />
+                <Button size="small" variant="outlined" onClick={() => setDraftLevel(clampLv(draftLevel + 1))} disabled={draftLevel >= master} sx={{ minWidth: 32, px: 0 }}>＋</Button>
+              </Box>
+            </>
+          )}
+          <Typography variant="body2" color={custom ? 'text.disabled' : 'success.main'} sx={{ mt: 0.5 }}>
+            Lv.{draftLevel} 계수: {att ? fmt(levelCoef) : '—'}
+          </Typography>
+
+          <Divider sx={{ my: 1.5 }} />
+          <FormControlLabel
+            control={<Switch checked={custom} onChange={(e) => setCustom(e.target.checked)} />}
+            label="계수 직접 입력"
+          />
+          {custom && (
+            <>
+              <TextField
+                size="small" type="number" fullWidth autoFocus
+                label={isMagic ? '기본 공격력' : '데미지 (%)'}
+                value={coefText}
+                onChange={(e) => setCoefText(e.target.value)}
+                error={!coefValid}
+                helperText={coefValid ? undefined : '0보다 큰 값을 입력하세요'}
+                slotProps={{ htmlInput: { min: 1 } }}
+                sx={{ mt: 0.5 }}
+              />
+              <Typography variant="caption" color="text.disabled" sx={{ display: 'block', mt: 0.5, lineHeight: 1.4 }}>
+                인게임 스킬 설명의 {isMagic ? '기본 공격력' : '데미지 %'}를 입력하세요. 타수·숙련도·공격속도 등
+                계수 외 수치는 위에서 선택한 레벨 기준으로 계산됩니다.
+              </Typography>
+            </>
+          )}
+        </Box>
+      </DialogContent>
+      <DialogActions>
+        <Button onClick={onClose} color="inherit">취소</Button>
+        <Button
+          variant="contained"
+          disabled={custom && !coefValid}
+          onClick={() => onApply(draftLevel, custom ? coefNum : null)}
+        >
+          적용
+        </Button>
+      </DialogActions>
+    </Dialog>
   )
 }
 
