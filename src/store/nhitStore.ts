@@ -18,15 +18,25 @@ export interface PreCastEntry {
 export interface NhitSelection {
   skillId: number | ''
   skillLevel: number
+  /**
+   * 메인 스킬 계수 직접 입력값 — null이면 스킬북의 레벨별 계수를 쓴다.
+   * 물리는 데미지 %, 마법은 기본 공격력(mad). 메랜은 스킬 수치가 자주 바뀌는데 인게임에서만
+   * 확인돼 스킬북 반영이 늦으므로, 사용자가 바뀐 값을 바로 넣어볼 수 있게 둔다.
+   * 구버전 슬롯엔 없을 수 있다.
+   */
+  coefOverride?: number | null
   preCast: { id: number; level: number }[]
 }
 
 interface NhitState {
   skillId: number | ''
   skillLevel: number
+  coefOverride: number | null
   preCast: PreCastEntry[]
+  /** 스킬을 바꾸면 계수 직접 입력은 해제된다 (다른 스킬의 계수가 따라오지 않게) */
   setSkill: (id: number | '', level: number) => void
   setSkillLevel: (level: number) => void
+  setCoefOverride: (coef: number | null) => void
   addPreCast: (id: number, level: number) => void
   setPreCastLevel: (uid: number, level: number) => void
   removePreCast: (uid: number) => void
@@ -40,22 +50,24 @@ interface NhitState {
 let uidSeq = 0
 const nextUid = () => ++uidSeq
 
-const EMPTY: NhitSelection = { skillId: '', skillLevel: 1, preCast: [] }
+const EMPTY: NhitSelection = { skillId: '', skillLevel: 1, coefOverride: null, preCast: [] }
 
 export const useNhitStore = create<NhitState>()(
   persist(
     (set, get) => ({
       ...EMPTY,
       preCast: [] as PreCastEntry[],
-      setSkill: (id, level) => set({ skillId: id, skillLevel: level }),
+      coefOverride: null,
+      setSkill: (id, level) => set({ skillId: id, skillLevel: level, coefOverride: null }),
       setSkillLevel: (level) => set({ skillLevel: level }),
+      setCoefOverride: (coef) => set({ coefOverride: coef }),
       addPreCast: (id, level) => set((s) => ({ preCast: [...s.preCast, { uid: nextUid(), id, level }] })),
       setPreCastLevel: (uid, level) =>
         set((s) => ({ preCast: s.preCast.map((p) => (p.uid === uid ? { ...p, level } : p)) })),
       removePreCast: (uid) => set((s) => ({ preCast: s.preCast.filter((p) => p.uid !== uid) })),
       capture: () => {
-        const { skillId, skillLevel, preCast } = get()
-        return { skillId, skillLevel, preCast: preCast.map(({ id, level }) => ({ id, level })) }
+        const { skillId, skillLevel, coefOverride, preCast } = get()
+        return { skillId, skillLevel, coefOverride, preCast: preCast.map(({ id, level }) => ({ id, level })) }
       },
       restore: (sel) => {
         const s = sel ?? EMPTY
@@ -63,6 +75,7 @@ export const useNhitStore = create<NhitState>()(
         set({
           skillId: s.skillId === '' ? '' : migrateSkillId(s.skillId),
           skillLevel: s.skillLevel,
+          coefOverride: s.coefOverride ?? null,
           preCast: (s.preCast ?? []).map((p) => ({ uid: nextUid(), id: migrateSkillId(p.id), level: p.level })),
         })
       },
@@ -78,6 +91,7 @@ export const useNhitStore = create<NhitState>()(
           state.preCast = state.preCast.map((p) => ({ ...p, id: migrateSkillId(p.id) }))
         }
         if (state.skillId !== '') state.skillId = migrateSkillId(state.skillId)
+        state.coefOverride ??= null
       },
     },
   ),
