@@ -14,7 +14,9 @@ import DialogActions from '@mui/material/DialogActions'
 import Slider from '@mui/material/Slider'
 import Switch from '@mui/material/Switch'
 import FormControlLabel from '@mui/material/FormControlLabel'
+import IconButton from '@mui/material/IconButton'
 import CollapsiblePanel from '../common/CollapsiblePanel'
+import EditBadge from '../common/EditBadge'
 import { useBuildStore, DEFAULT_CHARGE } from '../../store/buildStore'
 import { useNhitStore } from '../../store/nhitStore'
 import { useInventoryStore } from '../../store/inventoryStore'
@@ -432,9 +434,23 @@ export default function NhitPanel() {
         <Typography variant="body2" color="text.disabled">공격 스킬이 없습니다.</Typography>
       ) : (
         <>
-          <Box sx={{ display: 'flex', gap: 0.5, mb: 1 }}>
+          <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5, mb: 1 }}>
             <Select<number | ''>
               size="small" displayEmpty value={skillId}
+              // 목록은 이름만, 선택된 값은 '[Lv. 20] 파워 스트라이크'처럼 레벨을 앞에 붙인다
+              renderValue={(v) => {
+                const sk = attackSkills.find((s) => s.id === v)
+                if (!sk) return <em>스킬 선택</em>
+                return (
+                  <>
+                    <Box component="img" src={skillIconSrc(sk.id)} alt="" onError={hideOnError} sx={{ width: 32, height: 32, imageRendering: 'pixelated', display: 'block', flexShrink: 0 }} />
+                    <Box component="span" sx={{ lineHeight: 1.2 }}>
+                      [Lv. {skillLevel}{coefOverride != null && '*'}] {sk.description?.name ?? sk.id}
+                    </Box>
+                    {SKILL_MOTION[baseSkillId(sk.id)] && <Box component="span" sx={{ fontSize: 10, color: 'text.disabled' }}>*</Box>}
+                  </>
+                )
+              }}
               onChange={(e) => {
                 const id = e.target.value === '' ? '' : Number(e.target.value)
                 const sk = attackSkills.find((s) => s.id === id)
@@ -452,13 +468,9 @@ export default function NhitPanel() {
               ))}
             </Select>
             {selectedSkill && (
-              <Button
-                size="small" variant="outlined" onClick={() => setLevelDlgOpen(true)}
-                sx={{ flexShrink: 0, minWidth: 0, px: 1, fontSize: 12, lineHeight: 1.2, flexDirection: 'column' }}
-              >
-                <Box component="span">Lv.{skillLevel}{coefOverride != null && '*'}</Box>
-                <Box component="span" sx={{ fontSize: 10, fontWeight: 400 }}>수정</Box>
-              </Button>
+              <IconButton size="small" aria-label="스킬 레벨·계수 수정" onClick={() => setLevelDlgOpen(true)} sx={{ flexShrink: 0 }}>
+                <EditBadge size={24} />
+              </IconButton>
             )}
           </Box>
           {levelDlgOpen && selectedSkill && (
