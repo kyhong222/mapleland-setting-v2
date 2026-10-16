@@ -728,5 +728,19 @@
     "reqLevel": 50,
     "iconUrl": "https://maplestory.io/api/GMS/200/item/1102100/icon",
     "tuc": 5
+  },
+  {
+    "id": 1102147,
+    "name": "장난감 장인의 망토",
+    "slot": "cape",
+    "effects": {
+      "hp": 20,
+      "mp": 35,
+      "pdef": 10,
+      "mdef": 15
+    },
+    "reqLevel": 30,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1102147/icon",
+    "tuc": 5
   }
 ]

@@ -6776,5 +6776,20 @@
     "tuc": 7,
     "reqStr": 110,
     "reqDex": 315
+  },
+  {
+    "id": 1422036,
+    "name": "장난감 장인의 망치",
+    "slot": "weapon",
+    "effects": {
+      "pad": 72,
+      "mad": 50,
+      "STR": 1,
+      "attackSpeed": 6
+    },
+    "reqLevel": 30,
+    "weaponType": "twoHandedMace",
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1422036/icon",
+    "tuc": 7
   }
 ]
