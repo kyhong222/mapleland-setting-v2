@@ -9538,6 +9538,495 @@
     "exp": 28,
     "maxHP": 230
   },
+  "9420527": {
+    "id": 9420527,
+    "level": 45,
+    "PADamage": 140,
+    "MADamage": 0,
+    "PDDamage": 160,
+    "MDDamage": 180,
+    "acc": 160,
+    "eva": 18,
+    "exp": 132,
+    "maxHP": 2600
+  },
+  "9420528": {
+    "id": 9420528,
+    "level": 47,
+    "PADamage": 150,
+    "MADamage": 140,
+    "PDDamage": 140,
+    "MDDamage": 180,
+    "acc": 150,
+    "eva": 24,
+    "exp": 135,
+    "maxHP": 2850
+  },
+  "9420529": {
+    "id": 9420529,
+    "level": 52,
+    "PADamage": 155,
+    "MADamage": 170,
+    "PDDamage": 120,
+    "MDDamage": 255,
+    "acc": 120,
+    "eva": 20,
+    "exp": 172,
+    "maxHP": 3700
+  },
+  "9420530": {
+    "id": 9420530,
+    "level": 56,
+    "PADamage": 155,
+    "MADamage": 0,
+    "PDDamage": 170,
+    "MDDamage": 180,
+    "acc": 130,
+    "eva": 22,
+    "exp": 185,
+    "maxHP": 4600
+  },
+  "9420531": {
+    "id": 9420531,
+    "level": 59,
+    "PADamage": 210,
+    "MADamage": 200,
+    "PDDamage": 180,
+    "MDDamage": 200,
+    "acc": 130,
+    "eva": 25,
+    "exp": 220,
+    "maxHP": 5800
+  },
+  "9420532": {
+    "id": 9420532,
+    "level": 59,
+    "PADamage": 210,
+    "MADamage": 220,
+    "PDDamage": 220,
+    "MDDamage": 190,
+    "acc": 100,
+    "eva": 20,
+    "exp": 210,
+    "maxHP": 6200
+  },
+  "9420533": {
+    "id": 9420533,
+    "level": 61,
+    "PADamage": 220,
+    "MADamage": 50,
+    "PDDamage": 220,
+    "MDDamage": 230,
+    "acc": 110,
+    "eva": 28,
+    "exp": 235,
+    "maxHP": 6000,
+    "elemAttr": "F2I3",
+    "skills": {
+      "attack1": {
+        "type": 0
+      }
+    }
+  },
+  "9420534": {
+    "id": 9420534,
+    "level": 65,
+    "PADamage": 180,
+    "MADamage": 230,
+    "PDDamage": 180,
+    "MDDamage": 240,
+    "acc": 130,
+    "eva": 24,
+    "exp": 255,
+    "maxHP": 9800,
+    "elemAttr": "I3",
+    "skills": {
+      "attack1": {
+        "type": 0
+      }
+    }
+  },
+  "9420535": {
+    "id": 9420535,
+    "level": 68,
+    "PADamage": 230,
+    "MADamage": 210,
+    "PDDamage": 200,
+    "MDDamage": 220,
+    "acc": 160,
+    "eva": 27,
+    "exp": 270,
+    "maxHP": 12000,
+    "skills": {
+      "attack1": {
+        "type": 0
+      }
+    }
+  },
+  "9420536": {
+    "id": 9420536,
+    "level": 72,
+    "PADamage": 270,
+    "MADamage": 320,
+    "PDDamage": 320,
+    "MDDamage": 260,
+    "acc": 172,
+    "eva": 25,
+    "exp": 300,
+    "maxHP": 15200,
+    "elemAttr": "S2",
+    "skills": {
+      "attack1": {
+        "type": 0,
+        "magic": 1
+      }
+    }
+  },
+  "9420537": {
+    "id": 9420537,
+    "level": 75,
+    "PADamage": 270,
+    "MADamage": 320,
+    "PDDamage": 250,
+    "MDDamage": 250,
+    "acc": 120,
+    "eva": 25,
+    "exp": 352,
+    "maxHP": 15800,
+    "skills": {
+      "attack1": {
+        "type": 0,
+        "magic": 1
+      }
+    },
+    "castSkills": [
+      100
+    ]
+  },
+  "9420538": {
+    "id": 9420538,
+    "level": 82,
+    "PADamage": 360,
+    "MADamage": 400,
+    "PDDamage": 680,
+    "MDDamage": 480,
+    "acc": 150,
+    "eva": 29,
+    "exp": 1250,
+    "maxHP": 28000,
+    "elemAttr": "F3S3",
+    "skills": {
+      "attack1": {
+        "type": 0,
+        "magic": 1
+      }
+    },
+    "castSkills": [
+      101
+    ]
+  },
+  "9420539": {
+    "id": 9420539,
+    "level": 87,
+    "PADamage": 388,
+    "MADamage": 430,
+    "PDDamage": 820,
+    "MDDamage": 465,
+    "acc": 160,
+    "eva": 26,
+    "exp": 2000,
+    "maxHP": 36000,
+    "elemAttr": "F3L3",
+    "skills": {
+      "attack1": {
+        "type": 0
+      }
+    },
+    "castSkills": [
+      114
+    ]
+  },
+  "9420540": {
+    "id": 9420540,
+    "level": 94,
+    "PADamage": 430,
+    "MADamage": 460,
+    "PDDamage": 820,
+    "MDDamage": 540,
+    "acc": 198,
+    "eva": 37,
+    "exp": 2500,
+    "maxHP": 43000,
+    "elemAttr": "H3",
+    "skills": {
+      "attack1": {
+        "type": 0,
+        "PADamage": 300
+      }
+    },
+    "castSkills": [
+      114
+    ]
+  },
+  "9420542": {
+    "id": 9420542,
+    "level": 80,
+    "PADamage": 196,
+    "MADamage": 112,
+    "PDDamage": 114,
+    "MDDamage": 204,
+    "acc": 50,
+    "eva": 4,
+    "exp": 268800,
+    "maxHP": 60000000,
+    "boss": 1,
+    "elemAttr": "F2I3S1",
+    "skills": {
+      "attack1": {
+        "type": 0,
+        "magic": 1,
+        "conMP": 10
+      },
+      "attack2": {
+        "type": 0,
+        "magic": 1,
+        "conMP": 10
+      },
+      "attack3": {
+        "conMP": 10
+      },
+      "attack4": {
+        "type": 0,
+        "PADamage": 200,
+        "conMP": 10
+      }
+    },
+    "disease": [
+      123
+    ],
+    "castSkills": [
+      140,
+      141,
+      200
+    ]
+  },
+  "9420543": {
+    "id": 9420543,
+    "level": 100,
+    "PADamage": 294,
+    "MADamage": 168,
+    "PDDamage": 171,
+    "MDDamage": 306,
+    "acc": 75,
+    "eva": 6,
+    "exp": 403200,
+    "maxHP": 90000000,
+    "boss": 1,
+    "elemAttr": "F2I3S1",
+    "skills": {
+      "attack1": {
+        "type": 0,
+        "magic": 1,
+        "conMP": 20
+      },
+      "attack2": {
+        "type": 0,
+        "magic": 1,
+        "conMP": 10
+      },
+      "attack3": {
+        "conMP": 10
+      },
+      "attack4": {
+        "type": 0,
+        "PADamage": 300,
+        "conMP": 10
+      }
+    },
+    "disease": [
+      123
+    ],
+    "castSkills": [
+      140,
+      141,
+      200
+    ]
+  },
+  "9420544": {
+    "id": 9420544,
+    "level": 140,
+    "PADamage": 980,
+    "MADamage": 560,
+    "PDDamage": 570,
+    "MDDamage": 1020,
+    "acc": 250,
+    "eva": 20,
+    "exp": 1344000,
+    "maxHP": 150000000,
+    "boss": 1,
+    "elemAttr": "F2I3S1",
+    "skills": {
+      "attack1": {
+        "type": 0,
+        "magic": 1,
+        "conMP": 100
+      },
+      "attack2": {
+        "type": 0,
+        "magic": 1,
+        "conMP": 10
+      },
+      "attack3": {
+        "conMP": 10
+      },
+      "attack4": {
+        "type": 0,
+        "PADamage": 600,
+        "conMP": 10
+      }
+    },
+    "disease": [
+      123,
+      132
+    ],
+    "castSkills": [
+      140,
+      141,
+      200
+    ]
+  },
+  "9420547": {
+    "id": 9420547,
+    "level": 80,
+    "PADamage": 196,
+    "MADamage": 112,
+    "PDDamage": 114,
+    "MDDamage": 204,
+    "acc": 50,
+    "eva": 4,
+    "exp": 268800,
+    "maxHP": 60000000,
+    "boss": 1,
+    "elemAttr": "I2L2F3",
+    "skills": {
+      "attack1": {
+        "type": 0,
+        "magic": 1,
+        "conMP": 10
+      },
+      "attack2": {
+        "type": 0,
+        "magic": 1,
+        "elemAttr": "L",
+        "conMP": 10
+      },
+      "attack3": {
+        "type": 0,
+        "magic": 1,
+        "elemAttr": "L",
+        "conMP": 10
+      },
+      "attack4": {
+        "type": 0,
+        "PADamage": 200,
+        "conMP": 10
+      }
+    },
+    "castSkills": [
+      140,
+      141,
+      200
+    ]
+  },
+  "9420548": {
+    "id": 9420548,
+    "level": 100,
+    "PADamage": 294,
+    "MADamage": 168,
+    "PDDamage": 171,
+    "MDDamage": 306,
+    "acc": 75,
+    "eva": 6,
+    "exp": 403200,
+    "maxHP": 90000000,
+    "boss": 1,
+    "elemAttr": "I2L2F3",
+    "skills": {
+      "attack1": {
+        "type": 0,
+        "magic": 1,
+        "conMP": 20
+      },
+      "attack2": {
+        "type": 0,
+        "magic": 1,
+        "elemAttr": "L",
+        "conMP": 10
+      },
+      "attack3": {
+        "type": 0,
+        "magic": 1,
+        "elemAttr": "L",
+        "conMP": 10
+      },
+      "attack4": {
+        "type": 0,
+        "PADamage": 300,
+        "conMP": 10
+      }
+    },
+    "castSkills": [
+      140,
+      141,
+      200
+    ]
+  },
+  "9420549": {
+    "id": 9420549,
+    "level": 140,
+    "PADamage": 980,
+    "MADamage": 560,
+    "PDDamage": 570,
+    "MDDamage": 1020,
+    "acc": 250,
+    "eva": 20,
+    "exp": 1344000,
+    "maxHP": 150000000,
+    "boss": 1,
+    "elemAttr": "I2L2F3",
+    "skills": {
+      "attack1": {
+        "type": 0,
+        "magic": 1,
+        "conMP": 100
+      },
+      "attack2": {
+        "type": 0,
+        "magic": 1,
+        "elemAttr": "L",
+        "conMP": 10
+      },
+      "attack3": {
+        "type": 0,
+        "magic": 1,
+        "elemAttr": "L",
+        "conMP": 10
+      },
+      "attack4": {
+        "type": 0,
+        "PADamage": 600,
+        "conMP": 10
+      }
+    },
+    "disease": [
+      132
+    ],
+    "castSkills": [
+      140,
+      141,
+      200
+    ]
+  },
   "9600001": {
     "id": 9600001,
     "level": 20,
