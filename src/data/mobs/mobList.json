@@ -1783,6 +1783,16 @@
     ]
   },
   {
+    "id": 9420527,
+    "name": "Chlorotrap",
+    "koreanName": "클로로트랩",
+    "level": 45,
+    "isBoss": false,
+    "foundAt": [
+      "말레이시아"
+    ]
+  },
+  {
     "id": 4130101,
     "name": "Tortie",
     "koreanName": "엄티",
@@ -1881,6 +1891,16 @@
     "isBoss": false,
     "foundAt": [
       "해외여행: 대만"
+    ]
+  },
+  {
+    "id": 9420528,
+    "name": "Emo Slime",
+    "koreanName": "이모 슬라임",
+    "level": 47,
+    "isBoss": false,
+    "foundAt": [
+      "말레이시아"
     ]
   },
   {
@@ -2144,6 +2164,16 @@
     ]
   },
   {
+    "id": 9420529,
+    "name": "Dark Fission",
+    "koreanName": "다크 피션",
+    "level": 52,
+    "isBoss": false,
+    "foundAt": [
+      "말레이시아"
+    ]
+  },
+  {
     "id": 5100005,
     "name": "Hogul",
     "koreanName": "호걸",
@@ -2344,6 +2374,16 @@
     ]
   },
   {
+    "id": 9420530,
+    "name": "Oly Oly",
+    "koreanName": "올리 올리",
+    "level": 56,
+    "isBoss": false,
+    "foundAt": [
+      "말레이시아"
+    ]
+  },
+  {
     "id": 5130107,
     "name": "Coolie Zombie",
     "koreanName": "쿨리 좀비",
@@ -2451,6 +2491,26 @@
     "isBoss": true,
     "foundAt": [
       "루디브리엄"
+    ]
+  },
+  {
+    "id": 9420531,
+    "name": "Scaredy Scarlion",
+    "koreanName": "겁쟁이 스칼리온",
+    "level": 59,
+    "isBoss": false,
+    "foundAt": [
+      "말레이시아"
+    ]
+  },
+  {
+    "id": 9420532,
+    "name": "Ratatula",
+    "koreanName": "라타툴라",
+    "level": 59,
+    "isBoss": false,
+    "foundAt": [
+      "말레이시아"
     ]
   },
   {
@@ -2601,6 +2661,16 @@
     "isBoss": false,
     "foundAt": [
       "시계탑 최하층"
+    ]
+  },
+  {
+    "id": 9420533,
+    "name": "Rodeo",
+    "koreanName": "로데오",
+    "level": 61,
+    "isBoss": false,
+    "foundAt": [
+      "말레이시아"
     ]
   },
   {
@@ -2814,6 +2884,16 @@
     ]
   },
   {
+    "id": 9420534,
+    "name": "Charmer",
+    "koreanName": "챠머",
+    "level": 65,
+    "isBoss": false,
+    "foundAt": [
+      "말레이시아"
+    ]
+  },
+  {
     "id": 6130209,
     "name": "Sage Cat",
     "koreanName": "묘선",
@@ -2951,6 +3031,16 @@
     "isBoss": false,
     "foundAt": [
       "샤레니안"
+    ]
+  },
+  {
+    "id": 9420535,
+    "name": "Jester Scarlion",
+    "koreanName": "제스터 스칼리온",
+    "level": 68,
+    "isBoss": false,
+    "foundAt": [
+      "말레이시아"
     ]
   },
   {
@@ -3114,6 +3204,16 @@
     ]
   },
   {
+    "id": 9420536,
+    "name": "Froscola",
+    "koreanName": "프로스콜라",
+    "level": 72,
+    "isBoss": false,
+    "foundAt": [
+      "말레이시아"
+    ]
+  },
+  {
     "id": 7110301,
     "name": "Homunculus ",
     "koreanName": "호문쿨루",
@@ -3211,6 +3311,16 @@
     "isBoss": true,
     "foundAt": [
       "아쿠아리움"
+    ]
+  },
+  {
+    "id": 9420537,
+    "name": "Yabber Doo",
+    "koreanName": "야바 두",
+    "level": 75,
+    "isBoss": false,
+    "foundAt": [
+      "말레이시아"
     ]
   },
   {
@@ -3434,6 +3544,26 @@
     ]
   },
   {
+    "id": 9420542,
+    "name": "Targa",
+    "koreanName": "타르가",
+    "level": 80,
+    "isBoss": true,
+    "foundAt": [
+      "말레이시아"
+    ]
+  },
+  {
+    "id": 9420547,
+    "name": "Scarlion Boss",
+    "koreanName": "스칼리온",
+    "level": 80,
+    "isBoss": true,
+    "foundAt": [
+      "말레이시아"
+    ]
+  },
+  {
     "id": 9300139,
     "name": "Franken Lloyd",
     "koreanName": "프랑켄 로이드",
@@ -3451,6 +3581,16 @@
     "isBoss": false,
     "foundAt": [
       "엘나스"
+    ]
+  },
+  {
+    "id": 9420538,
+    "name": "Booper Scarlion",
+    "koreanName": "부퍼 스칼리온",
+    "level": 82,
+    "isBoss": false,
+    "foundAt": [
+      "말레이시아"
     ]
   },
   {
@@ -3551,6 +3691,16 @@
     "isBoss": false,
     "foundAt": [
       "시계탑 최하층"
+    ]
+  },
+  {
+    "id": 9420539,
+    "name": "Vikerola",
+    "koreanName": "바이크롤라",
+    "level": 87,
+    "isBoss": false,
+    "foundAt": [
+      "말레이시아"
     ]
   },
   {
@@ -3734,6 +3884,16 @@
     ]
   },
   {
+    "id": 9420540,
+    "name": "Gallopera",
+    "koreanName": "갤러페라",
+    "level": 94,
+    "isBoss": false,
+    "foundAt": [
+      "말레이시아"
+    ]
+  },
+  {
     "id": 8140702,
     "name": "Rexton",
     "koreanName": "리스튼",
@@ -3814,6 +3974,26 @@
     ]
   },
   {
+    "id": 9420543,
+    "name": "Angry Targa",
+    "koreanName": "화난 타르가",
+    "level": 100,
+    "isBoss": true,
+    "foundAt": [
+      "말레이시아"
+    ]
+  },
+  {
+    "id": 9420548,
+    "name": "Angry Scarlion Boss",
+    "koreanName": "화난 스칼리온",
+    "level": 100,
+    "isBoss": true,
+    "foundAt": [
+      "말레이시아"
+    ]
+  },
+  {
     "id": 8200004,
     "name": "",
     "koreanName": "추억의 수호대장",
@@ -3821,6 +4001,26 @@
     "isBoss": false,
     "foundAt": [
       "시간의 신전"
+    ]
+  },
+  {
+    "id": 9420544,
+    "name": "Furious Targa",
+    "koreanName": "분노한 타르가",
+    "level": 140,
+    "isBoss": true,
+    "foundAt": [
+      "말레이시아"
+    ]
+  },
+  {
+    "id": 9420549,
+    "name": "Furious Scarlion Boss",
+    "koreanName": "분노한 스칼리온",
+    "level": 140,
+    "isBoss": true,
+    "foundAt": [
+      "말레이시아"
     ]
   },
   {
