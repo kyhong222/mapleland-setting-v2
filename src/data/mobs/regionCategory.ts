@@ -25,10 +25,11 @@ const ic = (mapId: number) => `/region-icons/map-${mapId}.png`
 export const REGION_CATEGORIES: RegionCategory[] = [
   { name: '빅토리아 아일랜드', regions: [{ name: '빅토리아 아일랜드', icon: ic(104010000) }] },
   { name: '세계여행', regions: [
-    { name: '해외여행: 일본', icon: ic(993000400) },
+    { name: '해외여행: 일본', icon: ic(800000000) },
     { name: '해외여행: 대만', icon: ic(993000400) },
     { name: '해외여행: 중국', icon: ic(993000400) },
-    { name: '해외여행: 태국', icon: ic(993000400) },
+    { name: '해외여행: 태국', icon: ic(500000000) },
+    { name: '해외여행: 말레이시아', icon: ic(550000000) },
   ] },
   { name: '루더스 호수', regions: [
     { name: '루디브리엄', icon: ic(221022600) },
@@ -54,7 +55,6 @@ export const REGION_CATEGORIES: RegionCategory[] = [
   { name: '미나르숲', regions: [{ name: '리프레', icon: ic(240010000) }] },
   { name: '시간의 신전', regions: [{ name: '시간의 신전', icon: ic(270010100) }] },
   { name: '마스테리아', regions: [{ name: '뉴 리프 시티', icon: ic(600000000) }] },
-  { name: '말레이시아', regions: [{ name: '말레이시아', icon: ic(550000000) }] },
   { name: '무릉도장', regions: [{ name: '무릉도장', icon: ic(925020000) }] },
   { name: '파티퀘스트', regions: [
     { name: '샤레니안', icon: ic(308000001) },
