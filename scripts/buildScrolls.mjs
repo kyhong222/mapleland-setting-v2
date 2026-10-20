@@ -89,8 +89,8 @@ const OVERRIDES = [
   {
     key: 'slot:eyeAccessory::눈 장식 체력 주문서', name: '눈 장식 체력 주문서', slot: 'eyeAccessory',
     options: [
-      { rate: 100, effects: { hp: 10 } },
-      { rate: 60, effects: { hp: 20 } },
+      { rate: 100, effects: { hp: 5 } },
+      { rate: 60, effects: { hp: 15 } },
       { rate: 10, effects: { hp: 30 } },
     ],
   },
