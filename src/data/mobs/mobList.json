@@ -4714,6 +4714,46 @@
     ]
   },
   {
+    "id": 8800113,
+    "name": "Chaos Poonko",
+    "koreanName": "카오스 푼코",
+    "level": 67,
+    "isBoss": false,
+    "foundAt": [
+      "폐광"
+    ]
+  },
+  {
+    "id": 8800114,
+    "name": "Chaos Kusko",
+    "koreanName": "카오스 쿠스코",
+    "level": 69,
+    "isBoss": false,
+    "foundAt": [
+      "폐광"
+    ]
+  },
+  {
+    "id": 8800115,
+    "name": "Chaos Ooparts",
+    "koreanName": "카오스 오파츠",
+    "level": 70,
+    "isBoss": true,
+    "foundAt": [
+      "폐광"
+    ]
+  },
+  {
+    "id": 8800116,
+    "name": "Chaos Patz",
+    "koreanName": "카오스 파츠",
+    "level": 66,
+    "isBoss": true,
+    "foundAt": [
+      "폐광"
+    ]
+  },
+  {
     "id": 8220006,
     "name": "",
     "koreanName": "라이카",
