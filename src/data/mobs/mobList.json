@@ -4604,6 +4604,116 @@
     ]
   },
   {
+    "id": 8800100,
+    "name": "Chaos Zakum1",
+    "koreanName": "카오스 자쿰(1페이즈)",
+    "level": 140,
+    "isBoss": true,
+    "foundAt": [
+      "폐광"
+    ]
+  },
+  {
+    "id": 8800101,
+    "name": "Chaos Zakum2",
+    "koreanName": "카오스 자쿰(2페이즈)",
+    "level": 140,
+    "isBoss": true,
+    "foundAt": [
+      "폐광"
+    ]
+  },
+  {
+    "id": 8800102,
+    "name": "Chaos Zakum3",
+    "koreanName": "카오스 자쿰(3페이즈)",
+    "level": 140,
+    "isBoss": true,
+    "foundAt": [
+      "폐광"
+    ]
+  },
+  {
+    "id": 8800103,
+    "name": "Chaos Zakum's Arm 1",
+    "koreanName": "카오스 자쿰팔1",
+    "level": 140,
+    "isBoss": true,
+    "foundAt": [
+      "폐광"
+    ]
+  },
+  {
+    "id": 8800104,
+    "name": "Chaos Zakum's Arm 2",
+    "koreanName": "카오스 자쿰팔2",
+    "level": 140,
+    "isBoss": true,
+    "foundAt": [
+      "폐광"
+    ]
+  },
+  {
+    "id": 8800105,
+    "name": "Chaos Zakum's Arm 3",
+    "koreanName": "카오스 자쿰팔3",
+    "level": 140,
+    "isBoss": true,
+    "foundAt": [
+      "폐광"
+    ]
+  },
+  {
+    "id": 8800106,
+    "name": "Chaos Zakum's Arm 4",
+    "koreanName": "카오스 자쿰팔4",
+    "level": 140,
+    "isBoss": true,
+    "foundAt": [
+      "폐광"
+    ]
+  },
+  {
+    "id": 8800107,
+    "name": "Chaos Zakum's Arm 5",
+    "koreanName": "카오스 자쿰팔5",
+    "level": 140,
+    "isBoss": true,
+    "foundAt": [
+      "폐광"
+    ]
+  },
+  {
+    "id": 8800108,
+    "name": "Chaos Zakum's Arm 6",
+    "koreanName": "카오스 자쿰팔6",
+    "level": 140,
+    "isBoss": true,
+    "foundAt": [
+      "폐광"
+    ]
+  },
+  {
+    "id": 8800109,
+    "name": "Chaos Zakum's Arm 7",
+    "koreanName": "카오스 자쿰팔7",
+    "level": 140,
+    "isBoss": true,
+    "foundAt": [
+      "폐광"
+    ]
+  },
+  {
+    "id": 8800110,
+    "name": "Chaos Zakum's Arm 8",
+    "koreanName": "카오스 자쿰팔8",
+    "level": 140,
+    "isBoss": true,
+    "foundAt": [
+      "폐광"
+    ]
+  },
+  {
     "id": 8220006,
     "name": "",
     "koreanName": "라이카",

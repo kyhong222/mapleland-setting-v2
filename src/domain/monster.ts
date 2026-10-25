@@ -116,14 +116,24 @@ export interface Monster {
  */
 export const MOB_API = 'https://maplestory.io/api/gms/82'
 
+/**
+ * gms/82에 없는 후기 몹 — 카오스 자쿰(8800100~8800110)은 gms/95부터 있다.
+ * gms/176 이후는 3페이즈·팔 스프라이트가 리마스터판이라 리마스터 전인 95를 쓴다.
+ */
+const MOB_API_LATE = 'https://maplestory.io/api/gms/95'
+
+function mobApiFor(id: number): string {
+  return id >= 8800100 && id <= 8800110 ? MOB_API_LATE : MOB_API
+}
+
 /** 몬스터 아이콘 URL (maplestory.io mob 아이콘) */
 export function monsterIconUrl(id: number): string {
-  return `${MOB_API}/mob/${id}/icon`
+  return `${mobApiFor(id)}/mob/${id}/icon`
 }
 
 /** 몬스터 스킬 모션 렌더 URL (animation = attack1/move 등) */
 export function monsterRenderUrl(id: number, animation: string): string {
-  return `${MOB_API}/mob/${id}/render/${animation}`
+  return `${mobApiFor(id)}/mob/${id}/render/${animation}`
 }
 
 /** 몬스터 표시명 (한글 우선, 없으면 영문) */
