@@ -4557,5 +4557,89 @@
     "reqLevel": 30,
     "iconUrl": "https://maplestory.io/api/GMS/200/item/1002677/icon",
     "tuc": 7
+  },
+  {
+    "id": 91002927,
+    "name": "스칼리온의 모자 (STR)",
+    "slot": "hat",
+    "effects": {
+      "STR": 17,
+      "DEX": 15,
+      "INT": 15,
+      "LUK": 15,
+      "pdef": 155,
+      "mdef": 120,
+      "acc": 19,
+      "eva": 19,
+      "jump": 3,
+      "hp": 15
+    },
+    "reqLevel": 80,
+    "reqJob": 0,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1002927/icon",
+    "tuc": 10
+  },
+  {
+    "id": 92002927,
+    "name": "스칼리온의 모자 (DEX)",
+    "slot": "hat",
+    "effects": {
+      "STR": 15,
+      "DEX": 17,
+      "INT": 15,
+      "LUK": 15,
+      "pdef": 155,
+      "mdef": 120,
+      "acc": 19,
+      "eva": 19,
+      "jump": 3,
+      "hp": 15
+    },
+    "reqLevel": 80,
+    "reqJob": 0,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1002927/icon",
+    "tuc": 10
+  },
+  {
+    "id": 91002926,
+    "name": "타르가의 모자 (INT)",
+    "slot": "hat",
+    "effects": {
+      "STR": 15,
+      "DEX": 15,
+      "INT": 17,
+      "LUK": 15,
+      "pdef": 155,
+      "mdef": 120,
+      "acc": 19,
+      "eva": 19,
+      "jump": 3,
+      "hp": 15
+    },
+    "reqLevel": 80,
+    "reqJob": 0,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1002926/icon",
+    "tuc": 10
+  },
+  {
+    "id": 92002926,
+    "name": "타르가의 모자 (LUK)",
+    "slot": "hat",
+    "effects": {
+      "STR": 15,
+      "DEX": 15,
+      "INT": 15,
+      "LUK": 17,
+      "pdef": 155,
+      "mdef": 120,
+      "acc": 19,
+      "eva": 19,
+      "jump": 3,
+      "hp": 15
+    },
+    "reqLevel": 80,
+    "reqJob": 0,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1002926/icon",
+    "tuc": 10
   }
 ]
