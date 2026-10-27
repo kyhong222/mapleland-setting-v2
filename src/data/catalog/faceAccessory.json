@@ -8,13 +8,43 @@
     "tuc": 0
   },
   {
+    "id": 1012098,
+    "name": "메이플 리프 (STR)",
+    "slot": "faceAccessory",
+    "effects": {
+      "STR": 5
+    },
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1012098/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1012101,
+    "name": "메이플 리프 (DEX)",
+    "slot": "faceAccessory",
+    "effects": {
+      "DEX": 5
+    },
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1012101/icon",
+    "tuc": 7
+  },
+  {
     "id": 1012102,
-    "name": "메이플 리프",
+    "name": "메이플 리프 (INT)",
     "slot": "faceAccessory",
     "effects": {
       "INT": 5
     },
     "iconUrl": "https://maplestory.io/api/GMS/200/item/1012102/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1012103,
+    "name": "메이플 리프 (LUK)",
+    "slot": "faceAccessory",
+    "effects": {
+      "LUK": 5
+    },
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1012103/icon",
     "tuc": 7
   },
   {

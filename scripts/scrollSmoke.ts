@@ -10,5 +10,11 @@ async function main() {
     console.log(`${label}(${it?.id}) 적용가능 주문서:`, scrolls.map((s) => s.name))
   }
   console.log('pendant 슬롯 일반 주문서:', listScrollsForSlot('pendant').map((s) => s.name))
+  // 메이플 리프 4종 → 각자 주스탯 +1 메이플 시럽만
+  for (const id of [1012098, 1012101, 1012102, 1012103]) {
+    const it = await getItem(id)
+    const scrolls = it ? listScrollsForItem(it) : []
+    console.log(`${it?.name}(${id}) 적용가능 주문서:`, scrolls.map((s) => `${s.name} ${JSON.stringify(s.options[0].effects)}`))
+  }
 }
 main()
