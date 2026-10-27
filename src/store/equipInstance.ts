@@ -2,6 +2,7 @@
  * 장비 인스턴스 슬롯 — 클라이언트 표시 단위.
  * 도메인 SlotId와 1:1이 아니다:
  *  - 반지: ring1~4
+ *  - 펜던트: pendant(펜던트1) · pendant2 — 1번 칸은 저장 데이터 호환을 위해 옛 id 'pendant'를 그대로 쓴다
  *  - 한벌옷(overall): 별도 슬롯 없이 '상의(top)' 칸에 장착 (하의 비활성)
  *  - 방패/화살/볼트/표창/불릿: '보조무기(secondary)' 단일 슬롯으로 통일
  */
@@ -14,6 +15,7 @@ export type EquipInstance =
   | 'eyeAccessory'
   | 'earring'
   | 'pendant'
+  | 'pendant2'
   | 'ring1'
   | 'ring2'
   | 'ring3'
@@ -39,6 +41,7 @@ export const EQUIP_INSTANCES: EquipInstance[] = [
   'eyeAccessory',
   'earring',
   'pendant',
+  'pendant2',
   'ring1',
   'ring2',
   'ring3',
@@ -63,7 +66,8 @@ const LABELS: Record<EquipInstance, string> = {
   faceAccessory: '얼굴장식',
   eyeAccessory: '눈 장식',
   earring: '귀 장식',
-  pendant: '펜던트',
+  pendant: '펜던트1',
+  pendant2: '펜던트2',
   ring1: '반지1',
   ring2: '반지2',
   ring3: '반지3',
@@ -93,6 +97,7 @@ export const SECONDARY_SLOTS: SlotId[] = ['shield', 'arrow', 'bolt', 'throwingSt
 /** 도메인 SlotId → 장착 대상 인스턴스 후보 (없으면 빈 배열) */
 export function targetInstancesForSlot(slot: SlotId): EquipInstance[] {
   if (slot === 'ring') return ['ring1', 'ring2', 'ring3', 'ring4']
+  if (slot === 'pendant') return ['pendant', 'pendant2']
   if (slot === 'petAcc') return ['petAcc1', 'petAcc2', 'petAcc3']
   if (slot === 'overall') return ['top'] // 한벌옷은 상의 칸
   if (SECONDARY_SLOTS.includes(slot)) return ['secondary']

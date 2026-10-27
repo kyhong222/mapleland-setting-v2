@@ -24,15 +24,15 @@ import { formatEffects } from '../../lib/effectFormat'
 const TILE = 60
 const ICON = 42
 
-/** 5×7 슬롯 배치 (null = 빈칸/비활성 박스) */
+/** 6×7 슬롯 배치 (null = 빈칸/비활성 박스) */
 const LAYOUT: (EquipInstance | null)[][] = [
-  [null, 'hat', null, null, null],
-  ['medal', 'faceAccessory', null, 'ring3', 'ring4'],
-  [null, null, 'eyeAccessory', 'earring', 'shoulder'],
-  ['cape', 'top', 'pendant', 'weapon', 'secondary'],
-  ['gloves', 'bottom', 'belt', 'ring1', 'ring2'],
-  [null, null, 'shoes', null, null],
-  [null, null, 'petAcc1', 'petAcc2', 'petAcc3'],
+  [null, 'hat', null, null, null, null],
+  ['medal', 'faceAccessory', null, null, 'ring3', 'ring4'],
+  [null, null, 'eyeAccessory', null, 'earring', 'shoulder'],
+  ['cape', 'top', 'pendant', 'pendant2', 'weapon', 'secondary'],
+  ['gloves', 'bottom', 'belt', null, 'ring1', 'ring2'],
+  [null, null, 'shoes', null, null, null],
+  [null, null, 'petAcc1', null, 'petAcc2', 'petAcc3'],
 ]
 
 function disabledInstances(
@@ -192,7 +192,7 @@ export default function EquipmentPanel() {
       <Box
         sx={{
           display: 'grid',
-          gridTemplateColumns: `repeat(5, ${TILE}px)`,
+          gridTemplateColumns: `repeat(${LAYOUT[0].length}, ${TILE}px)`,
           gap: 0.5,
           justifyContent: 'center',
         }}
