@@ -118,5 +118,39 @@
     "reqLevel": 140,
     "tuc": 3,
     "iconUrl": "https://maplestory.io/api/gms/200/item/1122012/icon"
+  },
+  {
+    "id": 1122077,
+    "name": "메이플 파이롭 파워 펜던트",
+    "slot": "pendant",
+    "effects": {
+      "STR": 2,
+      "DEX": 2,
+      "INT": 2,
+      "LUK": 2,
+      "pdef": 70,
+      "mdef": 70,
+      "hpP": 7
+    },
+    "reqLevel": 77,
+    "tuc": 3,
+    "iconUrl": "https://maplestory.io/api/gms/200/item/1122077/icon"
+  },
+  {
+    "id": 1122075,
+    "name": "메이플 파이롭 매직 펜던트",
+    "slot": "pendant",
+    "effects": {
+      "STR": 2,
+      "DEX": 2,
+      "INT": 2,
+      "LUK": 2,
+      "pdef": 70,
+      "mdef": 70,
+      "mpP": 7
+    },
+    "reqLevel": 77,
+    "tuc": 3,
+    "iconUrl": "https://maplestory.io/api/gms/200/item/1122075/icon"
   }
 ]
