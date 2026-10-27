@@ -22,5 +22,11 @@ async function main() {
     const scrolls = it ? listScrollsForItem(it) : []
     console.log(`${it?.name}(${id}) 메이플 투구 주문서:`, scrolls.some((s) => s.name === '메이플 투구 주문서'), `(총 ${scrolls.length}종)`)
   }
+  // 메이플 가네샤 → 장갑 주문서 + 가네샤 공격력 주문서 2종, 일반 장갑 → 가네샤 주문서 없음
+  for (const id of [1082252, 1082210]) {
+    const it = await getItem(id)
+    const scrolls = it ? listScrollsForItem(it) : []
+    console.log(`${it?.name}(${id}) 가네샤 주문서:`, scrolls.filter((s) => s.maple).map((s) => `${s.name} ${JSON.stringify(s.options[0].effects)}`), `(총 ${scrolls.length}종)`)
+  }
 }
 main()

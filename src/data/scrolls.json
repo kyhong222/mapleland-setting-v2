@@ -2183,6 +2183,38 @@
     ]
   },
   {
+    "key": "slot:gloves::메이플 가네샤 공격력 주문서 (2025)",
+    "name": "메이플 가네샤 공격력 주문서 (2025)",
+    "slot": "gloves",
+    "maple": true,
+    "options": [
+      {
+        "rate": 100,
+        "effects": {
+          "pad": 1
+        },
+        "itemId": 2044708
+      }
+    ]
+  },
+  {
+    "key": "slot:gloves::메이플 가네샤 공격력 주문서 (2026)",
+    "name": "메이플 가네샤 공격력 주문서 (2026)",
+    "slot": "gloves",
+    "maple": true,
+    "options": [
+      {
+        "rate": 100,
+        "effects": {
+          "pad": 1,
+          "acc": 1,
+          "eva": 1
+        },
+        "itemId": 2044708
+      }
+    ]
+  },
+  {
     "key": "weapon:oneHandedSword::메이플 한손검 주문서",
     "name": "메이플 한손검 주문서",
     "weaponType": "oneHandedSword",
