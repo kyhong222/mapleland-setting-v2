@@ -2410,5 +2410,17 @@
     "reqJob": 0,
     "iconUrl": "https://maplestory.io/api/GMS/200/item/1082244/icon",
     "tuc": 0
+  },
+  {
+    "id": 1082252,
+    "name": "메이플 가네샤",
+    "slot": "gloves",
+    "effects": {
+      "pdef": 10
+    },
+    "reqLevel": 13,
+    "reqJob": 0,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1082252/icon",
+    "tuc": 5
   }
 ]

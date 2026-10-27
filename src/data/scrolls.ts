@@ -39,10 +39,10 @@ export function listScrollsForWeaponType(weaponType: WeaponType): ScrollDef[] {
 export function listScrollsForItem(item: ItemData): ScrollDef[] {
   const exclusive = SCROLLS.filter((s) => s.itemIds?.includes(item.id))
   if (exclusive.length > 0) return exclusive
+  // 메이플 전용 주문서(무기·투구)는 메이플 아이템에만 노출(기본 주문서와 함께)
+  const isMaple = (item.name ?? '').includes('메이플')
   if (item.slot === 'weapon') {
-    // 메이플 무기 전용 주문서는 메이플 무기에만 노출(기본 무기 주문서와 함께)
-    const isMaple = (item.name ?? '').includes('메이플')
     return SCROLLS.filter((s) => item.weaponType != null && s.weaponType === item.weaponType && (!s.maple || isMaple))
   }
-  return SCROLLS.filter((s) => s.slot === item.slot)
+  return SCROLLS.filter((s) => s.slot === item.slot && (!s.maple || isMaple))
 }
