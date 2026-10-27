@@ -2099,6 +2099,70 @@
     ]
   },
   {
+    "key": "item::메이플 시럽 (STR)",
+    "name": "메이플 시럽",
+    "itemIds": [
+      1012098
+    ],
+    "options": [
+      {
+        "rate": 100,
+        "effects": {
+          "STR": 1
+        },
+        "itemId": 2049102
+      }
+    ]
+  },
+  {
+    "key": "item::메이플 시럽 (DEX)",
+    "name": "메이플 시럽",
+    "itemIds": [
+      1012101
+    ],
+    "options": [
+      {
+        "rate": 100,
+        "effects": {
+          "DEX": 1
+        },
+        "itemId": 2049102
+      }
+    ]
+  },
+  {
+    "key": "item::메이플 시럽 (INT)",
+    "name": "메이플 시럽",
+    "itemIds": [
+      1012102
+    ],
+    "options": [
+      {
+        "rate": 100,
+        "effects": {
+          "INT": 1
+        },
+        "itemId": 2049102
+      }
+    ]
+  },
+  {
+    "key": "item::메이플 시럽 (LUK)",
+    "name": "메이플 시럽",
+    "itemIds": [
+      1012103
+    ],
+    "options": [
+      {
+        "rate": 100,
+        "effects": {
+          "LUK": 1
+        },
+        "itemId": 2049102
+      }
+    ]
+  },
+  {
     "key": "weapon:oneHandedSword::메이플 한손검 주문서",
     "name": "메이플 한손검 주문서",
     "weaponType": "oneHandedSword",
