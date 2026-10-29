@@ -6866,7 +6866,7 @@
       "STR": 5,
       "hp": 100,
       "pad": 60,
-      "acc": 30,
+      "acc": 25,
       "attackSpeed": 5
     },
     "reqLevel": 64,
@@ -6901,7 +6901,7 @@
     "effects": {
       "STR": 2,
       "pad": 87,
-      "acc": 40,
+      "acc": 30,
       "attackSpeed": 4
     },
     "reqLevel": 77,
@@ -6917,7 +6917,7 @@
     "effects": {
       "STR": 2,
       "pad": 87,
-      "acc": 40,
+      "acc": 30,
       "attackSpeed": 5
     },
     "reqLevel": 77,
@@ -6933,7 +6933,7 @@
     "effects": {
       "STR": 2,
       "pad": 87,
-      "acc": 40,
+      "acc": 30,
       "attackSpeed": 5
     },
     "reqLevel": 77,
@@ -7003,7 +7003,7 @@
     "effects": {
       "STR": 5,
       "pad": 89,
-      "acc": 40,
+      "acc": 30,
       "attackSpeed": 6
     },
     "reqLevel": 77,
@@ -7019,7 +7019,7 @@
     "effects": {
       "STR": 5,
       "pad": 91,
-      "acc": 40,
+      "acc": 30,
       "attackSpeed": 6
     },
     "reqLevel": 77,
@@ -7035,7 +7035,7 @@
     "effects": {
       "STR": 7,
       "pad": 91,
-      "acc": 40,
+      "acc": 30,
       "attackSpeed": 7
     },
     "reqLevel": 77,
@@ -7051,7 +7051,7 @@
     "effects": {
       "STR": 3,
       "pad": 91,
-      "acc": 40,
+      "acc": 30,
       "attackSpeed": 6
     },
     "reqLevel": 77,
@@ -7067,7 +7067,7 @@
     "effects": {
       "STR": 4,
       "pad": 91,
-      "acc": 40,
+      "acc": 30,
       "attackSpeed": 6
     },
     "reqLevel": 77,
@@ -7135,7 +7135,7 @@
       "STR": 8,
       "hp": 150,
       "pad": 65,
-      "acc": 40,
+      "acc": 30,
       "attackSpeed": 5
     },
     "reqLevel": 77,
