@@ -39,6 +39,7 @@ npx tsx scripts/viperStunSmoke.ts  # 바이퍼 스턴 변형 스킬 + 조건부 
 npx tsx scripts/growthSmoke.ts     # 성장(레벨업) 스펙 — 스탯별 + 아이템 단위(리버스/타임리스)
 npx tsx scripts/attackSpeedSmoke.ts # 공속표 커버리지·프레임 정합·분기 스펙
 npx tsx scripts/cloudSmoke.ts      # 클라우드 캡처/복원 왕복 (네트워크·Supabase 키 불필요)
+npx tsx scripts/noticeSmoke.ts     # 공지 id·날짜·참조 아이템·compare 전후·자동 노출 판정
 ```
 
 변경 후에는 최소한 `npm run typecheck`를 돌린다.
@@ -191,6 +192,16 @@ localStorage 키는 전부 `mlsv2:` 접두사(`build`/`inventory`/`slots`/`ui`/`
 저장 슬롯(24칸 = 6칸 × 4묶음, 한 계정당 캐릭터 6개 기준)에 실리는 것: 빌드 + 대상 몬스터 + n타 선택 +
 개인 인벤토리. `applySnapshot`은 **개인 인벤토리를 장비 복원보다 먼저** 넣는다 — `equipped`가 참조하는
 id가 먼저 존재해야 하기 때문.
+
+### 공지사항
+
+`src/data/notices/` 번들 데이터다(서버 없음 — 배포해야 반영). 공지 하나 = 파일 하나, `index.ts`의
+`NOTICES`에 등록한다. 본문은 블록 배열(`types.ts`)이고 text/list/callout 안에서 `[[item:id]]`로 아이템 칩을
+넣을 수 있다. `compare` 블록은 `before`에 바뀌기 전 값만 적으면 현재 카탈로그와 비교해 보여준다.
+
+- 시작 시 자동 노출은 `autoOpen` 공지 중 **최신 1건만**. `expiresAt`이 지나면 안 뜬다(목록엔 남음).
+- '다시 열지 않음'/열람 여부는 `uiStore`(`mlsv2:ui`)에 공지 id로 기기별 저장 — **id를 바꾸면 다시 뜬다.**
+- 제작된 아이템은 베이스를 스냅샷으로 들고 있어 카탈로그 수정이 소급되지 않는다. 그런 변경은 공지로 재제작을 안내한다.
 
 ### 데이터 생성 스크립트 (`scripts/`)
 

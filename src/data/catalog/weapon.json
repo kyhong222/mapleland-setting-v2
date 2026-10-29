@@ -1811,7 +1811,7 @@
     "weaponType": "staff",
     "iconUrl": "https://maplestory.io/api/GMS/200/item/1382009/icon",
     "tuc": 7,
-    "reqLuk": 33
+    "reqLuk": 23
   },
   {
     "id": 1382018,
@@ -1935,7 +1935,7 @@
     "weaponType": "bow",
     "iconUrl": "https://maplestory.io/api/GMS/200/item/1452016/icon",
     "tuc": 7,
-    "reqStr": 30
+    "reqStr": 20
   },
   {
     "id": 1462014,
@@ -1951,7 +1951,7 @@
     "weaponType": "crossbow",
     "iconUrl": "https://maplestory.io/api/GMS/200/item/1462014/icon",
     "tuc": 7,
-    "reqStr": 25
+    "reqStr": 15
   },
   {
     "id": 1472011,
@@ -2021,7 +2021,7 @@
     "weaponType": "claw",
     "iconUrl": "https://maplestory.io/api/GMS/200/item/1472030/icon",
     "tuc": 7,
-    "reqDex": 50
+    "reqDex": 40
   },
   {
     "id": 1442015,
@@ -2459,7 +2459,7 @@
     "weaponType": "dagger",
     "iconUrl": "https://maplestory.io/api/GMS/200/item/1332025/icon",
     "tuc": 7,
-    "reqDex": 66
+    "reqDex": 56
   },
   {
     "id": 1382012,
@@ -2477,7 +2477,7 @@
     "weaponType": "staff",
     "iconUrl": "https://maplestory.io/api/GMS/200/item/1382012/icon",
     "tuc": 7,
-    "reqLuk": 41
+    "reqLuk": 31
   },
   {
     "id": 1412011,
@@ -2557,7 +2557,7 @@
     "weaponType": "bow",
     "iconUrl": "https://maplestory.io/api/GMS/200/item/1452022/icon",
     "tuc": 7,
-    "reqStr": 38
+    "reqStr": 28
   },
   {
     "id": 1462019,
@@ -2573,7 +2573,7 @@
     "weaponType": "crossbow",
     "iconUrl": "https://maplestory.io/api/GMS/200/item/1462019/icon",
     "tuc": 7,
-    "reqStr": 33
+    "reqStr": 23
   },
   {
     "id": 1472032,
@@ -2589,7 +2589,7 @@
     "weaponType": "claw",
     "iconUrl": "https://maplestory.io/api/GMS/200/item/1472032/icon",
     "tuc": 7,
-    "reqDex": 66
+    "reqDex": 56
   },
   {
     "id": 1302015,
@@ -3536,7 +3536,7 @@
     "weaponType": "dagger",
     "iconUrl": "https://maplestory.io/api/GMS/200/item/1332055/icon",
     "tuc": 7,
-    "reqDex": 99
+    "reqDex": 89
   },
   {
     "id": 1332056,
@@ -3554,7 +3554,7 @@
     "weaponType": "dagger",
     "iconUrl": "https://maplestory.io/api/GMS/200/item/1332056/icon",
     "tuc": 7,
-    "reqDex": 99
+    "reqDex": 89
   },
   {
     "id": 1372034,
@@ -3573,7 +3573,7 @@
     "weaponType": "wand",
     "iconUrl": "https://maplestory.io/api/GMS/200/item/1372034/icon",
     "tuc": 7,
-    "reqLuk": 61
+    "reqLuk": 51
   },
   {
     "id": 1382039,
@@ -3592,7 +3592,7 @@
     "weaponType": "staff",
     "iconUrl": "https://maplestory.io/api/GMS/200/item/1382039/icon",
     "tuc": 7,
-    "reqLuk": 62
+    "reqLuk": 52
   },
   {
     "id": 1402039,
@@ -3689,7 +3689,7 @@
     "weaponType": "bow",
     "iconUrl": "https://maplestory.io/api/GMS/200/item/1452045/icon",
     "tuc": 7,
-    "reqStr": 64
+    "reqStr": 54
   },
   {
     "id": 1462040,
@@ -3706,7 +3706,7 @@
     "weaponType": "crossbow",
     "iconUrl": "https://maplestory.io/api/GMS/200/item/1462040/icon",
     "tuc": 7,
-    "reqStr": 59
+    "reqStr": 49
   },
   {
     "id": 1472055,
@@ -3723,7 +3723,7 @@
     "weaponType": "claw",
     "iconUrl": "https://maplestory.io/api/GMS/200/item/1472055/icon",
     "tuc": 7,
-    "reqDex": 99
+    "reqDex": 89
   },
   {
     "id": 1322033,

@@ -5,6 +5,7 @@ import TopBar from './components/TopBar'
 import JobSelectScreen from './components/JobSelectScreen'
 import Dashboard from './components/Dashboard'
 import CloudSyncGate from './components/CloudSyncGate'
+import NoticeAutoOpen from './components/notice/NoticeAutoOpen'
 
 export default function App() {
   const jobId = useBuildStore((s) => s.jobId)
@@ -13,6 +14,7 @@ export default function App() {
       <TopBar />
       {jobId ? <Dashboard /> : <JobSelectScreen />}
       <CloudSyncGate />
+      <NoticeAutoOpen />
       <Analytics />
     </Box>
   )
