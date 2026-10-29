@@ -124,6 +124,21 @@ export interface GemSelection {
   grade: GemGrade
 }
 
+/** 보석 부여 기본 수수료 (메소) — 보석이 1개 이상일 때 한 번 */
+export const GEM_BASE_FEE = 2_750_000
+/** 보석 등급별 추가 수수료 (메소) — 보석 1개마다 */
+export const GEM_GRADE_FEE: Record<GemGrade, number> = {
+  low: 750_000,
+  mid: 1_500_000,
+  high: 2_250_000,
+}
+
+/** 보석 부여 수수료 합계 (보석이 없으면 0) */
+export function gemFee(gems: GemSelection[]): number {
+  if (gems.length === 0) return 0
+  return GEM_BASE_FEE + gems.reduce((sum, g) => sum + GEM_GRADE_FEE[g.grade], 0)
+}
+
 /** 슬롯의 보석 장착 가능 개수 */
 export function gemCapacity(slot: SlotId): number {
   return GEM_SLOT_CAPACITY[slot]
