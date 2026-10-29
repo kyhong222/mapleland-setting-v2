@@ -9,6 +9,7 @@ import {
   gemsForSlot,
   gemEffect,
   gemIconUrl,
+  gemFee,
 } from '../../domain/maker'
 import type { GemSelection } from '../../domain/maker'
 import { formatEffects } from '../../lib/effectFormat'
@@ -85,9 +86,14 @@ export default function GemSection({ slot, gems, onChange, noGem }: Props) {
 
   return (
     <Box>
-      <Typography variant="caption" color="text.secondary">
-        보석 (장착 {gems.length}/{capacity})
-      </Typography>
+      <Box sx={{ display: 'flex', justifyContent: 'space-between', gap: 1 }}>
+        <Typography variant="caption" color="text.secondary">
+          보석 (장착 {gems.length}/{capacity})
+        </Typography>
+        {gems.length > 0 && (
+          <Typography variant="caption">수수료 {gemFee(gems).toLocaleString()} 메소</Typography>
+        )}
+      </Box>
 
       {/* 적용됨 — 아이콘 리스트 (클릭 제거) */}
       <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5, mt: 0.5, mb: 1, minHeight: 34 }}>
