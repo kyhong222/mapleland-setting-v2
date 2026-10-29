@@ -32,7 +32,7 @@ const LAYOUT: (EquipInstance | null)[][] = [
   ['cape', 'top', 'pendant', 'pendant2', 'weapon', 'secondary'],
   ['gloves', 'bottom', 'belt', null, 'ring1', 'ring2'],
   [null, null, 'shoes', null, null, null],
-  [null, null, 'petAcc1', null, 'petAcc2', 'petAcc3'],
+  [null, null, null, 'petAcc1', 'petAcc2', 'petAcc3'],
 ]
 
 function disabledInstances(
