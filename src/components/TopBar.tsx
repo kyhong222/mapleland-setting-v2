@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import AppBar from '@mui/material/AppBar'
 import Toolbar from '@mui/material/Toolbar'
 import Typography from '@mui/material/Typography'
@@ -23,6 +23,16 @@ export default function TopBar() {
   const [slotsOpen, setSlotsOpen] = useState(false)
   const [feedbackOpen, setFeedbackOpen] = useState(false)
   const [noticeOpen, setNoticeOpen] = useState(false)
+  // 좁은 화면에선 버튼이 줄바꿈돼 헤더가 기본 툴바보다 높아진다 → 실측 높이로 스페이서를 맞춘다
+  const barRef = useRef<HTMLDivElement>(null)
+  const [barHeight, setBarHeight] = useState<number>()
+  useEffect(() => {
+    const el = barRef.current
+    if (!el) return
+    const ro = new ResizeObserver(() => setBarHeight(el.offsetHeight))
+    ro.observe(el)
+    return () => ro.disconnect()
+  }, [])
   // 아직 열어보지 않은(기간 내) 공지가 있으면 배지
   const hasUnseenNotice = NOTICES.some((n) => !isNoticeExpired(n) && !seenNotices.includes(n.id))
 
@@ -35,9 +45,17 @@ export default function TopBar() {
   return (
     <>
       {/* fixed: 모바일에서 sticky가 스크롤을 따라 흔들리는 문제 방지(확실히 상단 고정) */}
-      <AppBar position="fixed" color="default" enableColorOnDark elevation={0} sx={{ borderBottom: 1, borderColor: 'divider' }}>
-        <Toolbar sx={{ gap: 2 }}>
-          <Typography variant="h6" sx={{ fontWeight: 800 }}>
+      <AppBar ref={barRef} position="fixed" color="default" enableColorOnDark elevation={0} sx={{ borderBottom: 1, borderColor: 'divider' }}>
+        {/* 좁은 화면: 줄바꿈 허용 + 버튼 글자는 한 줄로(글자가 접히며 헤더가 들쭉날쭉 높아지던 문제) */}
+        <Toolbar
+          sx={{
+            gap: { xs: 1, sm: 2 },
+            flexWrap: { xs: 'wrap', md: 'nowrap' },
+            py: { xs: 1, md: 0 },
+            '& .MuiButton-root': { whiteSpace: 'nowrap', flexShrink: 0 },
+          }}
+        >
+          <Typography variant="h6" sx={{ fontWeight: 800, whiteSpace: 'nowrap' }}>
             메이플랜드 세팅
           </Typography>
           {jobId && <Chip size="small" color="primary" label={JOBS[jobId].label} />}
@@ -65,8 +83,8 @@ export default function TopBar() {
         <FeedbackDialog open={feedbackOpen} onClose={() => setFeedbackOpen(false)} />
         <NoticeDialog open={noticeOpen} onClose={() => setNoticeOpen(false)} />
       </AppBar>
-      {/* fixed AppBar 높이만큼 콘텐츠를 밀어내는 스페이서 */}
-      <Toolbar aria-hidden />
+      {/* fixed AppBar 높이만큼 콘텐츠를 밀어내는 스페이서 (측정 전엔 기본 툴바 높이) */}
+      {barHeight ? <Box aria-hidden sx={{ height: barHeight }} /> : <Toolbar aria-hidden />}
     </>
   )
 }
