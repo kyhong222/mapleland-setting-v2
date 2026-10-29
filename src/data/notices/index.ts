@@ -1,12 +1,12 @@
 /** 공지사항 — 번들 데이터 + 자동 노출 판정 */
 
 import type { InlineSegment, Notice, NoticeBlock } from './types'
-import mapleWeaponReqCut from './2026-10-maple-weapon-req'
+import maple3rdAnniversary from './2026-10-maple-3rd-anniversary'
 
 export * from './types'
 
 /** 최신순 */
-export const NOTICES: Notice[] = [mapleWeaponReqCut].sort((a, b) => b.date.localeCompare(a.date))
+export const NOTICES: Notice[] = [maple3rdAnniversary].sort((a, b) => b.date.localeCompare(a.date))
 
 /** 로컬 날짜 'YYYY-MM-DD' */
 export function todayString(now = new Date()): string {

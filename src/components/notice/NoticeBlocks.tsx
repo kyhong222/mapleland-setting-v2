@@ -6,7 +6,7 @@ import Box from '@mui/material/Box'
 import Stack from '@mui/material/Stack'
 import Typography from '@mui/material/Typography'
 import { parseInline, type NoticeBlock } from '../../data/notices'
-import { NoticeItemCard, NoticeItemChip, NoticeItemCompare, type NoticeItemMap } from './NoticeItem'
+import { NoticeCompareTable, NoticeItemCard, NoticeItemChip, NoticeItemIcon, type NoticeItemMap } from './NoticeItem'
 
 /** 텍스트 + `[[item:id]]` 칩 */
 function Inline({ text, items }: { text: string; items: NoticeItemMap }) {
@@ -50,6 +50,15 @@ function Block({ block, items }: { block: NoticeBlock; items: NoticeItemMap }) {
         </Alert>
       )
     case 'items':
+      if (block.view === 'icons') {
+        return (
+          <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.75 }}>
+            {block.items.map((r) => (
+              <NoticeItemIcon key={r.id} id={r.id} items={items} />
+            ))}
+          </Box>
+        )
+      }
       return block.view === 'chips' ? (
         <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.75 }}>
           {block.items.map((r) => (
@@ -64,13 +73,7 @@ function Block({ block, items }: { block: NoticeBlock; items: NoticeItemMap }) {
         </Box>
       )
     case 'compare':
-      return (
-        <Box sx={{ border: 1, borderColor: 'divider', borderRadius: 1, px: 1 }}>
-          {block.items.map((r) => (
-            <NoticeItemCompare key={r.id} refItem={r} items={items} />
-          ))}
-        </Box>
-      )
+      return <NoticeCompareTable refs={block.items} items={items} />
   }
 }
 

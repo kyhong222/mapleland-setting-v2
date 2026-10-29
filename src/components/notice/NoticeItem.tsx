@@ -1,11 +1,10 @@
 /**
- * 공지 본문의 아이템 미리보기 — 칩(호버 툴팁) / 카드(툴팁 펼침) / 변경 전후 비교.
+ * 공지 본문의 아이템 미리보기 — 아이콘·칩(호버 툴팁) / 카드(툴팁 펼침) / 조정 내역 표.
  * 툴팁은 인벤토리·제작창과 같은 ItemTooltip을 쓴다(주문서·보석 없는 정옵 상태).
  */
 
 import { useEffect, useState } from 'react'
 import Box from '@mui/material/Box'
-import ButtonBase from '@mui/material/ButtonBase'
 import Tooltip from '@mui/material/Tooltip'
 import ItemIcon from '../common/ItemIcon'
 import ItemTooltip from '../common/ItemTooltip'
@@ -85,6 +84,44 @@ export function NoticeItemChip({ id, items }: { id: number; items: NoticeItemMap
   )
 }
 
+/** 아이콘 타일만. 호버(모바일은 탭) 시 툴팁 */
+export function NoticeItemIcon({ id, items }: { id: number; items: NoticeItemMap }) {
+  const item = items.get(id)
+  const tile = (
+    <Box
+      sx={{
+        width: 40,
+        height: 40,
+        display: 'inline-flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        border: 1,
+        borderColor: 'divider',
+        borderRadius: 1,
+        bgcolor: 'action.hover',
+        color: 'text.disabled',
+        fontSize: 11,
+        flexShrink: 0,
+      }}
+    >
+      {item ? <ItemIcon src={item.iconUrl} alt={item.name} size={32} /> : items.has(id) ? '?' : '…'}
+    </Box>
+  )
+  if (!item) return tile
+  return (
+    <Tooltip
+      title={<ItemTooltip built={builtOf(item)} />}
+      placement="right"
+      enterTouchDelay={0}
+      leaveTouchDelay={4000}
+      disableInteractive
+      slotProps={TOOLTIP_SLOT}
+    >
+      {tile}
+    </Tooltip>
+  )
+}
+
 /** 툴팁을 본문에 펼친 카드 */
 export function NoticeItemCard({ refItem, items }: { refItem: NoticeItemRef; items: NoticeItemMap }) {
   const item = items.get(refItem.id)
@@ -98,18 +135,19 @@ export function NoticeItemCard({ refItem, items }: { refItem: NoticeItemRef; ite
   )
 }
 
+/** 요구치는 "DEX 50 → DEX 40"처럼 스탯명으로 표기한다 */
 const FIELD_LABEL: Partial<Record<keyof ItemData, string>> = {
   name: '이름',
-  reqLevel: 'REQ LEV',
-  reqStr: 'REQ STR',
-  reqDex: 'REQ DEX',
-  reqInt: 'REQ INT',
-  reqLuk: 'REQ LUK',
+  reqLevel: '레벨',
+  reqStr: 'STR',
+  reqDex: 'DEX',
+  reqInt: 'INT',
+  reqLuk: 'LUK',
   tuc: '업횟',
 }
 
-/** before에 적힌 필드만 현재값과 비교해 'REQ STR 30 → 20' 형태로 */
-function diffLines(before: Partial<ItemData>, after: ItemData): string[] {
+/** before에 적힌 필드만 현재값과 비교해 'DEX 50 → DEX 40' 형태로 */
+export function diffLines(before: Partial<ItemData>, after: ItemData): string[] {
   const lines: string[] = []
   for (const key of Object.keys(before) as (keyof ItemData)[]) {
     if (key === 'effects') {
@@ -117,47 +155,59 @@ function diffLines(before: Partial<ItemData>, after: ItemData): string[] {
       for (const eid of Object.keys(be) as EffectId[]) {
         const a = after.effects[eid] ?? 0
         const b = be[eid] ?? 0
-        if (a !== b) lines.push(`${EFFECTS[eid].label} ${b} → ${a}`)
+        const label = EFFECTS[eid].label
+        if (a !== b) lines.push(`${label} ${b} → ${label} ${a}`)
       }
       continue
     }
     const b = before[key]
     const a = after[key]
-    if (b !== a) lines.push(`${FIELD_LABEL[key] ?? key} ${b ?? 0} → ${a ?? 0}`)
+    const label = FIELD_LABEL[key] ?? key
+    if (b !== a) lines.push(`${label} ${b ?? 0} → ${label} ${a ?? 0}`)
   }
   return lines
 }
 
-/** 한 줄 요약(칩 + 변경 내역), 누르면 변경 전/후 툴팁을 나란히 펼친다 */
-export function NoticeItemCompare({ refItem, items }: { refItem: NoticeItemRef; items: NoticeItemMap }) {
-  const [open, setOpen] = useState(false)
-  const item = items.get(refItem.id)
-  const before = item ? { ...item, ...refItem.before } : null
-  const lines = item && refItem.before ? diffLines(refItem.before, item) : []
-
+/** 조정 내역 표 — 아이콘(호버 시 툴팁) | 조정 결과 */
+export function NoticeCompareTable({ refs, items }: { refs: NoticeItemRef[]; items: NoticeItemMap }) {
   return (
-    <Box sx={{ borderBottom: 1, borderColor: 'divider', '&:last-of-type': { borderBottom: 0 } }}>
-      <ButtonBase
-        onClick={() => setOpen((v) => !v)}
-        disabled={!item}
-        sx={{ width: '100%', justifyContent: 'flex-start', gap: 1, py: 0.75, px: 0.5, textAlign: 'left', flexWrap: 'wrap' }}
-      >
-        <NoticeItemChip id={refItem.id} items={items} />
-        <Box component="span" sx={{ fontSize: 13, color: 'warning.main', fontWeight: 700 }}>
-          {lines.join(' · ')}
-        </Box>
-        <Box component="span" sx={{ ml: 'auto', fontSize: 12, color: 'text.secondary' }}>
-          {open ? '접기 ▲' : '비교 ▼'}
-        </Box>
-      </ButtonBase>
-      {refItem.note && <Box sx={{ fontSize: 12, color: 'text.secondary', px: 0.5, pb: 0.5 }}>{refItem.note}</Box>}
-      {open && item && before && (
-        <Box sx={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'center', gap: 1, pb: 1.25 }}>
-          <ItemTooltip built={builtOf(before)} note="(변경 전)" />
-          <Box sx={{ fontSize: 22, color: 'text.secondary' }}>→</Box>
-          <ItemTooltip built={builtOf(item)} note="(변경 후)" />
-        </Box>
-      )}
+    <Box
+      component="table"
+      sx={{
+        borderCollapse: 'collapse',
+        width: '100%',
+        fontSize: 13,
+        '& th, & td': { borderBottom: 1, borderColor: 'divider', px: 1, py: 0.5, textAlign: 'left' },
+        '& th': { color: 'text.secondary', fontWeight: 700, fontSize: 12 },
+      }}
+    >
+      <thead>
+        <tr>
+          <Box component="th" sx={{ width: 56 }}>아이콘</Box>
+          <th>조정 결과</th>
+        </tr>
+      </thead>
+      <tbody>
+        {refs.map((r) => {
+          const item = items.get(r.id)
+          const lines = item && r.before ? diffLines(r.before, item) : []
+          return (
+            <tr key={r.id}>
+              <td>
+                <NoticeItemIcon id={r.id} items={items} />
+              </td>
+              <Box component="td" sx={{ fontWeight: 700 }}>
+                {lines.join(' · ')}
+                {r.note && (
+                  <Box component="span" sx={{ display: 'block', fontWeight: 400, fontSize: 12, color: 'text.secondary' }}>
+                    {r.note}
+                  </Box>
+                )}
+              </Box>
+            </tr>
+          )
+        })}
+      </tbody>
     </Box>
   )
 }
