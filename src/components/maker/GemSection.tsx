@@ -90,9 +90,9 @@ export default function GemSection({ slot, gems, onChange, noGem }: Props) {
         <Typography variant="caption" color="text.secondary">
           보석 (장착 {gems.length}/{capacity})
         </Typography>
-        <Typography variant="caption" color={gems.length ? 'text.primary' : 'text.secondary'}>
-          수수료 {gemFee(gems).toLocaleString()} 메소
-        </Typography>
+        {gems.length > 0 && (
+          <Typography variant="caption">수수료 {gemFee(gems).toLocaleString()} 메소</Typography>
+        )}
       </Box>
 
       {/* 적용됨 — 아이콘 리스트 (클릭 제거) */}
