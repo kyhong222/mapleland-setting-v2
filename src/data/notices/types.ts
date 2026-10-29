@@ -32,9 +32,9 @@ export type NoticeBlock =
   | { type: 'text'; text: string }
   | { type: 'list'; items: string[] }
   | { type: 'callout'; tone: 'info' | 'warning'; text: string }
-  /** chips: 아이콘+이름(호버 시 툴팁) / cards: 툴팁을 본문에 펼침 */
-  | { type: 'items'; view: 'chips' | 'cards'; items: NoticeItemRef[] }
-  /** 변경 전(before 덮어씀) → 변경 후(현재 카탈로그) 툴팁을 나란히 */
+  /** icons: 아이콘만(호버 시 툴팁) / chips: 아이콘+이름(호버 시 툴팁) / cards: 툴팁을 본문에 펼침 */
+  | { type: 'items'; view: 'icons' | 'chips' | 'cards'; items: NoticeItemRef[] }
+  /** 조정 내역 표 — 아이콘(호버 시 툴팁) | before → 현재 카탈로그 값 ('DEX 50 → DEX 40') */
   | { type: 'compare'; items: NoticeItemRef[] }
 
 /** 인라인 텍스트 조각 */

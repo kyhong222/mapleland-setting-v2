@@ -2391,6 +2391,22 @@
     ]
   },
   {
+    "key": "weapon:wand::메이플 완드 주문서",
+    "name": "메이플 완드 주문서",
+    "weaponType": "wand",
+    "maple": true,
+    "options": [
+      {
+        "rate": 70,
+        "effects": {
+          "mad": 2,
+          "INT": 1
+        },
+        "itemId": 2044708
+      }
+    ]
+  },
+  {
     "key": "weapon:dagger::메이플 단검 주문서",
     "name": "메이플 단검 주문서",
     "weaponType": "dagger",
@@ -2417,6 +2433,38 @@
         "effects": {
           "pad": 2,
           "LUK": 1
+        },
+        "itemId": 2044708
+      }
+    ]
+  },
+  {
+    "key": "weapon:knuckle::메이플 너클 주문서",
+    "name": "메이플 너클 주문서",
+    "weaponType": "knuckle",
+    "maple": true,
+    "options": [
+      {
+        "rate": 70,
+        "effects": {
+          "pad": 2,
+          "STR": 1
+        },
+        "itemId": 2044708
+      }
+    ]
+  },
+  {
+    "key": "weapon:gun::메이플 건 주문서",
+    "name": "메이플 건 주문서",
+    "weaponType": "gun",
+    "maple": true,
+    "options": [
+      {
+        "rate": 70,
+        "effects": {
+          "pad": 2,
+          "DEX": 1
         },
         "itemId": 2044708
       }

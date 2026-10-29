@@ -6791,5 +6791,376 @@
     "weaponType": "twoHandedMace",
     "iconUrl": "https://maplestory.io/api/GMS/200/item/1422036/icon",
     "tuc": 7
+  },
+  {
+    "id": 1482020,
+    "name": "메이플 너클",
+    "slot": "weapon",
+    "effects": {
+      "pad": 38,
+      "acc": 10,
+      "attackSpeed": 5
+    },
+    "reqLevel": 35,
+    "reqJob": 16,
+    "weaponType": "knuckle",
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1482020/icon",
+    "tuc": 7,
+    "reqDex": 20
+  },
+  {
+    "id": 1492020,
+    "name": "메이플 건",
+    "slot": "weapon",
+    "effects": {
+      "pad": 36,
+      "eva": 10,
+      "attackSpeed": 5
+    },
+    "reqLevel": 35,
+    "reqJob": 16,
+    "weaponType": "gun",
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1492020/icon",
+    "tuc": 7,
+    "reqStr": 20
+  },
+  {
+    "id": 1482021,
+    "name": "메이플 스톰 핑거",
+    "slot": "weapon",
+    "effects": {
+      "STR": 3,
+      "pad": 46,
+      "acc": 20,
+      "attackSpeed": 5
+    },
+    "reqLevel": 43,
+    "reqJob": 16,
+    "weaponType": "knuckle",
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1482021/icon",
+    "tuc": 7,
+    "reqDex": 28
+  },
+  {
+    "id": 1492021,
+    "name": "메이플 스톰 피스톨",
+    "slot": "weapon",
+    "effects": {
+      "DEX": 3,
+      "pad": 44,
+      "eva": 20,
+      "attackSpeed": 5
+    },
+    "reqLevel": 43,
+    "reqJob": 16,
+    "weaponType": "gun",
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1492021/icon",
+    "tuc": 7,
+    "reqStr": 28
+  },
+  {
+    "id": 1482022,
+    "name": "메이플 골든 크로",
+    "slot": "weapon",
+    "effects": {
+      "STR": 5,
+      "hp": 100,
+      "pad": 60,
+      "acc": 30,
+      "attackSpeed": 5
+    },
+    "reqLevel": 64,
+    "reqJob": 16,
+    "weaponType": "knuckle",
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1482022/icon",
+    "tuc": 7,
+    "reqDex": 49
+  },
+  {
+    "id": 1492022,
+    "name": "메이플 캐논 슈터",
+    "slot": "weapon",
+    "effects": {
+      "DEX": 5,
+      "hp": 100,
+      "pad": 60,
+      "eva": 25,
+      "attackSpeed": 5
+    },
+    "reqLevel": 64,
+    "reqJob": 16,
+    "weaponType": "gun",
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1492022/icon",
+    "tuc": 7,
+    "reqStr": 49
+  },
+  {
+    "id": 1302142,
+    "name": "메이플 파이롭 소드",
+    "slot": "weapon",
+    "effects": {
+      "STR": 2,
+      "pad": 87,
+      "acc": 40,
+      "attackSpeed": 4
+    },
+    "reqLevel": 77,
+    "reqJob": 1,
+    "weaponType": "oneHandedSword",
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1302142/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1312056,
+    "name": "메이플 파이롭 엑스",
+    "slot": "weapon",
+    "effects": {
+      "STR": 2,
+      "pad": 87,
+      "acc": 40,
+      "attackSpeed": 5
+    },
+    "reqLevel": 77,
+    "reqJob": 1,
+    "weaponType": "oneHandedAxe",
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1312056/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1322084,
+    "name": "메이플 파이롭 해머",
+    "slot": "weapon",
+    "effects": {
+      "STR": 2,
+      "pad": 87,
+      "acc": 40,
+      "attackSpeed": 5
+    },
+    "reqLevel": 77,
+    "reqJob": 1,
+    "weaponType": "oneHandedMace",
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1322084/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1332114,
+    "name": "메이플 파이롭 하프문",
+    "slot": "weapon",
+    "effects": {
+      "pad": 83,
+      "eva": 25,
+      "attackSpeed": 3
+    },
+    "reqLevel": 77,
+    "reqJob": 8,
+    "weaponType": "dagger",
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1332114/icon",
+    "tuc": 7,
+    "reqDex": 102
+  },
+  {
+    "id": 1372071,
+    "name": "메이플 파이롭 완드",
+    "slot": "weapon",
+    "effects": {
+      "INT": 2,
+      "hp": 150,
+      "mp": 150,
+      "pad": 56,
+      "mad": 91,
+      "attackSpeed": 5
+    },
+    "reqLevel": 77,
+    "reqJob": 2,
+    "weaponType": "wand",
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1372071/icon",
+    "tuc": 7,
+    "reqLuk": 64
+  },
+  {
+    "id": 1382093,
+    "name": "메이플 파이롭 스태프",
+    "slot": "weapon",
+    "effects": {
+      "INT": 2,
+      "hp": 200,
+      "mp": 80,
+      "pad": 61,
+      "mad": 93,
+      "attackSpeed": 6
+    },
+    "reqLevel": 77,
+    "reqJob": 2,
+    "weaponType": "staff",
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1382093/icon",
+    "tuc": 7,
+    "reqLuk": 65
+  },
+  {
+    "id": 1402085,
+    "name": "메이플 파이롭 로헨",
+    "slot": "weapon",
+    "effects": {
+      "STR": 5,
+      "pad": 89,
+      "acc": 40,
+      "attackSpeed": 6
+    },
+    "reqLevel": 77,
+    "reqJob": 1,
+    "weaponType": "twoHandedSword",
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1402085/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1412055,
+    "name": "메이플 파이롭 배틀엑스",
+    "slot": "weapon",
+    "effects": {
+      "STR": 5,
+      "pad": 91,
+      "acc": 40,
+      "attackSpeed": 6
+    },
+    "reqLevel": 77,
+    "reqJob": 1,
+    "weaponType": "twoHandedAxe",
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1412055/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1422057,
+    "name": "메이플 파이롭 모울",
+    "slot": "weapon",
+    "effects": {
+      "STR": 7,
+      "pad": 91,
+      "acc": 40,
+      "attackSpeed": 7
+    },
+    "reqLevel": 77,
+    "reqJob": 1,
+    "weaponType": "twoHandedMace",
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1422057/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1432075,
+    "name": "메이플 파이롭 스피어",
+    "slot": "weapon",
+    "effects": {
+      "STR": 3,
+      "pad": 91,
+      "acc": 40,
+      "attackSpeed": 6
+    },
+    "reqLevel": 77,
+    "reqJob": 1,
+    "weaponType": "spear",
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1432075/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1442104,
+    "name": "메이플 파이롭 핼버드",
+    "slot": "weapon",
+    "effects": {
+      "STR": 4,
+      "pad": 91,
+      "acc": 40,
+      "attackSpeed": 6
+    },
+    "reqLevel": 77,
+    "reqJob": 1,
+    "weaponType": "polearm",
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1442104/icon",
+    "tuc": 7
+  },
+  {
+    "id": 1452100,
+    "name": "메이플 파이롭 보우",
+    "slot": "weapon",
+    "effects": {
+      "hp": 150,
+      "pad": 84,
+      "speed": 13,
+      "attackSpeed": 5
+    },
+    "reqLevel": 77,
+    "reqJob": 4,
+    "weaponType": "bow",
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1452100/icon",
+    "tuc": 7,
+    "reqStr": 67
+  },
+  {
+    "id": 1462085,
+    "name": "메이플 파이롭 크로우",
+    "slot": "weapon",
+    "effects": {
+      "hp": 150,
+      "pad": 87,
+      "speed": 13,
+      "attackSpeed": 5
+    },
+    "reqLevel": 77,
+    "reqJob": 4,
+    "weaponType": "crossbow",
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1462085/icon",
+    "tuc": 7,
+    "reqStr": 62
+  },
+  {
+    "id": 1472111,
+    "name": "메이플 파이롭 스칸다",
+    "slot": "weapon",
+    "effects": {
+      "LUK": 4,
+      "pad": 37,
+      "eva": 30,
+      "attackSpeed": 3
+    },
+    "reqLevel": 77,
+    "reqJob": 8,
+    "weaponType": "claw",
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1472111/icon",
+    "tuc": 7,
+    "reqDex": 102
+  },
+  {
+    "id": 1482073,
+    "name": "메이플 파이롭 너클",
+    "slot": "weapon",
+    "effects": {
+      "STR": 8,
+      "hp": 150,
+      "pad": 65,
+      "acc": 40,
+      "attackSpeed": 5
+    },
+    "reqLevel": 77,
+    "reqJob": 16,
+    "weaponType": "knuckle",
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1482073/icon",
+    "tuc": 7,
+    "reqDex": 62
+  },
+  {
+    "id": 1492073,
+    "name": "메이플 파이롭 슈터",
+    "slot": "weapon",
+    "effects": {
+      "DEX": 6,
+      "hp": 150,
+      "pad": 65,
+      "eva": 30,
+      "attackSpeed": 5
+    },
+    "reqLevel": 77,
+    "reqJob": 16,
+    "weaponType": "gun",
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1492073/icon",
+    "tuc": 7,
+    "reqStr": 62
   }
 ]
