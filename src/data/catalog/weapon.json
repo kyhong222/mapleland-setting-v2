@@ -6866,7 +6866,7 @@
       "STR": 5,
       "hp": 100,
       "pad": 60,
-      "acc": 25,
+      "acc": 30,
       "attackSpeed": 5
     },
     "reqLevel": 64,
@@ -7135,7 +7135,7 @@
       "STR": 8,
       "hp": 150,
       "pad": 65,
-      "acc": 30,
+      "acc": 40,
       "attackSpeed": 5
     },
     "reqLevel": 77,
