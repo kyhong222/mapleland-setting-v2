@@ -80,7 +80,8 @@ expect(
   40,
 )
 const yb = activeBuffEffects(ctx({ [YELLOW]: 20, [ADV_YELLOW]: 30, [SUPER_BODY]: 20 }))
-expect('어드밴스드 옐로우 오라 + 슈퍼바디 이속/공속/회피', [yb.speed, yb.windBoostStep, yb.eva], [80, 4, 40])
+// 슈퍼바디 회피는 회피율 수치(eva)가 아니라 회피 확률(addEvadeP)에 붙는다 (인게임 확인: eva ×1.4 아님)
+expect('어드밴스드 옐로우 오라 + 슈퍼바디 이속/공속/추가회피%', [yb.speed, yb.windBoostStep, yb.addEvadeP, yb.eva], [80, 4, 40, undefined])
 
 // ── §5 숙련도 ────────────────────────────────────────────────────
 console.log('\n── 숙련도 ──')
