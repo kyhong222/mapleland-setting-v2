@@ -39,6 +39,8 @@ export const JOB_SKILLBOOKS: Record<JobId, number[]> = {
   windBreaker: [1300, 1310, 1311],
   nightWalker: [1400, 1410, 1411],
   striker: [1500, 1510, 1511],
+  // 레지스탕스 (1~4차)
+  battleMage: [3200, 3210, 3211, 3212],
 }
 
 /** 스킬북 단건 조회 */
@@ -88,6 +90,12 @@ const SUMMON_SKILLS = new Set(['이프리트', '엘퀴네스', '바하뮤트', '
 const DAMAGE_BUFF_SKILLS = new Set([1111002, 1120003, 11111001, 11110005, 1320006])
 
 /**
+ * 오라(배틀메이지) — 어드밴스드 다크 오라는 주변 지속 데미지(mad)를 갖지만 시전하는 공격이 아니다.
+ * 특화 버프 토글로 관리하고, 지속 데미지는 미구현.
+ */
+const AURA_SKILLS = new Set([32120000])
+
+/**
  * 공격 스킬에서 제외할 비공격/디버프/패시브 스킬명.
  *  - 크리티컬 스로우/샷/펀치 = 크리 패시브
  *  - 모탈 블로우(보마 3110001 / 신궁 3210001) = 근접 시 확률 발동 패시브.
@@ -104,7 +112,7 @@ export function isAttackSkill(skill: IJobSkill): boolean {
   // 속성 차지·어드밴스드 차지는 특화버프로 관리 → 제외. 단 '차지 블로우'는 공격 스킬로 유지
   const isCharge = name.includes('차지') && !name.includes('블로우')
   if (isCharge || name.includes('파이널 어택') || NON_ATTACK_NAMES.has(name) || SUMMON_SKILLS.has(name)) return false
-  if (DAMAGE_BUFF_SKILLS.has(skill.id)) return false
+  if (DAMAGE_BUFF_SKILLS.has(skill.id) || AURA_SKILLS.has(skill.id)) return false
   return skill.levelProperties.some((p) => p.mad !== undefined || p.damage !== undefined)
 }
 
@@ -143,6 +151,8 @@ export const MAGIC_NO_MASTERY_DEFAULT = 60
  *   - 엔젤레이/샤이닝 레이/홀리 에로우 마스터: mastery 10 → 10 + 50 = 60%
  *   - 빅뱅 마스터: mastery 14 → 10 + 70 = 80%
  *   - 제네시스/메테오/블리자드: mastery 없음 → 60% 고정
+ *   - 배틀메이지 공격 스킬 전부: mastery 없음 → 60%. 스태프 마스터리(최대 80%)가 있으면
+ *     그쪽이 높으므로 소비처(NhitPanel)에서 무기 마스터리와 높은 쪽을 고른다.
  *
  * 물리는 스킬이 아니라 무기 마스터리 스킬에서 오므로 여기서 다루지 않는다.
  */

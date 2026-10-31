@@ -775,5 +775,59 @@
         "field": "x"
       }
     }
+  },
+  {
+    "id": "32101005",
+    "type": "skill",
+    "name": "스태프 부스터",
+    "scope": "personal",
+    "mode": "active",
+    "masterLevel": 20,
+    "jobs": [
+      "battleMage"
+    ],
+    "weaponTypes": [
+      "staff"
+    ],
+    "icon": "/skill-icons/32101005.png",
+    "derive": {
+      "castSpeedBoost": {
+        "field": "x"
+      }
+    }
+  },
+  {
+    "id": "32111004",
+    "type": "skill",
+    "name": "컨버전",
+    "scope": "personal",
+    "mode": "active",
+    "masterLevel": 20,
+    "jobs": [
+      "battleMage"
+    ],
+    "icon": "/skill-icons/32111004.png",
+    "derive": {
+      "hpP": {
+        "field": "x"
+      }
+    }
+  },
+  {
+    "id": "32111014",
+    "type": "skill",
+    "name": "스탠스",
+    "scope": "personal",
+    "mode": "active",
+    "masterLevel": 30,
+    "jobs": [
+      "battleMage"
+    ],
+    "icon": "/skill-icons/32111014.png",
+    "derive": {
+      "stanceP": {
+        "field": "prop"
+      }
+    }
   }
 ]

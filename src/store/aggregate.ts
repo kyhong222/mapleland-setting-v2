@@ -177,17 +177,37 @@ export interface BuffEntry {
 export function activeBuffEntries(ctx: BuffContext): BuffEntry[] {
   const { activeBuffs, appliedBuffs, masteryLevels, masteryOff, jobId, weaponType, hasShield } = ctx
   const out: BuffEntry[] = []
+  // 선행 버프(requires)가 꺼져 있으면 켜져 있어도 off 취급 (어드밴스드 오라 → 기본 오라)
+  const toggleOn = (id: string): boolean => {
+    if (activeBuffs[id] === undefined) return false
+    const b = getBuff(id)
+    return !(b?.type === 'skill' && b.requires && activeBuffs[b.requires] === undefined)
+  }
+  // 켜진 상위 버프가 대체하는 하위 버프 (어드밴스드 오라가 기본 오라의 값을 이어받는다)
+  const superseded = new Set<string>()
+  for (const id of Object.keys(activeBuffs)) {
+    const b = getBuff(id)
+    if (b?.type === 'skill' && b.supersedes && toggleOn(id)) superseded.add(b.supersedes)
+  }
   // 토글 버프 (무기 게이팅 버프는 여기서 제외 — 아래서 따로 처리)
   for (const [id, level] of Object.entries(activeBuffs)) {
     const b = getBuff(id)
     if (!b || (b.type === 'skill' && b.weaponTypes)) continue
+    if (!toggleOn(id) || superseded.has(id)) continue
     // 방패 필요 버프(블로킹)는 방패 미착용 시 제외
     if (b.type === 'skill' && b.requiresShield && !hasShield) continue
     // 직업 상한(정령의 축복: 모험가 12) 초과 저장분 클램프
     const lv = Math.min(level, effectiveMasterLevel(b, jobId))
     const nonStacking = b.type === 'skill' && b.nonStacking
     const conditional = b.type === 'skill' ? b.conditional : undefined
-    out.push({ buff: b, level: lv, effects: buffEffectsAtLevel(b, lv), pool: nonStacking ? 'max' : 'sum', conditional })
+    let effects = buffEffectsAtLevel(b, lv)
+    // 강화 버프(슈퍼바디)가 함께 켜져 있으면 강화분을 같은 항목에 얹는다
+    const boost = b.type === 'skill' ? b.boostedBy : undefined
+    if (boost && toggleOn(boost.id)) {
+      const boostLv = activeBuffs[boost.id]
+      effects = sumEffects(effects, boost.effectsByLevel[boostLv - 1] ?? {})
+    }
+    out.push({ buff: b, level: lv, effects, pool: nonStacking ? 'max' : 'sum', conditional })
   }
   // 무기 마스터리/엑스퍼트 — 장착 주무기 일치 시 자동 적용 (off한 것은 제외)
   for (const b of appliedMasteries(jobId, weaponType)) {

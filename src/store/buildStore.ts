@@ -228,13 +228,13 @@ export const useBuildStore = create<BuildState>()(
       selectJob: (id) =>
         set((s) => {
           if (s.jobId !== null) return s
-          const level = minLevelForClass(JOBS[id].classId)
+          const level = minLevelForClass(JOBS[id].classId, JOBS[id].order)
           return { jobId: id, level, baseStats: recomputeStats(id, level, statDefaults(JOBS[id].classId), false), statsTouched: false }
         }),
       reset: () => set({ jobId: null, level: 1, baseStats: baseFour(), equipped: {}, activeBuffs: {}, appliedBuffs: {}, masteryLevels: {}, buffLevels: {}, masteryOff: {}, statsTouched: false, charge: DEFAULT_CHARGE, baseHp: null, baseMp: null, baseHpLevel: null, baseMpLevel: null }),
       setLevel: (n) =>
         set((s) => {
-          const min = s.jobId ? minLevelForClass(JOBS[s.jobId].classId) : 1
+          const min = s.jobId ? minLevelForClass(JOBS[s.jobId].classId, JOBS[s.jobId].order) : 1
           const max = s.jobId ? maxLevelForOrder(JOBS[s.jobId].order) : maxLevelForOrder()
           const level = Math.max(min, Math.min(max, Math.floor(n) || min))
           const baseStats = s.jobId ? recomputeStats(s.jobId, level, s.baseStats, s.statsTouched) : s.baseStats

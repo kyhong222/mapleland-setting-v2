@@ -65,10 +65,11 @@ export function statMinimums(classId: ClassId): BaseStats {
   }
 }
 
-/** 계열별 최대 레벨 (모험가 200 / 시그너스 120) */
+/** 계열별 최대 레벨 (모험가·레지스탕스 200 / 시그너스 120) */
 export const MAX_LEVEL_BY_ORDER: Record<JobOrder, number> = {
   explorer: 200,
   cygnus: 120,
+  resistance: 200,
 }
 
 /** 계열별 최대 레벨 (order 미지정 시 모험가 기준) */
@@ -81,12 +82,13 @@ export const MAX_LEVEL = MAX_LEVEL_BY_ORDER.explorer
 
 /**
  * 최소(시작) 레벨 = 1차 전직 레벨. 이 아래로는 직업이 존재하지 않는다.
- * 마법사만 8, 나머지는 10.
+ * 마법사만 8, 나머지는 10. 레지스탕스는 클래스와 무관하게 10(배틀메이지도 마법사지만 10에 전직).
  */
 const MIN_LEVEL_BY_CLASS: Partial<Record<ClassId, number>> = { magician: 8 }
 const MIN_LEVEL_DEFAULT = 10
 
-export function minLevelForClass(classId: ClassId): number {
+export function minLevelForClass(classId: ClassId, order: JobOrder = 'explorer'): number {
+  if (order === 'resistance') return MIN_LEVEL_DEFAULT
   return MIN_LEVEL_BY_CLASS[classId] ?? MIN_LEVEL_DEFAULT
 }
 
@@ -95,9 +97,10 @@ export function minLevelForClass(classId: ClassId): number {
  *  - 모험가: 4 + 레벨×5 + (≥70:+5) + (≥120:+5)
  *  - 시그너스: 3 + 레벨×5 + (10~70 구간 레벨업 +1, 최대 61) + (≥70:+5) + (≥120:+5)
  *    (실측검증: L120→스탯합 690[STR602/DEX80/4/4], L92→545[52/485/4/4])
+ *  - 레지스탕스: 모험가와 같되 4차 전직(≥120) 보너스 AP가 없다
  */
 export function totalAP(level: number, order: JobOrder = 'explorer'): number {
-  const jobBonus = (level >= 70 ? 5 : 0) + (level >= 120 ? 5 : 0)
+  const jobBonus = (level >= 70 ? 5 : 0) + (level >= 120 && order !== 'resistance' ? 5 : 0)
   if (order === 'cygnus') {
     const cygnusBonus = Math.max(0, Math.min(level, 70) - 9)
     return 3 + level * 5 + cygnusBonus + jobBonus

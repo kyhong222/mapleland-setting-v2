@@ -1,5 +1,5 @@
 /**
- * 클래스(5종)와 직업(12종) 정의.
+ * 클래스(5종)와 직업 정의 (모험가 12종 + 시그너스 5종 + 레지스탕스).
  *
  * 클래스 = 전사/마법사/궁수/도적/해적
  * 직업 = 4차 전직 기준 12종. 공격력 공식 입력으로 쓰일 주스탯/부스탯/공격타입을 갖는다.
@@ -43,11 +43,13 @@ export type JobId =
   | 'windBreaker'
   | 'nightWalker'
   | 'striker'
+  // 레지스탕스
+  | 'battleMage'
 
 export type AttackType = 'physical' | 'magical'
 
-/** 직업 계열: 모험가(explorer) / 시그너스 기사단(cygnus) */
-export type JobOrder = 'explorer' | 'cygnus'
+/** 직업 계열: 모험가(explorer) / 시그너스 기사단(cygnus) / 레지스탕스(resistance) */
+export type JobOrder = 'explorer' | 'cygnus' | 'resistance'
 
 export interface JobDef {
   id: JobId
@@ -82,6 +84,9 @@ export const JOBS: Record<JobId, JobDef> = {
   windBreaker: { id: 'windBreaker', label: '윈드브레이커', classId: 'bowman', order: 'cygnus', primaryStat: 'DEX', secondaryStats: ['STR'], attackType: 'physical' },
   nightWalker: { id: 'nightWalker', label: '나이트워커', classId: 'thief', order: 'cygnus', primaryStat: 'LUK', secondaryStats: ['DEX', 'STR'], attackType: 'physical' },
   striker: { id: 'striker', label: '스트라이커', classId: 'pirate', order: 'cygnus', primaryStat: 'STR', secondaryStats: ['DEX'], attackType: 'physical' },
+
+  // ── 레지스탕스 ──
+  battleMage: { id: 'battleMage', label: '배틀메이지', classId: 'magician', order: 'resistance', primaryStat: 'INT', secondaryStats: ['LUK'], attackType: 'magical' },
 }
 
 export const ALL_CLASSES: ClassDef[] = Object.values(CLASSES)
@@ -91,6 +96,7 @@ export const ALL_JOBS: JobDef[] = Object.values(JOBS)
 export const JOB_ORDER_LABELS: Record<JobOrder, string> = {
   explorer: '모험가',
   cygnus: '시그너스 기사단',
+  resistance: '레지스탕스',
 }
 
 /** 특정 클래스에 속한 직업 목록 (order 지정 시 계열로 추가 필터) */

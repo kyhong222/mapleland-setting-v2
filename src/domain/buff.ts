@@ -83,6 +83,19 @@ export interface SkillBuff extends BuffBase {
   variants?: string[]
   /** 선행 버프 id — 이 버프가 off면 본 버프도 off로 취급(표시/효과). 예: 어드밴스드콤보 → 콤보어택 */
   requires?: string
+  /**
+   * 대체하는 하위 버프 id — 이 버프가 적용되면 그 버프의 효과는 빠진다.
+   * 상위 스킬의 값이 하위 스킬 값을 이어받는 "누적값"일 때 쓴다.
+   * 예: 어드밴스드 옐로우 오라(이속 21~40) → 옐로우 오라(이속 1~20)
+   */
+  supersedes?: string
+  /**
+   * 다른 토글 버프가 함께 켜져 있으면 이 버프의 효과에 더해지는 강화분.
+   * effectsByLevel의 레벨은 강화하는 쪽(id) 버프의 레벨이다.
+   * 강화분은 이 버프와 같은 항목으로 합쳐지므로 풀(sum/max)도 이 버프를 따른다.
+   * 예: 슈퍼바디 → 켜진 오라(옐로우 오라 이속·공속 추가)
+   */
+  boostedBy?: { id: string; effectsByLevel: EffectMap[] }
   /** 방패 착용 필요 — 보조무기 슬롯에 방패가 없으면 off로 취급(표시/효과). 예: 블로킹 */
   requiresShield?: boolean
   /**

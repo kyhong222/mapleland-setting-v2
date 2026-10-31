@@ -1236,5 +1236,213 @@
         "field": "x"
       }
     }
+  },
+  {
+    "id": "32110001",
+    "type": "skill",
+    "name": "스태프 마스터리",
+    "scope": "personal",
+    "mode": "passive",
+    "masterLevel": 20,
+    "jobs": [
+      "battleMage"
+    ],
+    "weaponTypes": [
+      "staff"
+    ],
+    "icon": "/skill-icons/32110001.png",
+    "derive": {
+      "mastery": {
+        "field": "x",
+        "offset": -10
+      },
+      "mad": {
+        "field": "y"
+      }
+    }
+  },
+  {
+    "id": "32001003",
+    "type": "skill",
+    "name": "다크 오라",
+    "scope": "personal",
+    "mode": "passive",
+    "masterLevel": 20,
+    "jobs": [
+      "battleMage"
+    ],
+    "exclusiveGroup": "battleMageAura",
+    "nonStacking": true,
+    "icon": "/skill-icons/32001003.png",
+    "derive": {
+      "finalDamageP": {
+        "field": "x"
+      }
+    },
+    "boostedBy": {
+      "id": "32111005",
+      "derive": {
+        "finalDamageP": {
+          "field": "darkX"
+        }
+      }
+    }
+  },
+  {
+    "id": "32120000",
+    "type": "skill",
+    "name": "어드밴스드 다크 오라",
+    "scope": "personal",
+    "mode": "passive",
+    "masterLevel": 30,
+    "jobs": [
+      "battleMage"
+    ],
+    "requires": "32001003",
+    "supersedes": "32001003",
+    "nonStacking": true,
+    "icon": "/skill-icons/32120000.png",
+    "note": "주변 지속 데미지 미구현",
+    "derive": {
+      "finalDamageP": {
+        "field": "x"
+      }
+    },
+    "boostedBy": {
+      "id": "32111005",
+      "derive": {
+        "finalDamageP": {
+          "field": "darkX"
+        }
+      }
+    }
+  },
+  {
+    "id": "32101003",
+    "type": "skill",
+    "name": "옐로우 오라",
+    "scope": "personal",
+    "mode": "passive",
+    "masterLevel": 20,
+    "jobs": [
+      "battleMage"
+    ],
+    "exclusiveGroup": "battleMageAura",
+    "nonStacking": true,
+    "icon": "/skill-icons/32101003.png",
+    "derive": {
+      "speed": {
+        "field": "x"
+      },
+      "windBoostStep": {
+        "field": "y"
+      }
+    },
+    "boostedBy": {
+      "id": "32111005",
+      "derive": {
+        "speed": {
+          "field": "speed"
+        },
+        "windBoostStep": {
+          "field": "attackSpeed"
+        },
+        "evadeRateP": {
+          "field": "avoid"
+        }
+      }
+    }
+  },
+  {
+    "id": "32120001",
+    "type": "skill",
+    "name": "어드밴스드 옐로우 오라",
+    "scope": "personal",
+    "mode": "passive",
+    "masterLevel": 30,
+    "jobs": [
+      "battleMage"
+    ],
+    "requires": "32101003",
+    "supersedes": "32101003",
+    "nonStacking": true,
+    "icon": "/skill-icons/32120001.png",
+    "derive": {
+      "speed": {
+        "field": "x"
+      },
+      "windBoostStep": {
+        "field": "y"
+      }
+    },
+    "boostedBy": {
+      "id": "32111005",
+      "derive": {
+        "speed": {
+          "field": "speed"
+        },
+        "windBoostStep": {
+          "field": "attackSpeed"
+        },
+        "evadeRateP": {
+          "field": "avoid"
+        }
+      }
+    }
+  },
+  {
+    "id": "32101002",
+    "type": "skill",
+    "name": "블루 오라",
+    "scope": "personal",
+    "mode": "passive",
+    "masterLevel": 20,
+    "jobs": [
+      "battleMage"
+    ],
+    "exclusiveGroup": "battleMageAura",
+    "nonStacking": true,
+    "icon": "/skill-icons/32101002.png",
+    "derive": {
+      "incomingDamageReduceP": {
+        "field": "x"
+      }
+    }
+  },
+  {
+    "id": "32110000",
+    "type": "skill",
+    "name": "어드밴스드 블루 오라",
+    "scope": "personal",
+    "mode": "passive",
+    "masterLevel": 20,
+    "jobs": [
+      "battleMage"
+    ],
+    "requires": "32101002",
+    "nonStacking": true,
+    "icon": "/skill-icons/32110000.png",
+    "derive": {
+      "pdef": {
+        "field": "y"
+      },
+      "mdef": {
+        "field": "y"
+      }
+    }
+  },
+  {
+    "id": "32111005",
+    "type": "skill",
+    "name": "슈퍼바디",
+    "scope": "personal",
+    "mode": "passive",
+    "masterLevel": 20,
+    "jobs": [
+      "battleMage"
+    ],
+    "icon": "/skill-icons/32111005.png",
+    "note": "켜진 오라를 강화",
+    "derive": {}
   }
 ]

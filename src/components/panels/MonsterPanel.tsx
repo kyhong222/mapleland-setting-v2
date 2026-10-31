@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react'
+import { useState } from 'react'
 import type { ReactNode } from 'react'
 import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
@@ -13,12 +13,9 @@ import MonsterIcon from '../monster/MonsterIcon'
 import MonsterSelectDialog from '../monster/MonsterSelectDialog'
 import { useMonsterStore } from '../../store/monsterStore'
 import { useBuildStore } from '../../store/buildStore'
-import { useInventoryStore } from '../../store/inventoryStore'
-import { aggregateBuild, equippedHasShield } from '../../store/aggregate'
+import { aggregateBuild, activeBuffEntries } from '../../store/aggregate'
 import { useActiveEquippedBuilts } from '../../store/activation'
-import { useBuffEffects } from '../../store/useBuffEffects'
-import { getBuff } from '../../data/buff'
-import { buffEffectsAtLevel } from '../../domain/buff'
+import { useBuffContext, useBuffEffects } from '../../store/useBuffEffects'
 import { getMonster } from '../../data/mobs'
 import { monsterLabel, parseElemAttr, monsterPatterns } from '../../domain/monster'
 import type { Monster } from '../../domain/monster'
@@ -219,31 +216,18 @@ export default function MonsterPanel() {
   const jobId = useBuildStore((s) => s.jobId)
   const level = useBuildStore((s) => s.level)
   const baseStats = useBuildStore((s) => s.baseStats)
-  const equipped = useBuildStore((s) => s.equipped)
-  const invItems = useInventoryStore((s) => s.items)
-  const activeBuffs = useBuildStore((s) => s.activeBuffs)
-  const appliedBuffs = useBuildStore((s) => s.appliedBuffs)
   const buffEffects = useBuffEffects()
   const builts = useActiveEquippedBuilts()
   const [open, setOpen] = useState(false)
 
   const selected = selectedId != null ? getMonster(selectedId) : undefined
 
-  // 회피확률에 기여하는 스킬(페이크 addEvadeP / 블로킹 blockRate) 배지
-  const hasShield = equippedHasShield(equipped, invItems)
-  const evadeBadges = useMemo<EvadeBadge[]>(() => {
-    const out: EvadeBadge[] = []
-    const add = (id: string, lv: number) => {
-      const b = getBuff(id)
-      if (!b) return
-      if (b.type === 'skill' && b.requiresShield && !hasShield) return
-      const eff = buffEffectsAtLevel(b, lv)
-      if ((eff.addEvadeP ?? 0) > 0 || (eff.blockRate ?? 0) > 0 || (eff.monsterAccReduceP ?? 0) > 0) out.push({ id, name: b.name, icon: b.icon })
-    }
-    for (const [id, lv] of Object.entries(activeBuffs)) add(id, lv)
-    for (const [id, lv] of Object.entries(appliedBuffs)) add(id, lv)
-    return out
-  }, [activeBuffs, appliedBuffs, hasShield])
+  // 회피확률에 기여하는 스킬(페이크 addEvadeP / 옐로우 오라+슈퍼바디 evadeRateP / 블로킹 blockRate) 배지.
+  // 합산과 같은 전개 목록을 써서 방패·선행·대체·강화(슈퍼바디가 오라에 얹는 회피) 규칙을 그대로 따른다.
+  const evadeBadges: EvadeBadge[] = activeBuffEntries(useBuffContext())
+    .filter(({ effects: eff }) =>
+      (eff.addEvadeP ?? 0) > 0 || (eff.evadeRateP ?? 0) > 0 || (eff.blockRate ?? 0) > 0 || (eff.monsterAccReduceP ?? 0) > 0)
+    .map(({ buff: b }) => ({ id: b.id, name: b.name, icon: b.icon }))
 
   let vsResult: VsMonsterResult | null = null
   if (jobId && selected) {
