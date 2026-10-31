@@ -9,7 +9,7 @@
  *
  * 페이크 등 추가 회피확률(effects.addEvadeP)·블로킹(effects.blockRate)은
  * 각각 독립 판정으로 회피확률에 합성한다.
- * 회피확률 증가(effects.evadeRateP, 슈퍼바디 옐로우)는 그 앞에서 기본 회피확률에 그대로 더한다.
+ * 회피확률 증가(effects.evadeRateP, 슈퍼바디 옐로우)는 그 앞에서 기본 회피확률에 그대로 더한다(직업 상한 적용).
  */
 
 import type { EffectMap } from './effects'
@@ -53,31 +53,29 @@ export function requiredAcc(playerLevel: number, monLevel: number, monEva: numbe
   return Math.round(2 * (11 / 6 + 0.07 * D) * monEva)
 }
 
-/**
- * 기본 회피확률에 추가 회피를 합성.
- *  1. 회피확률 증가(evadeRateP%): 단순 덧셈 — "회피율 40% 증가" 표기(슈퍼바디 옐로우). 100% 상한
- *  2. 페이크 등 추가회피(addEvadeP%): 독립 판정 → 곱연산
- */
-function combineExtraEvade(basePercent: number, addEvadeP: number, evadeRateP = 0): number {
-  const base = Math.min(100, basePercent + evadeRateP)
-  if (addEvadeP <= 0) return base
-  return (1 - (1 - base / 100) * (1 - addEvadeP / 100)) * 100
+/** 페이크 등 추가회피(addEvadeP%)를 base 회피확률에 독립 판정으로 합성. */
+function combineExtraEvade(basePercent: number, addEvadeP: number): number {
+  if (addEvadeP <= 0) return basePercent
+  return (1 - (1 - basePercent / 100) * (1 - addEvadeP / 100)) * 100
 }
 
-/** 물리 회피확률(%) = totalEva / (4.5 × 몬스터명중) — 도적 5~95 / 그 외 2~80 clamp. */
+/**
+ * 물리 회피확률(%) = totalEva / (4.5 × 몬스터명중) — 도적 5~95 / 그 외 2~80 clamp.
+ * 회피확률 증가(evadeRateP%, 슈퍼바디 옐로우 "회피율 40% 증가")는 clamp 전에 그대로 더한다 → 직업 상한에 걸린다.
+ */
 export function physEvadeRate(totalEva: number, monAcc: number, isThief: boolean, addEvadeP: number, evadeRateP = 0): number {
   const min = isThief ? 5 : 2
   const max = isThief ? 95 : 80
-  const base = monAcc <= 0 ? max : clamp((totalEva / (4.5 * monAcc)) * 100, min, max)
-  return combineExtraEvade(base, addEvadeP, evadeRateP)
+  const base = monAcc <= 0 ? max : clamp((totalEva / (4.5 * monAcc)) * 100 + evadeRateP, min, max)
+  return combineExtraEvade(base, addEvadeP)
 }
 
-/** 마법 회피확률(%) = 10/9 − 몬스터명중 / (0.9 × totalEva) — 물리와 동일 clamp. */
+/** 마법 회피확률(%) = 10/9 − 몬스터명중 / (0.9 × totalEva) — 물리와 동일 clamp·evadeRateP 덧셈. */
 export function magicEvadeRate(totalEva: number, monAcc: number, isThief: boolean, addEvadeP: number, evadeRateP = 0): number {
   const min = isThief ? 5 : 2
   const max = isThief ? 95 : 80
-  const base = monAcc <= 0 || totalEva <= 0 ? max : clamp((10 / 9 - monAcc / (0.9 * totalEva)) * 100, min, max)
-  return combineExtraEvade(base, addEvadeP, evadeRateP)
+  const base = monAcc <= 0 || totalEva <= 0 ? max : clamp((10 / 9 - monAcc / (0.9 * totalEva)) * 100 + evadeRateP, min, max)
+  return combineExtraEvade(base, addEvadeP)
 }
 
 /** 대상 몬스터 (전투 수치만 사용) */

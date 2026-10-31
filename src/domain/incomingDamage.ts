@@ -119,7 +119,7 @@ export function skillDamageType(skill: MobSkill): IncomingType {
  *  - 엘리먼트/파셜 레지스턴스(allRes / *Res): 속성 타입
  *  - physicalRes: 물리/접촉
  *  - 매직가드(incomingDamageReduceP): 전 타입 (데미지를 MP로 대신 받아 HP 관점 n% 감경)
- *    배틀메이지 블루 오라도 같은 채널 — 흡수율(y, 어드밴스드는 x)만큼 감경한다고 가정
+ *    배틀메이지 블루 오라도 같은 채널 — x만큼 감경 (어드밴스드는 방어력만 더하고 감경은 기본 x 유지)
  * (메소가드는 별도 흡수 — mesoAbsorbRate 참고)
  */
 export function reductionMultiplier(type: IncomingType, effects: EffectMap, jobClass: ClassId, isBoss: boolean): number {

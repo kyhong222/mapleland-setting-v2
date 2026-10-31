@@ -1405,7 +1405,7 @@
     "icon": "/skill-icons/32101002.png",
     "derive": {
       "incomingDamageReduceP": {
-        "field": "y"
+        "field": "x"
       }
     }
   },
@@ -1420,13 +1420,9 @@
       "battleMage"
     ],
     "requires": "32101002",
-    "supersedes": "32101002",
     "nonStacking": true,
     "icon": "/skill-icons/32110000.png",
     "derive": {
-      "incomingDamageReduceP": {
-        "field": "x"
-      },
       "pdef": {
         "field": "y"
       },

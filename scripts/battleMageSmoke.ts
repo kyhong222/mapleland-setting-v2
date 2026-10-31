@@ -9,7 +9,7 @@
  *  §1 직업 규칙 — 레지스탕스는 4차(120) 보너스 AP가 없고, 마법사지만 10레벨에 전직한다
  *  §2 공격 스킬 목록 — 오라 지속 데미지는 빠지고, 블로우는 타수(3~6)를 갖는다
  *  §3 오라 — 어드밴스드가 기본을 대체(supersedes), 선행 오라가 꺼지면 무효(requires)
- *  §4 슈퍼바디 — 켜진 오라에만 강화분이 얹힌다(boostedBy)
+ *  §4 슈퍼바디 — 켜진 오라에만 강화분이 얹힌다(boostedBy), 회피확률 덧셈은 직업 상한에 걸린다
  *  §5 숙련도 — 기본 60%, 스태프 마스터리(스태프 장착 시) 80%
  *  §6 마법 다타 — attackCount만큼 라인이 생긴다
  */
@@ -18,7 +18,7 @@ import { attackSkillsForJob, findSkillById, skillAttackAt, skillLineCount } from
 import { activeBuffEffects } from '../src/store/aggregate'
 import type { BuffContext } from '../src/store/aggregate'
 import { masteryRatio } from '../src/domain/attackPower'
-import { physEvadeRate } from '../src/domain/combat'
+import { magicEvadeRate, physEvadeRate } from '../src/domain/combat'
 import { computeCast } from '../src/domain/skillCombat'
 import { totalAP, minLevelForClass, maxLevelForOrder } from '../src/domain/stats'
 
@@ -65,10 +65,10 @@ expect('어드밴스드 다크 오라 30이 기본을 대체', activeBuffEffects
 expect('선행 다크 오라가 꺼지면 어드밴스드도 무효', activeBuffEffects(ctx({ [ADV_DARK]: 30 })).finalDamageP, undefined)
 const yellow = activeBuffEffects(ctx({ [YELLOW]: 20, [ADV_YELLOW]: 30 }))
 expect('어드밴스드 옐로우 오라 30 이속/공속', [yellow.speed, yellow.windBoostStep], [40, 2])
-// 블루 오라 피격 감소 = 흡수율 (기본 y / 어드밴스드 x) 가정
-expect('블루 오라 20 피격 감소', activeBuffEffects(ctx({ [BLUE]: 20 })).incomingDamageReduceP, 30)
+// 블루 오라 피격 감소 = x (인게임 확인). 어드밴스드는 방어력만 더하고 감소는 기본 x 그대로
+expect('블루 오라 1/20 피격 감소', [1, 20].map((lv) => activeBuffEffects(ctx({ [BLUE]: lv })).incomingDamageReduceP), [11, 30])
 const blue = activeBuffEffects(ctx({ [BLUE]: 20, [ADV_BLUE]: 20 }))
-expect('어드밴스드 블루 오라 20 피격 감소/물방/마방 (기본 대체)', [blue.incomingDamageReduceP, blue.pdef, blue.mdef], [20, 100, 100])
+expect('어드밴스드 블루 오라 20 피격 감소/물방/마방', [blue.incomingDamageReduceP, blue.pdef, blue.mdef], [30, 100, 100])
 
 // ── §4 슈퍼바디 ──────────────────────────────────────────────────
 console.log('\n── 슈퍼바디 ──')
@@ -84,7 +84,8 @@ const yb = activeBuffEffects(ctx({ [YELLOW]: 20, [ADV_YELLOW]: 30, [SUPER_BODY]:
 // 슈퍼바디 회피는 회피율 수치(eva ×1.4 아님, 인게임 확인)가 아니라 회피확률에 덧셈(evadeRateP)
 expect('어드밴스드 옐로우 오라 + 슈퍼바디 이속/공속/회피확률%', [yb.speed, yb.windBoostStep, yb.evadeRateP, yb.eva], [80, 4, 40, undefined])
 expect('회피확률 30% + 40% = 70% (덧셈)', physEvadeRate(4.5 * 30, 100, false, 0, 40), 70)
-expect('페이크 50%는 그 뒤에 곱연산', physEvadeRate(4.5 * 30, 100, false, 50, 40), 85)
+expect('일반 직업 상한 80%', [physEvadeRate(4.5 * 60, 100, false, 0, 40), magicEvadeRate(1000, 100, false, 0, 40)], [80, 80])
+expect('페이크 50%는 상한 뒤에 곱연산', physEvadeRate(4.5 * 60, 100, false, 50, 40), 90)
 
 // ── §5 숙련도 ────────────────────────────────────────────────────
 console.log('\n── 숙련도 ──')
