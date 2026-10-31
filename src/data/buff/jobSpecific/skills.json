@@ -1442,7 +1442,7 @@
       "battleMage"
     ],
     "icon": "/skill-icons/32111005.png",
-    "note": "켜진 오라를 강화 (블루 오라 무적은 미반영)",
+    "note": "켜진 오라를 강화",
     "derive": {}
   }
 ]

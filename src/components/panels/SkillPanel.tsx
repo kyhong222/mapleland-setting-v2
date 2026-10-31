@@ -21,7 +21,7 @@ import EditBadge from '../common/EditBadge'
 import { useBuildStore } from '../../store/buildStore'
 import { useInventoryStore } from '../../store/inventoryStore'
 import { equippedWeaponType, equippedHasShield, jobMasteries, displayedMasteries, appliedMasteries, weaponGateOk } from '../../store/aggregate'
-import { COMMON_BUFFS, PARTY_BUFFS, PERSONAL_BUFFS, DOPING_ITEMS, JOB_BUFFS } from '../../data/buff'
+import { COMMON_BUFFS, PARTY_BUFFS, PERSONAL_BUFFS, DOPING_ITEMS, JOB_BUFFS, getBuff } from '../../data/buff'
 import { canUseBuff, buffEffectsAtLevel, defaultBuffLevel, effectiveMasterLevel } from '../../domain/buff'
 import type { Buff } from '../../domain/buff'
 import { maxEffects } from '../../domain/effects'
@@ -308,9 +308,20 @@ function BuffDialog({ buff, kind, onClose }: { buff: Buff; kind: BuffKind; onClo
         ) : (
           <Typography variant="caption" color="text.disabled">레벨 조정 없음</Typography>
         )}
-        <Typography variant="body2" color="success.main" sx={{ mt: 1 }}>
-          {buff.id === '1220010' ? advChargeCaption(draftLevel) : (magicGuardCaption(buff, draftLevel) ?? (formatEffects(eff) || '—'))}
-        </Typography>
+        {buff.id === SUPER_BODY_ID ? (
+          // 슈퍼바디: 세 오라의 강화 내용을 모두 보여준다
+          <Box sx={{ mt: 1 }}>
+            {SUPER_BODY_AURAS.map((a) => (
+              <Typography key={a.id} variant="body2" color="success.main">
+                {a.name}: {superBodyAuraText(a.id, draftLevel)}
+              </Typography>
+            ))}
+          </Box>
+        ) : (
+          <Typography variant="body2" color="success.main" sx={{ mt: 1 }}>
+            {buff.id === '1220010' ? advChargeCaption(draftLevel) : (magicGuardCaption(buff, draftLevel) ?? (formatEffects(eff) || '—'))}
+          </Typography>
+        )}
       </DialogContent>
       <DialogActions>
         <Button onClick={onClose} color="inherit">취소</Button>
@@ -347,7 +358,8 @@ function BuffRow({ buff, onOpen }: { buff: Buff; onOpen: (b: Buff) => void }) {
   // note는 보조 안내문 — 효과가 있으면 뒤에 덧붙이고(스턴 마스터리의 적용 범위 안내),
   // 효과가 없으면 단독 표시(미구현 스킬 표기)
   const noteText = buff.note ? (effText ? `${effText} · ${buff.note}` : buff.note) : null
-  const caption = requiresShield && !shieldOk ? '방패 착용 필요' : (mgText ?? lcText ?? noteText ?? advText ?? comboText ?? (effText || '—'))
+  const sbText = superBodyCaption(buff, shownLevel, activeBuffs)
+  const caption = requiresShield && !shieldOk ? '방패 착용 필요' : (mgText ?? lcText ?? sbText ?? noteText ?? advText ?? comboText ?? (effText || '—'))
   return (
     <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5, py: 0.25 }}>
       <BuffIcon buff={buff} active={active} highlightActive onClick={() => toggleBuff(buff.id)} onLongPress={() => onOpen(buff)} />
@@ -359,6 +371,30 @@ function BuffRow({ buff, onOpen }: { buff: Buff; onOpen: (b: Buff) => void }) {
       </Box>
     </Box>
   )
+}
+
+/** 슈퍼바디(배틀메이지) — 켜진 오라에 강화분을 얹는다(boostedBy) */
+const SUPER_BODY_ID = '32111005'
+/** 슈퍼바디가 강화하는 오라(기본 오라 id). 어드밴스드 오라도 같은 강화분이라 기본 쪽 데이터로 표시 */
+const SUPER_BODY_AURAS = [
+  { id: '32001003', name: '다크 오라' },
+  { id: '32101003', name: '옐로우 오라' },
+  { id: '32101002', name: '블루 오라' },
+]
+
+/** 슈퍼바디 레벨별 오라 하나의 강화 문구. 블루 오라는 무적이라 EffectMap이 없어 스킬북 blueTime으로 적는다 */
+function superBodyAuraText(auraId: string, level: number): string {
+  const aura = getBuff(auraId)
+  const boost = aura?.type === 'skill' ? aura.boostedBy : undefined
+  if (boost) return formatEffects(boost.effectsByLevel[level - 1] ?? {}) || '—'
+  return `${skillNumAt(Number(SUPER_BODY_ID), level, 'blueTime')}초간 무적`
+}
+
+/** 슈퍼바디 행 설명 — 켜진 오라가 있으면 그 오라의 강화 내용, 없으면 null(기본 note) */
+function superBodyCaption(buff: Buff, level: number, activeBuffs: Record<string, number>): string | null {
+  if (buff.id !== SUPER_BODY_ID) return null
+  const on = SUPER_BODY_AURAS.find((a) => activeBuffs[a.id] !== undefined)
+  return on ? `${on.name}: ${superBodyAuraText(on.id, level)}` : null
 }
 
 /** 어드밴스드 차지 설명: 차지 블로우 계수를 레벨별 값으로 강화 */
