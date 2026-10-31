@@ -64,8 +64,10 @@ expect('어드밴스드 다크 오라 30이 기본을 대체', activeBuffEffects
 expect('선행 다크 오라가 꺼지면 어드밴스드도 무효', activeBuffEffects(ctx({ [ADV_DARK]: 30 })).finalDamageP, undefined)
 const yellow = activeBuffEffects(ctx({ [YELLOW]: 20, [ADV_YELLOW]: 30 }))
 expect('어드밴스드 옐로우 오라 30 이속/공속', [yellow.speed, yellow.windBoostStep], [40, 2])
+// 블루 오라 피격 감소 = 흡수율 (기본 y / 어드밴스드 x) 가정
+expect('블루 오라 20 피격 감소', activeBuffEffects(ctx({ [BLUE]: 20 })).incomingDamageReduceP, 30)
 const blue = activeBuffEffects(ctx({ [BLUE]: 20, [ADV_BLUE]: 20 }))
-expect('어드밴스드 블루 오라 20 물방/마방', [blue.pdef, blue.mdef], [100, 100])
+expect('어드밴스드 블루 오라 20 피격 감소/물방/마방 (기본 대체)', [blue.incomingDamageReduceP, blue.pdef, blue.mdef], [20, 100, 100])
 
 // ── §4 슈퍼바디 ──────────────────────────────────────────────────
 console.log('\n── 슈퍼바디 ──')
@@ -78,7 +80,7 @@ expect(
   40,
 )
 const yb = activeBuffEffects(ctx({ [YELLOW]: 20, [ADV_YELLOW]: 30, [SUPER_BODY]: 20 }))
-expect('어드밴스드 옐로우 오라 + 슈퍼바디 이속/공속', [yb.speed, yb.windBoostStep], [80, 4])
+expect('어드밴스드 옐로우 오라 + 슈퍼바디 이속/공속/회피', [yb.speed, yb.windBoostStep, yb.eva], [80, 4, 40])
 
 // ── §5 숙련도 ────────────────────────────────────────────────────
 console.log('\n── 숙련도 ──')

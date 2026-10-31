@@ -1346,6 +1346,9 @@
         },
         "windBoostStep": {
           "field": "attackSpeed"
+        },
+        "eva": {
+          "field": "avoid"
         }
       }
     }
@@ -1380,6 +1383,9 @@
         },
         "windBoostStep": {
           "field": "attackSpeed"
+        },
+        "eva": {
+          "field": "avoid"
         }
       }
     }
@@ -1397,8 +1403,11 @@
     "exclusiveGroup": "battleMageAura",
     "nonStacking": true,
     "icon": "/skill-icons/32101002.png",
-    "note": "피격 데미지 감소 미구현",
-    "derive": {}
+    "derive": {
+      "incomingDamageReduceP": {
+        "field": "y"
+      }
+    }
   },
   {
     "id": "32110000",
@@ -1415,6 +1424,9 @@
     "nonStacking": true,
     "icon": "/skill-icons/32110000.png",
     "derive": {
+      "incomingDamageReduceP": {
+        "field": "x"
+      },
       "pdef": {
         "field": "y"
       },

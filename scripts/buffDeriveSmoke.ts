@@ -103,9 +103,8 @@ const COMPUTED_IN_DOMAIN = new Set([
   '1111002', '1120003', '11111001', '11110005', // 콤보 / 어드밴스드 콤보
   '1220010', // 어드밴스드 차지
   '12101005', // 엘리멘탈 리셋
-  // 배틀메이지 — 블루 오라는 피격 데미지 감소 미구현, 슈퍼바디는 자기 효과 없이
-  // 켜진 오라에 강화분(boostedBy)만 얹는다
-  '32101002', '32111005',
+  // 배틀메이지 슈퍼바디 — 자기 효과 없이 켜진 오라에 강화분(boostedBy)만 얹는다
+  '32111005',
 ])
 const empty = skillBuffs.filter(
   (b) => !COMPUTED_IN_DOMAIN.has(b.id) && b.effectsByLevel.every((e) => !Object.keys(e).length),
