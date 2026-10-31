@@ -56,6 +56,10 @@ import b1411 from './skillbooks/1411.json'
 import b1500 from './skillbooks/1500.json'
 import b1510 from './skillbooks/1510.json'
 import b1511 from './skillbooks/1511.json'
+import b3200 from './skillbooks/3200.json'
+import b3210 from './skillbooks/3210.json'
+import b3211 from './skillbooks/3211.json'
+import b3212 from './skillbooks/3212.json'
 
 /** 스킬북 코드 → 스킬북 데이터 */
 export const SKILLBOOKS: Record<number, IJobSkillBook> = {
@@ -115,4 +119,8 @@ export const SKILLBOOKS: Record<number, IJobSkillBook> = {
   1500: b1500 as unknown as IJobSkillBook,
   1510: b1510 as unknown as IJobSkillBook,
   1511: b1511 as unknown as IJobSkillBook,
+  3200: b3200 as unknown as IJobSkillBook,
+  3210: b3210 as unknown as IJobSkillBook,
+  3211: b3211 as unknown as IJobSkillBook,
+  3212: b3212 as unknown as IJobSkillBook,
 }

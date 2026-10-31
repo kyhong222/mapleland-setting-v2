@@ -1,0 +1,1150 @@
+{
+  "id": 3211,
+  "job": {
+    "id": 3211,
+    "name": "Battle Mage (3rd)"
+  },
+  "description": {
+    "id": 3211,
+    "desc": "",
+    "name": "",
+    "shortDesc": "",
+    "bookName": "상급 배틀 마법"
+  },
+  "skills": [
+    {
+      "masterLevel": 20,
+      "weapons": [],
+      "id": 32110000,
+      "description": {
+        "id": 32110000,
+        "desc": "블루 오라의 능력을 강화시킨다. 추가로 주위 파티원들의 방어력을 향상시킨다.",
+        "name": "어드밴스드 블루 오라",
+        "bookName": "",
+        "detail": "MP #mpCon 소비, 분배된 데미지의 #x% 흡수, 방어력 #y 증가"
+      },
+      "levelProperties": [
+        {
+          "hs": "h1",
+          "mpCon": "46",
+          "x": "29",
+          "y": "5"
+        },
+        {
+          "hs": "h2",
+          "mpCon": "46",
+          "x": "29",
+          "y": "10"
+        },
+        {
+          "hs": "h3",
+          "mpCon": "46",
+          "x": "28",
+          "y": "15"
+        },
+        {
+          "hs": "h4",
+          "mpCon": "46",
+          "x": "28",
+          "y": "20"
+        },
+        {
+          "hs": "h5",
+          "mpCon": "46",
+          "x": "27",
+          "y": "25"
+        },
+        {
+          "hs": "h6",
+          "mpCon": "50",
+          "x": "27",
+          "y": "30"
+        },
+        {
+          "hs": "h7",
+          "mpCon": "50",
+          "x": "26",
+          "y": "35"
+        },
+        {
+          "hs": "h8",
+          "mpCon": "50",
+          "x": "26",
+          "y": "40"
+        },
+        {
+          "hs": "h9",
+          "mpCon": "50",
+          "x": "25",
+          "y": "45"
+        },
+        {
+          "hs": "h10",
+          "mpCon": "50",
+          "x": "25",
+          "y": "50"
+        },
+        {
+          "hs": "h11",
+          "mpCon": "54",
+          "x": "24",
+          "y": "55"
+        },
+        {
+          "hs": "h12",
+          "mpCon": "54",
+          "x": "24",
+          "y": "60"
+        },
+        {
+          "hs": "h13",
+          "mpCon": "54",
+          "x": "23",
+          "y": "65"
+        },
+        {
+          "hs": "h14",
+          "mpCon": "54",
+          "x": "23",
+          "y": "70"
+        },
+        {
+          "hs": "h15",
+          "mpCon": "54",
+          "x": "22",
+          "y": "75"
+        },
+        {
+          "hs": "h16",
+          "mpCon": "58",
+          "x": "22",
+          "y": "80"
+        },
+        {
+          "hs": "h17",
+          "mpCon": "58",
+          "x": "21",
+          "y": "85"
+        },
+        {
+          "hs": "h18",
+          "mpCon": "58",
+          "x": "21",
+          "y": "90"
+        },
+        {
+          "hs": "h19",
+          "mpCon": "58",
+          "x": "20",
+          "y": "95"
+        },
+        {
+          "hs": "h20",
+          "mpCon": "58",
+          "x": "20",
+          "y": "100"
+        }
+      ],
+      "requiredSkillLevels": {
+        "32101002": 20
+      }
+    },
+    {
+      "masterLevel": 20,
+      "weapons": [],
+      "id": 32110001,
+      "description": {
+        "id": 32110001,
+        "desc": "스태프 계열 무기의 숙련도를 마력을 상승시킨다.",
+        "name": "스태프 마스터리",
+        "bookName": "",
+        "detail": "마법공격 숙련도 #x% 증가, 마력 #y 증가"
+      },
+      "levelProperties": [
+        {
+          "hs": "h1",
+          "x": "65",
+          "y": "1"
+        },
+        {
+          "hs": "h2",
+          "x": "65",
+          "y": "2"
+        },
+        {
+          "hs": "h3",
+          "x": "65",
+          "y": "3"
+        },
+        {
+          "hs": "h4",
+          "x": "65",
+          "y": "4"
+        },
+        {
+          "hs": "h5",
+          "x": "65",
+          "y": "5"
+        },
+        {
+          "hs": "h6",
+          "x": "70",
+          "y": "6"
+        },
+        {
+          "hs": "h7",
+          "x": "70",
+          "y": "7"
+        },
+        {
+          "hs": "h8",
+          "x": "70",
+          "y": "8"
+        },
+        {
+          "hs": "h9",
+          "x": "70",
+          "y": "9"
+        },
+        {
+          "hs": "h10",
+          "x": "70",
+          "y": "10"
+        },
+        {
+          "hs": "h11",
+          "x": "75",
+          "y": "11"
+        },
+        {
+          "hs": "h12",
+          "x": "75",
+          "y": "12"
+        },
+        {
+          "hs": "h13",
+          "x": "75",
+          "y": "13"
+        },
+        {
+          "hs": "h14",
+          "x": "75",
+          "y": "14"
+        },
+        {
+          "hs": "h15",
+          "x": "75",
+          "y": "15"
+        },
+        {
+          "hs": "h16",
+          "x": "80",
+          "y": "16"
+        },
+        {
+          "hs": "h17",
+          "x": "80",
+          "y": "17"
+        },
+        {
+          "hs": "h18",
+          "x": "80",
+          "y": "18"
+        },
+        {
+          "hs": "h19",
+          "x": "80",
+          "y": "19"
+        },
+        {
+          "hs": "h20",
+          "x": "80",
+          "y": "20"
+        }
+      ]
+    },
+    {
+      "masterLevel": 30,
+      "weapons": [],
+      "id": 32111002,
+      "description": {
+        "id": 32111002,
+        "desc": "트리플 블로우 스킬 키를 다섯번 연타해서 다수의 근접한 적에게 5단 공격을 한다.",
+        "name": "데스 블로우",
+        "bookName": "",
+        "detail": "MP #mpCon 소비, 기본 공격력 #mad"
+      },
+      "levelProperties": [
+        {
+          "attackCount": "5",
+          "hs": "h1",
+          "mpCon": "30",
+          "mad": "23"
+        },
+        {
+          "attackCount": "5",
+          "hs": "h2",
+          "mpCon": "30",
+          "mad": "24"
+        },
+        {
+          "attackCount": "5",
+          "hs": "h3",
+          "mpCon": "30",
+          "mad": "24"
+        },
+        {
+          "attackCount": "5",
+          "hs": "h4",
+          "mpCon": "30",
+          "mad": "25"
+        },
+        {
+          "attackCount": "5",
+          "hs": "h5",
+          "mpCon": "30",
+          "mad": "25"
+        },
+        {
+          "attackCount": "5",
+          "hs": "h6",
+          "mpCon": "34",
+          "mad": "26"
+        },
+        {
+          "attackCount": "5",
+          "hs": "h7",
+          "mpCon": "34",
+          "mad": "26"
+        },
+        {
+          "attackCount": "5",
+          "hs": "h8",
+          "mpCon": "34",
+          "mad": "27"
+        },
+        {
+          "attackCount": "5",
+          "hs": "h9",
+          "mpCon": "34",
+          "mad": "27"
+        },
+        {
+          "attackCount": "5",
+          "hs": "h10",
+          "mpCon": "34",
+          "mad": "28"
+        },
+        {
+          "attackCount": "5",
+          "hs": "h11",
+          "mpCon": "38",
+          "mad": "30"
+        },
+        {
+          "attackCount": "5",
+          "hs": "h12",
+          "mpCon": "38",
+          "mad": "31"
+        },
+        {
+          "attackCount": "5",
+          "hs": "h13",
+          "mpCon": "38",
+          "mad": "31"
+        },
+        {
+          "attackCount": "5",
+          "hs": "h14",
+          "mpCon": "38",
+          "mad": "32"
+        },
+        {
+          "attackCount": "5",
+          "hs": "h15",
+          "mpCon": "38",
+          "mad": "32"
+        },
+        {
+          "attackCount": "5",
+          "hs": "h16",
+          "mpCon": "42",
+          "mad": "33"
+        },
+        {
+          "attackCount": "5",
+          "hs": "h17",
+          "mpCon": "42",
+          "mad": "33"
+        },
+        {
+          "attackCount": "5",
+          "hs": "h18",
+          "mpCon": "42",
+          "mad": "34"
+        },
+        {
+          "attackCount": "5",
+          "hs": "h19",
+          "mpCon": "42",
+          "mad": "34"
+        },
+        {
+          "attackCount": "5",
+          "hs": "h20",
+          "mpCon": "42",
+          "mad": "35"
+        },
+        {
+          "attackCount": "5",
+          "hs": "h21",
+          "mpCon": "46",
+          "mad": "37"
+        },
+        {
+          "attackCount": "5",
+          "hs": "h22",
+          "mpCon": "46",
+          "mad": "38"
+        },
+        {
+          "attackCount": "5",
+          "hs": "h23",
+          "mpCon": "46",
+          "mad": "38"
+        },
+        {
+          "attackCount": "5",
+          "hs": "h24",
+          "mpCon": "46",
+          "mad": "39"
+        },
+        {
+          "attackCount": "5",
+          "hs": "h25",
+          "mpCon": "46",
+          "mad": "39"
+        },
+        {
+          "attackCount": "5",
+          "hs": "h26",
+          "mpCon": "50",
+          "mad": "40"
+        },
+        {
+          "attackCount": "5",
+          "hs": "h27",
+          "mpCon": "50",
+          "mad": "40"
+        },
+        {
+          "attackCount": "5",
+          "hs": "h28",
+          "mpCon": "50",
+          "mad": "41"
+        },
+        {
+          "attackCount": "5",
+          "hs": "h29",
+          "mpCon": "50",
+          "mad": "41"
+        },
+        {
+          "attackCount": "5",
+          "hs": "h30",
+          "mpCon": "50",
+          "mad": "42"
+        }
+      ],
+      "requiredSkillLevels": {
+        "32101000": 20
+      }
+    },
+    {
+      "masterLevel": 30,
+      "weapons": [],
+      "id": 32111003,
+      "description": {
+        "id": 32111003,
+        "desc": "두개의 암흑의 구를 소환하고, 구 사이에 자기장을 만들어 몬스터들을 공격한다. 액티브 스킬",
+        "name": "다크 라이트닝",
+        "bookName": "",
+        "detail": "MP #mpCon 소비, 기본 공격력 #mad"
+      },
+      "levelProperties": [
+        {
+          "hs": "h1",
+          "mpCon": "22",
+          "mad": "155"
+        },
+        {
+          "hs": "h2",
+          "mpCon": "22",
+          "mad": "160"
+        },
+        {
+          "hs": "h3",
+          "mpCon": "22",
+          "mad": "165"
+        },
+        {
+          "hs": "h4",
+          "mpCon": "22",
+          "mad": "170"
+        },
+        {
+          "hs": "h5",
+          "mpCon": "22",
+          "mad": "175"
+        },
+        {
+          "hs": "h6",
+          "mpCon": "24",
+          "mad": "180"
+        },
+        {
+          "hs": "h7",
+          "mpCon": "24",
+          "mad": "185"
+        },
+        {
+          "hs": "h8",
+          "mpCon": "24",
+          "mad": "190"
+        },
+        {
+          "hs": "h9",
+          "mpCon": "24",
+          "mad": "195"
+        },
+        {
+          "hs": "h10",
+          "mpCon": "24",
+          "mad": "200"
+        },
+        {
+          "hs": "h11",
+          "mpCon": "26",
+          "mad": "205"
+        },
+        {
+          "hs": "h12",
+          "mpCon": "26",
+          "mad": "210"
+        },
+        {
+          "hs": "h13",
+          "mpCon": "26",
+          "mad": "215"
+        },
+        {
+          "hs": "h14",
+          "mpCon": "26",
+          "mad": "220"
+        },
+        {
+          "hs": "h15",
+          "mpCon": "26",
+          "mad": "225"
+        },
+        {
+          "hs": "h16",
+          "mpCon": "28",
+          "mad": "230"
+        },
+        {
+          "hs": "h17",
+          "mpCon": "28",
+          "mad": "235"
+        },
+        {
+          "hs": "h18",
+          "mpCon": "28",
+          "mad": "240"
+        },
+        {
+          "hs": "h19",
+          "mpCon": "28",
+          "mad": "245"
+        },
+        {
+          "hs": "h20",
+          "mpCon": "28",
+          "mad": "250"
+        },
+        {
+          "hs": "h21",
+          "mpCon": "30",
+          "mad": "255"
+        },
+        {
+          "hs": "h22",
+          "mpCon": "30",
+          "mad": "260"
+        },
+        {
+          "hs": "h23",
+          "mpCon": "30",
+          "mad": "265"
+        },
+        {
+          "hs": "h24",
+          "mpCon": "30",
+          "mad": "270"
+        },
+        {
+          "hs": "h25",
+          "mpCon": "30",
+          "mad": "275"
+        },
+        {
+          "hs": "h26",
+          "mpCon": "32",
+          "mad": "280"
+        },
+        {
+          "hs": "h27",
+          "mpCon": "32",
+          "mad": "285"
+        },
+        {
+          "hs": "h28",
+          "mpCon": "32",
+          "mad": "290"
+        },
+        {
+          "hs": "h29",
+          "mpCon": "32",
+          "mad": "295"
+        },
+        {
+          "hs": "h30",
+          "mpCon": "32",
+          "mad": "300"
+        }
+      ]
+    },
+    {
+      "masterLevel": 20,
+      "weapons": [],
+      "id": 32111004,
+      "description": {
+        "id": 32111004,
+        "desc": "MP를 소비하여 일정 시간동안 자신의 MaxHP의 양을 증가시킨다.",
+        "name": "컨버전",
+        "bookName": "",
+        "detail": "MP #mpCon 소비, #time초간 MaxHP #x% 증가"
+      },
+      "levelProperties": [
+        {
+          "hs": "h1",
+          "mpCon": "1050",
+          "time": "67",
+          "x": "62"
+        },
+        {
+          "hs": "h2",
+          "mpCon": "1100",
+          "time": "74",
+          "x": "64"
+        },
+        {
+          "hs": "h3",
+          "mpCon": "1150",
+          "time": "81",
+          "x": "66"
+        },
+        {
+          "hs": "h4",
+          "mpCon": "1200",
+          "time": "88",
+          "x": "68"
+        },
+        {
+          "hs": "h5",
+          "mpCon": "1250",
+          "time": "95",
+          "x": "70"
+        },
+        {
+          "hs": "h6",
+          "mpCon": "1300",
+          "time": "102",
+          "x": "72"
+        },
+        {
+          "hs": "h7",
+          "mpCon": "1350",
+          "time": "109",
+          "x": "74"
+        },
+        {
+          "hs": "h8",
+          "mpCon": "1400",
+          "time": "116",
+          "x": "76"
+        },
+        {
+          "hs": "h9",
+          "mpCon": "1450",
+          "time": "123",
+          "x": "78"
+        },
+        {
+          "hs": "h10",
+          "mpCon": "1500",
+          "time": "130",
+          "x": "80"
+        },
+        {
+          "hs": "h11",
+          "mpCon": "1550",
+          "time": "137",
+          "x": "82"
+        },
+        {
+          "hs": "h12",
+          "mpCon": "1600",
+          "time": "144",
+          "x": "84"
+        },
+        {
+          "hs": "h13",
+          "mpCon": "1650",
+          "time": "151",
+          "x": "86"
+        },
+        {
+          "hs": "h14",
+          "mpCon": "1700",
+          "time": "158",
+          "x": "88"
+        },
+        {
+          "hs": "h15",
+          "mpCon": "1750",
+          "time": "165",
+          "x": "90"
+        },
+        {
+          "hs": "h16",
+          "mpCon": "1800",
+          "time": "172",
+          "x": "92"
+        },
+        {
+          "hs": "h17",
+          "mpCon": "1850",
+          "time": "179",
+          "x": "94"
+        },
+        {
+          "hs": "h18",
+          "mpCon": "1900",
+          "time": "186",
+          "x": "96"
+        },
+        {
+          "hs": "h19",
+          "mpCon": "1950",
+          "time": "193",
+          "x": "98"
+        },
+        {
+          "hs": "h20",
+          "mpCon": "2000",
+          "time": "200",
+          "x": "100"
+        }
+      ]
+    },
+    {
+      "masterLevel": 20,
+      "weapons": [],
+      "id": 32111005,
+      "description": {
+        "id": 32111005,
+        "desc": "MP를 소비하여 일정 시간 동안 현재 활성화 중인 오라의 상태를 강화한다. 슈퍼바디 상태가 해제될 때까지 다른 오라로 전환할 수 없다.",
+        "name": "슈퍼바디",
+        "bookName": "",
+        "detail": "MP #mpCon 소비\n다크 오라 : #darkTime초간 데미지 #darkX% 증가\n옐로우 오라 : #yellowTime초간 이동속도 #speed, 공격속도 #attackSpeed, 회피율 #avoid% 증가\n블루 오라 : #blueTime초간 무적 상태\n재사용 대기시간 #cooltime초"
+      },
+      "levelProperties": [
+        {
+          "hs": "h1",
+          "mpCon": "52",
+          "darkTime": "30",
+          "darkX": "1",
+          "yellowTime": "30",
+          "speed": "2",
+          "attackSpeed": "2",
+          "avoid": "2",
+          "blueTime": "10",
+          "cooltime": "120"
+        },
+        {
+          "hs": "h2",
+          "mpCon": "54",
+          "darkTime": "30",
+          "darkX": "2",
+          "yellowTime": "30",
+          "speed": "4",
+          "attackSpeed": "2",
+          "avoid": "4",
+          "blueTime": "10",
+          "cooltime": "120"
+        },
+        {
+          "hs": "h3",
+          "mpCon": "56",
+          "darkTime": "30",
+          "darkX": "3",
+          "yellowTime": "30",
+          "speed": "6",
+          "attackSpeed": "2",
+          "avoid": "6",
+          "blueTime": "10",
+          "cooltime": "120"
+        },
+        {
+          "hs": "h4",
+          "mpCon": "58",
+          "darkTime": "30",
+          "darkX": "4",
+          "yellowTime": "30",
+          "speed": "8",
+          "attackSpeed": "2",
+          "avoid": "8",
+          "blueTime": "10",
+          "cooltime": "120"
+        },
+        {
+          "hs": "h5",
+          "mpCon": "60",
+          "darkTime": "30",
+          "darkX": "5",
+          "yellowTime": "30",
+          "speed": "10",
+          "attackSpeed": "2",
+          "avoid": "10",
+          "blueTime": "10",
+          "cooltime": "120"
+        },
+        {
+          "hs": "h6",
+          "mpCon": "62",
+          "darkTime": "30",
+          "darkX": "6",
+          "yellowTime": "30",
+          "speed": "12",
+          "attackSpeed": "2",
+          "avoid": "12",
+          "blueTime": "10",
+          "cooltime": "120"
+        },
+        {
+          "hs": "h7",
+          "mpCon": "64",
+          "darkTime": "30",
+          "darkX": "7",
+          "yellowTime": "30",
+          "speed": "14",
+          "attackSpeed": "2",
+          "avoid": "14",
+          "blueTime": "10",
+          "cooltime": "120"
+        },
+        {
+          "hs": "h8",
+          "mpCon": "66",
+          "darkTime": "30",
+          "darkX": "8",
+          "yellowTime": "30",
+          "speed": "16",
+          "attackSpeed": "2",
+          "avoid": "16",
+          "blueTime": "10",
+          "cooltime": "120"
+        },
+        {
+          "hs": "h9",
+          "mpCon": "68",
+          "darkTime": "30",
+          "darkX": "9",
+          "yellowTime": "30",
+          "speed": "18",
+          "attackSpeed": "2",
+          "avoid": "18",
+          "blueTime": "10",
+          "cooltime": "120"
+        },
+        {
+          "hs": "h10",
+          "mpCon": "70",
+          "darkTime": "30",
+          "darkX": "10",
+          "yellowTime": "30",
+          "speed": "20",
+          "attackSpeed": "2",
+          "avoid": "20",
+          "blueTime": "10",
+          "cooltime": "120"
+        },
+        {
+          "hs": "h11",
+          "mpCon": "72",
+          "darkTime": "30",
+          "darkX": "11",
+          "yellowTime": "30",
+          "speed": "22",
+          "attackSpeed": "2",
+          "avoid": "22",
+          "blueTime": "10",
+          "cooltime": "120"
+        },
+        {
+          "hs": "h12",
+          "mpCon": "74",
+          "darkTime": "30",
+          "darkX": "12",
+          "yellowTime": "30",
+          "speed": "24",
+          "attackSpeed": "2",
+          "avoid": "24",
+          "blueTime": "10",
+          "cooltime": "120"
+        },
+        {
+          "hs": "h13",
+          "mpCon": "76",
+          "darkTime": "30",
+          "darkX": "13",
+          "yellowTime": "30",
+          "speed": "26",
+          "attackSpeed": "2",
+          "avoid": "26",
+          "blueTime": "10",
+          "cooltime": "120"
+        },
+        {
+          "hs": "h14",
+          "mpCon": "78",
+          "darkTime": "30",
+          "darkX": "14",
+          "yellowTime": "30",
+          "speed": "28",
+          "attackSpeed": "2",
+          "avoid": "28",
+          "blueTime": "10",
+          "cooltime": "120"
+        },
+        {
+          "hs": "h15",
+          "mpCon": "80",
+          "darkTime": "30",
+          "darkX": "15",
+          "yellowTime": "30",
+          "speed": "30",
+          "attackSpeed": "2",
+          "avoid": "30",
+          "blueTime": "10",
+          "cooltime": "120"
+        },
+        {
+          "hs": "h16",
+          "mpCon": "82",
+          "darkTime": "30",
+          "darkX": "16",
+          "yellowTime": "30",
+          "speed": "32",
+          "attackSpeed": "2",
+          "avoid": "32",
+          "blueTime": "10",
+          "cooltime": "120"
+        },
+        {
+          "hs": "h17",
+          "mpCon": "84",
+          "darkTime": "30",
+          "darkX": "17",
+          "yellowTime": "30",
+          "speed": "34",
+          "attackSpeed": "2",
+          "avoid": "34",
+          "blueTime": "10",
+          "cooltime": "120"
+        },
+        {
+          "hs": "h18",
+          "mpCon": "86",
+          "darkTime": "30",
+          "darkX": "18",
+          "yellowTime": "30",
+          "speed": "36",
+          "attackSpeed": "2",
+          "avoid": "36",
+          "blueTime": "10",
+          "cooltime": "120"
+        },
+        {
+          "hs": "h19",
+          "mpCon": "88",
+          "darkTime": "30",
+          "darkX": "19",
+          "yellowTime": "30",
+          "speed": "38",
+          "attackSpeed": "2",
+          "avoid": "38",
+          "blueTime": "10",
+          "cooltime": "120"
+        },
+        {
+          "hs": "h20",
+          "mpCon": "90",
+          "darkTime": "30",
+          "darkX": "20",
+          "yellowTime": "30",
+          "speed": "40",
+          "attackSpeed": "2",
+          "avoid": "40",
+          "blueTime": "10",
+          "cooltime": "120"
+        }
+      ]
+    },
+    {
+      "masterLevel": 20,
+      "weapons": [],
+      "id": 32111006,
+      "description": {
+        "id": 32111006,
+        "desc": "일정 시간 동안 몬스터를 죽일 때 일정 확률로 리퍼가 소환된다. 소환 된 리퍼는 10초간 적을 공격한다.",
+        "name": "리바이브",
+        "bookName": "",
+        "detail": "MP #mpCon 소비, 적이 죽을 때 #prop% 확률로 소환, 지속시간 #time초"
+      },
+      "levelProperties": [
+        {
+          "hs": "h1",
+          "mpCon": "45",
+          "prop": "1",
+          "time": "67"
+        },
+        {
+          "hs": "h2",
+          "mpCon": "45",
+          "prop": "2",
+          "time": "74"
+        },
+        {
+          "hs": "h3",
+          "mpCon": "45",
+          "prop": "3",
+          "time": "81"
+        },
+        {
+          "hs": "h4",
+          "mpCon": "45",
+          "prop": "4",
+          "time": "88"
+        },
+        {
+          "hs": "h5",
+          "mpCon": "45",
+          "prop": "5",
+          "time": "95"
+        },
+        {
+          "hs": "h6",
+          "mpCon": "60",
+          "prop": "6",
+          "time": "102"
+        },
+        {
+          "hs": "h7",
+          "mpCon": "60",
+          "prop": "7",
+          "time": "109"
+        },
+        {
+          "hs": "h8",
+          "mpCon": "60",
+          "prop": "8",
+          "time": "116"
+        },
+        {
+          "hs": "h9",
+          "mpCon": "60",
+          "prop": "9",
+          "time": "123"
+        },
+        {
+          "hs": "h10",
+          "mpCon": "60",
+          "prop": "10",
+          "time": "130"
+        },
+        {
+          "hs": "h11",
+          "mpCon": "75",
+          "prop": "11",
+          "time": "137"
+        },
+        {
+          "hs": "h12",
+          "mpCon": "75",
+          "prop": "12",
+          "time": "144"
+        },
+        {
+          "hs": "h13",
+          "mpCon": "75",
+          "prop": "13",
+          "time": "151"
+        },
+        {
+          "hs": "h14",
+          "mpCon": "75",
+          "prop": "14",
+          "time": "158"
+        },
+        {
+          "hs": "h15",
+          "mpCon": "75",
+          "prop": "15",
+          "time": "165"
+        },
+        {
+          "hs": "h16",
+          "mpCon": "90",
+          "prop": "16",
+          "time": "172"
+        },
+        {
+          "hs": "h17",
+          "mpCon": "90",
+          "prop": "17",
+          "time": "179"
+        },
+        {
+          "hs": "h18",
+          "mpCon": "90",
+          "prop": "18",
+          "time": "186"
+        },
+        {
+          "hs": "h19",
+          "mpCon": "90",
+          "prop": "19",
+          "time": "193"
+        },
+        {
+          "hs": "h20",
+          "mpCon": "90",
+          "prop": "20",
+          "time": "200"
+        }
+      ]
+    }
+  ]
+}

@@ -73,6 +73,12 @@ const COMA_PANIC = new Set([1111003, 1111004, 1111005, 1111006, 11111002, 111110
 const RUSH = new Set([1121006, 1221007, 1321003])
 /** 방컷·DPM 미제공(데미지 범위만): 패닉/코마 + 돌진 */
 const NO_DPM = new Set([...COMA_PANIC, ...RUSH])
+/**
+ * 데미지 계산 미구현 — 목록엔 두되 "지원하지 않음"으로 표시한다.
+ *  - 피니쉬 어택(배틀메이지 32001001): 앞선 블로우가 강할수록 데미지가 커지는데
+ *    그 배율 규칙을 아직 모른다(실험으로 유추 필요).
+ */
+const UNIMPLEMENTED = new Set([32001001])
 /** 럭키세븐/트리플스로우(나로·나워) — LUK 전용 예외식(부스탯·숙련 없음) */
 const LUCKY_SKILLS = new Set([4001344, 14001004, 4121007, 14111005])
 /** 피스트(바이퍼 5121007·스트라이커 15111004) — 6타 중 5타 ×2, 6타 ×4 (7단계 타수배율) */
@@ -277,7 +283,7 @@ export default function NhitPanel() {
     // 피스트: 타수별 배율(5타×2·6타×4)
     const hitMultipliers = FIST_SKILLS.has(baseId) ? FIST_HIT_MULT : undefined
 
-    const cast = computeCast({
+    const cast = UNIMPLEMENTED.has(baseId) ? null : computeCast({
       weaponType: atkWeapon ?? 'oneHandedSword',
       skillId: baseId,
       attackCount: skillLineCount(sk, lv),
@@ -285,8 +291,11 @@ export default function NhitPanel() {
       primary: finalStats[job.primaryStat],
       secondary: job.secondaryStats.reduce((a, s) => a + finalStats[s], 0),
       watk,
-      // 마법 숙련도는 스킬 자체에서(기본 10% + 스킬 mastery×5%), 물리는 무기 마스터리 버프에서 온다
-      mastery: att.mastery ?? masteryRatio(effects),
+      // 마법 숙련도는 스킬 자체에서(기본 10% + 스킬 mastery×5%), 물리는 무기 마스터리 버프에서 온다.
+      // 마법이라도 무기 마스터리가 있으면(배틀메이지 스태프 마스터리) 높은 쪽 — 기본 60% → 최대 80%
+      mastery: att.mastery != null
+        ? Math.max(att.mastery, effects.mastery ? masteryRatio(effects) : 0)
+        : masteryRatio(effects),
       magic: totalMagic(effects, finalStats.INT),
       int: finalStats.INT,
       spellAtk,

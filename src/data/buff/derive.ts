@@ -36,9 +36,11 @@ export interface BuffDeriveRule {
 export type BuffDeriveMap = Partial<Record<EffectId, BuffDeriveRule>>
 
 /** JSON 원본 — effectsByLevel과 derive 중 하나 이상을 갖는다 */
-type RawSkillBuff = Omit<SkillBuff, 'effectsByLevel'> & {
+type RawSkillBuff = Omit<SkillBuff, 'effectsByLevel' | 'boostedBy'> & {
   effectsByLevel?: EffectMap[]
   derive?: BuffDeriveMap
+  /** 강화분도 강화하는 쪽 스킬(id)의 스킬북에서 파생한다 */
+  boostedBy?: { id: string; derive: BuffDeriveMap }
 }
 type RawBuff = Exclude<Buff, SkillBuff> | RawSkillBuff
 
@@ -56,14 +58,19 @@ function round3(n: number): number {
  *    UI 캡션에 '+0'이 뜨는 것도 막는다.
  */
 function deriveEffects(buff: RawSkillBuff, derive: BuffDeriveMap): EffectMap[] {
-  const skill = findSkillById(Number(buff.id))
+  return deriveTable(buff.id, buff.masterLevel, derive) ?? buff.effectsByLevel ?? []
+}
+
+/** 스킬북의 한 스킬(id) 1~masterLevel 레벨표. 스킬을 못 찾으면 null */
+function deriveTable(id: string, masterLevel: number, derive: BuffDeriveMap): EffectMap[] | null {
+  const skill = findSkillById(Number(id))
   if (!skill) {
     // 스킬북에 없는 id로 파생을 선언한 경우 — 데이터 실수다. 빈 표 대신 기존 값을 쓰게 둔다.
-    console.warn(`[buff] derive 대상 스킬을 찾을 수 없음: ${buff.id} ${buff.name}`)
-    return buff.effectsByLevel ?? []
+    console.warn(`[buff] derive 대상 스킬을 찾을 수 없음: ${id}`)
+    return null
   }
   const table: EffectMap[] = []
-  for (let lv = 1; lv <= buff.masterLevel; lv++) {
+  for (let lv = 1; lv <= masterLevel; lv++) {
     const props = skillPropsAtLevel(skill, lv)
     const eff: EffectMap = {}
     for (const [id, rule] of Object.entries(derive) as [EffectId, BuffDeriveRule][]) {
@@ -80,14 +87,22 @@ function deriveEffects(buff: RawSkillBuff, derive: BuffDeriveMap): EffectMap[] {
 /** JSON 한 벌을 도메인 Buff[]로 정규화 (derive → effectsByLevel 전개) */
 export function resolveBuffs(raw: unknown): Buff[] {
   return (raw as RawBuff[]).map((b) => {
-    if (b.type !== 'skill' || !b.derive) return b as Buff
-    const { derive, ...rest } = b
-    const derived = deriveEffects(b, derive)
-    // 직접 적은 값이 파생값을 덮는다 (일부 능력치만 스킬북에 없는 버프)
-    const literal = b.effectsByLevel ?? []
-    return {
-      ...rest,
-      effectsByLevel: derived.map((eff, i) => ({ ...eff, ...literal[i] })),
-    } as Buff
+    if (b.type !== 'skill') return b as Buff
+    const { derive, boostedBy, ...rest } = b
+    const out = { ...rest } as SkillBuff
+    if (derive) {
+      const derived = deriveEffects(b, derive)
+      // 직접 적은 값이 파생값을 덮는다 (일부 능력치만 스킬북에 없는 버프)
+      const literal = b.effectsByLevel ?? []
+      out.effectsByLevel = derived.map((eff, i) => ({ ...eff, ...literal[i] }))
+    }
+    if (boostedBy) {
+      const booster = findSkillById(Number(boostedBy.id))
+      out.boostedBy = {
+        id: boostedBy.id,
+        effectsByLevel: deriveTable(boostedBy.id, booster?.masterLevel ?? 0, boostedBy.derive) ?? [],
+      }
+    }
+    return out
   })
 }

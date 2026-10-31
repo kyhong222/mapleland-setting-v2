@@ -8,7 +8,7 @@ import { ALL_CLASSES, jobsOfClass, JOB_ORDER_LABELS } from '../domain/jobs'
 import type { JobId, JobOrder } from '../domain/jobs'
 import { useBuildStore } from '../store/buildStore'
 
-/** 한 계열(모험가/시그너스)의 클래스별 직업 그리드 */
+/** 한 계열(모험가/시그너스/레지스탕스)의 클래스별 직업 그리드 */
 function OrderSection({ order, onSelect }: { order: JobOrder; onSelect: (id: JobId) => void }) {
   return (
     <Box>
@@ -26,7 +26,8 @@ function OrderSection({ order, onSelect }: { order: JobOrder; onSelect: (id: Job
           gap: 2,
         }}
       >
-        {ALL_CLASSES.map((cls) => (
+        {/* 직업이 없는 클래스는 뺀다 (레지스탕스는 아직 마법사뿐) */}
+        {ALL_CLASSES.filter((cls) => jobsOfClass(cls.id, order).length > 0).map((cls) => (
           <Box key={cls.id}>
             <Typography
               variant="h6"
@@ -82,6 +83,7 @@ export default function JobSelectScreen() {
       <Stack spacing={5}>
         <OrderSection order="explorer" onSelect={selectJob} />
         <OrderSection order="cygnus" onSelect={selectJob} />
+        <OrderSection order="resistance" onSelect={selectJob} />
       </Stack>
     </Container>
   )

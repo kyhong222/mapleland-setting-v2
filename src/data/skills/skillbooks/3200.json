@@ -1,0 +1,417 @@
+{
+  "id": 3200,
+  "job": {
+    "id": 3200,
+    "name": "Battle Mage (1st)"
+  },
+  "description": {
+    "id": 3200,
+    "desc": "",
+    "name": "",
+    "shortDesc": "",
+    "bookName": "배틀메이지 입문서"
+  },
+  "skills": [
+    {
+      "masterLevel": 20,
+      "weapons": [],
+      "id": 32001000,
+      "description": {
+        "id": 32001000,
+        "desc": "스킬키를 세번 연타해 근접한 다수의 적들을 빠르게 3단 공격한다. 최대 6마리의 적을 공격할 수 있다.",
+        "name": "트리플 블로우",
+        "bookName": "",
+        "detail": "MP #mpCon 소비, 기본 공격력 #mad"
+      },
+      "levelProperties": [
+        {
+          "attackCount": "3",
+          "hs": "h1",
+          "mpCon": "10",
+          "mad": "10"
+        },
+        {
+          "attackCount": "3",
+          "hs": "h2",
+          "mpCon": "11",
+          "mad": "11"
+        },
+        {
+          "attackCount": "3",
+          "hs": "h3",
+          "mpCon": "11",
+          "mad": "11"
+        },
+        {
+          "attackCount": "3",
+          "hs": "h4",
+          "mpCon": "12",
+          "mad": "12"
+        },
+        {
+          "attackCount": "3",
+          "hs": "h5",
+          "mpCon": "12",
+          "mad": "12"
+        },
+        {
+          "attackCount": "3",
+          "hs": "h6",
+          "mpCon": "13",
+          "mad": "13"
+        },
+        {
+          "attackCount": "3",
+          "hs": "h7",
+          "mpCon": "13",
+          "mad": "13"
+        },
+        {
+          "attackCount": "3",
+          "hs": "h8",
+          "mpCon": "14",
+          "mad": "14"
+        },
+        {
+          "attackCount": "3",
+          "hs": "h9",
+          "mpCon": "14",
+          "mad": "14"
+        },
+        {
+          "attackCount": "3",
+          "hs": "h10",
+          "mpCon": "15",
+          "mad": "15"
+        },
+        {
+          "attackCount": "3",
+          "hs": "h11",
+          "mpCon": "15",
+          "mad": "15"
+        },
+        {
+          "attackCount": "3",
+          "hs": "h12",
+          "mpCon": "16",
+          "mad": "16"
+        },
+        {
+          "attackCount": "3",
+          "hs": "h13",
+          "mpCon": "16",
+          "mad": "16"
+        },
+        {
+          "attackCount": "3",
+          "hs": "h14",
+          "mpCon": "17",
+          "mad": "17"
+        },
+        {
+          "attackCount": "3",
+          "hs": "h15",
+          "mpCon": "17",
+          "mad": "17"
+        },
+        {
+          "attackCount": "3",
+          "hs": "h16",
+          "mpCon": "18",
+          "mad": "18"
+        },
+        {
+          "attackCount": "3",
+          "hs": "h17",
+          "mpCon": "18",
+          "mad": "18"
+        },
+        {
+          "attackCount": "3",
+          "hs": "h18",
+          "mpCon": "19",
+          "mad": "19"
+        },
+        {
+          "attackCount": "3",
+          "hs": "h19",
+          "mpCon": "19",
+          "mad": "19"
+        },
+        {
+          "attackCount": "3",
+          "hs": "h20",
+          "mpCon": "20",
+          "mad": "20"
+        }
+      ]
+    },
+    {
+      "masterLevel": 10,
+      "weapons": [],
+      "id": 32001001,
+      "description": {
+        "id": 32001001,
+        "desc": "톱니 형태의 빛이 뿜어져 나오며 날아가 적들을 공격한다. 블로우 계열의 연타 스킬과 연속해서만 사용이 가능하고, 더 강한 블로우 스킬과 함께 사용할 경우 데미지가 더욱 강해진다. 최대 6마리의 적을 공격할 수 있다.",
+        "name": "피니쉬 어택",
+        "bookName": "",
+        "detail": "MP #mpCon 소비, 기본 공격력 #mad"
+      },
+      "levelProperties": [
+        {
+          "hs": "h1",
+          "mpCon": "11",
+          "mad": "30"
+        },
+        {
+          "hs": "h2",
+          "mpCon": "12",
+          "mad": "35"
+        },
+        {
+          "hs": "h3",
+          "mpCon": "13",
+          "mad": "40"
+        },
+        {
+          "hs": "h4",
+          "mpCon": "14",
+          "mad": "45"
+        },
+        {
+          "hs": "h5",
+          "mpCon": "15",
+          "mad": "50"
+        },
+        {
+          "hs": "h6",
+          "mpCon": "16",
+          "mad": "54"
+        },
+        {
+          "hs": "h7",
+          "mpCon": "17",
+          "mad": "58"
+        },
+        {
+          "hs": "h8",
+          "mpCon": "18",
+          "mad": "62"
+        },
+        {
+          "hs": "h9",
+          "mpCon": "19",
+          "mad": "66"
+        },
+        {
+          "hs": "h10",
+          "mpCon": "20",
+          "mad": "70"
+        }
+      ]
+    },
+    {
+      "masterLevel": 15,
+      "weapons": [],
+      "id": 32001002,
+      "description": {
+        "id": 32001002,
+        "desc": "상, 하, 좌, 우 방향키를 이용하여 같은 맵 상의 다른 위치로 일정 간격으로 이동할 수 있다.",
+        "name": "텔레포트",
+        "bookName": "",
+        "detail": "MP #mpCon 소비, 이동거리 #range"
+      },
+      "levelProperties": [
+        {
+          "hs": "h1",
+          "mpCon": "50",
+          "range": "131"
+        },
+        {
+          "hs": "h2",
+          "mpCon": "49",
+          "range": "132"
+        },
+        {
+          "hs": "h3",
+          "mpCon": "46",
+          "range": "133"
+        },
+        {
+          "hs": "h4",
+          "mpCon": "32",
+          "range": "134"
+        },
+        {
+          "hs": "h5",
+          "mpCon": "40",
+          "range": "135"
+        },
+        {
+          "hs": "h6",
+          "mpCon": "37",
+          "range": "136"
+        },
+        {
+          "hs": "h7",
+          "mpCon": "34",
+          "range": "137"
+        },
+        {
+          "hs": "h8",
+          "mpCon": "31",
+          "range": "138"
+        },
+        {
+          "hs": "h9",
+          "mpCon": "28",
+          "range": "139"
+        },
+        {
+          "hs": "h10",
+          "mpCon": "25",
+          "range": "140"
+        },
+        {
+          "hs": "h11",
+          "mpCon": "22",
+          "range": "141"
+        },
+        {
+          "hs": "h12",
+          "mpCon": "19",
+          "range": "142"
+        },
+        {
+          "hs": "h13",
+          "mpCon": "16",
+          "range": "143"
+        },
+        {
+          "hs": "h14",
+          "mpCon": "13",
+          "range": "144"
+        },
+        {
+          "hs": "h15",
+          "mpCon": "10",
+          "range": "145"
+        }
+      ]
+    },
+    {
+      "masterLevel": 20,
+      "weapons": [],
+      "id": 32001003,
+      "description": {
+        "id": 32001003,
+        "desc": "자신의 몸에서 검은 오라를 방출해서 파티원들의 공격력을 향상시킨다. 오라는 중복해서 사용할 수 없다.",
+        "name": "다크 오라",
+        "bookName": "",
+        "detail": "MP #mpCon 소비, 파티원의 데미지 #x% 강화"
+      },
+      "levelProperties": [
+        {
+          "hs": "h1",
+          "mpCon": "15",
+          "x": "1"
+        },
+        {
+          "hs": "h2",
+          "mpCon": "15",
+          "x": "1"
+        },
+        {
+          "hs": "h3",
+          "mpCon": "15",
+          "x": "2"
+        },
+        {
+          "hs": "h4",
+          "mpCon": "15",
+          "x": "2"
+        },
+        {
+          "hs": "h5",
+          "mpCon": "15",
+          "x": "3"
+        },
+        {
+          "hs": "h6",
+          "mpCon": "20",
+          "x": "3"
+        },
+        {
+          "hs": "h7",
+          "mpCon": "20",
+          "x": "4"
+        },
+        {
+          "hs": "h8",
+          "mpCon": "20",
+          "x": "4"
+        },
+        {
+          "hs": "h9",
+          "mpCon": "20",
+          "x": "5"
+        },
+        {
+          "hs": "h10",
+          "mpCon": "20",
+          "x": "5"
+        },
+        {
+          "hs": "h11",
+          "mpCon": "25",
+          "x": "6"
+        },
+        {
+          "hs": "h12",
+          "mpCon": "25",
+          "x": "6"
+        },
+        {
+          "hs": "h13",
+          "mpCon": "25",
+          "x": "7"
+        },
+        {
+          "hs": "h14",
+          "mpCon": "25",
+          "x": "7"
+        },
+        {
+          "hs": "h15",
+          "mpCon": "25",
+          "x": "8"
+        },
+        {
+          "hs": "h16",
+          "mpCon": "30",
+          "x": "8"
+        },
+        {
+          "hs": "h17",
+          "mpCon": "30",
+          "x": "9"
+        },
+        {
+          "hs": "h18",
+          "mpCon": "30",
+          "x": "9"
+        },
+        {
+          "hs": "h19",
+          "mpCon": "30",
+          "x": "10"
+        },
+        {
+          "hs": "h20",
+          "mpCon": "30",
+          "x": "10"
+        }
+      ]
+    }
+  ]
+}

@@ -40,6 +40,7 @@ npx tsx scripts/growthSmoke.ts     # 성장(레벨업) 스펙 — 스탯별 + �
 npx tsx scripts/attackSpeedSmoke.ts # 공속표 커버리지·프레임 정합·분기 스펙
 npx tsx scripts/cloudSmoke.ts      # 클라우드 캡처/복원 왕복 (네트워크·Supabase 키 불필요)
 npx tsx scripts/noticeSmoke.ts     # 공지 id·날짜·참조 아이템·compare 전후·자동 노출 판정
+npx tsx scripts/battleMageSmoke.ts # 배틀메이지 직업 규칙·오라 대체/강화·스태프 숙련도·마법 다타
 ```
 
 변경 후에는 최소한 `npm run typecheck`를 돌린다.
@@ -147,6 +148,9 @@ maplestory.io API ───┘   (로컬 카탈로그 우선 → GMS 62 → GMS 
 - `requiresShield` 버프(블로킹)는 보조무기에 방패가 있어야 적용
 - `conditional` 버프(스턴 마스터리)는 **상시 합산에서 빠진다.** 그 상황을 가정하는 계산에서만
   `conditionalBuffEffects(ctx, 'stun')`으로 따로 더한다 → 아래 "스킬 변형" 참고
+- 토글(`activeBuffs`) 사이의 관계 셋: `requires`(선행 토글이 꺼지면 합산에서도 빠짐) ·
+  `supersedes`(상위 스킬이 하위 값을 이어받을 때 하위 효과를 뺌 — 어드밴스드 오라 → 기본 오라) ·
+  `boostedBy`(다른 토글이 함께 켜지면 같은 항목에 강화분을 얹음 — 슈퍼바디 → 켜진 오라)
 
 주의점 두 가지가 실제로 버그를 낸 적 있다:
 

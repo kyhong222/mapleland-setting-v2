@@ -66,6 +66,8 @@ const JOB_PRIORITY_WEAPONS: Partial<Record<JobId, WeaponType[]>> = {
   windBreaker: ['bow'],
   nightWalker: ['claw'],
   striker: ['knuckle'],
+  // 레지스탕스
+  battleMage: ['staff'],
 }
 
 /** 클래스 → reqJob 비트마스크 */

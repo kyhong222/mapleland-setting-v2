@@ -420,8 +420,10 @@ export function computeCast(p: CastDamageParams): CastResult | null {
   const postMultOf = (lineIdx: number) => (p.hitMultipliers?.[lineIdx] ?? 1) * (1 + (p.shadowRatio ?? 0))
 
   if (p.kind === 'magic') {
-    // 마법: 모션 무관 단일 라인
-    push([motionOf(calcMagic(p.magic ?? 0, p.int ?? 0, p.spellAtk ?? 0, p.mastery ?? 1), 1, postMultOf(0))])
+    // 마법: 모션 무관. attackCount만큼 같은 범위의 라인 (매직 클로 2타, 배틀메이지 블로우 3~6타)
+    const range = calcMagic(p.magic ?? 0, p.int ?? 0, p.spellAtk ?? 0, p.mastery ?? 1)
+    const n = Math.max(1, p.attackCount || 1)
+    for (let i = 0; i < n; i++) push([motionOf(range, 1, postMultOf(i))])
   } else if (p.lineBase) {
     // 예외식(럭세/트스): 모션 무관 고정 base를 attackCount 라인으로
     const n = Math.max(1, p.attackCount || 1)
