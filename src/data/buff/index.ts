@@ -30,8 +30,6 @@ import commonSkills from './common/skills.json'
 import jobSkills from './jobSpecific/skills.json'
 import damageBuffs from './jobSpecific/damageBuffs.json'
 
-/** 도핑(아이템 타입) */
-export const DOPING_ITEMS = resolveBuffs(enhancementItems)
 /**
  * 종료된 이벤트 버프 — JSON 데이터는 그대로 남겨두고 목록에서만 빼놓는다.
  * (JSON은 주석을 달 수 없어 "주석 처리" 대신 이 집합으로 가린다.)
@@ -40,11 +38,15 @@ export const DOPING_ITEMS = resolveBuffs(enhancementItems)
  *  - 'burning' (버닝 서버 전용 공+10/마+20/이속+10/점프+5): 2026-09-10 버닝 서버 종료.
  *    효과 채널(pad_burning/mad_burning/speed_burning/jump_burning, domain/effects.ts)과
  *    totalAttack()/totalMagic() 합산은 그대로 유지 — 재개 시 이 집합만 건드리면 된다.
+ *  - '2022851' (풍성한 한가위 도핑 공+20/마+40/이속+40): 추석 이벤트 종료.
  *
  * 저장된 빌드에 id가 남아 있어도 getBuff()가 undefined를 돌려주고
  * activeBuffEffects()가 조용히 건너뛴다(store/aggregate.ts).
  */
-const DISABLED_BUFF_IDS: ReadonlySet<string> = new Set(['burning'])
+const DISABLED_BUFF_IDS: ReadonlySet<string> = new Set(['burning', '2022851'])
+
+/** 도핑(아이템 타입) — 종료된 이벤트 도핑 제외 */
+export const DOPING_ITEMS = resolveBuffs(enhancementItems).filter((b) => !DISABLED_BUFF_IDS.has(b.id))
 
 /** 공용 버프 (메이플 용사 등) — 종료된 이벤트 버프 제외 */
 export const COMMON_BUFFS = resolveBuffs(commonSkills).filter((b) => !DISABLED_BUFF_IDS.has(b.id))
