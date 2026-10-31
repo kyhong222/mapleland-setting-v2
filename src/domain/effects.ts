@@ -64,6 +64,7 @@ export type EffectId =
   | 'eva'
   | 'shieldBonusPdef'
   | 'addEvadeP'
+  | 'evadeRateP'
   | 'damageReduce'
   | 'damageReflectP'
   | 'cDamageReduce_common'
@@ -163,6 +164,7 @@ export const EFFECTS: Record<EffectId, EffectDef> = {
   eva: { id: 'eva', label: '회피율', category: 'defense', unit: 'flat', appliesToItem: true },
   shieldBonusPdef: { id: 'shieldBonusPdef', label: '방패 방어력 보너스%', category: 'defense', unit: 'percent', appliesToItem: false },
   addEvadeP: { id: 'addEvadeP', label: '추가회피확률%', category: 'defense', unit: 'percent', appliesToItem: false },
+  evadeRateP: { id: 'evadeRateP', label: '회피확률%', category: 'defense', unit: 'percent', appliesToItem: false },
   damageReduce: { id: 'damageReduce', label: '피해량감소', category: 'defense', unit: 'percent', appliesToItem: false },
   damageReflectP: { id: 'damageReflectP', label: '피해 반사%', category: 'defense', unit: 'percent', appliesToItem: false },
   cDamageReduce_common: { id: 'cDamageReduce_common', label: '접촉피해량감소(일반)', category: 'defense', unit: 'percent', appliesToItem: false },

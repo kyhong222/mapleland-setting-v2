@@ -1347,7 +1347,7 @@
         "windBoostStep": {
           "field": "attackSpeed"
         },
-        "addEvadeP": {
+        "evadeRateP": {
           "field": "avoid"
         }
       }
@@ -1384,7 +1384,7 @@
         "windBoostStep": {
           "field": "attackSpeed"
         },
-        "addEvadeP": {
+        "evadeRateP": {
           "field": "avoid"
         }
       }
