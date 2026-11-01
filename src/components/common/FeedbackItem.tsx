@@ -39,10 +39,12 @@ interface Props {
   imageUrls?: Map<string, string>
   /** 어드민 화면에서만 작성자를 보여준다 */
   showAuthor?: boolean
+  /** '내 문의'에서 마지막 확인 이후 달린 답변이 있는지 */
+  hasNewReply?: boolean
   children?: ReactNode
 }
 
-export default function FeedbackItem({ feedback: f, replies, imageUrls, showAuthor, children }: Props) {
+export default function FeedbackItem({ feedback: f, replies, imageUrls, showAuthor, hasNewReply, children }: Props) {
   const shots = f.images.map((p) => imageUrls?.get(p)).filter((u): u is string => Boolean(u))
   return (
     <Paper variant="outlined" sx={{ p: 1.5 }}>
@@ -50,6 +52,7 @@ export default function FeedbackItem({ feedback: f, replies, imageUrls, showAuth
         <Chip size="small" label={TYPE_LABEL[f.type]} variant="outlined" />
         <Chip size="small" label={STATUS_LABEL[f.status]} color={STATUS_COLOR[f.status]} />
         {f.isPublic && <Chip size="small" label="공개" color="secondary" variant="outlined" />}
+        {hasNewReply && <Chip size="small" label="새 답변" color="error" />}
         <Box sx={{ flexGrow: 1 }} />
         <Typography variant="caption" color="text.disabled">
           {new Date(f.createdAt).toLocaleString('ko-KR')}

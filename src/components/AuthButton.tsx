@@ -4,8 +4,9 @@
  * Supabase 키가 없는 환경에서는 아무것도 그리지 않는다 — 로컬 전용으로 쓰던 그대로 보인다.
  */
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Avatar from '@mui/material/Avatar'
+import Badge from '@mui/material/Badge'
 import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
 import Menu from '@mui/material/Menu'
@@ -15,6 +16,8 @@ import Typography from '@mui/material/Typography'
 import Divider from '@mui/material/Divider'
 import { useAuthStore } from '../store/authStore'
 import { useCloudSyncStore } from '../store/cloudSync'
+import { isAfter, useUiStore } from '../store/uiStore'
+import { latestReplyAt } from '../data/cloud/feedback'
 import MyFeedbackDialog from './MyFeedbackDialog'
 import AdminFeedbackDialog from './AdminFeedbackDialog'
 
@@ -38,6 +41,31 @@ export default function AuthButton() {
   const [anchor, setAnchor] = useState<HTMLElement | null>(null)
   const [myFeedbackOpen, setMyFeedbackOpen] = useState(false)
   const [adminOpen, setAdminOpen] = useState(false)
+  const userId = user?.id
+  const [lastReplyAt, setLastReplyAt] = useState<string | null>(null)
+  const seenAt = useUiStore((s) => (userId ? s.feedbackSeenAt[userId] : undefined))
+  // 확인 안 한 답변이 있으면 계정 버튼과 '내 문의'에 점을 띄운다. 판정은 기기별(uiStore)
+  const hasNewReply = lastReplyAt !== null && isAfter(lastReplyAt, seenAt)
+
+  // 로그인했을 때 + 탭으로 돌아왔을 때 다시 본다. 실시간 구독까지는 두지 않는다
+  useEffect(() => {
+    if (!userId) {
+      setLastReplyAt(null)
+      return
+    }
+    let alive = true
+    const check = () => {
+      void latestReplyAt(userId).then((at) => {
+        if (alive) setLastReplyAt(at)
+      })
+    }
+    check()
+    window.addEventListener('focus', check)
+    return () => {
+      alive = false
+      window.removeEventListener('focus', check)
+    }
+  }, [userId])
 
   if (status === 'disabled') return null
 
@@ -53,9 +81,11 @@ export default function AuthButton() {
             onClick={(e) => setAnchor(e.currentTarget)}
             sx={{ minWidth: 0, gap: 0.75, px: 1 }}
           >
-            <Avatar src={user.avatarUrl} sx={{ width: 24, height: 24 }}>
-              {user.name.slice(0, 1)}
-            </Avatar>
+            <Badge color="error" variant="dot" invisible={!hasNewReply} overlap="circular">
+              <Avatar src={user.avatarUrl} sx={{ width: 24, height: 24 }}>
+                {user.name.slice(0, 1)}
+              </Avatar>
+            </Badge>
             {/* 좁은 화면에서는 아바타만 — TopBar 버튼이 이미 많다 */}
             <Box
               component="span"
@@ -89,7 +119,9 @@ export default function AuthButton() {
                 setMyFeedbackOpen(true)
               }}
             >
-              내 문의
+              <Badge color="error" variant="dot" invisible={!hasNewReply} sx={{ '& .MuiBadge-dot': { right: -6 } }}>
+                내 문의
+              </Badge>
             </MenuItem>
             {/* 어드민에게만 보인다. 감추는 것일 뿐이고 실제 권한은 RLS가 건다 */}
             {isAdmin && (

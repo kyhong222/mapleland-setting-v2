@@ -202,6 +202,21 @@ export async function listReplies(feedbackIds: string[]): Promise<Map<string, Fe
   return out
 }
 
+/**
+ * 내 문의에 달린 가장 최근 답변 시각 — 계정 버튼의 '새 답변' 점 판정용. 답변이 없으면 null.
+ * 문의 전체를 읽지 않고 답변 한 줄만 가져온다. 읽기 권한은 read_replies 정책 그대로다.
+ */
+export async function latestReplyAt(userId: string): Promise<string | null> {
+  const { data, error } = await supabase()
+    .from('feedback_replies')
+    .select('created_at, feedbacks!inner(user_id)')
+    .eq('feedbacks.user_id', userId)
+    .order('created_at', { ascending: false })
+    .limit(1)
+  if (error) return null // 점이 안 뜰 뿐이다
+  return (data?.[0] as { created_at: string } | undefined)?.created_at ?? null
+}
+
 /** 답변 작성 (어드민). 트리거가 문의 상태를 answered로 올린다 */
 export async function createReply(feedbackId: string, authorId: string, body: string): Promise<FeedbackReply> {
   const { data, error } = await supabase()

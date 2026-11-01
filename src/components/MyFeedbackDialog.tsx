@@ -17,6 +17,7 @@ import Typography from '@mui/material/Typography'
 import FeedbackItem from './common/FeedbackItem'
 import { listMyFeedbacks, listReplies, signImages, type Feedback, type FeedbackReply } from '../data/cloud/feedback'
 import { useAuthStore } from '../store/authStore'
+import { isAfter, useUiStore } from '../store/uiStore'
 
 export default function MyFeedbackDialog({ open, onClose }: { open: boolean; onClose: () => void }) {
   const userId = useAuthStore((s) => s.user?.id)
@@ -25,6 +26,9 @@ export default function MyFeedbackDialog({ open, onClose }: { open: boolean; onC
   const [imageUrls, setImageUrls] = useState<Map<string, string>>(new Map())
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
+  /** 이번에 열기 전까지 확인했던 답변 시각 — 그 뒤에 달린 답변에 '새 답변'을 붙인다 */
+  const [prevSeenAt, setPrevSeenAt] = useState<string | undefined>(undefined)
+  const markFeedbackSeen = useUiStore((s) => s.markFeedbackSeen)
 
   const load = useCallback(async () => {
     if (!userId) return
@@ -32,19 +36,29 @@ export default function MyFeedbackDialog({ open, onClose }: { open: boolean; onC
     setError(null)
     try {
       const list = await listMyFeedbacks(userId)
+      const byFeedback = await listReplies(list.map((f) => f.id))
       setItems(list)
-      setReplies(await listReplies(list.map((f) => f.id)))
+      setReplies(byFeedback)
       setImageUrls(await signImages(list.flatMap((f) => f.images)))
+      // 화면에 실제로 보여준 답변까지만 확인 처리한다(클라이언트 시계 대신 서버 시각)
+      const latest = [...byFeedback.values()].flat().reduce<string | null>(
+        (m, r) => (m === null || isAfter(r.createdAt, m) ? r.createdAt : m),
+        null,
+      )
+      if (latest) markFeedbackSeen(userId, latest)
     } catch (e) {
       setError(e instanceof Error ? e.message : '문의를 불러오지 못했습니다.')
     } finally {
       setLoading(false)
     }
-  }, [userId])
+  }, [userId, markFeedbackSeen])
 
   useEffect(() => {
-    if (open) void load()
-  }, [open, load])
+    if (!open || !userId) return
+    // 확인 처리 전 값을 잡아둔다 — 열려 있는 동안 '새 답변' 표시가 사라지지 않게
+    setPrevSeenAt(useUiStore.getState().feedbackSeenAt[userId])
+    void load()
+  }, [open, userId, load])
 
   return (
     <Dialog open={open} onClose={onClose} maxWidth="sm" fullWidth>
@@ -63,7 +77,13 @@ export default function MyFeedbackDialog({ open, onClose }: { open: boolean; onC
         ) : (
           <Stack spacing={1.5}>
             {items.map((f) => (
-              <FeedbackItem key={f.id} feedback={f} replies={replies.get(f.id) ?? []} imageUrls={imageUrls} />
+              <FeedbackItem
+                key={f.id}
+                feedback={f}
+                replies={replies.get(f.id) ?? []}
+                imageUrls={imageUrls}
+                hasNewReply={(replies.get(f.id) ?? []).some((r) => isAfter(r.createdAt, prevSeenAt))}
+              />
             ))}
           </Stack>
         )}
