@@ -261,6 +261,23 @@ const { data: signed } = await supabase.storage
 
 `문의 관리`는 상태로 거른 목록에서 답변을 쓰고, 상태와 공개 여부를 바꾼다.
 
+**새 답변 알림** — 확인하지 않은 답변이 있으면 계정 버튼(아바타)과 메뉴의 `내 문의`에 빨간 점이
+뜨고, `내 문의` 안에서는 해당 문의에 `새 답변` 칩이 붙는다.
+
+- 로그인할 때와 탭으로 돌아올 때(`focus`) 내 문의의 가장 최근 답변 시각 한 줄만 읽는다
+  (`latestReplyAt`). 실시간 구독은 두지 않았다.
+- 마지막으로 확인한 답변 시각은 `profiles.feedback_seen_at`에 **계정 단위**로 둔다 — 한 기기에서
+  보면 다른 기기에서도 점이 꺼진다. `내 문의`가 서비스를 가리지 않으니 전 서비스 공용 테이블에 둔다.
+  기존 `own_profile` 정책(본인 행만 읽고 쓰기)이 그대로 적용돼 RLS를 새로 짤 필요가 없다.
+  ```sql
+  alter table public.profiles add column if not exists feedback_seen_at timestamptz;
+  ```
+- 저장은 **더 최근 값일 때만 덮는다**(`.or(feedback_seen_at.is.null, lt.<at>)`) — 두 기기에서 열어도
+  시각이 뒤로 가지 않는다.
+- `uiStore`(`mlsv2:ui`)의 `feedbackSeenAt`은 그 캐시다. 로그인·탭 복귀 때 서버 값을 합쳐 넣고,
+  서버 읽기가 실패하면(컬럼 없음·오프라인) 이 값만으로 판정한다.
+- 확인 시각은 클라이언트 시계가 아니라 `내 문의`에 실제로 보여준 답변의 `created_at` 최댓값이다.
+
 데이터 접근은 `src/data/cloud/feedback.ts`에 모았다. 앱 도메인 타입을 쓰지 않으므로 나중에
 어드민 화면을 별도 서비스(`admin.mapleland.st`)로 옮길 때 이 파일만 가져가면 된다.
 
