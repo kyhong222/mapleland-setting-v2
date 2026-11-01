@@ -33,13 +33,13 @@ export function listScrollsForWeaponType(weaponType: WeaponType): ScrollDef[] {
 
 /**
  * 특정 아이템에 바를 수 있는 주문서.
- *  - 전용(itemIds) 주문서가 있는 아이템(메이플 이어링·혼테일 목걸이 등)은 전용 주문서만 사용
+ *  - 전용(itemIds) 주문서가 있는 아이템(혼테일 목걸이 등)은 전용 주문서만 사용
  *  - 그 외: 무기는 weaponType 일치, 나머지는 slot 일치
  */
 export function listScrollsForItem(item: ItemData): ScrollDef[] {
   const exclusive = SCROLLS.filter((s) => s.itemIds?.includes(item.id))
   if (exclusive.length > 0) return exclusive
-  // 메이플 전용 주문서(무기·투구)는 메이플 아이템에만 노출(기본 주문서와 함께)
+  // 메이플 전용 주문서(무기·투구·장갑·이어링)는 메이플 아이템에만 노출(기본 주문서와 함께)
   const isMaple = (item.name ?? '').includes('메이플')
   if (item.slot === 'weapon') {
     return SCROLLS.filter((s) => item.weaponType != null && s.weaponType === item.weaponType && (!s.maple || isMaple))
