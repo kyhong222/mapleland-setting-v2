@@ -4609,12 +4609,12 @@
       "DEX": 15,
       "INT": 17,
       "LUK": 15,
-      "pdef": 155,
-      "mdef": 120,
+      "pdef": 120,
+      "mdef": 155,
       "acc": 19,
       "eva": 19,
       "jump": 3,
-      "hp": 15
+      "mp": 15
     },
     "reqLevel": 80,
     "reqJob": 0,
@@ -4630,12 +4630,12 @@
       "DEX": 15,
       "INT": 15,
       "LUK": 17,
-      "pdef": 155,
-      "mdef": 120,
+      "pdef": 120,
+      "mdef": 155,
       "acc": 19,
       "eva": 19,
       "jump": 3,
-      "hp": 15
+      "mp": 15
     },
     "reqLevel": 80,
     "reqJob": 0,
