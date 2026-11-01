@@ -4614,7 +4614,7 @@
       "acc": 19,
       "eva": 19,
       "jump": 3,
-      "hp": 15
+      "mp": 15
     },
     "reqLevel": 80,
     "reqJob": 0,
@@ -4635,7 +4635,7 @@
       "acc": 19,
       "eva": 19,
       "jump": 3,
-      "hp": 15
+      "mp": 15
     },
     "reqLevel": 80,
     "reqJob": 0,
