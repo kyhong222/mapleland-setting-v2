@@ -30,7 +30,10 @@ interface UiState {
   /** 한 번이라도 열어본 공지 id — 공지사항 버튼 배지 판정용 */
   seenNotices: string[]
   markNoticeSeen: (id: string) => void
-  /** 계정별로 '내 문의'에서 마지막으로 확인한 답변 시각 — 계정 버튼 점 판정용 */
+  /**
+   * 계정별로 '내 문의'에서 마지막으로 확인한 답변 시각 — 계정 버튼 점 판정용.
+   * 원본은 profiles.feedback_seen_at이고 이건 그 캐시다(읽기 실패 시 이 값만으로 판정)
+   */
   feedbackSeenAt: Record<string, string>
   markFeedbackSeen: (userId: string, at: string) => void
 }

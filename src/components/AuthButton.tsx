@@ -17,7 +17,7 @@ import Divider from '@mui/material/Divider'
 import { useAuthStore } from '../store/authStore'
 import { useCloudSyncStore } from '../store/cloudSync'
 import { isAfter, useUiStore } from '../store/uiStore'
-import { latestReplyAt } from '../data/cloud/feedback'
+import { fetchFeedbackSeenAt, latestReplyAt } from '../data/cloud/feedback'
 import MyFeedbackDialog from './MyFeedbackDialog'
 import AdminFeedbackDialog from './AdminFeedbackDialog'
 
@@ -44,7 +44,8 @@ export default function AuthButton() {
   const userId = user?.id
   const [lastReplyAt, setLastReplyAt] = useState<string | null>(null)
   const seenAt = useUiStore((s) => (userId ? s.feedbackSeenAt[userId] : undefined))
-  // 확인 안 한 답변이 있으면 계정 버튼과 '내 문의'에 점을 띄운다. 판정은 기기별(uiStore)
+  // 확인 안 한 답변이 있으면 계정 버튼과 '내 문의'에 점을 띄운다.
+  // 판정은 uiStore 값으로 하고, 계정에 저장된 확인 시각(다른 기기)을 거기에 합쳐 넣는다
   const hasNewReply = lastReplyAt !== null && isAfter(lastReplyAt, seenAt)
 
   // 로그인했을 때 + 탭으로 돌아왔을 때 다시 본다. 실시간 구독까지는 두지 않는다
@@ -55,8 +56,11 @@ export default function AuthButton() {
     }
     let alive = true
     const check = () => {
-      void latestReplyAt(userId).then((at) => {
-        if (alive) setLastReplyAt(at)
+      void Promise.all([latestReplyAt(userId), fetchFeedbackSeenAt(userId)]).then(([at, remoteSeen]) => {
+        if (!alive) return
+        // 다른 기기에서 본 기록을 먼저 넣어야 점이 한 번 깜빡이지 않는다
+        if (remoteSeen) useUiStore.getState().markFeedbackSeen(userId, remoteSeen)
+        setLastReplyAt(at)
       })
     }
     check()

@@ -68,6 +68,7 @@ create table public.profiles (
   avatar_url   text,
   updated_at   timestamptz not null default now()
 );
+-- 이후 추가: feedback_seen_at timestamptz — 문의 새 답변 확인 시각 (docs/feedback.md §5)
 
 -- 가입 시 디스코드 메타데이터로 프로필 자동 생성
 create or replace function public.handle_new_user()

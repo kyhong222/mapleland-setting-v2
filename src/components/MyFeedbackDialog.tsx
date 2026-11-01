@@ -15,7 +15,14 @@ import DialogTitle from '@mui/material/DialogTitle'
 import Stack from '@mui/material/Stack'
 import Typography from '@mui/material/Typography'
 import FeedbackItem from './common/FeedbackItem'
-import { listMyFeedbacks, listReplies, signImages, type Feedback, type FeedbackReply } from '../data/cloud/feedback'
+import {
+  listMyFeedbacks,
+  listReplies,
+  saveFeedbackSeenAt,
+  signImages,
+  type Feedback,
+  type FeedbackReply,
+} from '../data/cloud/feedback'
 import { useAuthStore } from '../store/authStore'
 import { isAfter, useUiStore } from '../store/uiStore'
 
@@ -45,7 +52,10 @@ export default function MyFeedbackDialog({ open, onClose }: { open: boolean; onC
         (m, r) => (m === null || isAfter(r.createdAt, m) ? r.createdAt : m),
         null,
       )
-      if (latest) markFeedbackSeen(userId, latest)
+      if (latest) {
+        markFeedbackSeen(userId, latest)
+        void saveFeedbackSeenAt(userId, latest) // 다른 기기에서도 점이 꺼지게 계정에 남긴다
+      }
     } catch (e) {
       setError(e instanceof Error ? e.message : '문의를 불러오지 못했습니다.')
     } finally {

@@ -217,6 +217,33 @@ export async function latestReplyAt(userId: string): Promise<string | null> {
   return (data?.[0] as { created_at: string } | undefined)?.created_at ?? null
 }
 
+/**
+ * 마지막으로 확인한 답변 시각 (계정 단위, 전 서비스 공용). docs/feedback.md §5
+ * `profiles.feedback_seen_at`에 둔다 — own_profile 정책이 본인 행만 읽고 쓰게 한다.
+ * 컬럼이 없거나 읽기에 실패하면 null — 호출부는 기기별 기록(uiStore)만으로 판정한다.
+ */
+export async function fetchFeedbackSeenAt(userId: string): Promise<string | null> {
+  const { data, error } = await supabase()
+    .from('profiles')
+    .select('feedback_seen_at')
+    .eq('user_id', userId)
+    .maybeSingle()
+  if (error) return null
+  return (data as { feedback_seen_at: string | null } | null)?.feedback_seen_at ?? null
+}
+
+/**
+ * 확인 시각 저장. 더 최근 값일 때만 덮는다 — 두 기기에서 열어도 뒤로 가지 않게.
+ * 프로필 행이 없거나 컬럼이 없으면 조용히 넘어간다(점 판정은 기기별 기록이 받친다).
+ */
+export async function saveFeedbackSeenAt(userId: string, at: string): Promise<void> {
+  await supabase()
+    .from('profiles')
+    .update({ feedback_seen_at: at })
+    .eq('user_id', userId)
+    .or(`feedback_seen_at.is.null,feedback_seen_at.lt."${at}"`)
+}
+
 /** 답변 작성 (어드민). 트리거가 문의 상태를 answered로 올린다 */
 export async function createReply(feedbackId: string, authorId: string, body: string): Promise<FeedbackReply> {
   const { data, error } = await supabase()
