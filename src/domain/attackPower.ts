@@ -132,6 +132,16 @@ export function calcLuckyBase(luk: number, watk: number): DamageRange {
   }
 }
 
+/**
+ * 베놈(나로·섀도어·나워) 중독 1틱 — 무기 공격력을 쓰지 않는 별도식 (docs/nhit-dpm.md §4 베놈).
+ *  MAX = {18.5×(STR+LUK) + DEX×2}/100 × 스킬 공격력
+ *  MIN = { 8.0×(STR+LUK) + DEX×2}/100 × 스킬 공격력
+ */
+export function calcVenom(str: number, luk: number, dex: number, skillAttack: number): DamageRange {
+  const tick = (coef: number) => Math.floor((coef * (str + luk) + dex * 2) * skillAttack / 100)
+  return { max: tick(18.5), min: tick(8.0) }
+}
+
 /** 파워 넉백(활/석궁) — 나눗수 150, MIN 숙련 고정 0.1 */
 export function calcPowerKnockback(dex: number, str: number, watk: number): DamageRange {
   return {

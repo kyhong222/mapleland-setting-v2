@@ -79,6 +79,18 @@ export function migrateSkillId(skillId: number): number {
   return RETIRED_SKILL_IDS.get(skillId) ?? skillId
 }
 
+/** 베놈(나로·섀도어·나워) — 데미지 계산에서는 중독 1틱으로 다룬다 (docs/nhit-dpm.md §4 베놈) */
+export const VENOM_SKILLS: ReadonlySet<number> = new Set([4120005, 4220005, 14110004])
+
+/** 베놈의 데미지 계산 표시 이름. 공격 1회가 아니라 도트 1틱이라는 뜻을 이름에 담는다 */
+const VENOM_NAME = '베놈 (1틱)'
+
+/** 표시 이름만 바꾼 사본. id는 그대로라 저장된 선택과 아이콘·공속 조회가 유지된다 */
+function relabelVenom(skill: IJobSkill): IJobSkill {
+  if (!VENOM_SKILLS.has(skill.id)) return skill
+  return { ...skill, description: { ...skill.description, id: skill.id, name: VENOM_NAME } }
+}
+
 /** 기본 스킬 → 변형 스킬 (id와 표시 이름만 바꾼 사본) */
 function makeVariant(skill: IJobSkill, kind: SkillVariantKind): IJobSkill {
   const id = variantSkillId(skill.id, kind)
@@ -100,7 +112,7 @@ export function hasStunMastery(jobId: JobId): boolean {
  * 스턴 마스터리가 없는 직업은 `attackSkillsForJob`과 같다.
  */
 export function damageSkillsForJob(jobId: JobId): IJobSkill[] {
-  const skills = attackSkillsForJob(jobId)
+  const skills = attackSkillsForJob(jobId).map(relabelVenom)
   if (!hasStunMastery(jobId)) return skills
   return skills.flatMap((s) => [s, makeVariant(s, 'stun')])
 }

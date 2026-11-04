@@ -13,7 +13,7 @@ import type { WeaponType } from './weapons'
 import type { ElementReaction } from './damage'
 import { ELEMENT_MULT, DAMAGE_CAP } from './damage'
 import type { Dist } from './nhitProb'
-import { uniformDist, mixtureDist, convolve, expectedValue, exactNProbabilities } from './nhitProb'
+import { uniformDist, mixtureDist, convolve, expectedValue, exactNProbabilities, stepFor } from './nhitProb'
 import { lineSlots, critSlots } from './rngCycle'
 
 // ── 모션 규칙 ────────────────────────────────────────────
@@ -446,6 +446,24 @@ export function computeCast(p: CastDamageParams): CastResult | null {
     totalRange: assembleCastRange(specs, effCritProb),
     lineRanges,
   }
+}
+
+/**
+ * 도트 속성배율 (docs/nhit-dpm.md §4 베놈).
+ * 독 약점이어도 추가피해가 없고(×1), 독 반감·무효에게는 데미지를 입히지 못한다(×0).
+ */
+export function dotElementMult(reaction: ElementReaction): number {
+  return reaction === 'half' || reaction === 'immune' ? 0 : 1
+}
+
+/**
+ * 도트 1틱의 시전 결과. 범위가 곧 최종 데미지다 — 방어·크리·버프 배율·분신이 끼지 않는다.
+ * 데미지 파이프라인(lineFinalRange)은 최소 1로 클램프하므로, ×0이 0으로 남도록 타지 않는다.
+ */
+export function computeDotCast(tick: DamageRange, reaction: ElementReaction): CastResult {
+  const mult = dotElementMult(reaction)
+  const r: DamageRange = { min: tick.min * mult, max: tick.max * mult }
+  return { dist: uniformDist(r.min, r.max, stepFor(r.min, r.max)), totalRange: r, lineRanges: [r] }
 }
 
 /**

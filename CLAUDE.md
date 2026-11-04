@@ -42,6 +42,7 @@ npx tsx scripts/cloudSmoke.ts      # 클라우드 캡처/복원 왕복 (네트�
 npx tsx scripts/noticeSmoke.ts     # 공지 id·날짜·참조 아이템·compare 전후·자동 노출 판정
 npx tsx scripts/battleMageSmoke.ts # 배틀메이지 직업 규칙·오라 대체/강화·스태프 숙련도·마법 다타
 npx tsx scripts/elementalStaffSmoke.ts # 속성 스태프 카탈로그 스펙·속성배율 표
+npx tsx scripts/venomSmoke.ts      # 베놈 1틱 공식·독 반응·HP 1 상한·표시 이름
 ```
 
 변경 후에는 최소한 `npm run typecheck`를 돌린다.
