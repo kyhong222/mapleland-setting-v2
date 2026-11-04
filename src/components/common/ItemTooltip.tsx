@@ -3,6 +3,8 @@ import { resolveBuiltItem } from '../../domain/builtItem'
 import type { BuiltItem } from '../../domain/builtItem'
 import { SLOTS } from '../../domain/equipSlots'
 import { EFFECTS } from '../../domain/effects'
+import { STAFF_MATCH_BONUS, STAFF_OFF_ELEMENT_PENALTY } from '../../domain/damage'
+import { elementName } from '../../domain/monster'
 import { formatSpeedStep } from '../../lib/speedLabel'
 import type { EffectId } from '../../domain/effects'
 
@@ -139,6 +141,12 @@ export default function ItemTooltip({ built, note }: Props) {
           return <StatLine key={r.id} label={r.label} value={text} color={v < 0 ? '#ff8a80' : '#a5f3b0'} />
         })}
         <StatLine label="업그레이드 가능 횟수" value={String(tucLeft)} color="#c8cde6" />
+        {base.weaponElement && (
+          <>
+            <StatLine label={`${elementName(base.weaponElement)} 속성 데미지`} value={`+${STAFF_MATCH_BONUS * 100}%`} color="#a5f3b0" />
+            <StatLine label="그 외 속성·무속성 데미지" value={`-${STAFF_OFF_ELEMENT_PENALTY * 100}%`} color="#ff8a80" />
+          </>
+        )}
       </Box>
     </Box>
   )

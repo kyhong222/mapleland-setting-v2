@@ -33,6 +33,8 @@ export interface ItemData {
   reqJob?: number
   /** slot === 'weapon'일 때만 의미 있음 */
   weaponType?: WeaponType
+  /** 속성 스태프의 속성 코드(F/S/I/L). 속성 보정은 domain/damage.ts의 staffElementMult */
+  weaponElement?: string
   /** 강화보석 부여 불가 (메이플랜드 커스텀: 발록 신발 등) */
   noGem?: boolean
   /** maplestory.io 아이콘 URL */

@@ -36,6 +36,7 @@ import type { IJobSkill } from '../../data/skills'
 import { damageSkillsForJob, baseSkillId, stunHitRatio } from '../../data/skills/variants'
 import type { ChargeState } from '../../domain/paladinCharge'
 import { computeCast, computeNhit, computeDpm, baseElementMult, mixCasts, SKILL_MOTION } from '../../domain/skillCombat'
+import { staffElementMult } from '../../domain/damage'
 import { convolve } from '../../domain/nhitProb'
 import type { Dist } from '../../domain/nhitProb'
 import { attacksPerMinute, effectiveCastStep, effectiveSpeedStep, type SpeedContext } from '../../data/attackSpeed'
@@ -162,6 +163,9 @@ export default function NhitPanel() {
   // 추가스킬 후보: 공격 스킬(돌진·베놈 등 포함). 패시브(크리티컬 스로우)·콤보·소환수 등은 제외.
   const precastCandidates = attackSkills
 
+  // 속성 스태프 — 비활성 무기는 효과가 없으므로 활성 장비에서 찾는다
+  const staffElement = builts.find((b) => b.base.slot === 'weapon')?.base.weaponElement
+
   const weaponSpeedStep = (() => {
     const id = equipped.weapon
     const w = id ? invItems.find((i) => i.id === id)?.built : undefined
@@ -232,32 +236,29 @@ export default function NhitPanel() {
     // 최종 속성 — 차지가 걸려 있으면 스킬 속성이 아니라 차지 속성이 된다
     const skillElems = skillElements(sk, lv)
     const elements = charge ? chargeElementCodes(charge) : skillElems
+    // 몬스터 반응 + 속성 스태프 보정. 스킬 직접 타격에만 해당한다(소환수는 애초에 계산 대상이 아니고,
+    // 포이즌 미스트 등의 도트도 계산하지 않는다 — docs/nhit-dpm.md §4 속성 스태프)
+    const reactionMult = (elemAttr: string | undefined, element: string | undefined) =>
+      staffElementMult(baseElementMult(elementReaction(elemAttr, element)), element, staffElement)
     // 속성배율 — 차지 우선, 복합속성(매직 컴포지션)은 데미지를 반씩 나눠 각각 판정
-    const elemMultFor = (elemAttr: string | undefined) =>
-      charge
-        ? chargeMultiplier(charge, elemAttr)
-        : skillElems.length > 1
-          ? skillElems.reduce((acc, e) => acc + baseElementMult(elementReaction(elemAttr, e)) / skillElems.length, 0)
-          : baseElementMult(elementReaction(elemAttr, att.element))
-    let elementMult: number = elemMultFor(monster.elemAttr)
-    // 같은 조건에서 무속성 몹을 때렸을 때의 배율. 차지의 데미지 증가분이 여기 그대로 들어 있어,
-    // 나눠주면 속성반응에 의한 몫만 남는다 (표시용).
-    const elementMultNeutral = elemMultFor(undefined)
-    // 엘리멘탈 리셋(플위): 무속성화 blend
+    let elementMult: number = charge
+      ? chargeMultiplier(charge, monster.elemAttr)
+      : skillElems.length > 1
+        ? skillElems.reduce((acc, e) => acc + reactionMult(monster.elemAttr, e) / skillElems.length, 0)
+        : reactionMult(monster.elemAttr, att.element)
+    // 엘리멘탈 리셋(플위): 무속성화 blend. 무속성이 된 몫에는 속성 스태프 감산이 붙는다
     if (jobId === 'flameWizard') {
       const rLv = activeBuffs['12101005']
       if (rLv) {
         const r = Math.min(1, skillNumAt(12101005, rLv, 'x') / 100)
-        elementMult = elementMult * (1 - r) + r
+        elementMult = elementMult * (1 - r) + reactionMult(undefined, undefined) * r
       }
     }
-    /** 속성만의 배율 (데미지 증가분 제외) */
-    const elementRatio = elementMultNeutral > 0 ? elementMult / elementMultNeutral : 1
     /**
      * 표기용 배율. 차지가 걸려 있으면 데미지 증가분까지 합친 **종합 차지배율**을 보여준다
-     * (예: 무속성 몹에 홀리+썬더 = 1.625배). 차지가 없으면 속성반응 배율 그대로.
+     * (예: 무속성 몹에 홀리+썬더 = 1.625배). 차지가 없으면 속성반응 + 속성 스태프 배율.
      */
-    const displayMult = charge ? elementMult : elementRatio
+    const displayMult = elementMult
 
     // 방어
     const D = levelPenalty(monster.level, level)
@@ -569,7 +570,8 @@ export default function NhitPanel() {
                 value={rng(result.totalRange)}
                 strong
                 note={
-                  result.elements.length > 0 ? (
+                  // 무속성 스킬은 배율이 1이라 숨기지만, 속성 스태프 감산이 붙으면 보여준다
+                  result.elements.length > 0 || result.displayMult !== 1 ? (
                     <Box component="span" sx={{ display: 'inline-flex', alignItems: 'center', color: 'success.main', fontWeight: 700, fontSize: 12 }}>
                       {formatElements(result.elements)} ({result.displayMult.toFixed(2)}배)
                       {result.charge && (
