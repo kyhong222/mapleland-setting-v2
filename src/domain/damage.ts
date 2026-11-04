@@ -17,6 +17,21 @@ import type { DamageRange } from './attackPower'
 export type ElementReaction = 'weak' | 'half' | 'immune' | 'none'
 export const ELEMENT_MULT: Record<ElementReaction, number> = { weak: 1.5, half: 0.5, immune: 0, none: 1 }
 
+/** 속성 스태프: 스태프와 같은 속성 공격의 속성배율 가산 */
+export const STAFF_MATCH_BONUS = 0.1
+/** 속성 스태프: 다른 속성·무속성 공격의 속성배율 감산 */
+export const STAFF_OFF_ELEMENT_PENALTY = 0.25
+
+/**
+ * 속성 스태프 보정 (docs/nhit-dpm.md §4 속성 스태프).
+ * 몬스터 반응배율에 합연산한다 — 약점 1.5 → 1.6, 무관 1.0 → 1.1, 반감 0.5 → 0.6.
+ * 다른 속성·무속성은 약점 1.25, 무관 0.75, 반감 0.25. 무효(0)는 보정해도 0이다.
+ */
+export function staffElementMult(mult: number, skillElement: string | undefined, staffElement: string | undefined): number {
+  if (!staffElement || mult === 0) return mult
+  return skillElement === staffElement ? mult + STAFF_MATCH_BONUS : mult - STAFF_OFF_ELEMENT_PENALTY
+}
+
 /** 데미지 상한 (메이플랜드) */
 export const DAMAGE_CAP = 199999
 

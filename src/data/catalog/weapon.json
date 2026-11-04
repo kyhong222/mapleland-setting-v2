@@ -5474,68 +5474,76 @@
     "name": "파이어 스태프",
     "slot": "weapon",
     "effects": {
-      "pad": 72,
+      "pad": 56,
       "INT": 1,
       "mad": 85,
       "attackSpeed": 7
     },
-    "reqLevel": 103,
+    "reqLevel": 70,
     "weaponType": "staff",
     "iconUrl": "https://maplestory.io/api/GMS/200/item/1382045/icon",
     "reqJob": 2,
     "tuc": 7,
-    "reqLuk": 105
+    "reqInt": 213,
+    "reqLuk": 73,
+    "weaponElement": "F"
   },
   {
     "id": 1382046,
     "name": "포이즌 스태프",
     "slot": "weapon",
     "effects": {
-      "pad": 72,
+      "pad": 56,
       "INT": 1,
       "mad": 85,
       "attackSpeed": 7
     },
-    "reqLevel": 103,
+    "reqLevel": 70,
     "weaponType": "staff",
     "iconUrl": "https://maplestory.io/api/GMS/200/item/1382046/icon",
     "reqJob": 2,
     "tuc": 7,
-    "reqLuk": 105
+    "reqInt": 213,
+    "reqLuk": 73,
+    "weaponElement": "S"
   },
   {
     "id": 1382047,
     "name": "아이스 스태프",
     "slot": "weapon",
     "effects": {
-      "pad": 72,
+      "pad": 56,
       "INT": 1,
       "mad": 85,
       "attackSpeed": 7
     },
-    "reqLevel": 103,
+    "reqLevel": 70,
     "weaponType": "staff",
     "iconUrl": "https://maplestory.io/api/GMS/200/item/1382047/icon",
     "reqJob": 2,
     "tuc": 7,
-    "reqLuk": 105
+    "reqInt": 213,
+    "reqLuk": 73,
+    "weaponElement": "I"
   },
   {
     "id": 1382048,
     "name": "라이트닝 스태프",
     "slot": "weapon",
     "effects": {
-      "pad": 72,
+      "pad": 56,
       "INT": 1,
       "mad": 85,
       "attackSpeed": 7
     },
-    "reqLevel": 103,
+    "reqLevel": 70,
     "weaponType": "staff",
     "iconUrl": "https://maplestory.io/api/GMS/200/item/1382048/icon",
     "reqJob": 2,
     "tuc": 7,
-    "reqLuk": 105
+    "reqInt": 213,
+    "reqLuk": 73,
+    "weaponElement": "L"
   },
   {
     "id": 1422031,
