@@ -9,15 +9,20 @@ const notice: Notice = {
   expiresAt: '2026-12-04',
   blocks: [
     { type: 'heading', text: '1. 스펙 수정' },
-    { type: 'text', text: '속성 스태프 4종을 메이플랜드 스펙에 맞게 고쳤습니다.' },
+    { type: 'text', text: '속성 스태프 4종을 메이플랜드 스펙에 맞게 고쳤습니다. 변경 내용은 4종 모두 같습니다.' },
     {
-      type: 'compare',
+      type: 'items',
+      view: 'icons',
       items: [
-        { id: 1382045, before: { reqLevel: 103, reqInt: 0, reqLuk: 105, effects: { pad: 72, INT: 1, mad: 85, attackSpeed: 7 } } }, // 파이어 스태프
-        { id: 1382046, before: { reqLevel: 103, reqInt: 0, reqLuk: 105, effects: { pad: 72, INT: 1, mad: 85, attackSpeed: 7 } } }, // 포이즌 스태프
-        { id: 1382047, before: { reqLevel: 103, reqInt: 0, reqLuk: 105, effects: { pad: 72, INT: 1, mad: 85, attackSpeed: 7 } } }, // 아이스 스태프
-        { id: 1382048, before: { reqLevel: 103, reqInt: 0, reqLuk: 105, effects: { pad: 72, INT: 1, mad: 85, attackSpeed: 7 } } }, // 라이트닝 스태프
+        { id: 1382045 }, // 파이어 스태프
+        { id: 1382046 }, // 포이즌 스태프
+        { id: 1382047 }, // 아이스 스태프
+        { id: 1382048 }, // 라이트닝 스태프
       ],
+    },
+    {
+      type: 'list',
+      items: ['레벨 103 → 70', 'INT 0 → 213', 'LUK 105 → 73', '공격력 72 → 56'],
     },
     {
       type: 'callout',
