@@ -177,17 +177,19 @@ export default function NhitPanel() {
   /**
    * 임의 스킬(sk, lv)의 1회 시전 데미지 분포 계산 — 메인/추가스킬 공용.
    * 캐릭터 스탯·버프·차지·크리·몬스터 방어를 모두 반영. 데미지 산출 불가 시 null.
+   * 대상 몬스터가 없으면 방어·렙차 없이 무속성 몹 기준으로 계산한다.
    *
    * @param stunned 대상이 스턴 상태인지 — 스턴 마스터리 크리가 이때만 붙는다.
    * @param coef 계수 직접 입력값(물리 %, 마법 기본 공격력). null이면 스킬북 계수.
    *   레벨은 그대로 쓰인다 — 타수·숙련도·공속·스턴 확률 등 계수 외 수치는 레벨에서 온다.
    */
   const buildCastAt = (sk: IJobSkill, lv: number, stunned: boolean, coef: number | null = null) => {
-    if (!job || !monster) return null
+    if (!job) return null
     const att = skillAttackAt(sk, lv)
     if (!att) return null
     const isMagic = att.kind === 'magic'
     if (!isMagic && !atkWeapon) return null
+    const elemAttr = monster?.elemAttr
     // 변형 스킬은 id에 오프셋이 붙어 있다 — 모션 규칙/공속표/예외식은 전부 원래 id로 조회
     const baseId = baseSkillId(sk.id)
 
@@ -195,12 +197,12 @@ export default function NhitPanel() {
     if (VENOM_SKILLS.has(baseId)) {
       if (!atkWeapon) return null
       const venomAtk = coef ?? att.spellAtk
-      const reaction = elementReaction(monster.elemAttr, VENOM_ELEMENT)
+      const reaction = elementReaction(elemAttr, VENOM_ELEMENT)
       return {
         cast: computeDotCast(
           calcVenom(finalStats.STR, finalStats.LUK, finalStats.DEX, venomAtk),
           reaction,
-          { kind: 'physical', def: monster.PDDamage ?? 0, levelPenalty: levelPenalty(monster.level, level) },
+          monster && { kind: 'physical', def: monster.PDDamage ?? 0, levelPenalty: levelPenalty(monster.level, level) },
           venomStacks(sk.id),
         ),
         att,
@@ -267,10 +269,10 @@ export default function NhitPanel() {
       staffElementMult(baseElementMult(elementReaction(elemAttr, element)), element, staffElement)
     // 속성배율 — 차지 우선, 복합속성(매직 컴포지션)은 데미지를 반씩 나눠 각각 판정
     let elementMult: number = charge
-      ? chargeMultiplier(charge, monster.elemAttr)
+      ? chargeMultiplier(charge, elemAttr)
       : skillElems.length > 1
-        ? skillElems.reduce((acc, e) => acc + reactionMult(monster.elemAttr, e) / skillElems.length, 0)
-        : reactionMult(monster.elemAttr, att.element)
+        ? skillElems.reduce((acc, e) => acc + reactionMult(elemAttr, e) / skillElems.length, 0)
+        : reactionMult(elemAttr, att.element)
     // 엘리멘탈 리셋(플위): 무속성화 blend. 무속성이 된 몫에는 속성 스태프 감산이 붙는다
     if (jobId === 'flameWizard') {
       const rLv = activeBuffs['12101005']
@@ -285,11 +287,12 @@ export default function NhitPanel() {
      */
     const displayMult = elementMult
 
-    // 방어
-    const D = levelPenalty(monster.level, level)
-    const defense = isMagic
-      ? { kind: 'magic' as const, def: monster.MDDamage ?? 0, levelPenalty: D }
-      : { kind: 'physical' as const, def: monster.PDDamage ?? 0, levelPenalty: D }
+    // 방어 — 대상 몬스터가 없으면 차감하지 않는다
+    const defense = monster && {
+      kind: isMagic ? 'magic' as const : 'physical' as const,
+      def: (isMagic ? monster.MDDamage : monster.PDDamage) ?? 0,
+      levelPenalty: levelPenalty(monster.level, level),
+    }
 
     // 콤보 어택: 콤보+어드밴스드 레벨의 결합공식(별도 합산)
     const cs = jobId ? COMBO_SKILLS[jobId] : undefined
@@ -390,10 +393,13 @@ export default function NhitPanel() {
   const maxHP = monster?.maxHP ?? 0
   const dotPrior = sumDists([...dotTicks.values()].map((t) => scaleDist(t.dist, t.count)))
   const cappedDot = dotPrior && maxHP > 0 ? capDist(dotPrior, maxHP - 1) : dotPrior
-  const preCastPrior = sumDists([cappedDot ?? null, ...preCastInfos.filter((p) => !p.isDot).map((p) => p.dist)])
+  // 잔여 HP가 없으면 추가스킬은 의미가 없다 — 몬스터 미선택 시 빼서 DPM이 막히지 않게 한다
+  const preCastPrior = monster
+    ? sumDists([cappedDot ?? null, ...preCastInfos.filter((p) => !p.isDot).map((p) => p.dist)])
+    : undefined
 
   const result = (() => {
-    if (!job || !monster || !selectedSkill) return null
+    if (!job || !selectedSkill) return null
     const built = buildCast(selectedSkill, skillLevel, coefOverride)
     if (!built) return null
     const { cast, att, effSkillPercent, spellAtk, isMagic, elements, displayMult, charge, hitMultipliers } = built
@@ -402,8 +408,8 @@ export default function NhitPanel() {
     const baseId = baseSkillId(selectedSkill.id)
     const isFist = FIST_SKILLS.has(baseId)
     const noDpm = NO_DPM.has(baseId)
-    const hp = monster.maxHP ?? 0
-    const isBoss = !!monster.isBoss
+    const hp = maxHP
+    const isBoss = !!monster?.isBoss
     // 물리: 무기 부스터(attackSpeedBoost) + 윈드부스터(windBoostStep) 중첩 공속상승
     // 마법: 매직부스터(castSpeedBoost) + 윈드부스터가 시전속도 단계를 내린다 (docs/attack-speed.md)
     const speedCtx: SpeedContext = {
@@ -435,7 +441,8 @@ export default function NhitPanel() {
       // 마법은 스킬%가 아니라 기본 공격력이 계수다. 직접 입력값이면 '*'로 표시
       coef: `${isMagic ? `공격력 ${spellAtk}` : `${Math.round(effSkillPercent)}%`}${coefOverride != null ? '*' : ''}`,
       // 패닉/코마/돌진은 방컷·DPM 미제공(데미지 범위만). 추가스킬은 prior 분포로 반영.
-      nhit: isBoss || noDpm ? null : computeNhit(cast.dist, hp, 10, preCastPrior),
+      // 대상 몬스터가 없으면 HP를 몰라 방컷도 없다.
+      nhit: !monster || isBoss || noDpm ? null : computeNhit(cast.dist, hp, 10, preCastPrior),
       apm, dpm, killSec, isMagic, effStep, noDpm,
     }
   })()
@@ -480,8 +487,6 @@ export default function NhitPanel() {
     >
       {!jobId ? (
         <Typography variant="body2" color="text.disabled">직업을 선택하세요.</Typography>
-      ) : !monster ? (
-        <Typography variant="body2" color="text.disabled">대상 몬스터를 선택하세요.</Typography>
       ) : attackSkills.length === 0 ? (
         <Typography variant="body2" color="text.disabled">공격 스킬이 없습니다.</Typography>
       ) : (
@@ -548,8 +553,8 @@ export default function NhitPanel() {
               {stunNote}
             </Typography>
           )}
-          {/* 추가스킬 (1회 시전 후 잔여 HP 기준으로 방컷 계산) */}
-          <Box sx={{ mb: 1 }}>
+          {/* 추가스킬 (1회 시전 후 잔여 HP 기준으로 방컷 계산) — 잔여 HP를 따질 몬스터가 있을 때만 */}
+          {monster && <Box sx={{ mb: 1 }}>
             <Typography variant="caption" sx={{ fontWeight: 700, display: 'block', mb: 0.25 }}>
               추가 스킬 <Box component="span" sx={{ fontWeight: 400, color: 'text.disabled' }}>· 1회 시전 후 잔여 HP 기준</Box>
             </Typography>
@@ -588,7 +593,7 @@ export default function NhitPanel() {
                 </MenuItem>
               ))}
             </Select>
-          </Box>
+          </Box>}
 
           {missingSecondary ? (
             <Typography variant="body2" color="text.disabled">{secondaryPrompt(missingSecondary)}</Typography>
@@ -617,12 +622,17 @@ export default function NhitPanel() {
                     <Box component="span" sx={{ display: 'inline-flex', alignItems: 'center', color: 'success.main', fontWeight: 700, fontSize: 12 }}>
                       {formatElements(result.elements)} ({result.displayMult.toFixed(2)}배)
                       {result.charge && (
-                        <ChargeMultTip state={result.charge} elemAttr={monster.elemAttr} monsterName={monster.koreanName || monster.name} />
+                        <ChargeMultTip state={result.charge} elemAttr={monster?.elemAttr} monsterName={monster ? monster.koreanName || monster.name : undefined} />
                       )}
                     </Box>
                   ) : undefined
                 }
               />
+              {!monster && (
+                <Typography variant="caption" color="text.disabled" sx={{ display: 'block', mt: 0.25, lineHeight: 1.4 }}>
+                  ※ 몬스터 방어·속성 미반영. 대상 몬스터를 고르면 반영되고 방컷 확률이 표시됩니다.
+                </Typography>
+              )}
 
               {result.isVenom && (
                 <Typography variant="caption" color="text.disabled" sx={{ display: 'block', mt: 0.25, lineHeight: 1.4 }}>
