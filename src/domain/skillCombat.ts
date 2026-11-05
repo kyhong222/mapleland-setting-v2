@@ -459,7 +459,8 @@ export function dotElementMult(reaction: ElementReaction): number {
 /**
  * 도트 1틱의 시전 결과 (docs/nhit-dpm.md §4 베놈).
  * 방어·렙차만 적용하고 크리·버프 배율·쉐도우 파트너는 끼지 않는다.
- * 중첩은 스택마다 따로 굴린 값의 합이고, 방어·렙차도 스택별로 적용한다 → 범위가 정확히 N배가 된다.
+ * N중첩은 방어·렙차까지 적용한 난수 하나에 N을 곱한 값이다 → 범위가 정확히 N배가 된다.
+ * 난수는 소수까지 나오고 곱한 뒤에 버리므로 배수만 나오지 않는다. 그래서 N배 범위 전체의 균등분포로 둔다.
  * 파이프라인(lineFinalRange)은 최소 1로 클램프하므로, ×0이면 타지 않고 0으로 둔다.
  *
  * lineRanges는 한 줄이다. 중첩은 '타수'가 아니라 1틱의 크기라 "1회 타격 (3타)" 줄을 만들지 않는다.
@@ -474,11 +475,11 @@ export function computeDotCast(
     ? { min: 0, max: 0 }
     : lineFinalRange({ base: tick, elementMult: 1, defense, skillPercent: 100, damageMult: 1, critFactor: 1 })
   const total: DamageRange = { min: one.min * stacks, max: one.max * stacks }
-  const step = stepFor(total.min, total.max)
-  const unit = uniformDist(one.min, one.max, step)
-  let dist = unit
-  for (let i = 1; i < stacks; i++) dist = convolve(dist, unit)
-  return { dist, totalRange: total, lineRanges: [total] }
+  return {
+    dist: uniformDist(total.min, total.max, stepFor(total.min, total.max)),
+    totalRange: total,
+    lineRanges: [total],
+  }
 }
 
 /**

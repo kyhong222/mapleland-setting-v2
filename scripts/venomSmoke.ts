@@ -47,13 +47,16 @@ for (const r of ['half', 'immune'] as const) {
 }
 
 console.log('중첩')
-// 방어·렙차는 스택별 적용 → 범위가 1중첩(4800~11110)의 정확히 N배
+// 난수 하나 × N → 범위가 1중첩(4800~11110)의 정확히 N배, 분포는 그 범위 전체의 균등분포
 for (const n of [2, 3]) {
   const c = computeDotCast(tick, 'none', { kind: 'physical', def: 100, levelPenalty: 0 }, n)
   const min = 4800 * n
   const max = 11110 * n
   check(c.totalRange.min === min && c.totalRange.max === max, `${n}중첩 범위 정확히 ${n}배 (${c.totalRange.min}~${c.totalRange.max})`)
   check(c.dist.base === min, `${n}중첩: 분포 시작 = 최종 최솟값`)
+  const distTop = c.dist.base + (c.dist.p.length - 1) * c.dist.step
+  check(Math.abs(distTop - max) <= c.dist.step, `${n}중첩: 분포 끝 = 최종 최댓값 (${distTop})`)
+  check(c.dist.p.every((x) => x === c.dist.p[0]), `${n}중첩: 균등분포 (평균으로 몰리지 않음)`)
   check(c.lineRanges.length === 1, `${n}중첩: 타수는 1줄`)
   check(Math.abs(c.dist.p.reduce((a, x) => a + x, 0) - 1) < 1e-9, `${n}중첩: 확률 합 1`)
   const mean = (min + max) / 2
