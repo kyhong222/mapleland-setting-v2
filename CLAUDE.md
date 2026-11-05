@@ -42,6 +42,7 @@ npx tsx scripts/cloudSmoke.ts      # 클라우드 캡처/복원 왕복 (네트�
 npx tsx scripts/noticeSmoke.ts     # 공지 id·날짜·참조 아이템·compare 전후·자동 노출 판정
 npx tsx scripts/battleMageSmoke.ts # 배틀메이지 직업 규칙·오라 대체/강화·스태프 숙련도·마법 다타
 npx tsx scripts/elementalStaffSmoke.ts # 속성 스태프 카탈로그 스펙·속성배율 표
+npx tsx scripts/venomSmoke.ts      # 베놈 공식·방어/렙차·독 반응·중첩 변형·HP 1 상한
 ```
 
 변경 후에는 최소한 `npm run typecheck`를 돌린다.
@@ -164,7 +165,7 @@ maplestory.io API ───┘   (로컬 카탈로그 우선 → GMS 62 → GMS 
 ### 스킬 변형(variant)
 
 `data/skills/variants.ts` — 스킬북에 없는 "운용 상황"을 별도 스킬 항목으로 파생한다.
-현재는 바이퍼 스턴 마스터리 하나뿐이다(스턴 상태인 적에게만 크리가 터지는 패시브).
+바이퍼 스턴 마스터리(스턴 상태인 적에게만 크리가 터지는 패시브)와 베놈 중첩(1~3중첩, docs/nhit-dpm.md §4)이 있다.
 
 - 공격 스킬마다 `피스트` / `피스트 (스턴)` 두 항목을 만들고, 스턴 마스터리 크리는 (스턴)에만 얹는다.
 - 자체 스턴 확률(`prop`)이 있는 스킬은 **기본 항목이 곧 단독 운용**이라 기본 쪽에 그 확률을 반영한다
@@ -172,7 +173,7 @@ maplestory.io API ───┘   (로컬 카탈로그 우선 → GMS 62 → GMS 
   (`domain/skillCombat.ts`의 `mixCasts`).
 - 없앤 변형 id는 `RETIRED_SKILL_IDS`로 되돌린다 — 저장슬롯에 남은 선택이 사라지지 않게
   `nhitStore`가 읽을 때 `migrateSkillId()`를 태운다.
-- **변형 스킬 id = 기본 id + 오프셋(9자리)다.** 아이콘(`/skill-icons/<id>.png`)·모션 규칙
+- **변형 스킬 id = 기본 id + 오프셋(9자리)다.** 오프셋끼리는 1억 이상 떨어뜨린다. 아이콘(`/skill-icons/<id>.png`)·모션 규칙
   (`SKILL_MOTION`)·공속표(`SKILL_APM`)·예외식(럭세/피스트)은 전부 `baseSkillId()`로 되돌려 조회할 것.
   안 그러면 조용히 기본값으로 떨어진다.
 - 근거·수식은 [docs/nhit-dpm.md](docs/nhit-dpm.md) §6 "스턴 마스터리".

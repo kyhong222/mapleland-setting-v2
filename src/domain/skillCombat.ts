@@ -13,7 +13,7 @@ import type { WeaponType } from './weapons'
 import type { ElementReaction } from './damage'
 import { ELEMENT_MULT, DAMAGE_CAP } from './damage'
 import type { Dist } from './nhitProb'
-import { uniformDist, mixtureDist, convolve, expectedValue, exactNProbabilities } from './nhitProb'
+import { uniformDist, mixtureDist, convolve, expectedValue, exactNProbabilities, stepFor } from './nhitProb'
 import { lineSlots, critSlots } from './rngCycle'
 
 // ── 모션 규칙 ────────────────────────────────────────────
@@ -446,6 +446,40 @@ export function computeCast(p: CastDamageParams): CastResult | null {
     totalRange: assembleCastRange(specs, effCritProb),
     lineRanges,
   }
+}
+
+/**
+ * 도트 속성배율 (docs/nhit-dpm.md §4 베놈).
+ * 독 약점이어도 추가피해가 없고(×1), 독 반감·무효에게는 데미지를 입히지 못한다(×0).
+ */
+export function dotElementMult(reaction: ElementReaction): number {
+  return reaction === 'half' || reaction === 'immune' ? 0 : 1
+}
+
+/**
+ * 도트 1틱의 시전 결과 (docs/nhit-dpm.md §4 베놈).
+ * 방어·렙차만 적용하고 크리·버프 배율·쉐도우 파트너는 끼지 않는다.
+ * 중첩은 스택마다 따로 굴린 값의 합이고, 방어는 그 합에서 **한 번만** 차감한다.
+ * 파이프라인(lineFinalRange)은 최소 1로 클램프하므로, ×0이면 타지 않고 0으로 둔다.
+ *
+ * lineRanges는 한 줄이다. 중첩은 '타수'가 아니라 1틱의 크기라 "1회 타격 (3타)" 줄을 만들지 않는다.
+ */
+export function computeDotCast(
+  tick: DamageRange,
+  reaction: ElementReaction,
+  defense: LineDamageInput['defense'],
+  stacks = 1,
+): CastResult {
+  const raw: DamageRange = { min: tick.min * stacks, max: tick.max * stacks }
+  const total = dotElementMult(reaction) === 0
+    ? { min: 0, max: 0 }
+    : lineFinalRange({ base: raw, elementMult: 1, defense, skillPercent: 100, damageMult: 1, critFactor: 1 })
+  // 분포 모양은 스택 수만큼의 균등분포 합이다. 폭을 나눠 합성한 뒤 시작점을 최종 최솟값으로 옮긴다
+  const step = stepFor(total.min, total.max)
+  const unit = uniformDist(0, (total.max - total.min) / stacks, step)
+  let dist = unit
+  for (let i = 1; i < stacks; i++) dist = convolve(dist, unit)
+  return { dist: { ...dist, base: total.min }, totalRange: total, lineRanges: [total] }
 }
 
 /**

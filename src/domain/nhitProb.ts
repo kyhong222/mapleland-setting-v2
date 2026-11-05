@@ -79,6 +79,19 @@ function reStep(d: Dist, step: number): Dist {
   return { base: lo, step, p }
 }
 
+/**
+ * 합이 cap을 넘지 못하게 자른다 — 넘치는 확률은 cap 이하의 마지막 칸으로 모은다.
+ * 베놈은 대상 HP를 1 아래로 내리지 못하므로 도트 누적에 cap = HP−1을 건다.
+ */
+export function capDist(d: Dist, cap: number): Dist {
+  if (d.base >= cap) return { base: cap, step: d.step, p: [1] }
+  const n = Math.floor((cap - d.base) / d.step) + 1
+  if (n >= d.p.length) return d
+  const p = d.p.slice(0, n)
+  p[n - 1] += d.p.slice(n).reduce((a, x) => a + x, 0)
+  return { base: d.base, step: d.step, p }
+}
+
 /** 분포 기대값 */
 export function expectedValue(d: Dist): number {
   let e = 0
@@ -114,7 +127,8 @@ export function exactNProbabilities(castDist: Dist, hp: number, maxN: number, pr
   // 시작 누적 = 추가스킬(prior) 분포 또는 0타(delta at 0). prior는 매 타격마다 랜덤이므로 분포째 반영.
   const acc0: Dist = prior ? reStep(prior, castDist.step) : { base: 0, step: castDist.step, p: [1] }
   let acc = acc0
-  const zero = tailProb(acc0, hp)
+  // 재격자 전의 prior로 판정한다 — 반올림으로 HP−1(베놈 상한)이 HP를 넘어 처치로 잡히면 안 된다
+  const zero = tailProb(prior ?? acc0, hp)
   let prevCdf = zero
   for (let k = 1; k <= maxN; k++) {
     acc = convolve(acc, castDist)

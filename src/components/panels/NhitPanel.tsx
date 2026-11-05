@@ -25,7 +25,7 @@ import { aggregateBuild, equippedWeaponType, missingRequiredSecondary } from '..
 import { useActiveEquippedBuilts } from '../../store/activation'
 import { useBuffEffects, useConditionalBuffEffects } from '../../store/useBuffEffects'
 import {
-  totalAttack, totalMagic, masteryRatio, magicAmpMultiplier, levelPenalty, calcLuckyBase,
+  totalAttack, totalMagic, masteryRatio, magicAmpMultiplier, levelPenalty, calcLuckyBase, calcVenom,
 } from '../../domain/attackPower'
 import type { DamageRange } from '../../domain/attackPower'
 import { JOBS } from '../../domain/jobs'
@@ -33,11 +33,11 @@ import { getMonster } from '../../data/mobs'
 import { elementReaction, formatElements } from '../../domain/monster'
 import { skillAttackAt, skillLineCount, comboFinalDamageP, COMBO_SKILLS, findSkillById, skillNumAt, chargeStats, skillElements } from '../../data/skills'
 import type { IJobSkill } from '../../data/skills'
-import { damageSkillsForJob, baseSkillId, stunHitRatio } from '../../data/skills/variants'
+import { damageSkillsForJob, baseSkillId, stunHitRatio, VENOM_SKILLS, venomStacks } from '../../data/skills/variants'
 import type { ChargeState } from '../../domain/paladinCharge'
-import { computeCast, computeNhit, computeDpm, baseElementMult, mixCasts, SKILL_MOTION } from '../../domain/skillCombat'
+import { computeCast, computeDotCast, computeNhit, computeDpm, baseElementMult, dotElementMult, mixCasts, SKILL_MOTION } from '../../domain/skillCombat'
 import { staffElementMult } from '../../domain/damage'
-import { convolve } from '../../domain/nhitProb'
+import { capDist, convolve } from '../../domain/nhitProb'
 import type { Dist } from '../../domain/nhitProb'
 import { attacksPerMinute, effectiveCastStep, effectiveSpeedStep, type SpeedContext } from '../../data/attackSpeed'
 import { chargeMultiplier, chargeFromUi, chargeElementCodes } from '../../domain/paladinCharge'
@@ -72,8 +72,10 @@ const pct = (n: number) => `${(n * 100).toFixed(1)}%`
 const COMA_PANIC = new Set([1111003, 1111004, 1111005, 1111006, 11111002, 11111003])
 /** 돌진(히어로·팔라딘·다크나이트) — 후딜레이가 커 방컷/DPM이 무의미 */
 const RUSH = new Set([1121006, 1221007, 1321003])
-/** 방컷·DPM 미제공(데미지 범위만): 패닉/코마 + 돌진 */
-const NO_DPM = new Set([...COMA_PANIC, ...RUSH])
+/** 방컷·DPM 미제공(데미지 범위만): 패닉/코마 + 돌진 + 베놈(HP를 1 아래로 못 내려 처치 불가) */
+const NO_DPM = new Set([...COMA_PANIC, ...RUSH, ...VENOM_SKILLS])
+/** 베놈의 속성 — 도트라 스킬북 속성값 대신 여기서 정한다 */
+const VENOM_ELEMENT = 'S'
 /**
  * 데미지 계산 미구현 — 목록엔 두되 "지원하지 않음"으로 표시한다.
  *  - 피니쉬 어택(배틀메이지 32001001): 앞선 블로우가 강할수록 데미지가 커지는데
@@ -188,6 +190,29 @@ export default function NhitPanel() {
     if (!isMagic && !atkWeapon) return null
     // 변형 스킬은 id에 오프셋이 붙어 있다 — 모션 규칙/공속표/예외식은 전부 원래 id로 조회
     const baseId = baseSkillId(sk.id)
+
+    // 베놈: 중독 1틱. 별도식에 방어·렙차만 적용하고 아래 버프·크리 처리는 타지 않는다 (docs/nhit-dpm.md §4 베놈)
+    if (VENOM_SKILLS.has(baseId)) {
+      if (!atkWeapon) return null
+      const venomAtk = coef ?? att.spellAtk
+      const reaction = elementReaction(monster.elemAttr, VENOM_ELEMENT)
+      return {
+        cast: computeDotCast(
+          calcVenom(finalStats.STR, finalStats.LUK, finalStats.DEX, venomAtk),
+          reaction,
+          { kind: 'physical', def: monster.PDDamage ?? 0, levelPenalty: levelPenalty(monster.level, level) },
+          venomStacks(sk.id),
+        ),
+        att,
+        effSkillPercent: att.skillPercent,
+        spellAtk: venomAtk,
+        isMagic,
+        elements: [VENOM_ELEMENT],
+        displayMult: dotElementMult(reaction),
+        charge: null,
+        hitMultipliers: undefined,
+      }
+    }
 
     // 차지 블로우(1211002): 어드밴스드 차지(1220010) 학습 시 계수를 어차 값(260~350%)으로 대체
     let effSkillPercent = att.skillPercent
@@ -343,13 +368,19 @@ export default function NhitPanel() {
       masterLevel: sk?.masterLevel ?? 1,
       ok: !!dist,
       dist,
+      isDot: VENOM_SKILLS.has(baseSkillId(pc.id)),
     }
   })
-  // 추가스킬 분포들의 합(컨볼루션) = 방컷 prior
-  const preCastPrior = preCastInfos.reduce<Dist | undefined>(
-    (acc, p) => (p.dist ? (acc ? convolve(acc, p.dist) : p.dist) : acc),
+  const sumDists = (dists: (Dist | null)[]) => dists.reduce<Dist | undefined>(
+    (acc, d) => (d ? (acc ? convolve(acc, d) : d) : acc),
     undefined,
   )
+  // 추가스킬 분포들의 합(컨볼루션) = 방컷 prior.
+  // 베놈 틱은 HP를 1 아래로 못 내리므로 먼저 HP−1로 자른다 — 도트만으로는 처치되지 않는다
+  const maxHP = monster?.maxHP ?? 0
+  const dotPrior = sumDists(preCastInfos.filter((p) => p.isDot).map((p) => p.dist))
+  const cappedDot = dotPrior && maxHP > 0 ? capDist(dotPrior, maxHP - 1) : dotPrior
+  const preCastPrior = sumDists([cappedDot ?? null, ...preCastInfos.filter((p) => !p.isDot).map((p) => p.dist)])
 
   const result = (() => {
     if (!job || !monster || !selectedSkill) return null
@@ -383,6 +414,7 @@ export default function NhitPanel() {
       elements,
       displayMult,
       charge,
+      isVenom: VENOM_SKILLS.has(baseId),
       isBoss,
       hp,
       hasPreCast: !!preCastPrior,
@@ -581,6 +613,14 @@ export default function NhitPanel() {
                   ) : undefined
                 }
               />
+
+              {result.isVenom && (
+                <Typography variant="caption" color="text.disabled" sx={{ display: 'block', mt: 0.25, lineHeight: 1.4 }}>
+                  {result.displayMult === 0
+                    ? '※ 독 반감·무효 몬스터에게는 베놈 데미지가 들어가지 않습니다.'
+                    : '※ 중독 1틱 데미지입니다. 크리티컬·독 약점은 적용되지 않습니다.'}
+                </Typography>
+              )}
 
               {/* 방컷 확률 (비보스) */}
               {result.nhit && (
