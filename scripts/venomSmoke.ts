@@ -47,12 +47,16 @@ for (const r of ['half', 'immune'] as const) {
 }
 
 console.log('중첩')
+// 방어는 합계에서 1회만: MIN 4860×n − 60, MAX 11160×n − 50
 for (const n of [2, 3]) {
   const c = computeDotCast(tick, 'none', { kind: 'physical', def: 100, levelPenalty: 0 }, n)
-  check(c.totalRange.min === 4800 * n && c.totalRange.max === 11110 * n, `${n}중첩 범위 ${n}배 (${c.totalRange.min}~${c.totalRange.max})`)
+  const min = 4860 * n - 60
+  const max = 11160 * n - 50
+  check(c.totalRange.min === min && c.totalRange.max === max, `${n}중첩 방어 1회 차감 (${c.totalRange.min}~${c.totalRange.max})`)
+  check(c.dist.base === min, `${n}중첩: 분포 시작 = 최종 최솟값`)
   check(c.lineRanges.length === 1, `${n}중첩: 타수는 1줄`)
   check(Math.abs(c.dist.p.reduce((a, x) => a + x, 0) - 1) < 1e-9, `${n}중첩: 확률 합 1`)
-  const mean = (4800 + 11110) / 2 * n
+  const mean = (min + max) / 2
   check(Math.abs(expectedValue(c.dist) - mean) <= c.dist.step, `${n}중첩: 평균 ${mean} (${expectedValue(c.dist).toFixed(1)})`)
 }
 
