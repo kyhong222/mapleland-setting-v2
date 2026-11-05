@@ -70,10 +70,11 @@ export default function AttackPanel() {
   const lucky = atkWeapon === 'claw' ? calcLuckySeven(finalStats.LUK, watk) : null
   const luckyRatio = atkWeapon === 'claw' ? calcLuckyRatio(finalStats.LUK, watk) : null
 
-  // vs 몬스터 물리 실질 데미지 (일반 공격 기준)
+  // vs 몬스터 실질 스탯 공격력 (일반 공격 기준) + 럭세/트스 예외식의 방어 감산값
   const monster = selectedMobId != null ? getMonster(selectedMobId) : undefined
   const D = monster ? levelPenalty(monster.level, level) : 0
   const physVs = phys && monster ? physicalVsMonster(phys.display, monster.PDDamage ?? 0, D) : null
+  const luckyVs = lucky && monster ? physicalVsMonster(lucky, monster.PDDamage ?? 0, D) : null
 
   /* ── 스킬 데미지 (10단계 파이프라인) — 임시 비활성 ──
   const ampMult = magicAmpMultiplier(effects)
@@ -121,7 +122,7 @@ export default function AttackPanel() {
         phys && physRatios && (
           <>
             <Divider sx={{ my: 1 }} />
-            <DmgRow label="표기 데미지" range={phys.display} strong />
+            <DmgRow label="스탯 공격력" range={phys.display} strong />
             <RatioText ratio={physRatios.display} statLabel={statLabel} />
             {hasSwingStab && (
               <>
@@ -145,9 +146,10 @@ export default function AttackPanel() {
         <>
           <Divider sx={{ my: 1 }} />
           <Typography variant="caption" sx={{ fontWeight: 700, display: 'block', mb: 0.25 }}>
-            실질 데미지 vs {monster.koreanName || monster.name}
+            vs {monster.koreanName || monster.name}
           </Typography>
-          <DmgRow label="물리 실질" range={physVs} strong />
+          <DmgRow label="실질 스탯 공격력" range={physVs} strong />
+          {luckyVs && <DmgRow label="실질 럭키세븐/트리플스로우" range={luckyVs} />}
         </>
       )}
 
