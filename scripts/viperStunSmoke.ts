@@ -55,10 +55,10 @@ expect('바이퍼 항목 수 (기본 + 스턴)', viperAll.length, viperBase.leng
 const nameOf = (id: number) => viperAll.find((s) => s.id === id)?.description?.name
 expect('피스트 (스턴) 이름', nameOf(variantSkillId(5121007, 'stun')), '피스트 (스턴)')
 expect('에너지 버스터 (스턴) 이름', nameOf(variantSkillId(5111002, 'stun')), '에너지 버스터 (스턴)')
-// 스턴 마스터리가 없는 직업은 변형 없이 그대로
+// 스턴 마스터리가 없는 직업에는 (스턴) 항목이 없다 (베놈 중첩 변형은 scripts/venomSmoke.ts)
 expect(
   '스턴 마스터리 없는 직업에 변형이 붙는지',
-  JOB_IDS.filter((j) => j !== 'viper' && damageSkillsForJob(j).length !== attackSkillsForJob(j).length),
+  JOB_IDS.filter((j) => j !== 'viper' && damageSkillsForJob(j).some((s) => variantKindOf(s.id) === 'stun')),
   [],
 )
 

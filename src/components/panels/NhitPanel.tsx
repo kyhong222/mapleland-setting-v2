@@ -33,7 +33,7 @@ import { getMonster } from '../../data/mobs'
 import { elementReaction, formatElements } from '../../domain/monster'
 import { skillAttackAt, skillLineCount, comboFinalDamageP, COMBO_SKILLS, findSkillById, skillNumAt, chargeStats, skillElements } from '../../data/skills'
 import type { IJobSkill } from '../../data/skills'
-import { damageSkillsForJob, baseSkillId, stunHitRatio, VENOM_SKILLS } from '../../data/skills/variants'
+import { damageSkillsForJob, baseSkillId, stunHitRatio, VENOM_SKILLS, venomStacks } from '../../data/skills/variants'
 import type { ChargeState } from '../../domain/paladinCharge'
 import { computeCast, computeDotCast, computeNhit, computeDpm, baseElementMult, dotElementMult, mixCasts, SKILL_MOTION } from '../../domain/skillCombat'
 import { staffElementMult } from '../../domain/damage'
@@ -191,13 +191,18 @@ export default function NhitPanel() {
     // 변형 스킬은 id에 오프셋이 붙어 있다 — 모션 규칙/공속표/예외식은 전부 원래 id로 조회
     const baseId = baseSkillId(sk.id)
 
-    // 베놈: 중독 1틱. 별도식 값이 곧 최종 데미지라 아래 파이프라인을 타지 않는다 (docs/nhit-dpm.md §4 베놈)
+    // 베놈: 중독 1틱. 별도식에 방어·렙차만 적용하고 아래 버프·크리 처리는 타지 않는다 (docs/nhit-dpm.md §4 베놈)
     if (VENOM_SKILLS.has(baseId)) {
       if (!atkWeapon) return null
       const venomAtk = coef ?? att.spellAtk
       const reaction = elementReaction(monster.elemAttr, VENOM_ELEMENT)
       return {
-        cast: computeDotCast(calcVenom(finalStats.STR, finalStats.LUK, finalStats.DEX, venomAtk), reaction),
+        cast: computeDotCast(
+          calcVenom(finalStats.STR, finalStats.LUK, finalStats.DEX, venomAtk),
+          reaction,
+          { kind: 'physical', def: monster.PDDamage ?? 0, levelPenalty: levelPenalty(monster.level, level) },
+          venomStacks(sk.id),
+        ),
         att,
         effSkillPercent: att.skillPercent,
         spellAtk: venomAtk,
@@ -613,7 +618,7 @@ export default function NhitPanel() {
                 <Typography variant="caption" color="text.disabled" sx={{ display: 'block', mt: 0.25, lineHeight: 1.4 }}>
                   {result.displayMult === 0
                     ? '※ 독 반감·무효 몬스터에게는 베놈 데미지가 들어가지 않습니다.'
-                    : '※ 중독 1틱 데미지입니다. 방어력·크리티컬·독 약점이 적용되지 않습니다.'}
+                    : '※ 중독 1틱 데미지입니다. 크리티컬·독 약점은 적용되지 않습니다.'}
                 </Typography>
               )}
 

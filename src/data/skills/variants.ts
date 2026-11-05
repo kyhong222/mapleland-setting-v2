@@ -11,9 +11,14 @@
  * 상태로 들어간다. 그런 스킬은 기본 항목이 곧 단독 운용이라, 기본 쪽에 자체 스턴 확률을 반영한다
  * (별도 '(단독 운용)' 항목을 두었다가 기본과 뜻이 겹쳐 없앴다).
  *
+ * 베놈은 중첩 수가 곧 운용 상황이다. 3중첩까지 쌓이고 1틱 데미지가 중첩 수만큼 늘어나므로
+ * 기본 항목을 '베놈 (1중첩)'으로 두고 2·3중첩 항목을 파생한다.
+ *
  * 변형 스킬 id = 기본 id + 오프셋. 아이콘(`/skill-icons/<id>.png`)·모션 규칙(SKILL_MOTION)·
  * 공속표(SKILL_APM)는 전부 **기본 id로** 조회해야 하므로 소비처에서 baseSkillId()로 되돌린다.
- * 오프셋은 실제 스킬 id(최대 8자리, 시그너스 15xxxxxx)와 겹치지 않도록 9자리를 쓴다.
+ * 오프셋은 실제 스킬 id(최대 8자리, 3천만대)와 겹치지 않도록 9자리를 쓴다.
+ * variantKindOf가 "오프셋보다 크면 그 변형"으로 판정하므로 오프셋끼리 1억 이상 떨어뜨린다.
+ * 8억대는 없앤 변형 id(RETIRED_SKILL_IDS)가 쓰던 자리라 새 오프셋으로 쓰지 않는다.
  */
 
 import type { JobId } from '../../domain/jobs'
@@ -23,17 +28,21 @@ import { attackSkillsForJob, findSkillById, skillsForJob, skillNum, skillPropsAt
 /** 스턴 마스터리 skill id — 이 스킬을 가진 직업만 (스턴) 변형을 만든다 */
 export const STUN_MASTERY_ID = 5110000
 
-/** 변형 종류: 지금은 '스턴 상태를 가정한다' 하나뿐 */
-export type SkillVariantKind = 'stun'
+/** 변형 종류: 스턴 상태 가정 / 베놈 2·3중첩 */
+export type SkillVariantKind = 'stun' | 'venom2' | 'venom3'
 
 /** 변형별 id 오프셋 (실제 스킬 id와 겹치지 않는 9자리) */
 const VARIANT_OFFSET: Record<SkillVariantKind, number> = {
   stun: 900_000_000,
+  venom2: 600_000_000,
+  venom3: 700_000_000,
 }
 
 /** 변형별 이름 접미사 */
 const VARIANT_SUFFIX: Record<SkillVariantKind, string> = {
   stun: '(스턴)',
+  venom2: '(2중첩)',
+  venom3: '(3중첩, 최대)',
 }
 
 /**
@@ -82,13 +91,20 @@ export function migrateSkillId(skillId: number): number {
 /** 베놈(나로·섀도어·나워) — 데미지 계산에서는 중독 1틱으로 다룬다 (docs/nhit-dpm.md §4 베놈) */
 export const VENOM_SKILLS: ReadonlySet<number> = new Set([4120005, 4220005, 14110004])
 
-/** 베놈의 데미지 계산 표시 이름. 공격 1회가 아니라 도트 1틱이라는 뜻을 이름에 담는다 */
-const VENOM_NAME = '베놈 (1틱)'
+/** 베놈 기본 항목의 표시 이름. id는 그대로라 저장된 선택은 1중첩으로 이어진다 */
+const VENOM_BASE_NAME = '베놈 (1중첩)'
 
-/** 표시 이름만 바꾼 사본. id는 그대로라 저장된 선택과 아이콘·공속 조회가 유지된다 */
-function relabelVenom(skill: IJobSkill): IJobSkill {
-  if (!VENOM_SKILLS.has(skill.id)) return skill
-  return { ...skill, description: { ...skill.description, id: skill.id, name: VENOM_NAME } }
+/** 스킬의 베놈 중첩 수 — 베놈 기본 항목과 베놈이 아닌 스킬은 1 */
+export function venomStacks(skillId: number): number {
+  const kind = variantKindOf(skillId)
+  return kind === 'venom3' ? 3 : kind === 'venom2' ? 2 : 1
+}
+
+/** 베놈이면 1~3중첩 항목으로 펼친다. 베놈이 아니면 그대로 */
+function expandVenom(skill: IJobSkill): IJobSkill[] {
+  if (!VENOM_SKILLS.has(skill.id)) return [skill]
+  const base = { ...skill, description: { ...skill.description, id: skill.id, name: VENOM_BASE_NAME } }
+  return [base, makeVariant(skill, 'venom2'), makeVariant(skill, 'venom3')]
 }
 
 /** 기본 스킬 → 변형 스킬 (id와 표시 이름만 바꾼 사본) */
@@ -112,7 +128,7 @@ export function hasStunMastery(jobId: JobId): boolean {
  * 스턴 마스터리가 없는 직업은 `attackSkillsForJob`과 같다.
  */
 export function damageSkillsForJob(jobId: JobId): IJobSkill[] {
-  const skills = attackSkillsForJob(jobId).map(relabelVenom)
+  const skills = attackSkillsForJob(jobId).flatMap(expandVenom)
   if (!hasStunMastery(jobId)) return skills
   return skills.flatMap((s) => [s, makeVariant(s, 'stun')])
 }

@@ -457,13 +457,28 @@ export function dotElementMult(reaction: ElementReaction): number {
 }
 
 /**
- * 도트 1틱의 시전 결과. 범위가 곧 최종 데미지다 — 방어·크리·버프 배율·분신이 끼지 않는다.
- * 데미지 파이프라인(lineFinalRange)은 최소 1로 클램프하므로, ×0이 0으로 남도록 타지 않는다.
+ * 도트 1틱의 시전 결과 (docs/nhit-dpm.md §4 베놈).
+ * 방어·렙차만 적용하고 크리·버프 배율·쉐도우 파트너는 끼지 않는다.
+ * 중첩은 스택마다 따로 굴린 값의 합이다 — 방어도 스택별로 차감된다.
+ * 파이프라인(lineFinalRange)은 최소 1로 클램프하므로, ×0이면 타지 않고 0으로 둔다.
+ *
+ * lineRanges는 한 줄이다. 중첩은 '타수'가 아니라 1틱의 크기라 "1회 타격 (3타)" 줄을 만들지 않는다.
  */
-export function computeDotCast(tick: DamageRange, reaction: ElementReaction): CastResult {
-  const mult = dotElementMult(reaction)
-  const r: DamageRange = { min: tick.min * mult, max: tick.max * mult }
-  return { dist: uniformDist(r.min, r.max, stepFor(r.min, r.max)), totalRange: r, lineRanges: [r] }
+export function computeDotCast(
+  tick: DamageRange,
+  reaction: ElementReaction,
+  defense: LineDamageInput['defense'],
+  stacks = 1,
+): CastResult {
+  const one = dotElementMult(reaction) === 0
+    ? { min: 0, max: 0 }
+    : lineFinalRange({ base: tick, elementMult: 1, defense, skillPercent: 100, damageMult: 1, critFactor: 1 })
+  const total: DamageRange = { min: one.min * stacks, max: one.max * stacks }
+  const step = stepFor(total.min, total.max)
+  const unit = uniformDist(one.min, one.max, step)
+  let dist = unit
+  for (let i = 1; i < stacks; i++) dist = convolve(dist, unit)
+  return { dist, totalRange: total, lineRanges: [total] }
 }
 
 /**
