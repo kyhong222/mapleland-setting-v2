@@ -6739,6 +6739,423 @@
       131
     ]
   },
+  "8820001": {
+    "id": 8820001,
+    "level": 180,
+    "PADamage": 1700,
+    "MADamage": 1200,
+    "PDDamage": 1700,
+    "MDDamage": 1930,
+    "acc": 270,
+    "eva": 55,
+    "exp": 50000000,
+    "maxHP": 2100000000,
+    "boss": 1,
+    "elemAttr": "P2H2F2I2",
+    "skills": {
+      "attack1": {
+        "type": 3,
+        "magic": 1,
+        "conMP": 5
+      },
+      "attack2": {
+        "type": 0,
+        "PADamage": 1500,
+        "conMP": 1
+      },
+      "attack3": {
+        "type": 3,
+        "magic": 1,
+        "conMP": 5
+      },
+      "attack4": {
+        "type": 0,
+        "conMP": 1
+      }
+    },
+    "deadly": true,
+    "disease": [
+      123,
+      132,
+      128,
+      120
+    ],
+    "castSkills": [
+      200,
+      145,
+      133
+    ],
+    "wzVersion": 83
+  },
+  "8820002": {
+    "id": 8820002,
+    "level": 180,
+    "PADamage": 1650,
+    "MADamage": 1300,
+    "PDDamage": 1700,
+    "MDDamage": 1980,
+    "acc": 265,
+    "eva": 54,
+    "exp": 20000000,
+    "maxHP": 600000000,
+    "boss": 1,
+    "elemAttr": "H1F2L2I2",
+    "skills": {
+      "attack1": {
+        "type": 3,
+        "magic": 1,
+        "conMP": 5
+      },
+      "attack2": {
+        "type": 3,
+        "conMP": 5
+      }
+    },
+    "deadly": true,
+    "disease": [
+      121,
+      123
+    ],
+    "castSkills": [
+      133,
+      114,
+      127,
+      131,
+      140,
+      141
+    ],
+    "wzVersion": 83
+  },
+  "8820003": {
+    "id": 8820003,
+    "level": 180,
+    "PADamage": 1440,
+    "MADamage": 770,
+    "PDDamage": 1540,
+    "MDDamage": 1810,
+    "acc": 240,
+    "eva": 50,
+    "exp": 3000000,
+    "maxHP": 300000000,
+    "boss": 1,
+    "skills": {
+      "attack1": {
+        "type": 0,
+        "conMP": 5
+      },
+      "attack2": {
+        "type": 0,
+        "magic": 1,
+        "elemAttr": "L",
+        "conMP": 5
+      },
+      "attack3": {
+        "type": 0,
+        "conMP": 5
+      }
+    },
+    "deadly": true,
+    "disease": [
+      123,
+      120,
+      126
+    ],
+    "wzVersion": 83
+  },
+  "8820004": {
+    "id": 8820004,
+    "level": 180,
+    "PADamage": 1480,
+    "MADamage": 750,
+    "PDDamage": 1580,
+    "MDDamage": 1830,
+    "acc": 250,
+    "eva": 51,
+    "exp": 3000000,
+    "maxHP": 300000000,
+    "boss": 1,
+    "skills": {
+      "attack1": {
+        "type": 0,
+        "conMP": 5
+      },
+      "attack2": {
+        "type": 0,
+        "magic": 1,
+        "elemAttr": "L",
+        "conMP": 5
+      },
+      "attack3": {
+        "type": 0,
+        "conMP": 5
+      }
+    },
+    "deadly": true,
+    "disease": [
+      133,
+      121,
+      125
+    ],
+    "castSkills": [
+      132,
+      127
+    ],
+    "wzVersion": 83
+  },
+  "8820005": {
+    "id": 8820005,
+    "level": 180,
+    "PADamage": 1580,
+    "MADamage": 900,
+    "PDDamage": 1600,
+    "MDDamage": 1860,
+    "acc": 255,
+    "eva": 52,
+    "exp": 3500000,
+    "maxHP": 450000000,
+    "boss": 1,
+    "elemAttr": "F2I3",
+    "skills": {
+      "attack1": {
+        "type": 0,
+        "magic": 1,
+        "elemAttr": "F",
+        "conMP": 5
+      },
+      "attack2": {
+        "type": 3,
+        "conMP": 5
+      }
+    },
+    "disease": [
+      126,
+      133
+    ],
+    "castSkills": [
+      143,
+      144,
+      145,
+      120,
+      122
+    ],
+    "wzVersion": 83
+  },
+  "8820006": {
+    "id": 8820006,
+    "level": 180,
+    "PADamage": 1600,
+    "MADamage": 950,
+    "PDDamage": 1580,
+    "MDDamage": 1880,
+    "acc": 260,
+    "eva": 53,
+    "exp": 3500000,
+    "maxHP": 450000000,
+    "boss": 1,
+    "elemAttr": "I2F3",
+    "skills": {
+      "attack1": {
+        "type": 0,
+        "magic": 1,
+        "elemAttr": "I",
+        "conMP": 5
+      },
+      "attack2": {
+        "type": 3,
+        "conMP": 5
+      }
+    },
+    "disease": [
+      132,
+      123
+    ],
+    "castSkills": [
+      129,
+      128,
+      122
+    ],
+    "wzVersion": 83
+  },
+  "8820007": {
+    "id": 8820007,
+    "level": 150,
+    "PADamage": 700,
+    "MADamage": 800,
+    "PDDamage": 1200,
+    "MDDamage": 1200,
+    "acc": 240,
+    "eva": 50,
+    "exp": 11000,
+    "maxHP": 303000,
+    "boss": 1,
+    "elemAttr": "S2I3F3",
+    "skills": {
+      "attack1": {
+        "type": 1,
+        "PADamage": 680,
+        "conMP": 1
+      },
+      "attack2": {
+        "type": 0,
+        "magic": 1,
+        "conMP": 1
+      }
+    },
+    "castSkills": [
+      140
+    ],
+    "wzVersion": 83
+  },
+  "8820015": {
+    "id": 8820015,
+    "level": 180,
+    "PADamage": 1500,
+    "MADamage": 830,
+    "PDDamage": 1500,
+    "MDDamage": 1870,
+    "acc": 250,
+    "eva": 52,
+    "exp": 3000000,
+    "maxHP": 300000000,
+    "boss": 1,
+    "skills": {
+      "attack1": {
+        "type": 0,
+        "conMP": 5
+      },
+      "attack2": {
+        "type": 0,
+        "magic": 1,
+        "elemAttr": "L",
+        "conMP": 5
+      },
+      "attack3": {
+        "type": 0,
+        "conMP": 5
+      }
+    },
+    "deadly": true,
+    "disease": [
+      123,
+      120,
+      126
+    ],
+    "wzVersion": 83
+  },
+  "8820016": {
+    "id": 8820016,
+    "level": 180,
+    "PADamage": 1520,
+    "MADamage": 810,
+    "PDDamage": 1520,
+    "MDDamage": 1890,
+    "acc": 260,
+    "eva": 53,
+    "exp": 3000000,
+    "maxHP": 300000000,
+    "boss": 1,
+    "skills": {
+      "attack1": {
+        "type": 1,
+        "conMP": 5
+      },
+      "attack2": {
+        "type": 0,
+        "magic": 1,
+        "elemAttr": "L",
+        "conMP": 5
+      },
+      "attack3": {
+        "type": 0,
+        "conMP": 5
+      }
+    },
+    "deadly": true,
+    "disease": [
+      133,
+      121,
+      125
+    ],
+    "castSkills": [
+      132,
+      127
+    ],
+    "wzVersion": 83
+  },
+  "8820017": {
+    "id": 8820017,
+    "level": 180,
+    "PADamage": 1640,
+    "MADamage": 960,
+    "PDDamage": 1560,
+    "MDDamage": 1920,
+    "acc": 260,
+    "eva": 54,
+    "exp": 3500000,
+    "maxHP": 450000000,
+    "boss": 1,
+    "elemAttr": "F2I3",
+    "skills": {
+      "attack1": {
+        "type": 0,
+        "magic": 1,
+        "elemAttr": "F",
+        "conMP": 5
+      },
+      "attack2": {
+        "type": 3,
+        "conMP": 5
+      }
+    },
+    "disease": [
+      126,
+      133
+    ],
+    "castSkills": [
+      143,
+      144,
+      145,
+      120,
+      122
+    ],
+    "wzVersion": 83
+  },
+  "8820018": {
+    "id": 8820018,
+    "level": 180,
+    "PADamage": 1660,
+    "MADamage": 1010,
+    "PDDamage": 1540,
+    "MDDamage": 1940,
+    "acc": 265,
+    "eva": 55,
+    "exp": 3500000,
+    "maxHP": 450000000,
+    "boss": 1,
+    "elemAttr": "I2F3",
+    "skills": {
+      "attack1": {
+        "type": 0,
+        "magic": 1,
+        "elemAttr": "I",
+        "conMP": 5
+      },
+      "attack2": {
+        "type": 3,
+        "conMP": 5
+      }
+    },
+    "disease": [
+      132,
+      123
+    ],
+    "castSkills": [
+      129,
+      128,
+      122
+    ],
+    "wzVersion": 83
+  },
   "9001000": {
     "id": 9001000,
     "level": 80,

@@ -19,6 +19,8 @@ import { secondaryPrompt } from '../../lib/weaponNotice'
 import { JOBS } from '../../domain/jobs'
 import type { StatId } from '../../domain/stats'
 import { getMonster } from '../../data/mobs'
+import { elementReaction, PHYSICAL_ELEMENT } from '../../domain/monster'
+import { baseElementMult } from '../../domain/skillCombat'
 
 // ── 스킬 데미지 섹션 (임시 비활성) — 복원 시 아래 import/상태/계산/렌더 주석 해제 ──
 // import { useState } from 'react'
@@ -73,8 +75,9 @@ export default function AttackPanel() {
   // vs 몬스터 실질 스탯 공격력 (일반 공격 기준) + 럭세/트스 예외식의 방어 감산값
   const monster = selectedMobId != null ? getMonster(selectedMobId) : undefined
   const D = monster ? levelPenalty(monster.level, level) : 0
-  const physVs = phys && monster ? physicalVsMonster(phys.display, monster.PDDamage ?? 0, D) : null
-  const luckyVs = lucky && monster ? physicalVsMonster(lucky, monster.PDDamage ?? 0, D) : null
+  const physMult = baseElementMult(elementReaction(monster?.elemAttr, PHYSICAL_ELEMENT)) // 물리 반감 등
+  const physVs = phys && monster ? physicalVsMonster(phys.display, monster.PDDamage ?? 0, D, physMult) : null
+  const luckyVs = lucky && monster ? physicalVsMonster(lucky, monster.PDDamage ?? 0, D, physMult) : null
 
   /* ── 스킬 데미지 (10단계 파이프라인) — 임시 비활성 ──
   const ampMult = magicAmpMultiplier(effects)

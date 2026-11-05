@@ -4864,6 +4864,116 @@
     ]
   },
   {
+    "id": 8820001,
+    "name": "Pink Bean",
+    "koreanName": "핑크빈",
+    "level": 180,
+    "isBoss": true,
+    "foundAt": [
+      "시간의 신전"
+    ]
+  },
+  {
+    "id": 8820002,
+    "name": "Ariel",
+    "koreanName": "아리엘",
+    "level": 180,
+    "isBoss": true,
+    "foundAt": [
+      "시간의 신전"
+    ]
+  },
+  {
+    "id": 8820003,
+    "name": "Solomon the Wise",
+    "koreanName": "현자 솔로몬",
+    "level": 180,
+    "isBoss": true,
+    "foundAt": [
+      "시간의 신전"
+    ]
+  },
+  {
+    "id": 8820004,
+    "name": "Rex the Wise",
+    "koreanName": "현자 렉스",
+    "level": 180,
+    "isBoss": true,
+    "foundAt": [
+      "시간의 신전"
+    ]
+  },
+  {
+    "id": 8820005,
+    "name": "Hugin",
+    "koreanName": "휘긴",
+    "level": 180,
+    "isBoss": true,
+    "foundAt": [
+      "시간의 신전"
+    ]
+  },
+  {
+    "id": 8820006,
+    "name": "Munin",
+    "koreanName": "무닌",
+    "level": 180,
+    "isBoss": true,
+    "foundAt": [
+      "시간의 신전"
+    ]
+  },
+  {
+    "id": 8820007,
+    "name": "Mini Bean",
+    "koreanName": "미니빈",
+    "level": 150,
+    "isBoss": true,
+    "foundAt": [
+      "시간의 신전"
+    ]
+  },
+  {
+    "id": 8820015,
+    "name": "Solomon the Wise",
+    "koreanName": "현자 솔로몬(2)",
+    "level": 180,
+    "isBoss": true,
+    "foundAt": [
+      "시간의 신전"
+    ]
+  },
+  {
+    "id": 8820016,
+    "name": "Rex the Wise",
+    "koreanName": "현자 렉스(2)",
+    "level": 180,
+    "isBoss": true,
+    "foundAt": [
+      "시간의 신전"
+    ]
+  },
+  {
+    "id": 8820017,
+    "name": "Hugin",
+    "koreanName": "휘긴(2)",
+    "level": 180,
+    "isBoss": true,
+    "foundAt": [
+      "시간의 신전"
+    ]
+  },
+  {
+    "id": 8820018,
+    "name": "Munin",
+    "koreanName": "무닌(2)",
+    "level": 180,
+    "isBoss": true,
+    "foundAt": [
+      "시간의 신전"
+    ]
+  },
+  {
     "id": 9300127,
     "name": "[카니발] 브라운테니",
     "koreanName": "[카니발] 브라운테니",
