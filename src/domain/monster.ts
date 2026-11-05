@@ -10,13 +10,20 @@
 
 /**
  * 원소 속성 코드 (WZ 표기 유지). "속성문자+단계" 쌍을 이어 붙인 문자열.
- *  - 속성문자: F(불) · I(얼음) · L(번개) · S(독) · H(성)
+ *  - 속성문자: F(불) · I(얼음) · L(번개) · S(독) · H(성) · P(물리)
  *  - 단계 숫자: 1=무효 · 2=반감 · 3=약점
  *  - 예: "S1I2H3" = 독 무효 + 얼음 반감 + 성 약점. 무속성이면 undefined.
  */
 export type ElementAttribute = string
 
-const ELEM_NAME: Record<string, string> = { F: '불', I: '얼음', L: '번개', S: '독', H: '성' }
+const ELEM_NAME: Record<string, string> = { F: '불', I: '얼음', L: '번개', S: '독', H: '성', P: '물리' }
+
+/**
+ * 속성이 없는 물리 공격이 받는 반응 코드 (핑크빈 P2 = 물리 반감).
+ * 일반 속성과 같은 자리에서 판정한다. 속성이 붙은 공격은 차지까지 포함해 그 속성으로만 판정하므로
+ * 물리 반응을 겹쳐 받지 않는다. (docs/nhit-dpm.md §3)
+ */
+export const PHYSICAL_ELEMENT = 'P'
 
 /** 속성코드(F/I/L/S/H) → 속성명. 모르는 코드는 그대로 반환 */
 export const elementName = (code: string): string => ELEM_NAME[code.toUpperCase()] ?? code

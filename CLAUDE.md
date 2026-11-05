@@ -43,6 +43,7 @@ npx tsx scripts/noticeSmoke.ts     # 공지 id·날짜·참조 아이템·compar
 npx tsx scripts/battleMageSmoke.ts # 배틀메이지 직업 규칙·오라 대체/강화·스태프 숙련도·마법 다타
 npx tsx scripts/elementalStaffSmoke.ts # 속성 스태프 카탈로그 스펙·속성배율 표
 npx tsx scripts/venomSmoke.ts      # 베놈 공식·방어/렙차·독 반응·중첩 변형·HP 1 상한
+npx tsx scripts/physicalElementSmoke.ts # 물리 반감(P) 판정·방어 차감 순서·기존 몹 영향 없음
 ```
 
 변경 후에는 최소한 `npm run typecheck`를 돌린다.

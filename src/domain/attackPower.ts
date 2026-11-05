@@ -243,9 +243,11 @@ export function levelPenalty(monsterLevel: number, charLevel: number): number {
  *   MAX = 최대스공 × (1 − 0.01D) − WDEF × 0.5
  *   MIN = 최소스공 × (1 − 0.01D) − WDEF × 0.6
  * 결과는 최소 1로 고정.
+ *
+ * @param elementMult 방어 차감 전에 곱하는 속성 배율 (물리 반감 등). 스킬 파이프라인과 같은 순서다.
  */
-export function physicalVsMonster(display: DamageRange, wdef: number, D: number): DamageRange {
-  const f = 1 - 0.01 * D
+export function physicalVsMonster(display: DamageRange, wdef: number, D: number, elementMult = 1): DamageRange {
+  const f = (1 - 0.01 * D) * elementMult
   return {
     max: Math.max(1, Math.floor(display.max * f - wdef * 0.5)),
     min: Math.max(1, Math.floor(display.min * f - wdef * 0.6)),

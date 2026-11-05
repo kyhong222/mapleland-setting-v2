@@ -30,7 +30,7 @@ import {
 import type { DamageRange } from '../../domain/attackPower'
 import { JOBS } from '../../domain/jobs'
 import { getMonster } from '../../data/mobs'
-import { elementReaction, formatElements } from '../../domain/monster'
+import { elementReaction, formatElements, PHYSICAL_ELEMENT } from '../../domain/monster'
 import { skillAttackAt, skillLineCount, comboFinalDamageP, COMBO_SKILLS, findSkillById, skillNumAt, chargeStats, skillElements } from '../../data/skills'
 import type { IJobSkill } from '../../data/skills'
 import { damageSkillsForJob, baseSkillId, stunHitRatio, VENOM_SKILLS, venomStacks } from '../../data/skills/variants'
@@ -263,8 +263,13 @@ export default function NhitPanel() {
     const elements = charge ? chargeElementCodes(charge) : skillElems
     // 몬스터 반응 + 속성 스태프 보정. 스킬 직접 타격에만 해당한다(소환수는 애초에 계산 대상이 아니고,
     // 포이즌 미스트 등의 도트도 계산하지 않는다 — docs/nhit-dpm.md §4 속성 스태프)
+    // 속성 없는 물리 공격은 물리 반응을 받는다. 차지가 걸리면 속성이 바뀌므로 이 경로를 타지 않는다
     const reactionMult = (elemAttr: string | undefined, element: string | undefined) =>
-      staffElementMult(baseElementMult(elementReaction(elemAttr, element)), element, staffElement)
+      staffElementMult(
+        baseElementMult(elementReaction(elemAttr, element ?? (isMagic ? undefined : PHYSICAL_ELEMENT))),
+        element,
+        staffElement,
+      )
     // 속성배율 — 차지 우선, 복합속성(매직 컴포지션)은 데미지를 반씩 나눠 각각 판정
     let elementMult: number = charge
       ? chargeMultiplier(charge, monster.elemAttr)
