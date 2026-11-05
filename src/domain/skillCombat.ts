@@ -459,7 +459,7 @@ export function dotElementMult(reaction: ElementReaction): number {
 /**
  * 도트 1틱의 시전 결과 (docs/nhit-dpm.md §4 베놈).
  * 방어·렙차만 적용하고 크리·버프 배율·쉐도우 파트너는 끼지 않는다.
- * 중첩은 스택마다 따로 굴린 값의 합이고, 방어는 그 합에서 **한 번만** 차감한다.
+ * 중첩은 스택마다 따로 굴린 값의 합이고, 방어·렙차도 스택별로 적용한다 → 범위가 정확히 N배가 된다.
  * 파이프라인(lineFinalRange)은 최소 1로 클램프하므로, ×0이면 타지 않고 0으로 둔다.
  *
  * lineRanges는 한 줄이다. 중첩은 '타수'가 아니라 1틱의 크기라 "1회 타격 (3타)" 줄을 만들지 않는다.
@@ -470,16 +470,15 @@ export function computeDotCast(
   defense: LineDamageInput['defense'],
   stacks = 1,
 ): CastResult {
-  const raw: DamageRange = { min: tick.min * stacks, max: tick.max * stacks }
-  const total = dotElementMult(reaction) === 0
+  const one = dotElementMult(reaction) === 0
     ? { min: 0, max: 0 }
-    : lineFinalRange({ base: raw, elementMult: 1, defense, skillPercent: 100, damageMult: 1, critFactor: 1 })
-  // 분포 모양은 스택 수만큼의 균등분포 합이다. 폭을 나눠 합성한 뒤 시작점을 최종 최솟값으로 옮긴다
+    : lineFinalRange({ base: tick, elementMult: 1, defense, skillPercent: 100, damageMult: 1, critFactor: 1 })
+  const total: DamageRange = { min: one.min * stacks, max: one.max * stacks }
   const step = stepFor(total.min, total.max)
-  const unit = uniformDist(0, (total.max - total.min) / stacks, step)
+  const unit = uniformDist(one.min, one.max, step)
   let dist = unit
   for (let i = 1; i < stacks; i++) dist = convolve(dist, unit)
-  return { dist: { ...dist, base: total.min }, totalRange: total, lineRanges: [total] }
+  return { dist, totalRange: total, lineRanges: [total] }
 }
 
 /**

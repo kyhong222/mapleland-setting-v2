@@ -80,6 +80,15 @@ function reStep(d: Dist, step: number): Dist {
 }
 
 /**
+ * 같은 값이 k번 반복될 때의 합 분포 = 값 자체의 k배.
+ * 독립인 값 k개의 합(컨볼루션)과 달리 평균은 같아도 폭이 k배로 넓다.
+ * 베놈은 한번 묻은 데미지가 틱마다 그대로 들어가므로 이쪽을 쓴다.
+ */
+export function scaleDist(d: Dist, k: number): Dist {
+  return k === 1 ? d : { base: d.base * k, step: d.step * k, p: d.p }
+}
+
+/**
  * 합이 cap을 넘지 못하게 자른다 — 넘치는 확률은 cap 이하의 마지막 칸으로 모은다.
  * 베놈은 대상 HP를 1 아래로 내리지 못하므로 도트 누적에 cap = HP−1을 건다.
  */

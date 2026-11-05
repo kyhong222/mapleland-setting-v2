@@ -14,7 +14,7 @@ import { attacksPerMinute } from '../src/data/attackSpeed'
 import type { SpeedContext } from '../src/data/attackSpeed'
 import { calcVenom } from '../src/domain/attackPower'
 import { computeDotCast, computeNhit } from '../src/domain/skillCombat'
-import { capDist, expectedValue, uniformDist } from '../src/domain/nhitProb'
+import { capDist, convolve, expectedValue, scaleDist, uniformDist } from '../src/domain/nhitProb'
 import type { JobId } from '../src/domain/jobs'
 
 let fail = 0
@@ -47,18 +47,35 @@ for (const r of ['half', 'immune'] as const) {
 }
 
 console.log('중첩')
-// 방어는 합계에서 1회만: MIN 4860×n − 60, MAX 11160×n − 50
+// 방어·렙차는 스택별 적용 → 범위가 1중첩(4800~11110)의 정확히 N배
 for (const n of [2, 3]) {
   const c = computeDotCast(tick, 'none', { kind: 'physical', def: 100, levelPenalty: 0 }, n)
-  const min = 4860 * n - 60
-  const max = 11160 * n - 50
-  check(c.totalRange.min === min && c.totalRange.max === max, `${n}중첩 방어 1회 차감 (${c.totalRange.min}~${c.totalRange.max})`)
+  const min = 4800 * n
+  const max = 11110 * n
+  check(c.totalRange.min === min && c.totalRange.max === max, `${n}중첩 범위 정확히 ${n}배 (${c.totalRange.min}~${c.totalRange.max})`)
   check(c.dist.base === min, `${n}중첩: 분포 시작 = 최종 최솟값`)
   check(c.lineRanges.length === 1, `${n}중첩: 타수는 1줄`)
   check(Math.abs(c.dist.p.reduce((a, x) => a + x, 0) - 1) < 1e-9, `${n}중첩: 확률 합 1`)
   const mean = (min + max) / 2
   check(Math.abs(expectedValue(c.dist) - mean) <= c.dist.step, `${n}중첩: 평균 ${mean} (${expectedValue(c.dist).toFixed(1)})`)
 }
+
+console.log('고정 데미지 반복')
+// 틱 값이 고정이라 k틱 = k배. 평균은 독립 합과 같지만 폭이 그대로 k배다
+const unit = uniformDist(1000, 2000, 10)
+const thrice = scaleDist(unit, 3)
+check(thrice.base === 3000 && thrice.base + (thrice.p.length - 1) * thrice.step === 6000, '3틱 범위 3000~6000')
+check(thrice.p.length === unit.p.length, '칸 수 유지 (값 하나가 3배가 될 뿐)')
+check(Math.abs(expectedValue(thrice) - expectedValue(unit) * 3) < 1e-6, '평균 3배')
+check(scaleDist(unit, 1) === unit, '1회면 그대로')
+const spread = (d: typeof unit) => {
+  const m = expectedValue(d)
+  return d.p.reduce((a, x, i) => a + x * (d.base + i * d.step - m) ** 2, 0)
+}
+const indep = convolve(convolve(unit, unit), unit)
+check(Math.abs(spread(thrice) / spread(indep) - 3) < 0.01, '분산은 독립 합의 3배')
+const hit = convolve(thrice, uniformDist(100, 200, 5))
+check(Math.abs(hit.p.reduce((a, x) => a + x, 0) - 1) < 1e-9, '직접 타격과 합쳐도 확률 합 1')
 
 console.log('HP 1 상한')
 const main = uniformDist(1000, 2000, 2)

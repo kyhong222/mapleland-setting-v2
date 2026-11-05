@@ -37,7 +37,7 @@ import { damageSkillsForJob, baseSkillId, stunHitRatio, VENOM_SKILLS, venomStack
 import type { ChargeState } from '../../domain/paladinCharge'
 import { computeCast, computeDotCast, computeNhit, computeDpm, baseElementMult, dotElementMult, mixCasts, SKILL_MOTION } from '../../domain/skillCombat'
 import { staffElementMult } from '../../domain/damage'
-import { capDist, convolve } from '../../domain/nhitProb'
+import { capDist, convolve, scaleDist } from '../../domain/nhitProb'
 import type { Dist } from '../../domain/nhitProb'
 import { attacksPerMinute, effectiveCastStep, effectiveSpeedStep, type SpeedContext } from '../../data/attackSpeed'
 import { chargeMultiplier, chargeFromUi, chargeElementCodes } from '../../domain/paladinCharge'
@@ -376,9 +376,19 @@ export default function NhitPanel() {
     undefined,
   )
   // 추가스킬 분포들의 합(컨볼루션) = 방컷 prior.
+  // 같은 베놈을 여러 번 넣으면 같은 값이 그 횟수만큼 들어간다 — 한번 묻은 데미지는 틱마다 그대로다.
+  // 다른 중첩 항목끼리는 난수를 새로 정하므로 독립이다 (docs/nhit-dpm.md §4 베놈)
+  const dotTicks = new Map<string, { dist: Dist; count: number }>()
+  for (const p of preCastInfos) {
+    if (!p.isDot || !p.dist) continue
+    const key = `${p.id}:${p.level}`
+    const seen = dotTicks.get(key)
+    if (seen) seen.count++
+    else dotTicks.set(key, { dist: p.dist, count: 1 })
+  }
   // 베놈 틱은 HP를 1 아래로 못 내리므로 먼저 HP−1로 자른다 — 도트만으로는 처치되지 않는다
   const maxHP = monster?.maxHP ?? 0
-  const dotPrior = sumDists(preCastInfos.filter((p) => p.isDot).map((p) => p.dist))
+  const dotPrior = sumDists([...dotTicks.values()].map((t) => scaleDist(t.dist, t.count)))
   const cappedDot = dotPrior && maxHP > 0 ? capDist(dotPrior, maxHP - 1) : dotPrior
   const preCastPrior = sumDists([cappedDot ?? null, ...preCastInfos.filter((p) => !p.isDot).map((p) => p.dist)])
 
