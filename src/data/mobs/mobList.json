@@ -4116,7 +4116,7 @@
   {
     "id": 9400599,
     "name": "Black Bird",
-    "koreanName": "블랙 버드",
+    "koreanName": "검은 새",
     "level": 100,
     "isBoss": false,
     "foundAt": [
@@ -4376,7 +4376,7 @@
   {
     "id": 9400596,
     "name": "Scarlet Phoenix",
-    "koreanName": "스칼렛 피닉스",
+    "koreanName": "붉은 성채의 간수",
     "level": 120,
     "isBoss": true,
     "foundAt": [
@@ -4386,7 +4386,7 @@
   {
     "id": 9400597,
     "name": "Azure Ocelot",
-    "koreanName": "아주르 오셀롯",
+    "koreanName": "푸른 성채의 간수",
     "level": 120,
     "isBoss": true,
     "foundAt": [
