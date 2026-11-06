@@ -129,21 +129,19 @@ export const MOB_API = 'https://maplestory.io/api/gms/82'
  */
 const MOB_API_LATE = 'https://maplestory.io/api/gms/88'
 
-/** gms/82에 없는 네오시티 몹 — 수치를 추출한 v83과 같은 버전을 쓴다. */
-const MOB_API_NEO_CITY = 'https://maplestory.io/api/gms/83'
+/** GMS에 없는 네오 도쿄 몹 — 대격변 전 JMS는 maplestory.io에 없어 가장 오래된 368을 쓴다. */
+const MOB_API_NEO_TOKYO = 'https://maplestory.io/api/jms/368'
 
-/** 네오시티 몹 id 구간 (일반 몹·푸소·보스, 전부 양끝 포함) */
-const NEO_CITY_MOB_RANGES: ReadonlyArray<readonly [number, number]> = [
-  [7120100, 7120109],
-  [7220003, 7220005],
-  [8120100, 8120107],
-  [8140510, 8140512],
-  [8220010, 8220015],
+/** 네오 도쿄 몹 id 구간 (전부 양끝 포함) */
+const NEO_TOKYO_MOB_RANGES: ReadonlyArray<readonly [number, number]> = [
+  [9400253, 9400297],
+  [9400376, 9400376],
+  [9400382, 9400382],
 ]
 
 function mobApiFor(id: number): string {
   if (id >= 8800100 && id <= 8800116) return MOB_API_LATE
-  if (NEO_CITY_MOB_RANGES.some(([min, max]) => id >= min && id <= max)) return MOB_API_NEO_CITY
+  if (NEO_TOKYO_MOB_RANGES.some(([min, max]) => id >= min && id <= max)) return MOB_API_NEO_TOKYO
   return MOB_API
 }
 
