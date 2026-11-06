@@ -102,10 +102,17 @@ maplestory.io API ───┘   (로컬 카탈로그 우선 → GMS 62 → GMS 
 - `postItems.ts`는 **얕은 부분 병합**이다. `tuc`만 교정하는 식으로 쓴다. `effects`를 지정하면 전체 교체.
 - 합성 id `9xxxxxx`: 원작에 없는 메랜 오리지널 아이템. `9` + 아이콘을 빌려온 원작 id 뒤 6자리.
 - `iconUrl`을 id에서 유도하지 말 것 — 메랜은 아이콘을 엇갈려 재사용한다(퀘스트 훈장 2종).
-- **아이템 자료는 maplestory.io에서만 찾는다.** 상세 조회가 `null`이거나 아이콘이 안 나오면 다른
-  사이트(hidden-street·fandom 등)를 뒤지지 말고 곧바로 사용자에게 "maplestory.io에서 조회되지
-  않습니다"라고 알린다 — 외부 검색은 오래 걸리고, 수치는 사용자가 정하는 편이 빠르다.
+- **아이템·몬스터 자료의 신뢰 출처는 maplestory.io와 [maplearchive.app](https://maplearchive.app) 둘뿐이다.**
+  maplestory.io를 먼저 보고, 없는 버전이나 조회되지 않는 자료는 maplearchive.app에서 찾는다.
+  둘 다 상세 조회가 안 되거나 아이콘이 안 나오면 다른 사이트(hidden-street·fandom 등)를 뒤지지 말고
+  곧바로 사용자에게 "maplestory.io와 maplearchive.app에서 조회되지 않습니다"라고 알린다 — 외부 검색은
+  오래 걸리고, 수치는 사용자가 정하는 편이 빠르다.
   (예: 레드 마르티어 `1082210`은 검색 목록엔 나오지만 상세가 전 버전 `null`이라 수치를 손으로 넣었다.)
+- maplearchive.app은 maplestory.io에 없는 옛 버전까지 보관한다. maplestory.io의 JMS는 368부터지만 여기엔
+  JMS 152가 있어, 대격변 전 네오도쿄 수치(`9400255` 등)를 이쪽에서만 확인할 수 있었다.
+  읽기는 공개 API로 한다: `GET /api/mobs?region=jms`(목록), `GET /api/mobs/<id>`(지역·버전별 이력),
+  `GET /api/mobs/<id>/revisions/<release_id>`(그 버전의 `info` 전체). `release_id`는 이력 응답에 있고,
+  items·maps·npcs·quests도 같은 구조다. `/api/admin/*`은 건드리지 않는다.
 
 ### 버프 파이프라인
 
