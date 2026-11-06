@@ -9775,6 +9775,83 @@
       120
     ]
   },
+  "9400596": {
+    "id": 9400596,
+    "wzVersion": 83,
+    "level": 120,
+    "PADamage": 600,
+    "MADamage": 500,
+    "PDDamage": 800,
+    "MDDamage": 900,
+    "acc": 200,
+    "eva": 45,
+    "exp": 250000,
+    "maxHP": 5000000,
+    "boss": 1,
+    "elemAttr": "F1S1I3H3",
+    "skills": {
+      "attack1": {
+        "type": 0
+      },
+      "attack2": {
+        "type": 0,
+        "PADamage": 600
+      },
+      "attack3": {
+        "type": 0,
+        "magic": 1
+      }
+    }
+  },
+  "9400597": {
+    "id": 9400597,
+    "wzVersion": 83,
+    "level": 120,
+    "PADamage": 600,
+    "MADamage": 500,
+    "PDDamage": 800,
+    "MDDamage": 900,
+    "acc": 200,
+    "eva": 45,
+    "exp": 250000,
+    "maxHP": 5000000,
+    "boss": 1,
+    "elemAttr": "I1L1H3F3",
+    "skills": {
+      "attack1": {
+        "type": 0,
+        "PADamage": 600
+      },
+      "attack2": {
+        "type": 0,
+        "magic": 1
+      },
+      "attack3": {
+        "type": 0,
+        "PADamage": 600
+      }
+    }
+  },
+  "9400599": {
+    "id": 9400599,
+    "wzVersion": 83,
+    "level": 100,
+    "PADamage": 650,
+    "MADamage": 570,
+    "PDDamage": 120,
+    "MDDamage": 150,
+    "acc": 250,
+    "eva": 16,
+    "exp": 11000,
+    "maxHP": 100000,
+    "skills": {
+      "attack1": {
+        "type": 1,
+        "magic": 1,
+        "elemAttr": "F"
+      }
+    }
+  },
   "9410000": {
     "id": 9410000,
     "level": 23,

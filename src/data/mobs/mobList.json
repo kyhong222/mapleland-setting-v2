@@ -4114,6 +4114,16 @@
     ]
   },
   {
+    "id": 9400599,
+    "name": "Black Bird",
+    "koreanName": "블랙 버드",
+    "level": 100,
+    "isBoss": false,
+    "foundAt": [
+      "뉴 리프 시티"
+    ]
+  },
+  {
     "id": 8150301,
     "name": "Blue Wyvern",
     "koreanName": "블루 와이번",
@@ -4359,6 +4369,26 @@
     "koreanName": "크림슨 가디언",
     "level": 120,
     "isBoss": false,
+    "foundAt": [
+      "뉴 리프 시티"
+    ]
+  },
+  {
+    "id": 9400596,
+    "name": "Scarlet Phoenix",
+    "koreanName": "스칼렛 피닉스",
+    "level": 120,
+    "isBoss": true,
+    "foundAt": [
+      "뉴 리프 시티"
+    ]
+  },
+  {
+    "id": 9400597,
+    "name": "Azure Ocelot",
+    "koreanName": "아주르 오셀롯",
+    "level": 120,
+    "isBoss": true,
     "foundAt": [
       "뉴 리프 시티"
     ]
