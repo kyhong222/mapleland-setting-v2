@@ -129,8 +129,22 @@ export const MOB_API = 'https://maplestory.io/api/gms/82'
  */
 const MOB_API_LATE = 'https://maplestory.io/api/gms/88'
 
+/** gms/82에 없는 네오시티 몹 — 수치를 추출한 v83과 같은 버전을 쓴다. */
+const MOB_API_NEO_CITY = 'https://maplestory.io/api/gms/83'
+
+/** 네오시티 몹 id 구간 (일반 몹·푸소·보스, 전부 양끝 포함) */
+const NEO_CITY_MOB_RANGES: ReadonlyArray<readonly [number, number]> = [
+  [7120100, 7120109],
+  [7220003, 7220005],
+  [8120100, 8120107],
+  [8140510, 8140512],
+  [8220010, 8220015],
+]
+
 function mobApiFor(id: number): string {
-  return id >= 8800100 && id <= 8800116 ? MOB_API_LATE : MOB_API
+  if (id >= 8800100 && id <= 8800116) return MOB_API_LATE
+  if (NEO_CITY_MOB_RANGES.some(([min, max]) => id >= min && id <= max)) return MOB_API_NEO_CITY
+  return MOB_API
 }
 
 /** 몬스터 아이콘 URL (maplestory.io mob 아이콘) */
