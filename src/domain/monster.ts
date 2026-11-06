@@ -129,8 +129,20 @@ export const MOB_API = 'https://maplestory.io/api/gms/82'
  */
 const MOB_API_LATE = 'https://maplestory.io/api/gms/88'
 
+/** GMS에 없는 네오 도쿄 몹 — 대격변 전 JMS는 maplestory.io에 없어 가장 오래된 368을 쓴다. */
+const MOB_API_NEO_TOKYO = 'https://maplestory.io/api/jms/368'
+
+/** 네오 도쿄 몹 id 구간 (전부 양끝 포함) */
+const NEO_TOKYO_MOB_RANGES: ReadonlyArray<readonly [number, number]> = [
+  [9400253, 9400297],
+  [9400376, 9400376],
+  [9400382, 9400382],
+]
+
 function mobApiFor(id: number): string {
-  return id >= 8800100 && id <= 8800116 ? MOB_API_LATE : MOB_API
+  if (id >= 8800100 && id <= 8800116) return MOB_API_LATE
+  if (NEO_TOKYO_MOB_RANGES.some(([min, max]) => id >= min && id <= max)) return MOB_API_NEO_TOKYO
+  return MOB_API
 }
 
 /** 몬스터 아이콘 URL (maplestory.io mob 아이콘) */

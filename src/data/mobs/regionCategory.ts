@@ -53,6 +53,17 @@ export const REGION_CATEGORIES: RegionCategory[] = [
     { name: '백초마을', icon: ic(251010000) },
   ] },
   { name: '미나르숲', regions: [{ name: '리프레', icon: ic(240010000) }] },
+  // 맵 아이콘이 maplestory.io(JMS 368)에 카무나 것뿐이라 8개 지역이 함께 쓴다
+  { name: '네오 도쿄', regions: [
+    { name: '오다이바', icon: ic(802000101) },
+    { name: '공원', icon: ic(802000101) },
+    { name: '아키하바라', icon: ic(802000101) },
+    { name: '도쿄 상공', icon: ic(802000101) },
+    { name: '카무나', icon: ic(802000101) },
+    { name: '시부야', icon: ic(802000101) },
+    { name: '롯폰기 몰', icon: ic(802000101) },
+    { name: '최상층', icon: ic(802000101) },
+  ] },
   { name: '시간의 신전', regions: [{ name: '시간의 신전', icon: ic(270010100) }] },
   { name: '마스테리아', regions: [{ name: '뉴 리프 시티', icon: ic(600000000) }] },
   { name: '무릉도장', regions: [{ name: '무릉도장', icon: ic(925020000) }] },

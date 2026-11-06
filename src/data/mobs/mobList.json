@@ -4004,6 +4004,36 @@
     ]
   },
   {
+    "id": 9400255,
+    "name": "Protoroad",
+    "koreanName": "프로토타입 로드",
+    "level": 115,
+    "isBoss": false,
+    "foundAt": [
+      "공원"
+    ]
+  },
+  {
+    "id": 9400253,
+    "name": "Afterroad",
+    "koreanName": "애프터로드",
+    "level": 135,
+    "isBoss": false,
+    "foundAt": [
+      "오다이바"
+    ]
+  },
+  {
+    "id": 9400254,
+    "name": "Overload",
+    "koreanName": "오버로드",
+    "level": 137,
+    "isBoss": false,
+    "foundAt": [
+      "오다이바"
+    ]
+  },
+  {
     "id": 9420544,
     "name": "Furious Targa",
     "koreanName": "분노한 타르가",
@@ -4021,6 +4051,246 @@
     "isBoss": true,
     "foundAt": [
       "해외여행: 말레이시아"
+    ]
+  },
+  {
+    "id": 9400256,
+    "name": "Maverick A",
+    "koreanName": "매버릭 Type-a",
+    "level": 141,
+    "isBoss": false,
+    "foundAt": [
+      "공원"
+    ]
+  },
+  {
+    "id": 9400257,
+    "name": "Maverick Y",
+    "koreanName": "매버릭 Type-y",
+    "level": 143,
+    "isBoss": false,
+    "foundAt": [
+      "공원"
+    ]
+  },
+  {
+    "id": 9400258,
+    "name": "Maverick B",
+    "koreanName": "매버릭 Type-b",
+    "level": 143,
+    "isBoss": false,
+    "foundAt": [
+      "공원"
+    ]
+  },
+  {
+    "id": 9400259,
+    "name": "Maverick V",
+    "koreanName": "매버릭 Type-v",
+    "level": 143,
+    "isBoss": false,
+    "foundAt": [
+      "공원"
+    ]
+  },
+  {
+    "id": 9400260,
+    "name": "Eruwater",
+    "koreanName": "이루바타",
+    "level": 143,
+    "isBoss": false,
+    "foundAt": [
+      "아키하바라"
+    ]
+  },
+  {
+    "id": 9400287,
+    "name": "Imperial Guard",
+    "koreanName": "임페리얼 가드",
+    "level": 143,
+    "isBoss": false,
+    "foundAt": [
+      "시부야"
+    ]
+  },
+  {
+    "id": 9400291,
+    "name": "Summoned Auf Haven",
+    "koreanName": "아우프헤벤 - 아포슬(1)",
+    "level": 150,
+    "isBoss": true,
+    "foundAt": [
+      "최상층"
+    ]
+  },
+  {
+    "id": 9400292,
+    "name": "Summoned Auf Haven",
+    "koreanName": "아우프헤벤 - 아포슬(2)",
+    "level": 150,
+    "isBoss": true,
+    "foundAt": [
+      "최상층"
+    ]
+  },
+  {
+    "id": 9400382,
+    "name": "Overload",
+    "koreanName": "오버로드(소환)",
+    "level": 150,
+    "isBoss": false,
+    "foundAt": [
+      "오다이바"
+    ]
+  },
+  {
+    "id": 9400288,
+    "name": "Royal Guard",
+    "koreanName": "로얄 가드",
+    "level": 160,
+    "isBoss": true,
+    "foundAt": [
+      "롯폰기 몰"
+    ]
+  },
+  {
+    "id": 9400297,
+    "name": "Chandellier",
+    "koreanName": "샹들리에",
+    "level": 165,
+    "isBoss": false,
+    "foundAt": [
+      "롯폰기 몰"
+    ]
+  },
+  {
+    "id": 9400263,
+    "name": "Vergamot",
+    "koreanName": "베르가모트(1페이즈)",
+    "level": 168,
+    "isBoss": true,
+    "foundAt": [
+      "오다이바"
+    ]
+  },
+  {
+    "id": 9400264,
+    "name": "Vergamot",
+    "koreanName": "베르가모트(2페이즈)",
+    "level": 168,
+    "isBoss": true,
+    "foundAt": [
+      "오다이바"
+    ]
+  },
+  {
+    "id": 9400265,
+    "name": "Vergamot",
+    "koreanName": "베르가모트(3페이즈)",
+    "level": 168,
+    "isBoss": true,
+    "foundAt": [
+      "오다이바"
+    ]
+  },
+  {
+    "id": 9400271,
+    "name": "Nibergen",
+    "koreanName": "니벨룽겐(1페이즈)",
+    "level": 168,
+    "isBoss": true,
+    "foundAt": [
+      "도쿄 상공"
+    ]
+  },
+  {
+    "id": 9400272,
+    "name": "Nibergen",
+    "koreanName": "니벨룽겐(2페이즈)",
+    "level": 168,
+    "isBoss": true,
+    "foundAt": [
+      "도쿄 상공"
+    ]
+  },
+  {
+    "id": 9400273,
+    "name": "Nibergen",
+    "koreanName": "니벨룽겐(3페이즈)",
+    "level": 168,
+    "isBoss": true,
+    "foundAt": [
+      "도쿄 상공"
+    ]
+  },
+  {
+    "id": 9400266,
+    "name": "Nameless Magic Monster",
+    "koreanName": "이름 없는 마수",
+    "level": 174,
+    "isBoss": true,
+    "foundAt": [
+      "카무나"
+    ]
+  },
+  {
+    "id": 9400270,
+    "name": "Dunas",
+    "koreanName": "듀나스(아키하바라)",
+    "level": 174,
+    "isBoss": true,
+    "foundAt": [
+      "아키하바라"
+    ]
+  },
+  {
+    "id": 9400293,
+    "name": "Dunas Unit",
+    "koreanName": "듀나스 유닛",
+    "level": 174,
+    "isBoss": true,
+    "foundAt": [
+      "시부야"
+    ]
+  },
+  {
+    "id": 9400295,
+    "name": "Dunas",
+    "koreanName": "듀나스(시부야)",
+    "level": 174,
+    "isBoss": true,
+    "foundAt": [
+      "시부야"
+    ]
+  },
+  {
+    "id": 9400376,
+    "name": "Cursed Auf Haven",
+    "koreanName": "아우프헤벤 - 커스",
+    "level": 175,
+    "isBoss": true,
+    "foundAt": [
+      "최상층"
+    ]
+  },
+  {
+    "id": 9400296,
+    "name": "Core Blaze",
+    "koreanName": "코어 블레이즈",
+    "level": 178,
+    "isBoss": true,
+    "foundAt": [
+      "롯폰기 몰"
+    ]
+  },
+  {
+    "id": 9400289,
+    "name": "Auf Haven",
+    "koreanName": "아우프헤벤",
+    "level": 180,
+    "isBoss": true,
+    "foundAt": [
+      "최상층"
     ]
   },
   {
