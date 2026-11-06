@@ -53,7 +53,6 @@ export const REGION_CATEGORIES: RegionCategory[] = [
     { name: '백초마을', icon: ic(251010000) },
   ] },
   { name: '미나르숲', regions: [{ name: '리프레', icon: ic(240010000) }] },
-  { name: '네오시티', regions: [{ name: '네오시티', icon: ic(240070100) }] },
   { name: '시간의 신전', regions: [{ name: '시간의 신전', icon: ic(270010100) }] },
   { name: '마스테리아', regions: [{ name: '뉴 리프 시티', icon: ic(600000000) }] },
   { name: '무릉도장', regions: [{ name: '무릉도장', icon: ic(925020000) }] },
