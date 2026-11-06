@@ -3154,6 +3154,26 @@
     ]
   },
   {
+    "id": 7120100,
+    "name": "Gatekeeper Nex",
+    "koreanName": "푸소(Lv.70)",
+    "level": 70,
+    "isBoss": true,
+    "foundAt": [
+      "네오시티"
+    ]
+  },
+  {
+    "id": 7120103,
+    "name": "Red Slime",
+    "koreanName": "레드 슬라임",
+    "level": 70,
+    "isBoss": false,
+    "foundAt": [
+      "네오시티"
+    ]
+  },
+  {
     "id": 7220000,
     "name": "Tae Roon",
     "koreanName": "태륜",
@@ -3171,6 +3191,16 @@
     "isBoss": true,
     "foundAt": [
       "시계탑 최하층"
+    ]
+  },
+  {
+    "id": 7120104,
+    "name": "Silver Slime",
+    "koreanName": "실버 슬라임",
+    "level": 71,
+    "isBoss": false,
+    "foundAt": [
+      "네오시티"
     ]
   },
   {
@@ -3214,6 +3244,16 @@
     ]
   },
   {
+    "id": 7120105,
+    "name": "Gold Slime",
+    "koreanName": "골드 슬라임",
+    "level": 72,
+    "isBoss": false,
+    "foundAt": [
+      "네오시티"
+    ]
+  },
+  {
     "id": 7110301,
     "name": "Homunculus ",
     "koreanName": "호문쿨루",
@@ -3241,6 +3281,16 @@
     "isBoss": false,
     "foundAt": [
       "빅토리아 아일랜드"
+    ]
+  },
+  {
+    "id": 7120101,
+    "name": "Gatekeeper Nex",
+    "koreanName": "푸소(Lv.73)",
+    "level": 73,
+    "isBoss": true,
+    "foundAt": [
+      "네오시티"
     ]
   },
   {
@@ -3324,6 +3374,26 @@
     ]
   },
   {
+    "id": 7120106,
+    "name": "Overlord A",
+    "koreanName": "오버로드A",
+    "level": 75,
+    "isBoss": false,
+    "foundAt": [
+      "네오시티"
+    ]
+  },
+  {
+    "id": 7120107,
+    "name": "Overlord B",
+    "koreanName": "오버로드B",
+    "level": 75,
+    "isBoss": false,
+    "foundAt": [
+      "네오시티"
+    ]
+  },
+  {
     "id": 7130003,
     "name": "Dual Beetle",
     "koreanName": "듀얼 비틀",
@@ -3374,6 +3444,56 @@
     ]
   },
   {
+    "id": 7120102,
+    "name": "Gatekeeper Nex",
+    "koreanName": "푸소(Lv.77)",
+    "level": 77,
+    "isBoss": true,
+    "foundAt": [
+      "네오시티"
+    ]
+  },
+  {
+    "id": 7120108,
+    "name": "Robby",
+    "koreanName": "로비",
+    "level": 77,
+    "isBoss": false,
+    "foundAt": [
+      "네오시티"
+    ]
+  },
+  {
+    "id": 7220003,
+    "name": "Bergamot",
+    "koreanName": "베르가모트(1페이즈)",
+    "level": 77,
+    "isBoss": true,
+    "foundAt": [
+      "네오시티"
+    ]
+  },
+  {
+    "id": 7220004,
+    "name": "Bergamot",
+    "koreanName": "베르가모트(2페이즈)",
+    "level": 77,
+    "isBoss": true,
+    "foundAt": [
+      "네오시티"
+    ]
+  },
+  {
+    "id": 7220005,
+    "name": "Bergamot",
+    "koreanName": "베르가모트(3페이즈)",
+    "level": 77,
+    "isBoss": true,
+    "foundAt": [
+      "네오시티"
+    ]
+  },
+  {
     "id": 7130004,
     "name": "Hankie",
     "koreanName": "헹키",
@@ -3391,6 +3511,16 @@
     "isBoss": false,
     "foundAt": [
       "엘나스"
+    ]
+  },
+  {
+    "id": 7120109,
+    "name": "Iruvata",
+    "koreanName": "이루워터",
+    "level": 79,
+    "isBoss": false,
+    "foundAt": [
+      "네오시티"
     ]
   },
   {
@@ -3574,6 +3704,26 @@
     ]
   },
   {
+    "id": 8120100,
+    "name": "Gatekeeper Nex",
+    "koreanName": "푸소(Lv.81)",
+    "level": 81,
+    "isBoss": true,
+    "foundAt": [
+      "네오시티"
+    ]
+  },
+  {
+    "id": 8220010,
+    "name": "Dunas",
+    "koreanName": "듀나스",
+    "level": 81,
+    "isBoss": true,
+    "foundAt": [
+      "네오시티"
+    ]
+  },
+  {
     "id": 8140100,
     "name": "Dark Yeti and Pepe",
     "koreanName": "다크 예티와 페페",
@@ -3591,6 +3741,16 @@
     "isBoss": false,
     "foundAt": [
       "해외여행: 말레이시아"
+    ]
+  },
+  {
+    "id": 8120102,
+    "name": "Afterlord",
+    "koreanName": "애프터로드",
+    "level": 82,
+    "isBoss": false,
+    "foundAt": [
+      "네오시티"
     ]
   },
   {
@@ -3631,6 +3791,16 @@
     "isBoss": true,
     "foundAt": [
       "마가티아"
+    ]
+  },
+  {
+    "id": 8120103,
+    "name": "Prototype Lord",
+    "koreanName": "프로토타입로드",
+    "level": 84,
+    "isBoss": false,
+    "foundAt": [
+      "네오시티"
     ]
   },
   {
@@ -3681,6 +3851,36 @@
     "isBoss": true,
     "foundAt": [
       "해외여행: 대만"
+    ]
+  },
+  {
+    "id": 8120101,
+    "name": "Gatekeeper Nex",
+    "koreanName": "푸소(Lv.85)",
+    "level": 85,
+    "isBoss": true,
+    "foundAt": [
+      "네오시티"
+    ]
+  },
+  {
+    "id": 8220011,
+    "name": "Aufheben",
+    "koreanName": "아우프헤벤",
+    "level": 85,
+    "isBoss": true,
+    "foundAt": [
+      "네오시티"
+    ]
+  },
+  {
+    "id": 8120104,
+    "name": "Maverick Type A",
+    "koreanName": "암슈트A",
+    "level": 86,
+    "isBoss": false,
+    "foundAt": [
+      "네오시티"
     ]
   },
   {
@@ -3744,6 +3944,16 @@
     ]
   },
   {
+    "id": 8120105,
+    "name": "Maverick Type S",
+    "koreanName": "암슈트S",
+    "level": 88,
+    "isBoss": false,
+    "foundAt": [
+      "네오시티"
+    ]
+  },
+  {
     "id": 7130300,
     "name": "Master Death Teddy",
     "koreanName": "마스터 데스테니",
@@ -3751,6 +3961,26 @@
     "isBoss": false,
     "foundAt": [
       "시계탑 최하층"
+    ]
+  },
+  {
+    "id": 8120106,
+    "name": "Maverick Type D",
+    "koreanName": "암슈트D",
+    "level": 89,
+    "isBoss": false,
+    "foundAt": [
+      "네오시티"
+    ]
+  },
+  {
+    "id": 8120107,
+    "name": "Maverick Type D",
+    "koreanName": "암슈트D(소환)",
+    "level": 89,
+    "isBoss": false,
+    "foundAt": [
+      "네오시티"
     ]
   },
   {
@@ -3824,6 +4054,26 @@
     ]
   },
   {
+    "id": 8140510,
+    "name": "Gatekeeper Nex",
+    "koreanName": "푸소(Lv.90)",
+    "level": 90,
+    "isBoss": true,
+    "foundAt": [
+      "네오시티"
+    ]
+  },
+  {
+    "id": 8220012,
+    "name": "Oberon",
+    "koreanName": "오베론",
+    "level": 90,
+    "isBoss": true,
+    "foundAt": [
+      "네오시티"
+    ]
+  },
+  {
     "id": 8200001,
     "name": "",
     "koreanName": "추억의 사제",
@@ -3831,6 +4081,16 @@
     "isBoss": false,
     "foundAt": [
       "시간의 신전"
+    ]
+  },
+  {
+    "id": 8140511,
+    "name": "Imperial Guard",
+    "koreanName": "파워암슈트A",
+    "level": 91,
+    "isBoss": false,
+    "foundAt": [
+      "네오시티"
     ]
   },
   {
@@ -3861,6 +4121,16 @@
     "isBoss": false,
     "foundAt": [
       "시계탑 최하층"
+    ]
+  },
+  {
+    "id": 8140512,
+    "name": "Royal Guard",
+    "koreanName": "파워암슈트B",
+    "level": 93,
+    "isBoss": false,
+    "foundAt": [
+      "네오시티"
     ]
   },
   {
@@ -3921,6 +4191,36 @@
     "isBoss": false,
     "foundAt": [
       "뉴 리프 시티"
+    ]
+  },
+  {
+    "id": 8220013,
+    "name": "Nibelung",
+    "koreanName": "니벨룽겐 전함(1페이즈)",
+    "level": 95,
+    "isBoss": true,
+    "foundAt": [
+      "네오시티"
+    ]
+  },
+  {
+    "id": 8220014,
+    "name": "Nibelung",
+    "koreanName": "니벨룽겐 전함(2페이즈)",
+    "level": 95,
+    "isBoss": true,
+    "foundAt": [
+      "네오시티"
+    ]
+  },
+  {
+    "id": 8220015,
+    "name": "Nibelung",
+    "koreanName": "니벨룽겐 전함(3페이즈)",
+    "level": 95,
+    "isBoss": true,
+    "foundAt": [
+      "네오시티"
     ]
   },
   {
