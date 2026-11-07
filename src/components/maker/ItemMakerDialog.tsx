@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import Dialog from '@mui/material/Dialog'
 import DialogTitle from '@mui/material/DialogTitle'
 import DialogContent from '@mui/material/DialogContent'
@@ -11,7 +11,9 @@ import Typography from '@mui/material/Typography'
 import useMediaQuery from '@mui/material/useMediaQuery'
 import { useTheme } from '@mui/material/styles'
 import type { ItemData } from '../../domain/item'
-import type { EffectMap } from '../../domain/effects'
+import type { EffectId, EffectMap } from '../../domain/effects'
+import { gemsForSlot } from '../../domain/maker'
+import { listScrollsForItem } from '../../data/scrolls'
 import { SLOTS } from '../../domain/equipSlots'
 import { resolveBuiltItem } from '../../domain/builtItem'
 import type { BuiltItem, AppliedScroll } from '../../domain/builtItem'
@@ -43,6 +45,24 @@ const EMPTY: Draft = { base: null, adjustments: {}, scrolls: [], gems: [], growt
 /** 미리보기 영역 고정 높이 (카탈로그 목록 360 + 필터 영역과 대략 맞춤) */
 const PREVIEW_HEIGHT = 470
 
+/**
+ * 미리보기 높이 확보용 '가장 긴' 상태 — 바를 수 있는 주문서·보석이 만드는 능력치를 전부 1로 채우고
+ * 업횟을 다 쓴 것으로 둔다(이름 뒤 `(+N)` 때문에 줄바꿈되는 경우까지 포함).
+ * 원래 있던 능력치는 건드리지 않는다 — 더하다가 0이 되면 오히려 줄이 사라진다.
+ */
+function worstCasePreview(base: ItemData, growth: EffectMap): BuiltItem {
+  const extra: EffectMap = {}
+  for (const def of listScrollsForItem(base)) {
+    for (const o of def.options) {
+      for (const k of Object.keys(o.effects) as EffectId[]) extra[k] = 1
+    }
+  }
+  if (!base.noGem) for (const g of gemsForSlot(base.slot)) extra[g.effectId] = 1
+  for (const k of Object.keys(base.effects) as EffectId[]) delete extra[k]
+  const dummy: AppliedScroll = { key: '', rate: 100, effects: {} }
+  return { base, adjustments: extra, scrolls: Array.from({ length: base.tuc ?? 0 }, () => dummy), gems: [], growth }
+}
+
 export default function ItemMakerDialog({ open, initial, onClose, onConfirm }: Props) {
   const [draft, setDraft] = useState<Draft>(EMPTY)
   const [hover, setHover] = useState<ItemData | null>(null)
@@ -70,6 +90,7 @@ export default function ItemMakerDialog({ open, initial, onClose, onConfirm }: P
     ? { base, adjustments: draft.adjustments, scrolls: draft.scrolls, gems: draft.gems, growth: draft.growth }
     : null
   const result = built ? resolveBuiltItem(built) : null
+  const ghost = useMemo(() => (base ? worstCasePreview(base, draft.growth) : null), [base, draft.growth])
 
   const confirm = () => {
     if (!base) return
@@ -157,8 +178,19 @@ export default function ItemMakerDialog({ open, initial, onClose, onConfirm }: P
               <Typography variant="caption" color="text.secondary" sx={{ display: 'block', mb: 0.5 }}>
                 미리보기
               </Typography>
-              <Box sx={{ display: 'flex', justifyContent: 'center' }}>
-                {built && <ItemTooltip built={built} />}
+              {/* 주문서·보석으로 새 능력치 줄이 생기면 카드가 길어져 아래 버튼이 밀린다 →
+                  나올 수 있는 줄을 전부 채운 유령 카드를 같은 칸에 겹쳐 두어 높이를 미리 확보한다 */}
+              <Box sx={{ display: 'grid', justifyContent: 'center', alignItems: 'start' }}>
+                {ghost && (
+                  <Box aria-hidden sx={{ gridArea: '1 / 1', visibility: 'hidden', pointerEvents: 'none' }}>
+                    <ItemTooltip built={ghost} />
+                  </Box>
+                )}
+                {built && (
+                  <Box sx={{ gridArea: '1 / 1' }}>
+                    <ItemTooltip built={built} />
+                  </Box>
+                )}
               </Box>
             </Box>
 
