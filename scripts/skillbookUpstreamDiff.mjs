@@ -29,6 +29,9 @@ const EXPECTED_DIVERGENCE = new Map([
   // 에너지 버스터는 스턴을 걸지만 상류 levelProperties에 확률(prop)이 없다.
   // 단독 운용 시 스턴 마스터리가 얼마나 터지는지 계산하려면 필요해 인게임 값(11~40%)을 넣었다.
   [5111002, 'prop(스턴 확률 11~40%) 추가 — 상류에 없어 인게임 값으로 보강 (damage/mobCount는 동일)'],
+  // 메랜 바이퍼 상향(2026-11) — 상류가 아직 옛 수치다. 상류가 따라오면 두 줄을 지운다.
+  [5121001, 'damage 상향 반영 (전 레벨 +40%p, 315~850%) — mpCon/mobCount는 동일'],
+  [5121007, 'damage 상향 반영 (전 레벨 +20%p, 114~250%) — mpCon/attackCount는 동일'],
 ])
 
 if (!fs.existsSync(UP)) {
