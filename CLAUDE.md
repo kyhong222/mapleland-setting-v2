@@ -11,14 +11,17 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## 명령어
 
+패키지 매니저는 **yarn(1.x)** 이다 — `npm`/`npx` 대신 `yarn`/`yarn <bin>`을 쓴다. 의존성 추가도
+`yarn add`로 해서 `yarn.lock`만 갱신한다(`npm install`은 `package-lock.json`을 건드리니 쓰지 않는다).
+
 ```bash
-npm run dev         # Vite 개발 서버
-npm run typecheck   # tsc --noEmit (유일한 상시 검증 수단)
-npm run build       # tsc --noEmit && vite build
-npm run preview     # 빌드 결과 미리보기
+yarn dev            # Vite 개발 서버
+yarn typecheck      # tsc --noEmit (유일한 상시 검증 수단)
+yarn build          # tsc --noEmit && vite build
+yarn preview        # 빌드 결과 미리보기
 ```
 
-⚠ **개발 서버(`npm run dev`)는 Claude가 띄우지 않는다.** 세션이 끝나거나 바뀌면 그 백그라운드
+⚠ **개발 서버(`yarn dev`)는 Claude가 띄우지 않는다.** 세션이 끝나거나 바뀌면 그 백그라운드
 작업과의 연결이 끊기는데 프로세스는 살아남아, 이후 세션에서는 목록에도 안 잡히는 고아가 된다
 (실제로 5173을 물고 있어 다음 서버가 5174로 밀린 적이 있다). 브라우저로 확인이 필요하면
 **사용자가 직접 띄우도록 안내할 것.** Claude가 쓸 검증 수단은 아래 typecheck·build·스모크다.
@@ -26,27 +29,27 @@ npm run preview     # 빌드 결과 미리보기
 부득이 띄웠다면 같은 턴 안에서 정리한다. 남은 것을 찾으려면 `ss -ltnp | grep 5173`,
 `pgrep -af vite`로 보고 `fuser -k 5173/tcp`로 지운다.
 
-**테스트 프레임워크가 없다.** 검증은 `npm run typecheck` + `scripts/*Smoke.ts` 수동 스모크뿐이다.
+**테스트 프레임워크가 없다.** 검증은 `yarn typecheck` + `scripts/*Smoke.ts` 수동 스모크뿐이다.
 
 ```bash
-npx tsx scripts/smoke.ts         # itemRepository(로컬 카탈로그/API 폴백) 확인
-npx tsx scripts/scrollSmoke.ts   # 아이템별 주문서 매칭 확인
-npx tsx scripts/tucSmoke.ts      # postItem 오버라이드(tuc) 확인
-npx tsx scripts/weaponGateSmoke.ts # 무기 마스터리/부스터의 무기 게이팅 확인
-npx tsx scripts/resourceSmoke.ts   # HP/MP 수식·역산을 인게임 실측 4건과 대조
-npx tsx scripts/buffDeriveSmoke.ts # 버프 레벨표가 스킬북에서 파생되는지 + 사본 탐지
-npx tsx scripts/viperStunSmoke.ts  # 바이퍼 스턴 변형 스킬 + 조건부 버프(스턴 마스터리) 배선
-npx tsx scripts/growthSmoke.ts     # 성장(레벨업) 스펙 — 스탯별 + 아이템 단위(리버스/타임리스)
-npx tsx scripts/attackSpeedSmoke.ts # 공속표 커버리지·프레임 정합·분기 스펙
-npx tsx scripts/cloudSmoke.ts      # 클라우드 캡처/복원 왕복 (네트워크·Supabase 키 불필요)
-npx tsx scripts/noticeSmoke.ts     # 공지 id·날짜·참조 아이템·compare 전후·자동 노출 판정
-npx tsx scripts/battleMageSmoke.ts # 배틀메이지 직업 규칙·오라 대체/강화·스태프 숙련도·마법 다타
-npx tsx scripts/elementalStaffSmoke.ts # 속성 스태프 카탈로그 스펙·속성배율 표
-npx tsx scripts/venomSmoke.ts      # 베놈 공식·방어/렙차·독 반응·중첩 변형·HP 1 상한
-npx tsx scripts/physicalElementSmoke.ts # 물리 반감(P) 판정·방어 차감 순서·기존 몹 영향 없음
+yarn tsx scripts/smoke.ts         # itemRepository(로컬 카탈로그/API 폴백) 확인
+yarn tsx scripts/scrollSmoke.ts   # 아이템별 주문서 매칭 확인
+yarn tsx scripts/tucSmoke.ts      # postItem 오버라이드(tuc) 확인
+yarn tsx scripts/weaponGateSmoke.ts # 무기 마스터리/부스터의 무기 게이팅 확인
+yarn tsx scripts/resourceSmoke.ts   # HP/MP 수식·역산을 인게임 실측 4건과 대조
+yarn tsx scripts/buffDeriveSmoke.ts # 버프 레벨표가 스킬북에서 파생되는지 + 사본 탐지
+yarn tsx scripts/viperStunSmoke.ts  # 바이퍼 스턴 변형 스킬 + 조건부 버프(스턴 마스터리) 배선
+yarn tsx scripts/growthSmoke.ts     # 성장(레벨업) 스펙 — 스탯별 + 아이템 단위(리버스/타임리스)
+yarn tsx scripts/attackSpeedSmoke.ts # 공속표 커버리지·프레임 정합·분기 스펙
+yarn tsx scripts/cloudSmoke.ts      # 클라우드 캡처/복원 왕복 (네트워크·Supabase 키 불필요)
+yarn tsx scripts/noticeSmoke.ts     # 공지 id·날짜·참조 아이템·compare 전후·자동 노출 판정
+yarn tsx scripts/battleMageSmoke.ts # 배틀메이지 직업 규칙·오라 대체/강화·스태프 숙련도·마법 다타
+yarn tsx scripts/elementalStaffSmoke.ts # 속성 스태프 카탈로그 스펙·속성배율 표
+yarn tsx scripts/venomSmoke.ts      # 베놈 공식·방어/렙차·독 반응·중첩 변형·HP 1 상한
+yarn tsx scripts/physicalElementSmoke.ts # 물리 반감(P) 판정·방어 차감 순서·기존 몹 영향 없음
 ```
 
-변경 후에는 최소한 `npm run typecheck`를 돌린다.
+변경 후에는 최소한 `yarn typecheck`를 돌린다.
 
 ### 실행 환경
 
@@ -259,7 +262,7 @@ id가 먼저 존재해야 하기 때문.
 Vite SPA 정적 배포. 앱 빌드에 서버리스 함수는 없다.
 
 단 **Supabase Edge Function 하나**가 앱과 별개로 배포된다 — `supabase/functions/feedback-discord`
-(문의 접수 DM + 디스코드에서 답변 등록). Deno 코드라 `npm run typecheck` 대상이 아니고(tsconfig는
+(문의 접수 DM + 디스코드에서 답변 등록). Deno 코드라 `yarn typecheck` 대상이 아니고(tsconfig는
 `src`만 본다), 고친 뒤에는 `supabase functions deploy feedback-discord --no-verify-jwt --use-api`로 따로
 배포해야 반영된다. 봇 토큰 등 비밀값은 `supabase secrets`에만 있다. 절차는
 [docs/feedback.md](docs/feedback.md) §6.
@@ -278,7 +281,7 @@ Vite SPA 정적 배포. 앱 빌드에 서버리스 함수는 없다.
 
 1. **시작** — 작업을 새로 시작할 때만 `master`로 돌아간다. `git pull`로 최신을 받은 뒤,
    그 시점을 기준으로 새 브랜치를 만든다. (오래된 로컬 `master` 위에서 브랜치를 파지 않는다.)
-2. **작업** — 구현 → 검수(`npm run typecheck`, 필요 시 스모크 스크립트) → 커밋.
+2. **작업** — 구현 → 검수(`yarn typecheck`, 필요 시 스모크 스크립트) → 커밋.
 3. **마무리** — PR을 올리는 것으로 해당 작업을 끝낸다. **PR 생성 후 `master`로 되돌아가지 않는다** —
    로컬은 작업 브랜치에 그대로 둔다. (검수가 끝나기도 전에 브랜치를 떠나 작업이 붕 뜨는 일을 막기 위함.)
    master 복귀는 다음 작업을 시작하는 1번 단계에서 일어난다.

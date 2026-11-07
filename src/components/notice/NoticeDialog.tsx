@@ -10,6 +10,7 @@ import Dialog from '@mui/material/Dialog'
 import DialogActions from '@mui/material/DialogActions'
 import DialogContent from '@mui/material/DialogContent'
 import DialogTitle from '@mui/material/DialogTitle'
+import IconButton from '@mui/material/IconButton'
 import List from '@mui/material/List'
 import ListItemButton from '@mui/material/ListItemButton'
 import ListItemText from '@mui/material/ListItemText'
@@ -51,8 +52,25 @@ export default function NoticeDialog({ open, onClose, initialId }: Props) {
   const canDismiss = notice !== null && notice.autoOpen && !isNoticeExpired(notice) && !dismissed.includes(notice.id)
 
   return (
-    <Dialog open={open} onClose={onClose} fullWidth maxWidth="sm" fullScreen={isMobile}>
-      <DialogTitle sx={{ fontWeight: 800, pb: 1 }}>
+    <Dialog
+      open={open}
+      onClose={onClose}
+      fullWidth
+      maxWidth="sm"
+      fullScreen={isMobile}
+      // 모바일 브라우저는 주소창·하단 툴바가 보일 때도 100%를 '툴바가 숨은' 높이로 잡아
+      // 하단 닫기 버튼이 화면 밖으로 밀린다. 실제 보이는 높이(dvh)에 맞춘다(미지원 브라우저는 100% 유지).
+      sx={{ '& .MuiDialog-container': { height: '100dvh' } }}
+    >
+      <DialogTitle sx={{ fontWeight: 800, pb: 1, pr: 6 }}>
+        <IconButton
+          aria-label="닫기"
+          onClick={onClose}
+          size="small"
+          sx={{ position: 'absolute', top: 10, right: 10, fontSize: 18, lineHeight: 1, width: 32, height: 32 }}
+        >
+          ✕
+        </IconButton>
         {notice ? notice.title : '공지사항'}
         {notice && (
           <Typography variant="caption" color="text.secondary" sx={{ display: 'block', fontWeight: 400 }}>
@@ -60,7 +78,7 @@ export default function NoticeDialog({ open, onClose, initialId }: Props) {
           </Typography>
         )}
       </DialogTitle>
-      <DialogContent dividers sx={notice ? undefined : { p: 0 }}>
+      <DialogContent dividers sx={{ minHeight: 0, ...(notice ? null : { p: 0 }) }}>
         {notice ? (
           <NoticeBlocks blocks={notice.blocks} items={items} />
         ) : NOTICES.length === 0 ? (
@@ -92,7 +110,7 @@ export default function NoticeDialog({ open, onClose, initialId }: Props) {
           </List>
         )}
       </DialogContent>
-      <DialogActions>
+      <DialogActions sx={{ pb: 'calc(8px + env(safe-area-inset-bottom, 0px))' }}>
         {notice && <Button onClick={() => setSelectedId(null)}>목록</Button>}
         <Box sx={{ flexGrow: 1 }} />
         {canDismiss && (
