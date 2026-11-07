@@ -11,8 +11,10 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## 명령어
 
-패키지 매니저는 **yarn(1.x)** 이다 — `npm`/`npx` 대신 `yarn`/`yarn <bin>`을 쓴다. 의존성 추가도
-`yarn add`로 해서 `yarn.lock`만 갱신한다(`npm install`은 `package-lock.json`을 건드리니 쓰지 않는다).
+로컬 패키지 매니저는 **yarn(1.x)** 이다 — `npm run`/`npx` 대신 `yarn <script>`/`yarn <bin>`을 쓴다.
+단 `yarn.lock`은 gitignore 대상이고 **커밋되는 잠금 파일은 `package-lock.json`** 이다. 의존성을 바꿀 때는
+`yarn add` 뒤에 `npm install --package-lock-only`로 `package-lock.json`도 맞춰서 함께 커밋한다
+(안 그러면 npm으로 설치하는 환경에서 잠금 파일과 `package.json`이 어긋난다).
 
 ```bash
 yarn dev            # Vite 개발 서버
