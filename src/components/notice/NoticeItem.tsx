@@ -41,7 +41,19 @@ export function useNoticeItems(notice: Notice | null): NoticeItemMap {
 
 const builtOf = (base: ItemData): BuiltItem => ({ base, adjustments: {}, scrolls: [], gems: [], growth: {} })
 
-const TOOLTIP_SLOT = { tooltip: { sx: { bgcolor: 'transparent', p: 0, maxWidth: 'none' } } }
+/**
+ * 툴팁은 body에 포털로 붙어서, 화면 밖으로 삐져나가면 문서 폭이 늘어나 모바일에서 화면이 축소된다.
+ * 오른쪽이 모자라면 왼쪽·아래·위로 뒤집고, 그래도 넘치면 가로 방향까지 화면 안으로 밀어 넣는다.
+ */
+const TOOLTIP_SLOT = {
+  tooltip: { sx: { bgcolor: 'transparent', p: 0, maxWidth: 'none' } },
+  popper: {
+    modifiers: [
+      { name: 'flip', options: { fallbackPlacements: ['left', 'bottom', 'top'] } },
+      { name: 'preventOverflow', options: { altAxis: true, padding: 8 } },
+    ],
+  },
+}
 
 /** 아이콘 + 이름. 호버(모바일은 탭) 시 툴팁 */
 export function NoticeItemChip({ id, items }: { id: number; items: NoticeItemMap }) {
