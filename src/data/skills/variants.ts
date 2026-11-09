@@ -14,28 +14,36 @@
  * 베놈은 중첩 수가 곧 운용 상황이다. 3중첩까지 쌓이고 1틱 데미지가 중첩 수만큼 늘어나므로
  * 기본 항목을 '베놈 (1중첩)'으로 두고 2·3중첩 항목을 파생한다.
  *
+ * 소환수는 1회 공격 데미지라 기본 항목 이름을 '프리져 (1회 공격)'으로 바꾼다.
+ * 아크메이지의 역속성 소환수(불독 엘퀴네스=얼음, 썬콜 이프리트=불)는 데몬(파이어 데몬/아이스 데몬)이
+ * 몬스터의 속성 정보를 지우고 소환수 속성 약점을 부여한 뒤 소환수로 때리는 것이 주 운용이라,
+ * 몬스터 원래 속성과 무관하게 약점(×1.5)을 적용하는 '(1회 공격, 약점 적용)' 항목을 파생한다.
+ * 기본 항목은 몬스터 원래 속성 그대로 판정한다(원래 약점이면 약점).
+ *
  * 변형 스킬 id = 기본 id + 오프셋. 아이콘(`/skill-icons/<id>.png`)·모션 규칙(SKILL_MOTION)·
  * 공속표(SKILL_APM)는 전부 **기본 id로** 조회해야 하므로 소비처에서 baseSkillId()로 되돌린다.
  * 오프셋은 실제 스킬 id(최대 8자리, 3천만대)와 겹치지 않도록 9자리를 쓴다.
  * variantKindOf가 "오프셋보다 크면 그 변형"으로 판정하므로 오프셋끼리 1억 이상 떨어뜨린다.
  * 8억대는 없앤 변형 id(RETIRED_SKILL_IDS)가 쓰던 자리라 새 오프셋으로 쓰지 않는다.
+ * 오프셋은 1억의 배수로 둔다 — isSummonSkill 등이 `id % 1억`으로 기본 id를 되돌린다.
  */
 
 import type { JobId } from '../../domain/jobs'
 import type { IJobSkill } from './types'
-import { attackSkillsForJob, findSkillById, skillsForJob, skillNum, skillPropsAtLevel } from './index'
+import { attackSkillsForJob, findSkillById, isSummonSkill, skillsForJob, skillNum, skillPropsAtLevel } from './index'
 
 /** 스턴 마스터리 skill id — 이 스킬을 가진 직업만 (스턴) 변형을 만든다 */
 export const STUN_MASTERY_ID = 5110000
 
-/** 변형 종류: 스턴 상태 가정 / 베놈 2·3중첩 */
-export type SkillVariantKind = 'stun' | 'venom2' | 'venom3'
+/** 변형 종류: 스턴 상태 가정 / 베놈 2·3중첩 / 소환수 약점 적용(데몬 연계) */
+export type SkillVariantKind = 'stun' | 'venom2' | 'venom3' | 'weak'
 
 /** 변형별 id 오프셋 (실제 스킬 id와 겹치지 않는 9자리) */
 const VARIANT_OFFSET: Record<SkillVariantKind, number> = {
   stun: 900_000_000,
   venom2: 600_000_000,
   venom3: 700_000_000,
+  weak: 500_000_000,
 }
 
 /** 변형별 이름 접미사 */
@@ -43,6 +51,7 @@ const VARIANT_SUFFIX: Record<SkillVariantKind, string> = {
   stun: '(스턴)',
   venom2: '(2중첩)',
   venom3: '(3중첩, 최대)',
+  weak: '(1회 공격, 약점 적용)',
 }
 
 /**
@@ -107,6 +116,33 @@ function expandVenom(skill: IJobSkill): IJobSkill[] {
   return [base, makeVariant(skill, 'venom2'), makeVariant(skill, 'venom3')]
 }
 
+/**
+ * 데몬으로 약점을 부여할 수 있는 역속성 소환수 → 그 데몬 스킬 id.
+ *  - 엘퀴네스(불독, 얼음) ← 파이어 데몬 2121003
+ *  - 이프리트(썬콜, 불)   ← 아이스 데몬 2221003
+ * 플레임위자드 이프리트는 데몬이 없어 기본 항목만 둔다.
+ */
+export const DEMON_WEAK_SUMMONS: ReadonlyMap<number, number> = new Map([
+  [2121005, 2121003],
+  [2221005, 2221003],
+])
+
+/** 소환수 1회 공격 이름 접미사 */
+const SUMMON_BASE_SUFFIX = '(1회 공격)'
+
+/** 소환수면 '(1회 공격)' 항목으로 바꾸고, 역속성 소환수는 약점 적용 항목을 덧붙인다 */
+function expandSummon(skill: IJobSkill): IJobSkill[] {
+  if (!isSummonSkill(skill)) return [skill]
+  const name = skill.description?.name ?? String(skill.id)
+  const base = { ...skill, description: { ...skill.description, id: skill.id, name: `${name} ${SUMMON_BASE_SUFFIX}` } }
+  return DEMON_WEAK_SUMMONS.has(skill.id) ? [base, makeVariant(skill, 'weak')] : [base]
+}
+
+/** 몬스터 원래 속성과 무관하게 약점으로 판정하는 항목인지 (데몬 연계 소환수) */
+export function forcesWeakness(skillId: number): boolean {
+  return variantKindOf(skillId) === 'weak'
+}
+
 /** 기본 스킬 → 변형 스킬 (id와 표시 이름만 바꾼 사본) */
 function makeVariant(skill: IJobSkill, kind: SkillVariantKind): IJobSkill {
   const id = variantSkillId(skill.id, kind)
@@ -128,7 +164,7 @@ export function hasStunMastery(jobId: JobId): boolean {
  * 스턴 마스터리가 없는 직업은 `attackSkillsForJob`과 같다.
  */
 export function damageSkillsForJob(jobId: JobId): IJobSkill[] {
-  const skills = attackSkillsForJob(jobId).flatMap(expandVenom)
+  const skills = attackSkillsForJob(jobId).flatMap(expandVenom).flatMap(expandSummon)
   if (!hasStunMastery(jobId)) return skills
   return skills.flatMap((s) => [s, makeVariant(s, 'stun')])
 }

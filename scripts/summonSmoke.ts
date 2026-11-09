@@ -1,12 +1,13 @@
 /**
  * 수동 스모크 테스트: 소환수 1회 공격 (tsx) — docs/plan.md §특수 스킬 공식
  *  - 물리 소환수 공식 손계산 대조 (DEX×2.5+STR)×AttackRate/100
- *  - 마법 소환수 공식 손계산 대조 (mnwvs077 v0.77, 미검증) + 마력 상한 1999
+ *  - 마법 소환수 공식 손계산 대조 (mnwvs077 v0.77) + 마력 상한 1999
  *  - 속성배율만 적용(방어 무시), 1줄
  *  - 직업별 목록 포함 · '(1회 공격)' 표기 · 계수/속성 조회
+ *  - 역속성 소환수(불독 엘퀴네스·썬콜 이프리트)의 '(1회 공격, 약점 적용)' 변형
  */
-import { damageSkillsForJob } from '../src/data/skills/variants'
-import { skillAttackAt, skillDisplayName, SUMMON_SKILL_IDS } from '../src/data/skills'
+import { baseSkillId, damageSkillsForJob, forcesWeakness, variantSkillId } from '../src/data/skills/variants'
+import { skillAttackAt, SUMMON_SKILL_IDS } from '../src/data/skills'
 import { calcMagicSummon, calcSummon } from '../src/domain/attackPower'
 import { computeSummonCast } from '../src/domain/skillCombat'
 import type { JobId } from '../src/domain/jobs'
@@ -60,7 +61,7 @@ for (const [job, id, name, kind, element] of EXPECT) {
   const sk = damageSkillsForJob(job).find((s) => s.id === id)
   check(!!sk, `${job}: ${name} 목록 포함`)
   if (!sk) continue
-  check(skillDisplayName(sk) === `${name} (1회 공격)`, `표기 '${skillDisplayName(sk)}'`)
+  check(sk.description?.name === `${name} (1회 공격)`, `표기 '${sk.description?.name}'`)
   const att = skillAttackAt(sk, sk.masterLevel)
   const coef = att ? (att.kind === 'magic' ? att.spellAtk : att.skillPercent) : 0
   check(!!att?.summon && att.kind === kind && coef > 0, `${name} ${kind} 계수 ${coef}`)
@@ -69,7 +70,27 @@ for (const [job, id, name, kind, element] of EXPECT) {
 check(!damageSkillsForJob('bishop').some((s) => s.description?.name === '서먼 드래곤'), '서먼 드래곤 제외')
 check(!damageSkillsForJob('bowmaster').some((s) => s.id === 3111005), '실버 호크 제외(미지원)')
 const ps = damageSkillsForJob('hero').find((s) => s.description?.name === '파워 스트라이크')
-check(!!ps && skillDisplayName(ps) === '파워 스트라이크' && !skillAttackAt(ps, 20)?.summon, '일반 스킬 영향 없음')
+check(!!ps && !skillAttackAt(ps, 20)?.summon, '일반 스킬 영향 없음')
+
+console.log('약점 적용 변형 (데몬 연계)')
+const WEAK: [JobId, number, string, string][] = [
+  ['archMageFP', 2121005, '엘퀴네스', 'I'],
+  ['archMageIL', 2221005, '이프리트', 'F'],
+]
+for (const [job, id, name, element] of WEAK) {
+  const list = damageSkillsForJob(job)
+  const vid = variantSkillId(id, 'weak')
+  const v = list.find((s) => s.id === vid)
+  check(!!v && v.description?.name === `${name} (1회 공격, 약점 적용)`, `${job}: '${v?.description?.name}'`)
+  check(list.some((s) => s.id === id && !forcesWeakness(s.id)), `${job}: 기본 항목은 몬스터 원래 속성 그대로`)
+  check(!!v && forcesWeakness(v.id) && baseSkillId(v.id) === id, `${job}: 변형 id 왕복·약점 강제`)
+  const att = v ? skillAttackAt(v, 30) : null
+  check(!!att?.summon && att.kind === 'magic' && att.element === element && att.spellAtk > 0, `${job}: 변형도 소환수 계수·속성 조회 (${att?.element} ${att?.spellAtk})`)
+}
+check(!damageSkillsForJob('flameWizard').some((s) => forcesWeakness(s.id)), '플레임위자드 이프리트는 변형 없음(데몬 없음)')
+check(!damageSkillsForJob('bishop').some((s) => forcesWeakness(s.id)), '바하뮤트는 변형 없음')
+const fwIfrit = damageSkillsForJob('flameWizard').find((s) => s.id === 12111004)
+check(skillAttackAt(fwIfrit!, 20)?.element === 'F', '이름이 바뀌어도 플위 이프리트 속성 보완 유지')
 
 console.log(fail ? `\n실패 ${fail}건` : '\n전부 통과')
 process.exit(fail ? 1 : 0)

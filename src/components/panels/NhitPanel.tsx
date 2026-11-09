@@ -32,12 +32,12 @@ import type { DamageRange } from '../../domain/attackPower'
 import { JOBS } from '../../domain/jobs'
 import { getMonster } from '../../data/mobs'
 import { elementReaction, formatElements, PHYSICAL_ELEMENT } from '../../domain/monster'
+import type { ElementReaction } from '../../domain/damage'
 import {
   skillAttackAt, skillLineCount, comboFinalDamageP, COMBO_SKILLS, findSkillById, skillNumAt, chargeStats, skillElements,
-  skillDisplayName,
 } from '../../data/skills'
 import type { IJobSkill } from '../../data/skills'
-import { damageSkillsForJob, baseSkillId, stunHitRatio, VENOM_SKILLS, venomStacks } from '../../data/skills/variants'
+import { damageSkillsForJob, baseSkillId, stunHitRatio, VENOM_SKILLS, venomStacks, forcesWeakness, DEMON_WEAK_SUMMONS } from '../../data/skills/variants'
 import type { ChargeState } from '../../domain/paladinCharge'
 import { computeCast, computeDotCast, computeSummonCast, computeNhit, computeDpm, baseElementMult, dotElementMult, mixCasts, SKILL_MOTION } from '../../domain/skillCombat'
 import { staffElementMult } from '../../domain/damage'
@@ -93,6 +93,8 @@ const FIST_SKILLS = new Set([5121007, 15111004])
 const FIST_HIT_MULT = [1, 1, 1, 1, 2, 4]
 /** 최대 콤보 카운터(5~10) 소모 시 카운터 뎀증 배율 (docs §4) */
 const MAX_COUNTER_MULT = 2.5
+/** 소환수 데미지 옆 속성 반응 표기 (보통은 빈칸) */
+const REACTION_LABEL: Record<ElementReaction, string> = { weak: '약점', half: '반감', immune: '무효', none: '' }
 const rng = (r: { min: number; max: number }) => `${Math.round(r.min).toLocaleString()} ~ ${Math.round(r.max).toLocaleString()}`
 
 /**
@@ -199,10 +201,13 @@ export default function NhitPanel() {
       const base = isMagic
         ? calcMagicSummon(totalMagic(effects, finalStats.INT), finalStats.INT, coefAtk, att.summon.mastery)
         : calcSummon(finalStats.DEX, finalStats.STR, coefAtk)
-      const elementMult = baseElementMult(
-        elementReaction(monster.elemAttr, att.element ?? (isMagic ? undefined : PHYSICAL_ELEMENT)),
-      )
+      // 약점 적용 항목(데몬 연계)은 몬스터 원래 속성을 지우고 소환수 속성 약점으로 본다
+      const reaction: ElementReaction = forcesWeakness(sk.id)
+        ? 'weak'
+        : elementReaction(monster.elemAttr, att.element ?? (isMagic ? undefined : PHYSICAL_ELEMENT))
+      const elementMult = baseElementMult(reaction)
       return {
+        summonReaction: reaction,
         cast: computeSummonCast(base, elementMult),
         att,
         effSkillPercent: isMagic ? 100 : coefAtk,
@@ -397,7 +402,7 @@ export default function NhitPanel() {
       uid: pc.uid,
       id: pc.id,
       level: pc.level,
-      name: sk ? skillDisplayName(sk) : String(pc.id),
+      name: sk?.description?.name ?? String(pc.id),
       masterLevel: sk?.masterLevel ?? 1,
       ok: !!dist,
       dist,
@@ -430,6 +435,7 @@ export default function NhitPanel() {
     const built = buildCast(selectedSkill, skillLevel, coefOverride)
     if (!built) return null
     const { cast, att, effSkillPercent, spellAtk, isMagic, elements, displayMult, charge, hitMultipliers } = built
+    const summonReaction = 'summonReaction' in built ? built.summonReaction : undefined
     if (!cast) return { unsupported: true as const, elements, displayMult, charge }
 
     const baseId = baseSkillId(selectedSkill.id)
@@ -461,6 +467,11 @@ export default function NhitPanel() {
       charge,
       isVenom: VENOM_SKILLS.has(baseId),
       isSummon,
+      summonReaction,
+      // 데몬 연계 약점 적용 항목이면 그 데몬 이름 (안내 문구용)
+      demonName: forcesWeakness(selectedSkill.id)
+        ? findSkillById(DEMON_WEAK_SUMMONS.get(baseId) ?? 0)?.description?.name
+        : undefined,
       isBoss,
       hp,
       hasPreCast: !!preCastPrior,
@@ -490,7 +501,7 @@ export default function NhitPanel() {
     for (const p of preCastInfos) if (p.ok) counts.set(p.name, (counts.get(p.name) ?? 0) + 1)
     if (counts.size === 0) return null
     const pre = [...counts].map(([name, n]) => (n > 1 ? `${name} ×${n}` : name)).join(' · ')
-    const main = skillDisplayName(selectedSkill)
+    const main = selectedSkill.description?.name ?? String(selectedSkill.id)
     return `※ ${pre} 이후 ${main}${objectJosa(main)} 몇 방 시전해야 하는지에 대한 기대 타수입니다.`
   })()
 
@@ -535,7 +546,7 @@ export default function NhitPanel() {
                   <>
                     <Box component="img" src={skillIconSrc(sk.id)} alt="" onError={hideOnError} sx={{ width: 32, height: 32, imageRendering: 'pixelated', display: 'block', flexShrink: 0 }} />
                     <Box component="span" sx={{ lineHeight: 1.2 }}>
-                      [Lv. {skillLevel}{coefOverride != null && '*'}] {skillDisplayName(sk)}
+                      [Lv. {skillLevel}{coefOverride != null && '*'}] {sk.description?.name ?? sk.id}
                     </Box>
                     {SKILL_MOTION[baseSkillId(sk.id)] && <Box component="span" sx={{ fontSize: 10, color: 'text.disabled' }}>*</Box>}
                   </>
@@ -552,7 +563,7 @@ export default function NhitPanel() {
               {attackSkills.map((s) => (
                 <MenuItem key={s.id} value={s.id} sx={{ fontSize: 13, gap: 1.25, alignItems: 'center' }}>
                   <Box component="img" src={skillIconSrc(s.id)} alt="" onError={hideOnError} sx={{ width: 32, height: 32, imageRendering: 'pixelated', display: 'block', flexShrink: 0 }} />
-                  <Box component="span" sx={{ lineHeight: 1.2 }}>{skillDisplayName(s)}</Box>
+                  <Box component="span" sx={{ lineHeight: 1.2 }}>{s.description?.name ?? s.id}</Box>
                   {SKILL_MOTION[baseSkillId(s.id)] && <Box component="span" sx={{ fontSize: 10, color: 'text.disabled' }}>*</Box>}
                 </MenuItem>
               ))}
@@ -622,7 +633,7 @@ export default function NhitPanel() {
               {precastCandidates.map((s) => (
                 <MenuItem key={s.id} value={s.id} sx={{ fontSize: 12, gap: 1, alignItems: 'center' }}>
                   <Box component="img" src={skillIconSrc(s.id)} alt="" onError={hideOnError} sx={{ width: 24, height: 24, imageRendering: 'pixelated', flexShrink: 0 }} />
-                  <Box component="span">{skillDisplayName(s)}</Box>
+                  <Box component="span">{s.description?.name ?? s.id}</Box>
                 </MenuItem>
               ))}
             </Select>
@@ -650,7 +661,14 @@ export default function NhitPanel() {
                 value={rng(result.totalRange)}
                 strong
                 note={
-                  // 무속성 스킬은 배율이 1이라 숨기지만, 속성 스태프 감산이 붙으면 보여준다
+                  // 소환수는 속성 반응(약점/반감/무효)까지 붙여 항상 보여준다 — '얼음 약점 (1.50배)'
+                  result.summonReaction ? (
+                    <Box component="span" sx={{ color: 'success.main', fontWeight: 700, fontSize: 12 }}>
+                      {result.elements.length > 0 ? formatElements(result.elements) : result.isMagic ? '무속성' : '물리'}
+                      {REACTION_LABEL[result.summonReaction] && ` ${REACTION_LABEL[result.summonReaction]}`}
+                      {` (${result.displayMult.toFixed(2)}배)`}
+                    </Box>
+                  ) : // 무속성 스킬은 배율이 1이라 숨기지만, 속성 스태프 감산이 붙으면 보여준다
                   result.elements.length > 0 || result.displayMult !== 1 ? (
                     <Box component="span" sx={{ display: 'inline-flex', alignItems: 'center', color: 'success.main', fontWeight: 700, fontSize: 12 }}>
                       {formatElements(result.elements)} ({result.displayMult.toFixed(2)}배)
@@ -664,8 +682,14 @@ export default function NhitPanel() {
 
               {result.isSummon && (
                 <Typography variant="caption" color="text.disabled" sx={{ display: 'block', mt: 0.25, lineHeight: 1.4 }}>
+                  {result.demonName && (
+                    <Box component="span" sx={{ display: 'block' }}>
+                      {/* 파이어 데몬·아이스 데몬 둘 다 받침(ㄴ)으로 끝나 '으로' */}
+                      ※ {result.demonName}으로 몬스터 속성을 지우고 {formatElements(result.elements)} 약점을 부여한 상태를 가정합니다.
+                    </Box>
+                  )}
                   {result.isMagic
-                    ? '※ 소환수 1회 공격 데미지입니다. 방어 무시, 크리티컬·데미지 증가 버프·엠플리피케이션 미적용. 마법 소환수 계산식은 인게임 미검증입니다(구버전 구현체 기준).'
+                    ? '※ 소환수 1회 공격 데미지입니다. 방어 무시, 크리티컬·데미지 증가 버프·엠플리피케이션 미적용.'
                     : '※ 소환수 1회 공격 데미지입니다. 방어 무시, 크리티컬·데미지 증가 버프 미적용.'}
                 </Typography>
               )}
@@ -771,7 +795,7 @@ function SkillLevelDialog({ skill, level, coefOverride, onApply, onClose }: {
     <Dialog open onClose={onClose} maxWidth="xs" fullWidth>
       <DialogTitle sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
         <Box component="img" src={skillIconSrc(skill.id)} alt="" onError={hideOnError} sx={{ width: 32, height: 32, imageRendering: 'pixelated' }} />
-        {skillDisplayName(skill)}
+        {skill.description?.name ?? skill.id}
       </DialogTitle>
       <DialogContent>
         <Box sx={{ px: 1 }}>

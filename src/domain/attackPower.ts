@@ -178,7 +178,7 @@ export function calcSummon(dex: number, str: number, attackRate: number): Damage
 const MAGIC_SUMMON_MAD_CAP = 1999
 
 /**
- * 마법 소환수(엘퀴네스·이프리트·바하뮤트) 1회 공격 데미지 — **미검증**.
+ * 마법 소환수(엘퀴네스·이프리트·바하뮤트) 1회 공격 데미지.
  *
  * 메랜 근거를 못 찾아 대격변 전 구현체 mnwvs077(v0.77)의
  * `WvsGame/CalcDamage.cpp` `CalcDamage::MDamage(ms, pSkill, nSLV)`를 옮겼다.

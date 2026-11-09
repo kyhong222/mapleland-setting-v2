@@ -82,8 +82,9 @@ export function skillNum(props: ILevelProperties | undefined, key: string): numb
 
 /**
  * 데미지 계산을 지원하는 소환수 — 소환수의 **1회 공격** 데미지를 계산한다.
- * 물리(WZ `pad`)는 calcSummon, 마법(WZ `mad`)은 calcMagicSummon(미검증)을 쓴다.
+ * 물리(WZ `pad`)는 calcSummon, 마법(WZ `mad`)은 calcMagicSummon을 쓴다.
  * 실버 호크·골든 이글·퍼펫·서포트 옥토퍼스 등은 아직 대상이 아니다.
+ * 목록 표시 이름('프리져 (1회 공격)')과 약점 적용 변형은 variants.ts가 만든다.
  */
 export const SUMMON_SKILL_IDS: ReadonlySet<number> = new Set([
   3121006,  // 피닉스 (보우마스터)
@@ -96,17 +97,12 @@ export const SUMMON_SKILL_IDS: ReadonlySet<number> = new Set([
   2321003,  // 바하뮤트 (비숍)
 ])
 
-/** 소환수 스킬 여부 (변형 id는 받지 않는다 — 소환수엔 변형이 없다) */
-export const isSummonSkill = (skill: IJobSkill): boolean => SUMMON_SKILL_IDS.has(skill.id)
-
-/** 소환수 스킬 표시 접미사 — 데미지가 1회 공격 기준임을 밝힌다 */
-export const SUMMON_LABEL_SUFFIX = ' (1회 공격)'
-
-/** 데미지 계산 목록에 쓰는 스킬 이름 — 소환수는 '프리져 (1회 공격)'처럼 접미사를 붙인다 */
-export function skillDisplayName(skill: IJobSkill): string {
-  const name = skill.description?.name ?? String(skill.id)
-  return isSummonSkill(skill) ? name + SUMMON_LABEL_SUFFIX : name
-}
+/**
+ * 소환수 스킬 여부 — 변형(약점 적용) id도 받는다.
+ * 변형 id = 기본 id + 1억 단위 오프셋이고 실제 스킬 id는 1억 미만이라(variants.ts),
+ * 1억으로 나눈 나머지가 곧 기본 id다. variants.ts는 이 파일을 import하므로 baseSkillId를 못 쓴다.
+ */
+export const isSummonSkill = (skill: IJobSkill): boolean => SUMMON_SKILL_IDS.has(skill.id % 100_000_000)
 
 /** 지원하지 않는 소환수 — 공격 스킬 목록에서 제외 */
 const UNSUPPORTED_SUMMON_NAMES = new Set(['서먼 드래곤'])
@@ -210,8 +206,14 @@ const SKILL_ELEMENT_OVERRIDE: Record<string, string> = {
   '플레임': 'F',
   '플레임 기어': 'F',
   '메테오': 'F',
-  // 플레임위자드 이프리트(12111004) — 시그너스 스킬은 속성값이 전부 비어 있다. 모험가 이프리트는 'f'
-  '이프리트': 'F',
+}
+
+/**
+ * id 기준 속성 보완 — 표시 이름이 바뀌는 스킬('이프리트 (1회 공격)' 등)은 이름으로 못 찾는다.
+ *  - 플레임위자드 이프리트(12111004): 시그너스 스킬은 속성값이 전부 비어 있다. 모험가 이프리트는 'f'
+ */
+const SKILL_ELEMENT_OVERRIDE_BY_ID: Record<number, string> = {
+  12111004: 'F',
 }
 
 /**
@@ -338,7 +340,9 @@ export function skillAttackAt(skill: IJobSkill, level: number): SkillAttack | nu
   if (!props) return null
   const mad = skillNum(props, 'mad')
   const dmg = skillNum(props, 'damage')
-  const rawElement = skill.elementalAttribute || SKILL_ELEMENT_OVERRIDE[skill.description?.name ?? '']
+  const rawElement = skill.elementalAttribute
+    || SKILL_ELEMENT_OVERRIDE_BY_ID[skill.id % 100_000_000] // 변형 id도 기본 id로 (isSummonSkill 참고)
+    || SKILL_ELEMENT_OVERRIDE[skill.description?.name ?? '']
   const element = rawElement ? rawElement.toUpperCase() : undefined
   if (isSummonSkill(skill)) {
     const summon = { mastery: skillNum(props, 'mastery') }
