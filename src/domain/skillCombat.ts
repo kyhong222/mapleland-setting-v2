@@ -483,6 +483,20 @@ export function computeDotCast(
 }
 
 /**
+ * 소환수 1회 공격의 결과 (calcSummon / calcMagicSummon).
+ * 속성배율만 적용한다 — 몬스터 방어 무시, 크리·데미지 증가 버프·쉐도우 파트너 없음.
+ * 한 번의 공격이 한 줄이라 lineRanges도 한 줄이다.
+ */
+export function computeSummonCast(base: DamageRange, elementMult: number): CastResult {
+  const one = lineFinalRange({ base, elementMult, skillPercent: 100, damageMult: 1, critFactor: 1 })
+  return {
+    dist: uniformDist(one.min, one.max, stepFor(one.min, one.max)),
+    totalRange: one,
+    lineRanges: [one],
+  }
+}
+
+/**
  * 시전 결과들의 가중 혼합 — 한 시전이 상황에 따라 다른 분포를 갖는 경우에 쓴다.
  * (예: 에너지 버스터 단독 운용 — 스턴 확률만큼 '스턴 상태' 분포가 섞인다)
  *

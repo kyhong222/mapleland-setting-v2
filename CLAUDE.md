@@ -49,6 +49,7 @@ yarn tsx scripts/battleMageSmoke.ts # 배틀메이지 직업 규칙·오라 대�
 yarn tsx scripts/elementalStaffSmoke.ts # 속성 스태프 카탈로그 스펙·속성배율 표
 yarn tsx scripts/venomSmoke.ts      # 베놈 공식·방어/렙차·독 반응·중첩 변형·HP 1 상한
 yarn tsx scripts/physicalElementSmoke.ts # 물리 반감(P) 판정·방어 차감 순서·기존 몹 영향 없음
+yarn tsx scripts/summonSmoke.ts     # 소환수 1회 공격(물리/마법) 공식·목록·(1회 공격) 표기
 ```
 
 변경 후에는 최소한 `yarn typecheck`를 돌린다.
@@ -178,7 +179,8 @@ maplestory.io API ───┘   (로컬 카탈로그 우선 → GMS 62 → GMS 
 ### 스킬 변형(variant)
 
 `data/skills/variants.ts` — 스킬북에 없는 "운용 상황"을 별도 스킬 항목으로 파생한다.
-바이퍼 스턴 마스터리(스턴 상태인 적에게만 크리가 터지는 패시브)와 베놈 중첩(1~3중첩, docs/nhit-dpm.md §4)이 있다.
+바이퍼 스턴 마스터리(스턴 상태인 적에게만 크리가 터지는 패시브)와 베놈 중첩(1~3중첩, docs/nhit-dpm.md §4),
+역속성 소환수 약점 적용(불독 엘퀴네스·썬콜 이프리트 — 데몬 연계, docs/plan.md §특수 스킬 공식)이 있다.
 
 - 공격 스킬마다 `피스트` / `피스트 (스턴)` 두 항목을 만들고, 스턴 마스터리 크리는 (스턴)에만 얹는다.
 - 자체 스턴 확률(`prop`)이 있는 스킬은 **기본 항목이 곧 단독 운용**이라 기본 쪽에 그 확률을 반영한다
@@ -186,7 +188,8 @@ maplestory.io API ───┘   (로컬 카탈로그 우선 → GMS 62 → GMS 
   (`domain/skillCombat.ts`의 `mixCasts`).
 - 없앤 변형 id는 `RETIRED_SKILL_IDS`로 되돌린다 — 저장슬롯에 남은 선택이 사라지지 않게
   `nhitStore`가 읽을 때 `migrateSkillId()`를 태운다.
-- **변형 스킬 id = 기본 id + 오프셋(9자리)다.** 오프셋끼리는 1억 이상 떨어뜨린다. 아이콘(`/skill-icons/<id>.png`)·모션 규칙
+- **변형 스킬 id = 기본 id + 오프셋(9자리, 1억의 배수)다.** 오프셋끼리는 1억 이상 떨어뜨린다
+  (`variants.ts`를 import할 수 없는 `skills/index.ts`는 `id % 1억`으로 기본 id를 되돌린다). 아이콘(`/skill-icons/<id>.png`)·모션 규칙
   (`SKILL_MOTION`)·공속표(`SKILL_APM`)·예외식(럭세/피스트)은 전부 `baseSkillId()`로 되돌려 조회할 것.
   안 그러면 조용히 기본값으로 떨어진다.
 - 근거·수식은 [docs/nhit-dpm.md](docs/nhit-dpm.md) §6 "스턴 마스터리".

@@ -80,8 +80,32 @@ export function skillNum(props: ILevelProperties | undefined, key: string): numb
   return v === undefined ? 0 : Number(v) || 0
 }
 
-/** 소환수 스킬 — 데미지 지원 대상에서 제외 (물리 소환수는 mad/damage가 없어 자동 제외됨) */
-const SUMMON_SKILLS = new Set(['이프리트', '엘퀴네스', '바하뮤트', '서먼 드래곤'])
+/**
+ * 데미지 계산을 지원하는 소환수 — 소환수의 **1회 공격** 데미지를 계산한다.
+ * 물리(WZ `pad`)는 calcSummon, 마법(WZ `mad`)은 calcMagicSummon을 쓴다.
+ * 퍼펫(공격 없음)·서포트 옥토퍼스(패시브)는 대상이 아니다.
+ * 목록 표시 이름('프리져 (1회 공격)')과 약점 적용 변형은 variants.ts가 만든다.
+ */
+export const SUMMON_SKILL_IDS: ReadonlySet<number> = new Set([
+  3121006,  // 피닉스 (보우마스터)
+  3221005,  // 프리져 (신궁)
+  3111005,  // 실버 호크 (레인저)
+  3211005,  // 골든 이글 (저격수)
+  5211001,  // 옥토퍼스 (캡틴)
+  5211002,  // 가비오타 (캡틴)
+  2121005,  // 엘퀴네스 (불독)
+  2221005,  // 이프리트 (썬콜)
+  12111004, // 이프리트 (플레임위자드)
+  2321003,  // 바하뮤트 (비숍)
+  2311006,  // 서먼 드래곤 (프리스트)
+])
+
+/**
+ * 소환수 스킬 여부 — 변형(약점 적용) id도 받는다.
+ * 변형 id = 기본 id + 1억 단위 오프셋이고 실제 스킬 id는 1억 미만이라(variants.ts),
+ * 1억으로 나눈 나머지가 곧 기본 id다. variants.ts는 이 파일을 import하므로 baseSkillId를 못 쓴다.
+ */
+export const isSummonSkill = (skill: IJobSkill): boolean => SUMMON_SKILL_IDS.has(skill.id % 100_000_000)
 
 /**
  * 데미지 증가 버프(콤보/어드밴스드콤보/버서크) — damage 필드를 갖지만 공격 스킬이 아님.
@@ -106,12 +130,16 @@ const AURA_SKILLS = new Set([32120000])
  */
 const NON_ATTACK_NAMES = new Set(['메디테이션', '매직 크래쉬', '크리티컬 스로우', '크리티컬 샷', '크리티컬 펀치', '모탈 블로우', '스턴 마스터리'])
 
-/** 공격 스킬 여부 (물리 damage 또는 마법 mad 보유; 차지/메디테이션/소환수/파이널어택/데미지버프 제외) */
+/**
+ * 공격 스킬 여부 (물리 damage 또는 마법 mad 보유 + 지원 소환수;
+ * 차지/메디테이션/파이널어택/데미지버프 제외)
+ */
 export function isAttackSkill(skill: IJobSkill): boolean {
+  if (isSummonSkill(skill)) return true
   const name = skill.description?.name ?? ''
   // 속성 차지·어드밴스드 차지는 특화버프로 관리 → 제외. 단 '차지 블로우'는 공격 스킬로 유지
   const isCharge = name.includes('차지') && !name.includes('블로우')
-  if (isCharge || name.includes('파이널 어택') || NON_ATTACK_NAMES.has(name) || SUMMON_SKILLS.has(name)) return false
+  if (isCharge || name.includes('파이널 어택') || NON_ATTACK_NAMES.has(name)) return false
   if (DAMAGE_BUFF_SKILLS.has(skill.id) || AURA_SKILLS.has(skill.id)) return false
   return skill.levelProperties.some((p) => p.mad !== undefined || p.damage !== undefined)
 }
@@ -131,6 +159,11 @@ export interface SkillAttack {
   element?: string
   /** 마법 숙련도(0~1). 물리는 undefined — 무기 마스터리 스킬에서 오므로 masteryRatio가 담당 */
   mastery?: number
+  /**
+   * 소환수 1회 공격. 계수는 물리면 skillPercent에 공격력(WZ `pad`), 마법이면 spellAtk에 mad가 들어간다.
+   * mastery는 마법 소환수 공식에 그대로 쓰는 WZ `mastery` 원값(물리 소환수는 0).
+   */
+  summon?: { mastery: number }
 }
 
 /** 마법 기본 숙련도(%) — 스킬 숙련도에 항상 합산된다 */
@@ -173,6 +206,14 @@ const SKILL_ELEMENT_OVERRIDE: Record<string, string> = {
   '플레임': 'F',
   '플레임 기어': 'F',
   '메테오': 'F',
+}
+
+/**
+ * id 기준 속성 보완 — 표시 이름이 바뀌는 스킬('이프리트 (1회 공격)' 등)은 이름으로 못 찾는다.
+ *  - 플레임위자드 이프리트(12111004): 시그너스 스킬은 속성값이 전부 비어 있다. 모험가 이프리트는 'f'
+ */
+const SKILL_ELEMENT_OVERRIDE_BY_ID: Record<number, string> = {
+  12111004: 'F',
 }
 
 /**
@@ -299,8 +340,16 @@ export function skillAttackAt(skill: IJobSkill, level: number): SkillAttack | nu
   if (!props) return null
   const mad = skillNum(props, 'mad')
   const dmg = skillNum(props, 'damage')
-  const rawElement = skill.elementalAttribute || SKILL_ELEMENT_OVERRIDE[skill.description?.name ?? '']
+  const rawElement = skill.elementalAttribute
+    || SKILL_ELEMENT_OVERRIDE_BY_ID[skill.id % 100_000_000] // 변형 id도 기본 id로 (isSummonSkill 참고)
+    || SKILL_ELEMENT_OVERRIDE[skill.description?.name ?? '']
   const element = rawElement ? rawElement.toUpperCase() : undefined
+  if (isSummonSkill(skill)) {
+    const summon = { mastery: skillNum(props, 'mastery') }
+    if (mad > 0) return { kind: 'magic', skillPercent: 100, spellAtk: mad, element, summon }
+    const pad = skillNum(props, 'pad')
+    return pad > 0 ? { kind: 'physical', skillPercent: pad, spellAtk: 0, element, summon } : null
+  }
   if (mad > 0) return { kind: 'magic', skillPercent: 100, spellAtk: mad, element, mastery: magicMasteryRatio(props) }
   if (dmg > 0) return { kind: 'physical', skillPercent: dmg, spellAtk: 0, element }
   return null

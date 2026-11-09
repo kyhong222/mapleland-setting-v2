@@ -158,12 +158,45 @@ export function calcBareHand(luk: number, str: number, dex: number, watk: number
   }
 }
 
-/** 소환수 계열(매의 눈 등) — 3단계 방어 감산 건너뜀 (DEX×2.5 + STR) */
-export function calcSummon(dex: number, str: number, watk: number): DamageRange {
+/**
+ * 물리 소환수(피닉스·프리져·실버 호크·골든 이글·옥토퍼스·가비오타) 1회 공격 데미지. docs/plan.md §특수 스킬 공식.
+ *   MAX = (DEX×2.5 + STR) × AttackRate / 100
+ *   MIN = (DEX×2.5×0.7 + STR) × AttackRate / 100
+ * AttackRate는 소환수 스킬의 공격력(WZ `pad`)이다 — 캐릭터 공격력·숙련도는 들어가지 않는다.
+ * 몬스터 방어는 무시한다(소비처에서 방어를 넘기지 않는다).
+ * mnwvs077(v0.77) `CalcDamage::PDamage(ms, pSkill, nSLV)`도 DEX에만 0.7~1.0 난수가 붙는 같은 꼴이다
+ * (단 계수가 ×0.015라 1.5배 크다 — 메랜 근거는 위 식).
+ */
+export function calcSummon(dex: number, str: number, attackRate: number): DamageRange {
   return {
-    max: Math.floor((dex * 2.5 + str) * watk / 100),
-    min: Math.floor((dex * 2.5 * 0.7 + str) * watk / 100),
+    max: Math.floor((dex * 2.5 + str) * attackRate / 100),
+    min: Math.floor((dex * 2.5 * 0.7 + str) * attackRate / 100),
   }
+}
+
+/** 마법 소환수 공식의 마력 상한 (mnwvs077: min(1999, MAD)) */
+const MAGIC_SUMMON_MAD_CAP = 1999
+
+/**
+ * 마법 소환수(엘퀴네스·이프리트·바하뮤트·서먼 드래곤) 1회 공격 데미지.
+ *
+ * 메랜 근거를 못 찾아 대격변 전 구현체 mnwvs077(v0.77)의
+ * `WvsGame/CalcDamage.cpp` `CalcDamage::MDamage(ms, pSkill, nSLV)`를 옮겼다.
+ *   데미지 = INT×0.6 + (마력×0.058)² + R × 3.3 × mad × 0.015
+ *   R ∈ [마력 × (mastery×5 + 10) × 0.009, 마력] 균등
+ * 일반 마법식(calcMagic)과 모양이 다르고, 엠플리피케이션·몬스터 방어가 들어가지 않는다.
+ *
+ * @param magic   총마력
+ * @param int     최종 지력
+ * @param mad     소환수 스킬 기본 공격력(WZ `mad`)
+ * @param mastery 소환수 스킬 WZ `mastery` 원값(엘퀴네스 10 → 하한 마력×0.54)
+ */
+export function calcMagicSummon(magic: number, int: number, mad: number, mastery: number): DamageRange {
+  const m = Math.max(0, Math.min(MAGIC_SUMMON_MAD_CAP, magic))
+  const k = Math.min(1, (mastery * 5 + 10) * 0.009)
+  const fixed = int * 0.6 + (m * 0.058) ** 2
+  const perR = 3.3 * mad * 0.015
+  return { max: fixed + m * perR, min: fixed + m * k * perR }
 }
 
 /**
