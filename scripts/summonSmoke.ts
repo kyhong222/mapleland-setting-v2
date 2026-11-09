@@ -49,12 +49,15 @@ console.log('직업별 목록')
 const EXPECT: [JobId, number, string, 'physical' | 'magic', string | undefined][] = [
   ['bowmaster', 3121006, '피닉스', 'physical', 'F'],
   ['marksman', 3221005, '프리져', 'physical', 'I'],
+  ['bowmaster', 3111005, '실버 호크', 'physical', undefined],
+  ['marksman', 3211005, '골든 이글', 'physical', undefined],
   ['captain', 5211001, '옥토퍼스', 'physical', undefined],
   ['captain', 5211002, '가비오타', 'physical', undefined],
   ['archMageFP', 2121005, '엘퀴네스', 'magic', 'I'],
   ['archMageIL', 2221005, '이프리트', 'magic', 'F'],
   ['flameWizard', 12111004, '이프리트', 'magic', 'F'],
   ['bishop', 2321003, '바하뮤트', 'magic', 'H'],
+  ['bishop', 2311006, '서먼 드래곤', 'magic', undefined],
 ]
 check(SUMMON_SKILL_IDS.size === EXPECT.length, `소환수 ${EXPECT.length}종`)
 for (const [job, id, name, kind, element] of EXPECT) {
@@ -67,8 +70,7 @@ for (const [job, id, name, kind, element] of EXPECT) {
   check(!!att?.summon && att.kind === kind && coef > 0, `${name} ${kind} 계수 ${coef}`)
   check(att?.element === element, `${name} 속성 ${att?.element ?? '무속성'}`)
 }
-check(!damageSkillsForJob('bishop').some((s) => s.description?.name === '서먼 드래곤'), '서먼 드래곤 제외')
-check(!damageSkillsForJob('bowmaster').some((s) => s.id === 3111005), '실버 호크 제외(미지원)')
+check(!damageSkillsForJob('bowmaster').some((s) => s.description?.name?.startsWith('퍼펫')), '퍼펫 제외(공격 없음)')
 const ps = damageSkillsForJob('hero').find((s) => s.description?.name === '파워 스트라이크')
 check(!!ps && !skillAttackAt(ps, 20)?.summon, '일반 스킬 영향 없음')
 

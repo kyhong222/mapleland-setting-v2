@@ -83,18 +83,21 @@ export function skillNum(props: ILevelProperties | undefined, key: string): numb
 /**
  * 데미지 계산을 지원하는 소환수 — 소환수의 **1회 공격** 데미지를 계산한다.
  * 물리(WZ `pad`)는 calcSummon, 마법(WZ `mad`)은 calcMagicSummon을 쓴다.
- * 실버 호크·골든 이글·퍼펫·서포트 옥토퍼스 등은 아직 대상이 아니다.
+ * 퍼펫(공격 없음)·서포트 옥토퍼스(패시브)는 대상이 아니다.
  * 목록 표시 이름('프리져 (1회 공격)')과 약점 적용 변형은 variants.ts가 만든다.
  */
 export const SUMMON_SKILL_IDS: ReadonlySet<number> = new Set([
   3121006,  // 피닉스 (보우마스터)
   3221005,  // 프리져 (신궁)
+  3111005,  // 실버 호크 (레인저)
+  3211005,  // 골든 이글 (저격수)
   5211001,  // 옥토퍼스 (캡틴)
   5211002,  // 가비오타 (캡틴)
   2121005,  // 엘퀴네스 (불독)
   2221005,  // 이프리트 (썬콜)
   12111004, // 이프리트 (플레임위자드)
   2321003,  // 바하뮤트 (비숍)
+  2311006,  // 서먼 드래곤 (프리스트)
 ])
 
 /**
@@ -103,9 +106,6 @@ export const SUMMON_SKILL_IDS: ReadonlySet<number> = new Set([
  * 1억으로 나눈 나머지가 곧 기본 id다. variants.ts는 이 파일을 import하므로 baseSkillId를 못 쓴다.
  */
 export const isSummonSkill = (skill: IJobSkill): boolean => SUMMON_SKILL_IDS.has(skill.id % 100_000_000)
-
-/** 지원하지 않는 소환수 — 공격 스킬 목록에서 제외 */
-const UNSUPPORTED_SUMMON_NAMES = new Set(['서먼 드래곤'])
 
 /**
  * 데미지 증가 버프(콤보/어드밴스드콤보/버서크) — damage 필드를 갖지만 공격 스킬이 아님.
@@ -132,14 +132,14 @@ const NON_ATTACK_NAMES = new Set(['메디테이션', '매직 크래쉬', '크리
 
 /**
  * 공격 스킬 여부 (물리 damage 또는 마법 mad 보유 + 지원 소환수;
- * 차지/메디테이션/미지원 소환수/파이널어택/데미지버프 제외)
+ * 차지/메디테이션/파이널어택/데미지버프 제외)
  */
 export function isAttackSkill(skill: IJobSkill): boolean {
   if (isSummonSkill(skill)) return true
   const name = skill.description?.name ?? ''
   // 속성 차지·어드밴스드 차지는 특화버프로 관리 → 제외. 단 '차지 블로우'는 공격 스킬로 유지
   const isCharge = name.includes('차지') && !name.includes('블로우')
-  if (isCharge || name.includes('파이널 어택') || NON_ATTACK_NAMES.has(name) || UNSUPPORTED_SUMMON_NAMES.has(name)) return false
+  if (isCharge || name.includes('파이널 어택') || NON_ATTACK_NAMES.has(name)) return false
   if (DAMAGE_BUFF_SKILLS.has(skill.id) || AURA_SKILLS.has(skill.id)) return false
   return skill.levelProperties.some((p) => p.mad !== undefined || p.damage !== undefined)
 }

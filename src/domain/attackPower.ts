@@ -159,7 +159,7 @@ export function calcBareHand(luk: number, str: number, dex: number, watk: number
 }
 
 /**
- * 물리 소환수(피닉스·프리져·옥토퍼스·가비오타) 1회 공격 데미지. docs/plan.md §특수 스킬 공식.
+ * 물리 소환수(피닉스·프리져·실버 호크·골든 이글·옥토퍼스·가비오타) 1회 공격 데미지. docs/plan.md §특수 스킬 공식.
  *   MAX = (DEX×2.5 + STR) × AttackRate / 100
  *   MIN = (DEX×2.5×0.7 + STR) × AttackRate / 100
  * AttackRate는 소환수 스킬의 공격력(WZ `pad`)이다 — 캐릭터 공격력·숙련도는 들어가지 않는다.
@@ -178,7 +178,7 @@ export function calcSummon(dex: number, str: number, attackRate: number): Damage
 const MAGIC_SUMMON_MAD_CAP = 1999
 
 /**
- * 마법 소환수(엘퀴네스·이프리트·바하뮤트) 1회 공격 데미지.
+ * 마법 소환수(엘퀴네스·이프리트·바하뮤트·서먼 드래곤) 1회 공격 데미지.
  *
  * 메랜 근거를 못 찾아 대격변 전 구현체 mnwvs077(v0.77)의
  * `WvsGame/CalcDamage.cpp` `CalcDamage::MDamage(ms, pSkill, nSLV)`를 옮겼다.
