@@ -131,7 +131,7 @@ unsigned int aRandom[7], nRndIdx = 0;
 붙으므로 화면에서 정확히 2배로 뜬다. 이 정렬은 "첫 타만 6개" 가정에서만 나오므로
 슬롯 배치의 직접 증거다. (균일 5개면 5줄 데미지 슬롯이 1이 되어 1줄과 겹치지 않는다.)
 
-구현체 4종(mnwvs077·Rebirth95·kinoko·Edelstein)의 배열 크기가 모두 7인 것도 방증.
+구현체 4종([mnwvs077](https://github.com/tnsc4502/mnwvs077)·[Rebirth95](https://github.com/67-6f-64/Rebirth95.Server)·[kinoko](https://github.com/iw2d/kinoko)·[Edelstein](https://github.com/Kaioru/Edelstein))의 배열 크기가 모두 7인 것도 방증.
 
 > **2·3·6타는 실측 확정.** 4·5·7·8타는 같은 규칙에서 유도한 값이라 직접 실측은 없다.
 > 다만 규칙 자체가 서로 다른 타수 셋(2·3·6)에서 검증됐으므로 신뢰도는 높다.

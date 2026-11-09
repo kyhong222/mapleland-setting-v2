@@ -2,10 +2,10 @@
  * 수동 스모크 테스트: 속성 스태프 (tsx)
  *  - 카탈로그 스펙 4종 (70제 / INT 213 / LUK 73 / 공 56 / 마 85 / 공속 7 / 업횟 7)
  *  - 속성배율 표 (docs/nhit-dpm.md §4 속성 스태프)
- *  - 소환수가 공격 스킬에서 빠져 있는지 (속성 스태프 보정 대상이 아님)
+ *  - 소환수는 별도 경로라 속성 스태프 보정 대상이 아님
  */
 import { getItem } from '../src/data/itemRepository'
-import { attackSkillsForJob } from '../src/data/skills'
+import { attackSkillsForJob, skillAttackAt } from '../src/data/skills'
 import { ELEMENT_MULT, staffElementMult } from '../src/domain/damage'
 import type { ElementReaction } from '../src/domain/damage'
 
@@ -45,9 +45,13 @@ async function main() {
     check(staffElementMult(base, 'F', undefined) === base, `일반 무기 ${reaction} ×${base}`)
   }
 
-  console.log('[소환수 제외]')
-  const names = attackSkillsForJob('archMageIL').concat(attackSkillsForJob('archMageFP')).map((s) => s.description?.name)
-  check(!names.includes('엘퀴네스') && !names.includes('이프리트'), '이프리트·엘퀴네스는 공격 스킬이 아님')
+  // 소환수는 데미지 계산 목록에 들어가지만(1회 공격) 별도식(calcMagicSummon)을 타고,
+  // 그 경로는 속성 스태프 보정을 적용하지 않는다 (NhitPanel buildCastAt의 소환수 분기)
+  console.log('[소환수 = 별도 경로]')
+  const summons = attackSkillsForJob('archMageIL').concat(attackSkillsForJob('archMageFP'))
+    .filter((s) => ['엘퀴네스', '이프리트'].includes(s.description?.name ?? ''))
+  check(summons.length === 2, `이프리트·엘퀴네스 목록 포함 (${summons.length})`)
+  check(summons.every((s) => !!skillAttackAt(s, s.masterLevel)?.summon), '둘 다 소환수 경로(스태프 보정 없음)')
 
   console.log(fail ? `실패 ${fail}건` : '모두 통과')
   process.exit(fail ? 1 : 0)

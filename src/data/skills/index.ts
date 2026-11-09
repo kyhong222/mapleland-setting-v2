@@ -80,8 +80,36 @@ export function skillNum(props: ILevelProperties | undefined, key: string): numb
   return v === undefined ? 0 : Number(v) || 0
 }
 
-/** 소환수 스킬 — 데미지 지원 대상에서 제외 (물리 소환수는 mad/damage가 없어 자동 제외됨) */
-const SUMMON_SKILLS = new Set(['이프리트', '엘퀴네스', '바하뮤트', '서먼 드래곤'])
+/**
+ * 데미지 계산을 지원하는 소환수 — 소환수의 **1회 공격** 데미지를 계산한다.
+ * 물리(WZ `pad`)는 calcSummon, 마법(WZ `mad`)은 calcMagicSummon(미검증)을 쓴다.
+ * 실버 호크·골든 이글·퍼펫·서포트 옥토퍼스 등은 아직 대상이 아니다.
+ */
+export const SUMMON_SKILL_IDS: ReadonlySet<number> = new Set([
+  3121006,  // 피닉스 (보우마스터)
+  3221005,  // 프리져 (신궁)
+  5211001,  // 옥토퍼스 (캡틴)
+  5211002,  // 가비오타 (캡틴)
+  2121005,  // 엘퀴네스 (불독)
+  2221005,  // 이프리트 (썬콜)
+  12111004, // 이프리트 (플레임위자드)
+  2321003,  // 바하뮤트 (비숍)
+])
+
+/** 소환수 스킬 여부 (변형 id는 받지 않는다 — 소환수엔 변형이 없다) */
+export const isSummonSkill = (skill: IJobSkill): boolean => SUMMON_SKILL_IDS.has(skill.id)
+
+/** 소환수 스킬 표시 접미사 — 데미지가 1회 공격 기준임을 밝힌다 */
+export const SUMMON_LABEL_SUFFIX = ' (1회 공격)'
+
+/** 데미지 계산 목록에 쓰는 스킬 이름 — 소환수는 '프리져 (1회 공격)'처럼 접미사를 붙인다 */
+export function skillDisplayName(skill: IJobSkill): string {
+  const name = skill.description?.name ?? String(skill.id)
+  return isSummonSkill(skill) ? name + SUMMON_LABEL_SUFFIX : name
+}
+
+/** 지원하지 않는 소환수 — 공격 스킬 목록에서 제외 */
+const UNSUPPORTED_SUMMON_NAMES = new Set(['서먼 드래곤'])
 
 /**
  * 데미지 증가 버프(콤보/어드밴스드콤보/버서크) — damage 필드를 갖지만 공격 스킬이 아님.
@@ -106,12 +134,16 @@ const AURA_SKILLS = new Set([32120000])
  */
 const NON_ATTACK_NAMES = new Set(['메디테이션', '매직 크래쉬', '크리티컬 스로우', '크리티컬 샷', '크리티컬 펀치', '모탈 블로우', '스턴 마스터리'])
 
-/** 공격 스킬 여부 (물리 damage 또는 마법 mad 보유; 차지/메디테이션/소환수/파이널어택/데미지버프 제외) */
+/**
+ * 공격 스킬 여부 (물리 damage 또는 마법 mad 보유 + 지원 소환수;
+ * 차지/메디테이션/미지원 소환수/파이널어택/데미지버프 제외)
+ */
 export function isAttackSkill(skill: IJobSkill): boolean {
+  if (isSummonSkill(skill)) return true
   const name = skill.description?.name ?? ''
   // 속성 차지·어드밴스드 차지는 특화버프로 관리 → 제외. 단 '차지 블로우'는 공격 스킬로 유지
   const isCharge = name.includes('차지') && !name.includes('블로우')
-  if (isCharge || name.includes('파이널 어택') || NON_ATTACK_NAMES.has(name) || SUMMON_SKILLS.has(name)) return false
+  if (isCharge || name.includes('파이널 어택') || NON_ATTACK_NAMES.has(name) || UNSUPPORTED_SUMMON_NAMES.has(name)) return false
   if (DAMAGE_BUFF_SKILLS.has(skill.id) || AURA_SKILLS.has(skill.id)) return false
   return skill.levelProperties.some((p) => p.mad !== undefined || p.damage !== undefined)
 }
@@ -131,6 +163,11 @@ export interface SkillAttack {
   element?: string
   /** 마법 숙련도(0~1). 물리는 undefined — 무기 마스터리 스킬에서 오므로 masteryRatio가 담당 */
   mastery?: number
+  /**
+   * 소환수 1회 공격. 계수는 물리면 skillPercent에 공격력(WZ `pad`), 마법이면 spellAtk에 mad가 들어간다.
+   * mastery는 마법 소환수 공식에 그대로 쓰는 WZ `mastery` 원값(물리 소환수는 0).
+   */
+  summon?: { mastery: number }
 }
 
 /** 마법 기본 숙련도(%) — 스킬 숙련도에 항상 합산된다 */
@@ -173,6 +210,8 @@ const SKILL_ELEMENT_OVERRIDE: Record<string, string> = {
   '플레임': 'F',
   '플레임 기어': 'F',
   '메테오': 'F',
+  // 플레임위자드 이프리트(12111004) — 시그너스 스킬은 속성값이 전부 비어 있다. 모험가 이프리트는 'f'
+  '이프리트': 'F',
 }
 
 /**
@@ -301,6 +340,12 @@ export function skillAttackAt(skill: IJobSkill, level: number): SkillAttack | nu
   const dmg = skillNum(props, 'damage')
   const rawElement = skill.elementalAttribute || SKILL_ELEMENT_OVERRIDE[skill.description?.name ?? '']
   const element = rawElement ? rawElement.toUpperCase() : undefined
+  if (isSummonSkill(skill)) {
+    const summon = { mastery: skillNum(props, 'mastery') }
+    if (mad > 0) return { kind: 'magic', skillPercent: 100, spellAtk: mad, element, summon }
+    const pad = skillNum(props, 'pad')
+    return pad > 0 ? { kind: 'physical', skillPercent: pad, spellAtk: 0, element, summon } : null
+  }
   if (mad > 0) return { kind: 'magic', skillPercent: 100, spellAtk: mad, element, mastery: magicMasteryRatio(props) }
   if (dmg > 0) return { kind: 'physical', skillPercent: dmg, spellAtk: 0, element }
   return null

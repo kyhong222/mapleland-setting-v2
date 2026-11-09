@@ -26,16 +26,20 @@ import { useActiveEquippedBuilts } from '../../store/activation'
 import { useBuffEffects, useConditionalBuffEffects } from '../../store/useBuffEffects'
 import {
   totalAttack, totalMagic, masteryRatio, magicAmpMultiplier, levelPenalty, calcLuckyBase, calcVenom,
+  calcSummon, calcMagicSummon,
 } from '../../domain/attackPower'
 import type { DamageRange } from '../../domain/attackPower'
 import { JOBS } from '../../domain/jobs'
 import { getMonster } from '../../data/mobs'
 import { elementReaction, formatElements, PHYSICAL_ELEMENT } from '../../domain/monster'
-import { skillAttackAt, skillLineCount, comboFinalDamageP, COMBO_SKILLS, findSkillById, skillNumAt, chargeStats, skillElements } from '../../data/skills'
+import {
+  skillAttackAt, skillLineCount, comboFinalDamageP, COMBO_SKILLS, findSkillById, skillNumAt, chargeStats, skillElements,
+  skillDisplayName,
+} from '../../data/skills'
 import type { IJobSkill } from '../../data/skills'
 import { damageSkillsForJob, baseSkillId, stunHitRatio, VENOM_SKILLS, venomStacks } from '../../data/skills/variants'
 import type { ChargeState } from '../../domain/paladinCharge'
-import { computeCast, computeDotCast, computeNhit, computeDpm, baseElementMult, dotElementMult, mixCasts, SKILL_MOTION } from '../../domain/skillCombat'
+import { computeCast, computeDotCast, computeSummonCast, computeNhit, computeDpm, baseElementMult, dotElementMult, mixCasts, SKILL_MOTION } from '../../domain/skillCombat'
 import { staffElementMult } from '../../domain/damage'
 import { capDist, convolve, scaleDist } from '../../domain/nhitProb'
 import type { Dist } from '../../domain/nhitProb'
@@ -187,6 +191,30 @@ export default function NhitPanel() {
     const att = skillAttackAt(sk, lv)
     if (!att) return null
     const isMagic = att.kind === 'magic'
+
+    // 소환수: 1회 공격 별도식. 무기·숙련도와 무관하고 방어를 무시하며 크리·버프 배율도 타지 않는다.
+    // 속성 스태프도 직접 타격에만 붙으므로 여기선 몬스터 반응만 본다 (docs/plan.md §특수 스킬 공식)
+    if (att.summon) {
+      const coefAtk = coef ?? (isMagic ? att.spellAtk : att.skillPercent)
+      const base = isMagic
+        ? calcMagicSummon(totalMagic(effects, finalStats.INT), finalStats.INT, coefAtk, att.summon.mastery)
+        : calcSummon(finalStats.DEX, finalStats.STR, coefAtk)
+      const elementMult = baseElementMult(
+        elementReaction(monster.elemAttr, att.element ?? (isMagic ? undefined : PHYSICAL_ELEMENT)),
+      )
+      return {
+        cast: computeSummonCast(base, elementMult),
+        att,
+        effSkillPercent: isMagic ? 100 : coefAtk,
+        spellAtk: isMagic ? coefAtk : 0,
+        isMagic,
+        elements: skillElements(sk, lv),
+        displayMult: elementMult,
+        charge: null,
+        hitMultipliers: undefined,
+      }
+    }
+
     if (!isMagic && !atkWeapon) return null
     // 변형 스킬은 id에 오프셋이 붙어 있다 — 모션 규칙/공속표/예외식은 전부 원래 id로 조회
     const baseId = baseSkillId(sk.id)
@@ -261,7 +289,7 @@ export default function NhitPanel() {
     // 최종 속성 — 차지가 걸려 있으면 스킬 속성이 아니라 차지 속성이 된다
     const skillElems = skillElements(sk, lv)
     const elements = charge ? chargeElementCodes(charge) : skillElems
-    // 몬스터 반응 + 속성 스태프 보정. 스킬 직접 타격에만 해당한다(소환수는 애초에 계산 대상이 아니고,
+    // 몬스터 반응 + 속성 스태프 보정. 스킬 직접 타격에만 해당한다(소환수는 위에서 따로 계산했고,
     // 포이즌 미스트 등의 도트도 계산하지 않는다 — docs/nhit-dpm.md §4 속성 스태프)
     // 속성 없는 물리 공격은 물리 반응을 받는다. 차지가 걸리면 속성이 바뀌므로 이 경로를 타지 않는다
     const reactionMult = (elemAttr: string | undefined, element: string | undefined) =>
@@ -369,7 +397,7 @@ export default function NhitPanel() {
       uid: pc.uid,
       id: pc.id,
       level: pc.level,
-      name: sk?.description?.name ?? String(pc.id),
+      name: sk ? skillDisplayName(sk) : String(pc.id),
       masterLevel: sk?.masterLevel ?? 1,
       ok: !!dist,
       dist,
@@ -407,6 +435,8 @@ export default function NhitPanel() {
     const baseId = baseSkillId(selectedSkill.id)
     const isFist = FIST_SKILLS.has(baseId)
     const noDpm = NO_DPM.has(baseId)
+    // 소환수는 방컷(몇 번 공격해야 잡는지)까지만 낸다 — 공속 미산출(NO_SPEED_DATA)이라 DPM 칸을 숨긴다
+    const isSummon = !!att.summon
     const hp = monster.maxHP ?? 0
     const isBoss = !!monster.isBoss
     // 물리: 무기 부스터(attackSpeedBoost) + 윈드부스터(windBoostStep) 중첩 공속상승
@@ -430,6 +460,7 @@ export default function NhitPanel() {
       displayMult,
       charge,
       isVenom: VENOM_SKILLS.has(baseId),
+      isSummon,
       isBoss,
       hp,
       hasPreCast: !!preCastPrior,
@@ -438,10 +469,12 @@ export default function NhitPanel() {
       isFist,
       totalRange: cast.totalRange,
       // 마법은 스킬%가 아니라 기본 공격력이 계수다. 직접 입력값이면 '*'로 표시
-      coef: `${isMagic ? `공격력 ${spellAtk}` : `${Math.round(effSkillPercent)}%`}${coefOverride != null ? '*' : ''}`,
+      // 물리 소환수는 %가 아니라 공격력(AttackRate)이 계수다
+      coef: `${isMagic || isSummon ? `공격력 ${isMagic ? spellAtk : effSkillPercent}` : `${Math.round(effSkillPercent)}%`}${coefOverride != null ? '*' : ''}`,
       // 패닉/코마/돌진은 방컷·DPM 미제공(데미지 범위만). 추가스킬은 prior 분포로 반영.
       nhit: isBoss || noDpm ? null : computeNhit(cast.dist, hp, 10, preCastPrior),
-      apm, dpm, killSec, isMagic, effStep, noDpm,
+      apm, dpm, killSec, isMagic, effStep,
+      noDpm: noDpm || isSummon,
     }
   })()
 
@@ -457,7 +490,7 @@ export default function NhitPanel() {
     for (const p of preCastInfos) if (p.ok) counts.set(p.name, (counts.get(p.name) ?? 0) + 1)
     if (counts.size === 0) return null
     const pre = [...counts].map(([name, n]) => (n > 1 ? `${name} ×${n}` : name)).join(' · ')
-    const main = selectedSkill.description?.name ?? String(selectedSkill.id)
+    const main = skillDisplayName(selectedSkill)
     return `※ ${pre} 이후 ${main}${objectJosa(main)} 몇 방 시전해야 하는지에 대한 기대 타수입니다.`
   })()
 
@@ -502,7 +535,7 @@ export default function NhitPanel() {
                   <>
                     <Box component="img" src={skillIconSrc(sk.id)} alt="" onError={hideOnError} sx={{ width: 32, height: 32, imageRendering: 'pixelated', display: 'block', flexShrink: 0 }} />
                     <Box component="span" sx={{ lineHeight: 1.2 }}>
-                      [Lv. {skillLevel}{coefOverride != null && '*'}] {sk.description?.name ?? sk.id}
+                      [Lv. {skillLevel}{coefOverride != null && '*'}] {skillDisplayName(sk)}
                     </Box>
                     {SKILL_MOTION[baseSkillId(sk.id)] && <Box component="span" sx={{ fontSize: 10, color: 'text.disabled' }}>*</Box>}
                   </>
@@ -519,7 +552,7 @@ export default function NhitPanel() {
               {attackSkills.map((s) => (
                 <MenuItem key={s.id} value={s.id} sx={{ fontSize: 13, gap: 1.25, alignItems: 'center' }}>
                   <Box component="img" src={skillIconSrc(s.id)} alt="" onError={hideOnError} sx={{ width: 32, height: 32, imageRendering: 'pixelated', display: 'block', flexShrink: 0 }} />
-                  <Box component="span" sx={{ lineHeight: 1.2 }}>{s.description?.name ?? s.id}</Box>
+                  <Box component="span" sx={{ lineHeight: 1.2 }}>{skillDisplayName(s)}</Box>
                   {SKILL_MOTION[baseSkillId(s.id)] && <Box component="span" sx={{ fontSize: 10, color: 'text.disabled' }}>*</Box>}
                 </MenuItem>
               ))}
@@ -589,7 +622,7 @@ export default function NhitPanel() {
               {precastCandidates.map((s) => (
                 <MenuItem key={s.id} value={s.id} sx={{ fontSize: 12, gap: 1, alignItems: 'center' }}>
                   <Box component="img" src={skillIconSrc(s.id)} alt="" onError={hideOnError} sx={{ width: 24, height: 24, imageRendering: 'pixelated', flexShrink: 0 }} />
-                  <Box component="span">{s.description?.name ?? s.id}</Box>
+                  <Box component="span">{skillDisplayName(s)}</Box>
                 </MenuItem>
               ))}
             </Select>
@@ -628,6 +661,14 @@ export default function NhitPanel() {
                   ) : undefined
                 }
               />
+
+              {result.isSummon && (
+                <Typography variant="caption" color="text.disabled" sx={{ display: 'block', mt: 0.25, lineHeight: 1.4 }}>
+                  {result.isMagic
+                    ? '※ 소환수 1회 공격 데미지입니다. 방어 무시, 크리티컬·데미지 증가 버프·엠플리피케이션 미적용. 마법 소환수 계산식은 인게임 미검증입니다(구버전 구현체 기준).'
+                    : '※ 소환수 1회 공격 데미지입니다. 방어 무시, 크리티컬·데미지 증가 버프 미적용.'}
+                </Typography>
+              )}
 
               {result.isVenom && (
                 <Typography variant="caption" color="text.disabled" sx={{ display: 'block', mt: 0.25, lineHeight: 1.4 }}>
@@ -723,13 +764,14 @@ function SkillLevelDialog({ skill, level, coefOverride, onApply, onClose }: {
   const coefNum = Number(coefText)
   const coefValid = coefText.trim() !== '' && Number.isFinite(coefNum) && coefNum > 0
   const clampLv = (v: number) => Math.max(1, Math.min(master, v))
-  const fmt = (v: number) => (isMagic ? `기본 공격력 ${v}` : `${v}%`)
+  const isSummon = !!att?.summon
+  const fmt = (v: number) => (isMagic ? `기본 공격력 ${v}` : isSummon ? `공격력 ${v}` : `${v}%`)
 
   return (
     <Dialog open onClose={onClose} maxWidth="xs" fullWidth>
       <DialogTitle sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
         <Box component="img" src={skillIconSrc(skill.id)} alt="" onError={hideOnError} sx={{ width: 32, height: 32, imageRendering: 'pixelated' }} />
-        {skill.description?.name ?? skill.id}
+        {skillDisplayName(skill)}
       </DialogTitle>
       <DialogContent>
         <Box sx={{ px: 1 }}>
@@ -768,7 +810,7 @@ function SkillLevelDialog({ skill, level, coefOverride, onApply, onClose }: {
             <>
               <TextField
                 size="small" type="number" fullWidth autoFocus
-                label={isMagic ? '기본 공격력' : '데미지 (%)'}
+                label={isMagic ? '기본 공격력' : isSummon ? '공격력' : '데미지 (%)'}
                 value={coefText}
                 onChange={(e) => setCoefText(e.target.value)}
                 error={!coefValid}
@@ -777,7 +819,7 @@ function SkillLevelDialog({ skill, level, coefOverride, onApply, onClose }: {
                 sx={{ mt: 0.5 }}
               />
               <Typography variant="caption" color="text.disabled" sx={{ display: 'block', mt: 0.5, lineHeight: 1.4 }}>
-                인게임 스킬 설명의 {isMagic ? '기본 공격력' : '데미지 %'}를 입력하세요. 타수·숙련도·공격속도 등
+                인게임 스킬 설명의 {isMagic ? '기본 공격력' : isSummon ? '공격력' : '데미지 %'}를 입력하세요. 타수·숙련도·공격속도 등
                 계수 외 수치는 위에서 선택한 레벨 기준으로 계산됩니다.
               </Typography>
             </>
