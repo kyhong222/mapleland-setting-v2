@@ -367,7 +367,7 @@ export default function NhitPanel() {
       defense,
       skillPercent: effSkillPercent,
       damageMult,
-      // 차징 스킬 최소 차징 ×0.1 — 크리 뒤·클램프 앞 (variants.ts CHARGE_SKILLS)
+      // 차징 스킬 반차징 ×0.5 · 최소 차징 ×0.1 — 크리 뒤·클램프 앞 (variants.ts CHARGE_SKILLS)
       keydownMult: chargeMultOf(sk.id),
       critProb,
       critMult,

@@ -22,7 +22,7 @@
  *
  * 차징 스킬(빅뱅·피어싱·스크류 펀치)은 키다운 시간에 따라 데미지가 ⌊90 × t / T⌋ + 10 %로 오른다
  * (최소 10% ~ 풀차징 100%, docs/nhit-dpm.md §4 "차징 스킬"). 기본 항목을 '(풀차징)'으로 두고
- * '(최소 차징)' 항목을 파생한다. 기본 항목은 예전부터 배율 없이(=100%) 계산해 왔으므로 저장된 선택은
+ * '(반차징)'(50%)·'(최소 차징)' 항목을 파생한다. 기본 항목은 예전부터 배율 없이(=100%) 계산해 왔으므로 저장된 선택은
  * 풀차징으로 이어진다.
  *
  * 변형은 겹칠 수 있다 — 바이퍼 스크류 펀치는 '(최소 차징) (스턴)'처럼 차징 변형 위에 스턴 변형이 얹힌다.
@@ -43,18 +43,19 @@ import { attackSkillsForJob, findSkillById, isSummonSkill, skillsForJob, skillNu
 /** 스턴 마스터리 skill id — 이 스킬을 가진 직업만 (스턴) 변형을 만든다 */
 export const STUN_MASTERY_ID = 5110000
 
-/** 변형 종류: 스턴 상태 가정 / 베놈 2·3중첩 / 소환수 약점 적용(데몬 연계) / 차징 스킬 최소 차징 */
-export type SkillVariantKind = 'stun' | 'venom2' | 'venom3' | 'weak' | 'minCharge'
+/** 변형 종류: 스턴 상태 가정 / 베놈 2·3중첩 / 소환수 약점 적용(데몬 연계) / 차징 스킬 반·최소 차징 */
+export type SkillVariantKind = 'stun' | 'venom2' | 'venom3' | 'weak' | 'halfCharge' | 'minCharge'
 
 /**
  * 변형별 id 오프셋 (실제 스킬 id와 겹치지 않는 9자리).
- * 겹치는 조합(minCharge + stun = 12억대)도 int32 안에 들고, 없앤 8억대와도 겹치지 않는다.
+ * 겹치는 조합(halfCharge + stun = 13억대, minCharge + stun = 12억대)도 int32 안에 들고, 없앤 8억대와도 겹치지 않는다.
  */
 const VARIANT_OFFSET: Record<SkillVariantKind, number> = {
   stun: 900_000_000,
   venom2: 600_000_000,
   venom3: 700_000_000,
   weak: 500_000_000,
+  halfCharge: 400_000_000,
   minCharge: 300_000_000,
 }
 
@@ -64,6 +65,7 @@ const VARIANT_SUFFIX: Record<SkillVariantKind, string> = {
   venom2: '(2중첩)',
   venom3: '(3중첩, 최대)',
   weak: '(1회 공격, 약점 적용)',
+  halfCharge: '(반차징)',
   minCharge: '(최소 차징)',
 }
 
@@ -176,20 +178,25 @@ export const CHARGE_SKILLS: ReadonlySet<number> = new Set([2121001, 2221001, 232
 /** 최소 차징 데미지 배율 — ⌊90 × t / T⌋ + 10 %에서 t → 0 */
 export const MIN_CHARGE_MULT = 0.1
 
+/** 반차징 데미지 배율 — 최소(10%)와 풀차징(100%) 사이의 대표값 50% (⌊90 × t / T⌋ = 40, t ≈ 0.45T) */
+export const HALF_CHARGE_MULT = 0.5
+
 const FULL_CHARGE_SUFFIX = '(풀차징)'
 
-/** 차징 스킬이면 '(풀차징)' 기본 항목 + '(최소 차징)' 항목으로 펼친다 */
+/** 차징 스킬이면 '(풀차징)' 기본 항목 + '(반차징)' + '(최소 차징)' 항목으로 펼친다 */
 function expandCharge(skill: IJobSkill): IJobSkill[] {
   if (!CHARGE_SKILLS.has(skill.id)) return [skill]
   const name = skill.description?.name ?? String(skill.id)
   const base = { ...skill, description: { ...skill.description, id: skill.id, name: `${name} ${FULL_CHARGE_SUFFIX}` } }
-  const min = makeVariant(skill, 'minCharge')
-  return [base, min]
+  return [base, makeVariant(skill, 'halfCharge'), makeVariant(skill, 'minCharge')]
 }
 
-/** 차징 배율 — 최소 차징 항목이면 0.1, 그 외(풀차징 포함) 1 */
+/** 차징 배율 — 최소 차징 0.1 · 반차징 0.5 · 그 외(풀차징 포함) 1 */
 export function chargeMultOf(skillId: number): number {
-  return variantKindsOf(skillId).includes('minCharge') ? MIN_CHARGE_MULT : 1
+  const kinds = variantKindsOf(skillId)
+  if (kinds.includes('minCharge')) return MIN_CHARGE_MULT
+  if (kinds.includes('halfCharge')) return HALF_CHARGE_MULT
+  return 1
 }
 
 /** 기본 스킬 → 변형 스킬 (id와 표시 이름만 바꾼 사본) */

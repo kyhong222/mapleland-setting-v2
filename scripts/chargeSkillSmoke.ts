@@ -1,8 +1,8 @@
 /**
  * 수동 스모크 테스트: 차징 스킬 (tsx) — docs/nhit-dpm.md §4 "차징 스킬"
- *  - 빅뱅·피어싱·스크류 펀치: 기존 항목 → '(풀차징)' + '(최소 차징)' 두 항목
- *  - 최소 차징 배율 0.1, 풀차징 1
- *  - 겹친 변형(바이퍼 '(최소 차징) (스턴)') id 왕복·스턴 판정
+ *  - 빅뱅·피어싱·스크류 펀치: 기존 항목 → '(풀차징)' + '(반차징)' + '(최소 차징)' 세 항목
+ *  - 최소 차징 배율 0.1, 반차징 0.5, 풀차징 1
+ *  - 겹친 변형(바이퍼 '(최소 차징) (스턴)' · '(반차징) (스턴)') id 왕복·스턴 판정
  *  - 키다운 배율은 방어·크리 뒤, 클램프 앞에 곱한다
  *  - 다른 스킬에 영향 없음
  */
@@ -34,6 +34,12 @@ for (const [job, id, label] of CASES) {
   const min = list.find((s) => s.id === minId)
   check(!!full && /\(풀차징\)/.test(full.description?.name ?? ''), `${job} ${label}: 기본 id는 '(풀차징)' (${full?.description?.name})`)
   check(!!min && /\(최소 차징\)/.test(min.description?.name ?? ''), `${job} ${label}: '(최소 차징)' 항목 (${min?.description?.name})`)
+  const halfId = variantSkillId(id, 'halfCharge')
+  const half = list.find((s) => s.id === halfId)
+  check(!!half && /\(반차징\)/.test(half.description?.name ?? ''), `${job} ${label}: '(반차징)' 항목 (${half?.description?.name})`)
+  const idx = [id, halfId, minId].map((x) => list.findIndex((s) => s.id === x))
+  check(idx[0] < idx[1] && idx[1] < idx[2], `${job} ${label}: 풀 → 반 → 최소 순서`)
+  check(chargeMultOf(halfId) === 0.5 && baseSkillId(halfId) === id, `${job} ${label}: 반차징 배율 0.5 · id 왕복`)
   check(!list.some((s) => s.id === id && !/\(풀차징\)/.test(s.description?.name ?? '')), `${job} ${label}: 이름 없는 기존 항목은 남지 않음`)
   check(chargeMultOf(id) === 1 && chargeMultOf(minId) === 0.1, `${job} ${label}: 배율 풀 1 / 최소 0.1`)
   check(baseSkillId(minId) === id, `${job} ${label}: 변형 id 왕복`)
@@ -52,6 +58,11 @@ check(variantKindsOf(minStun).join() === 'stun,minCharge', `겹친 변형 종류
 check(chargeMultOf(minStun) === 0.1 && stunHitRatio(minStun, 20) === 1, '최소 차징 배율 + 스턴 가정 둘 다 적용')
 check(minStun < 2 ** 31, 'int32 범위')
 check(stunHitRatio(variantSkillId(5101004, 'minCharge'), 20) === 0, '스턴 없는 최소 차징은 스턴 미가정')
+const halfStun = variantSkillId(variantSkillId(5101004, 'halfCharge'), 'stun')
+check(!!vList.find((s) => s.id === halfStun), `(반차징) (스턴) 항목 존재 (${vList.find((s) => s.id === halfStun)?.description?.name})`)
+check(baseSkillId(halfStun) === 5101004 && variantKindsOf(halfStun).join() === 'stun,halfCharge', `반차징 겹친 변형 왕복 (${variantKindsOf(halfStun).join()})`)
+check(chargeMultOf(halfStun) === 0.5 && stunHitRatio(halfStun, 20) === 1, '반차징 배율 + 스턴 가정 둘 다 적용')
+check(halfStun < 2 ** 31, '반차징 겹친 id int32 범위')
 
 console.log('적용 위치 (방어·크리 뒤, 클램프 앞)')
 // base 10000, 물리방어 1000(렙차 0): 풀 = (10000 - 1000×0.5) × 200% = 19000 → 최소 1900
