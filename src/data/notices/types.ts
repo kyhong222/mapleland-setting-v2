@@ -36,12 +36,8 @@ export type NoticeBlock =
   | { type: 'items'; view: 'icons' | 'chips' | 'cards'; items: NoticeItemRef[] }
   /** 조정 내역 표 — 아이콘(호버 시 툴팁) | before → 현재 카탈로그 값 ('DEX 50 → DEX 40') */
   | { type: 'compare'; items: NoticeItemRef[] }
-  /**
-   * 스킬 아이콘 줄 — `/skill-icons/<id>.png`, 호버 시 스킬 이름. id는 기본 스킬 id(변형 id 아님).
-   * `[a, b]`를 넣으면 한 칸을 반씩 나눠 왼쪽은 a, 오른쪽은 b 아이콘을 그린다
-   * (같은 스킬인데 직업마다 아이콘이 다른 경우 — 스크류 펀치 바이퍼/스트라이커).
-   */
-  | { type: 'skills'; ids: (number | [number, number])[] }
+  /** 스킬 아이콘 줄 — `/skill-icons/<id>.png`, 호버 시 스킬 이름. id는 기본 스킬 id(변형 id 아님) */
+  | { type: 'skills'; ids: number[] }
 
 /** 인라인 텍스트 조각 */
 export type InlineSegment = { kind: 'text'; text: string } | { kind: 'item'; id: number }
