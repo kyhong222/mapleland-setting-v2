@@ -20,6 +20,14 @@
  * 몬스터 원래 속성과 무관하게 약점(×1.5)을 적용하는 '(1회 공격, 약점 적용)' 항목을 파생한다.
  * 기본 항목은 몬스터 원래 속성 그대로 판정한다(원래 약점이면 약점).
  *
+ * 차징 스킬(빅뱅·피어싱·스크류 펀치)은 키다운 시간에 따라 데미지가 ⌊90 × t / T⌋ + 10 %로 오른다
+ * (최소 10% ~ 풀차징 100%, docs/nhit-dpm.md §4 "차징 스킬"). 기본 항목을 '(풀차징)'으로 두고
+ * '(최소 차징)' 항목을 파생한다. 기본 항목은 예전부터 배율 없이(=100%) 계산해 왔으므로 저장된 선택은
+ * 풀차징으로 이어진다.
+ *
+ * 변형은 겹칠 수 있다 — 바이퍼 스크류 펀치는 '(최소 차징) (스턴)'처럼 차징 변형 위에 스턴 변형이 얹힌다.
+ * 이때 id에는 두 오프셋이 모두 더해지고, baseSkillId()는 큰 오프셋부터 차례로 벗겨낸다.
+ *
  * 변형 스킬 id = 기본 id + 오프셋. 아이콘(`/skill-icons/<id>.png`)·모션 규칙(SKILL_MOTION)·
  * 공속표(SKILL_APM)는 전부 **기본 id로** 조회해야 하므로 소비처에서 baseSkillId()로 되돌린다.
  * 오프셋은 실제 스킬 id(최대 8자리, 3천만대)와 겹치지 않도록 9자리를 쓴다.
@@ -35,15 +43,19 @@ import { attackSkillsForJob, findSkillById, isSummonSkill, skillsForJob, skillNu
 /** 스턴 마스터리 skill id — 이 스킬을 가진 직업만 (스턴) 변형을 만든다 */
 export const STUN_MASTERY_ID = 5110000
 
-/** 변형 종류: 스턴 상태 가정 / 베놈 2·3중첩 / 소환수 약점 적용(데몬 연계) */
-export type SkillVariantKind = 'stun' | 'venom2' | 'venom3' | 'weak'
+/** 변형 종류: 스턴 상태 가정 / 베놈 2·3중첩 / 소환수 약점 적용(데몬 연계) / 차징 스킬 최소 차징 */
+export type SkillVariantKind = 'stun' | 'venom2' | 'venom3' | 'weak' | 'minCharge'
 
-/** 변형별 id 오프셋 (실제 스킬 id와 겹치지 않는 9자리) */
+/**
+ * 변형별 id 오프셋 (실제 스킬 id와 겹치지 않는 9자리).
+ * 겹치는 조합(minCharge + stun = 12억대)도 int32 안에 들고, 없앤 8억대와도 겹치지 않는다.
+ */
 const VARIANT_OFFSET: Record<SkillVariantKind, number> = {
   stun: 900_000_000,
   venom2: 600_000_000,
   venom3: 700_000_000,
   weak: 500_000_000,
+  minCharge: 300_000_000,
 }
 
 /** 변형별 이름 접미사 */
@@ -52,6 +64,7 @@ const VARIANT_SUFFIX: Record<SkillVariantKind, string> = {
   venom2: '(2중첩)',
   venom3: '(3중첩, 최대)',
   weak: '(1회 공격, 약점 적용)',
+  minCharge: '(최소 차징)',
 }
 
 /**
@@ -81,15 +94,25 @@ const VARIANT_KINDS = (Object.keys(VARIANT_OFFSET) as SkillVariantKind[]).sort(
   (a, b) => VARIANT_OFFSET[b] - VARIANT_OFFSET[a],
 )
 
-/** 변형 종류 (기본 스킬이면 null) */
+/** 가장 바깥(오프셋이 가장 큰) 변형 종류 (기본 스킬이면 null) */
 export function variantKindOf(skillId: number): SkillVariantKind | null {
   return VARIANT_KINDS.find((k) => skillId > VARIANT_OFFSET[k]) ?? null
 }
 
-/** 변형 id → 원래 스킬 id (기본 스킬이면 그대로) */
+/** 겹친 변형까지 전부 — 큰 오프셋부터 벗겨낸 순서 (기본 스킬이면 빈 배열) */
+export function variantKindsOf(skillId: number): SkillVariantKind[] {
+  const kinds: SkillVariantKind[] = []
+  let id = skillId
+  for (let kind = variantKindOf(id); kind; kind = variantKindOf(id)) {
+    kinds.push(kind)
+    id -= VARIANT_OFFSET[kind]
+  }
+  return kinds
+}
+
+/** 변형 id → 원래 스킬 id (기본 스킬이면 그대로, 겹친 변형도 끝까지 되돌린다) */
 export function baseSkillId(skillId: number): number {
-  const kind = variantKindOf(skillId)
-  return kind ? skillId - VARIANT_OFFSET[kind] : skillId
+  return variantKindsOf(skillId).reduce((id, k) => id - VARIANT_OFFSET[k], skillId)
 }
 
 /** 저장된 스킬 선택을 현재 목록에 있는 id로 보정 (없앤 변형 대응) */
@@ -143,6 +166,32 @@ export function forcesWeakness(skillId: number): boolean {
   return variantKindOf(skillId) === 'weak'
 }
 
+/**
+ * 차징(키다운) 스킬 — 빅뱅(FP·IL·클레릭) · 피어싱 · 스크류 펀치(바이퍼 · 썬브레이커).
+ * 풀차징 시간 T는 버전마다 다르지만(v77 빅뱅·피어싱 2000ms, v95 1000/900ms) 최소 10% · 풀차징 100%는 같다
+ * (mnwvs077 CalcDamage.cpp · Rebirth95 · Edelstein 공통).
+ */
+export const CHARGE_SKILLS: ReadonlySet<number> = new Set([2121001, 2221001, 2321001, 3221001, 5101004, 15101003])
+
+/** 최소 차징 데미지 배율 — ⌊90 × t / T⌋ + 10 %에서 t → 0 */
+export const MIN_CHARGE_MULT = 0.1
+
+const FULL_CHARGE_SUFFIX = '(풀차징)'
+
+/** 차징 스킬이면 '(풀차징)' 기본 항목 + '(최소 차징)' 항목으로 펼친다 */
+function expandCharge(skill: IJobSkill): IJobSkill[] {
+  if (!CHARGE_SKILLS.has(skill.id)) return [skill]
+  const name = skill.description?.name ?? String(skill.id)
+  const base = { ...skill, description: { ...skill.description, id: skill.id, name: `${name} ${FULL_CHARGE_SUFFIX}` } }
+  const min = makeVariant(skill, 'minCharge')
+  return [base, min]
+}
+
+/** 차징 배율 — 최소 차징 항목이면 0.1, 그 외(풀차징 포함) 1 */
+export function chargeMultOf(skillId: number): number {
+  return variantKindsOf(skillId).includes('minCharge') ? MIN_CHARGE_MULT : 1
+}
+
 /** 기본 스킬 → 변형 스킬 (id와 표시 이름만 바꾼 사본) */
 function makeVariant(skill: IJobSkill, kind: SkillVariantKind): IJobSkill {
   const id = variantSkillId(skill.id, kind)
@@ -164,7 +213,7 @@ export function hasStunMastery(jobId: JobId): boolean {
  * 스턴 마스터리가 없는 직업은 `attackSkillsForJob`과 같다.
  */
 export function damageSkillsForJob(jobId: JobId): IJobSkill[] {
-  const skills = attackSkillsForJob(jobId).flatMap(expandVenom).flatMap(expandSummon)
+  const skills = attackSkillsForJob(jobId).flatMap(expandVenom).flatMap(expandSummon).flatMap(expandCharge)
   if (!hasStunMastery(jobId)) return skills
   return skills.flatMap((s) => [s, makeVariant(s, 'stun')])
 }
