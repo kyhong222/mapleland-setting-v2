@@ -117,6 +117,13 @@ export interface LineDamageInput {
   /** 크리 기대배율 f = 1 + 크리확률×크리추뎀/100 (기본 1) */
   critFactor: number
   /**
+   * 차징(키다운) 배율 — 빅뱅·피어싱·스크류 펀치. ⌊90 × t / T⌋ + 10 % (최소 0.1 ~ 풀차징 1).
+   * 방어·스킬계수·크리를 모두 거친 뒤, 클램프 **전에** 곱한다 (mnwvs077 CalcDamage.cpp PDamage/MDamage
+   * — `if (tKeyDown) damage *= ...` 가 크리 다음, 99999 clamp 앞). 방어 앞에 곱하면 방어가 10배로
+   * 세게 먹어 최소 차징이 크게 과소평가된다. 기본 1.
+   */
+  keydownMult?: number
+  /**
    * 7단계 애프터 모디파이어 — 타수별 배율. 클램프(199999) **이후** 곱하므로 상한 초과 가능.
    * 예: 피스트 5타 ×2, 6타 ×4. 기본 1.
    */
@@ -135,6 +142,7 @@ export function lineFinalRange(p: LineDamageInput): DamageRange {
     // 5·6단계: 스킬 계수 + 크리 (방어 뒤)
     v = (v * p.skillPercent) / 100
     v = v * p.critFactor
+    v = v * (p.keydownMult ?? 1)
     // 7단계 애프터 모디파이어: 클램프 후 타수배율(상한 초과 가능) → 8단계 floor
     const clamped = clampFloor(v)
     const pm = p.postClampMult ?? 1
@@ -163,6 +171,8 @@ export interface CastDamageParams {
   skillPercent: number
   /** 데미지 증가 배수(콤보·버서크·차지 계수·위협·엘앰프 등). 방어 앞 적용 */
   damageMult: number
+  /** 차징(키다운) 배율 — 크리 뒤·클램프 앞 (LineDamageInput.keydownMult). 기본 1 */
+  keydownMult?: number
   /** 크리 확률 (0~1). 크리는 평균배율이 아니라 확률 혼합으로 분포에 반영 */
   critProb: number
   /** 크리 시 데미지 배율 (예: 1.4). critProb>0일 때만 사용 */
@@ -393,7 +403,7 @@ export function computeCast(p: CastDamageParams): CastResult | null {
   const finalOf = (base: DamageRange, critFactor: number, postClampMult = 1) =>
     lineFinalRange({
       base, elementMult: p.elementMult, defense: p.defense, skillPercent: p.skillPercent,
-      damageMult: p.damageMult, critFactor, postClampMult,
+      damageMult: p.damageMult, critFactor, keydownMult: p.keydownMult, postClampMult,
     })
   const critProb = Math.max(0, Math.min(1, p.critProb))
   // 크리 배율이 1이면 크리와 논크리가 같으므로 갈래를 나눌 필요가 없다
