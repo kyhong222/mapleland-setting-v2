@@ -175,6 +175,32 @@ export function applyDefenses(base: IncomingRange, o: {
   }
 }
 
+/** 매직가드 스킬 id (모법사 2001002 · 플레임위자드 12001001) */
+export const MAGIC_GUARD_IDS: ReadonlySet<string> = new Set(['2001002', '12001001'])
+
+/**
+ * 매직가드가 HP 대신 받아내는 MP 소모량.
+ *   mpDamage = floor(damage × x / 100), hpDamage = damage − mpDamage (kinoko HitHandler.getMagicGuardReduce)
+ * 같은 채널(incomingDamageReduceP)을 쓰는 블루 오라는 MP를 쓰지 않으므로, 매직가드 몫만 뺀
+ * "매직가드가 없었다면 받았을 피격"과 실제 HP 피격의 차이를 MP 소모로 본다 → HP + MP = 원래 피격.
+ * 현재 MP가 모자라면 남는 만큼 HP로 넘어가는 처리는 하지 않는다(MP 충분 가정).
+ *
+ * @param hp  applyDefenses 결과(실제 HP 피격)
+ * @param magicGuardP  매직가드 전환율 x (%) — 0이면 null
+ */
+export function magicGuardMpCost(base: IncomingRange, o: Parameters<typeof applyDefenses>[1], hp: IncomingRange, magicGuardP: number): IncomingRange | null {
+  const reduceP = o.effects.incomingDamageReduceP ?? 0
+  if (magicGuardP <= 0 || reduceP <= 0) return null // 토글만 켜지고 합산에서 빠진 경우(직업 불일치 등)
+  const withoutMg = applyDefenses(base, {
+    ...o,
+    effects: { ...o.effects, incomingDamageReduceP: reduceP - Math.min(magicGuardP, reduceP) },
+  })
+  return {
+    min: Math.max(0, withoutMg.min - hp.min),
+    max: Math.max(0, withoutMg.max - hp.max),
+  }
+}
+
 const ELEM_LABEL: Record<string, string> = { F: '불', I: '얼음', L: '번개', S: '독', H: '성' }
 
 /** 스킬 표시 라벨 ("번개속성 마법", "불속성 물리", "물리" 등) */

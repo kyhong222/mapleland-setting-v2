@@ -19,7 +19,7 @@ import type { EffectMap } from '../../domain/effects'
 import { JOBS } from '../../domain/jobs'
 import { getMonster } from '../../data/mobs'
 import { lookupStandardPDD } from '../../data/standardPDD'
-import { physicalIncoming, applyDefenses, monsterSkillIncoming } from '../../domain/incomingDamage'
+import { physicalIncoming, applyDefenses, monsterSkillIncoming, magicGuardMpCost, MAGIC_GUARD_IDS } from '../../domain/incomingDamage'
 import type { IncomingRange, IncomingType } from '../../domain/incomingDamage'
 import { monsterRenderUrl } from '../../domain/monster'
 
@@ -102,14 +102,21 @@ function DefIcons({ badges }: { badges: DefBadge[] }) {
   )
 }
 
-function DmgRow({ label, range, badges }: { label: ReactNode; range: IncomingRange; badges?: DefBadge[] }) {
+function DmgRow({ label, range, mp, badges }: { label: ReactNode; range: IncomingRange; mp?: IncomingRange | null; badges?: DefBadge[] }) {
   return (
     <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', px: 1, py: 0.25, gap: 1 }}>
       <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5, minWidth: 0 }}>
         <Typography variant="body2" color="text.secondary" component="div">{label}</Typography>
         {badges && <DefIcons badges={badges} />}
       </Box>
-      <Typography variant="body2" sx={{ fontWeight: 700, color: 'error.main', whiteSpace: 'nowrap' }}>{fmtRange(range)}</Typography>
+      <Box sx={{ textAlign: 'right' }}>
+        <Typography variant="body2" sx={{ fontWeight: 700, color: 'error.main', whiteSpace: 'nowrap' }}>{fmtRange(range)}</Typography>
+        {mp && (
+          <Typography variant="caption" component="div" sx={{ fontWeight: 700, color: 'info.main', whiteSpace: 'nowrap', lineHeight: 1.2 }}>
+            MP {fmtRange(mp)}
+          </Typography>
+        )}
+      </Box>
     </Box>
   )
 }
@@ -163,11 +170,24 @@ export default function IncomingDamagePanel() {
     const stdPdd = lookupStandardPDD(job.classId, level)
 
     const def = { effects, jobClass: job.classId, isBoss, powerUp, magicUp }
+    // 매직가드 전환율 — 블루 오라와 채널을 공유하므로 매직가드 스킬 레벨에서 따로 읽는다
+    let magicGuardP = 0
+    for (const [id, lv] of [...Object.entries(activeBuffs), ...Object.entries(appliedBuffs)]) {
+      if (!MAGIC_GUARD_IDS.has(id)) continue
+      const b = getBuff(id)
+      if (b) magicGuardP = Math.max(magicGuardP, buffEffectsAtLevel(b, lv).incomingDamageReduceP ?? 0)
+    }
+    /** 방어 적용 + 매직가드 MP 소모 */
+    const resolve = (base: IncomingRange, type: IncomingType) => {
+      const o = { ...def, type }
+      const range = applyDefenses(base, o)
+      return { range, mp: magicGuardMpCost(base, o, range, magicGuardP) }
+    }
     // 위협 등: 몬스터 공격력 감소 배율
     const attackMult = 1 - (effects.monsterAttackReduceP ?? 0) / 100
-    const phys = applyDefenses(
+    const phys = resolve(
       physicalIncoming({ monsterAtt: monster.PADamage ?? 0, charLevel: level, monLevel: monster.level, pdd, stdPdd, isWarrior, stats: finalStats, attackMult }),
-      { ...def, type: 'touch' },
+      'touch',
     )
 
     const skills = monster.skills
@@ -175,7 +195,7 @@ export default function IncomingDamagePanel() {
           skills: monster.skills,
           monsterMatt: monster.MADamage ?? 0,
           charLevel: level, monLevel: monster.level, pdd, stdPdd, mdd, isWarrior, isMagician, stats: finalStats, attackMult,
-        }).map((e) => ({ ...e, range: applyDefenses(e.range, { ...def, type: e.type }) }))
+        }).map((e) => ({ ...e, ...resolve(e.range, e.type) }))
       : []
 
     content = (
@@ -189,7 +209,7 @@ export default function IncomingDamagePanel() {
           </Button>
         </Box>
         <Divider sx={{ mb: 0.5 }} />
-        <DmgRow label="물리 접촉" range={phys} badges={badgesFor('touch')} />
+        <DmgRow label="물리 접촉" range={phys.range} mp={phys.mp} badges={badgesFor('touch')} />
 
         {skills.length > 0 && (
           <>
@@ -200,6 +220,7 @@ export default function IncomingDamagePanel() {
                 key={e.key}
                 label={<SkillMotion mobId={monster.id} skillKey={e.key}>{e.label}</SkillMotion>}
                 range={e.range}
+                mp={e.mp}
                 badges={badgesFor(e.type)}
               />
             ))}
