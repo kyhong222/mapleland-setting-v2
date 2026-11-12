@@ -5,7 +5,9 @@ import Alert from '@mui/material/Alert'
 import Box from '@mui/material/Box'
 import Stack from '@mui/material/Stack'
 import Typography from '@mui/material/Typography'
+import Tooltip from '@mui/material/Tooltip'
 import { parseInline, type NoticeBlock } from '../../data/notices'
+import { findSkillById } from '../../data/skills'
 import { NoticeCompareTable, NoticeItemCard, NoticeItemChip, NoticeItemIcon, type NoticeItemMap } from './NoticeItem'
 
 /** 텍스트 + `[[item:id]]` 칩 */
@@ -74,7 +76,40 @@ function Block({ block, items }: { block: NoticeBlock; items: NoticeItemMap }) {
       )
     case 'compare':
       return <NoticeCompareTable refs={block.items} items={items} />
+    case 'skills':
+      return (
+        <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.75 }}>
+          {block.ids.map((id) => (
+            <NoticeSkillIcon key={id} id={id} />
+          ))}
+        </Box>
+      )
   }
+}
+
+/** 스킬 아이콘 타일 — 아이템 아이콘(NoticeItemIcon)과 같은 40px 틀, 호버 시 스킬 이름 */
+function NoticeSkillIcon({ id }: { id: number }) {
+  const name = findSkillById(id)?.description?.name ?? String(id)
+  return (
+    <Tooltip title={name} placement="top" arrow enterTouchDelay={0} leaveTouchDelay={3000} disableInteractive>
+      <Box
+        sx={{
+          width: 40,
+          height: 40,
+          display: 'inline-flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          border: 1,
+          borderColor: 'divider',
+          borderRadius: 1,
+          bgcolor: 'action.hover',
+          flexShrink: 0,
+        }}
+      >
+        <Box component="img" src={`/skill-icons/${id}.png`} alt={name} sx={{ width: 32, height: 32, imageRendering: 'pixelated' }} />
+      </Box>
+    </Tooltip>
+  )
 }
 
 export default function NoticeBlocks({ blocks, items }: { blocks: NoticeBlock[]; items: NoticeItemMap }) {
