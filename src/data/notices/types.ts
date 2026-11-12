@@ -36,6 +36,8 @@ export type NoticeBlock =
   | { type: 'items'; view: 'icons' | 'chips' | 'cards'; items: NoticeItemRef[] }
   /** 조정 내역 표 — 아이콘(호버 시 툴팁) | before → 현재 카탈로그 값 ('DEX 50 → DEX 40') */
   | { type: 'compare'; items: NoticeItemRef[] }
+  /** 스킬 아이콘 줄 — `/skill-icons/<id>.png`, 호버 시 스킬 이름. id는 기본 스킬 id(변형 id 아님) */
+  | { type: 'skills'; ids: number[] }
 
 /** 인라인 텍스트 조각 */
 export type InlineSegment = { kind: 'text'; text: string } | { kind: 'item'; id: number }

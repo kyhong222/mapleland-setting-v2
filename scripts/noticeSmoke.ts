@@ -2,6 +2,7 @@
  * 수동 스모크 테스트: 공지사항 번들 데이터 검증 (tsx)
  *  - id 중복 / 날짜 형식
  *  - 블록·인라인 `[[item:id]]`가 가리키는 아이템이 조회되는지 (카탈로그 밖은 API 조회)
+ *  - skills 블록의 스킬이 스킬북에 있고 아이콘 파일이 있는지
  *  - compare 블록의 before가 현재값과 실제로 다른지 (같으면 변경 내역이 비어 보인다)
  *  - 자동 노출 판정(최신 1건 / 다시 열지 않음 / 만료)
  */
@@ -9,6 +10,9 @@ import { NOTICES, autoOpenNotice, noticeItemIds, parseInline } from '../src/data
 import { getCatalogItem } from '../src/data/catalog'
 import { getItem } from '../src/data/itemRepository'
 import type { ItemData } from '../src/domain/item'
+import { findSkillById } from '../src/data/skills'
+import fs from 'fs'
+import path from 'path'
 
 let fail = 0
 const bad = (msg: string) => {
@@ -34,6 +38,14 @@ async function main() {
       else if (!getCatalogItem(id)) console.log(`  · ${id} ${item.name} — 카탈로그 밖(API 조회)`)
     }
     console.log(`  아이템 ${items.size}종 확인`)
+
+    // skills 블록: 스킬북에 있고 아이콘 파일이 있는지
+    const skillIds = n.blocks.flatMap((b) => (b.type === 'skills' ? b.ids : []))
+    for (const id of skillIds) {
+      if (!findSkillById(id)) bad(`스킬 조회 실패: ${id}`)
+      if (!fs.existsSync(path.join('public', 'skill-icons', `${id}.png`))) bad(`스킬 아이콘 없음: ${id}`)
+    }
+    if (skillIds.length) console.log(`  스킬 ${skillIds.length}종 확인`)
 
     for (const b of n.blocks) {
       if (b.type !== 'compare') continue

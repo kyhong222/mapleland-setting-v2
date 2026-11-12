@@ -4,11 +4,12 @@ import type { InlineSegment, Notice, NoticeBlock } from './types'
 import maple3rdAnniversary from './2026-10-maple-3rd-anniversary'
 import battleMage from './2026-10-battle-mage'
 import elementalStaff from './2026-11-elemental-staff'
+import skillUpdates from './2026-11-skill-updates'
 
 export * from './types'
 
 /** 최신순 */
-export const NOTICES: Notice[] = [maple3rdAnniversary, battleMage, elementalStaff].sort((a, b) => b.date.localeCompare(a.date))
+export const NOTICES: Notice[] = [maple3rdAnniversary, battleMage, elementalStaff, skillUpdates].sort((a, b) => b.date.localeCompare(a.date))
 
 /** 로컬 날짜 'YYYY-MM-DD' */
 export function todayString(now = new Date()): string {
