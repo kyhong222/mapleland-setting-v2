@@ -40,7 +40,7 @@ async function main() {
     console.log(`  아이템 ${items.size}종 확인`)
 
     // skills 블록: 스킬북에 있고 아이콘 파일이 있는지
-    const skillIds = n.blocks.flatMap((b) => (b.type === 'skills' ? b.ids : []))
+    const skillIds = n.blocks.flatMap((b) => (b.type === 'skills' ? b.ids.flat() : []))
     for (const id of skillIds) {
       if (!findSkillById(id)) bad(`스킬 조회 실패: ${id}`)
       if (!fs.existsSync(path.join('public', 'skill-icons', `${id}.png`))) bad(`스킬 아이콘 없음: ${id}`)

@@ -80,16 +80,26 @@ function Block({ block, items }: { block: NoticeBlock; items: NoticeItemMap }) {
       return (
         <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.75 }}>
           {block.ids.map((id) => (
-            <NoticeSkillIcon key={id} id={id} />
+            <NoticeSkillIcon key={String(id)} id={id} />
           ))}
         </Box>
       )
   }
 }
 
-/** 스킬 아이콘 타일 — 아이템 아이콘(NoticeItemIcon)과 같은 40px 틀, 호버 시 스킬 이름 */
-function NoticeSkillIcon({ id }: { id: number }) {
-  const name = findSkillById(id)?.description?.name ?? String(id)
+const skillName = (id: number) => findSkillById(id)?.description?.name ?? String(id)
+const SKILL_IMG_SX = { width: 32, height: 32, imageRendering: 'pixelated' } as const
+
+/**
+ * 스킬 아이콘 타일 — 아이템 아이콘(NoticeItemIcon)과 같은 40px 틀, 호버 시 스킬 이름.
+ * `[a, b]`면 b를 a 위에 겹치고 왼쪽 절반을 잘라내 반반으로 보인다.
+ */
+function NoticeSkillIcon({ id }: { id: number | [number, number] }) {
+  const [left, right] = Array.isArray(id) ? id : [id, null]
+  // 반반 타일은 이름이 같으면 하나만, 다르면 둘 다
+  const name = right == null || skillName(left) === skillName(right)
+    ? skillName(left)
+    : `${skillName(left)} / ${skillName(right)}`
   return (
     <Tooltip title={name} placement="top" arrow enterTouchDelay={0} leaveTouchDelay={3000} disableInteractive>
       <Box
@@ -106,7 +116,17 @@ function NoticeSkillIcon({ id }: { id: number }) {
           flexShrink: 0,
         }}
       >
-        <Box component="img" src={`/skill-icons/${id}.png`} alt={name} sx={{ width: 32, height: 32, imageRendering: 'pixelated' }} />
+        <Box sx={{ position: 'relative', width: 32, height: 32 }}>
+          <Box component="img" src={`/skill-icons/${left}.png`} alt={name} sx={{ ...SKILL_IMG_SX, display: 'block' }} />
+          {right != null && (
+            <Box
+              component="img"
+              src={`/skill-icons/${right}.png`}
+              alt=""
+              sx={{ ...SKILL_IMG_SX, position: 'absolute', inset: 0, clipPath: 'inset(0 0 0 50%)' }}
+            />
+          )}
+        </Box>
       </Box>
     </Tooltip>
   )
