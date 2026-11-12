@@ -33,6 +33,7 @@ import { comboFinalDamageP, COMBO_SKILLS, findSkillById, skillAttackAt, skillNum
 import { CHARGE_LABEL, CHARGE_MASTER, CHARGE_ELEMENTS } from '../../domain/paladinCharge'
 import type { ChargeElement } from '../../domain/paladinCharge'
 import { DEFAULT_CHARGE } from '../../store/buildStore'
+import { MAGIC_GUARD_IDS } from '../../domain/incomingDamage'
 import { formatEffects } from '../../lib/effectFormat'
 import { buffIconUrl } from '../../lib/buffIcon'
 import { useTouchLongPress } from '../../lib/useLongPress'
@@ -429,7 +430,6 @@ function skillChargeCaption(buff: Buff, level: number, eff: EffectMap): string |
 }
 
 /** 매직가드(2001002·12001001) 설명: 레벨별 MP 전환 비율. 그 외 null */
-const MAGIC_GUARD_IDS = new Set(['2001002', '12001001'])
 function magicGuardCaption(buff: Buff, level: number): string | null {
   if (!MAGIC_GUARD_IDS.has(buff.id)) return null
   const n = buffEffectsAtLevel(buff, level).incomingDamageReduceP ?? 0
