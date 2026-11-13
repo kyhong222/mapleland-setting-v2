@@ -9,7 +9,7 @@ import Checkbox from '@mui/material/Checkbox'
 import FormControlLabel from '@mui/material/FormControlLabel'
 import IconButton from '@mui/material/IconButton'
 import { CATALOG_ITEMS } from '../../data/catalog'
-import { SLOTS } from '../../domain/equipSlots'
+import { SLOTS, ARMOR_SLOT_ORDER } from '../../domain/equipSlots'
 import type { SlotId } from '../../domain/equipSlots'
 import { ALL_CLASSES, JOBS } from '../../domain/jobs'
 import type { ClassId, JobId } from '../../domain/jobs'
@@ -82,10 +82,7 @@ const CLASS_BIT: Record<ClassId, number> = {
 const RENDER_CAP = 600
 
 /** 부위 선택 드롭다운: 방어구 슬롯(개별) */
-const ARMOR_SLOTS: SlotId[] = [
-  'hat', 'faceAccessory', 'eyeAccessory', 'earring', 'top', 'bottom', 'overall',
-  'shoes', 'gloves', 'cape', 'shield', 'pendant', 'ring', 'belt', 'petAcc', 'medal', 'shoulder',
-]
+const ARMOR_SLOTS = ARMOR_SLOT_ORDER
 
 /** 필터 key → 해당 슬롯 집합 (화살=화살+볼트) */
 const FILTER_SLOTS: Record<string, SlotId[]> = {

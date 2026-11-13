@@ -19,7 +19,8 @@ import { useInventoryStore } from '../../store/inventoryStore'
 import { aggregateBuild, activeBuffEffects, activeBuffEntries, equippedBuiltMap, equippedWeaponType, missingRequiredSecondary } from '../../store/aggregate'
 import { useActivation, useActiveEquippedBuilts } from '../../store/activation'
 import { useBuffContext } from '../../store/useBuffEffects'
-import { EQUIP_INSTANCES } from '../../store/equipInstance'
+import { EQUIP_INSTANCES, targetInstancesForSlot } from '../../store/equipInstance'
+import { ARMOR_SLOT_ORDER } from '../../domain/equipSlots'
 import type { EquipInstance } from '../../store/equipInstance'
 import { resolveBuiltItem } from '../../domain/builtItem'
 import type { BuiltItem } from '../../domain/builtItem'
@@ -34,8 +35,17 @@ import { CHARGE_LABEL } from '../../domain/paladinCharge'
 import { buffIconUrl, CHARGE_ICON } from '../../lib/buffIcon'
 
 const STAT_SHORT: Record<StatId, string> = { STR: '힘', DEX: '덱', INT: '인', LUK: '럭' }
-/** 카드의 장비 표시 순서 — 무기·보조무기를 맨 위에, 나머지는 기본 순서 */
-const SHARE_ORDER: EquipInstance[] = ['weapon', 'secondary', ...EQUIP_INSTANCES.filter((i) => i !== 'weapon' && i !== 'secondary')]
+
+/**
+ * 카드의 장비 표시 순서 — 무기·보조무기를 맨 위에, 나머지는 아이템 제작 부위 드롭다운 순서.
+ * 부위 → 장착 칸으로 펼친다(반지 1~4, 한벌옷=상의 칸, 방패=보조무기 칸 등). 겹치는 칸은 처음 한 번만.
+ */
+const SHARE_ORDER: EquipInstance[] = [...new Set<EquipInstance>([
+  'weapon',
+  'secondary',
+  ...ARMOR_SLOT_ORDER.flatMap(targetInstancesForSlot),
+  ...EQUIP_INSTANCES, // 위 목록에 빠진 칸이 생겨도 누락되지 않게
+])]
 
 /** 카드 고정 배색 (ItemTooltip과 같은 계열) */
 const C = {
