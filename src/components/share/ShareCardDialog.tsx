@@ -48,15 +48,15 @@ const C = {
   stat: '#a5f3b0',
 }
 
-/** 장비 한 줄 요약: 공 · 마력 · 주/부스탯 (예: "107공 7힘") */
+/** 장비 한 줄 요약: 공격력(마법사는 마력만) · 주/부스탯 (예: "107공 7힘") */
 function itemSummary(built: BuiltItem, job: JobDef): string {
   const eff = resolveBuiltItem(built).finalEffects
   const parts: string[] = []
   const push = (v: number | undefined, unit: string) => {
     if (v) parts.push(`${v}${unit}`)
   }
-  push(eff.pad, '공')
-  push(eff.mad, '마력')
+  if (job.attackType === 'magical') push(eff.mad, '마력')
+  else push(eff.pad, '공')
   for (const s of [job.primaryStat, ...job.secondaryStats]) push(eff[s], STAT_SHORT[s])
   return parts.join(' ')
 }
