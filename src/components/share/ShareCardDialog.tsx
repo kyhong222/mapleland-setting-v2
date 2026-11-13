@@ -85,9 +85,62 @@ function buffOrder(id: string, applied: boolean): number {
   return applied ? ORDER_DOPING : ORDER_SPECIAL
 }
 
-/** 등급색 윤곽선 — 장비창 ItemIcon과 같은 방식(투명 스프라이트 상하좌우 1px drop-shadow) */
-const gradeOutline = (c: string) =>
-  `drop-shadow(1px 0 0 ${c}) drop-shadow(-1px 0 0 ${c}) drop-shadow(0 1px 0 ${c}) drop-shadow(0 -1px 0 ${c})`
+/**
+ * 등급색 윤곽선을 이미지에 직접 구워 넣은 data URL.
+ * 장비창(ItemIcon)은 CSS drop-shadow로 그리지만, html-to-image 캡처(SVG foreignObject)에서는
+ * 필터가 빠져 복사본에 윤곽선이 안 나온다 → 캔버스로 스프라이트를 상하좌우 1px 밀어 찍고
+ * 등급색으로 칠한 뒤 원본을 위에 얹는다. maplestory.io가 CORS를 허용해 캔버스를 읽을 수 있다.
+ */
+const outlineCache = new Map<string, Promise<string>>()
+function outlinedIcon(src: string, color: string): Promise<string> {
+  const key = `${src}|${color}`
+  let p = outlineCache.get(key)
+  if (!p) {
+    p = new Promise<string>((resolve, reject) => {
+      const img = new Image()
+      img.crossOrigin = 'anonymous'
+      img.onload = () => {
+        const canvas = document.createElement('canvas')
+        canvas.width = img.naturalWidth + 2
+        canvas.height = img.naturalHeight + 2
+        const ctx = canvas.getContext('2d')
+        if (!ctx) return reject(new Error('canvas'))
+        for (const [dx, dy] of [[0, 1], [2, 1], [1, 0], [1, 2]]) ctx.drawImage(img, dx, dy)
+        ctx.globalCompositeOperation = 'source-in'
+        ctx.fillStyle = color
+        ctx.fillRect(0, 0, canvas.width, canvas.height)
+        ctx.globalCompositeOperation = 'source-over'
+        ctx.drawImage(img, 1, 1)
+        resolve(canvas.toDataURL('image/png'))
+      }
+      img.onerror = () => reject(new Error('icon load'))
+      img.src = src
+    })
+    p.catch(() => outlineCache.delete(key)) // 실패는 다음에 다시 시도
+    outlineCache.set(key, p)
+  }
+  return p
+}
+
+/** 등급색 윤곽선 장비 아이콘. 굽는 동안은 data-outline-pending을 달아 캡처가 기다리게 한다 */
+function OutlinedItemIcon({ src, color }: { src: string; color: string }) {
+  const [url, setUrl] = useState<string | null>(null)
+  const [failed, setFailed] = useState(false)
+  useEffect(() => {
+    let alive = true
+    setUrl(null)
+    setFailed(false)
+    outlinedIcon(src, color).then(
+      (u) => { if (alive) setUrl(u) },
+      () => { if (alive) setFailed(true) },
+    )
+    return () => { alive = false }
+  }, [src, color])
+  // 굽기에 실패하면 원본 아이콘이라도 보여준다
+  const shown = url ?? (failed ? src : undefined)
+  if (!shown) return <Box data-outline-pending sx={{ width: 30, height: 30 }} />
+  return <Box component="img" src={shown} alt="" sx={{ maxWidth: 32, maxHeight: 32, imageRendering: 'pixelated' }} />
+}
 
 interface IconEntry {
   key: string
@@ -214,7 +267,7 @@ function ShareCard({ cardRef }: { cardRef: Ref<HTMLDivElement> }) {
               <Box key={inst} sx={{ display: 'flex', alignItems: 'center', gap: 1, minWidth: 0, opacity: inactive ? 0.45 : 1 }}>
                 <Box sx={{ width: 32, height: 32, flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', bgcolor: C.cell, borderRadius: 0.5, position: 'relative' }}>
                   {built.base.iconUrl && (
-                    <Box component="img" src={built.base.iconUrl} alt="" sx={{ maxWidth: 30, maxHeight: 30, imageRendering: 'pixelated', filter: gradeOutline(grade.info.color) }} />
+                    <OutlinedItemIcon src={built.base.iconUrl} color={grade.info.color} />
                   )}
                   {/* 보석 — 장비창과 같이 아이콘 아래쪽 가운데에 겹쳐 그린다 */}
                   {built.gems.length > 0 && (
@@ -303,6 +356,10 @@ function ShareCard({ cardRef }: { cardRef: Ref<HTMLDivElement> }) {
  * 아이콘이 다 그려진 뒤에 찍어야 빈칸이 안 생겨서 이미지 디코드를 먼저 기다린다.
  */
 async function renderCard(node: HTMLElement): Promise<Blob> {
+  // 등급색 윤곽선 아이콘이 다 구워질 때까지(최대 3초) 기다린다
+  for (let t = 0; t < 60 && node.querySelector('[data-outline-pending]'); t++) {
+    await new Promise((r) => setTimeout(r, 50))
+  }
   await Promise.all([...node.querySelectorAll('img')].map((img) => img.decode().catch(() => undefined)))
   const blob = await toBlob(node, { pixelRatio: 2, skipFonts: true })
   if (!blob) throw new Error('이미지 생성 실패')
