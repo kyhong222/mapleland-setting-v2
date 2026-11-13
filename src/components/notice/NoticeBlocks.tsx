@@ -84,6 +84,23 @@ function Block({ block, items }: { block: NoticeBlock; items: NoticeItemMap }) {
           ))}
         </Box>
       )
+    case 'image':
+      return (
+        <Box component="figure" sx={{ m: 0, textAlign: 'center' }}>
+          <Box
+            component="img"
+            src={block.src}
+            alt={block.alt}
+            loading="lazy"
+            sx={{ display: 'block', mx: 'auto', width: '100%', maxWidth: block.width ?? '100%', height: 'auto', borderRadius: 1 }}
+          />
+          {block.caption && (
+            <Typography component="figcaption" variant="caption" color="text.secondary" sx={{ display: 'block', mt: 0.5 }}>
+              {block.caption}
+            </Typography>
+          )}
+        </Box>
+      )
   }
 }
 

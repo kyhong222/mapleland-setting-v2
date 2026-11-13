@@ -38,6 +38,11 @@ export type NoticeBlock =
   | { type: 'compare'; items: NoticeItemRef[] }
   /** 스킬 아이콘 줄 — `/skill-icons/<id>.png`, 호버 시 스킬 이름. id는 기본 스킬 id(변형 id 아님) */
   | { type: 'skills'; ids: number[] }
+  /**
+   * 이미지 — `public/notice-images/`에 둔 파일 경로(`/notice-images/<파일>`).
+   * width는 표시 최대 폭(px) — 2배 해상도 캡처는 원본의 절반으로 두면 선명하다.
+   */
+  | { type: 'image'; src: string; alt: string; width?: number; caption?: string }
 
 /** 인라인 텍스트 조각 */
 export type InlineSegment = { kind: 'text'; text: string } | { kind: 'item'; id: number }

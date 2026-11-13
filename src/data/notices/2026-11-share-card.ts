@@ -9,6 +9,13 @@ const notice: Notice = {
   expiresAt: '2026-12-13',
   blocks: [
     { type: 'text', text: '지금 세팅을 카드 한 장으로 정리해 이미지로 공유할 수 있습니다. 직업을 고른 뒤 상단의 [공유하기] 버튼을 눌러 보세요.' },
+    {
+      type: 'image',
+      src: '/notice-images/2026-11-share-card-example.png',
+      alt: '공유 카드 예시 — Lv.146 바이퍼의 장비 · 적용 버프 · 스공 · 명중 · 회피 · 총 스탯',
+      width: 560, // 2배 해상도 캡처(1120px)
+      caption: '공유 카드 예시',
+    },
 
     { type: 'heading', text: '1. 카드에 담기는 정보' },
     {
