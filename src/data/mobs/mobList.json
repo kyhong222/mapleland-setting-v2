@@ -5374,6 +5374,106 @@
     ]
   },
   {
+    "id": 9300315,
+    "name": "[카니발] 버피",
+    "koreanName": "[카니발] 버피",
+    "level": 51,
+    "isBoss": true,
+    "foundAt": [
+      "몬스터 카니발 2"
+    ]
+  },
+  {
+    "id": 9300316,
+    "name": "[카니발] 소울테니",
+    "koreanName": "[카니발] 소울테니",
+    "level": 53,
+    "isBoss": true,
+    "foundAt": [
+      "몬스터 카니발 2"
+    ]
+  },
+  {
+    "id": 9300317,
+    "name": "[카니발] 레이지 버피",
+    "koreanName": "[카니발] 레이지 버피",
+    "level": 55,
+    "isBoss": true,
+    "foundAt": [
+      "몬스터 카니발 2"
+    ]
+  },
+  {
+    "id": 9300318,
+    "name": "[카니발] 마스터 소울테니",
+    "koreanName": "[카니발] 마스터 소울테니",
+    "level": 57,
+    "isBoss": true,
+    "foundAt": [
+      "몬스터 카니발 2"
+    ]
+  },
+  {
+    "id": 9300319,
+    "name": "[카니발] 클라크",
+    "koreanName": "[카니발] 클라크",
+    "level": 59,
+    "isBoss": true,
+    "foundAt": [
+      "몬스터 카니발 2"
+    ]
+  },
+  {
+    "id": 9300320,
+    "name": "[카니발] 버푼",
+    "koreanName": "[카니발] 버푼",
+    "level": 61,
+    "isBoss": true,
+    "foundAt": [
+      "몬스터 카니발 2"
+    ]
+  },
+  {
+    "id": 9300321,
+    "name": "[카니발] 딥 버푼",
+    "koreanName": "[카니발] 딥 버푼",
+    "level": 63,
+    "isBoss": true,
+    "foundAt": [
+      "몬스터 카니발 2"
+    ]
+  },
+  {
+    "id": 9300322,
+    "name": "[카니발] 파이렛",
+    "koreanName": "[카니발] 파이렛",
+    "level": 65,
+    "isBoss": true,
+    "foundAt": [
+      "몬스터 카니발 2"
+    ]
+  },
+  {
+    "id": 9300323,
+    "name": "[카니발] 데스테니",
+    "koreanName": "[카니발] 데스테니",
+    "level": 67,
+    "isBoss": true,
+    "foundAt": [
+      "몬스터 카니발 2"
+    ]
+  },
+  {
+    "id": 9300324,
+    "name": "[카니발] 바이킹",
+    "koreanName": "[카니발] 바이킹",
+    "level": 69,
+    "isBoss": true,
+    "foundAt": [
+      "몬스터 카니발 2"
+    ]
+  },
+  {
     "id": 9300184,
     "name": "[무릉도장] 마노",
     "koreanName": "[무릉도장] 마노",
