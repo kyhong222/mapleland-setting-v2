@@ -164,29 +164,6 @@ function ShareCard() {
         <Box sx={{ fontSize: 11, color: C.dim }}>item.mapleland.st</Box>
       </Box>
 
-      {/* 총 스탯 */}
-      <Box sx={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 0.75, mb: 0.75 }}>
-        {STAT_IDS.map((s) => {
-          const role = s === job.primaryStat ? 'primary' : secondarySet.has(s) ? 'secondary' : null
-          return (
-            <StatCell
-              key={s}
-              label={STAT_SHORT[s]}
-              value={finalStats[s].toLocaleString()}
-              color={role ? C.stat : undefined}
-              bold={role === 'primary'}
-            />
-          )
-        })}
-      </Box>
-
-      {/* 스공 · 명중 · 회피 */}
-      <Box sx={{ display: 'grid', gridTemplateColumns: '2fr 1fr 1fr', gap: 0.75, mb: 1.5 }}>
-        <StatCell label={attackLabel} value={attackValue} />
-        <StatCell label={isMagic ? '마법명중' : '명중'} value={String(Math.floor(isMagic ? magicAccuracy(finalStats) : detail.acc))} />
-        <StatCell label="회피" value={String(Math.floor(detail.eva))} />
-      </Box>
-
       {/* 장비 */}
       <SectionTitle>장비</SectionTitle>
       {items.length === 0 ? (
@@ -221,9 +198,9 @@ function ShareCard() {
       {/* 적용 버프 */}
       <SectionTitle>적용 버프</SectionTitle>
       {buffIcons.length === 0 ? (
-        <Box sx={{ fontSize: 12, color: C.dim }}>적용된 버프가 없습니다.</Box>
+        <Box sx={{ fontSize: 12, color: C.dim, mb: 1.5 }}>적용된 버프가 없습니다.</Box>
       ) : (
-        <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.75 }}>
+        <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.75, mb: 1.5 }}>
           {buffIcons.map((b) => (
             <Box
               key={b.key}
@@ -247,6 +224,30 @@ function ShareCard() {
           ))}
         </Box>
       )}
+
+      {/* 스공 · 명중 · 회피 */}
+      <Box sx={{ display: 'grid', gridTemplateColumns: '2fr 1fr 1fr', gap: 0.75, mb: 0.75 }}>
+        <StatCell label={attackLabel} value={attackValue} />
+        <StatCell label={isMagic ? '마법명중' : '명중'} value={String(Math.floor(isMagic ? magicAccuracy(finalStats) : detail.acc))} />
+        <StatCell label="회피" value={String(Math.floor(detail.eva))} />
+      </Box>
+
+      {/* 총 스탯 */}
+      <Box sx={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 0.75 }}>
+        {STAT_IDS.map((s) => {
+          const role = s === job.primaryStat ? 'primary' : secondarySet.has(s) ? 'secondary' : null
+          return (
+            <StatCell
+              key={s}
+              label={STAT_SHORT[s]}
+              value={finalStats[s].toLocaleString()}
+              color={role ? C.stat : undefined}
+              bold={role === 'primary'}
+            />
+          )
+        })}
+      </Box>
+
     </Box>
   )
 }
