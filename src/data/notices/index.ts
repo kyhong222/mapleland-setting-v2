@@ -6,11 +6,15 @@ import battleMage from './2026-10-battle-mage'
 import elementalStaff from './2026-11-elemental-staff'
 import skillUpdates from './2026-11-skill-updates'
 import shareCard from './2026-11-share-card'
+import monsterCarnival2 from './2026-11-monster-carnival-2'
 
 export * from './types'
 
-/** 최신순 */
-export const NOTICES: Notice[] = [maple3rdAnniversary, battleMage, elementalStaff, skillUpdates, shareCard].sort((a, b) => b.date.localeCompare(a.date))
+/**
+ * 최신순. 정렬은 안정 정렬이라 같은 날짜끼리는 배열 순서가 유지된다 —
+ * 같은 날 올린 공지는 나중 것을 앞에 둬야 자동 노출 대상(최신 1건)이 된다.
+ */
+export const NOTICES: Notice[] = [maple3rdAnniversary, battleMage, elementalStaff, skillUpdates, monsterCarnival2, shareCard].sort((a, b) => b.date.localeCompare(a.date))
 
 /** 로컬 날짜 'YYYY-MM-DD' */
 export function todayString(now = new Date()): string {
