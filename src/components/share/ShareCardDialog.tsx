@@ -26,7 +26,6 @@ import { resolveBuiltItem } from '../../domain/builtItem'
 import type { BuiltItem } from '../../domain/builtItem'
 import { totalAttack, totalMagic, masteryRatio, calcPhysical } from '../../domain/attackPower'
 import { computeDetailStats } from '../../domain/detailStats'
-import { magicAccuracy } from '../../domain/combat'
 import { JOBS } from '../../domain/jobs'
 import type { JobDef } from '../../domain/jobs'
 import { STAT_IDS } from '../../domain/stats'
@@ -116,7 +115,7 @@ function ShareCard({ cardRef }: { cardRef: Ref<HTMLDivElement> }) {
   const detail = computeDetailStats(jobId, finalStats, effects)
   const secondarySet = new Set(job.secondaryStats)
 
-  // 스공 — 공격력 패널의 '스탯 공격력'과 같은 계산 (몬스터 실질 제외). 마법사는 총 마력.
+  // 스공 — 공격력 패널의 '스탯 공격력'과 같은 계산 (몬스터 실질 제외). 마법사는 합마(총 마력).
   const weaponType = equippedWeaponType(equipped, invItems)
   const atkWeapon = missingRequiredSecondary(weaponType, equipped, invItems) ? undefined : weaponType
   const primary = finalStats[job.primaryStat]
@@ -124,7 +123,7 @@ function ShareCard({ cardRef }: { cardRef: Ref<HTMLDivElement> }) {
   const phys = !isMagic && atkWeapon
     ? calcPhysical(primary, secondary, atkWeapon, totalAttack(effects), masteryRatio(effects))
     : null
-  const attackLabel = isMagic ? '총 마력' : '스공'
+  const attackLabel = isMagic ? '합마' : '스공'
   const attackValue = isMagic
     ? totalMagic(effects, finalStats.INT).toLocaleString()
     : phys
@@ -242,9 +241,10 @@ function ShareCard({ cardRef }: { cardRef: Ref<HTMLDivElement> }) {
       )}
 
       {/* 스공 · 명중 · 회피 */}
-      <Box sx={{ display: 'grid', gridTemplateColumns: '2fr 1fr 1fr', gap: 0.75, mb: 0.75 }}>
+      <Box sx={{ display: 'grid', gridTemplateColumns: isMagic ? '2fr 1fr' : '2fr 1fr 1fr', gap: 0.75, mb: 0.75 }}>
         <StatCell label={attackLabel} value={attackValue} />
-        <StatCell label={isMagic ? '마법명중' : '명중'} value={String(Math.floor(isMagic ? magicAccuracy(finalStats) : detail.acc))} />
+        {/* 마법사는 명중이 의미가 없어(마법은 명중 판정이 다르다) 회피만 둔다 */}
+        {!isMagic && <StatCell label="명중" value={String(Math.floor(detail.acc))} />}
         <StatCell label="회피" value={String(Math.floor(detail.eva))} />
       </Box>
 
