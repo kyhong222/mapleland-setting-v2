@@ -1,4 +1,4 @@
-import IconButton from '@mui/material/IconButton'
+import Button from '@mui/material/Button'
 import Tooltip from '@mui/material/Tooltip'
 import SvgIcon from '@mui/material/SvgIcon'
 import { useColorScheme } from '@mui/material/styles'
@@ -25,11 +25,19 @@ export default function ColorModeButton() {
   const current: Mode = mode ?? 'system'
   return (
     <Tooltip title={`${LABEL[current]} (눌러서 ${LABEL[NEXT[current]]}로)`}>
-      <IconButton size="small" onClick={() => setMode(NEXT[current])} aria-label="화면 모드 전환">
-        <SvgIcon fontSize="small">
-          <path d={ICON[current]} />
-        </SvgIcon>
-      </IconButton>
+      <Button
+        variant="outlined"
+        size="small"
+        onClick={() => setMode(NEXT[current])}
+        aria-label="화면 모드 전환"
+        startIcon={
+          <SvgIcon fontSize="small">
+            <path d={ICON[current]} />
+          </SvgIcon>
+        }
+      >
+        {LABEL[current]}
+      </Button>
     </Tooltip>
   )
 }
