@@ -5,7 +5,7 @@
  * 캡처했을 때 라이트/다크 모드와 상관없이 같은 모양이 나오도록 카드 자체는 고정 배색(아이템 툴팁과 같은
  * 남색 계열)을 쓴다 — 등급색도 그 배경 기준으로 맞춰져 있다.
  */
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import type { Ref } from 'react'
 import { toBlob } from 'html-to-image'
 import Box from '@mui/material/Box'
@@ -256,9 +256,14 @@ function ShareCard({ cardRef }: { cardRef: Ref<HTMLDivElement> }) {
   )
 }
 
-/** 카드 노드 → PNG Blob (선명도를 위해 2배 해상도) */
+/**
+ * 카드 노드 → PNG Blob (선명도를 위해 2배 해상도).
+ * 카드는 시스템 글꼴만 쓰므로 웹폰트 임베드(스타일시트 전체 순회라 느리다)는 건너뛴다.
+ * 아이콘이 다 그려진 뒤에 찍어야 빈칸이 안 생겨서 이미지 디코드를 먼저 기다린다.
+ */
 async function renderCard(node: HTMLElement): Promise<Blob> {
-  const blob = await toBlob(node, { pixelRatio: 2 })
+  await Promise.all([...node.querySelectorAll('img')].map((img) => img.decode().catch(() => undefined)))
+  const blob = await toBlob(node, { pixelRatio: 2, skipFonts: true })
   if (!blob) throw new Error('이미지 생성 실패')
   return blob
 }
@@ -284,7 +289,28 @@ const COPY_LABEL: Record<CopyState, string> = {
 
 export default function ShareCardDialog({ open, onClose }: { open: boolean; onClose: () => void }) {
   const cardRef = useRef<HTMLDivElement>(null)
+  /** 미리 그려둔 이미지 — 다이얼로그가 열리면 바로 렌더를 시작한다 */
+  const blobRef = useRef<Promise<Blob> | null>(null)
   const [state, setState] = useState<CopyState>('idle')
+
+  // 클릭 시점에 그리기 시작하면 수백 ms가 걸리고, 그사이 다른 탭으로 넘어가면 크롬이
+  // 포커스 없는 문서의 클립보드 쓰기를 막아 돌아올 때까지 복사가 안 된다.
+  // 그래서 열리자마자 미리 그려두고, 클릭 때는 완성된 Blob을 바로 쓴다.
+  // (다이얼로그가 모달이라 열려 있는 동안 카드 내용은 바뀌지 않는다)
+  useEffect(() => {
+    if (!open) {
+      blobRef.current = null
+      return
+    }
+    const id = requestAnimationFrame(() => {
+      const node = cardRef.current
+      if (!node) return
+      const p = renderCard(node)
+      p.catch(() => undefined) // 실패는 클릭 때 다시 시도한다
+      blobRef.current = p
+    })
+    return () => cancelAnimationFrame(id)
+  }, [open])
 
   const flash = (s: CopyState) => {
     setState(s)
@@ -295,7 +321,10 @@ export default function ShareCardDialog({ open, onClose }: { open: boolean; onCl
     const node = cardRef.current
     if (!node || state === 'busy') return
     setState('busy')
-    const blobPromise = renderCard(node)
+    // 미리 그려둔 게 실패했으면 다시 그린다
+    const pending = blobRef.current ?? renderCard(node)
+    const blobPromise = pending.catch(() => renderCard(node))
+    blobRef.current = blobPromise
     try {
       if (typeof ClipboardItem === 'undefined' || !navigator.clipboard?.write) throw new Error('clipboard unsupported')
       // Safari는 클릭 직후 동기적으로 clipboard.write를 불러야 해서, Blob 대신 Promise를 넘긴다
