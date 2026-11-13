@@ -106,10 +106,20 @@ const SPECIFIC_RES: Partial<Record<IncomingType, EffectId>> = {
   fire: 'fireRes', ice: 'coldRes', lightning: 'lightningRes', poison: 'poisonRes',
 }
 
-/** 몬스터 스킬/접촉의 데미지 타입 분류 (속성 우선, 그 외 물리/마법) */
+/**
+ * 몬스터 스킬의 데미지 타입 분류. **`magic` 플래그가 먼저**고, 속성은 마법 공격에서만 의미가 있다.
+ *
+ * mnwvs077(v77, 클라 피격 공식을 서버에서 재계산해 대조하는 구현)이 근거다:
+ *  - `MobTemplate.cpp` — 공격의 `elemAttr`는 `magic == 1`일 때만 읽어 `nMagicElemAttr`에 둔다
+ *  - `User.cpp` 피격 검증 — 속성 내성(파셜/엘리멘탈 레지스턴스)은 `MDamage` 뒤에만 적용되고,
+ *    물리(`PDamage`)에는 속성 인자 자체가 없다. 배율도 물리=파워업, 마법=매직업으로 갈린다.
+ * 그래서 망각의 수호대장 attack3(`elemAttr: F`, magic 없음)은 계산상 무속성 물리와 같다.
+ * 표기("불속성 물리")는 데이터를 존중해 `skillLabel`에서 그대로 보여준다.
+ */
 export function skillDamageType(skill: MobSkill): IncomingType {
+  if (skill.magic !== 1) return 'physical'
   if (skill.elemAttr && ELEM_TO_TYPE[skill.elemAttr]) return ELEM_TO_TYPE[skill.elemAttr]
-  return skill.magic === 1 ? 'magic' : 'physical'
+  return 'magic'
 }
 
 /**
