@@ -73,10 +73,24 @@ function itemSummary(built: BuiltItem, job: JobDef): string {
   return parts.join(' ')
 }
 
+/** 공통 버프의 표시 순서 — 메용 · 정축 · 영메 · 기상효과 · 버닝 */
+const COMMON_ORDER = ['1121000', 'blessingOfFairy', 'echoOfHero', 'weather', 'burning']
+const ORDER_DOPING = COMMON_ORDER.length
+const ORDER_SPECIAL = ORDER_DOPING + 1
+
+/** 적용 버프 아이콘 묶음 순서: 공통 버프 → 도핑(도핑·개인·파티 적용 목록) → 특화(패시브·마스터리·차지) */
+function buffOrder(id: string, applied: boolean): number {
+  const i = COMMON_ORDER.indexOf(id)
+  if (i >= 0) return i
+  return applied ? ORDER_DOPING : ORDER_SPECIAL
+}
+
 interface IconEntry {
   key: string
   icon?: string
   name: string
+  /** 표시 묶음 순서 (buffOrder) */
+  order: number
   /** 우상단 레벨 배지 (레벨 없는 버프는 생략) */
   level?: number
 }
@@ -146,16 +160,18 @@ function ShareCard({ cardRef }: { cardRef: Ref<HTMLDivElement> }) {
     if (seen.has(e.buff.id)) continue
     seen.add(e.buff.id)
     const leveled = e.buff.type === 'skill' && e.buff.masterLevel > 1 && !e.buff.variants
-    buffIcons.push({ key: e.buff.id, icon: buffIconUrl(e.buff, jobId), name: e.buff.name, level: leveled ? e.level : undefined })
+    buffIcons.push({ key: e.buff.id, icon: buffIconUrl(e.buff, jobId), name: e.buff.name, level: leveled ? e.level : undefined, order: buffOrder(e.buff.id, e.buff.id in ctx.appliedBuffs) })
   }
   if (jobId === 'paladin') {
     if (charge.mainOn) {
-      buffIcons.push({ key: 'charge-main', icon: CHARGE_ICON[charge.mainElement], name: `${CHARGE_LABEL[charge.mainElement]} 차지`, level: charge.mainLevel })
+      buffIcons.push({ key: 'charge-main', icon: CHARGE_ICON[charge.mainElement], name: `${CHARGE_LABEL[charge.mainElement]} 차지`, level: charge.mainLevel, order: ORDER_SPECIAL })
     }
     if (charge.subOn && charge.mainElement !== 'lightning') {
-      buffIcons.push({ key: 'charge-sub', icon: CHARGE_ICON.lightning, name: '썬더 차지', level: charge.subLevel })
+      buffIcons.push({ key: 'charge-sub', icon: CHARGE_ICON.lightning, name: '썬더 차지', level: charge.subLevel, order: ORDER_SPECIAL })
     }
   }
+  // 메용 · 정축 · 영메 · 기상효과(· 버닝) · 도핑(적용된 버프) · 특화 순. 같은 묶음 안은 원래 순서 유지(안정 정렬)
+  buffIcons.sort((a, b) => a.order - b.order)
 
   return (
     <Box
