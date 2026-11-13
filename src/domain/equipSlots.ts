@@ -63,3 +63,9 @@ export const SLOTS: Record<SlotId, SlotDef> = {
 }
 
 export const ALL_SLOTS: SlotDef[] = Object.values(SLOTS)
+
+/** 방어구 부위 표시 순서 — 아이템 제작 부위 드롭다운과 공유 카드 장비 목록이 함께 쓴다 */
+export const ARMOR_SLOT_ORDER: SlotId[] = [
+  'hat', 'faceAccessory', 'eyeAccessory', 'earring', 'top', 'bottom', 'overall',
+  'shoes', 'gloves', 'cape', 'shield', 'pendant', 'ring', 'belt', 'petAcc', 'medal', 'shoulder',
+]

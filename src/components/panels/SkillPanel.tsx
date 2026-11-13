@@ -35,7 +35,7 @@ import type { ChargeElement } from '../../domain/paladinCharge'
 import { DEFAULT_CHARGE } from '../../store/buildStore'
 import { MAGIC_GUARD_IDS } from '../../domain/incomingDamage'
 import { formatEffects } from '../../lib/effectFormat'
-import { buffIconUrl } from '../../lib/buffIcon'
+import { buffIconUrl, CHARGE_ICON } from '../../lib/buffIcon'
 import { useTouchLongPress } from '../../lib/useLongPress'
 
 /** 레벨 조정 대상: 토글버프(영메·메용/직업패시브) / 적용버프(도핑·개인·파티) / 마스터리 */
@@ -567,14 +567,6 @@ function AppliedBuffList({ entries, levels, weaponType, onOpen, onRemove }: {
       })}
     </Box>
   )
-}
-
-/** 차지 원소 → 버프 아이콘(검 대표) */
-const CHARGE_ICON: Record<ChargeElement, string> = {
-  fire: '/buff-icons/1211003.png',
-  ice: '/buff-icons/1211005.png',
-  lightning: '/buff-icons/1211007.png',
-  holy: '/buff-icons/1221003.png',
 }
 
 /** 차지 행 (메인/보조) — 좌클릭 토글, 우클릭 편집 */
