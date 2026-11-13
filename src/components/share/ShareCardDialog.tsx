@@ -277,20 +277,32 @@ function downloadBlob(blob: Blob) {
   setTimeout(() => URL.revokeObjectURL(url), 1000)
 }
 
-type CopyState = 'idle' | 'busy' | 'copied' | 'downloaded' | 'error'
+type CopyState = 'idle' | 'busy' | 'copied' | 'saved' | 'timeout' | 'error'
 
 const COPY_LABEL: Record<CopyState, string> = {
   idle: '캡처 복사',
-  busy: '캡처 중…',
+  busy: '복사 중…',
   copied: '복사됨!',
-  downloaded: '복사 미지원 — 파일로 저장됨',
-  error: '캡처 실패',
+  saved: '복사 미지원 — 파일로 저장됨',
+  timeout: '복사 지연 — 다시 시도',
+  error: '복사 실패',
+}
+
+/** 클립보드 쓰기가 이 시간 안에 안 끝나면 멈춘 것으로 보고 버튼을 풀어준다 */
+const COPY_TIMEOUT_MS = 5000
+
+function withTimeout<T>(p: Promise<T>, ms: number): Promise<T> {
+  return Promise.race([
+    p,
+    new Promise<never>((_, reject) => setTimeout(() => reject(new Error('timeout')), ms)),
+  ])
 }
 
 export default function ShareCardDialog({ open, onClose }: { open: boolean; onClose: () => void }) {
   const cardRef = useRef<HTMLDivElement>(null)
-  /** 미리 그려둔 이미지 — 다이얼로그가 열리면 바로 렌더를 시작한다 */
-  const blobRef = useRef<Promise<Blob> | null>(null)
+  /** 미리 그리는 중인 이미지 / 다 그려진 이미지 */
+  const pendingRef = useRef<Promise<Blob> | null>(null)
+  const readyRef = useRef<Blob | null>(null)
   const [state, setState] = useState<CopyState>('idle')
 
   // 클릭 시점에 그리기 시작하면 수백 ms가 걸리고, 그사이 다른 탭으로 넘어가면 크롬이
@@ -299,45 +311,65 @@ export default function ShareCardDialog({ open, onClose }: { open: boolean; onCl
   // (다이얼로그가 모달이라 열려 있는 동안 카드 내용은 바뀌지 않는다)
   useEffect(() => {
     if (!open) {
-      blobRef.current = null
+      pendingRef.current = null
+      readyRef.current = null
+      setState('idle')
       return
     }
     const id = requestAnimationFrame(() => {
       const node = cardRef.current
       if (!node) return
       const p = renderCard(node)
-      p.catch(() => undefined) // 실패는 클릭 때 다시 시도한다
-      blobRef.current = p
+      pendingRef.current = p
+      p.then((b) => { if (pendingRef.current === p) readyRef.current = b }, (e) => console.error('[공유 카드] 미리 그리기 실패', e))
     })
     return () => cancelAnimationFrame(id)
   }, [open])
 
   const flash = (s: CopyState) => {
     setState(s)
-    setTimeout(() => setState('idle'), 2000)
+    setTimeout(() => setState((cur) => (cur === s ? 'idle' : cur)), 2500)
+  }
+
+  /** 다 그려진 Blob이 있으면 그것, 아니면 진행 중인 렌더(실패했으면 새로 그림) */
+  const getBlob = (node: HTMLElement): Promise<Blob> => {
+    if (readyRef.current) return Promise.resolve(readyRef.current)
+    const p = (pendingRef.current ?? Promise.reject(new Error('none'))).catch(() => renderCard(node))
+    pendingRef.current = p
+    p.then((b) => { readyRef.current = b }, () => undefined)
+    return p
+  }
+
+  const handleSave = async () => {
+    const node = cardRef.current
+    if (!node) return
+    try {
+      downloadBlob(await getBlob(node))
+    } catch (e) {
+      console.error('[공유 카드] 저장 실패', e)
+      flash('error')
+    }
   }
 
   const handleCopy = async () => {
     const node = cardRef.current
     if (!node || state === 'busy') return
-    setState('busy')
-    // 미리 그려둔 게 실패했으면 다시 그린다
-    const pending = blobRef.current ?? renderCard(node)
-    const blobPromise = pending.catch(() => renderCard(node))
-    blobRef.current = blobPromise
-    try {
-      if (typeof ClipboardItem === 'undefined' || !navigator.clipboard?.write) throw new Error('clipboard unsupported')
-      // Safari는 클릭 직후 동기적으로 clipboard.write를 불러야 해서, Blob 대신 Promise를 넘긴다
-      await navigator.clipboard.write([new ClipboardItem({ 'image/png': blobPromise })])
-      flash('copied')
-    } catch {
+    if (typeof ClipboardItem === 'undefined' || !navigator.clipboard?.write) {
       // 클립보드 이미지 쓰기가 안 되는 환경(구형 브라우저·일부 모바일)은 파일 저장으로 대신한다
-      try {
-        downloadBlob(await blobPromise)
-        flash('downloaded')
-      } catch {
-        flash('error')
-      }
+      await handleSave()
+      flash('saved')
+      return
+    }
+    setState('busy')
+    // 다 그려져 있으면 Blob을 그대로 넘긴다(가장 빠르고 확실). 아직이면 Promise를 넘긴다 —
+    // Safari는 클릭 직후 동기적으로 clipboard.write를 불러야 해서 기다렸다가 부를 수 없다.
+    const data = readyRef.current ?? getBlob(node)
+    try {
+      await withTimeout(navigator.clipboard.write([new ClipboardItem({ 'image/png': data })]), COPY_TIMEOUT_MS)
+      flash('copied')
+    } catch (e) {
+      console.error('[공유 카드] 클립보드 복사 실패', e)
+      flash(e instanceof Error && e.message === 'timeout' ? 'timeout' : 'error')
     }
   }
 
@@ -346,7 +378,7 @@ export default function ShareCardDialog({ open, onClose }: { open: boolean; onCl
       <DialogContent sx={{ p: { xs: 1, sm: 2 } }}>
         {open && <ShareCard cardRef={cardRef} />}
         <Typography variant="caption" color="text.secondary" sx={{ display: 'block', textAlign: 'center', mt: 1 }}>
-          [캡처 복사]를 누르면 카드 이미지가 클립보드에 복사됩니다.
+          [캡처 복사]를 누르면 카드 이미지가 클립보드에 복사됩니다. 복사가 안 되면 [이미지 저장]을 이용하세요.
         </Typography>
       </DialogContent>
       <DialogActions>
@@ -354,10 +386,11 @@ export default function ShareCardDialog({ open, onClose }: { open: boolean; onCl
           variant="contained"
           onClick={handleCopy}
           disabled={state === 'busy'}
-          color={state === 'error' ? 'error' : state === 'copied' ? 'success' : 'primary'}
+          color={state === 'error' || state === 'timeout' ? 'error' : state === 'copied' ? 'success' : 'primary'}
         >
           {COPY_LABEL[state]}
         </Button>
+        <Button variant="outlined" onClick={handleSave}>이미지 저장</Button>
         <Button onClick={onClose}>닫기</Button>
       </DialogActions>
     </Dialog>
