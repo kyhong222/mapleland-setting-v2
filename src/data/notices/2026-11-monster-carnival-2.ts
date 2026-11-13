@@ -8,7 +8,7 @@ const notice: Notice = {
   autoOpen: true,
   expiresAt: '2026-12-13',
   blocks: [
-    { type: 'heading', text: '1. 몬스터 카니발 2 몬스터' },
+    { type: 'heading', text: '1. 몬스터 카니발 2 추가' },
     {
       type: 'text',
       text: '몬스터 카니발 2에서 소환되는 몬스터 10종을 추가했습니다. 몬스터 선택의 [파티퀘스트 > 몬스터 카니발 2]에서 고를 수 있고, 이름 앞에 [카니발]이 붙어 있습니다.',
@@ -19,6 +19,12 @@ const notice: Notice = {
         'Lv.51 버피 · Lv.53 소울테니 · Lv.55 레이지 버피 · Lv.57 마스터 소울테니 · Lv.59 클라크',
         'Lv.61 버푼 · Lv.63 딥 버푼 · Lv.65 파이렛 · Lv.67 데스테니 · Lv.69 바이킹',
       ],
+    },
+    {
+      type: 'image',
+      src: '/notice-images/2026-11-monster-carnival-2.png',
+      alt: '몬스터 선택 — 몬스터 카니발 2 지역의 [카니발] 몬스터 10종과 속성 배지',
+      caption: '몬스터 선택 > 몬스터 카니발 2',
     },
     {
       type: 'callout',
