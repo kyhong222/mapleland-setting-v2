@@ -23,6 +23,7 @@ import { EQUIP_INSTANCES, targetInstancesForSlot } from '../../store/equipInstan
 import { ARMOR_SLOT_ORDER } from '../../domain/equipSlots'
 import type { EquipInstance } from '../../store/equipInstance'
 import { resolveBuiltItem } from '../../domain/builtItem'
+import { gemIconUrl, sortedGems } from '../../domain/maker'
 import type { BuiltItem } from '../../domain/builtItem'
 import { totalAttack, totalMagic, masteryRatio, calcPhysical } from '../../domain/attackPower'
 import { computeDetailStats } from '../../domain/detailStats'
@@ -191,9 +192,17 @@ function ShareCard({ cardRef }: { cardRef: Ref<HTMLDivElement> }) {
             const summary = itemSummary(built, job)
             return (
               <Box key={inst} sx={{ display: 'flex', alignItems: 'center', gap: 1, minWidth: 0, opacity: inactive ? 0.45 : 1 }}>
-                <Box sx={{ width: 32, height: 32, flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', bgcolor: C.cell, borderRadius: 0.5 }}>
+                <Box sx={{ width: 32, height: 32, flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', bgcolor: C.cell, borderRadius: 0.5, position: 'relative' }}>
                   {built.base.iconUrl && (
                     <Box component="img" src={built.base.iconUrl} alt="" sx={{ maxWidth: 30, maxHeight: 30, imageRendering: 'pixelated' }} />
+                  )}
+                  {/* 보석 — 장비창과 같이 아이콘 아래쪽 가운데에 겹쳐 그린다 */}
+                  {built.gems.length > 0 && (
+                    <Box sx={{ position: 'absolute', bottom: -2, left: '50%', transform: 'translateX(-50%)', display: 'flex', '& img:not(:first-of-type)': { ml: '-3px' } }}>
+                      {sortedGems(built.gems).map((g, gi) => (
+                        <Box key={gi} component="img" src={gemIconUrl(g.type, g.grade)} alt="" sx={{ width: 14, height: 14, imageRendering: 'pixelated', display: 'block' }} />
+                      ))}
+                    </Box>
                   )}
                 </Box>
                 <Box sx={{ minWidth: 0, lineHeight: 1.25 }}>
