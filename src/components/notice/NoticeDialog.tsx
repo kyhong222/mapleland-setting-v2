@@ -115,6 +115,7 @@ export default function NoticeDialog({ open, onClose, initialId }: Props) {
         <Box sx={{ flexGrow: 1 }} />
         {canDismiss && (
           <Button
+            variant="outlined"
             color="inherit"
             onClick={() => {
               dismiss(notice.id)
