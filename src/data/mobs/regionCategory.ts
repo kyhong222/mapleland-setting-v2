@@ -70,6 +70,8 @@ export const REGION_CATEGORIES: RegionCategory[] = [
   { name: '파티퀘스트', regions: [
     { name: '샤레니안', icon: ic(308000001) },
     { name: '몬스터 카니발', icon: ic(980000101) },
+    // 몬카2 대기실(980030000)의 맵 마크가 몬카1과 같은 그림이라 아이콘을 같이 쓴다
+    { name: '몬스터 카니발 2', icon: ic(980000101) },
     { name: '루디브리엄 파퀘', icon: ic(922010100) },
   ] },
 ]
