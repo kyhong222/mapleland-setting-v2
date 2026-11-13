@@ -16,6 +16,7 @@ import FeedbackDialog from './FeedbackDialog'
 import AuthButton from './AuthButton'
 import ColorModeButton from './ColorModeButton'
 import NoticeDialog from './notice/NoticeDialog'
+import ShareCardDialog from './share/ShareCardDialog'
 
 export default function TopBar() {
   const jobId = useBuildStore((s) => s.jobId)
@@ -23,6 +24,7 @@ export default function TopBar() {
   const [slotsOpen, setSlotsOpen] = useState(false)
   const [feedbackOpen, setFeedbackOpen] = useState(false)
   const [noticeOpen, setNoticeOpen] = useState(false)
+  const [shareOpen, setShareOpen] = useState(false)
   // 좁은 화면에선 버튼이 줄바꿈돼 헤더가 기본 툴바보다 높아진다 → 실측 높이로 스페이서를 맞춘다
   const barRef = useRef<HTMLDivElement>(null)
   const [barHeight, setBarHeight] = useState<number>()
@@ -69,6 +71,11 @@ export default function TopBar() {
           <Button variant="text" size="small" onClick={() => setFeedbackOpen(true)}>
             문의하기
           </Button>
+          {jobId && (
+            <Button variant="text" size="small" onClick={() => setShareOpen(true)}>
+              공유 카드
+            </Button>
+          )}
           <Button variant="outlined" size="small" onClick={() => setSlotsOpen(true)}>
             저장 슬롯
           </Button>
@@ -82,6 +89,7 @@ export default function TopBar() {
         <SlotManager open={slotsOpen} onClose={() => setSlotsOpen(false)} />
         <FeedbackDialog open={feedbackOpen} onClose={() => setFeedbackOpen(false)} />
         <NoticeDialog open={noticeOpen} onClose={() => setNoticeOpen(false)} />
+        <ShareCardDialog open={shareOpen} onClose={() => setShareOpen(false)} />
       </AppBar>
       {/* fixed AppBar 높이만큼 콘텐츠를 밀어내는 스페이서 (측정 전엔 기본 툴바 높이) */}
       {barHeight ? <Box aria-hidden sx={{ height: barHeight }} /> : <Toolbar aria-hidden />}
