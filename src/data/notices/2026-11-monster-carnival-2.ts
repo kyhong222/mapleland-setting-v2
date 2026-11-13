@@ -27,8 +27,8 @@ const notice: Notice = {
     },
 
     { type: 'heading', text: '2. 슈피겔만의 혼돈 목걸이' },
-    { type: 'items', view: 'cards', items: [{ id: 1122058 }] },
-    { type: 'text', text: '펜던트 슈피겔만의 혼돈 목걸이를 추가했습니다. 업그레이드 가능 횟수는 메이플랜드 기준 1회입니다.' },
+    { type: 'items', view: 'icons', items: [{ id: 1122058 }] },
+    { type: 'text', text: '펜던트 [[item:1122058]]를 추가했습니다. 업그레이드 가능 횟수는 메이플랜드 기준 1회입니다.' },
   ],
 }
 
