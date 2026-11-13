@@ -73,6 +73,8 @@ async function main() {
     const day = latest.date
     if (autoOpenNotice([], day)?.id !== latest.id) bad('자동 노출: 최신 공지가 안 뜸')
     if (autoOpenNotice([latest.id], day)?.id === latest.id) bad('자동 노출: 다시 열지 않음 무시됨')
+    // 최신 공지를 '다시 열지 않음' 하면 그 아래 과거 공지로 내려가지 않는다
+    if (autoOpenNotice([latest.id], day) !== null) bad('자동 노출: 최신 공지 dismiss 후 과거 공지가 뜸')
     if (latest.expiresAt && autoOpenNotice([], '9999-12-31')?.id === latest.id) bad('자동 노출: 만료 무시됨')
   }
 

@@ -22,9 +22,15 @@ export function isNoticeExpired(n: Notice, today = todayString()): boolean {
   return n.expiresAt !== undefined && today > n.expiresAt
 }
 
-/** 시작 시 띄울 공지 — 자동 노출 대상 중 최신 1건만 */
+/**
+ * 시작 시 띄울 공지 — 자동 노출 공지 중 **가장 최신 1건만** 후보다.
+ * 그 1건을 '다시 열지 않음' 했거나 만료됐으면 아무것도 띄우지 않는다. 더 오래된 공지로 내려가지 않는다
+ * (최신 공지가 올라온 뒤에는 과거 공지가 자동으로 다시 뜨면 안 된다 — 목록에서만 본다).
+ */
 export function autoOpenNotice(dismissed: readonly string[], today = todayString()): Notice | null {
-  return NOTICES.find((n) => n.autoOpen && !isNoticeExpired(n, today) && !dismissed.includes(n.id)) ?? null
+  const latest = NOTICES.find((n) => n.autoOpen)
+  if (!latest || isNoticeExpired(latest, today) || dismissed.includes(latest.id)) return null
+  return latest
 }
 
 const ITEM_TOKEN = /\[\[item:(\d+)\]\]/g
