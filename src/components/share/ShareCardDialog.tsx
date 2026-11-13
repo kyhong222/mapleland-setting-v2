@@ -85,6 +85,10 @@ function buffOrder(id: string, applied: boolean): number {
   return applied ? ORDER_DOPING : ORDER_SPECIAL
 }
 
+/** 등급색 윤곽선 — 장비창 ItemIcon과 같은 방식(투명 스프라이트 상하좌우 1px drop-shadow) */
+const gradeOutline = (c: string) =>
+  `drop-shadow(1px 0 0 ${c}) drop-shadow(-1px 0 0 ${c}) drop-shadow(0 1px 0 ${c}) drop-shadow(0 -1px 0 ${c})`
+
 interface IconEntry {
   key: string
   icon?: string
@@ -210,7 +214,7 @@ function ShareCard({ cardRef }: { cardRef: Ref<HTMLDivElement> }) {
               <Box key={inst} sx={{ display: 'flex', alignItems: 'center', gap: 1, minWidth: 0, opacity: inactive ? 0.45 : 1 }}>
                 <Box sx={{ width: 32, height: 32, flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', bgcolor: C.cell, borderRadius: 0.5, position: 'relative' }}>
                   {built.base.iconUrl && (
-                    <Box component="img" src={built.base.iconUrl} alt="" sx={{ maxWidth: 30, maxHeight: 30, imageRendering: 'pixelated' }} />
+                    <Box component="img" src={built.base.iconUrl} alt="" sx={{ maxWidth: 30, maxHeight: 30, imageRendering: 'pixelated', filter: gradeOutline(grade.info.color) }} />
                   )}
                   {/* 보석 — 장비창과 같이 아이콘 아래쪽 가운데에 겹쳐 그린다 */}
                   {built.gems.length > 0 && (
