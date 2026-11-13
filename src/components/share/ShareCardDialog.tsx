@@ -5,6 +5,9 @@
  * 캡처했을 때 라이트/다크 모드와 상관없이 같은 모양이 나오도록 카드 자체는 고정 배색(아이템 툴팁과 같은
  * 남색 계열)을 쓴다 — 등급색도 그 배경 기준으로 맞춰져 있다.
  */
+import { useRef, useState } from 'react'
+import type { Ref } from 'react'
+import { toBlob } from 'html-to-image'
 import Box from '@mui/material/Box'
 import Dialog from '@mui/material/Dialog'
 import DialogContent from '@mui/material/DialogContent'
@@ -83,7 +86,7 @@ function StatCell({ label, value, color, bold }: { label: string; value: string;
   )
 }
 
-function ShareCard() {
+function ShareCard({ cardRef }: { cardRef: Ref<HTMLDivElement> }) {
   const jobId = useBuildStore((s) => s.jobId)
   const level = useBuildStore((s) => s.level)
   const baseStats = useBuildStore((s) => s.baseStats)
@@ -144,6 +147,7 @@ function ShareCard() {
 
   return (
     <Box
+      ref={cardRef}
       sx={{
         width: '100%',
         maxWidth: 560,
@@ -252,16 +256,79 @@ function ShareCard() {
   )
 }
 
+/** 카드 노드 → PNG Blob (레티나에서도 선명하게 2배) */
+async function renderCard(node: HTMLElement): Promise<Blob> {
+  const blob = await toBlob(node, { pixelRatio: 2 })
+  if (!blob) throw new Error('이미지 생성 실패')
+  return blob
+}
+
+function downloadBlob(blob: Blob) {
+  const url = URL.createObjectURL(blob)
+  const a = document.createElement('a')
+  a.href = url
+  a.download = 'mapleland-setting.png'
+  a.click()
+  setTimeout(() => URL.revokeObjectURL(url), 1000)
+}
+
+type CopyState = 'idle' | 'busy' | 'copied' | 'downloaded' | 'error'
+
+const COPY_LABEL: Record<CopyState, string> = {
+  idle: '캡처 복사',
+  busy: '캡처 중…',
+  copied: '복사됨!',
+  downloaded: '복사 미지원 — 파일로 저장됨',
+  error: '캡처 실패',
+}
+
 export default function ShareCardDialog({ open, onClose }: { open: boolean; onClose: () => void }) {
+  const cardRef = useRef<HTMLDivElement>(null)
+  const [state, setState] = useState<CopyState>('idle')
+
+  const flash = (s: CopyState) => {
+    setState(s)
+    setTimeout(() => setState('idle'), 2000)
+  }
+
+  const handleCopy = async () => {
+    const node = cardRef.current
+    if (!node || state === 'busy') return
+    setState('busy')
+    const blobPromise = renderCard(node)
+    try {
+      if (typeof ClipboardItem === 'undefined' || !navigator.clipboard?.write) throw new Error('clipboard unsupported')
+      // Safari는 클릭 직후 동기적으로 clipboard.write를 불러야 해서, Blob 대신 Promise를 넘긴다
+      await navigator.clipboard.write([new ClipboardItem({ 'image/png': blobPromise })])
+      flash('copied')
+    } catch {
+      // 클립보드 이미지 쓰기가 안 되는 환경(구형 브라우저·일부 모바일)은 파일 저장으로 대신한다
+      try {
+        downloadBlob(await blobPromise)
+        flash('downloaded')
+      } catch {
+        flash('error')
+      }
+    }
+  }
+
   return (
     <Dialog open={open} onClose={onClose} maxWidth="sm" fullWidth>
       <DialogContent sx={{ p: { xs: 1, sm: 2 } }}>
-        {open && <ShareCard />}
+        {open && <ShareCard cardRef={cardRef} />}
         <Typography variant="caption" color="text.secondary" sx={{ display: 'block', textAlign: 'center', mt: 1 }}>
-          이 카드를 캡처해 공유하세요.
+          [캡처 복사]를 누르면 카드 이미지가 클립보드에 복사됩니다.
         </Typography>
       </DialogContent>
       <DialogActions>
+        <Button
+          variant="contained"
+          onClick={handleCopy}
+          disabled={state === 'busy'}
+          color={state === 'error' ? 'error' : state === 'copied' ? 'success' : 'primary'}
+        >
+          {COPY_LABEL[state]}
+        </Button>
         <Button onClick={onClose}>닫기</Button>
       </DialogActions>
     </Dialog>
