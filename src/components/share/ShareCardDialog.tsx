@@ -34,7 +34,8 @@ import { CHARGE_LABEL } from '../../domain/paladinCharge'
 import { buffIconUrl, CHARGE_ICON } from '../../lib/buffIcon'
 
 const STAT_SHORT: Record<StatId, string> = { STR: '힘', DEX: '덱', INT: '인', LUK: '럭' }
-/** 카드의 장비 표시 순서 — 무기·보조무기를 맨 위에, 나머지는 기본 순서 */const SHARE_ORDER: EquipInstance[] = ['weapon', 'secondary', ...EQUIP_INSTANCES.filter((i) => i !== 'weapon' && i !== 'secondary')]
+/** 카드의 장비 표시 순서 — 무기·보조무기를 맨 위에, 나머지는 기본 순서 */
+const SHARE_ORDER: EquipInstance[] = ['weapon', 'secondary', ...EQUIP_INSTANCES.filter((i) => i !== 'weapon' && i !== 'secondary')]
 
 /** 카드 고정 배색 (ItemTooltip과 같은 계열) */
 const C = {
