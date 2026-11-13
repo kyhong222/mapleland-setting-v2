@@ -256,9 +256,9 @@ function ShareCard({ cardRef }: { cardRef: Ref<HTMLDivElement> }) {
   )
 }
 
-/** 카드 노드 → PNG Blob (화면에 보이는 크기 그대로 1배 — 2배는 붙여넣었을 때 너무 컸다) */
+/** 카드 노드 → PNG Blob (선명도를 위해 2배 해상도) */
 async function renderCard(node: HTMLElement): Promise<Blob> {
-  const blob = await toBlob(node, { pixelRatio: 1 })
+  const blob = await toBlob(node, { pixelRatio: 2 })
   if (!blob) throw new Error('이미지 생성 실패')
   return blob
 }
