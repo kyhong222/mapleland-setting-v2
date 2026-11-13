@@ -16,6 +16,24 @@
     "tuc": 3
   },
   {
+    "id": 1122058,
+    "name": "슈피겔만의 혼돈 목걸이",
+    "slot": "pendant",
+    "effects": {
+      "STR": 1,
+      "DEX": 1,
+      "INT": 1,
+      "LUK": 1,
+      "pad": 1,
+      "mad": 1,
+      "pdef": 27,
+      "mdef": 27
+    },
+    "reqLevel": 51,
+    "iconUrl": "https://maplestory.io/api/GMS/200/item/1122058/icon",
+    "tuc": 1
+  },
+  {
     "id": 1122014,
     "name": "부보안관 은뱃지",
     "slot": "pendant",
