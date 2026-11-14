@@ -117,6 +117,10 @@ const HIT_PHYS_HELP = (
 const PHYS_EVADE_HELP = (
   <>
     <InfoTitle>물리 회피확률</InfoTitle>
+    <Box sx={{ mb: 0.5 }}>
+      <b>접촉 데미지</b>와 몬스터의 <b>물리 스킬 공격</b>에 대한 회피 확률입니다.
+      속성이 붙은 물리 공격(예: 불속성 물리)도 여기에 해당합니다.
+    </Box>
     <Formula>회피율 ÷ (4.5 × 몬스터 명중)</Formula>
     <Box>도적 5~95%, 그 외 2~80%로 제한됩니다. 페이크·블로킹 등 추가회피는 독립 판정으로 합성됩니다.</Box>
   </>
@@ -125,6 +129,9 @@ const PHYS_EVADE_HELP = (
 const MAGIC_EVADE_HELP = (
   <>
     <InfoTitle>마법 회피확률</InfoTitle>
+    <Box sx={{ mb: 0.5 }}>
+      몬스터의 <b>마법 스킬 공격</b>에 대한 회피 확률입니다.
+    </Box>
     <Formula>10/9 − 몬스터 명중 ÷ (0.9 × 회피율)</Formula>
     <Box>도적 5~95%, 그 외 2~80%로 제한됩니다. 페이크·블로킹 등 추가회피는 독립 판정으로 합성됩니다.</Box>
   </>
