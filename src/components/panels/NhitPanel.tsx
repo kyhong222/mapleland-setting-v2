@@ -71,6 +71,11 @@ const SKILL_CHARGES: Record<string, { id: number; element: ChargeElement }> = {
 const skillIconSrc = (id: number) => `/skill-icons/${baseSkillId(id)}.png`
 const hideOnError = (e: SyntheticEvent<HTMLImageElement>) => { e.currentTarget.style.visibility = 'hidden' }
 const pct = (n: number) => `${(n * 100).toFixed(1)}%`
+/**
+ * 확률 내림 표기 — 정말 확실할 때(부동소수 오차 범위)만 100%, 그 외에는 소수 첫째 자리 아래를 버린다.
+ * 반올림하면 99.96%가 '100.0%'로 보여 확킬(최솟값끼리도 처치)과 구분이 안 된다(다음 차징 확킬 표).
+ */
+const pctFloor = (n: number) => (n >= 1 - 1e-9 ? '100%' : `${(Math.floor(n * 1000 + 1e-6) / 10).toFixed(1)}%`)
 
 /** 패닉/코마(검·도끼/둔기, 히어로·소마) — 콤보 카운터 전량 소모형 */
 const COMA_PANIC = new Set([1111003, 1111004, 1111005, 1111006, 11111002, 11111003])
@@ -791,7 +796,7 @@ export default function NhitPanel() {
                       />
                       <Box sx={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 0.25 }}>
                         {followUp.table.map((t) => (
-                          <Row key={t.pct} label={`${t.pct}% 차징`} value={pct(t.prob)} />
+                          <Row key={t.pct} label={`${t.pct}% 차징`} value={pctFloor(t.prob)} />
                         ))}
                       </Box>
                       {result.hasPreCast && (
