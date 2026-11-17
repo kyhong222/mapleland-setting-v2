@@ -590,15 +590,16 @@ function DraftLevelDialog({ buff, level, onApply, onClose }: {
 const ALL_CATEGORY_IDS: BuffCategoryId[] = BUFF_CATEGORIES.map((c) => c.id)
 
 /**
- * 필터 체크박스 배치 — 2줄 × 3칸(칸마다 2개), 첫 칸 왼쪽에 '전체'.
- *   전체 | 공 마   | 방 마방  | 이속 점프
- *        | 추공 추마 | 회피 명중 | 공속 기타
+ * 필터 체크박스 배치 — 2줄 × 3묶음(묶음마다 2개), 첫 열에 '전체'.
+ *   전체 | 공격력     마력     | 방어력 마법방어력 | 이동속도           점프력
+ *        | 추가공격력 추가마력 | 회피율 명중률     | 공격속도(시전속도) 기타
+ * 체크박스 하나가 격자 한 칸이라 위아래 줄이 같은 열끼리 정렬된다.
  */
 const FILTER_ROWS: BuffCategoryId[][][] = [
   [['pad', 'mad'], ['pdef', 'mdef'], ['speed', 'jump']],
   [['addPad', 'addMad'], ['eva', 'acc'], ['attackSpeed', 'etc']],
 ]
-const CATEGORY_SHORT = new Map(BUFF_CATEGORIES.map((c) => [c.id, c.short]))
+const CATEGORY_LABEL = new Map(BUFF_CATEGORIES.map((c) => [c.id, c.label]))
 
 /**
  * 도핑 목록 편집 — 위에서부터
@@ -681,7 +682,7 @@ function DopingEditorDialog({ skills, items, onClose }: {
   }
 
   return (
-    <Dialog open onClose={onClose} maxWidth="sm" fullWidth>
+    <Dialog open onClose={onClose} maxWidth="md" fullWidth>
       <DialogTitle sx={{ pb: 1 }}>도핑 목록 편집</DialogTitle>
       <DialogContent dividers sx={{ pt: 1 }}>
         <ActionHint
@@ -718,16 +719,17 @@ function DopingEditorDialog({ skills, items, onClose }: {
         <Box
           sx={{
             display: 'grid',
-            gridTemplateColumns: 'auto repeat(3, auto)',
+            // 전체 + (묶음 3개 × 체크박스 2개)
+            gridTemplateColumns: 'auto repeat(6, auto)',
             justifyContent: 'start',
             alignItems: 'center',
-            // 칸 사이 세로 구분선 — 첫 칸('전체')과 각 묶음 왼쪽에 선
-            '& > .cell': { px: 1, borderLeft: 1, borderColor: 'divider', display: 'flex', gap: 0.5 },
-            '& > .cell.first': { borderLeft: 0, pl: 0 },
+            columnGap: 1,
+            // 묶음 첫 칸 왼쪽에 세로 구분선
+            '& > .grp': { borderLeft: 1, borderColor: 'divider', pl: 1 },
           }}
         >
           {FILTER_ROWS.map((row, ri) => [
-            <Box key={`all-${ri}`} className="cell first" sx={{ gridColumn: 1 }}>
+            <Box key={`all-${ri}`}>
               {ri === 0 && (
                 <FormControlLabel
                   sx={{ mr: 0, '& .MuiFormControlLabel-label': { fontSize: 13, fontWeight: 700 } }}
@@ -744,18 +746,17 @@ function DopingEditorDialog({ skills, items, onClose }: {
                 />
               )}
             </Box>,
-            ...row.map((pair, ci) => (
-              <Box key={`${ri}-${ci}`} className="cell">
-                {pair.map((id) => (
+            ...row.flatMap((pair, ci) =>
+              pair.map((id, k) => (
+                <Box key={`${ri}-${ci}-${id}`} className={k === 0 ? 'grp' : undefined}>
                   <FormControlLabel
-                    key={id}
-                    sx={{ mr: 0, '& .MuiFormControlLabel-label': { fontSize: 13 } }}
+                    sx={{ mr: 0, '& .MuiFormControlLabel-label': { fontSize: 13, whiteSpace: 'nowrap' } }}
                     control={<Checkbox size="small" sx={{ p: 0.5 }} checked={shownCats.has(id)} onChange={() => toggleCat(id)} />}
-                    label={CATEGORY_SHORT.get(id)}
+                    label={CATEGORY_LABEL.get(id)}
                   />
-                ))}
-              </Box>
-            )),
+                </Box>
+              )),
+            ),
           ])}
         </Box>
 
