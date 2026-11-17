@@ -273,6 +273,7 @@ function BuffDialog({ buff, kind, onClose }: { buff: Buff; kind: BuffKind; onClo
   const setBuffLevel = useBuildStore((s) => s.setBuffLevel)
   const setAppliedLevel = useBuildStore((s) => s.setAppliedLevel)
   const setMasteryLevel = useBuildStore((s) => s.setMasteryLevel)
+  const removeBuff = useBuildStore((s) => s.removeBuff)
   const jobId = useBuildStore((s) => s.jobId)
 
   const isSkill = buff.type === 'skill'
@@ -383,6 +384,19 @@ function BuffDialog({ buff, kind, onClose }: { buff: Buff; kind: BuffKind; onClo
         )}
       </DialogContent>
       <DialogActions>
+        {/* 적용된 버프(도핑 목록)만 — 목록에서 바로 뺀다 */}
+        {kind === 'applied' && (
+          <Button
+            color="error"
+            onClick={() => {
+              removeBuff(buff.id)
+              onClose()
+            }}
+            sx={{ mr: 'auto' }}
+          >
+            삭제
+          </Button>
+        )}
         <Button onClick={onClose} color="inherit">취소</Button>
         <Button onClick={apply} variant="contained">적용</Button>
       </DialogActions>
@@ -545,10 +559,12 @@ function MasteryRow({ buff, applied, unappliedNote, onOpen }: {
  * 도핑 목록 편집 창 안에서 쓰는 레벨 고르기 — draft에만 반영한다(스토어 커밋은 편집 창의 [적용]).
  * 변형형 버프는 버전 라디오, 그 외는 레벨 슬라이더.
  */
-function DraftLevelDialog({ buff, level, onApply, onClose }: {
+function DraftLevelDialog({ buff, level, onApply, onRemove, onClose }: {
   buff: Buff
   level: number
   onApply: (lv: number) => void
+  /** 목록에 들어 있는 항목일 때만 — 목록에서 뺀다 */
+  onRemove?: () => void
   onClose: () => void
 }) {
   const jobId = useBuildStore((s) => s.jobId)
@@ -568,17 +584,24 @@ function DraftLevelDialog({ buff, level, onApply, onClose }: {
               <FormControlLabel key={name} value={i + 1} control={<Radio size="small" />} label={name} />
             ))}
           </RadioGroup>
-        ) : (
+        ) : master > 1 ? (
           <Box sx={{ px: 1 }}>
             <Typography variant="body2" gutterBottom>스킬 레벨: {lv} / {master}</Typography>
             <Slider min={1} max={master} value={lv} onChange={(_, v) => setLv(v as number)} valueLabelDisplay="auto" />
           </Box>
+        ) : (
+          <Typography variant="caption" color="text.disabled">레벨 조정 없음</Typography>
         )}
         <Typography variant="body2" color="success.main" sx={{ mt: 1 }}>
           {formatEffects(buffEffectsAtLevel(buff, lv)) || '—'}
         </Typography>
       </DialogContent>
       <DialogActions>
+        {onRemove && (
+          <Button color="error" onClick={onRemove} sx={{ mr: 'auto' }}>
+            삭제
+          </Button>
+        )}
         <Button onClick={onClose} color="inherit">취소</Button>
         <Button onClick={() => onApply(lv)} variant="contained">적용</Button>
       </DialogActions>
@@ -676,7 +699,7 @@ function DopingEditorDialog({ skills, items, onClose }: {
         levelBadge={on && hasLevelBadge(b) ? levelOf(b) : undefined}
         tooltip={buffTooltip(b, levelOf(b))}
         onClick={() => toggle(b)}
-        onLongPress={leveled(b) ? () => setLevelFor(b) : undefined}
+        onLongPress={leveled(b) || on ? () => setLevelFor(b) : undefined}
       />
     )
   }
@@ -689,7 +712,7 @@ function DopingEditorDialog({ skills, items, onClose }: {
           sx={{ mb: 1 }}
           actions={[
             { key: '좌클릭', desc: '추가 / 제거' },
-            { key: EDIT_HINT_KEY, desc: '레벨 변경', tone: 'secondary', note: '모바일: 길게 누르기' },
+            { key: EDIT_HINT_KEY, desc: '편집 (레벨 · 삭제)', tone: 'secondary', note: '모바일: 길게 누르기' },
           ]}
         />
 
@@ -708,7 +731,7 @@ function DopingEditorDialog({ skills, items, onClose }: {
                 levelBadge={hasLevelBadge(b) ? levelOf(b) : undefined}
                 tooltip={buffTooltip(b, levelOf(b), '좌클릭으로 목록에서 제거')}
                 onClick={() => toggle(b)}
-                onLongPress={leveled(b) ? () => setLevelFor(b) : undefined}
+                onLongPress={() => setLevelFor(b)}
               />
             ))
           )}
@@ -811,6 +834,14 @@ function DopingEditorDialog({ skills, items, onClose }: {
             setDraft((d) => ({ ...d, [levelFor.id]: lv }))
             setLevelFor(null)
           }}
+          onRemove={
+            levelFor.id in draft
+              ? () => {
+                  toggle(levelFor)
+                  setLevelFor(null)
+                }
+              : undefined
+          }
           onClose={() => setLevelFor(null)}
         />
       )}
@@ -819,7 +850,7 @@ function DopingEditorDialog({ skills, items, onClose }: {
 }
 
 /**
- * 적용된 버프(도핑 목록) — 좌클릭: ON/OFF / 우클릭: 레벨 변경(아이템 제외) / 호버: 효과.
+ * 적용된 버프(도핑 목록) — 좌클릭: ON/OFF / 우클릭: 편집(레벨 변경·삭제) / 호버: 효과.
  * 켜진 항목은 황금빛 테두리, 꺼진 항목은 회색. 레벨이 있는 스킬은 우상단에 레벨 배지.
  * 무기 부스터처럼 장착 무기를 타는 버프는 무기가 맞지 않으면 켜져 있어도 회색(미적용)으로 표시한다.
  */
@@ -841,7 +872,6 @@ function AppliedBuffList({ entries, levels, applied, weaponType, onOpen, onToggl
       {entries.map((b) => {
         const on = b.id in applied
         const lv = applied[b.id] ?? levels[b.id] ?? defaultBuffLevel(b)
-        const hasLevel = b.type === 'skill' && b.masterLevel > 1
         const gateNote = weaponGateNote(b, weaponType)
         return (
           <BuffIcon
@@ -853,7 +883,7 @@ function AppliedBuffList({ entries, levels, applied, weaponType, onOpen, onToggl
             levelBadge={hasLevelBadge(b) ? lv : undefined}
             tooltip={buffTooltip(b, lv, on ? gateNote : '꺼짐 — 좌클릭으로 켜기')}
             onClick={() => onToggle(b.id)}
-            onLongPress={hasLevel ? () => onOpen(b) : undefined}
+            onLongPress={() => onOpen(b)}
           />
         )
       })}
@@ -1076,7 +1106,7 @@ export default function SkillPanel() {
         sx={{ mb: 0.75 }}
         actions={[
           { key: '좌클릭', desc: 'ON / OFF' },
-          { key: EDIT_HINT_KEY, desc: '레벨 변경', tone: 'secondary', note: '모바일: 길게 누르기' },
+          { key: EDIT_HINT_KEY, desc: '편집 (레벨 · 삭제)', tone: 'secondary', note: '모바일: 길게 누르기' },
           { desc: '마우스를 올리면 효과를 표시합니다.' },
         ]}
       />
