@@ -634,7 +634,7 @@ function DopingEditorDialog({ groups, onClose }: { groups: BuffGroup[]; onClose:
         />
 
         {/* 목록에 올라간 도핑 */}
-        <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.75, minHeight: 76, alignItems: 'center', pt: 0.5 }}>
+        <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.75, minHeight: 48, alignItems: 'center', pt: 0.5 }}>
           {listed.length === 0 ? (
             <Typography variant="caption" color="text.disabled">아래에서 아이콘을 눌러 목록에 추가하세요</Typography>
           ) : (
@@ -642,8 +642,8 @@ function DopingEditorDialog({ groups, onClose }: { groups: BuffGroup[]; onClose:
               <BuffIcon
                 key={b.id}
                 buff={b}
-                size={72}
-                pixelScale={2}
+                size={44}
+                pixelScale={1}
                 ringed={false}
                 levelBadge={hasLevelBadge(b) ? levelOf(b) : undefined}
                 tooltip={buffTooltip(b, levelOf(b), '좌클릭으로 목록에서 제거')}
@@ -667,8 +667,8 @@ function DopingEditorDialog({ groups, onClose }: { groups: BuffGroup[]; onClose:
                   <BuffIcon
                     key={b.id}
                     buff={b}
-                    size={72}
-                    pixelScale={2}
+                    size={44}
+                    pixelScale={1}
                     ringed={on}
                     levelBadge={on && hasLevelBadge(b) ? levelOf(b) : undefined}
                     tooltip={buffTooltip(b, levelOf(b))}
