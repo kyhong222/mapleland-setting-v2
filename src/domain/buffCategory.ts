@@ -12,20 +12,20 @@ export type BuffCategoryId =
   | 'pad' | 'mad' | 'pdef' | 'mdef' | 'speed' | 'jump' | 'eva' | 'acc'
   | 'addPad' | 'addMad' | 'attackSpeed' | 'etc'
 
-/** 표시 순서 · 라벨 · 해당 효과 id */
-export const BUFF_CATEGORIES: { id: BuffCategoryId; label: string; effects: EffectId[] }[] = [
-  { id: 'pad', label: '공격력', effects: ['pad'] },
-  { id: 'mad', label: '마력', effects: ['mad'] },
-  { id: 'pdef', label: '방어력', effects: ['pdef'] },
-  { id: 'mdef', label: '마법방어력', effects: ['mdef'] },
-  { id: 'speed', label: '이동속도', effects: ['speed'] },
-  { id: 'jump', label: '점프력', effects: ['jump'] },
-  { id: 'eva', label: '회피율', effects: ['eva'] },
-  { id: 'acc', label: '명중률', effects: ['acc'] },
-  { id: 'addPad', label: '추가공격력', effects: ['addPad'] },
-  { id: 'addMad', label: '추가마력', effects: ['addMad'] },
-  { id: 'attackSpeed', label: '공격속도(시전속도)', effects: ['attackSpeedBoost', 'castSpeedBoost', 'windBoostStep'] },
-  { id: 'etc', label: '기타', effects: [] },
+/** 표시 순서 · 라벨(섹션 제목) · 짧은 라벨(필터 체크박스) · 해당 효과 id */
+export const BUFF_CATEGORIES: { id: BuffCategoryId; label: string; short: string; effects: EffectId[] }[] = [
+  { id: 'pad', label: '공격력', short: '공', effects: ['pad'] },
+  { id: 'mad', label: '마력', short: '마', effects: ['mad'] },
+  { id: 'pdef', label: '방어력', short: '방', effects: ['pdef'] },
+  { id: 'mdef', label: '마법방어력', short: '마방', effects: ['mdef'] },
+  { id: 'speed', label: '이동속도', short: '이속', effects: ['speed'] },
+  { id: 'jump', label: '점프력', short: '점프', effects: ['jump'] },
+  { id: 'eva', label: '회피율', short: '회피', effects: ['eva'] },
+  { id: 'acc', label: '명중률', short: '명중', effects: ['acc'] },
+  { id: 'addPad', label: '추가공격력', short: '추공', effects: ['addPad'] },
+  { id: 'addMad', label: '추가마력', short: '추마', effects: ['addMad'] },
+  { id: 'attackSpeed', label: '공격속도(시전속도)', short: '공속', effects: ['attackSpeedBoost', 'castSpeedBoost', 'windBoostStep'] },
+  { id: 'etc', label: '기타', short: '기타', effects: [] },
 ]
 
 const CATEGORY_OF = new Map<EffectId, BuffCategoryId>(

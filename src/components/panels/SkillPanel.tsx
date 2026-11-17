@@ -590,6 +590,17 @@ function DraftLevelDialog({ buff, level, onApply, onClose }: {
 const ALL_CATEGORY_IDS: BuffCategoryId[] = BUFF_CATEGORIES.map((c) => c.id)
 
 /**
+ * 필터 체크박스 배치 — 2줄 × 3칸(칸마다 2개), 첫 칸 왼쪽에 '전체'.
+ *   전체 | 공 마   | 방 마방  | 이속 점프
+ *        | 추공 추마 | 회피 명중 | 공속 기타
+ */
+const FILTER_ROWS: BuffCategoryId[][][] = [
+  [['pad', 'mad'], ['pdef', 'mdef'], ['speed', 'jump']],
+  [['addPad', 'addMad'], ['eva', 'acc'], ['attackSpeed', 'etc']],
+]
+const CATEGORY_SHORT = new Map(BUFF_CATEGORIES.map((c) => [c.id, c.short]))
+
+/**
  * 도핑 목록 편집 — 위에서부터
  *  1) 목록에 올라간 도핑 (좌클릭: 목록에서 제거)
  *  2) 카테고리 필터 체크박스
@@ -643,8 +654,8 @@ function DopingEditorDialog({ skills, items, onClose }: {
     items: items.filter((b) => catsOf(b).includes(c.id)),
   })).filter((c) => c.skills.length + c.items.length > 0)
 
-  const allShown = sections.every((c) => shownCats.has(c.id))
-  const noneShown = sections.every((c) => !shownCats.has(c.id))
+  const allShown = ALL_CATEGORY_IDS.every((id) => shownCats.has(id))
+  const noneShown = ALL_CATEGORY_IDS.every((id) => !shownCats.has(id))
   const toggleCat = (id: BuffCategoryId) => {
     const next = new Set(shownCats)
     if (next.has(id)) next.delete(id)
@@ -704,28 +715,48 @@ function DopingEditorDialog({ skills, items, onClose }: {
 
         {/* 2) 카테고리 필터 */}
         <Divider sx={{ my: 1.25 }} />
-        <Box sx={{ display: 'flex', flexWrap: 'wrap', columnGap: 1, rowGap: 0 }}>
-          <FormControlLabel
-            sx={{ mr: 0, '& .MuiFormControlLabel-label': { fontSize: 13, fontWeight: 700 } }}
-            control={
-              <Checkbox
-                size="small"
-                sx={{ p: 0.5 }}
-                checked={allShown}
-                indeterminate={!allShown && !noneShown}
-                onChange={() => setShownCats(allShown ? new Set() : new Set(ALL_CATEGORY_IDS))}
-              />
-            }
-            label="전체"
-          />
-          {sections.map((c) => (
-            <FormControlLabel
-              key={c.id}
-              sx={{ mr: 0, '& .MuiFormControlLabel-label': { fontSize: 13 } }}
-              control={<Checkbox size="small" sx={{ p: 0.5 }} checked={shownCats.has(c.id)} onChange={() => toggleCat(c.id)} />}
-              label={c.label}
-            />
-          ))}
+        <Box
+          sx={{
+            display: 'grid',
+            gridTemplateColumns: 'auto repeat(3, auto)',
+            justifyContent: 'start',
+            alignItems: 'center',
+            // 칸 사이 세로 구분선 — 첫 칸('전체')과 각 묶음 왼쪽에 선
+            '& > .cell': { px: 1, borderLeft: 1, borderColor: 'divider', display: 'flex', gap: 0.5 },
+            '& > .cell.first': { borderLeft: 0, pl: 0 },
+          }}
+        >
+          {FILTER_ROWS.map((row, ri) => [
+            <Box key={`all-${ri}`} className="cell first" sx={{ gridColumn: 1 }}>
+              {ri === 0 && (
+                <FormControlLabel
+                  sx={{ mr: 0, '& .MuiFormControlLabel-label': { fontSize: 13, fontWeight: 700 } }}
+                  control={
+                    <Checkbox
+                      size="small"
+                      sx={{ p: 0.5 }}
+                      checked={allShown}
+                      indeterminate={!allShown && !noneShown}
+                      onChange={() => setShownCats(allShown ? new Set() : new Set(ALL_CATEGORY_IDS))}
+                    />
+                  }
+                  label="전체"
+                />
+              )}
+            </Box>,
+            ...row.map((pair, ci) => (
+              <Box key={`${ri}-${ci}`} className="cell">
+                {pair.map((id) => (
+                  <FormControlLabel
+                    key={id}
+                    sx={{ mr: 0, '& .MuiFormControlLabel-label': { fontSize: 13 } }}
+                    control={<Checkbox size="small" sx={{ p: 0.5 }} checked={shownCats.has(id)} onChange={() => toggleCat(id)} />}
+                    label={CATEGORY_SHORT.get(id)}
+                  />
+                ))}
+              </Box>
+            )),
+          ])}
         </Box>
 
         {/* 3) 카테고리별 도핑 — 스킬 | 아이템 */}
