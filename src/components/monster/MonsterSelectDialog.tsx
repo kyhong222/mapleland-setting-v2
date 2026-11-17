@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
 import Dialog from '@mui/material/Dialog'
@@ -12,10 +12,14 @@ import Chip from '@mui/material/Chip'
 import Checkbox from '@mui/material/Checkbox'
 import FormControlLabel from '@mui/material/FormControlLabel'
 import Tooltip from '@mui/material/Tooltip'
+import ListSubheader from '@mui/material/ListSubheader'
+import Divider from '@mui/material/Divider'
+import Button from '@mui/material/Button'
 import { inkOnDark } from '../../theme'
 import MonsterIcon from './MonsterIcon'
 import { useMonsterStore } from '../../store/monsterStore'
 import { useBuildStore } from '../../store/buildStore'
+import { useUiStore } from '../../store/uiStore'
 import { MONSTERS, LEVEL_RANGE } from '../../data/mobs'
 import { REGION_CATEGORIES, REGION_ICON } from '../../data/mobs/regionCategory'
 import { monsterLabel, parseElemAttr, monsterPatterns } from '../../domain/monster'
@@ -58,6 +62,50 @@ function selLabel(sel: string): string {
   return sel.slice(2) // 'c:' | 'r:' 접두 제거
 }
 
+/** 지역 드롭다운 값이 아직 유효한지 (지역 개편으로 사라진 즐겨찾기는 조용히 숨긴다) */
+function validRegionKey(key: string): boolean {
+  if (key.startsWith('c:')) return key.slice(2) in CATEGORY_REGIONS
+  if (key.startsWith('r:')) return REGION_CATEGORIES.some((c) => c.regions.some((r) => r.name === key.slice(2)))
+  return false
+}
+
+/**
+ * 즐겨찾기 별 버튼. 카드/메뉴 항목 안에 들어가므로 클릭이 바깥 선택으로 번지지 않게 막는다.
+ * (Select의 MenuItem은 click으로 선택되므로 mousedown·click 둘 다 멈춘다)
+ */
+function FavStar({ on, onToggle, size = 18 }: { on: boolean; onToggle: () => void; size?: number }) {
+  const label = on ? '즐겨찾기 해제' : '즐겨찾기'
+  return (
+    <Tooltip title={label} placement="top" arrow disableInteractive>
+      <Box
+        component="button"
+        type="button"
+        aria-label={label}
+        aria-pressed={on}
+        onMouseDown={(e: React.MouseEvent) => e.stopPropagation()}
+        onClick={(e: React.MouseEvent) => {
+          e.stopPropagation()
+          e.preventDefault()
+          onToggle()
+        }}
+        sx={{
+          border: 0,
+          bgcolor: 'transparent',
+          cursor: 'pointer',
+          p: 0.25,
+          lineHeight: 1,
+          fontSize: size,
+          color: on ? '#f9a825' : 'text.disabled',
+          flexShrink: 0,
+          '&:hover': { color: '#f9a825' },
+        }}
+      >
+        {on ? '★' : '☆'}
+      </Box>
+    </Tooltip>
+  )
+}
+
 /** 몬스터 검색/필터/선택 모달 */
 export default function MonsterSelectDialog({ open, onClose }: { open: boolean; onClose: () => void }) {
   const selectedId = useMonsterStore((s) => s.selectedId)
@@ -73,6 +121,20 @@ export default function MonsterSelectDialog({ open, onClose }: { open: boolean; 
   const [undeadOnly, setUndeadOnly] = useState(false)
   const [levelRangeOnly, setLevelRangeOnly] = useState(false)
   const charLevel = useBuildStore((s) => s.level)
+  const favMonsters = useUiStore((s) => s.favoriteMonsters)
+  const favRegions = useUiStore((s) => s.favoriteRegions)
+  const toggleFavMonster = useUiStore((s) => s.toggleFavoriteMonster)
+  const toggleFavRegion = useUiStore((s) => s.toggleFavoriteRegion)
+  const favMonsterSet = useMemo(() => new Set(favMonsters), [favMonsters])
+  const favRegionSet = useMemo(() => new Set(favRegions), [favRegions])
+  const shownFavRegions = useMemo(() => favRegions.filter(validRegionKey), [favRegions])
+  // 즐겨찾기만 보기 — 열 때마다 즐겨찾기가 있으면 켠다(첫 화면 = 즐겨찾기, 없으면 전체)
+  const [favOnly, setFavOnly] = useState(false)
+  useEffect(() => {
+    if (open) setFavOnly(useUiStore.getState().favoriteMonsters.length > 0)
+  }, [open])
+  // 마지막 즐겨찾기를 지우면 자동으로 전체로 돌아간다
+  const showFavOnly = favOnly && favMonsters.length > 0
 
   const toggleSet = (set: React.Dispatch<React.SetStateAction<Set<string>>>, key: string) =>
     set((p) => {
@@ -92,6 +154,7 @@ export default function MonsterSelectDialog({ open, onClose }: { open: boolean; 
     const catRegions = sel.startsWith('c:') ? CATEGORY_REGIONS[sel.slice(2)] : null
     const region = sel.startsWith('r:') ? sel.slice(2) : null
     return MONSTERS.filter((m) => {
+      if (showFavOnly && !favMonsterSet.has(m.id)) return false
       const found = m.foundAt ?? []
       if (catRegions && !found.some((r) => catRegions.has(r))) return false
       if (region && !found.includes(region)) return false
@@ -119,7 +182,7 @@ export default function MonsterSelectDialog({ open, onClose }: { open: boolean; 
       }
       return true
     }).sort((a, b) => a.id - b.id)
-  }, [sel, query, minLv, maxLv, bossOnly, reactFilters, patternFilters, undeadOnly, levelRangeOnly, charLevel])
+  }, [sel, query, minLv, maxLv, bossOnly, reactFilters, patternFilters, undeadOnly, levelRangeOnly, charLevel, showFavOnly, favMonsterSet])
 
   const pick = (id: number) => {
     select(id)
@@ -161,19 +224,42 @@ export default function MonsterSelectDialog({ open, onClose }: { open: boolean; 
               MenuProps={{ PaperProps: { sx: { maxHeight: 500 } } }}
               sx={{ flex: 1, '& .MuiSelect-select': { py: 1, fontSize: 15, display: 'flex', alignItems: 'center' } }}
             >
+              {/* 즐겨찾기 지역 — 최상단에 모은다(아래 원래 자리에서는 빠진다). 즐겨찾기한 순서대로 */}
+              {shownFavRegions.length > 0 && (
+                <ListSubheader sx={{ lineHeight: '32px', fontSize: 12 }}>★ 즐겨찾기</ListSubheader>
+              )}
+              {shownFavRegions.map((key) => {
+                const icon = key.startsWith('r:') ? REGION_ICON[key.slice(2)] : undefined
+                return (
+                  <MenuItem key={`fav-${key}`} value={key} sx={{ fontSize: icon ? 14 : 16, fontWeight: icon ? 400 : 700, py: icon ? 0.75 : 1, gap: 1 }}>
+                    {icon && <Box component="img" src={icon} alt="" sx={{ width: 30, height: 30, imageRendering: 'pixelated' }} />}
+                    <Box sx={{ flex: 1 }}>{key.slice(2)}</Box>
+                    <FavStar on onToggle={() => toggleFavRegion(key)} />
+                  </MenuItem>
+                )
+              })}
+              {shownFavRegions.length > 0 && <Divider />}
               <MenuItem value={ALL_REGION} sx={{ fontSize: 16, fontWeight: 700, py: 1 }}>전체 지역</MenuItem>
               {REGION_CATEGORIES.flatMap((c) => [
                 // 상위 카테고리(아이콘 없이, 살짝 크게) — 선택 시 카테고리 전체
-                <MenuItem key={`c:${c.name}`} value={`c:${c.name}`} sx={{ fontSize: 16, fontWeight: 700, py: 1, mt: 0.25 }}>
-                  {c.name}
-                </MenuItem>,
+                ...(favRegionSet.has(`c:${c.name}`)
+                  ? []
+                  : [
+                      <MenuItem key={`c:${c.name}`} value={`c:${c.name}`} sx={{ fontSize: 16, fontWeight: 700, py: 1, mt: 0.25, gap: 1 }}>
+                        <Box sx={{ flex: 1 }}>{c.name}</Box>
+                        <FavStar on={false} onToggle={() => toggleFavRegion(`c:${c.name}`)} />
+                      </MenuItem>,
+                    ]),
                 // 하위 지역(들여쓰기 + 맵 아이콘)
-                ...c.regions.map((r) => (
-                  <MenuItem key={`r:${r.name}`} value={`r:${r.name}`} sx={{ fontSize: 14, pl: 2.5, py: 0.75, gap: 1, color: 'text.secondary' }}>
-                    <Box component="img" src={r.icon} alt="" sx={{ width: 30, height: 30, imageRendering: 'pixelated' }} />
-                    {r.name}
-                  </MenuItem>
-                )),
+                ...c.regions
+                  .filter((r) => !favRegionSet.has(`r:${r.name}`))
+                  .map((r) => (
+                    <MenuItem key={`r:${r.name}`} value={`r:${r.name}`} sx={{ fontSize: 14, pl: 2.5, py: 0.75, gap: 1, color: 'text.secondary' }}>
+                      <Box component="img" src={r.icon} alt="" sx={{ width: 30, height: 30, imageRendering: 'pixelated' }} />
+                      <Box sx={{ flex: 1 }}>{r.name}</Box>
+                      <FavStar on={false} onToggle={() => toggleFavRegion(`r:${r.name}`)} />
+                    </MenuItem>
+                  )),
               ])}
             </Select>
             <Chip
@@ -184,6 +270,22 @@ export default function MonsterSelectDialog({ open, onClose }: { open: boolean; 
               onClick={() => setBossOnly((v) => !v)}
               sx={{ alignSelf: 'center' }}
             />
+            <Tooltip
+              title={favMonsters.length === 0 ? '몬스터 카드의 ☆를 눌러 즐겨찾기하세요' : '즐겨찾기한 몬스터만 보기'}
+              placement="top"
+              arrow
+            >
+              <Box component="span" sx={{ alignSelf: 'center' }}>
+                <Chip
+                  label={`★ 즐겨찾기 ${favMonsters.length}`}
+                  size="small"
+                  disabled={favMonsters.length === 0}
+                  variant={showFavOnly ? 'filled' : 'outlined'}
+                  onClick={() => setFavOnly((v) => !v)}
+                  sx={showFavOnly ? { bgcolor: '#f9a825', color: '#212121', '&:hover': { bgcolor: '#f57f17' } } : undefined}
+                />
+              </Box>
+            </Tooltip>
           </Box>
           <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
             <Typography variant="caption" color="text.secondary">레벨</Typography>
@@ -238,13 +340,20 @@ export default function MonsterSelectDialog({ open, onClose }: { open: boolean; 
         </Box>
 
         <Typography variant="caption" color="text.disabled" sx={{ display: 'block', mt: 1, mb: 0.5 }}>
-          {filtered.length}종
+          {showFavOnly ? `즐겨찾기 ${filtered.length}종` : `${filtered.length}종`}
         </Typography>
 
         {/* 목록 (2열 그리드로 더 크게) */}
         <Box sx={{ maxHeight: 560, overflowY: 'auto', display: 'grid', gridTemplateColumns: { xs: '1fr', sm: '1fr 1fr' }, gap: 0.5 }}>
           {filtered.length === 0 ? (
-            <Typography variant="caption" color="text.disabled" sx={{ py: 2, textAlign: 'center', gridColumn: '1 / -1' }}>조건에 맞는 몬스터 없음</Typography>
+            <Box sx={{ py: 2, textAlign: 'center', gridColumn: '1 / -1' }}>
+              <Typography variant="caption" color="text.disabled" sx={{ display: 'block' }}>
+                {showFavOnly ? '즐겨찾기 중에는 조건에 맞는 몬스터 없음' : '조건에 맞는 몬스터 없음'}
+              </Typography>
+              {showFavOnly && (
+                <Button size="small" onClick={() => setFavOnly(false)} sx={{ mt: 0.5 }}>전체에서 찾기</Button>
+              )}
+            </Box>
           ) : (
             filtered.map((m) => {
               const active = m.id === selectedId
@@ -314,6 +423,7 @@ export default function MonsterSelectDialog({ open, onClose }: { open: boolean; 
                     )}
                   </Box>
                   {m.isBoss && <Chip label="보스" size="small" color="error" variant="outlined" sx={{ height: 20, fontSize: 11 }} />}
+                  <FavStar on={favMonsterSet.has(m.id)} onToggle={() => toggleFavMonster(m.id)} size={22} />
                 </Box>
               )
             })
