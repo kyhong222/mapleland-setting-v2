@@ -15,7 +15,7 @@ import { baseLevelOf } from '../domain/resource'
 import type { BuildSnapshot } from './buildStore'
 import type { AppState } from './snapshot'
 
-export const CLOUD_SCHEMA_VERSION = 2
+export const CLOUD_SCHEMA_VERSION = 3
 
 const EMPTY_NHIT = { skillId: '' as const, skillLevel: 1, preCast: [] }
 
@@ -34,6 +34,10 @@ export function migrateCloudState(payload: unknown, from: number): AppState | nu
     const level = build.level ?? 1
     build.baseHpLevel = baseLevelOf(build.baseHp, build.baseHpLevel, level)
     build.baseMpLevel = baseLevelOf(build.baseMp, build.baseMpLevel, level)
+  }
+  // v2 → v3: 도핑 목록(꺼진 항목 포함)이 생겼다 — 켜져 있던 것으로 채운다
+  if (from < 3) {
+    build.dopingList = { ...(build.dopingList ?? {}), ...(build.appliedBuffs ?? {}) }
   }
 
   return {

@@ -15,6 +15,8 @@ import Radio from '@mui/material/Radio'
 import RadioGroup from '@mui/material/RadioGroup'
 import FormControlLabel from '@mui/material/FormControlLabel'
 import Tooltip from '@mui/material/Tooltip'
+import Checkbox from '@mui/material/Checkbox'
+import TextField from '@mui/material/TextField'
 import CollapsiblePanel from '../common/CollapsiblePanel'
 import ActionHint from '../common/ActionHint'
 import EditBadge from '../common/EditBadge'
@@ -142,6 +144,32 @@ const EDIT_HINT_KEY = (
   </>
 )
 
+/**
+ * 버프 아이콘 우상단 레벨 배지 — 공유 카드(ShareCardDialog '적용 버프')와 같은 모양.
+ * 꺼진 버프는 아이콘처럼 흐리게 둔다.
+ */
+function LevelBadge({ level, dim = false }: { level: number; dim?: boolean }) {
+  return (
+    <Box
+      sx={{
+        position: 'absolute', top: -4, right: -4,
+        minWidth: 16, height: 16, px: '3px', boxSizing: 'border-box',
+        borderRadius: '8px', bgcolor: '#0a0c1c', border: '1px solid #ffc53d',
+        color: '#ffc53d', fontSize: 10, fontWeight: 700, lineHeight: '14px', textAlign: 'center',
+        opacity: dim ? 0.55 : 1,
+        pointerEvents: 'none',
+      }}
+    >
+      {level}
+    </Box>
+  )
+}
+
+/** 레벨 배지를 다는 버프인지 — 레벨이 있는 스킬만(변형 선택형 제외). 공유 카드와 같은 기준 */
+function hasLevelBadge(buff: Buff): boolean {
+  return buff.type === 'skill' && buff.masterLevel > 1 && !buff.variants
+}
+
 function BuffIcon({
   buff,
   active = true,
@@ -151,6 +179,7 @@ function BuffIcon({
   imgSize,
   tooltip,
   highlightActive = false,
+  levelBadge,
 }: {
   buff: Buff
   active?: boolean
@@ -166,6 +195,8 @@ function BuffIcon({
   tooltip?: React.ReactNode
   /** 적용(active) 시 밝은 황금빛 테두리로 강조할지 여부 */
   highlightActive?: boolean
+  /** 우상단 레벨 배지 (공유 카드와 같은 모양). 없으면 표시 안 함 */
+  levelBadge?: number
 }) {
   const lp = useTouchLongPress(() => onLongPress?.())
   const iconJobId = useBuildStore((s) => s.jobId)
@@ -198,6 +229,7 @@ function BuffIcon({
       }}
     >
       {icon && <Box component="img" src={icon} alt="" sx={{ width: img, height: img, imageRendering: 'pixelated', filter: active ? 'none' : 'grayscale(1)' }} />}
+      {levelBadge !== undefined && <LevelBadge level={levelBadge} dim={!active} />}
       {onLongPress && <EditBadgeButton onClick={onLongPress} />}
     </Box>
   )
@@ -229,7 +261,11 @@ function BuffDialog({ buff, kind, onClose }: { buff: Buff; kind: BuffKind; onClo
     const s = useBuildStore.getState()
     const active = kind === 'toggle' ? buff.id in s.activeBuffs : true
     const fb = kind === 'toggle' ? s.buffLevels[buff.id] ?? defaultBuffLevel(buff, jobId) : defaultBuffLevel(buff, jobId)
-    const lv = kind === 'toggle' ? s.activeBuffs[buff.id] ?? fb : kind === 'applied' ? s.appliedBuffs[buff.id] ?? fb : s.masteryLevels[buff.id] ?? fb
+    const lv = kind === 'toggle'
+      ? s.activeBuffs[buff.id] ?? fb
+      : kind === 'applied'
+        ? s.appliedBuffs[buff.id] ?? s.dopingList?.[buff.id] ?? fb
+        : s.masteryLevels[buff.id] ?? fb
     return [active, lv] as const
   })[0]
 
@@ -483,84 +519,174 @@ function MasteryRow({ buff, applied, unappliedNote, onOpen }: {
   )
 }
 
-/** 선택용 드롭다운 — 항목 선택 시 적용 목록에 추가(이미 적용된 버프는 목록에서 제외) */
-/** 드롭다운 한 그룹 (개인 / 파티) */
+/** 도핑 목록 편집의 한 묶음 (아이템 도핑 / 개인 버프 / 파티 버프) */
 interface BuffGroup {
   label: string
   items: Buff[]
 }
 
-function BuffSelect({ groups, appliedIds, onAdd, placeholder }: {
-  groups: BuffGroup[]
-  appliedIds: Set<string>
-  onAdd: (id: string) => void
-  placeholder: string
-}) {
+/**
+ * 도핑 목록 편집 — 고를 수 있는 아이템 도핑·버프를 전부 보여주고, 목록 추가/제거와 레벨을 정한다.
+ * 체크·레벨은 로컬 draft에만 반영하고 [적용]을 눌러야 스토어에 커밋된다.
+ * 새로 넣은 항목은 켜진 채로 들어가고, 원래 있던 항목은 on/off를 유지한다(buildStore.setDopingList).
+ */
+function DopingEditorDialog({ groups, onClose }: { groups: BuffGroup[]; onClose: () => void }) {
+  const setDopingList = useBuildStore((s) => s.setDopingList)
+  const jobId = useBuildStore((s) => s.jobId)
+  const [draft, setDraft] = useState<Record<string, number>>(() => {
+    const s = useBuildStore.getState()
+    return { ...(s.dopingList ?? {}), ...s.appliedBuffs }
+  })
+  const [q, setQ] = useState('')
+  const query = q.trim()
+
+  const toggle = (b: Buff) =>
+    setDraft((d) => {
+      const next = { ...d }
+      if (b.id in next) delete next[b.id]
+      else next[b.id] = defaultBuffLevel(b, jobId)
+      return next
+    })
+
   const shown = groups
-    .map((g) => ({ ...g, items: g.items.filter((b) => !appliedIds.has(b.id)) }))
+    .map((g) => ({ ...g, items: query ? g.items.filter((b) => b.name.includes(query)) : g.items }))
     .filter((g) => g.items.length > 0)
-  const row = (b: Buff) => (
-    <MenuItem key={b.id} value={b.id} sx={{ fontSize: 13, gap: 0.75 }}>
-      <BuffIcon buff={b} size={38} imgSize={32} />
-      <Box component="span" sx={{ flex: 1, minWidth: 0 }}>{b.name}</Box>
-      <Box component="span" sx={{ color: 'success.main' }}>{formatEffects(buffEffectsAtLevel(b, defaultBuffLevel(b))) || '—'}</Box>
-    </MenuItem>
-  )
+  const count = Object.keys(draft).length
+
   return (
-    <Select
-      size="small"
-      fullWidth
-      displayEmpty
-      value=""
-      onChange={(e) => {
-        const id = e.target.value as string
-        if (id) onAdd(id)
-      }}
-      renderValue={() => <Box component="em" sx={{ color: 'text.disabled' }}>{placeholder}</Box>}
-      sx={{ '& .MuiSelect-select': { py: 0.5, fontSize: 13, display: 'flex', alignItems: 'center' } }}
-    >
-      {shown.length === 0
-        ? <MenuItem value="" disabled>추가할 버프 없음</MenuItem>
-        : shown.flatMap((g, gi) => [
-            gi > 0 ? <Divider key={`div-${g.label}`} /> : null,
-            // 그룹이 하나뿐이면 굳이 머리글을 달지 않는다
-            shown.length > 1 ? (
-              <MenuItem key={`hdr-${g.label}`} value="" disabled sx={{ fontSize: 11, opacity: 1, color: 'text.secondary', fontWeight: 700, minHeight: 0, py: 0.25 }}>
-                {g.label}
-              </MenuItem>
-            ) : null,
-            ...g.items.map(row),
-          ])}
-    </Select>
+    <Dialog open onClose={onClose} maxWidth="sm" fullWidth>
+      <DialogTitle sx={{ pb: 1 }}>도핑 목록 편집</DialogTitle>
+      <DialogContent dividers sx={{ pt: 1 }}>
+        <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 1 }}>
+          <TextField
+            size="small"
+            fullWidth
+            autoFocus
+            placeholder="이름 검색"
+            value={q}
+            onChange={(e) => setQ(e.target.value)}
+          />
+          <Typography variant="caption" color="text.secondary" sx={{ flexShrink: 0 }}>
+            {count}개 선택
+          </Typography>
+          <Button size="small" color="inherit" disabled={count === 0} onClick={() => setDraft({})} sx={{ flexShrink: 0 }}>
+            전체 해제
+          </Button>
+        </Box>
+        {shown.length === 0 && (
+          <Typography variant="body2" color="text.disabled" sx={{ py: 2, textAlign: 'center' }}>
+            검색 결과가 없습니다.
+          </Typography>
+        )}
+        {shown.map((g) => (
+          <Box key={g.label} sx={{ mb: 1.5 }}>
+            <Typography variant="caption" color="text.secondary" sx={{ fontWeight: 700, display: 'block', mb: 0.25 }}>
+              {g.label}
+            </Typography>
+            {g.items.map((b) => {
+              const on = b.id in draft
+              const lv = draft[b.id] ?? defaultBuffLevel(b, jobId)
+              const master = effectiveMasterLevel(b, jobId)
+              const variants = b.type === 'skill' ? b.variants : undefined
+              const leveled = b.type === 'skill' && master > 1
+              return (
+                <Box
+                  key={b.id}
+                  onClick={() => toggle(b)}
+                  sx={{
+                    display: 'flex', alignItems: 'center', gap: 0.75, px: 0.5, py: 0.25, borderRadius: 1, cursor: 'pointer',
+                    bgcolor: on ? 'action.selected' : 'transparent',
+                    '&:hover': { bgcolor: on ? 'action.selected' : 'action.hover' },
+                  }}
+                >
+                  {/* 체크는 행 클릭이 처리한다(클릭이 행으로 올라간다) — 여기선 표시만 */}
+                  <Checkbox size="small" checked={on} onChange={() => {}} sx={{ p: 0.25 }} tabIndex={-1} />
+                  <BuffIcon buff={b} size={38} imgSize={32} active={on} levelBadge={on && hasLevelBadge(b) ? lv : undefined} />
+                  <Box sx={{ flex: 1, minWidth: 0 }}>
+                    <Typography variant="body2" noWrap>{b.name}</Typography>
+                    <Typography variant="caption" color={on ? 'success.main' : 'text.disabled'} noWrap sx={{ display: 'block' }}>
+                      {formatEffects(buffEffectsAtLevel(b, lv)) || '—'}
+                    </Typography>
+                  </Box>
+                  {leveled && (
+                    // 행 클릭(체크)과 분리 — 레벨을 고르면 그 항목은 목록에 들어간다
+                    <Box onClick={(e) => e.stopPropagation()} sx={{ flexShrink: 0 }}>
+                      <Select
+                        size="small"
+                        value={lv}
+                        onChange={(e) => {
+                          const v = Number(e.target.value)
+                          setDraft((d) => ({ ...d, [b.id]: v }))
+                        }}
+                        renderValue={(v) => (variants ? variants[Number(v) - 1] ?? v : `Lv. ${v}`)}
+                        MenuProps={{ PaperProps: { sx: { maxHeight: 320 } } }}
+                        sx={{ minWidth: 92, fontSize: 13, '& .MuiSelect-select': { py: 0.4 } }}
+                      >
+                        {Array.from({ length: master }, (_, i) => i + 1).map((n) => (
+                          <MenuItem key={n} value={n} sx={{ fontSize: 13 }}>
+                            {variants ? variants[n - 1] ?? n : `Lv. ${n}`}
+                          </MenuItem>
+                        ))}
+                      </Select>
+                    </Box>
+                  )}
+                </Box>
+              )
+            })}
+          </Box>
+        ))}
+      </DialogContent>
+      <DialogActions>
+        <Button onClick={onClose} color="inherit">취소</Button>
+        <Button
+          variant="contained"
+          onClick={() => {
+            setDopingList(draft)
+            onClose()
+          }}
+        >
+          적용
+        </Button>
+      </DialogActions>
+    </Dialog>
   )
 }
 
 /**
- * 적용된 버프 목록 — 좌클릭: 제거 / 우클릭: 레벨 변경(아이템 제외) / 호버: 효과.
- * 무기 부스터처럼 장착 무기를 타는 버프는 무기가 맞지 않으면 회색(미적용)으로 표시한다.
+ * 적용된 버프(도핑 목록) — 좌클릭: ON/OFF / 우클릭: 레벨 변경(아이템 제외) / 호버: 효과.
+ * 켜진 항목은 황금빛 테두리, 꺼진 항목은 회색. 레벨이 있는 스킬은 우상단에 레벨 배지.
+ * 무기 부스터처럼 장착 무기를 타는 버프는 무기가 맞지 않으면 켜져 있어도 회색(미적용)으로 표시한다.
  */
-function AppliedBuffList({ entries, levels, weaponType, onOpen, onRemove }: {
+function AppliedBuffList({ entries, levels, applied, weaponType, onOpen, onToggle }: {
   entries: Buff[]
+  /** 목록의 레벨 기억 (꺼진 항목 포함) */
   levels: Record<string, number>
+  /** 켜진 항목 */
+  applied: Record<string, number>
   weaponType?: WeaponType
   onOpen: (b: Buff) => void
-  onRemove: (id: string) => void
+  onToggle: (id: string) => void
 }) {
-  if (entries.length === 0) return <Typography variant="caption" color="text.disabled">위에서 버프를 선택해 추가하세요</Typography>
+  if (entries.length === 0) {
+    return <Typography variant="caption" color="text.disabled">도핑 목록 편집에서 버프를 추가하세요</Typography>
+  }
   return (
-    <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
+    <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5, pt: 0.5 }}>
       {entries.map((b) => {
-        const lv = levels[b.id] ?? defaultBuffLevel(b)
+        const on = b.id in applied
+        const lv = applied[b.id] ?? levels[b.id] ?? defaultBuffLevel(b)
         const hasLevel = b.type === 'skill' && b.masterLevel > 1
         const gateNote = weaponGateNote(b, weaponType)
         return (
           <BuffIcon
             key={b.id}
             buff={b}
-            active={!gateNote}
+            active={on && !gateNote}
+            highlightActive
             size={44}
-            tooltip={buffTooltip(b, lv, gateNote)}
-            onClick={() => onRemove(b.id)}
+            levelBadge={hasLevelBadge(b) ? lv : undefined}
+            tooltip={buffTooltip(b, lv, on ? gateNote : '꺼짐 — 좌클릭으로 켜기')}
+            onClick={() => onToggle(b.id)}
             onLongPress={hasLevel ? () => onOpen(b) : undefined}
           />
         )
@@ -710,11 +836,12 @@ export default function SkillPanel() {
   const equipped = useBuildStore((s) => s.equipped)
   const invItems = useInventoryStore((s) => s.items)
   const appliedBuffs = useBuildStore((s) => s.appliedBuffs)
-  const addBuff = useBuildStore((s) => s.addBuff)
-  const removeBuff = useBuildStore((s) => s.removeBuff)
+  const dopingList = useBuildStore((s) => s.dopingList)
+  const toggleDoping = useBuildStore((s) => s.toggleDoping)
   const weaponType = equippedWeaponType(equipped, invItems)
 
   const [dlg, setDlg] = useState<{ buff: Buff; kind: BuffKind } | null>(null)
+  const [editorOpen, setEditorOpen] = useState(false)
   const open = (kind: BuffKind) => (buff: Buff) => setDlg({ buff, kind })
 
   const jobPassives = jobId ? JOB_BUFFS.filter((b) => canUseBuff(b, jobId)) : []
@@ -734,7 +861,7 @@ export default function SkillPanel() {
     ...(jobId ? PERSONAL_BUFFS.filter((b) => canUseBuff(b, jobId) && b.type === 'skill' && b.mode === 'passive') : []),
   ].sort((a, b) => (MAGIC_GUARD_IDS.has(b.id) ? 1 : 0) - (MAGIC_GUARD_IDS.has(a.id) ? 1 : 0))
 
-  // 버프 드롭다운 풀 — 개인 액티브 스킬(패시브는 특화 섹션으로) + 파티 버프 전부.
+  // 도핑 목록 편집 풀 — 개인 액티브 스킬(패시브는 특화 섹션으로) + 파티 버프 전부.
   // 그중 이 직업이 직접 가진 것(개인스킬 + 소유 파티버프)을 '개인'으로 앞에 모은다.
   const buffPool = jobId
     ? [
@@ -742,18 +869,22 @@ export default function SkillPanel() {
         ...PARTY_BUFFS,
       ]
     : PARTY_BUFFS
-  const buffGroups = [
+  const editorGroups: BuffGroup[] = [
+    { label: '아이템 도핑', items: DOPING_ITEMS },
     { label: '개인 버프', items: buffPool.filter((b) => ownsBuff(b, jobId)) },
     { label: '파티 버프', items: buffPool.filter((b) => !ownsBuff(b, jobId)) },
   ]
 
-  const appliedIds = new Set(Object.keys(appliedBuffs))
-  const appliedEntries = Object.keys(appliedBuffs)
+  // 목록 = 편집으로 고른 것(꺼진 것 포함). 구버전 상태엔 목록이 없을 수 있어 켜진 것과 합친다
+  const listLevels = { ...(dopingList ?? {}), ...appliedBuffs }
+  const listEntries = Object.keys(listLevels)
     .map((id) => [...DOPING_ITEMS, ...PERSONAL_BUFFS, ...PARTY_BUFFS].find((b) => b.id === id))
     .filter((b): b is Buff => !!b)
-  // 무기가 맞지 않아 미적용인 버프(부스터 등)는 합산에서 제외 — activeBuffEffects와 같은 규칙
+  // 켜진 것만, 무기가 맞지 않아 미적용인 버프(부스터 등)는 빼고 합산 — activeBuffEffects와 같은 규칙
   const appliedEff = maxEffects(
-    ...appliedEntries.filter((b) => weaponGateOk(b, weaponType)).map((b) => buffEffectsAtLevel(b, appliedBuffs[b.id])),
+    ...listEntries
+      .filter((b) => b.id in appliedBuffs && weaponGateOk(b, weaponType))
+      .map((b) => buffEffectsAtLevel(b, appliedBuffs[b.id])),
   )
 
   return (
@@ -772,24 +903,28 @@ export default function SkillPanel() {
 
       <Divider sx={{ my: 1 }} />
 
-      <SectionTitle>아이템 도핑</SectionTitle>
-      <BuffSelect groups={[{ label: '아이템 도핑', items: DOPING_ITEMS }]} appliedIds={appliedIds} onAdd={addBuff} placeholder="도핑 선택하여 추가" />
-
-      <SectionTitle sx={{ mt: 0.75 }}>버프</SectionTitle>
-      <BuffSelect groups={buffGroups} appliedIds={appliedIds} onAdd={addBuff} placeholder="버프 선택하여 추가" />
-
-      <Divider sx={{ my: 1 }} />
-
-      <SectionTitle>적용된 버프</SectionTitle>
+      <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', mb: 0.25 }}>
+        <SectionTitle sx={{ mb: 0 }}>적용된 버프</SectionTitle>
+        <Button size="small" variant="outlined" onClick={() => setEditorOpen(true)} sx={{ py: 0.125, fontSize: 12 }}>
+          도핑 목록 편집
+        </Button>
+      </Box>
       <ActionHint
         sx={{ mb: 0.75 }}
         actions={[
-          { key: '좌클릭', desc: '제거' },
+          { key: '좌클릭', desc: 'ON / OFF' },
           { key: EDIT_HINT_KEY, desc: '레벨 변경', tone: 'secondary', note: '모바일: 길게 누르기' },
           { desc: '마우스를 올리면 효과를 표시합니다.' },
         ]}
       />
-      <AppliedBuffList entries={appliedEntries} levels={appliedBuffs} weaponType={weaponType} onOpen={open('applied')} onRemove={removeBuff} />
+      <AppliedBuffList
+        entries={listEntries}
+        levels={listLevels}
+        applied={appliedBuffs}
+        weaponType={weaponType}
+        onOpen={open('applied')}
+        onToggle={toggleDoping}
+      />
 
       <SectionTitle sx={{ mt: 1 }}>적용된 효과</SectionTitle>
       <Typography variant="body2" color="success.main">
@@ -821,6 +956,7 @@ export default function SkillPanel() {
       )}
 
       {dlg && <BuffDialog buff={dlg.buff} kind={dlg.kind} onClose={() => setDlg(null)} />}
+      {editorOpen && <DopingEditorDialog groups={editorGroups} onClose={() => setEditorOpen(false)} />}
     </CollapsiblePanel>
   )
 }
