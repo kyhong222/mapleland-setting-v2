@@ -43,6 +43,8 @@ export interface BuildSnapshot {
   activeBuffs: Record<string, number>
   /** 적용된 버프(도핑/개인/파티): buffId → 레벨. 능력치별 최댓값으로 합산 */
   appliedBuffs: Record<string, number>
+  /** 도핑 목록(꺼진 항목 포함): buffId → 레벨. 구버전 스냅샷엔 없음 → appliedBuffs로 채운다 */
+  dopingList?: Record<string, number>
   /** 무기 마스터리/엑스퍼트 레벨: buffId → 레벨(없으면 마스터). 장착 주무기 일치 시 자동 적용 */
   masteryLevels: Record<string, number>
   /** 기본(맨몸) HP/MP — 미입력(null)이면 최종 HP/MP를 표기하지 않는다. 구버전 스냅샷엔 없음 */
@@ -80,6 +82,8 @@ export interface BuildPersisted {
   equipped: Partial<Record<EquipInstance, string>>
   activeBuffs: Record<string, number>
   appliedBuffs: Record<string, number>
+  /** 구버전 payload엔 없다 → appliedBuffs로 채운다 */
+  dopingList?: Record<string, number>
   masteryLevels: Record<string, number>
   baseHp: number | null
   baseMp: number | null
@@ -97,7 +101,16 @@ export interface BuildState {
   baseStats: BaseStats
   equipped: Partial<Record<EquipInstance, string>>
   activeBuffs: Record<string, number>
+  /**
+   * 켜진 도핑/개인/파티 버프: buffId → 레벨. 능력치별 최댓값으로 합산한다.
+   * 계산은 전부 이것만 본다 — 꺼진 항목은 dopingList에만 남는다.
+   */
   appliedBuffs: Record<string, number>
+  /**
+   * 도핑 목록(편집으로 고른 버프, 꺼진 것 포함): buffId → 레벨 기억.
+   * 항상 appliedBuffs ⊆ dopingList이고, 켜진 항목의 레벨은 둘이 같다.
+   */
+  dopingList: Record<string, number>
   masteryLevels: Record<string, number>
   /**
    * 기본(맨몸) HP/MP. 레벨업 랜덤 증가·AP·HP증가 패시브로 정해져 유도가 불가능해서,
@@ -138,12 +151,19 @@ export interface BuildState {
   toggleBuff: (id: string) => void
   /** 활성 버프의 레벨 조정 (비활성이면 무시) */
   setBuffLevel: (id: string, level: number) => void
-  /** 적용된 버프 목록에 추가 (이미 있으면 무시 — 같은 버프 중복 불가) */
+  /** 도핑 목록에 추가하고 켠다 (이미 있으면 무시 — 같은 버프 중복 불가) */
   addBuff: (id: string) => void
-  /** 적용된 버프 목록에서 제거 */
+  /** 도핑 목록에서 제거 (켜져 있으면 함께 끈다) */
   removeBuff: (id: string) => void
-  /** 적용된 버프의 레벨 조정 (목록에 없으면 무시) */
+  /** 도핑 목록 항목의 레벨 조정 (목록에 없으면 무시). 켜져 있으면 적용 레벨도 바뀐다 */
   setAppliedLevel: (id: string, level: number) => void
+  /** 도핑 목록 항목 on/off (목록에 없으면 무시) */
+  toggleDoping: (id: string) => void
+  /**
+   * 도핑 목록 편집 결과를 통째로 반영 — buffId → 레벨.
+   * 빠진 항목은 목록·적용에서 지우고, 새로 들어온 항목은 켜서 넣는다. 남은 항목은 on/off를 유지한다.
+   */
+  setDopingList: (next: Record<string, number>) => void
   /** 무기 마스터리/엑스퍼트 레벨 조정 */
   setMasteryLevel: (id: string, level: number) => void
   /** 무기 마스터리 on/off 토글 (off면 자동 적용에서 제외) */
@@ -206,6 +226,18 @@ function migrateApplied(src: {
   return out
 }
 
+/** 도핑 목록 복원 — 구버전 데이터엔 목록이 없으니 켜진 것(appliedBuffs)으로 채우고, 켜진 항목 레벨이 우선한다 */
+function mergeDopingList(list: Record<string, number> | undefined, applied: Record<string, number>): Record<string, number> {
+  return { ...(list ?? {}), ...applied }
+}
+
+/** 버프 레벨을 1~직업 상한으로 자른다 */
+function clampBuffLevel(id: string, level: number, jobId: JobId | null): number {
+  const b = getBuff(id)
+  const max = b ? effectiveMasterLevel(b, jobId) : 1
+  return Math.max(1, Math.min(max, Math.floor(level) || 1))
+}
+
 export const useBuildStore = create<BuildState>()(
   persist(
     (set, get) => ({
@@ -215,6 +247,7 @@ export const useBuildStore = create<BuildState>()(
       equipped: {},
       activeBuffs: {},
       appliedBuffs: {},
+      dopingList: {},
       masteryLevels: {},
       buffLevels: {},
       masteryOff: {},
@@ -231,7 +264,7 @@ export const useBuildStore = create<BuildState>()(
           const level = minLevelForClass(JOBS[id].classId, JOBS[id].order)
           return { jobId: id, level, baseStats: recomputeStats(id, level, statDefaults(JOBS[id].classId), false), statsTouched: false }
         }),
-      reset: () => set({ jobId: null, level: 1, baseStats: baseFour(), equipped: {}, activeBuffs: {}, appliedBuffs: {}, masteryLevels: {}, buffLevels: {}, masteryOff: {}, statsTouched: false, charge: DEFAULT_CHARGE, baseHp: null, baseMp: null, baseHpLevel: null, baseMpLevel: null }),
+      reset: () => set({ jobId: null, level: 1, baseStats: baseFour(), equipped: {}, activeBuffs: {}, appliedBuffs: {}, dopingList: {}, masteryLevels: {}, buffLevels: {}, masteryOff: {}, statsTouched: false, charge: DEFAULT_CHARGE, baseHp: null, baseMp: null, baseHpLevel: null, baseMpLevel: null }),
       setLevel: (n) =>
         set((s) => {
           const min = s.jobId ? minLevelForClass(JOBS[s.jobId].classId, JOBS[s.jobId].order) : 1
@@ -308,25 +341,59 @@ export const useBuildStore = create<BuildState>()(
         }),
       addBuff: (id) =>
         set((s) => {
-          if (id in s.appliedBuffs) return s
+          const list = s.dopingList ?? {}
+          if (id in list || id in s.appliedBuffs) return s
           const b = getBuff(id)
           if (!b) return s
-          return { appliedBuffs: { ...s.appliedBuffs, [id]: defaultBuffLevel(b, s.jobId) } }
+          const lv = defaultBuffLevel(b, s.jobId)
+          return { appliedBuffs: { ...s.appliedBuffs, [id]: lv }, dopingList: { ...list, [id]: lv } }
         }),
       removeBuff: (id) =>
         set((s) => {
-          if (!(id in s.appliedBuffs)) return s
-          const next = { ...s.appliedBuffs }
-          delete next[id]
-          return { appliedBuffs: next }
+          const list = s.dopingList ?? {}
+          if (!(id in s.appliedBuffs) && !(id in list)) return s
+          const applied = { ...s.appliedBuffs }
+          const nextList = { ...list }
+          delete applied[id]
+          delete nextList[id]
+          return { appliedBuffs: applied, dopingList: nextList }
         }),
       setAppliedLevel: (id, level) =>
         set((s) => {
-          if (!(id in s.appliedBuffs)) return s
-          const b = getBuff(id)
-          const max = b ? effectiveMasterLevel(b, s.jobId) : 1
-          const lv = Math.max(1, Math.min(max, Math.floor(level) || 1))
-          return { appliedBuffs: { ...s.appliedBuffs, [id]: lv } }
+          const list = s.dopingList ?? {}
+          if (!(id in s.appliedBuffs) && !(id in list)) return s
+          const lv = clampBuffLevel(id, level, s.jobId)
+          return {
+            dopingList: { ...list, [id]: lv },
+            appliedBuffs: id in s.appliedBuffs ? { ...s.appliedBuffs, [id]: lv } : s.appliedBuffs,
+          }
+        }),
+      toggleDoping: (id) =>
+        set((s) => {
+          const list = s.dopingList ?? {}
+          if (id in s.appliedBuffs) {
+            // 끌 때 레벨은 목록에 남겨 둔다
+            const applied = { ...s.appliedBuffs }
+            const lv = applied[id]
+            delete applied[id]
+            return { appliedBuffs: applied, dopingList: { ...list, [id]: lv } }
+          }
+          if (!(id in list)) return s
+          return { appliedBuffs: { ...s.appliedBuffs, [id]: list[id] } }
+        }),
+      setDopingList: (next) =>
+        set((s) => {
+          const prev = mergeDopingList(s.dopingList, s.appliedBuffs)
+          const list: Record<string, number> = {}
+          const applied: Record<string, number> = {}
+          for (const [id, level] of Object.entries(next)) {
+            if (!getBuff(id)) continue
+            const lv = clampBuffLevel(id, level, s.jobId)
+            list[id] = lv
+            // 새 항목은 켜서 넣고, 원래 있던 항목은 on/off를 유지한다
+            if (!(id in prev) || id in s.appliedBuffs) applied[id] = lv
+          }
+          return { dopingList: list, appliedBuffs: applied }
         }),
       setMasteryLevel: (id, level) =>
         set((s) => {
@@ -352,7 +419,7 @@ export const useBuildStore = create<BuildState>()(
           baseMpLevel: patch.mp === undefined ? s.baseMpLevel : patch.mp === null ? null : s.level,
         })),
       snapshot: () => {
-        const { jobId, level, baseStats, equipped, activeBuffs, appliedBuffs, masteryLevels, charge, baseHp, baseMp, baseHpLevel, baseMpLevel } = get()
+        const { jobId, level, baseStats, equipped, activeBuffs, appliedBuffs, dopingList, masteryLevels, charge, baseHp, baseMp, baseHpLevel, baseMpLevel } = get()
         return jobId === null
           ? null
           : {
@@ -362,6 +429,7 @@ export const useBuildStore = create<BuildState>()(
               equipped,
               activeBuffs,
               appliedBuffs,
+              dopingList: mergeDopingList(dopingList, appliedBuffs),
               masteryLevels,
               charge: charge ?? DEFAULT_CHARGE,
               baseHp,
@@ -379,6 +447,7 @@ export const useBuildStore = create<BuildState>()(
           equipped: { ...s.equipped },
           activeBuffs: { ...s.activeBuffs },
           appliedBuffs: { ...s.appliedBuffs },
+          dopingList: mergeDopingList(s.dopingList, s.appliedBuffs),
           masteryLevels: { ...s.masteryLevels },
           baseHp: s.baseHp,
           baseMp: s.baseMp,
@@ -400,6 +469,7 @@ export const useBuildStore = create<BuildState>()(
           equipped: { ...(p.equipped ?? {}) },
           activeBuffs: { ...(p.activeBuffs ?? {}) },
           appliedBuffs: { ...(p.appliedBuffs ?? {}) },
+          dopingList: mergeDopingList(p.dopingList, p.appliedBuffs ?? {}),
           masteryLevels: { ...(p.masteryLevels ?? {}) },
           baseHp: p.baseHp ?? null,
           baseMp: p.baseMp ?? null,
@@ -411,14 +481,16 @@ export const useBuildStore = create<BuildState>()(
           charge: { ...DEFAULT_CHARGE, ...(p.charge ?? {}) },
         })
       },
-      loadSnapshot: (snap) =>
+      loadSnapshot: (snap) => {
+        const appliedBuffs = migrateApplied(snap)
         set({
           jobId: snap.jobId,
           level: snap.level,
           baseStats: { ...snap.baseStats },
           equipped: { ...snap.equipped },
           activeBuffs: { ...(snap.activeBuffs ?? {}) },
-          appliedBuffs: migrateApplied(snap),
+          appliedBuffs,
+          dopingList: mergeDopingList(snap.dopingList, appliedBuffs),
           masteryLevels: { ...(snap.masteryLevels ?? {}) },
           buffLevels: { ...(snap.activeBuffs ?? {}) },
           masteryOff: {},
@@ -428,11 +500,12 @@ export const useBuildStore = create<BuildState>()(
           baseMp: snap.baseMp ?? null,
           baseHpLevel: baseLevelOf(snap.baseHp, snap.baseHpLevel, snap.level),
           baseMpLevel: baseLevelOf(snap.baseMp, snap.baseMpLevel, snap.level),
-        }),
+        })
+      },
     }),
     {
       name: 'mlsv2:build',
-      version: 2,
+      version: 3,
       migrate: (persisted, version) => {
         const state = persisted as Partial<BuildState> & {
           commonSlots?: Record<string, string>
@@ -449,6 +522,10 @@ export const useBuildStore = create<BuildState>()(
         if (version < 2 && state) {
           state.baseHpLevel = baseLevelOf(state.baseHp, state.baseHpLevel, state.level ?? 1)
           state.baseMpLevel = baseLevelOf(state.baseMp, state.baseMpLevel, state.level ?? 1)
+        }
+        // v2 → v3: 도핑 목록(꺼진 항목 포함)이 생겼다 — 지금 켜져 있던 것으로 채운다
+        if (version < 3 && state) {
+          state.dopingList = mergeDopingList(state.dopingList, state.appliedBuffs ?? {})
         }
         return state as BuildState
       },

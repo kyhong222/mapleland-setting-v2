@@ -21,6 +21,12 @@ interface UiState {
   folded: Partial<Record<PanelId, boolean>>
   toggle: (id: PanelId) => void
   isFolded: (id: PanelId) => boolean
+  /**
+   * 도핑 목록 편집에서 숨긴 카테고리 id (domain/buffCategory.ts). 보이는 쪽이 아니라 숨긴 쪽을 저장해
+   * 나중에 카테고리가 늘어도 기본으로 보이게 한다.
+   */
+  hiddenDopingCategories: string[]
+  setHiddenDopingCategories: (ids: string[]) => void
   /** 장비창에서 호버 중인 아이템의 인벤토리 id (인벤토리 대응 아이템 하이라이트용). 비영속 */
   hoveredEquipInvId: string | null
   setHoveredEquipInvId: (id: string | null) => void
@@ -56,6 +62,8 @@ export const useUiStore = create<UiState>()(
       toggle: (id) =>
         set((s) => ({ folded: { ...s.folded, [id]: !s.folded[id] } })),
       isFolded: (id) => !!get().folded[id],
+      hiddenDopingCategories: [],
+      setHiddenDopingCategories: (ids) => set({ hiddenDopingCategories: ids }),
       hoveredEquipInvId: null,
       setHoveredEquipInvId: (id) => set({ hoveredEquipInvId: id }),
       dismissedNotices: [],
@@ -84,6 +92,7 @@ export const useUiStore = create<UiState>()(
         folded: s.folded,
         dismissedNotices: s.dismissedNotices,
         seenNotices: s.seenNotices,
+        hiddenDopingCategories: s.hiddenDopingCategories,
         feedbackSeenAt: s.feedbackSeenAt,
       }),
     },
