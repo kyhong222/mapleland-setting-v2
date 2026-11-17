@@ -52,6 +52,8 @@ yarn tsx scripts/venomSmoke.ts      # 베놈 공식·방어/렙차·독 반응·
 yarn tsx scripts/physicalElementSmoke.ts # 물리 반감(P) 판정·방어 차감 순서·기존 몹 영향 없음
 yarn tsx scripts/summonSmoke.ts     # 소환수 1회 공격(물리/마법) 공식·목록·(1회 공격) 표기
 yarn tsx scripts/chargeSkillSmoke.ts # 차징 스킬 풀/반/최소 차징 항목·겹친 변형 id·키다운 배율 위치
+yarn tsx scripts/chargeFollowUpSmoke.ts # 다음 차징 확킬(풀차징 후 2방 확킬 최소 차징 %) 판정
+yarn tsx scripts/transferSkillSmoke.ts # 전이 스킬(체인 라이트닝·에너지 오브) 70%/49% 항목·배율·스턴 겹침
 ```
 
 변경 후에는 최소한 `yarn typecheck`를 돌린다.
@@ -183,7 +185,8 @@ maplestory.io API ───┘   (로컬 카탈로그 우선 → GMS 62 → GMS 
 `data/skills/variants.ts` — 스킬북에 없는 "운용 상황"을 별도 스킬 항목으로 파생한다.
 바이퍼 스턴 마스터리(스턴 상태인 적에게만 크리가 터지는 패시브)와 베놈 중첩(1~3중첩, docs/nhit-dpm.md §4),
 역속성 소환수 약점 적용(불독 엘퀴네스·썬콜 이프리트 — 데몬 연계, docs/plan.md §특수 스킬 공식),
-차징 스킬(빅뱅·피어싱·스크류 펀치)의 풀차징/반차징/최소 차징(docs/nhit-dpm.md §4 차징 스킬)이 있다.
+차징 스킬(빅뱅·피어싱·스크류 펀치)의 풀차징/반차징/최소 차징(docs/nhit-dpm.md §4 차징 스킬),
+전이 스킬(체인 라이트닝·에너지 오브)의 1전이 70%/2전이 49%(전이마다 ×0.7, 인게임 규칙)가 있다.
 
 - **변형은 겹칠 수 있다** — 바이퍼 스크류 펀치 `(최소 차징) (스턴)`은 두 오프셋이 함께 더해진다.
   "어떤 변형인가"는 `variantKindOf`(가장 바깥 하나)가 아니라 `variantKindsOf`(전부)로 판정할 것.
