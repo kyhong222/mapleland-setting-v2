@@ -79,7 +79,8 @@ const CLASS_BIT: Record<ClassId, number> = {
   pirate: 16,
 }
 
-const RENDER_CAP = 600
+/** 렌더 상한 — 카탈로그 전체(약 2천 개)가 '전체 부위'로 다 보이도록 넉넉히 둔다. 아이콘은 lazy 로딩이다. */
+const RENDER_CAP = 3000
 
 /** 부위 선택 드롭다운: 방어구 슬롯(개별) */
 const ARMOR_SLOTS = ARMOR_SLOT_ORDER
@@ -126,12 +127,12 @@ export default function CatalogSection({
     })
 
   const { groups, total } = useMemo(() => {
-    if (!slotFilter) return { groups: [], total: 0 }
-    const slots = FILTER_SLOTS[slotFilter] ?? []
+    // slotFilter '' = 전체 부위 (첫 화면부터 전체를 보여주고 바로 검색할 수 있게)
+    const slots = slotFilter ? FILTER_SLOTS[slotFilter] ?? [] : null
     const k = q.trim()
     const mask = [...classes].reduce((m, c) => m | CLASS_BIT[c], 0)
     const filtered = CATALOG_ITEMS.filter((i) => {
-      if (!slots.includes(i.slot)) return false
+      if (slots && !slots.includes(i.slot)) return false
       if (slotFilter === 'weapon' && weaponType && i.weaponType !== weaponType) return false
       if (k && !i.name.includes(k)) return false
       const rj = i.reqJob ?? 0
@@ -170,9 +171,8 @@ export default function CatalogSection({
             onChange={(e) => { setSlotFilter(e.target.value); setWeaponType('') }}
             sx={{ minWidth: 130 }}
           >
-            <MenuItem value="" disabled>
-              부위 선택
-            </MenuItem>
+            <MenuItem value="">전체 부위</MenuItem>
+            <Divider />
             <MenuItem value="weapon">무기</MenuItem>
             <Divider />
             {ARMOR_SLOTS.map((s) => (
@@ -268,7 +268,7 @@ export default function CatalogSection({
           ))}
           {groups.length === 0 && (
             <Typography sx={{ p: 1 }} variant="body2" color="text.secondary">
-              {slotFilter === '' ? '부위를 먼저 선택하세요.' : '검색 결과가 없습니다.'}
+              검색 결과가 없습니다.
             </Typography>
           )}
         </Box>
