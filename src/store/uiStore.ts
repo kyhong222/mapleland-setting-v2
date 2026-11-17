@@ -42,7 +42,15 @@ interface UiState {
    */
   feedbackSeenAt: Record<string, string>
   markFeedbackSeen: (userId: string, at: string) => void
+  /** 즐겨찾기한 몬스터 id — 몬스터 선택 첫 화면에 이것만 보여준다(없으면 전체) */
+  favoriteMonsters: number[]
+  toggleFavoriteMonster: (id: number) => void
+  /** 즐겨찾기한 지역 드롭다운 값('c:카테고리' | 'r:지역') — 드롭다운 최상단에 모은다 */
+  favoriteRegions: string[]
+  toggleFavoriteRegion: (key: string) => void
 }
+
+const toggleIn = <T,>(arr: T[], v: T): T[] => (arr.includes(v) ? arr.filter((x) => x !== v) : [...arr, v])
 
 /** 답변 시각 비교. 서버 문자열 형식에 기대지 않으려고 숫자로 바꿔 본다 */
 export const isAfter = (a: string, b: string | undefined) => !b || Date.parse(a) > Date.parse(b)
@@ -70,11 +78,17 @@ export const useUiStore = create<UiState>()(
         set((s) =>
           isAfter(at, s.feedbackSeenAt[userId]) ? { feedbackSeenAt: { ...s.feedbackSeenAt, [userId]: at } } : s,
         ),
+      favoriteMonsters: [],
+      toggleFavoriteMonster: (id) => set((s) => ({ favoriteMonsters: toggleIn(s.favoriteMonsters, id) })),
+      favoriteRegions: [],
+      toggleFavoriteRegion: (key) => set((s) => ({ favoriteRegions: toggleIn(s.favoriteRegions, key) })),
     }),
     {
       name: 'mlsv2:ui',
-      // 공지·문의 열람 상태는 기기별로만 둔다(클라우드 동기화 대상 아님)
+      // 공지·문의 열람 상태·몬스터 즐겨찾기는 기기별로만 둔다(클라우드 동기화 대상 아님)
       partialize: (s) => ({
+        favoriteMonsters: s.favoriteMonsters,
+        favoriteRegions: s.favoriteRegions,
         folded: s.folded,
         dismissedNotices: s.dismissedNotices,
         seenNotices: s.seenNotices,

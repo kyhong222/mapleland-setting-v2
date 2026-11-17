@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react'
+import { memo, useCallback, useMemo, useRef, useState } from 'react'
 import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
 import Dialog from '@mui/material/Dialog'
@@ -12,10 +12,13 @@ import Chip from '@mui/material/Chip'
 import Checkbox from '@mui/material/Checkbox'
 import FormControlLabel from '@mui/material/FormControlLabel'
 import Tooltip from '@mui/material/Tooltip'
+import ListSubheader from '@mui/material/ListSubheader'
+import Divider from '@mui/material/Divider'
 import { inkOnDark } from '../../theme'
 import MonsterIcon from './MonsterIcon'
 import { useMonsterStore } from '../../store/monsterStore'
 import { useBuildStore } from '../../store/buildStore'
+import { useUiStore } from '../../store/uiStore'
 import { MONSTERS, LEVEL_RANGE } from '../../data/mobs'
 import { REGION_CATEGORIES, REGION_ICON } from '../../data/mobs/regionCategory'
 import { monsterLabel, parseElemAttr, monsterPatterns } from '../../domain/monster'
@@ -58,6 +61,132 @@ function selLabel(sel: string): string {
   return sel.slice(2) // 'c:' | 'r:' 접두 제거
 }
 
+/** 지역 드롭다운 값이 아직 유효한지 (지역 개편으로 사라진 즐겨찾기는 조용히 숨긴다) */
+function validRegionKey(key: string): boolean {
+  if (key.startsWith('c:')) return key.slice(2) in CATEGORY_REGIONS
+  if (key.startsWith('r:')) return REGION_CATEGORIES.some((c) => c.regions.some((r) => r.name === key.slice(2)))
+  return false
+}
+
+/**
+ * 즐겨찾기 별 버튼. 카드/메뉴 항목 안에 들어가므로 클릭이 바깥 선택으로 번지지 않게 막는다.
+ * (Select의 MenuItem은 click으로 선택되므로 mousedown·click 둘 다 멈춘다)
+ * 안내는 MUI Tooltip이 아니라 title 속성 — 카드마다 하나씩(수백 개) 붙어 렌더가 무거워져서 바꿨다.
+ */
+function FavStar({ on, onToggle, size = 18 }: { on: boolean; onToggle: () => void; size?: number }) {
+  const label = on ? '즐겨찾기 해제' : '즐겨찾기'
+  return (
+    <Box
+      component="button"
+      type="button"
+      title={label}
+      aria-label={label}
+      aria-pressed={on}
+      onMouseDown={(e: React.MouseEvent) => e.stopPropagation()}
+      onClick={(e: React.MouseEvent) => {
+        e.stopPropagation()
+        e.preventDefault()
+        onToggle()
+      }}
+      sx={{
+        border: 0,
+        bgcolor: 'transparent',
+        cursor: 'pointer',
+        p: 0.25,
+        lineHeight: 1,
+        fontSize: size,
+        color: on ? '#f9a825' : 'text.disabled',
+        flexShrink: 0,
+        '&:hover': { color: '#f9a825' },
+      }}
+    >
+      {on ? '★' : '☆'}
+    </Box>
+  )
+}
+
+/**
+ * 몬스터 카드 — memo로 감싸 즐겨찾기·선택이 바뀐 카드만 다시 그린다.
+ * 목록이 수백 장이라 카드를 인라인으로 두면 ☆ 한 번에 전부 다시 그려 눈에 띄게 느려졌다.
+ * onPick·onToggleFav는 부모에서 안정된 참조로 넘겨야 memo가 듣는다.
+ */
+const MonsterCard = memo(function MonsterCard({ m, active, fav, onPick, onToggleFav }: {
+  m: (typeof MONSTERS)[number]
+  active: boolean
+  fav: boolean
+  onPick: (id: number) => void
+  onToggleFav: (id: number) => void
+}) {
+  return (
+    <Box
+      onClick={() => onPick(m.id)}
+      sx={{
+        display: 'flex',
+        alignItems: 'center',
+        gap: 1.25,
+        px: 1,
+        py: 1,
+        borderRadius: 1,
+        cursor: 'pointer',
+        border: 1,
+        borderColor: active ? 'primary.main' : 'divider',
+        bgcolor: active ? 'action.selected' : 'transparent',
+        '&:hover': { bgcolor: 'action.hover' },
+      }}
+    >
+      <MonsterIcon id={m.id} size={64} />
+      <Box sx={{ flex: 1, minWidth: 0 }}>
+        <Typography variant="body1" noWrap sx={{ fontWeight: 700 }}>{monsterLabel(m)}</Typography>
+        <Typography variant="body2" color="text.secondary">Lv.{m.level}</Typography>
+        {(() => {
+          const els = parseElemAttr(m.elemAttr)
+          if (els.length === 0 && !m.undead) return null
+          return (
+            <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.25, mt: 0.25 }}>
+              {m.undead && (
+                <Chip label="언데드" size="small" sx={{ height: 18, fontSize: 10, bgcolor: UNDEAD_HEX, color: '#fff' }} />
+              )}
+              {els.map((e) => {
+                const c = ELEM_HEX[e.code] ?? '#9e9e9e'
+                const weak = e.effect === '약점'
+                return (
+                  <Chip
+                    key={e.code}
+                    label={`${e.element} ${e.effect}`}
+                    size="small"
+                    variant={weak ? 'filled' : 'outlined'}
+                    sx={{
+                      height: 18,
+                      fontSize: 10,
+                      borderColor: c,
+                      bgcolor: weak ? c : 'transparent',
+                      color: weak ? (ELEM_DARK_TEXT.has(e.code) ? '#212121' : '#fff') : c,
+                    }}
+                  />
+                )
+              })}
+            </Box>
+          )
+        })()}
+        {monsterPatterns(m).length > 0 && (
+          <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.25, mt: 0.25 }}>
+            {monsterPatterns(m).map((p) => {
+              const c = PATTERN_COLOR[p.kind]
+              const outlined = p.kind === 'status' && !p.cure // 만병통치약 불가 = outlined
+              return (
+                <Chip key={p.label} label={p.label} size="small" variant={outlined ? 'outlined' : 'filled'}
+                  sx={[{ height: 18, fontSize: 10, borderColor: c, bgcolor: outlined ? 'transparent' : c, color: outlined ? c : '#fff' }, outlined && inkOnDark(c)]} />
+              )
+            })}
+          </Box>
+        )}
+      </Box>
+      {m.isBoss && <Chip label="보스" size="small" color="error" variant="outlined" sx={{ height: 20, fontSize: 11 }} />}
+      <FavStar on={fav} onToggle={() => onToggleFav(m.id)} size={22} />
+    </Box>
+  )
+})
+
 /** 몬스터 검색/필터/선택 모달 */
 export default function MonsterSelectDialog({ open, onClose }: { open: boolean; onClose: () => void }) {
   const selectedId = useMonsterStore((s) => s.selectedId)
@@ -73,6 +202,13 @@ export default function MonsterSelectDialog({ open, onClose }: { open: boolean; 
   const [undeadOnly, setUndeadOnly] = useState(false)
   const [levelRangeOnly, setLevelRangeOnly] = useState(false)
   const charLevel = useBuildStore((s) => s.level)
+  const favMonsters = useUiStore((s) => s.favoriteMonsters)
+  const favRegions = useUiStore((s) => s.favoriteRegions)
+  const toggleFavMonster = useUiStore((s) => s.toggleFavoriteMonster)
+  const toggleFavRegion = useUiStore((s) => s.toggleFavoriteRegion)
+  const favMonsterSet = useMemo(() => new Set(favMonsters), [favMonsters])
+  const favRegionSet = useMemo(() => new Set(favRegions), [favRegions])
+  const shownFavRegions = useMemo(() => favRegions.filter(validRegionKey), [favRegions])
 
   const toggleSet = (set: React.Dispatch<React.SetStateAction<Set<string>>>, key: string) =>
     set((p) => {
@@ -121,10 +257,32 @@ export default function MonsterSelectDialog({ open, onClose }: { open: boolean; 
     }).sort((a, b) => a.id - b.id)
   }, [sel, query, minLv, maxLv, bossOnly, reactFilters, patternFilters, undeadOnly, levelRangeOnly, charLevel])
 
-  const pick = (id: number) => {
-    select(id)
-    onClose()
-  }
+  /**
+   * 목록 줄 — 조건에 맞는 즐겨찾기 몬스터를 맨 위에 모으고, 그 아래에 나머지.
+   * 즐겨찾기가 하나라도 걸리면 두 묶음 사이에 머리글('★ 즐겨찾기' / '전체')을 넣는다.
+   */
+  type ListRow = { kind: 'header'; label: string } | { kind: 'mob'; m: (typeof filtered)[number] }
+  const rows = useMemo<ListRow[]>(() => {
+    const favs = filtered.filter((m) => favMonsterSet.has(m.id))
+    if (favs.length === 0) return filtered.map((m) => ({ kind: 'mob' as const, m }))
+    const rest = filtered.filter((m) => !favMonsterSet.has(m.id))
+    return [
+      { kind: 'header' as const, label: `★ 즐겨찾기 ${favs.length}` },
+      ...favs.map((m) => ({ kind: 'mob' as const, m })),
+      ...(rest.length > 0 ? [{ kind: 'header' as const, label: `전체 ${rest.length}` }] : []),
+      ...rest.map((m) => ({ kind: 'mob' as const, m })),
+    ]
+  }, [filtered, favMonsterSet])
+
+  const onCloseRef = useRef(onClose)
+  onCloseRef.current = onClose
+  const pick = useCallback(
+    (id: number) => {
+      select(id)
+      onCloseRef.current()
+    },
+    [select],
+  )
 
   return (
     <Dialog open={open} onClose={onClose} maxWidth="md" fullWidth>
@@ -161,19 +319,42 @@ export default function MonsterSelectDialog({ open, onClose }: { open: boolean; 
               MenuProps={{ PaperProps: { sx: { maxHeight: 500 } } }}
               sx={{ flex: 1, '& .MuiSelect-select': { py: 1, fontSize: 15, display: 'flex', alignItems: 'center' } }}
             >
+              {/* 즐겨찾기 지역 — 최상단에 모은다(아래 원래 자리에서는 빠진다). 즐겨찾기한 순서대로 */}
+              {shownFavRegions.length > 0 && (
+                <ListSubheader sx={{ lineHeight: '32px', fontSize: 12 }}>★ 즐겨찾기</ListSubheader>
+              )}
+              {shownFavRegions.map((key) => {
+                const icon = key.startsWith('r:') ? REGION_ICON[key.slice(2)] : undefined
+                return (
+                  <MenuItem key={`fav-${key}`} value={key} sx={{ fontSize: icon ? 14 : 16, fontWeight: icon ? 400 : 700, py: icon ? 0.75 : 1, gap: 1 }}>
+                    {icon && <Box component="img" src={icon} alt="" sx={{ width: 30, height: 30, imageRendering: 'pixelated' }} />}
+                    <Box sx={{ flex: 1 }}>{key.slice(2)}</Box>
+                    <FavStar on onToggle={() => toggleFavRegion(key)} />
+                  </MenuItem>
+                )
+              })}
+              {shownFavRegions.length > 0 && <Divider />}
               <MenuItem value={ALL_REGION} sx={{ fontSize: 16, fontWeight: 700, py: 1 }}>전체 지역</MenuItem>
               {REGION_CATEGORIES.flatMap((c) => [
                 // 상위 카테고리(아이콘 없이, 살짝 크게) — 선택 시 카테고리 전체
-                <MenuItem key={`c:${c.name}`} value={`c:${c.name}`} sx={{ fontSize: 16, fontWeight: 700, py: 1, mt: 0.25 }}>
-                  {c.name}
-                </MenuItem>,
+                ...(favRegionSet.has(`c:${c.name}`)
+                  ? []
+                  : [
+                      <MenuItem key={`c:${c.name}`} value={`c:${c.name}`} sx={{ fontSize: 16, fontWeight: 700, py: 1, mt: 0.25, gap: 1 }}>
+                        <Box sx={{ flex: 1 }}>{c.name}</Box>
+                        <FavStar on={false} onToggle={() => toggleFavRegion(`c:${c.name}`)} />
+                      </MenuItem>,
+                    ]),
                 // 하위 지역(들여쓰기 + 맵 아이콘)
-                ...c.regions.map((r) => (
-                  <MenuItem key={`r:${r.name}`} value={`r:${r.name}`} sx={{ fontSize: 14, pl: 2.5, py: 0.75, gap: 1, color: 'text.secondary' }}>
-                    <Box component="img" src={r.icon} alt="" sx={{ width: 30, height: 30, imageRendering: 'pixelated' }} />
-                    {r.name}
-                  </MenuItem>
-                )),
+                ...c.regions
+                  .filter((r) => !favRegionSet.has(`r:${r.name}`))
+                  .map((r) => (
+                    <MenuItem key={`r:${r.name}`} value={`r:${r.name}`} sx={{ fontSize: 14, pl: 2.5, py: 0.75, gap: 1, color: 'text.secondary' }}>
+                      <Box component="img" src={r.icon} alt="" sx={{ width: 30, height: 30, imageRendering: 'pixelated' }} />
+                      <Box sx={{ flex: 1 }}>{r.name}</Box>
+                      <FavStar on={false} onToggle={() => toggleFavRegion(`r:${r.name}`)} />
+                    </MenuItem>
+                  )),
               ])}
             </Select>
             <Chip
@@ -246,75 +427,28 @@ export default function MonsterSelectDialog({ open, onClose }: { open: boolean; 
           {filtered.length === 0 ? (
             <Typography variant="caption" color="text.disabled" sx={{ py: 2, textAlign: 'center', gridColumn: '1 / -1' }}>조건에 맞는 몬스터 없음</Typography>
           ) : (
-            filtered.map((m) => {
-              const active = m.id === selectedId
+            rows.map((row) => {
+              if (row.kind === 'header') {
+                return (
+                  <Typography
+                    key={`hdr-${row.label}`}
+                    variant="caption"
+                    sx={{ gridColumn: '1 / -1', fontWeight: 700, color: row.label.startsWith('★') ? '#f9a825' : 'text.secondary', pt: 0.5 }}
+                  >
+                    {row.label}
+                  </Typography>
+                )
+              }
+              const m = row.m
               return (
-                <Box
+                <MonsterCard
                   key={m.id}
-                  onClick={() => pick(m.id)}
-                  sx={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: 1.25,
-                    px: 1,
-                    py: 1,
-                    borderRadius: 1,
-                    cursor: 'pointer',
-                    border: 1,
-                    borderColor: active ? 'primary.main' : 'divider',
-                    bgcolor: active ? 'action.selected' : 'transparent',
-                    '&:hover': { bgcolor: 'action.hover' },
-                  }}
-                >
-                  <MonsterIcon id={m.id} size={64} />
-                  <Box sx={{ flex: 1, minWidth: 0 }}>
-                    <Typography variant="body1" noWrap sx={{ fontWeight: 700 }}>{monsterLabel(m)}</Typography>
-                    <Typography variant="body2" color="text.secondary">Lv.{m.level}</Typography>
-                    {(() => {
-                      const els = parseElemAttr(m.elemAttr)
-                      if (els.length === 0 && !m.undead) return null
-                      return (
-                        <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.25, mt: 0.25 }}>
-                          {m.undead && (
-                            <Chip label="언데드" size="small" sx={{ height: 18, fontSize: 10, bgcolor: UNDEAD_HEX, color: '#fff' }} />
-                          )}
-                          {els.map((e) => {
-                            const c = ELEM_HEX[e.code] ?? '#9e9e9e'
-                            const weak = e.effect === '약점'
-                            return (
-                              <Chip
-                                key={e.code}
-                                label={`${e.element} ${e.effect}`}
-                                size="small"
-                                variant={weak ? 'filled' : 'outlined'}
-                                sx={{
-                                  height: 18,
-                                  fontSize: 10,
-                                  borderColor: c,
-                                  bgcolor: weak ? c : 'transparent',
-                                  color: weak ? (ELEM_DARK_TEXT.has(e.code) ? '#212121' : '#fff') : c,
-                                }}
-                              />
-                            )
-                          })}
-                        </Box>
-                      )
-                    })()}
-                    {monsterPatterns(m).length > 0 && (
-                      <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.25, mt: 0.25 }}>
-                        {monsterPatterns(m).map((p) => {
-                          const c = PATTERN_COLOR[p.kind]
-                          const outlined = p.kind === 'status' && !p.cure // 만병통치약 불가 = outlined
-                          return (
-                            <Chip key={p.label} label={p.label} size="small" variant={outlined ? 'outlined' : 'filled'}
-                              sx={[{ height: 18, fontSize: 10, borderColor: c, bgcolor: outlined ? 'transparent' : c, color: outlined ? c : '#fff' }, outlined && inkOnDark(c)]} />
-                          )
-                        })}
-                      </Box>
-                    )}
-                  </Box>
-                  {m.isBoss && <Chip label="보스" size="small" color="error" variant="outlined" sx={{ height: 20, fontSize: 11 }} />}
-                </Box>
+                  m={m}
+                  active={m.id === selectedId}
+                  fav={favMonsterSet.has(m.id)}
+                  onPick={pick}
+                  onToggleFav={toggleFavMonster}
+                />
               )
             })
           )}
