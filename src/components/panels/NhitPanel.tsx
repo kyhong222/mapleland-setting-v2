@@ -41,7 +41,7 @@ import { damageSkillsForJob, baseSkillId, stunHitRatio, VENOM_SKILLS, venomStack
 import type { ChargeState } from '../../domain/paladinCharge'
 import { computeCast, computeDotCast, computeSummonCast, computeNhit, computeDpm, baseElementMult, dotElementMult, mixCasts, SKILL_MOTION } from '../../domain/skillCombat'
 import { staffElementMult } from '../../domain/damage'
-import { capDist, convolve, scaleDist } from '../../domain/nhitProb'
+import { capDist, chargeFollowUp, convolve, scaleDist } from '../../domain/nhitProb'
 import type { Dist } from '../../domain/nhitProb'
 import { attacksPerMinute, effectiveCastStep, effectiveSpeedStep, type SpeedContext } from '../../data/attackSpeed'
 import { chargeMultiplier, chargeFromUi, chargeElementCodes } from '../../domain/paladinCharge'
@@ -94,6 +94,15 @@ const FIST_HIT_MULT = [1, 1, 1, 1, 2, 4]
 /** 최대 콤보 카운터(5~10) 소모 시 카운터 뎀증 배율 (docs §4) */
 const MAX_COUNTER_MULT = 2.5
 /** 소환수 데미지 옆 속성 반응 표기 (보통은 빈칸) */
+/**
+ * '다음 차징 확킬'을 보여줄 차징 스킬 — 빅뱅(불독·썬콜·비숍) · 피어싱.
+ * 풀차징 한 번 뒤 두 번째를 덜 차징해 마무리하는 운용이 흔한 스킬들이다.
+ * 스크류 펀치는 약하고 후딜이 있어 연속 시전이 사실상 안 되므로 뺀다.
+ */
+const FOLLOWUP_CHARGE_SKILLS = new Set([2121001, 2221001, 2321001, 3221001])
+/** 다음 차징 표에 보여줄 차징 % */
+const FOLLOWUP_TABLE_PCTS = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100]
+
 const REACTION_LABEL: Record<ElementReaction, string> = { weak: '약점', half: '반감', immune: '무효', none: '' }
 const rng = (r: { min: number; max: number }) => `${Math.round(r.min).toLocaleString()} ~ ${Math.round(r.max).toLocaleString()}`
 
@@ -187,8 +196,9 @@ export default function NhitPanel() {
    * @param stunned 대상이 스턴 상태인지 — 스턴 마스터리 크리가 이때만 붙는다.
    * @param coef 계수 직접 입력값(물리 %, 마법 기본 공격력). null이면 스킬북 계수.
    *   레벨은 그대로 쓰인다 — 타수·숙련도·공속·스턴 확률 등 계수 외 수치는 레벨에서 온다.
+   * @param keydown 차징 배율 덮어쓰기(0.1~1). null이면 항목(풀/반/최소 차징)대로 — '다음 차징 확킬' 계산용
    */
-  const buildCastAt = (sk: IJobSkill, lv: number, stunned: boolean, coef: number | null = null) => {
+  const buildCastAt = (sk: IJobSkill, lv: number, stunned: boolean, coef: number | null = null, keydown: number | null = null) => {
     if (!job || !monster) return null
     const att = skillAttackAt(sk, lv)
     if (!att) return null
@@ -368,7 +378,7 @@ export default function NhitPanel() {
       skillPercent: effSkillPercent,
       damageMult,
       // 차징 스킬 반차징 ×0.5 · 최소 차징 ×0.1 — 크리 뒤·클램프 앞 (variants.ts CHARGE_SKILLS)
-      keydownMult: chargeMultOf(sk.id),
+      keydownMult: keydown ?? chargeMultOf(sk.id),
       critProb,
       critMult,
       lineBase,
@@ -386,11 +396,11 @@ export default function NhitPanel() {
    *  - 기본 스킬 / (스턴): 스턴 여부를 하나로 고정해 한 번만 계산
    *  - (단독 운용): 스턴 확률만큼 두 분포를 섞는다 (variants.ts stunHitRatio)
    */
-  const buildCast = (sk: IJobSkill, lv: number, coef: number | null = null) => {
+  const buildCast = (sk: IJobSkill, lv: number, coef: number | null = null, keydown: number | null = null) => {
     const ratio = hasStunBonus ? stunHitRatio(sk.id, lv) : 0
-    if (ratio <= 0 || ratio >= 1) return buildCastAt(sk, lv, ratio >= 1, coef)
-    const off = buildCastAt(sk, lv, false, coef)
-    const on = buildCastAt(sk, lv, true, coef)
+    if (ratio <= 0 || ratio >= 1) return buildCastAt(sk, lv, ratio >= 1, coef, keydown)
+    const off = buildCastAt(sk, lv, false, coef, keydown)
+    const on = buildCastAt(sk, lv, true, coef, keydown)
     if (!off?.cast || !on?.cast) return off
     return { ...on, cast: mixCasts([{ weight: 1 - ratio, cast: off.cast }, { weight: ratio, cast: on.cast }]) }
   }
@@ -489,6 +499,25 @@ export default function NhitPanel() {
       apm, dpm, killSec, isMagic, effStep,
       noDpm: noDpm || isSummon,
     }
+  })()
+
+  /**
+   * 다음 차징 확킬 — 풀차징 빅뱅/피어싱 1회(추가스킬이 있으면 그 뒤) 후,
+   * 두 번째 시전을 몇 % 차징하면 2방 안에 반드시 잡는지. 비보스(방컷이 나올 때)만.
+   */
+  const followUp = (() => {
+    if (!result || result.unsupported || !result.nhit || !selectedSkill) return null
+    if (!FOLLOWUP_CHARGE_SKILLS.has(baseSkillId(selectedSkill.id))) return null
+    if (chargeMultOf(selectedSkill.id) !== 1) return null // 풀차징 항목에서만
+    const firstCast = buildCast(selectedSkill, skillLevel, coefOverride)?.cast
+    if (!firstCast) return null
+    const first = preCastPrior ? convolve(preCastPrior, firstCast.dist) : firstCast.dist
+    return chargeFollowUp(
+      first,
+      (c) => buildCast(selectedSkill, skillLevel, coefOverride, c / 100)?.cast?.dist ?? null,
+      result.hp,
+      FOLLOWUP_TABLE_PCTS,
+    )
   })()
 
   /**
@@ -722,6 +751,54 @@ export default function NhitPanel() {
                     <Typography variant="caption" color="text.disabled" sx={{ display: 'block', mt: 0.25, lineHeight: 1.4 }}>
                       {preCastNote}
                     </Typography>
+                  )}
+                </>
+              )}
+
+              {/* 다음 차징 확킬 (풀차징 빅뱅·피어싱) */}
+              {followUp && (
+                <>
+                  <Divider sx={{ my: 0.75 }} />
+                  <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                    <Typography variant="caption" sx={{ fontWeight: 700 }}>다음 차징 확킬</Typography>
+                    <InfoTip
+                      title={
+                        <>
+                          <InfoTitle>다음 차징 확킬</InfoTitle>
+                          <Box sx={{ mb: 0.5 }}>
+                            풀차징으로 한 번 맞힌 뒤, 두 번째 시전을 몇 % 차징하면 2방 안에 처치되는지 보여줍니다.
+                          </Box>
+                          <Box sx={{ mb: 0.5 }}>
+                            <b>확킬 최소 차징</b>은 두 시전 모두 최솟값이 나와도 처치되는 가장 낮은 차징입니다.
+                            표의 확률은 그 차징으로 2방 안에 처치될 확률입니다.
+                          </Box>
+                          <Box>차징 % = ⌊90 × 누른 시간 ÷ 풀차징 시간⌋ + 10 (최소 10% ~ 풀차징 100%)</Box>
+                        </>
+                      }
+                    />
+                  </Box>
+                  {followUp.oneShot ? (
+                    <Typography variant="body2" color="success.main" sx={{ fontWeight: 700 }}>
+                      풀차징 1방으로 확킬 — 두 번째 시전이 필요 없습니다.
+                    </Typography>
+                  ) : (
+                    <>
+                      <Row
+                        label="확킬 최소 차징"
+                        value={followUp.sureMin != null ? `${followUp.sureMin}%` : '풀차징으로도 불가'}
+                        strong
+                      />
+                      <Box sx={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 0.25 }}>
+                        {followUp.table.map((t) => (
+                          <Row key={t.pct} label={`${t.pct}% 차징`} value={pct(t.prob)} />
+                        ))}
+                      </Box>
+                      {result.hasPreCast && (
+                        <Typography variant="caption" color="text.disabled" sx={{ display: 'block', mt: 0.25, lineHeight: 1.4 }}>
+                          ※ 추가 스킬 이후 풀차징 1회를 맞힌 상태를 첫 시전으로 봅니다.
+                        </Typography>
+                      )}
+                    </>
                   )}
                 </>
               )}

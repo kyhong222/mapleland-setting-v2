@@ -51,6 +51,7 @@ yarn tsx scripts/venomSmoke.ts      # 베놈 공식·방어/렙차·독 반응·
 yarn tsx scripts/physicalElementSmoke.ts # 물리 반감(P) 판정·방어 차감 순서·기존 몹 영향 없음
 yarn tsx scripts/summonSmoke.ts     # 소환수 1회 공격(물리/마법) 공식·목록·(1회 공격) 표기
 yarn tsx scripts/chargeSkillSmoke.ts # 차징 스킬 풀/반/최소 차징 항목·겹친 변형 id·키다운 배율 위치
+yarn tsx scripts/chargeFollowUpSmoke.ts # 다음 차징 확킬(풀차징 후 2방 확킬 최소 차징 %) 판정
 ```
 
 변경 후에는 최소한 `yarn typecheck`를 돌린다.

@@ -108,6 +108,52 @@ export function expectedValue(d: Dist): number {
   return e
 }
 
+/** 분포의 최솟값 (확률이 0보다 큰 첫 칸) */
+export function distMin(d: Dist): number {
+  const i = d.p.findIndex((x) => x > 0)
+  return d.base + Math.max(0, i) * d.step
+}
+
+/**
+ * 차징 스킬 후속 시전 — 첫 시전 분포(first)를 맞힌 뒤, 차징 c%로 한 번 더 쳤을 때의 처치 판정.
+ *  - sureMin: 최악의 경우(두 시전 모두 최솟값)에도 처치되는 가장 낮은 차징 %. 100%로도 안 되면 null
+ *  - table: 표시용 차징 %별 2방 안 처치 확률
+ *  - oneShot: 첫 시전 최솟값만으로 이미 처치(둘째 시전이 필요 없음)
+ * secondAt(c)는 차징 c%의 1회 시전 분포를 돌려준다. 차징 배율은 클램프 앞에 곱해져 단조 증가하므로
+ * 확킬 여부도 c에 대해 단조 → 이분 탐색한다. (차징 % = ⌊90 × t / T⌋ + 10, 정수 10~100 — docs/nhit-dpm.md §4)
+ */
+export function chargeFollowUp(
+  first: Dist,
+  secondAt: (chargePct: number) => Dist | null,
+  hp: number,
+  tablePcts: number[],
+): { oneShot: boolean; sureMin: number | null; table: { pct: number; prob: number }[] } | null {
+  const firstMin = distMin(first)
+  if (firstMin >= hp) return { oneShot: true, sureMin: null, table: [] }
+  const sure = (c: number): boolean => {
+    const d = secondAt(c)
+    return !!d && firstMin + distMin(d) >= hp
+  }
+  let sureMin: number | null = null
+  if (sure(100)) {
+    let lo = 10
+    let hi = 100
+    while (lo < hi) {
+      const mid = Math.floor((lo + hi) / 2)
+      if (sure(mid)) hi = mid
+      else lo = mid + 1
+    }
+    sureMin = lo
+  }
+  const table: { pct: number; prob: number }[] = []
+  for (const pct of tablePcts) {
+    const d = secondAt(pct)
+    if (!d) return null
+    table.push({ pct, prob: tailProb(convolve(first, d), hp) })
+  }
+  return { oneShot: false, sureMin, table }
+}
+
 /** P(X ≥ threshold) */
 export function tailProb(d: Dist, threshold: number): number {
   let s = 0
