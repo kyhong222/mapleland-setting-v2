@@ -175,6 +175,7 @@ function BuffIcon({
   onLongPress,
   size = 46,
   imgSize,
+  pixelScale,
   tooltip,
   highlightActive = false,
   levelBadge,
@@ -191,6 +192,11 @@ function BuffIcon({
    * 배율로 줄이면 픽셀이 통째로 빠져 깨져 보인다. 1:1로 그려야 할 때 쓴다.
    */
   imgSize?: number
+  /**
+   * 원본 크기의 정수배로 확대 (예: 2 → 32px 아이콘을 64px로). 지정하면 imgSize보다 우선한다.
+   * 아이템 아이콘은 원본 크기가 제각각이라 고정 너비로 맞추면 정수배가 깨진다 → 원본 크기를 그대로 두고 배율만 건다.
+   */
+  pixelScale?: number
   tooltip?: React.ReactNode
   /** 적용(active) 시 밝은 황금빛 테두리로 강조할지 여부 */
   highlightActive?: boolean
@@ -229,7 +235,18 @@ function BuffIcon({
         '@media (hover: hover)': { '&:hover .edit-badge': { opacity: 1, pointerEvents: 'auto' } },
       }}
     >
-      {icon && <Box component="img" src={icon} alt="" sx={{ width: img, height: img, imageRendering: 'pixelated', filter: active ? 'none' : 'grayscale(1)' }} />}
+      {icon && (
+        <Box
+          component="img"
+          src={icon}
+          alt=""
+          sx={{
+            ...(pixelScale ? { transform: `scale(${pixelScale})` } : { width: img, height: img }),
+            imageRendering: 'pixelated',
+            filter: active ? 'none' : 'grayscale(1)',
+          }}
+        />
+      )}
       {levelBadge !== undefined && <LevelBadge level={levelBadge} dim={!active} />}
       {onLongPress && <EditBadgeButton onClick={onLongPress} />}
     </Box>
@@ -617,7 +634,7 @@ function DopingEditorDialog({ groups, onClose }: { groups: BuffGroup[]; onClose:
         />
 
         {/* 목록에 올라간 도핑 */}
-        <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.75, minHeight: 48, alignItems: 'center', pt: 0.5 }}>
+        <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.75, minHeight: 76, alignItems: 'center', pt: 0.5 }}>
           {listed.length === 0 ? (
             <Typography variant="caption" color="text.disabled">아래에서 아이콘을 눌러 목록에 추가하세요</Typography>
           ) : (
@@ -625,7 +642,8 @@ function DopingEditorDialog({ groups, onClose }: { groups: BuffGroup[]; onClose:
               <BuffIcon
                 key={b.id}
                 buff={b}
-                size={44}
+                size={72}
+                pixelScale={2}
                 ringed={false}
                 levelBadge={hasLevelBadge(b) ? levelOf(b) : undefined}
                 tooltip={buffTooltip(b, levelOf(b), '좌클릭으로 목록에서 제거')}
@@ -649,7 +667,8 @@ function DopingEditorDialog({ groups, onClose }: { groups: BuffGroup[]; onClose:
                   <BuffIcon
                     key={b.id}
                     buff={b}
-                    size={44}
+                    size={72}
+                    pixelScale={2}
                     ringed={on}
                     levelBadge={on && hasLevelBadge(b) ? levelOf(b) : undefined}
                     tooltip={buffTooltip(b, levelOf(b))}
