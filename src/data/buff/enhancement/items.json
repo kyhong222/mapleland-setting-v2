@@ -201,7 +201,7 @@
     "type": "item",
     "name": "바나나 그레이엄 파이",
     "effects": {
-      "mad": 30,
+      "addMad": 30,
       "mdef": 120,
       "eva": 30,
       "acc": 30,
