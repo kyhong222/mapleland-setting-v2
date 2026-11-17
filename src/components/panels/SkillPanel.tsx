@@ -792,11 +792,21 @@ function DopingEditorDialog({ skills, items, onClose }: {
         {sections
           .filter((c) => shownCats.has(c.id))
           .map((c) => (
-            <Box key={c.id}>
-              <Divider sx={{ my: 1.25 }} />
-              <Typography variant="caption" color="text.secondary" sx={{ fontWeight: 700, display: 'block', mb: 0.75 }}>
+            <Box key={c.id} sx={{ mt: 1.25 }}>
+              {/* '공격력 ───────' — 제목과 구분선을 한 줄에 (왼쪽 선은 없앤다) */}
+              <Divider
+                textAlign="left"
+                sx={{
+                  mb: 0.75,
+                  fontSize: 12,
+                  fontWeight: 700,
+                  color: 'text.secondary',
+                  '&::before': { display: 'none' },
+                  '& .MuiDivider-wrapper': { pl: 0 },
+                }}
+              >
                 {c.label}
-              </Typography>
+              </Divider>
               <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.75, alignItems: 'center' }}>
                 {c.skills.map(pickIcon)}
                 {c.skills.length > 0 && c.items.length > 0 && (
