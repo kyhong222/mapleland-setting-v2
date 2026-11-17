@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react'
+import { memo, useCallback, useMemo, useRef, useState } from 'react'
 import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
 import Dialog from '@mui/material/Dialog'
@@ -71,39 +71,121 @@ function validRegionKey(key: string): boolean {
 /**
  * 즐겨찾기 별 버튼. 카드/메뉴 항목 안에 들어가므로 클릭이 바깥 선택으로 번지지 않게 막는다.
  * (Select의 MenuItem은 click으로 선택되므로 mousedown·click 둘 다 멈춘다)
+ * 안내는 MUI Tooltip이 아니라 title 속성 — 카드마다 하나씩(수백 개) 붙어 렌더가 무거워져서 바꿨다.
  */
 function FavStar({ on, onToggle, size = 18 }: { on: boolean; onToggle: () => void; size?: number }) {
   const label = on ? '즐겨찾기 해제' : '즐겨찾기'
   return (
-    <Tooltip title={label} placement="top" arrow disableInteractive>
-      <Box
-        component="button"
-        type="button"
-        aria-label={label}
-        aria-pressed={on}
-        onMouseDown={(e: React.MouseEvent) => e.stopPropagation()}
-        onClick={(e: React.MouseEvent) => {
-          e.stopPropagation()
-          e.preventDefault()
-          onToggle()
-        }}
-        sx={{
-          border: 0,
-          bgcolor: 'transparent',
-          cursor: 'pointer',
-          p: 0.25,
-          lineHeight: 1,
-          fontSize: size,
-          color: on ? '#f9a825' : 'text.disabled',
-          flexShrink: 0,
-          '&:hover': { color: '#f9a825' },
-        }}
-      >
-        {on ? '★' : '☆'}
-      </Box>
-    </Tooltip>
+    <Box
+      component="button"
+      type="button"
+      title={label}
+      aria-label={label}
+      aria-pressed={on}
+      onMouseDown={(e: React.MouseEvent) => e.stopPropagation()}
+      onClick={(e: React.MouseEvent) => {
+        e.stopPropagation()
+        e.preventDefault()
+        onToggle()
+      }}
+      sx={{
+        border: 0,
+        bgcolor: 'transparent',
+        cursor: 'pointer',
+        p: 0.25,
+        lineHeight: 1,
+        fontSize: size,
+        color: on ? '#f9a825' : 'text.disabled',
+        flexShrink: 0,
+        '&:hover': { color: '#f9a825' },
+      }}
+    >
+      {on ? '★' : '☆'}
+    </Box>
   )
 }
+
+/**
+ * 몬스터 카드 — memo로 감싸 즐겨찾기·선택이 바뀐 카드만 다시 그린다.
+ * 목록이 수백 장이라 카드를 인라인으로 두면 ☆ 한 번에 전부 다시 그려 눈에 띄게 느려졌다.
+ * onPick·onToggleFav는 부모에서 안정된 참조로 넘겨야 memo가 듣는다.
+ */
+const MonsterCard = memo(function MonsterCard({ m, active, fav, onPick, onToggleFav }: {
+  m: (typeof MONSTERS)[number]
+  active: boolean
+  fav: boolean
+  onPick: (id: number) => void
+  onToggleFav: (id: number) => void
+}) {
+  return (
+    <Box
+      onClick={() => onPick(m.id)}
+      sx={{
+        display: 'flex',
+        alignItems: 'center',
+        gap: 1.25,
+        px: 1,
+        py: 1,
+        borderRadius: 1,
+        cursor: 'pointer',
+        border: 1,
+        borderColor: active ? 'primary.main' : 'divider',
+        bgcolor: active ? 'action.selected' : 'transparent',
+        '&:hover': { bgcolor: 'action.hover' },
+      }}
+    >
+      <MonsterIcon id={m.id} size={64} />
+      <Box sx={{ flex: 1, minWidth: 0 }}>
+        <Typography variant="body1" noWrap sx={{ fontWeight: 700 }}>{monsterLabel(m)}</Typography>
+        <Typography variant="body2" color="text.secondary">Lv.{m.level}</Typography>
+        {(() => {
+          const els = parseElemAttr(m.elemAttr)
+          if (els.length === 0 && !m.undead) return null
+          return (
+            <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.25, mt: 0.25 }}>
+              {m.undead && (
+                <Chip label="언데드" size="small" sx={{ height: 18, fontSize: 10, bgcolor: UNDEAD_HEX, color: '#fff' }} />
+              )}
+              {els.map((e) => {
+                const c = ELEM_HEX[e.code] ?? '#9e9e9e'
+                const weak = e.effect === '약점'
+                return (
+                  <Chip
+                    key={e.code}
+                    label={`${e.element} ${e.effect}`}
+                    size="small"
+                    variant={weak ? 'filled' : 'outlined'}
+                    sx={{
+                      height: 18,
+                      fontSize: 10,
+                      borderColor: c,
+                      bgcolor: weak ? c : 'transparent',
+                      color: weak ? (ELEM_DARK_TEXT.has(e.code) ? '#212121' : '#fff') : c,
+                    }}
+                  />
+                )
+              })}
+            </Box>
+          )
+        })()}
+        {monsterPatterns(m).length > 0 && (
+          <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.25, mt: 0.25 }}>
+            {monsterPatterns(m).map((p) => {
+              const c = PATTERN_COLOR[p.kind]
+              const outlined = p.kind === 'status' && !p.cure // 만병통치약 불가 = outlined
+              return (
+                <Chip key={p.label} label={p.label} size="small" variant={outlined ? 'outlined' : 'filled'}
+                  sx={[{ height: 18, fontSize: 10, borderColor: c, bgcolor: outlined ? 'transparent' : c, color: outlined ? c : '#fff' }, outlined && inkOnDark(c)]} />
+              )
+            })}
+          </Box>
+        )}
+      </Box>
+      {m.isBoss && <Chip label="보스" size="small" color="error" variant="outlined" sx={{ height: 20, fontSize: 11 }} />}
+      <FavStar on={fav} onToggle={() => onToggleFav(m.id)} size={22} />
+    </Box>
+  )
+})
 
 /** 몬스터 검색/필터/선택 모달 */
 export default function MonsterSelectDialog({ open, onClose }: { open: boolean; onClose: () => void }) {
@@ -192,10 +274,15 @@ export default function MonsterSelectDialog({ open, onClose }: { open: boolean; 
     ]
   }, [filtered, favMonsterSet])
 
-  const pick = (id: number) => {
-    select(id)
-    onClose()
-  }
+  const onCloseRef = useRef(onClose)
+  onCloseRef.current = onClose
+  const pick = useCallback(
+    (id: number) => {
+      select(id)
+      onCloseRef.current()
+    },
+    [select],
+  )
 
   return (
     <Dialog open={open} onClose={onClose} maxWidth="md" fullWidth>
@@ -353,75 +440,15 @@ export default function MonsterSelectDialog({ open, onClose }: { open: boolean; 
                 )
               }
               const m = row.m
-              const active = m.id === selectedId
               return (
-                <Box
+                <MonsterCard
                   key={m.id}
-                  onClick={() => pick(m.id)}
-                  sx={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: 1.25,
-                    px: 1,
-                    py: 1,
-                    borderRadius: 1,
-                    cursor: 'pointer',
-                    border: 1,
-                    borderColor: active ? 'primary.main' : 'divider',
-                    bgcolor: active ? 'action.selected' : 'transparent',
-                    '&:hover': { bgcolor: 'action.hover' },
-                  }}
-                >
-                  <MonsterIcon id={m.id} size={64} />
-                  <Box sx={{ flex: 1, minWidth: 0 }}>
-                    <Typography variant="body1" noWrap sx={{ fontWeight: 700 }}>{monsterLabel(m)}</Typography>
-                    <Typography variant="body2" color="text.secondary">Lv.{m.level}</Typography>
-                    {(() => {
-                      const els = parseElemAttr(m.elemAttr)
-                      if (els.length === 0 && !m.undead) return null
-                      return (
-                        <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.25, mt: 0.25 }}>
-                          {m.undead && (
-                            <Chip label="언데드" size="small" sx={{ height: 18, fontSize: 10, bgcolor: UNDEAD_HEX, color: '#fff' }} />
-                          )}
-                          {els.map((e) => {
-                            const c = ELEM_HEX[e.code] ?? '#9e9e9e'
-                            const weak = e.effect === '약점'
-                            return (
-                              <Chip
-                                key={e.code}
-                                label={`${e.element} ${e.effect}`}
-                                size="small"
-                                variant={weak ? 'filled' : 'outlined'}
-                                sx={{
-                                  height: 18,
-                                  fontSize: 10,
-                                  borderColor: c,
-                                  bgcolor: weak ? c : 'transparent',
-                                  color: weak ? (ELEM_DARK_TEXT.has(e.code) ? '#212121' : '#fff') : c,
-                                }}
-                              />
-                            )
-                          })}
-                        </Box>
-                      )
-                    })()}
-                    {monsterPatterns(m).length > 0 && (
-                      <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.25, mt: 0.25 }}>
-                        {monsterPatterns(m).map((p) => {
-                          const c = PATTERN_COLOR[p.kind]
-                          const outlined = p.kind === 'status' && !p.cure // 만병통치약 불가 = outlined
-                          return (
-                            <Chip key={p.label} label={p.label} size="small" variant={outlined ? 'outlined' : 'filled'}
-                              sx={[{ height: 18, fontSize: 10, borderColor: c, bgcolor: outlined ? 'transparent' : c, color: outlined ? c : '#fff' }, outlined && inkOnDark(c)]} />
-                          )
-                        })}
-                      </Box>
-                    )}
-                  </Box>
-                  {m.isBoss && <Chip label="보스" size="small" color="error" variant="outlined" sx={{ height: 20, fontSize: 11 }} />}
-                  <FavStar on={favMonsterSet.has(m.id)} onToggle={() => toggleFavMonster(m.id)} size={22} />
-                </Box>
+                  m={m}
+                  active={m.id === selectedId}
+                  fav={favMonsterSet.has(m.id)}
+                  onPick={pick}
+                  onToggleFav={toggleFavMonster}
+                />
               )
             })
           )}
