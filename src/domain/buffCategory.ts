@@ -12,18 +12,22 @@ export type BuffCategoryId =
   | 'pad' | 'mad' | 'pdef' | 'mdef' | 'speed' | 'jump' | 'eva' | 'acc'
   | 'addPad' | 'addMad' | 'attackSpeed' | 'etc'
 
-/** 표시 순서 · 라벨 · 해당 효과 id */
+/**
+ * 표시 순서 · 라벨 · 해당 효과 id.
+ * 순서: 공 마 추공 추마 / 방 마방 회피 명중 / 이속 점프 공속 기타
+ * (도핑 목록 편집의 필터 체크박스를 묶음(세로 2칸) 단위로 읽은 순서와 같다)
+ */
 export const BUFF_CATEGORIES: { id: BuffCategoryId; label: string; effects: EffectId[] }[] = [
   { id: 'pad', label: '공격력', effects: ['pad'] },
   { id: 'mad', label: '마력', effects: ['mad'] },
-  { id: 'pdef', label: '방어력', effects: ['pdef'] },
-  { id: 'mdef', label: '마법방어력', effects: ['mdef'] },
-  { id: 'speed', label: '이동속도', effects: ['speed'] },
-  { id: 'jump', label: '점프력', effects: ['jump'] },
-  { id: 'eva', label: '회피율', effects: ['eva'] },
-  { id: 'acc', label: '명중률', effects: ['acc'] },
   { id: 'addPad', label: '추가공격력', effects: ['addPad'] },
   { id: 'addMad', label: '추가마력', effects: ['addMad'] },
+  { id: 'pdef', label: '방어력', effects: ['pdef'] },
+  { id: 'mdef', label: '마법방어력', effects: ['mdef'] },
+  { id: 'eva', label: '회피율', effects: ['eva'] },
+  { id: 'acc', label: '명중률', effects: ['acc'] },
+  { id: 'speed', label: '이동속도', effects: ['speed'] },
+  { id: 'jump', label: '점프력', effects: ['jump'] },
   { id: 'attackSpeed', label: '공격속도(시전속도)', effects: ['attackSpeedBoost', 'castSpeedBoost', 'windBoostStep'] },
   { id: 'etc', label: '기타', effects: [] },
 ]
