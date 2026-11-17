@@ -25,6 +25,9 @@
  * '(반차징)'(50%)·'(최소 차징)' 항목을 파생한다. 기본 항목은 예전부터 배율 없이(=100%) 계산해 왔으므로 저장된 선택은
  * 풀차징으로 이어진다.
  *
+ * 전이 스킬(체인 라이트닝 · 에너지 오브)은 맞은 적 주위로 데미지가 옮겨 가며, 한 번 옮겨 갈 때마다 ×0.7이 된다
+ * (100% → 70% → 49% …, 인게임 규칙). 기본 항목은 첫 대상(100%)이고 1전이 '(70%)'·2전이 '(49%)' 항목을 파생한다.
+ *
  * 변형은 겹칠 수 있다 — 바이퍼 스크류 펀치는 '(최소 차징) (스턴)'처럼 차징 변형 위에 스턴 변형이 얹힌다.
  * 이때 id에는 두 오프셋이 모두 더해지고, baseSkillId()는 큰 오프셋부터 차례로 벗겨낸다.
  *
@@ -43,8 +46,8 @@ import { attackSkillsForJob, findSkillById, isSummonSkill, skillsForJob, skillNu
 /** 스턴 마스터리 skill id — 이 스킬을 가진 직업만 (스턴) 변형을 만든다 */
 export const STUN_MASTERY_ID = 5110000
 
-/** 변형 종류: 스턴 상태 가정 / 베놈 2·3중첩 / 소환수 약점 적용(데몬 연계) / 차징 스킬 반·최소 차징 */
-export type SkillVariantKind = 'stun' | 'venom2' | 'venom3' | 'weak' | 'halfCharge' | 'minCharge'
+/** 변형 종류: 스턴 상태 가정 / 베놈 2·3중첩 / 소환수 약점 적용(데몬 연계) / 차징 스킬 반·최소 차징 / 전이 1·2회 */
+export type SkillVariantKind = 'stun' | 'venom2' | 'venom3' | 'weak' | 'halfCharge' | 'minCharge' | 'transfer1' | 'transfer2'
 
 /**
  * 변형별 id 오프셋 (실제 스킬 id와 겹치지 않는 9자리).
@@ -57,6 +60,8 @@ const VARIANT_OFFSET: Record<SkillVariantKind, number> = {
   weak: 500_000_000,
   halfCharge: 400_000_000,
   minCharge: 300_000_000,
+  transfer2: 200_000_000,
+  transfer1: 100_000_000,
 }
 
 /** 변형별 이름 접미사 */
@@ -67,6 +72,8 @@ const VARIANT_SUFFIX: Record<SkillVariantKind, string> = {
   weak: '(1회 공격, 약점 적용)',
   halfCharge: '(반차징)',
   minCharge: '(최소 차징)',
+  transfer1: '(70%)',
+  transfer2: '(49%)',
 }
 
 /**
@@ -199,6 +206,26 @@ export function chargeMultOf(skillId: number): number {
   return 1
 }
 
+/** 전이 스킬 — 체인 라이트닝(썬콜) · 에너지 오브(바이퍼) */
+export const TRANSFER_SKILLS: ReadonlySet<number> = new Set([2221006, 5121002])
+
+/** 전이 1회당 데미지 배율 (100% → 70% → 49%) */
+export const TRANSFER_DECAY = 0.7
+
+/** 전이 스킬이면 기본(첫 대상) + '(70%)'(1전이) + '(49%)'(2전이) 항목으로 펼친다 */
+function expandTransfer(skill: IJobSkill): IJobSkill[] {
+  if (!TRANSFER_SKILLS.has(skill.id)) return [skill]
+  return [skill, makeVariant(skill, 'transfer1'), makeVariant(skill, 'transfer2')]
+}
+
+/** 전이 배율 — 1전이 0.7 · 2전이 0.49 · 그 외 1 */
+export function transferMultOf(skillId: number): number {
+  const kinds = variantKindsOf(skillId)
+  if (kinds.includes('transfer2')) return TRANSFER_DECAY ** 2
+  if (kinds.includes('transfer1')) return TRANSFER_DECAY
+  return 1
+}
+
 /** 기본 스킬 → 변형 스킬 (id와 표시 이름만 바꾼 사본) */
 function makeVariant(skill: IJobSkill, kind: SkillVariantKind): IJobSkill {
   const id = variantSkillId(skill.id, kind)
@@ -220,7 +247,7 @@ export function hasStunMastery(jobId: JobId): boolean {
  * 스턴 마스터리가 없는 직업은 `attackSkillsForJob`과 같다.
  */
 export function damageSkillsForJob(jobId: JobId): IJobSkill[] {
-  const skills = attackSkillsForJob(jobId).flatMap(expandVenom).flatMap(expandSummon).flatMap(expandCharge)
+  const skills = attackSkillsForJob(jobId).flatMap(expandVenom).flatMap(expandSummon).flatMap(expandCharge).flatMap(expandTransfer)
   if (!hasStunMastery(jobId)) return skills
   return skills.flatMap((s) => [s, makeVariant(s, 'stun')])
 }

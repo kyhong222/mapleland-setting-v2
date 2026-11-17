@@ -37,7 +37,7 @@ import {
   skillAttackAt, skillLineCount, comboFinalDamageP, COMBO_SKILLS, findSkillById, skillNumAt, chargeStats, skillElements,
 } from '../../data/skills'
 import type { IJobSkill } from '../../data/skills'
-import { damageSkillsForJob, baseSkillId, stunHitRatio, VENOM_SKILLS, venomStacks, forcesWeakness, DEMON_WEAK_SUMMONS, chargeMultOf } from '../../data/skills/variants'
+import { damageSkillsForJob, baseSkillId, stunHitRatio, VENOM_SKILLS, venomStacks, forcesWeakness, DEMON_WEAK_SUMMONS, chargeMultOf, transferMultOf } from '../../data/skills/variants'
 import type { ChargeState } from '../../domain/paladinCharge'
 import { computeCast, computeDotCast, computeSummonCast, computeNhit, computeDpm, baseElementMult, dotElementMult, mixCasts, SKILL_MOTION } from '../../domain/skillCombat'
 import { staffElementMult } from '../../domain/damage'
@@ -367,8 +367,9 @@ export default function NhitPanel() {
       defense,
       skillPercent: effSkillPercent,
       damageMult,
-      // 차징 스킬 반차징 ×0.5 · 최소 차징 ×0.1 — 크리 뒤·클램프 앞 (variants.ts CHARGE_SKILLS)
-      keydownMult: chargeMultOf(sk.id),
+      // 차징 스킬 반차징 ×0.5 · 최소 차징 ×0.1, 전이 스킬 1전이 ×0.7 · 2전이 ×0.49 — 크리 뒤·클램프 앞
+      // (variants.ts CHARGE_SKILLS · TRANSFER_SKILLS)
+      keydownMult: chargeMultOf(sk.id) * transferMultOf(sk.id),
       critProb,
       critMult,
       lineBase,
