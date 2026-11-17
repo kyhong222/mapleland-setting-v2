@@ -52,7 +52,7 @@ console.log('\n── 스킬 목록 ──')
 const viperBase = attackSkillsForJob('viper')
 const viperAll = damageSkillsForJob('viper')
 // 스크류 펀치는 (풀차징)/(반차징)/(최소 차징) 세 항목이라 2개 더 펼쳐진다 (chargeSkillSmoke.ts)
-expect('바이퍼 항목 수 ((기본 + 반·최소 차징) × 스턴)', viperAll.length, (viperBase.length + 2) * 2)
+expect('바이퍼 항목 수 ((기본 + 반·최소 차징 + 에너지 오브 1·2전이) × 스턴)', viperAll.length, (viperBase.length + 2 + 2) * 2)
 const nameOf = (id: number) => viperAll.find((s) => s.id === id)?.description?.name
 expect('피스트 (스턴) 이름', nameOf(variantSkillId(5121007, 'stun')), '피스트 (스턴)')
 expect('에너지 버스터 (스턴) 이름', nameOf(variantSkillId(5111002, 'stun')), '에너지 버스터 (스턴)')
