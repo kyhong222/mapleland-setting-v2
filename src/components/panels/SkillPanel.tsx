@@ -15,6 +15,7 @@ import Radio from '@mui/material/Radio'
 import RadioGroup from '@mui/material/RadioGroup'
 import FormControlLabel from '@mui/material/FormControlLabel'
 import Tooltip from '@mui/material/Tooltip'
+import Checkbox from '@mui/material/Checkbox'
 import CollapsiblePanel from '../common/CollapsiblePanel'
 import ActionHint from '../common/ActionHint'
 import EditBadge from '../common/EditBadge'
@@ -25,6 +26,8 @@ import { COMMON_BUFFS, PARTY_BUFFS, PERSONAL_BUFFS, DOPING_ITEMS, JOB_BUFFS, get
 import { canUseBuff, buffEffectsAtLevel, defaultBuffLevel, effectiveMasterLevel } from '../../domain/buff'
 import type { Buff } from '../../domain/buff'
 import { maxEffects } from '../../domain/effects'
+import { BUFF_CATEGORIES, buffCategoriesOf } from '../../domain/buffCategory'
+import type { BuffCategoryId } from '../../domain/buffCategory'
 import type { EffectMap } from '../../domain/effects'
 import type { JobId } from '../../domain/jobs'
 import { WEAPON_CONSTANTS } from '../../domain/weapons'
@@ -537,12 +540,6 @@ function MasteryRow({ buff, applied, unappliedNote, onOpen }: {
   )
 }
 
-/** 도핑 목록 편집의 한 묶음 (아이템 도핑 / 버프 스킬) */
-interface BuffGroup {
-  label: string
-  items: Buff[]
-}
-
 /**
  * 도핑 목록 편집 창 안에서 쓰는 레벨 고르기 — draft에만 반영한다(스토어 커밋은 편집 창의 [적용]).
  * 변형형 버프는 버전 라디오, 그 외는 레벨 슬라이더.
@@ -588,15 +585,26 @@ function DraftLevelDialog({ buff, level, onApply, onClose }: {
   )
 }
 
+/** 카테고리 필터 기본값 — 전부 표시 */
+const ALL_CATEGORY_IDS: BuffCategoryId[] = BUFF_CATEGORIES.map((c) => c.id)
+
 /**
- * 도핑 목록 편집 — 위: 목록에 올라간 도핑 / 아래: 묶음별(아이템 도핑 · 버프 스킬) 고를 수 있는 아이콘.
- *  - 아래 아이콘 좌클릭: 목록에 추가/제거 (목록에 있으면 황금 테두리)
- *  - 위 아이콘 좌클릭: 목록에서 제거
- *  - 우클릭(모바일 길게 누르기): 레벨 변경 — 레벨 있는 스킬만. 아래에서 고르면 목록에도 들어간다
+ * 도핑 목록 편집 — 위에서부터
+ *  1) 목록에 올라간 도핑 (좌클릭: 목록에서 제거)
+ *  2) 카테고리 필터 체크박스
+ *  3) 카테고리별(공격력·마력·…·기타) 고를 수 있는 도핑 — 한 줄에 '스킬 아이콘 | 아이템 아이콘'
+ *     (좌클릭: 추가/제거, 목록에 있으면 황금 테두리). 효과가 여럿이면 해당 카테고리마다 나온다(domain/buffCategory.ts)
+ * 우클릭(모바일 길게 누르기)은 어디서든 레벨 변경 — 레벨 있는 스킬만. 아래에서 고르면 목록에도 들어간다.
  * 전부 로컬 draft에만 반영하고 [적용]을 눌러야 스토어에 커밋된다.
  * 새로 넣은 항목은 켜진 채로 들어가고, 원래 있던 항목은 on/off를 유지한다(buildStore.setDopingList).
  */
-function DopingEditorDialog({ groups, onClose }: { groups: BuffGroup[]; onClose: () => void }) {
+function DopingEditorDialog({ skills, items, onClose }: {
+  /** 버프 스킬 (이 직업이 가진 것이 앞) */
+  skills: Buff[]
+  /** 아이템 도핑 */
+  items: Buff[]
+  onClose: () => void
+}) {
   const setDopingList = useBuildStore((s) => s.setDopingList)
   const jobId = useBuildStore((s) => s.jobId)
   const [draft, setDraft] = useState<Record<string, number>>(() => {
@@ -604,8 +612,9 @@ function DopingEditorDialog({ groups, onClose }: { groups: BuffGroup[]; onClose:
     return { ...(s.dopingList ?? {}), ...s.appliedBuffs }
   })
   const [levelFor, setLevelFor] = useState<Buff | null>(null)
+  const [shownCats, setShownCats] = useState<Set<BuffCategoryId>>(() => new Set(ALL_CATEGORY_IDS))
 
-  const all = groups.flatMap((g) => g.items)
+  const all = [...skills, ...items]
   // 목록 줄은 넣은 순서대로 (draft 키 순서)
   const listed = Object.keys(draft)
     .map((id) => all.find((b) => b.id === id))
@@ -621,6 +630,41 @@ function DopingEditorDialog({ groups, onClose }: { groups: BuffGroup[]; onClose:
   const levelOf = (b: Buff) => draft[b.id] ?? defaultBuffLevel(b, jobId)
   const leveled = (b: Buff) => b.type === 'skill' && effectiveMasterLevel(b, jobId) > 1
 
+  // 카테고리 판정은 기본 레벨(스킬은 마스터) 효과로 한다 — 레벨을 바꿔도 카테고리가 흔들리지 않게
+  const catsOf = (b: Buff) => buffCategoriesOf(buffEffectsAtLevel(b, defaultBuffLevel(b, jobId)))
+  const sections = BUFF_CATEGORIES.map((c) => ({
+    ...c,
+    skills: skills.filter((b) => catsOf(b).includes(c.id)),
+    items: items.filter((b) => catsOf(b).includes(c.id)),
+  })).filter((c) => c.skills.length + c.items.length > 0)
+
+  const allShown = sections.every((c) => shownCats.has(c.id))
+  const noneShown = sections.every((c) => !shownCats.has(c.id))
+  const toggleCat = (id: BuffCategoryId) =>
+    setShownCats((prev) => {
+      const next = new Set(prev)
+      if (next.has(id)) next.delete(id)
+      else next.add(id)
+      return next
+    })
+
+  const pickIcon = (b: Buff) => {
+    const on = b.id in draft
+    return (
+      <BuffIcon
+        key={b.id}
+        buff={b}
+        size={44}
+        pixelScale={1}
+        ringed={on}
+        levelBadge={on && hasLevelBadge(b) ? levelOf(b) : undefined}
+        tooltip={buffTooltip(b, levelOf(b))}
+        onClick={() => toggle(b)}
+        onLongPress={leveled(b) ? () => setLevelFor(b) : undefined}
+      />
+    )
+  }
+
   return (
     <Dialog open onClose={onClose} maxWidth="sm" fullWidth>
       <DialogTitle sx={{ pb: 1 }}>도핑 목록 편집</DialogTitle>
@@ -633,7 +677,7 @@ function DopingEditorDialog({ groups, onClose }: { groups: BuffGroup[]; onClose:
           ]}
         />
 
-        {/* 목록에 올라간 도핑 */}
+        {/* 1) 목록에 올라간 도핑 */}
         <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.75, minHeight: 48, alignItems: 'center', pt: 0.5 }}>
           {listed.length === 0 ? (
             <Typography variant="caption" color="text.disabled">아래에서 아이콘을 눌러 목록에 추가하세요</Typography>
@@ -654,32 +698,55 @@ function DopingEditorDialog({ groups, onClose }: { groups: BuffGroup[]; onClose:
           )}
         </Box>
 
-        {groups.map((g) => (
-          <Box key={g.label}>
-            <Divider sx={{ my: 1.25 }} />
-            <Typography variant="caption" color="text.secondary" sx={{ fontWeight: 700, display: 'block', mb: 0.75 }}>
-              {g.label}
-            </Typography>
-            <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.75 }}>
-              {g.items.map((b) => {
-                const on = b.id in draft
-                return (
-                  <BuffIcon
-                    key={b.id}
-                    buff={b}
-                    size={44}
-                    pixelScale={1}
-                    ringed={on}
-                    levelBadge={on && hasLevelBadge(b) ? levelOf(b) : undefined}
-                    tooltip={buffTooltip(b, levelOf(b))}
-                    onClick={() => toggle(b)}
-                    onLongPress={leveled(b) ? () => setLevelFor(b) : undefined}
-                  />
-                )
-              })}
+        {/* 2) 카테고리 필터 */}
+        <Divider sx={{ my: 1.25 }} />
+        <Box sx={{ display: 'flex', flexWrap: 'wrap', columnGap: 1, rowGap: 0 }}>
+          <FormControlLabel
+            sx={{ mr: 0, '& .MuiFormControlLabel-label': { fontSize: 13, fontWeight: 700 } }}
+            control={
+              <Checkbox
+                size="small"
+                sx={{ p: 0.5 }}
+                checked={allShown}
+                indeterminate={!allShown && !noneShown}
+                onChange={() => setShownCats(allShown ? new Set() : new Set(ALL_CATEGORY_IDS))}
+              />
+            }
+            label="전체"
+          />
+          {sections.map((c) => (
+            <FormControlLabel
+              key={c.id}
+              sx={{ mr: 0, '& .MuiFormControlLabel-label': { fontSize: 13 } }}
+              control={<Checkbox size="small" sx={{ p: 0.5 }} checked={shownCats.has(c.id)} onChange={() => toggleCat(c.id)} />}
+              label={c.label}
+            />
+          ))}
+        </Box>
+
+        {/* 3) 카테고리별 도핑 — 스킬 | 아이템 */}
+        {noneShown && (
+          <Typography variant="caption" color="text.disabled" sx={{ display: 'block', mt: 1.5, textAlign: 'center' }}>
+            표시할 카테고리를 선택하세요
+          </Typography>
+        )}
+        {sections
+          .filter((c) => shownCats.has(c.id))
+          .map((c) => (
+            <Box key={c.id}>
+              <Divider sx={{ my: 1.25 }} />
+              <Typography variant="caption" color="text.secondary" sx={{ fontWeight: 700, display: 'block', mb: 0.75 }}>
+                {c.label}
+              </Typography>
+              <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.75, alignItems: 'center' }}>
+                {c.skills.map(pickIcon)}
+                {c.skills.length > 0 && c.items.length > 0 && (
+                  <Divider orientation="vertical" flexItem sx={{ mx: 0.5 }} />
+                )}
+                {c.items.map(pickIcon)}
+              </Box>
             </Box>
-          </Box>
-        ))}
+          ))}
       </DialogContent>
       <DialogActions>
         <Typography variant="caption" color="text.secondary" sx={{ mr: 'auto', pl: 1 }}>
@@ -933,13 +1000,7 @@ export default function SkillPanel() {
       ]
     : PARTY_BUFFS
   // 버프 스킬은 이 직업이 직접 가진 것(개인 스킬 + 소유 파티버프)을 앞에 둔다
-  const editorGroups: BuffGroup[] = [
-    { label: '아이템 도핑', items: DOPING_ITEMS },
-    {
-      label: '버프 스킬',
-      items: [...buffPool.filter((b) => ownsBuff(b, jobId)), ...buffPool.filter((b) => !ownsBuff(b, jobId))],
-    },
-  ]
+  const editorSkills = [...buffPool.filter((b) => ownsBuff(b, jobId)), ...buffPool.filter((b) => !ownsBuff(b, jobId))]
 
   // 목록 = 편집으로 고른 것(꺼진 것 포함). 구버전 상태엔 목록이 없을 수 있어 켜진 것과 합친다
   const listLevels = { ...(dopingList ?? {}), ...appliedBuffs }
@@ -1022,7 +1083,7 @@ export default function SkillPanel() {
       )}
 
       {dlg && <BuffDialog buff={dlg.buff} kind={dlg.kind} onClose={() => setDlg(null)} />}
-      {editorOpen && <DopingEditorDialog groups={editorGroups} onClose={() => setEditorOpen(false)} />}
+      {editorOpen && <DopingEditorDialog skills={editorSkills} items={DOPING_ITEMS} onClose={() => setEditorOpen(false)} />}
     </CollapsiblePanel>
   )
 }
