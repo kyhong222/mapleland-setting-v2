@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useMemo, useState } from 'react'
 import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
 import Dialog from '@mui/material/Dialog'
@@ -14,7 +14,6 @@ import FormControlLabel from '@mui/material/FormControlLabel'
 import Tooltip from '@mui/material/Tooltip'
 import ListSubheader from '@mui/material/ListSubheader'
 import Divider from '@mui/material/Divider'
-import Button from '@mui/material/Button'
 import { inkOnDark } from '../../theme'
 import MonsterIcon from './MonsterIcon'
 import { useMonsterStore } from '../../store/monsterStore'
@@ -128,13 +127,6 @@ export default function MonsterSelectDialog({ open, onClose }: { open: boolean; 
   const favMonsterSet = useMemo(() => new Set(favMonsters), [favMonsters])
   const favRegionSet = useMemo(() => new Set(favRegions), [favRegions])
   const shownFavRegions = useMemo(() => favRegions.filter(validRegionKey), [favRegions])
-  // 즐겨찾기만 보기 — 열 때마다 즐겨찾기가 있으면 켠다(첫 화면 = 즐겨찾기, 없으면 전체)
-  const [favOnly, setFavOnly] = useState(false)
-  useEffect(() => {
-    if (open) setFavOnly(useUiStore.getState().favoriteMonsters.length > 0)
-  }, [open])
-  // 마지막 즐겨찾기를 지우면 자동으로 전체로 돌아간다
-  const showFavOnly = favOnly && favMonsters.length > 0
 
   const toggleSet = (set: React.Dispatch<React.SetStateAction<Set<string>>>, key: string) =>
     set((p) => {
@@ -154,7 +146,6 @@ export default function MonsterSelectDialog({ open, onClose }: { open: boolean; 
     const catRegions = sel.startsWith('c:') ? CATEGORY_REGIONS[sel.slice(2)] : null
     const region = sel.startsWith('r:') ? sel.slice(2) : null
     return MONSTERS.filter((m) => {
-      if (showFavOnly && !favMonsterSet.has(m.id)) return false
       const found = m.foundAt ?? []
       if (catRegions && !found.some((r) => catRegions.has(r))) return false
       if (region && !found.includes(region)) return false
@@ -182,7 +173,24 @@ export default function MonsterSelectDialog({ open, onClose }: { open: boolean; 
       }
       return true
     }).sort((a, b) => a.id - b.id)
-  }, [sel, query, minLv, maxLv, bossOnly, reactFilters, patternFilters, undeadOnly, levelRangeOnly, charLevel, showFavOnly, favMonsterSet])
+  }, [sel, query, minLv, maxLv, bossOnly, reactFilters, patternFilters, undeadOnly, levelRangeOnly, charLevel])
+
+  /**
+   * 목록 줄 — 조건에 맞는 즐겨찾기 몬스터를 맨 위에 모으고, 그 아래에 나머지.
+   * 즐겨찾기가 하나라도 걸리면 두 묶음 사이에 머리글('★ 즐겨찾기' / '전체')을 넣는다.
+   */
+  type ListRow = { kind: 'header'; label: string } | { kind: 'mob'; m: (typeof filtered)[number] }
+  const rows = useMemo<ListRow[]>(() => {
+    const favs = filtered.filter((m) => favMonsterSet.has(m.id))
+    if (favs.length === 0) return filtered.map((m) => ({ kind: 'mob' as const, m }))
+    const rest = filtered.filter((m) => !favMonsterSet.has(m.id))
+    return [
+      { kind: 'header' as const, label: `★ 즐겨찾기 ${favs.length}` },
+      ...favs.map((m) => ({ kind: 'mob' as const, m })),
+      ...(rest.length > 0 ? [{ kind: 'header' as const, label: `전체 ${rest.length}` }] : []),
+      ...rest.map((m) => ({ kind: 'mob' as const, m })),
+    ]
+  }, [filtered, favMonsterSet])
 
   const pick = (id: number) => {
     select(id)
@@ -270,22 +278,6 @@ export default function MonsterSelectDialog({ open, onClose }: { open: boolean; 
               onClick={() => setBossOnly((v) => !v)}
               sx={{ alignSelf: 'center' }}
             />
-            <Tooltip
-              title={favMonsters.length === 0 ? '몬스터 카드의 ☆를 눌러 즐겨찾기하세요' : '즐겨찾기한 몬스터만 보기'}
-              placement="top"
-              arrow
-            >
-              <Box component="span" sx={{ alignSelf: 'center' }}>
-                <Chip
-                  label={`★ 즐겨찾기 ${favMonsters.length}`}
-                  size="small"
-                  disabled={favMonsters.length === 0}
-                  variant={showFavOnly ? 'filled' : 'outlined'}
-                  onClick={() => setFavOnly((v) => !v)}
-                  sx={showFavOnly ? { bgcolor: '#f9a825', color: '#212121', '&:hover': { bgcolor: '#f57f17' } } : undefined}
-                />
-              </Box>
-            </Tooltip>
           </Box>
           <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
             <Typography variant="caption" color="text.secondary">레벨</Typography>
@@ -340,22 +332,27 @@ export default function MonsterSelectDialog({ open, onClose }: { open: boolean; 
         </Box>
 
         <Typography variant="caption" color="text.disabled" sx={{ display: 'block', mt: 1, mb: 0.5 }}>
-          {showFavOnly ? `즐겨찾기 ${filtered.length}종` : `${filtered.length}종`}
+          {filtered.length}종
         </Typography>
 
         {/* 목록 (2열 그리드로 더 크게) */}
         <Box sx={{ maxHeight: 560, overflowY: 'auto', display: 'grid', gridTemplateColumns: { xs: '1fr', sm: '1fr 1fr' }, gap: 0.5 }}>
           {filtered.length === 0 ? (
-            <Box sx={{ py: 2, textAlign: 'center', gridColumn: '1 / -1' }}>
-              <Typography variant="caption" color="text.disabled" sx={{ display: 'block' }}>
-                {showFavOnly ? '즐겨찾기 중에는 조건에 맞는 몬스터 없음' : '조건에 맞는 몬스터 없음'}
-              </Typography>
-              {showFavOnly && (
-                <Button size="small" onClick={() => setFavOnly(false)} sx={{ mt: 0.5 }}>전체에서 찾기</Button>
-              )}
-            </Box>
+            <Typography variant="caption" color="text.disabled" sx={{ py: 2, textAlign: 'center', gridColumn: '1 / -1' }}>조건에 맞는 몬스터 없음</Typography>
           ) : (
-            filtered.map((m) => {
+            rows.map((row) => {
+              if (row.kind === 'header') {
+                return (
+                  <Typography
+                    key={`hdr-${row.label}`}
+                    variant="caption"
+                    sx={{ gridColumn: '1 / -1', fontWeight: 700, color: row.label.startsWith('★') ? '#f9a825' : 'text.secondary', pt: 0.5 }}
+                  >
+                    {row.label}
+                  </Typography>
+                )
+              }
+              const m = row.m
               const active = m.id === selectedId
               return (
                 <Box
