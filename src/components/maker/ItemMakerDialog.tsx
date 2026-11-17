@@ -10,11 +10,11 @@ import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
 import useMediaQuery from '@mui/material/useMediaQuery'
 import { useTheme } from '@mui/material/styles'
+import { equipCategoryLabel } from '../../lib/equipCategory'
 import type { ItemData } from '../../domain/item'
 import type { EffectId, EffectMap } from '../../domain/effects'
 import { gemsForSlot } from '../../domain/maker'
 import { listScrollsForItem } from '../../data/scrolls'
-import { SLOTS } from '../../domain/equipSlots'
 import { resolveBuiltItem } from '../../domain/builtItem'
 import type { BuiltItem, AppliedScroll } from '../../domain/builtItem'
 import type { GemSelection } from '../../domain/maker'
@@ -163,7 +163,7 @@ export default function ItemMakerDialog({ open, initial, onClose, onConfirm }: P
                   {base.name}
                 </Typography>
                 <Typography variant="caption" color="text.secondary">
-                  {SLOTS[base.slot].label}
+                  {equipCategoryLabel(base)}
                   {base.reqLevel ? ` · Lv.${base.reqLevel}` : ''} · 업횟 {base.tuc ?? 0} ·{' '}
                   {result.grade.info.label} {result.grade.score}
                 </Typography>

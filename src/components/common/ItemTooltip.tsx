@@ -1,7 +1,7 @@
 import Box from '@mui/material/Box'
+import { equipCategoryLabel } from '../../lib/equipCategory'
 import { resolveBuiltItem } from '../../domain/builtItem'
 import type { BuiltItem } from '../../domain/builtItem'
-import { SLOTS } from '../../domain/equipSlots'
 import { EFFECTS } from '../../domain/effects'
 import { STAFF_MATCH_BONUS, STAFF_OFF_ELEMENT_PENALTY } from '../../domain/damage'
 import { elementName } from '../../domain/monster'
@@ -132,7 +132,7 @@ export default function ItemTooltip({ built, note }: Props) {
 
       {/* 장비분류 · 스탯 · 업횟 */}
       <Box sx={{ pt: 0.75, borderTop: '1px solid rgba(255,255,255,0.14)' }}>
-        <StatLine label="장비분류" value={SLOTS[base.slot].label} color="#c8cde6" />
+        <StatLine label="장비분류" value={equipCategoryLabel(base)} color="#c8cde6" />
         {STAT_ROWS.map((r) => {
           const v = finalEffects[r.id]
           if (v === undefined || v === 0) return null
