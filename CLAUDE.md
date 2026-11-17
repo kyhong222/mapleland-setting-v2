@@ -44,6 +44,7 @@ yarn tsx scripts/viperStunSmoke.ts  # 바이퍼 스턴 변형 스킬 + 조건부
 yarn tsx scripts/growthSmoke.ts     # 성장(레벨업) 스펙 — 스탯별 + 아이템 단위(리버스/타임리스)
 yarn tsx scripts/attackSpeedSmoke.ts # 공속표 커버리지·프레임 정합·분기 스펙
 yarn tsx scripts/cloudSmoke.ts      # 클라우드 캡처/복원 왕복 (네트워크·Supabase 키 불필요)
+yarn tsx scripts/dopingListSmoke.ts # 도핑 목록 on/off·편집 반영·스냅샷 왕복·구버전 복원
 yarn tsx scripts/noticeSmoke.ts     # 공지 id·날짜·참조 아이템·compare 전후·자동 노출 판정
 yarn tsx scripts/battleMageSmoke.ts # 배틀메이지 직업 규칙·오라 대체/강화·스태프 숙련도·마법 다타
 yarn tsx scripts/elementalStaffSmoke.ts # 속성 스태프 카탈로그 스펙·속성배율 표
