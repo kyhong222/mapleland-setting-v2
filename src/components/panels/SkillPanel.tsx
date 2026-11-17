@@ -20,6 +20,7 @@ import CollapsiblePanel from '../common/CollapsiblePanel'
 import ActionHint from '../common/ActionHint'
 import EditBadge from '../common/EditBadge'
 import { useBuildStore } from '../../store/buildStore'
+import { useUiStore } from '../../store/uiStore'
 import { useInventoryStore } from '../../store/inventoryStore'
 import { equippedWeaponType, equippedHasShield, jobMasteries, displayedMasteries, appliedMasteries, weaponGateOk } from '../../store/aggregate'
 import { COMMON_BUFFS, PARTY_BUFFS, PERSONAL_BUFFS, DOPING_ITEMS, JOB_BUFFS, getBuff } from '../../data/buff'
@@ -612,7 +613,11 @@ function DopingEditorDialog({ skills, items, onClose }: {
     return { ...(s.dopingList ?? {}), ...s.appliedBuffs }
   })
   const [levelFor, setLevelFor] = useState<Buff | null>(null)
-  const [shownCats, setShownCats] = useState<Set<BuffCategoryId>>(() => new Set(ALL_CATEGORY_IDS))
+  // 필터 체크 상태는 기기별로 기억한다(uiStore) — 열 때마다 마지막 상태로
+  const hiddenCats = useUiStore((s) => s.hiddenDopingCategories)
+  const setHiddenCats = useUiStore((s) => s.setHiddenDopingCategories)
+  const shownCats = new Set(ALL_CATEGORY_IDS.filter((id) => !hiddenCats.includes(id)))
+  const setShownCats = (next: Set<BuffCategoryId>) => setHiddenCats(ALL_CATEGORY_IDS.filter((id) => !next.has(id)))
 
   const all = [...skills, ...items]
   // 목록 줄은 넣은 순서대로 (draft 키 순서)
@@ -640,13 +645,12 @@ function DopingEditorDialog({ skills, items, onClose }: {
 
   const allShown = sections.every((c) => shownCats.has(c.id))
   const noneShown = sections.every((c) => !shownCats.has(c.id))
-  const toggleCat = (id: BuffCategoryId) =>
-    setShownCats((prev) => {
-      const next = new Set(prev)
-      if (next.has(id)) next.delete(id)
-      else next.add(id)
-      return next
-    })
+  const toggleCat = (id: BuffCategoryId) => {
+    const next = new Set(shownCats)
+    if (next.has(id)) next.delete(id)
+    else next.add(id)
+    setShownCats(next)
+  }
 
   const pickIcon = (b: Buff) => {
     const on = b.id in draft
