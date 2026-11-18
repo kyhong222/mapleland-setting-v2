@@ -28,6 +28,12 @@
  * 전이 스킬(체인 라이트닝 · 에너지 오브)은 맞은 적 주위로 데미지가 옮겨 가며, 한 번 옮겨 갈 때마다 ×0.7이 된다
  * (100% → 70% → 49% …, 인게임 규칙). 기본 항목은 첫 대상(100%)이고 1전이 '(70%)'·2전이 '(49%)' 항목을 파생한다.
  *
+ * 캡틴의 파이어 버너 · 쿨링 이펙트는 장전한 투사체에 따라 데미지가 달라진다. 맞는 캡슐(블레이즈 2331xxx /
+ * 글레이즈 2332xxx)이면 그대로, 일반 불릿이면 기본 데미지가 ×0.5다 (mnwvs077 CalcDamage.cpp PDamage 건 분기).
+ * 캡슐은 불릿 자리에 대신 들어가 1개씩 소모되고(불릿은 따로 소모되지 않는다), 공격력은 캡슐 것(16)이 붙는다.
+ * N방컷을 볼 때마다 불릿과 캡슐을 갈아끼우지 않도록 기본 항목을 '(캡슐)'로 두고 '(불릿)' 항목을 파생한다.
+ * 기본 id가 캡슐인 이유: 실제 운용이 캡슐이라 저장된 선택이 그쪽으로 이어지는 편이 자연스럽다.
+ *
  * 변형은 겹칠 수 있다 — 바이퍼 스크류 펀치는 '(최소 차징) (스턴)'처럼 차징 변형 위에 스턴 변형이 얹힌다.
  * 이때 id에는 두 오프셋이 모두 더해지고, baseSkillId()는 큰 오프셋부터 차례로 벗겨낸다.
  *
@@ -46,14 +52,19 @@ import { attackSkillsForJob, findSkillById, isSummonSkill, skillsForJob, skillNu
 /** 스턴 마스터리 skill id — 이 스킬을 가진 직업만 (스턴) 변형을 만든다 */
 export const STUN_MASTERY_ID = 5110000
 
-/** 변형 종류: 스턴 상태 가정 / 베놈 2·3중첩 / 소환수 약점 적용(데몬 연계) / 차징 스킬 반·최소 차징 / 전이 1·2회 */
-export type SkillVariantKind = 'stun' | 'venom2' | 'venom3' | 'weak' | 'halfCharge' | 'minCharge' | 'transfer1' | 'transfer2'
+/** 변형 종류: 스턴 상태 가정 / 베놈 2·3중첩 / 소환수 약점 적용(데몬 연계) / 차징 스킬 반·최소 차징 / 전이 1·2회 / 캡슐 대신 불릿 */
+export type SkillVariantKind = 'stun' | 'venom2' | 'venom3' | 'weak' | 'halfCharge' | 'minCharge' | 'transfer1' | 'transfer2' | 'bullet'
 
 /**
  * 변형별 id 오프셋 (실제 스킬 id와 겹치지 않는 9자리).
  * 겹치는 조합(halfCharge + stun = 13억대, minCharge + stun = 12억대)도 int32 안에 들고, 없앤 8억대와도 겹치지 않는다.
+ *
+ * bullet은 1~9억 자리가 다 차서 20억을 쓴다. 스턴 겹침 조합(최대 16억대)보다 커야 variantKindOf가
+ * 그 조합을 bullet으로 오판하지 않는다. 대신 다른 변형과 겹치면 int32를 넘으므로 겹치지 않는 스킬에만 쓴다
+ * (캡틴은 스턴 마스터리가 없어 겹칠 일이 없다).
  */
 const VARIANT_OFFSET: Record<SkillVariantKind, number> = {
+  bullet: 2_000_000_000,
   stun: 900_000_000,
   venom2: 600_000_000,
   venom3: 700_000_000,
@@ -74,6 +85,7 @@ const VARIANT_SUFFIX: Record<SkillVariantKind, string> = {
   minCharge: '(최소 차징)',
   transfer1: '(70%)',
   transfer2: '(49%)',
+  bullet: '(불릿)',
 }
 
 /**
@@ -226,6 +238,41 @@ export function transferMultOf(skillId: number): number {
   return 1
 }
 
+/** 캡슐을 쓰는 스킬 → 맞는 캡슐 id. 파이어 버너 ← 블레이즈 캡슐 · 쿨링 이펙트 ← 글레이즈 캡슐 */
+export const CAPSULE_SKILLS: ReadonlyMap<number, number> = new Map([
+  [5211004, 2331000],
+  [5211005, 2332000],
+])
+
+/** 캡슐 공격력 — 블레이즈 · 글레이즈 둘 다 incPAD 16 (maplestory.io GMS 62) */
+export const CAPSULE_PAD = 16
+
+/** 캡슐 없이 일반 불릿으로 쏠 때의 기본 데미지 배율 (mnwvs077 `calc *= 0.5`, 방어 차감 전) */
+export const BULLET_ONLY_MULT = 0.5
+
+/** 속성강화(캡틴 5220001) — 파이어 버너 · 쿨링 이펙트의 스킬 데미지%에 `damage`를 더한다 (mnwvs077 CalcDamage.cpp) */
+export const ELEMENTAL_BOOST_ID = 5220001
+
+const CAPSULE_SUFFIX = '(캡슐)'
+
+/** 캡슐 스킬이면 '(불릿)' + '(캡슐)' 기본 항목으로 펼친다 */
+function expandCapsule(skill: IJobSkill): IJobSkill[] {
+  if (!CAPSULE_SKILLS.has(skill.id)) return [skill]
+  const name = skill.description?.name ?? String(skill.id)
+  const base = { ...skill, description: { ...skill.description, id: skill.id, name: `${name} ${CAPSULE_SUFFIX}` } }
+  return [makeVariant(skill, 'bullet'), base]
+}
+
+/** 캡슐을 장전한 항목인지 — 캡슐 스킬의 기본 항목만 true ('(불릿)'·캡슐 스킬이 아니면 false) */
+export function usesCapsule(skillId: number): boolean {
+  return CAPSULE_SKILLS.has(skillId)
+}
+
+/** 캡슐 스킬을 일반 불릿으로 쏘는 항목의 배율 — '(불릿)'이면 0.5, 그 외 1 */
+export function bulletOnlyMultOf(skillId: number): number {
+  return variantKindsOf(skillId).includes('bullet') ? BULLET_ONLY_MULT : 1
+}
+
 /** 기본 스킬 → 변형 스킬 (id와 표시 이름만 바꾼 사본) */
 function makeVariant(skill: IJobSkill, kind: SkillVariantKind): IJobSkill {
   const id = variantSkillId(skill.id, kind)
@@ -247,7 +294,7 @@ export function hasStunMastery(jobId: JobId): boolean {
  * 스턴 마스터리가 없는 직업은 `attackSkillsForJob`과 같다.
  */
 export function damageSkillsForJob(jobId: JobId): IJobSkill[] {
-  const skills = attackSkillsForJob(jobId).flatMap(expandVenom).flatMap(expandSummon).flatMap(expandCharge).flatMap(expandTransfer)
+  const skills = attackSkillsForJob(jobId).flatMap(expandVenom).flatMap(expandSummon).flatMap(expandCharge).flatMap(expandTransfer).flatMap(expandCapsule)
   if (!hasStunMastery(jobId)) return skills
   return skills.flatMap((s) => [s, makeVariant(s, 'stun')])
 }
