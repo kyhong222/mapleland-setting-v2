@@ -38,6 +38,7 @@ import { CHARGE_LABEL, CHARGE_MASTER, CHARGE_ELEMENTS } from '../../domain/palad
 import type { ChargeElement } from '../../domain/paladinCharge'
 import { DEFAULT_CHARGE } from '../../store/buildStore'
 import { MAGIC_GUARD_IDS } from '../../domain/incomingDamage'
+import { ELEMENTAL_BOOST_ID } from '../../data/skills/variants'
 import { formatEffects } from '../../lib/effectFormat'
 import { buffIconUrl, CHARGE_ICON } from '../../lib/buffIcon'
 import { useTouchLongPress } from '../../lib/useLongPress'
@@ -84,7 +85,9 @@ function weaponGateNote(buff: Buff, weaponType?: WeaponType): string | null {
 /** 버프 툴팁 내용: 이름(+레벨) / 효과 / 미적용 사유 / 보조 안내문(note) */
 function buffTooltip(buff: Buff, level: number, unappliedNote?: string | null): React.ReactNode {
   const isSkill = buff.type === 'skill'
-  const effText = formatEffects(buffEffectsAtLevel(buff, level))
+  const effText = buff.id === ELEMENTAL_BOOST_BUFF_ID
+    ? elementalBoostCaption(level)
+    : formatEffects(buffEffectsAtLevel(buff, level))
   return (
     <Box sx={{ py: 0.25 }}>
       <Typography variant="caption" sx={{ fontWeight: 700, display: 'block' }}>
@@ -377,6 +380,15 @@ function BuffDialog({ buff, kind, onClose }: { buff: Buff; kind: BuffKind; onClo
               </Typography>
             ))}
           </Box>
+        ) : buff.id === ELEMENTAL_BOOST_BUFF_ID ? (
+          // 속성강화: 스펙 + 적용 대상(note)
+          <Box sx={{ mt: 1 }}>
+            <Typography variant="body2" color="success.main">{elementalBoostDamageText(draftLevel)}</Typography>
+            <Typography variant="body2" color="success.main">{elementalBoostDotText(draftLevel)}</Typography>
+            <Typography variant="caption" color="text.secondary" sx={{ display: 'block' }}>
+              {buff.note}{buff.note ? ' · ' : ''}도트 데미지는 계산에 반영하지 않습니다
+            </Typography>
+          </Box>
         ) : (
           <Typography variant="body2" color="success.main" sx={{ mt: 1 }}>
             {buff.id === '1220010' ? advChargeCaption(draftLevel) : (magicGuardCaption(buff, draftLevel) ?? (formatEffects(eff) || '—'))}
@@ -425,6 +437,8 @@ function BuffRow({ buff, onOpen }: { buff: Buff; onOpen: (b: Buff) => void }) {
   const comboText = comboEffectText(buff, activeBuffs, jobId)
   // 어드밴스드 차지: 차지 블로우 계수 강화 설명
   const advText = buff.id === '1220010' ? advChargeCaption(shownLevel) : null
+  // 속성강화: note(적용 대상)보다 스펙을 먼저 보여준다 — 적용 대상은 툴팁·편집 창에 있다
+  const ebText = buff.id === ELEMENTAL_BOOST_BUFF_ID ? elementalBoostCaption(shownLevel) : null
   const mgText = magicGuardCaption(buff, shownLevel)
   const lcText = skillChargeCaption(buff, shownLevel, eff)
   const effText = formatEffects(eff)
@@ -432,7 +446,7 @@ function BuffRow({ buff, onOpen }: { buff: Buff; onOpen: (b: Buff) => void }) {
   // 효과가 없으면 단독 표시(미구현 스킬 표기)
   const noteText = buff.note ? (effText ? `${effText} · ${buff.note}` : buff.note) : null
   const sbText = superBodyCaption(buff, shownLevel, activeBuffs)
-  const caption = requiresShield && !shieldOk ? '방패 착용 필요' : (mgText ?? lcText ?? sbText ?? noteText ?? advText ?? comboText ?? (effText || '—'))
+  const caption = requiresShield && !shieldOk ? '방패 착용 필요' : (mgText ?? lcText ?? sbText ?? ebText ?? noteText ?? advText ?? comboText ?? (effText || '—'))
   return (
     <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5, py: 0.25 }}>
       <BuffIcon buff={buff} active={active} highlightActive onClick={() => toggleBuff(buff.id)} onLongPress={() => onOpen(buff)} />
@@ -468,6 +482,24 @@ function superBodyCaption(buff: Buff, level: number, activeBuffs: Record<string,
   if (buff.id !== SUPER_BODY_ID) return null
   const on = SUPER_BODY_AURAS.find((a) => activeBuffs[a.id] !== undefined)
   return on ? `${on.name}: ${superBodyAuraText(on.id, level)}` : null
+}
+
+/** 속성강화(캡틴) — 효과표가 비어 있고 파이어 버너·쿨링 이펙트 계수에만 더해진다 (NhitPanel) */
+const ELEMENTAL_BOOST_BUFF_ID = String(ELEMENTAL_BOOST_ID)
+
+/** 속성강화 데미지 가산 (두 스킬의 damage%에 덧셈 — 계산에 반영) */
+function elementalBoostDamageText(level: number): string {
+  return `파이어 버너·쿨링 이펙트 데미지 +${skillNumAt(ELEMENTAL_BOOST_ID, level, 'damage')}%`
+}
+
+/** 속성강화 도트 가산 (스킬북 x — 파이어 버너 도트는 계산하지 않아 표기만 한다) */
+function elementalBoostDotText(level: number): string {
+  return `파이어 버너 도트 데미지 +${skillNumAt(ELEMENTAL_BOOST_ID, level, 'x')}%`
+}
+
+/** 속성강화 한 줄 설명 (행·툴팁) */
+function elementalBoostCaption(level: number): string {
+  return `${elementalBoostDamageText(level)}, 도트 데미지 +${skillNumAt(ELEMENTAL_BOOST_ID, level, 'x')}%`
 }
 
 /** 어드밴스드 차지 설명: 차지 블로우 계수를 레벨별 값으로 강화 */

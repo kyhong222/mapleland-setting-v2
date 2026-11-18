@@ -37,7 +37,11 @@ import {
   skillAttackAt, skillLineCount, comboFinalDamageP, COMBO_SKILLS, findSkillById, skillNumAt, chargeStats, skillElements,
 } from '../../data/skills'
 import type { IJobSkill } from '../../data/skills'
-import { damageSkillsForJob, baseSkillId, stunHitRatio, VENOM_SKILLS, venomStacks, forcesWeakness, DEMON_WEAK_SUMMONS, chargeMultOf, transferMultOf } from '../../data/skills/variants'
+import {
+  damageSkillsForJob, baseSkillId, stunHitRatio, VENOM_SKILLS, venomStacks, forcesWeakness, DEMON_WEAK_SUMMONS, chargeMultOf, transferMultOf,
+  CAPSULE_SKILLS, CAPSULE_PAD, ELEMENTAL_BOOST_ID, usesCapsule, bulletOnlyMultOf,
+} from '../../data/skills/variants'
+import { resolveBuiltItem } from '../../domain/builtItem'
 import type { ChargeState } from '../../domain/paladinCharge'
 import { computeCast, computeDotCast, computeSummonCast, computeNhit, computeDpm, baseElementMult, dotElementMult, mixCasts, SKILL_MOTION } from '../../domain/skillCombat'
 import { staffElementMult } from '../../domain/damage'
@@ -179,6 +183,8 @@ export default function NhitPanel() {
   // 아대의 표창처럼 필수 보조무기가 비어 있으면 인게임에서 공격이 성립하지 않는다 → 무기 미장착과 동일 취급
   const missingSecondary = missingRequiredSecondary(weaponType, equipped, invItems)
   const atkWeapon = missingSecondary ? undefined : weaponType
+  /** 스킬별 공격 무기 — '(캡슐)' 항목은 캡슐을 장전했다고 가정하므로 불릿이 비어 있어도 공격이 성립한다 */
+  const atkWeaponFor = (skillId: number) => (usesCapsule(skillId) ? weaponType : atkWeapon)
   // 공격 스킬 + 변형('(스턴)' 등, data/skills/variants.ts)
   const attackSkills = jobId ? damageSkillsForJob(jobId) : []
   const selectedSkill = attackSkills.find((s) => s.id === skillId)
@@ -187,6 +193,10 @@ export default function NhitPanel() {
 
   // 속성 스태프 — 비활성 무기는 효과가 없으므로 활성 장비에서 찾는다
   const staffElement = builts.find((b) => b.base.slot === 'weapon')?.base.weaponElement
+
+  // 장착(활성) 불릿의 공격력 — 캡슐 항목은 이 값을 캡슐 공격력으로 바꿔 계산한다
+  const bulletBuilt = builts.find((b) => b.base.slot === 'bullet')
+  const equippedBulletPad = bulletBuilt ? resolveBuiltItem(bulletBuilt).finalEffects.pad ?? 0 : 0
 
   const weaponSpeedStep = (() => {
     const id = equipped.weapon
@@ -235,6 +245,7 @@ export default function NhitPanel() {
       }
     }
 
+    const atkWeapon = atkWeaponFor(sk.id)
     if (!isMagic && !atkWeapon) return null
     // 변형 스킬은 id에 오프셋이 붙어 있다 — 모션 규칙/공속표/예외식은 전부 원래 id로 조회
     const baseId = baseSkillId(sk.id)
@@ -269,6 +280,11 @@ export default function NhitPanel() {
       const adv = advLv > 0 ? findSkillById(1220010) : undefined
       const advAtt = adv ? skillAttackAt(adv, advLv) : null
       if (advAtt) effSkillPercent = advAtt.skillPercent
+    }
+    // 파이어 버너 · 쿨링 이펙트: 속성강화(5220001)를 켰으면 그 damage를 스킬 데미지%에 더한다 (190% + 200 → 390%)
+    if (CAPSULE_SKILLS.has(baseId)) {
+      const ebLv = activeBuffs[String(ELEMENTAL_BOOST_ID)] ?? 0
+      if (ebLv > 0) effSkillPercent += skillNumAt(ELEMENTAL_BOOST_ID, ebLv, 'damage')
     }
     // 계수 직접 입력 — 어드밴스드 차지 대체까지 끝난 최종 계수를 덮는다 (사용자가 본 인게임 값이 최종값)
     if (coef != null && !isMagic) effSkillPercent = coef
@@ -352,11 +368,15 @@ export default function NhitPanel() {
     const finalMult = 1 + ((effects.finalDamageP ?? 0) + comboBonus) / 100
     const threatenMult = 1 + (effects.monsterDamageTakenP ?? 0) / 100
     const counterMult = COMA_PANIC.has(baseId) && comboBonus > 0 ? MAX_COUNTER_MULT : 1
-    const damageMult = (isMagic ? magicAmpMultiplier(effects) : 1) * finalMult * threatenMult * counterMult
+    // 캡슐 스킬을 일반 불릿으로 쏘면 기본 데미지 ×0.5 — 방어 차감 전이라 damageMult 자리에 곱한다 (variants.ts BULLET_ONLY_MULT)
+    const damageMult = (isMagic ? magicAmpMultiplier(effects) : 1) * finalMult * threatenMult * counterMult * bulletOnlyMultOf(sk.id)
     // 쉐도우 파트너는 데미지 배수가 아니라 분신의 별도 타격이다 → computeCast가 라인을 늘린다
     const shadowRatio = (effects.shadowPartnerP ?? 0) / 100
 
-    const watk = totalAttack(effects)
+    // 캡슐 항목: 캡슐을 장전했다고 가정한다 — 장착 불릿 공격력은 무시(빼고) 캡슐 공격력(16)을 넣는다. 불릿이 없으면 뺄 것도 없다
+    const watk = usesCapsule(sk.id)
+      ? totalAttack({ ...effects, pad: (effects.pad ?? 0) - equippedBulletPad + CAPSULE_PAD })
+      : totalAttack(effects)
     // 럭세/트스: LUK 전용 예외식 base(모션·부스탯·숙련 무시). 스킬%는 그대로 적용
     const lineBase = !isMagic && LUCKY_SKILLS.has(baseId) ? calcLuckyBase(finalStats.LUK, watk) : undefined
     // 피스트: 타수별 배율(5타×2·6타×4)
@@ -676,7 +696,7 @@ export default function NhitPanel() {
             </Select>
           </Box>
 
-          {missingSecondary ? (
+          {missingSecondary && !(selectedSkill && usesCapsule(selectedSkill.id)) ? (
             <Typography variant="body2" color="text.disabled">{secondaryPrompt(missingSecondary)}</Typography>
           ) : result === null ? (
             <Typography variant="body2" color="text.disabled">스킬을 선택하세요.</Typography>
@@ -728,6 +748,12 @@ export default function NhitPanel() {
                   {result.isMagic
                     ? '※ 소환수 1회 공격 데미지입니다. 방어 무시, 크리티컬·데미지 증가 버프·엠플리피케이션 미적용.'
                     : '※ 소환수 1회 공격 데미지입니다. 방어 무시, 크리티컬·데미지 증가 버프 미적용.'}
+                </Typography>
+              )}
+
+              {selectedSkill && usesCapsule(selectedSkill.id) && (
+                <Typography variant="caption" color="text.disabled" sx={{ display: 'block', mt: 0.25, lineHeight: 1.4 }}>
+                  ※ 불릿은 데미지에 포함되지 않습니다.
                 </Typography>
               )}
 
