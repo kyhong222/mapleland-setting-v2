@@ -751,6 +751,12 @@ export default function NhitPanel() {
                 </Typography>
               )}
 
+              {selectedSkill && usesCapsule(selectedSkill.id) && (
+                <Typography variant="caption" color="text.disabled" sx={{ display: 'block', mt: 0.25, lineHeight: 1.4 }}>
+                  ※ 불릿은 데미지에 포함되지 않습니다.
+                </Typography>
+              )}
+
               {result.isVenom && (
                 <Typography variant="caption" color="text.disabled" sx={{ display: 'block', mt: 0.25, lineHeight: 1.4 }}>
                   {result.displayMult === 0
