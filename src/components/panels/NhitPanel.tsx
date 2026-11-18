@@ -183,6 +183,8 @@ export default function NhitPanel() {
   // 아대의 표창처럼 필수 보조무기가 비어 있으면 인게임에서 공격이 성립하지 않는다 → 무기 미장착과 동일 취급
   const missingSecondary = missingRequiredSecondary(weaponType, equipped, invItems)
   const atkWeapon = missingSecondary ? undefined : weaponType
+  /** 스킬별 공격 무기 — '(캡슐)' 항목은 캡슐을 장전했다고 가정하므로 불릿이 비어 있어도 공격이 성립한다 */
+  const atkWeaponFor = (skillId: number) => (usesCapsule(skillId) ? weaponType : atkWeapon)
   // 공격 스킬 + 변형('(스턴)' 등, data/skills/variants.ts)
   const attackSkills = jobId ? damageSkillsForJob(jobId) : []
   const selectedSkill = attackSkills.find((s) => s.id === skillId)
@@ -243,6 +245,7 @@ export default function NhitPanel() {
       }
     }
 
+    const atkWeapon = atkWeaponFor(sk.id)
     if (!isMagic && !atkWeapon) return null
     // 변형 스킬은 id에 오프셋이 붙어 있다 — 모션 규칙/공속표/예외식은 전부 원래 id로 조회
     const baseId = baseSkillId(sk.id)
@@ -370,7 +373,7 @@ export default function NhitPanel() {
     // 쉐도우 파트너는 데미지 배수가 아니라 분신의 별도 타격이다 → computeCast가 라인을 늘린다
     const shadowRatio = (effects.shadowPartnerP ?? 0) / 100
 
-    // 캡슐 항목: 캡슐이 불릿 자리에 들어가므로 장착 불릿 공격력을 빼고 캡슐 공격력(16)을 넣는다
+    // 캡슐 항목: 캡슐을 장전했다고 가정한다 — 장착 불릿 공격력은 무시(빼고) 캡슐 공격력(16)을 넣는다. 불릿이 없으면 뺄 것도 없다
     const watk = usesCapsule(sk.id)
       ? totalAttack({ ...effects, pad: (effects.pad ?? 0) - equippedBulletPad + CAPSULE_PAD })
       : totalAttack(effects)
@@ -693,7 +696,7 @@ export default function NhitPanel() {
             </Select>
           </Box>
 
-          {missingSecondary ? (
+          {missingSecondary && !(selectedSkill && usesCapsule(selectedSkill.id)) ? (
             <Typography variant="body2" color="text.disabled">{secondaryPrompt(missingSecondary)}</Typography>
           ) : result === null ? (
             <Typography variant="body2" color="text.disabled">스킬을 선택하세요.</Typography>
