@@ -383,8 +383,11 @@ function BuffDialog({ buff, kind, onClose }: { buff: Buff; kind: BuffKind; onClo
         ) : buff.id === ELEMENTAL_BOOST_BUFF_ID ? (
           // 속성강화: 스펙 + 적용 대상(note)
           <Box sx={{ mt: 1 }}>
-            <Typography variant="body2" color="success.main">{elementalBoostCaption(draftLevel)}</Typography>
-            {buff.note && <Typography variant="caption" color="text.secondary">{buff.note}</Typography>}
+            <Typography variant="body2" color="success.main">{elementalBoostDamageText(draftLevel)}</Typography>
+            <Typography variant="body2" color="success.main">{elementalBoostDotText(draftLevel)}</Typography>
+            <Typography variant="caption" color="text.secondary" sx={{ display: 'block' }}>
+              {buff.note}{buff.note ? ' · ' : ''}도트 데미지는 계산에 반영하지 않습니다
+            </Typography>
           </Box>
         ) : (
           <Typography variant="body2" color="success.main" sx={{ mt: 1 }}>
@@ -484,9 +487,19 @@ function superBodyCaption(buff: Buff, level: number, activeBuffs: Record<string,
 /** 속성강화(캡틴) — 효과표가 비어 있고 파이어 버너·쿨링 이펙트 계수에만 더해진다 (NhitPanel) */
 const ELEMENTAL_BOOST_BUFF_ID = String(ELEMENTAL_BOOST_ID)
 
-/** 속성강화 설명: 레벨별 데미지 가산 (스킬 damage%에 덧셈) */
+/** 속성강화 데미지 가산 (두 스킬의 damage%에 덧셈 — 계산에 반영) */
+function elementalBoostDamageText(level: number): string {
+  return `파이어 버너·쿨링 이펙트 데미지 +${skillNumAt(ELEMENTAL_BOOST_ID, level, 'damage')}%`
+}
+
+/** 속성강화 도트 가산 (스킬북 x — 파이어 버너 도트는 계산하지 않아 표기만 한다) */
+function elementalBoostDotText(level: number): string {
+  return `파이어 버너 도트 데미지 +${skillNumAt(ELEMENTAL_BOOST_ID, level, 'x')}%`
+}
+
+/** 속성강화 한 줄 설명 (행·툴팁) */
 function elementalBoostCaption(level: number): string {
-  return `데미지 +${skillNumAt(ELEMENTAL_BOOST_ID, level, 'damage')}%`
+  return `${elementalBoostDamageText(level)}, 도트 데미지 +${skillNumAt(ELEMENTAL_BOOST_ID, level, 'x')}%`
 }
 
 /** 어드밴스드 차지 설명: 차지 블로우 계수를 레벨별 값으로 강화 */
