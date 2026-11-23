@@ -48,7 +48,7 @@
 
 import type { JobId } from '../../domain/jobs'
 import type { IJobSkill } from './types'
-import { attackSkillsForJob, findSkillById, isSummonSkill, skillsForJob, skillNum, skillPropsAtLevel } from './index'
+import { HEAL_SKILL_ID, attackSkillsForJob, findSkillById, isSummonSkill, skillsForJob, skillNum, skillPropsAtLevel } from './index'
 
 /** 스턴 마스터리 skill id — 이 스킬을 가진 직업만 (스턴) 변형을 만든다 */
 export const STUN_MASTERY_ID = 5110000
@@ -298,6 +298,19 @@ export function damageSkillsForJob(jobId: JobId): IJobSkill[] {
   const skills = attackSkillsForJob(jobId).flatMap(expandVenom).flatMap(expandSummon).flatMap(expandCharge).flatMap(expandTransfer).flatMap(expandCapsule)
   if (!hasStunMastery(jobId)) return skills
   return skills.flatMap((s) => [s, makeVariant(s, 'stun')])
+}
+
+/**
+ * 데미지 계산 패널의 메인 스킬 목록 — 데미지 스킬 + 힐(회복량만 계산).
+ * 힐은 데미지가 없어 추가스킬 후보(damageSkillsForJob)에는 넣지 않는다.
+ */
+export function nhitSkillsForJob(jobId: JobId): IJobSkill[] {
+  const skills = damageSkillsForJob(jobId)
+  const heal = skillsForJob(jobId).find((s) => s.id === HEAL_SKILL_ID)
+  if (!heal) return skills
+  // 스킬북 순서를 지키도록 힐보다 뒤 스킬 앞에 끼운다
+  const at = skills.findIndex((s) => baseSkillId(s.id) > HEAL_SKILL_ID)
+  return at < 0 ? [...skills, heal] : [...skills.slice(0, at), heal, ...skills.slice(at)]
 }
 
 /**

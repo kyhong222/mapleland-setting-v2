@@ -149,6 +149,9 @@ export function attackSkillsForJob(jobId: JobId): IJobSkill[] {
   return skillsForJob(jobId).filter(isAttackSkill)
 }
 
+/** 힐(비숍) — 데미지 스킬이 아니라 공격 스킬 목록에는 없다. 회복량만 따로 계산한다 (domain/heal.ts) */
+export const HEAL_SKILL_ID = 2301002
+
 export interface SkillAttack {
   kind: 'physical' | 'magic'
   /** 물리 스킬 배율%(마법은 100) */

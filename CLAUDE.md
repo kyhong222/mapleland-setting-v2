@@ -55,6 +55,7 @@ yarn tsx scripts/chargeSkillSmoke.ts # 차징 스킬 풀/반/최소 차징 항�
 yarn tsx scripts/chargeFollowUpSmoke.ts # 다음 차징 확킬(풀차징 후 2방 확킬 최소 차징 %) 판정
 yarn tsx scripts/transferSkillSmoke.ts # 전이 스킬(체인 라이트닝·에너지 오브) 70%/49% 항목·배율·스턴 겹침
 yarn tsx scripts/capsuleSkillSmoke.ts  # 캡슐 스킬(파이어 버너·쿨링 이펙트) 캡슐/불릿 항목·배율·속성강화 패시브
+yarn tsx scripts/healSmoke.ts          # 힐 회복량 공식·대상 수 1~6·저장/복원
 ```
 
 변경 후에는 최소한 `yarn typecheck`를 돌린다.
