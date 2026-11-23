@@ -29,16 +29,17 @@ import {
   calcSummon, calcMagicSummon,
 } from '../../domain/attackPower'
 import type { DamageRange } from '../../domain/attackPower'
+import { healRecovery, healTargetMult, HEAL_TARGETS_MIN, HEAL_TARGETS_MAX } from '../../domain/heal'
 import { JOBS } from '../../domain/jobs'
 import { getMonster } from '../../data/mobs'
 import { elementReaction, formatElements, PHYSICAL_ELEMENT } from '../../domain/monster'
 import type { ElementReaction } from '../../domain/damage'
 import {
-  skillAttackAt, skillLineCount, comboFinalDamageP, COMBO_SKILLS, findSkillById, skillNumAt, chargeStats, skillElements,
+  skillAttackAt, skillLineCount, comboFinalDamageP, COMBO_SKILLS, findSkillById, skillNumAt, chargeStats, skillElements, HEAL_SKILL_ID,
 } from '../../data/skills'
 import type { IJobSkill } from '../../data/skills'
 import {
-  damageSkillsForJob, baseSkillId, stunHitRatio, VENOM_SKILLS, venomStacks, forcesWeakness, DEMON_WEAK_SUMMONS, chargeMultOf, transferMultOf,
+  damageSkillsForJob, nhitSkillsForJob, baseSkillId, stunHitRatio, VENOM_SKILLS, venomStacks, forcesWeakness, DEMON_WEAK_SUMMONS, chargeMultOf, transferMultOf,
   CAPSULE_SKILLS, CAPSULE_PAD, ELEMENTAL_BOOST_ID, usesCapsule, bulletOnlyMultOf,
 } from '../../data/skills/variants'
 import { resolveBuiltItem } from '../../domain/builtItem'
@@ -171,6 +172,8 @@ export default function NhitPanel() {
   const setSkillLevel = useNhitStore((s) => s.setSkillLevel)
   const coefOverride = useNhitStore((s) => s.coefOverride)
   const setCoefOverride = useNhitStore((s) => s.setCoefOverride)
+  const healTargets = useNhitStore((s) => s.healTargets)
+  const setHealTargets = useNhitStore((s) => s.setHealTargets)
   const [levelDlgOpen, setLevelDlgOpen] = useState(false)
   const addPreCast = useNhitStore((s) => s.addPreCast)
   const setPreCastLevel = useNhitStore((s) => s.setPreCastLevel)
@@ -185,11 +188,20 @@ export default function NhitPanel() {
   const atkWeapon = missingSecondary ? undefined : weaponType
   /** 스킬별 공격 무기 — '(캡슐)' 항목은 캡슐을 장전했다고 가정하므로 불릿이 비어 있어도 공격이 성립한다 */
   const atkWeaponFor = (skillId: number) => (usesCapsule(skillId) ? weaponType : atkWeapon)
-  // 공격 스킬 + 변형('(스턴)' 등, data/skills/variants.ts)
-  const attackSkills = jobId ? damageSkillsForJob(jobId) : []
+  // 공격 스킬 + 변형('(스턴)' 등, data/skills/variants.ts) + 힐(회복량만)
+  const attackSkills = jobId ? nhitSkillsForJob(jobId) : []
   const selectedSkill = attackSkills.find((s) => s.id === skillId)
   // 추가스킬 후보: 공격 스킬(돌진·베놈 등 포함). 패시브(크리티컬 스로우)·콤보·소환수 등은 제외.
-  const precastCandidates = attackSkills
+  const precastCandidates = jobId ? damageSkillsForJob(jobId) : []
+
+  // 힐: 데미지가 아니라 회복량을 보여준다. 추가스킬을 섞으면 방컷용 조합이라 회복량을 내지 않는다
+  const isHeal = selectedSkill?.id === HEAL_SKILL_ID
+  const healRec = isHeal && preCast.length === 0
+    ? healRecovery(
+        finalStats.INT, finalStats.LUK, totalMagic(effects, finalStats.INT),
+        coefOverride ?? skillNumAt(HEAL_SKILL_ID, skillLevel, 'hp'), healTargets,
+      )
+    : null
 
   // 속성 스태프 — 비활성 무기는 효과가 없으므로 활성 장비에서 찾는다
   const staffElement = builts.find((b) => b.base.slot === 'weapon')?.base.weaponElement
@@ -654,6 +666,19 @@ export default function NhitPanel() {
               {stunNote}
             </Typography>
           )}
+          {healRec && (
+            <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mt: 1, mb: 1 }}>
+              <TextField
+                size="small" type="number" label="대상 수" value={healTargets}
+                onFocus={(e) => e.target.select()}
+                onChange={(e) => setHealTargets(Number(e.target.value))}
+                slotProps={{ htmlInput: { style: { width: 44, textAlign: 'center' }, min: HEAL_TARGETS_MIN, max: HEAL_TARGETS_MAX } }}
+              />
+              <Typography variant="caption" color="text.secondary">
+                자신 포함 · 1인당 배율 ×{healTargetMult(healTargets).toFixed(3)}
+              </Typography>
+            </Box>
+          )}
           {/* 추가스킬 (1회 시전 후 잔여 HP 기준으로 방컷 계산) */}
           <Box sx={{ mb: 1 }}>
             <Typography variant="caption" sx={{ fontWeight: 700, display: 'block', mb: 0.25 }}>
@@ -696,7 +721,14 @@ export default function NhitPanel() {
             </Select>
           </Box>
 
-          {missingSecondary && !(selectedSkill && usesCapsule(selectedSkill.id)) ? (
+          {healRec ? (
+            <>
+              <Typography variant="caption" sx={{ fontWeight: 700, display: 'block' }}>회복량</Typography>
+              <Row label="1인당 HP 회복" value={rng(healRec)} strong />
+            </>
+          ) : isHeal ? (
+            <Typography variant="body2" color="text.disabled">추가 스킬을 빼면 힐 회복량을 보여줍니다.</Typography>
+          ) : missingSecondary && !(selectedSkill && usesCapsule(selectedSkill.id)) ? (
             <Typography variant="body2" color="text.disabled">{secondaryPrompt(missingSecondary)}</Typography>
           ) : result === null ? (
             <Typography variant="body2" color="text.disabled">스킬을 선택하세요.</Typography>
@@ -893,7 +925,9 @@ function SkillLevelDialog({ skill, level, coefOverride, onApply, onClose }: {
   const [custom, setCustom] = useState(coefOverride != null)
   const att = skillAttackAt(skill, draftLevel)
   const isMagic = att?.kind === 'magic'
-  const levelCoef = att ? (isMagic ? att.spellAtk : att.skillPercent) : 0
+  // 힐은 데미지 계수가 없고 회복력%가 계수다
+  const isHeal = skill.id === HEAL_SKILL_ID
+  const levelCoef = isHeal ? skillNumAt(HEAL_SKILL_ID, draftLevel, 'hp') : att ? (isMagic ? att.spellAtk : att.skillPercent) : 0
   // 입력 중 빈칸을 허용하려고 문자열로 들고 있는다. 처음 켤 때는 현재 레벨 계수로 채운다.
   const [coefText, setCoefText] = useState(String(coefOverride ?? levelCoef))
   const coefNum = Number(coefText)
@@ -933,7 +967,7 @@ function SkillLevelDialog({ skill, level, coefOverride, onApply, onClose }: {
             </>
           )}
           <Typography variant="body2" color={custom ? 'text.disabled' : 'success.main'} sx={{ mt: 0.5 }}>
-            Lv.{draftLevel} 계수: {att ? fmt(levelCoef) : '—'}
+            Lv.{draftLevel} 계수: {att || isHeal ? fmt(levelCoef) : '—'}
           </Typography>
 
           <Divider sx={{ my: 1.5 }} />
@@ -945,7 +979,7 @@ function SkillLevelDialog({ skill, level, coefOverride, onApply, onClose }: {
             <>
               <TextField
                 size="small" type="number" fullWidth autoFocus
-                label={isMagic ? '기본 공격력' : isSummon ? '공격력' : '데미지 (%)'}
+                label={isHeal ? '회복력 (%)' : isMagic ? '기본 공격력' : isSummon ? '공격력' : '데미지 (%)'}
                 value={coefText}
                 onChange={(e) => setCoefText(e.target.value)}
                 error={!coefValid}
@@ -954,8 +988,8 @@ function SkillLevelDialog({ skill, level, coefOverride, onApply, onClose }: {
                 sx={{ mt: 0.5 }}
               />
               <Typography variant="caption" color="text.disabled" sx={{ display: 'block', mt: 0.5, lineHeight: 1.4 }}>
-                인게임 스킬 설명의 {isMagic ? '기본 공격력' : isSummon ? '공격력' : '데미지 %'}를 입력하세요. 타수·숙련도·공격속도 등
-                계수 외 수치는 위에서 선택한 레벨 기준으로 계산됩니다.
+                인게임 스킬 설명의 {isHeal ? '회복력 %' : isMagic ? '기본 공격력' : isSummon ? '공격력' : '데미지 %'}를 입력하세요.
+                {!isHeal && ' 타수·숙련도·공격속도 등 계수 외 수치는 위에서 선택한 레벨 기준으로 계산됩니다.'}
               </Typography>
             </>
           )}

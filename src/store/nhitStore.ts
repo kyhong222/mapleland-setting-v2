@@ -6,6 +6,7 @@
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
 import { migrateSkillId } from '../data/skills/variants'
+import { clampHealTargets, HEAL_TARGETS_MIN } from '../domain/heal'
 
 /** 추가스킬 1건. 같은 스킬을 여러 번 넣을 수 있어 uid로 구분한다. */
 export interface PreCastEntry {
@@ -25,6 +26,8 @@ export interface NhitSelection {
    * 구버전 슬롯엔 없을 수 있다.
    */
   coefOverride?: number | null
+  /** 힐 대상 수(시전자 포함, 1~6). 구버전 슬롯엔 없을 수 있다 */
+  healTargets?: number
   preCast: { id: number; level: number }[]
 }
 
@@ -32,11 +35,14 @@ interface NhitState {
   skillId: number | ''
   skillLevel: number
   coefOverride: number | null
+  /** 힐 대상 수(시전자 포함, 1~6) */
+  healTargets: number
   preCast: PreCastEntry[]
   /** 스킬을 바꾸면 계수 직접 입력은 해제된다 (다른 스킬의 계수가 따라오지 않게) */
   setSkill: (id: number | '', level: number) => void
   setSkillLevel: (level: number) => void
   setCoefOverride: (coef: number | null) => void
+  setHealTargets: (n: number) => void
   addPreCast: (id: number, level: number) => void
   setPreCastLevel: (uid: number, level: number) => void
   removePreCast: (uid: number) => void
@@ -50,7 +56,7 @@ interface NhitState {
 let uidSeq = 0
 const nextUid = () => ++uidSeq
 
-const EMPTY: NhitSelection = { skillId: '', skillLevel: 1, coefOverride: null, preCast: [] }
+const EMPTY: NhitSelection = { skillId: '', skillLevel: 1, coefOverride: null, healTargets: HEAL_TARGETS_MIN, preCast: [] }
 
 export const useNhitStore = create<NhitState>()(
   persist(
@@ -58,16 +64,18 @@ export const useNhitStore = create<NhitState>()(
       ...EMPTY,
       preCast: [] as PreCastEntry[],
       coefOverride: null,
+      healTargets: HEAL_TARGETS_MIN,
       setSkill: (id, level) => set({ skillId: id, skillLevel: level, coefOverride: null }),
       setSkillLevel: (level) => set({ skillLevel: level }),
       setCoefOverride: (coef) => set({ coefOverride: coef }),
+      setHealTargets: (n) => set({ healTargets: clampHealTargets(n) }),
       addPreCast: (id, level) => set((s) => ({ preCast: [...s.preCast, { uid: nextUid(), id, level }] })),
       setPreCastLevel: (uid, level) =>
         set((s) => ({ preCast: s.preCast.map((p) => (p.uid === uid ? { ...p, level } : p)) })),
       removePreCast: (uid) => set((s) => ({ preCast: s.preCast.filter((p) => p.uid !== uid) })),
       capture: () => {
-        const { skillId, skillLevel, coefOverride, preCast } = get()
-        return { skillId, skillLevel, coefOverride, preCast: preCast.map(({ id, level }) => ({ id, level })) }
+        const { skillId, skillLevel, coefOverride, healTargets, preCast } = get()
+        return { skillId, skillLevel, coefOverride, healTargets, preCast: preCast.map(({ id, level }) => ({ id, level })) }
       },
       restore: (sel) => {
         const s = sel ?? EMPTY
@@ -76,10 +84,11 @@ export const useNhitStore = create<NhitState>()(
           skillId: s.skillId === '' ? '' : migrateSkillId(s.skillId),
           skillLevel: s.skillLevel,
           coefOverride: s.coefOverride ?? null,
+          healTargets: clampHealTargets(s.healTargets ?? HEAL_TARGETS_MIN),
           preCast: (s.preCast ?? []).map((p) => ({ uid: nextUid(), id: migrateSkillId(p.id), level: p.level })),
         })
       },
-      reset: () => set({ ...EMPTY, preCast: [] }),
+      reset: () => set({ ...EMPTY, healTargets: HEAL_TARGETS_MIN, preCast: [] }),
     }),
     {
       name: 'mlsv2:nhit',
