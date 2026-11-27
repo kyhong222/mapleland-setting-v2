@@ -4007,7 +4007,7 @@
     "id": 9400255,
     "name": "Protoroad",
     "koreanName": "프로토타입 로드",
-    "level": 115,
+    "level": 134,
     "isBoss": false,
     "foundAt": [
       "공원"
@@ -4027,7 +4027,7 @@
     "id": 9400254,
     "name": "Overload",
     "koreanName": "오버로드",
-    "level": 137,
+    "level": 132,
     "isBoss": false,
     "foundAt": [
       "오다이바"

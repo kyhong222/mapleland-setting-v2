@@ -6,11 +6,12 @@ import battleMage from './2026-10-battle-mage'
 import elementalStaff from './2026-11-elemental-staff'
 import skillUpdates from './2026-11-skill-updates'
 import shareCard from './2026-11-share-card'
+import neoTokyo from './2026-11-neo-tokyo'
 
 export * from './types'
 
 /** 최신순 */
-export const NOTICES: Notice[] = [maple3rdAnniversary, battleMage, elementalStaff, skillUpdates, shareCard].sort((a, b) => b.date.localeCompare(a.date))
+export const NOTICES: Notice[] = [maple3rdAnniversary, battleMage, elementalStaff, skillUpdates, shareCard, neoTokyo].sort((a, b) => b.date.localeCompare(a.date))
 
 /** 로컬 날짜 'YYYY-MM-DD' */
 export function todayString(now = new Date()): string {

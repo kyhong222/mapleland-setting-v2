@@ -7187,5 +7187,507 @@
     "iconUrl": "https://maplestory.io/api/GMS/200/item/1492073/icon",
     "tuc": 7,
     "reqStr": 62
+  },
+  {
+    "id": 1302108,
+    "name": "스피어 글레이브 (임시)",
+    "slot": "weapon",
+    "effects": {
+      "STR": 2,
+      "pad": 105,
+      "attackSpeed": 4
+    },
+    "reqLevel": 115,
+    "tuc": 7,
+    "reqJob": 1,
+    "weaponType": "oneHandedSword",
+    "iconUrl": "https://maplestory.io/api/jms/368/item/1302108/icon",
+    "reqStr": 325
+  },
+  {
+    "id": 1312040,
+    "name": "스피어 글레이브 (임시)",
+    "slot": "weapon",
+    "effects": {
+      "STR": 2,
+      "pad": 105,
+      "attackSpeed": 5
+    },
+    "reqLevel": 115,
+    "tuc": 7,
+    "reqJob": 1,
+    "weaponType": "oneHandedAxe",
+    "iconUrl": "https://maplestory.io/api/jms/368/item/1312040/icon",
+    "reqStr": 335
+  },
+  {
+    "id": 1322066,
+    "name": "스피어 글레이브 (임시)",
+    "slot": "weapon",
+    "effects": {
+      "STR": 2,
+      "pad": 105,
+      "attackSpeed": 4
+    },
+    "reqLevel": 115,
+    "tuc": 7,
+    "reqJob": 1,
+    "weaponType": "oneHandedMace",
+    "iconUrl": "https://maplestory.io/api/jms/368/item/1322066/icon",
+    "reqStr": 283
+  },
+  {
+    "id": 1332082,
+    "name": "스피어 글레이브 (임시)",
+    "slot": "weapon",
+    "effects": {
+      "LUK": 8,
+      "pad": 105,
+      "attackSpeed": 4
+    },
+    "reqLevel": 115,
+    "tuc": 7,
+    "reqJob": 8,
+    "weaponType": "dagger",
+    "iconUrl": "https://maplestory.io/api/jms/368/item/1332082/icon",
+    "reqDex": 155,
+    "reqLuk": 280
+  },
+  {
+    "id": 1372047,
+    "name": "스피어 글레이브 (임시)",
+    "slot": "weapon",
+    "effects": {
+      "INT": 2,
+      "hp": 250,
+      "pad": 75,
+      "mad": 115,
+      "attackSpeed": 6
+    },
+    "reqLevel": 113,
+    "tuc": 7,
+    "reqJob": 2,
+    "weaponType": "wand",
+    "iconUrl": "https://maplestory.io/api/jms/368/item/1372047/icon",
+    "reqInt": 450
+  },
+  {
+    "id": 1382063,
+    "name": "스피어 글레이브 (임시)",
+    "slot": "weapon",
+    "effects": {
+      "LUK": 2,
+      "hp": 50,
+      "pad": 78,
+      "mad": 123,
+      "attackSpeed": 4
+    },
+    "reqLevel": 115,
+    "tuc": 7,
+    "reqJob": 2,
+    "weaponType": "staff",
+    "iconUrl": "https://maplestory.io/api/jms/368/item/1382063/icon",
+    "reqInt": 344,
+    "reqLuk": 80
+  },
+  {
+    "id": 1402054,
+    "name": "스피어 글레이브 (임시)",
+    "slot": "weapon",
+    "effects": {
+      "STR": 2,
+      "pad": 108,
+      "attackSpeed": 6
+    },
+    "reqLevel": 115,
+    "tuc": 7,
+    "reqJob": 1,
+    "weaponType": "twoHandedSword",
+    "iconUrl": "https://maplestory.io/api/jms/368/item/1402054/icon",
+    "reqStr": 355
+  },
+  {
+    "id": 1412036,
+    "name": "스피어 글레이브 (임시)",
+    "slot": "weapon",
+    "effects": {
+      "STR": 2,
+      "pad": 110,
+      "attackSpeed": 6
+    },
+    "reqLevel": 115,
+    "tuc": 7,
+    "reqJob": 1,
+    "weaponType": "twoHandedAxe",
+    "iconUrl": "https://maplestory.io/api/jms/368/item/1412036/icon",
+    "reqStr": 355
+  },
+  {
+    "id": 1422040,
+    "name": "스피어 글레이브 (임시)",
+    "slot": "weapon",
+    "effects": {
+      "STR": 2,
+      "pad": 110,
+      "attackSpeed": 7
+    },
+    "reqLevel": 115,
+    "tuc": 7,
+    "reqJob": 1,
+    "weaponType": "twoHandedMace",
+    "iconUrl": "https://maplestory.io/api/jms/368/item/1422040/icon",
+    "reqStr": 355
+  },
+  {
+    "id": 1432051,
+    "name": "스피어 글레이브 (임시)",
+    "slot": "weapon",
+    "effects": {
+      "STR": 2,
+      "pad": 110,
+      "attackSpeed": 7
+    },
+    "reqLevel": 115,
+    "tuc": 7,
+    "reqJob": 1,
+    "weaponType": "spear",
+    "iconUrl": "https://maplestory.io/api/jms/368/item/1432051/icon",
+    "reqStr": 355
+  },
+  {
+    "id": 1442072,
+    "name": "스피어 글레이브 (임시)",
+    "slot": "weapon",
+    "effects": {
+      "STR": 2,
+      "pad": 110,
+      "attackSpeed": 8
+    },
+    "reqLevel": 115,
+    "tuc": 7,
+    "reqJob": 1,
+    "weaponType": "polearm",
+    "iconUrl": "https://maplestory.io/api/jms/368/item/1442072/icon",
+    "reqStr": 355
+  },
+  {
+    "id": 1452063,
+    "name": "스피어 글레이브 (임시)",
+    "slot": "weapon",
+    "effects": {
+      "pad": 103,
+      "speed": 12,
+      "attackSpeed": 6
+    },
+    "reqLevel": 115,
+    "tuc": 7,
+    "reqJob": 4,
+    "weaponType": "bow",
+    "iconUrl": "https://maplestory.io/api/jms/368/item/1452063/icon",
+    "reqStr": 120,
+    "reqDex": 295
+  },
+  {
+    "id": 1462057,
+    "name": "스피어 글레이브 (임시)",
+    "slot": "weapon",
+    "effects": {
+      "pad": 105,
+      "speed": 12,
+      "attackSpeed": 6
+    },
+    "reqLevel": 115,
+    "tuc": 7,
+    "reqJob": 4,
+    "weaponType": "crossbow",
+    "iconUrl": "https://maplestory.io/api/jms/368/item/1462057/icon",
+    "reqStr": 115,
+    "reqDex": 315
+  },
+  {
+    "id": 1472078,
+    "name": "스피어 글레이브 (임시)",
+    "slot": "weapon",
+    "effects": {
+      "LUK": 8,
+      "pad": 52,
+      "eva": 7,
+      "attackSpeed": 4
+    },
+    "reqLevel": 115,
+    "tuc": 7,
+    "reqJob": 8,
+    "weaponType": "claw",
+    "iconUrl": "https://maplestory.io/api/jms/368/item/1472078/icon",
+    "reqDex": 115,
+    "reqLuk": 335
+  },
+  {
+    "id": 1482036,
+    "name": "스피어 글레이브 (임시)",
+    "slot": "weapon",
+    "effects": {
+      "STR": 2,
+      "pad": 80,
+      "attackSpeed": 5
+    },
+    "reqLevel": 115,
+    "tuc": 7,
+    "reqJob": 16,
+    "weaponType": "knuckle",
+    "iconUrl": "https://maplestory.io/api/jms/368/item/1482036/icon",
+    "reqStr": 315,
+    "reqDex": 115
+  },
+  {
+    "id": 1302109,
+    "name": "플레어 글레이브 (임시)",
+    "slot": "weapon",
+    "effects": {
+      "STR": 2,
+      "pad": 105,
+      "attackSpeed": 4
+    },
+    "reqLevel": 115,
+    "tuc": 7,
+    "reqJob": 1,
+    "weaponType": "oneHandedSword",
+    "iconUrl": "https://maplestory.io/api/jms/368/item/1302109/icon",
+    "reqStr": 325
+  },
+  {
+    "id": 1312041,
+    "name": "플레어 글레이브 (임시)",
+    "slot": "weapon",
+    "effects": {
+      "STR": 2,
+      "pad": 105,
+      "attackSpeed": 5
+    },
+    "reqLevel": 115,
+    "tuc": 7,
+    "reqJob": 1,
+    "weaponType": "oneHandedAxe",
+    "iconUrl": "https://maplestory.io/api/jms/368/item/1312041/icon",
+    "reqStr": 335
+  },
+  {
+    "id": 1322067,
+    "name": "플레어 글레이브 (임시)",
+    "slot": "weapon",
+    "effects": {
+      "STR": 2,
+      "pad": 105,
+      "attackSpeed": 4
+    },
+    "reqLevel": 115,
+    "tuc": 7,
+    "reqJob": 1,
+    "weaponType": "oneHandedMace",
+    "iconUrl": "https://maplestory.io/api/jms/368/item/1322067/icon",
+    "reqStr": 283
+  },
+  {
+    "id": 1372048,
+    "name": "플레어 글레이브 (임시)",
+    "slot": "weapon",
+    "effects": {
+      "INT": 2,
+      "hp": 250,
+      "pad": 75,
+      "mad": 115,
+      "attackSpeed": 6
+    },
+    "reqLevel": 113,
+    "tuc": 7,
+    "reqJob": 2,
+    "weaponType": "wand",
+    "iconUrl": "https://maplestory.io/api/jms/368/item/1372048/icon",
+    "reqInt": 450
+  },
+  {
+    "id": 1382064,
+    "name": "플레어 글레이브 (임시)",
+    "slot": "weapon",
+    "effects": {
+      "LUK": 2,
+      "hp": 50,
+      "pad": 78,
+      "mad": 123,
+      "attackSpeed": 4
+    },
+    "reqLevel": 115,
+    "tuc": 7,
+    "reqJob": 2,
+    "weaponType": "staff",
+    "iconUrl": "https://maplestory.io/api/jms/368/item/1382064/icon",
+    "reqInt": 344,
+    "reqLuk": 80
+  },
+  {
+    "id": 1402055,
+    "name": "플레어 글레이브 (임시)",
+    "slot": "weapon",
+    "effects": {
+      "STR": 2,
+      "pad": 108,
+      "attackSpeed": 6
+    },
+    "reqLevel": 115,
+    "tuc": 7,
+    "reqJob": 1,
+    "weaponType": "twoHandedSword",
+    "iconUrl": "https://maplestory.io/api/jms/368/item/1402055/icon",
+    "reqStr": 355
+  },
+  {
+    "id": 1412037,
+    "name": "플레어 글레이브 (임시)",
+    "slot": "weapon",
+    "effects": {
+      "STR": 2,
+      "pad": 110,
+      "attackSpeed": 6
+    },
+    "reqLevel": 115,
+    "tuc": 7,
+    "reqJob": 1,
+    "weaponType": "twoHandedAxe",
+    "iconUrl": "https://maplestory.io/api/jms/368/item/1412037/icon",
+    "reqStr": 355
+  },
+  {
+    "id": 1422041,
+    "name": "플레어 글레이브 (임시)",
+    "slot": "weapon",
+    "effects": {
+      "STR": 2,
+      "pad": 110,
+      "attackSpeed": 7
+    },
+    "reqLevel": 115,
+    "tuc": 7,
+    "reqJob": 1,
+    "weaponType": "twoHandedMace",
+    "iconUrl": "https://maplestory.io/api/jms/368/item/1422041/icon",
+    "reqStr": 355
+  },
+  {
+    "id": 1432052,
+    "name": "플레어 글레이브 (임시)",
+    "slot": "weapon",
+    "effects": {
+      "STR": 2,
+      "pad": 110,
+      "attackSpeed": 7
+    },
+    "reqLevel": 115,
+    "tuc": 7,
+    "reqJob": 1,
+    "weaponType": "spear",
+    "iconUrl": "https://maplestory.io/api/jms/368/item/1432052/icon",
+    "reqStr": 355
+  },
+  {
+    "id": 1442073,
+    "name": "플레어 글레이브 (임시)",
+    "slot": "weapon",
+    "effects": {
+      "STR": 2,
+      "pad": 110,
+      "attackSpeed": 8
+    },
+    "reqLevel": 115,
+    "tuc": 7,
+    "reqJob": 1,
+    "weaponType": "polearm",
+    "iconUrl": "https://maplestory.io/api/jms/368/item/1442073/icon",
+    "reqStr": 355
+  },
+  {
+    "id": 1452064,
+    "name": "플레어 글레이브 (임시)",
+    "slot": "weapon",
+    "effects": {
+      "pad": 103,
+      "speed": 12,
+      "attackSpeed": 6
+    },
+    "reqLevel": 115,
+    "tuc": 7,
+    "reqJob": 4,
+    "weaponType": "bow",
+    "iconUrl": "https://maplestory.io/api/jms/368/item/1452064/icon",
+    "reqStr": 120,
+    "reqDex": 295
+  },
+  {
+    "id": 1462058,
+    "name": "플레어 글레이브 (임시)",
+    "slot": "weapon",
+    "effects": {
+      "pad": 105,
+      "speed": 12,
+      "attackSpeed": 6
+    },
+    "reqLevel": 115,
+    "tuc": 7,
+    "reqJob": 4,
+    "weaponType": "crossbow",
+    "iconUrl": "https://maplestory.io/api/jms/368/item/1462058/icon",
+    "reqStr": 115,
+    "reqDex": 315
+  },
+  {
+    "id": 1472079,
+    "name": "플레어 글레이브 (임시)",
+    "slot": "weapon",
+    "effects": {
+      "LUK": 8,
+      "pad": 52,
+      "eva": 7,
+      "attackSpeed": 4
+    },
+    "reqLevel": 115,
+    "tuc": 7,
+    "reqJob": 8,
+    "weaponType": "claw",
+    "iconUrl": "https://maplestory.io/api/jms/368/item/1472079/icon",
+    "reqDex": 115,
+    "reqLuk": 335
+  },
+  {
+    "id": 1482035,
+    "name": "플레어 글레이브 (임시)",
+    "slot": "weapon",
+    "effects": {
+      "STR": 2,
+      "pad": 80,
+      "attackSpeed": 5
+    },
+    "reqLevel": 115,
+    "tuc": 7,
+    "reqJob": 16,
+    "weaponType": "knuckle",
+    "iconUrl": "https://maplestory.io/api/jms/368/item/1482035/icon",
+    "reqStr": 315,
+    "reqDex": 115
+  },
+  {
+    "id": 1492031,
+    "name": "저지먼트 (임시)",
+    "slot": "weapon",
+    "effects": {
+      "DEX": 2,
+      "pad": 80,
+      "attackSpeed": 5
+    },
+    "reqLevel": 115,
+    "tuc": 7,
+    "reqJob": 16,
+    "weaponType": "gun",
+    "iconUrl": "https://maplestory.io/api/jms/368/item/1492031/icon",
+    "reqStr": 115,
+    "reqDex": 325
   }
 ]

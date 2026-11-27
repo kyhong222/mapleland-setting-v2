@@ -539,5 +539,22 @@
     "tuc": 7,
     "reqJob": 8,
     "iconUrl": "https://maplestory.io/api/gms/200/item/1092059/icon"
+  },
+  {
+    "id": 1092049,
+    "name": "드래곤 칸쟈르 (임시)",
+    "slot": "shield",
+    "effects": {
+      "LUK": 2,
+      "pad": 15,
+      "pdef": 5,
+      "mdef": 2
+    },
+    "reqLevel": 120,
+    "tuc": 7,
+    "reqJob": 8,
+    "iconUrl": "https://maplestory.io/api/jms/368/item/1092049/icon",
+    "reqStr": 75,
+    "reqDex": 150
   }
 ]
