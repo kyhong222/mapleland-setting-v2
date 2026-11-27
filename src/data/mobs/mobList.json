@@ -3166,7 +3166,7 @@
   {
     "id": 8500004,
     "name": "Low Darkstar",
-    "koreanName": "로우 다크스타",
+    "koreanName": "하이 다크스타",
     "level": 71,
     "isBoss": true,
     "foundAt": [
@@ -3456,7 +3456,7 @@
   {
     "id": 8500003,
     "name": "High Darkstar",
-    "koreanName": "하이 다크스타",
+    "koreanName": "로우 다크스타",
     "level": 80,
     "isBoss": true,
     "foundAt": [
@@ -3537,7 +3537,7 @@
     "id": 9400581,
     "name": "Stormbreaker",
     "koreanName": "스톰브레이커",
-    "level": 80,
+    "level": 88,
     "isBoss": false,
     "foundAt": [
       "뉴 리프 시티"
@@ -3546,7 +3546,7 @@
   {
     "id": 9420542,
     "name": "Targa",
-    "koreanName": "타르가",
+    "koreanName": "타르가(1페이즈)",
     "level": 80,
     "isBoss": true,
     "foundAt": [
@@ -3556,7 +3556,7 @@
   {
     "id": 9420547,
     "name": "Scarlion Boss",
-    "koreanName": "스칼리온",
+    "koreanName": "스칼리온(1페이즈)",
     "level": 80,
     "isBoss": true,
     "foundAt": [
@@ -3976,7 +3976,7 @@
   {
     "id": 9420543,
     "name": "Angry Targa",
-    "koreanName": "화난 타르가",
+    "koreanName": "타르가(2페이즈)",
     "level": 100,
     "isBoss": true,
     "foundAt": [
@@ -3986,7 +3986,7 @@
   {
     "id": 9420548,
     "name": "Angry Scarlion Boss",
-    "koreanName": "화난 스칼리온",
+    "koreanName": "스칼리온(2페이즈)",
     "level": 100,
     "isBoss": true,
     "foundAt": [
@@ -4006,7 +4006,7 @@
   {
     "id": 9400255,
     "name": "Protoroad",
-    "koreanName": "프로토타입 로드",
+    "koreanName": "프로토로드",
     "level": 134,
     "isBoss": false,
     "foundAt": [
@@ -4036,7 +4036,7 @@
   {
     "id": 9420544,
     "name": "Furious Targa",
-    "koreanName": "분노한 타르가",
+    "koreanName": "타르가(3페이즈)",
     "level": 140,
     "isBoss": true,
     "foundAt": [
@@ -4046,7 +4046,7 @@
   {
     "id": 9420549,
     "name": "Furious Scarlion Boss",
-    "koreanName": "분노한 스칼리온",
+    "koreanName": "스칼리온(3페이즈)",
     "level": 140,
     "isBoss": true,
     "foundAt": [
@@ -4056,7 +4056,7 @@
   {
     "id": 9400256,
     "name": "Maverick A",
-    "koreanName": "매버릭 Type-a",
+    "koreanName": "매버릭 Typeα",
     "level": 141,
     "isBoss": false,
     "foundAt": [
@@ -4066,7 +4066,7 @@
   {
     "id": 9400257,
     "name": "Maverick Y",
-    "koreanName": "매버릭 Type-y",
+    "koreanName": "매버릭 Typeγ",
     "level": 143,
     "isBoss": false,
     "foundAt": [
@@ -4076,7 +4076,7 @@
   {
     "id": 9400258,
     "name": "Maverick B",
-    "koreanName": "매버릭 Type-b",
+    "koreanName": "매버릭 Typeβ",
     "level": 143,
     "isBoss": false,
     "foundAt": [
@@ -4086,7 +4086,7 @@
   {
     "id": 9400259,
     "name": "Maverick V",
-    "koreanName": "매버릭 Type-v",
+    "koreanName": "매버릭 Typeν",
     "level": 143,
     "isBoss": false,
     "foundAt": [
@@ -4226,7 +4226,7 @@
   {
     "id": 9400266,
     "name": "Nameless Magic Monster",
-    "koreanName": "이름 없는 마수",
+    "koreanName": "이름없는마수",
     "level": 174,
     "isBoss": true,
     "foundAt": [
@@ -4246,7 +4246,7 @@
   {
     "id": 9400293,
     "name": "Dunas Unit",
-    "koreanName": "듀나스 유닛",
+    "koreanName": "듀나스의 유닛",
     "level": 174,
     "isBoss": true,
     "foundAt": [
@@ -4266,7 +4266,7 @@
   {
     "id": 9400376,
     "name": "Cursed Auf Haven",
-    "koreanName": "아우프헤벤 - 커스",
+    "koreanName": "아우프헤벤 커스",
     "level": 175,
     "isBoss": true,
     "foundAt": [
@@ -4286,7 +4286,7 @@
   {
     "id": 9400289,
     "name": "Auf Haven",
-    "koreanName": "아우프헤벤",
+    "koreanName": "아우프 헤벤",
     "level": 180,
     "isBoss": true,
     "foundAt": [
