@@ -21,6 +21,7 @@ export interface RegionCategory {
 }
 
 const ic = (mapId: number) => `/region-icons/map-${mapId}.png`
+const NEO_TOKYO_ICON = '/region-icons/neo-tokyo.png'
 
 export const REGION_CATEGORIES: RegionCategory[] = [
   { name: '빅토리아 아일랜드', regions: [{ name: '빅토리아 아일랜드', icon: ic(104010000) }] },
@@ -53,16 +54,16 @@ export const REGION_CATEGORIES: RegionCategory[] = [
     { name: '백초마을', icon: ic(251010000) },
   ] },
   { name: '미나르숲', regions: [{ name: '리프레', icon: ic(240010000) }] },
-  // 맵 아이콘이 maplestory.io(JMS 368)에 카무나 것뿐이라 8개 지역이 함께 쓴다
+  // 메랜 클라이언트의 네오 도쿄 지역 마크 하나를 8개 지역이 함께 쓴다 (맵별 마크가 따로 없다)
   { name: '네오 도쿄', regions: [
-    { name: '오다이바', icon: ic(802000101) },
-    { name: '공원', icon: ic(802000101) },
-    { name: '아키하바라', icon: ic(802000101) },
-    { name: '도쿄 상공', icon: ic(802000101) },
-    { name: '카무나', icon: ic(802000101) },
-    { name: '시부야', icon: ic(802000101) },
-    { name: '롯폰기 몰', icon: ic(802000101) },
-    { name: '최상층', icon: ic(802000101) },
+    { name: '오다이바', icon: NEO_TOKYO_ICON },
+    { name: '공원', icon: NEO_TOKYO_ICON },
+    { name: '아키하바라', icon: NEO_TOKYO_ICON },
+    { name: '도쿄 상공', icon: NEO_TOKYO_ICON },
+    { name: '카무나', icon: NEO_TOKYO_ICON },
+    { name: '시부야', icon: NEO_TOKYO_ICON },
+    { name: '롯폰기 몰', icon: NEO_TOKYO_ICON },
+    { name: '최상층', icon: NEO_TOKYO_ICON },
   ] },
   { name: '시간의 신전', regions: [{ name: '시간의 신전', icon: ic(270010100) }] },
   { name: '마스테리아', regions: [{ name: '뉴 리프 시티', icon: ic(600000000) }] },
