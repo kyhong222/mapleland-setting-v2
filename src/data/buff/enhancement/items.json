@@ -292,5 +292,16 @@
       "mad": 40,
       "speed": 40
     }
+  },
+  {
+    "id": "2022110",
+    "type": "item",
+    "name": "미나기리 드링크",
+    "effects": {
+      "addPad": 4,
+      "addMad": 8,
+      "pdef": 30
+    },
+    "icon": "/buff-icons/2022110.png"
   }
 ]
