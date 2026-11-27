@@ -7242,7 +7242,7 @@
     "slot": "weapon",
     "effects": {
       "LUK": 8,
-      "pad": 105,
+      "pad": 100,
       "attackSpeed": 4
     },
     "reqLevel": 115,
@@ -7259,9 +7259,9 @@
     "slot": "weapon",
     "effects": {
       "INT": 2,
-      "hp": 250,
+      "hp": 50,
       "pad": 75,
-      "mad": 115,
+      "mad": 128,
       "attackSpeed": 6
     },
     "reqLevel": 113,
@@ -7269,26 +7269,27 @@
     "reqJob": 2,
     "weaponType": "wand",
     "iconUrl": "https://maplestory.io/api/jms/368/item/1372047/icon",
-    "reqInt": 450
+    "reqInt": 340,
+    "reqLuk": 115
   },
   {
     "id": 1382063,
     "name": "스피어 글레이브 (임시)",
     "slot": "weapon",
     "effects": {
-      "LUK": 2,
       "hp": 50,
       "pad": 78,
-      "mad": 123,
-      "attackSpeed": 4
+      "mad": 130,
+      "attackSpeed": 8,
+      "INT": 2
     },
     "reqLevel": 115,
     "tuc": 7,
     "reqJob": 2,
     "weaponType": "staff",
     "iconUrl": "https://maplestory.io/api/jms/368/item/1382063/icon",
-    "reqInt": 344,
-    "reqLuk": 80
+    "reqInt": 346,
+    "reqLuk": 118
   },
   {
     "id": 1402054,
@@ -7493,9 +7494,9 @@
     "slot": "weapon",
     "effects": {
       "INT": 2,
-      "hp": 250,
+      "hp": 50,
       "pad": 75,
-      "mad": 115,
+      "mad": 128,
       "attackSpeed": 6
     },
     "reqLevel": 113,
@@ -7503,26 +7504,27 @@
     "reqJob": 2,
     "weaponType": "wand",
     "iconUrl": "https://maplestory.io/api/jms/368/item/1372048/icon",
-    "reqInt": 450
+    "reqInt": 340,
+    "reqLuk": 115
   },
   {
     "id": 1382064,
     "name": "플레어 글레이브 (임시)",
     "slot": "weapon",
     "effects": {
-      "LUK": 2,
       "hp": 50,
       "pad": 78,
-      "mad": 123,
-      "attackSpeed": 4
+      "mad": 130,
+      "attackSpeed": 8,
+      "INT": 2
     },
     "reqLevel": 115,
     "tuc": 7,
     "reqJob": 2,
     "weaponType": "staff",
     "iconUrl": "https://maplestory.io/api/jms/368/item/1382064/icon",
-    "reqInt": 344,
-    "reqLuk": 80
+    "reqInt": 346,
+    "reqLuk": 118
   },
   {
     "id": 1402055,
@@ -7643,10 +7645,10 @@
     "name": "플레어 글레이브 (임시)",
     "slot": "weapon",
     "effects": {
-      "LUK": 8,
       "pad": 52,
       "eva": 7,
-      "attackSpeed": 4
+      "attackSpeed": 4,
+      "DEX": 8
     },
     "reqLevel": 115,
     "tuc": 7,
