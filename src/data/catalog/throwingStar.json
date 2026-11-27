@@ -128,5 +128,15 @@
     },
     "iconUrl": "https://maplestory.io/api/gms/62/item/2070018/icon",
     "reqLevel": 70
+  },
+  {
+    "id": 2070016,
+    "name": "크리스탈 일비 표창",
+    "slot": "throwingStar",
+    "effects": {
+      "pad": 29
+    },
+    "reqLevel": 50,
+    "iconUrl": "https://maplestory.io/api/jms/368/item/2070016/icon"
   }
 ]

@@ -68,5 +68,15 @@
     },
     "iconUrl": "https://maplestory.io/api/gms/62/item/2330006/icon",
     "reqLevel": 10
+  },
+  {
+    "id": 2330007,
+    "name": "아머 피어싱 불릿",
+    "slot": "bullet",
+    "effects": {
+      "pad": 22
+    },
+    "reqLevel": 50,
+    "iconUrl": "https://maplestory.io/api/jms/368/item/2330007/icon"
   }
 ]
